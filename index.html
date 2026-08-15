@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Pulse - Free Music Streaming by Pushkar Hiremath</title>
   <meta name="description" content="Listen to millions of free songs in English, Hindi, Spanish, Punjabi & more on Pulse by Pushkar Hiremath. Premium web music experience with live search, video player, visualizers & lyrics.">
+  
+  <script>
+    // Automatically purge old stale cache on version update
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        for (var r of regs) {
+          r.update();
+        }
+      });
+    }
+  </script>
   
   <!-- PWA & Mobile Meta -->
   <link rel="manifest" href="./manifest.json">
