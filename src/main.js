@@ -961,9 +961,11 @@
               <i class="fa-solid ${playIcon}"></i>
             </button>
           </div>
-          <div class="card-actions-overlay" style="position: absolute; top: 8px; right: 8px; display: flex; gap: 4px; z-index: 5;">
             <button class="btn-icon-small btn-card-like" title="${isLiked ? 'Unlike' : 'Like'}" onclick="event.stopPropagation(); window.toggleLikeTrackById('${track.id}')" style="background: rgba(0,0,0,0.6); color: ${isLiked ? '#ff4757' : '#fff'}; width: 30px; height: 30px; border-radius: 50%;">
               <i class="fa-${isLiked ? 'solid' : 'regular'} fa-heart"></i>
+            </button>
+            <button class="btn-icon-small btn-card-download" title="Download for Offline" onclick="event.stopPropagation(); window.downloadSong('${track.id}')" style="background: rgba(0,0,0,0.6); color: #fff; width: 30px; height: 30px; border-radius: 50%;">
+              <i class="fa-solid fa-arrow-down-to-line"></i>
             </button>
             <button class="btn-icon-small btn-card-playlist" title="Add to Playlist" onclick="event.stopPropagation(); window.openAddToPlaylistModal('${track.id}')" style="background: rgba(0,0,0,0.6); color: #fff; width: 30px; height: 30px; border-radius: 50%;">
               <i class="fa-solid fa-plus"></i>
@@ -979,6 +981,48 @@
     `;
   }
   window.createMusicCardHTML = createMusicCardHTML;
+
+  window.downloadSong = function(trackId) {
+    let track = null;
+    if (trackId && window.musicService && typeof window.musicService.getTrackById === 'function') {
+      track = window.musicService.getTrackById(trackId);
+    }
+    if (!track && trackId && state.searchResults) {
+      track = state.searchResults.find(t => t.id === trackId);
+    }
+    if (!track) {
+      track = state.currentTrack;
+    }
+    if (!track) {
+      showToast('Please select or play a song first.', 'warning');
+      return;
+    }
+
+    const title = track.title || track.name || 'Song';
+    const artist = track.artist || 'Pulse Music';
+    showToast(`Preparing "${title}" for offline playback...`, 'info', 2500);
+
+    if (track.previewUrl || (track.audioUrl && track.audioUrl.startsWith('http'))) {
+      const link = document.createElement('a');
+      link.href = track.previewUrl || track.audioUrl;
+      link.download = `${title} - ${artist}.mp3`;
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast(`"${title}" download started!`, 'success', 3500);
+    } else {
+      let offlineList = [];
+      try {
+        offlineList = JSON.parse(localStorage.getItem('pulse_offline_tracks') || '[]');
+      } catch(e) { offlineList = []; }
+      if (!offlineList.some(t => t.id === track.id)) {
+        offlineList.push(track);
+        localStorage.setItem('pulse_offline_tracks', JSON.stringify(offlineList));
+      }
+      showToast(`"${title}" saved to your Offline Library! Accessible anytime with 0 data.`, 'success', 4500);
+    }
+  };
 
   function renderRowTrackHTML(track, index, playlistId = null) {
     if (!track) return '';
@@ -1097,50 +1141,41 @@
   /* ==========================================================================
      5. DYNAMIC MUSIC SEARCH ENGINE (Immediate on Clicks & Debounced on Typing)
      ========================================================================== */
-  window.executeSearch = function(query, isDebounced = false) {
+  window.executeSearch = function(query, isDebounced = true) {
     if (searchDebounceTimer) {
       clearTimeout(searchDebounceTimer);
       searchDebounceTimer = null;
     }
 
-    if (query === null || query === undefined || (typeof query === 'string' && query.length === 0)) {
+    const rawQ = query === null || query === undefined ? '' : String(query);
+    const cleanQ = rawQ.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E0}-\u{1F1FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}]/gu, '');
+    const trimmed = cleanQ.trim();
+
+    if (!trimmed && !rawQ.trim()) {
       if (el.clearSearchBtn) el.clearSearchBtn.classList.add('hidden');
-      if (el.globalSearchInput && document.activeElement !== el.globalSearchInput) el.globalSearchInput.value = '';
-      switchView('home');
+      if (currentView === 'search-view') switchView('home');
       return;
     }
 
-    const rawQ = String(query);
-    const cleanQ = rawQ.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E0}-\u{1F1FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}]/gu, '');
-    const effectiveQuery = cleanQ.trim() || rawQ.trim();
-
     if (el.clearSearchBtn) el.clearSearchBtn.classList.remove('hidden');
-    // NEVER overwrite input value if user is actively typing into the input box
-    if (el.globalSearchInput && document.activeElement !== el.globalSearchInput) {
-      el.globalSearchInput.value = rawQ;
-    }
-    
-    // Switch to search view immediately
-    switchView('search-view');
 
-    const searchLabel = document.getElementById('search-query-label') || el.searchQueryLabel;
-    const searchCountEl = document.getElementById('search-count') || el.searchCount;
-    const loadingEl = document.getElementById('search-loading') || el.searchLoading;
-    const container = document.getElementById('search-results-container') || el.searchResultsContainer;
+    const doSearch = async () => {
+      if (currentView !== 'search-view') {
+        switchView('search-view');
+      }
 
-    if (searchLabel) searchLabel.textContent = effectiveQuery || rawQ;
-    if (loadingEl) loadingEl.classList.remove('hidden');
-    if (container) container.innerHTML = '';
-    if (searchCountEl) searchCountEl.textContent = 'Searching catalog...';
+      const searchLabel = document.getElementById('search-query-label') || el.searchQueryLabel;
+      const searchCountEl = document.getElementById('search-count') || el.searchCount;
+      const loadingEl = document.getElementById('search-loading') || el.searchLoading;
+      const container = document.getElementById('search-results-container') || el.searchResultsContainer;
 
-    const performSearch = async () => {
+      if (searchLabel) searchLabel.textContent = trimmed || rawQ;
+      if (loadingEl) loadingEl.classList.remove('hidden');
+      if (searchCountEl) searchCountEl.textContent = 'Searching...';
+
       try {
-        if (!window.musicService || typeof window.musicService.searchTracks !== 'function') {
-          console.error("musicService not ready");
-          return;
-        }
-
-        const results = await window.musicService.searchTracks(effectiveQuery || rawQ, 100);
+        if (!window.musicService || typeof window.musicService.searchTracks !== 'function') return;
+        const results = await window.musicService.searchTracks(trimmed || rawQ, 100);
         state.searchResults = results;
         if (loadingEl) loadingEl.classList.add('hidden');
 
@@ -1158,24 +1193,23 @@
           if (container) {
             container.innerHTML = `
               <div style="text-align: center; padding: 3rem 1rem; color: #b3b3b3;">
-                <i class="fa-solid fa-music text-muted" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                <h3 style="color: #fff; margin-bottom: 0.5rem;">No songs found for "${effectiveQuery || rawQ}"</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Try searching for artist names (e.g. <em>Arijit Singh</em>, <em>Taylor Swift</em>), devotional songs, or Bollywood titles.</p>
-                <button class="btn-secondary-outline" onclick="window.executeSearch('Popular Hindi Hits')"><i class="fa-solid fa-rotate-right"></i> Try Trending Hits</button>
+                <i class="fa-solid fa-music text-muted" style="font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                <p>No tracks found for "<strong>${trimmed || rawQ}</strong>"</p>
+                <p style="font-size: 0.85rem; margin-top: 0.5rem;">Try searching for artist name, song title, or genre</p>
               </div>
             `;
           }
         }
       } catch (err) {
-        console.error("Search error:", err);
+        console.error('[Pulse Search] Error:', err);
         if (loadingEl) loadingEl.classList.add('hidden');
       }
     };
 
     if (isDebounced) {
-      searchDebounceTimer = setTimeout(performSearch, 200);
+      searchDebounceTimer = setTimeout(doSearch, 250);
     } else {
-      performSearch();
+      doSearch();
     }
   };
 
