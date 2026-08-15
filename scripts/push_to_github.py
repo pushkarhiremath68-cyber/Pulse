@@ -26,6 +26,11 @@ def push_repo():
         try: os.remove(lock_file)
         except Exception: pass
 
+    # Configure Git Credential Manager to use Windows stored credentials
+    run(["config", "credential.helper", "wincred"])
+    run(["config", "user.name", "Pushkar Hiremath"])
+    run(["config", "user.email", "pushkarhiremath68@gmail.com"])
+
     # 2. Stage updated files
     run(["add", "-A"])
     run(["status", "--short"])
