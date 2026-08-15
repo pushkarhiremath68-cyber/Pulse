@@ -4338,14 +4338,20 @@ body.is-installed-app-mode .share-link-box {
 }
 
 /* ==========================================================================
-   NATIVE APP SHELL: FRAMELESS TITLEBAR & DESKTOP CONTROLS (Removed for clean web view)
+   NATIVE APP SHELL: TITLEBAR & BRAND HEADER
    ========================================================================== */
 .app-titlebar {
-  display: none !important;
-}
-
-body.is-electron-shell .app-titlebar {
-  display: flex !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 42px;
+  background: rgba(5, 5, 8, 0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0 1rem;
+  z-index: 9999;
+  user-select: none;
+  position: relative;
 }
 
 .titlebar-window-controls {
