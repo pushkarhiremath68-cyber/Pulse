@@ -1,0 +1,9 @@
+{
+  "publisher": "Pulse Music (Pushkar Hiremath)",
+  "organization": "Pulse Music Streaming Network",
+  "algorithm": "RSA-4096 / SHA-256 Authenticode",
+  "certificate_file": "certs/pulse-authenticode.pfx",
+  "public_key": "certs/pulse-authenticode.cer",
+  "validity_years": 5,
+  "password_env": "PULSE_CODESIGN_PASSWORD"
+}

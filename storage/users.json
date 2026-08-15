@@ -1,0 +1,47 @@
+{
+  "demo@pulsemusic.app": {
+    "id": "user-demo-1",
+    "name": "Demo Listener",
+    "email": "demo@pulsemusic.app",
+    "password_hash": "0b60e4a2e7e104ae91013bd5648c3e848857e3471b7a96155877f3a39fad3a86",
+    "salt": "76f93cb98d797a873bfc9eaaf56afeae",
+    "created_at": 1786752222.2318964,
+    "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=demo@pulsemusic.app"
+  },
+  "alex.test@example.com": {
+    "id": "user-1786752360-196384",
+    "name": "Alex Miller",
+    "email": "alex.test@example.com",
+    "password_hash": "3f8f48e90bbf68c8a6b92305f2b72853a891cf5b97b03c18d6a4547f32d996ce",
+    "salt": "3782274a3d49d49ec632842cceabd120",
+    "created_at": 1786752360.6701994,
+    "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=alex.test%40example.com"
+  },
+  "alex.test.1786752817@example.com": {
+    "id": "user-1786752817-4dd78d",
+    "name": "Alex Miller",
+    "email": "alex.test.1786752817@example.com",
+    "password_hash": "caeea303e12f3e7cd50108f649705625b934501b515d3101c47c860d3db53311",
+    "salt": "af995726c20ed6f8c702262d5732d77d",
+    "created_at": 1786752817.9786048,
+    "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=alex.test.1786752817%40example.com"
+  },
+  "google.user.1786752853@gmail.com": {
+    "id": "user-1786752853-b1a806",
+    "name": "Google User",
+    "email": "google.user.1786752853@gmail.com",
+    "password_hash": "28aaaa064a27f67b3f4f34aad9eb6fc808ef3eb7cde501a0081095cbf39fa7cb",
+    "salt": "270c9e32e2b27bad0969094910540266",
+    "created_at": 1786752853.47671,
+    "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=google.user.1786752853%40gmail.com"
+  },
+  "alex.test.1786753410@example.com": {
+    "id": "user-1786753410-0dd034",
+    "name": "Alex Miller",
+    "email": "alex.test.1786753410@example.com",
+    "password_hash": "09ede710d88bdd37f7ac77282be94418216cc83227df5d22ecbd91aa5aee452b",
+    "salt": "fedeb1055b6a4c6db50219e805909868",
+    "created_at": 1786753410.850571,
+    "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=alex.test.1786753410%40example.com"
+  }
+}
