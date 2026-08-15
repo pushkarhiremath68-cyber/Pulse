@@ -1203,7 +1203,7 @@
               <span>Installer: <strong>.exe (Signed)</strong></span>
               <span id="meta-win-size">0.5 MB</span>
             </div>
-            <a href="/api/download/windows" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(168,85,247,0.15); border: 1px solid var(--accent-primary); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
+            <a href="#" onclick="window.downloadPlatformApp('windows'); return false;" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(168,85,247,0.15); border: 1px solid var(--accent-primary); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
               <i class="fa-solid fa-download"></i> Download .EXE
             </a>
           </div>
@@ -1221,7 +1221,7 @@
               <span>Package: <strong>.dmg Universal</strong></span>
               <span id="meta-mac-size">0.5 MB</span>
             </div>
-            <a href="/api/download/mac" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
+            <a href="#" onclick="window.downloadPlatformApp('mac'); return false;" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
               <i class="fa-solid fa-download"></i> Download .DMG
             </a>
           </div>
@@ -1239,7 +1239,7 @@
               <span>Release: <strong>.apk Signed</strong></span>
               <span id="meta-android-size">1.6 MB</span>
             </div>
-            <a href="/api/download/android" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.4); color: #4ade80; text-align: center; text-decoration: none; font-weight: 600;">
+            <a href="#" onclick="window.downloadPlatformApp('android'); return false;" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.4); color: #4ade80; text-align: center; text-decoration: none; font-weight: 600;">
               <i class="fa-solid fa-download"></i> Download APK
             </a>
           </div>
@@ -1257,7 +1257,7 @@
               <span>Package: <strong>.AppImage</strong></span>
               <span id="meta-linux-size">0.5 MB</span>
             </div>
-            <a href="/api/download/linux" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
+            <a href="#" onclick="window.downloadPlatformApp('linux'); return false;" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
               <i class="fa-solid fa-download"></i> Download AppImage
             </a>
           </div>
@@ -1275,7 +1275,7 @@
               <span>Package: <strong>.ipa / PWA</strong></span>
               <span id="meta-ios-size">0.5 MB</span>
             </div>
-            <a href="/api/download/ios" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
+            <a href="#" onclick="window.downloadPlatformApp('ios'); return false;" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
               <i class="fa-solid fa-download"></i> Download .IPA
             </a>
           </div>
@@ -1476,7 +1476,7 @@
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="pulse-toast-container" class="pulse-toast-container"></div>
 
-  <div id="hidden-youtube-container" style="position: fixed; bottom: -500px; right: -500px; width: 240px; height: 240px; pointer-events: none; z-index: 1;">
+  <div id="hidden-youtube-container" style="position: fixed; bottom: 85px; right: 20px; width: 200px; height: 120px; z-index: 0; opacity: 0.001; pointer-events: none; overflow: hidden;">
     <div id="youtube-player-iframe"></div>
     <div id="youtube-fallback-container"></div>
   </div>
@@ -1502,14 +1502,15 @@
         if (!playerDiv) return;
 
         window._ytPlayerInstance = new window.YT.Player('youtube-player-iframe', {
-          height: '240',
-          width: '240',
+          height: '120',
+          width: '200',
           playerVars: {
             autoplay: 0,
             controls: 0,
             disablekb: 1,
             fs: 0,
             rel: 0,
+            playsinline: 1,
             showinfo: 0,
             enablejsapi: 1,
             origin: window.location.origin

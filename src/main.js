@@ -1103,19 +1103,22 @@
       searchDebounceTimer = null;
     }
 
-    if (!query || typeof query !== 'string' || query.trim() === '') {
+    if (query === null || query === undefined || (typeof query === 'string' && query.length === 0)) {
       if (el.clearSearchBtn) el.clearSearchBtn.classList.add('hidden');
-      if (el.globalSearchInput) el.globalSearchInput.value = '';
+      if (el.globalSearchInput && document.activeElement !== el.globalSearchInput) el.globalSearchInput.value = '';
       switchView('home');
       return;
     }
 
-    const rawQ = query.trim();
-    const cleanQ = rawQ.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E0}-\u{1F1FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}]/gu, '').trim();
-    const effectiveQuery = cleanQ || rawQ;
+    const rawQ = String(query);
+    const cleanQ = rawQ.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E0}-\u{1F1FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}]/gu, '');
+    const effectiveQuery = cleanQ.trim() || rawQ.trim();
 
     if (el.clearSearchBtn) el.clearSearchBtn.classList.remove('hidden');
-    if (el.globalSearchInput) el.globalSearchInput.value = effectiveQuery;
+    // NEVER overwrite input value if user is actively typing into the input box
+    if (el.globalSearchInput && document.activeElement !== el.globalSearchInput) {
+      el.globalSearchInput.value = rawQ;
+    }
     
     // Switch to search view immediately
     switchView('search-view');
@@ -1125,7 +1128,7 @@
     const loadingEl = document.getElementById('search-loading') || el.searchLoading;
     const container = document.getElementById('search-results-container') || el.searchResultsContainer;
 
-    if (searchLabel) searchLabel.textContent = effectiveQuery;
+    if (searchLabel) searchLabel.textContent = effectiveQuery || rawQ;
     if (loadingEl) loadingEl.classList.remove('hidden');
     if (container) container.innerHTML = '';
     if (searchCountEl) searchCountEl.textContent = 'Searching catalog...';
@@ -1137,7 +1140,7 @@
           return;
         }
 
-        const results = await window.musicService.searchTracks(effectiveQuery, 100);
+        const results = await window.musicService.searchTracks(effectiveQuery || rawQ, 100);
         state.searchResults = results;
         if (loadingEl) loadingEl.classList.add('hidden');
 
@@ -1156,8 +1159,8 @@
             container.innerHTML = `
               <div style="text-align: center; padding: 3rem 1rem; color: #b3b3b3;">
                 <i class="fa-solid fa-music text-muted" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                <h3 style="color: #fff; margin-bottom: 0.5rem;">No songs found for "${effectiveQuery}"</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Try searching for artist names (e.g. <em>Arijit Singh</em>, <em>Atif Aslam</em>), Bollywood keywords, or song titles.</p>
+                <h3 style="color: #fff; margin-bottom: 0.5rem;">No songs found for "${effectiveQuery || rawQ}"</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Try searching for artist names (e.g. <em>Arijit Singh</em>, <em>Taylor Swift</em>), devotional songs, or Bollywood titles.</p>
                 <button class="btn-secondary-outline" onclick="window.executeSearch('Popular Hindi Hits')"><i class="fa-solid fa-rotate-right"></i> Try Trending Hits</button>
               </div>
             `;
@@ -1170,7 +1173,7 @@
     };
 
     if (isDebounced) {
-      searchDebounceTimer = setTimeout(performSearch, 150);
+      searchDebounceTimer = setTimeout(performSearch, 200);
     } else {
       performSearch();
     }
@@ -2648,17 +2651,29 @@
   };
 
   window.downloadPlatformApp = function(os) {
-    const validEndpoints = {
-      windows: '/api/download/windows',
-      mac: '/api/download/mac',
-      android: '/api/download/android',
-      ios: '/api/download/ios',
-      linux: '/api/download/linux'
-    };
+    if (window.deferredPrompt) {
+      window.deferredPrompt.prompt();
+      window.deferredPrompt.userChoice.then((choice) => {
+        if (choice.outcome === 'accepted') {
+          showToast('Pulse App installed successfully!', 'success');
+        }
+        window.deferredPrompt = null;
+      });
+      return;
+    }
 
-    const targetUrl = validEndpoints[os] || `/api/download/${os}`;
-    showToast(`Starting secure download for ${os.toUpperCase()}...`, 'success', 3000);
-    window.location.href = targetUrl;
+    if (os === 'android') {
+      showToast('Opening Android APK installation package...', 'info', 3000);
+      window.open('https://github.com/pushkarhiremath68-cyber/Pulse/releases', '_blank');
+    } else if (os === 'windows') {
+      showToast('Opening Windows Desktop package...', 'info', 3000);
+      window.open('https://github.com/pushkarhiremath68-cyber/Pulse/releases', '_blank');
+    } else if (os === 'mac') {
+      showToast('Opening macOS package...', 'info', 3000);
+      window.open('https://github.com/pushkarhiremath68-cyber/Pulse/releases', '_blank');
+    } else {
+      showToast('Pulse Web App is active! To install on mobile or desktop, tap "Add to Home Screen" or "Install App" in your browser menu.', 'info', 4500);
+    }
   };
 
   /* ==========================================================================
@@ -3114,7 +3129,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     REAL USER LOGIN HANDLER
+     REAL USER LOGIN HANDLER (Static Hosting & Server Hybrid Engine)
      -------------------------------------------------------------------------- */
   window.handleRealLogin = async function(e) {
     if (e) e.preventDefault();
@@ -3128,7 +3143,7 @@
     const email = emailInput?.value.trim() || '';
     const password = passwordInput?.value || '';
 
-    // 1. Client-Side Input Validation with Specific Messages
+    // 1. Client-Side Validation
     if (!email && !password) {
       window.showAuthError("Please enter your email address and password.", "error");
       document.getElementById('login-email-wrapper')?.classList.add('has-error');
@@ -3137,30 +3152,43 @@
       return;
     }
 
-    if (!email) {
-      window.showAuthError("Email address is required.", "error", "login-email");
-      emailInput?.focus();
-      return;
-    }
-
-    if (!validateEmailRegex(email)) {
-      window.showAuthError("Please enter a valid email address (e.g. name@domain.com).", "error", "login-email");
-      emailInput?.focus();
-      return;
-    }
-
-    if (!password) {
-      window.showAuthError("Please enter your password.", "error", "login-password");
-      passwordInput?.focus();
-      return;
-    }
-
     // 2. Set Button Loading State
     setButtonLoading(submitBtn, true, 'Log In', 'fa-solid fa-arrow-right');
 
-    // 3. Perform Authentication Request
+    // 3. Static Hosting / GitHub Pages Direct Client Login
+    const isStaticHost = typeof window !== 'undefined' && window.location && (
+      window.location.hostname.includes('github.io') ||
+      window.location.hostname.includes('netlify.app') ||
+      window.location.hostname.includes('vercel.app') ||
+      window.location.hostname.includes('firebaseapp.com') ||
+      window.location.protocol === 'file:'
+    );
+
+    if (isStaticHost) {
+      let storedUsers = {};
+      try { storedUsers = JSON.parse(localStorage.getItem('pulse_local_users') || '{}'); } catch(err) {}
+      const local = storedUsers[email.toLowerCase()];
+      const userName = local ? local.name : (email.split('@')[0] || 'Listener');
+      const userAvatar = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`;
+      
+      try {
+        localStorage.setItem('pulse_auth_token', 'local_' + Date.now());
+        localStorage.setItem('pulse_user_data', JSON.stringify({ name: userName, email: email, avatar: userAvatar }));
+      } catch (err) {}
+
+      window.showAuthSuccess(`Welcome back, ${userName}!`);
+      setTimeout(() => {
+        window.loginUser(userName, email, 'email', userAvatar);
+        const modal = document.getElementById('auth-modal');
+        if (modal) modal.classList.add('hidden');
+        if (typeof window.showToast === 'function') window.showToast(`Logged in as ${userName}`, 'success');
+        setButtonLoading(submitBtn, false, 'Log In', 'fa-solid fa-arrow-right');
+      }, 300);
+      return;
+    }
+
+    // 4. Server-Side Authentication
     try {
-      console.log(`[Auth Request] Submitting login request to /api/auth/login for: ${email}`);
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -3168,70 +3196,17 @@
       });
 
       const data = await response.json().catch(() => ({}));
-      
-      // Development logging of raw error/response
-      console.error('[Auth Error Debug - Login Response]:', {
-        status: response.status,
-        statusText: response.statusText,
-        ok: response.ok,
-        responseBody: data
-      });
 
       if (!response.ok) {
-        // Fallback for static hosting / GitHub Pages demo mode
-        const isStaticHost = typeof window !== 'undefined' && window.location && (
-          window.location.hostname.includes('github.io') ||
-          window.location.hostname.includes('netlify.app') ||
-          window.location.hostname.includes('vercel.app') ||
-          window.location.hostname.includes('firebaseapp.com') ||
-          window.location.protocol === 'file:'
-        );
-
-        if ((response.status === 404 || isStaticHost) && typeof localStorage !== 'undefined') {
-          const stored = JSON.parse(localStorage.getItem('pulse_local_users') || '{}');
-          const local = stored[email.toLowerCase()];
-          const userName = local ? local.name : (email.split('@')[0] || 'Listener');
-          const user = { name: userName, email: email, avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}` };
-          
-          localStorage.setItem('pulse_auth_token', 'local_' + Date.now());
-          localStorage.setItem('pulse_user_data', JSON.stringify(user));
-          
-          window.showAuthSuccess(`Welcome back, ${userName}!`);
-          setTimeout(() => {
-            window.loginUser(user.name, user.email, 'email', user.avatar);
-            document.getElementById('auth-modal')?.classList.add('hidden');
-            window.showToast?.(`Welcome back, ${user.name}!`);
-          }, 400);
-          return;
-        }
-
-        // Specific Error Resolution based on HTTP Status & Response Body
-        let errorMsg = data.error || data.message;
-        if (!errorMsg) {
-          if (response.status === 401) {
-            errorMsg = "Invalid email or password. Please verify your credentials and try again.";
-          } else if (response.status === 404) {
-            errorMsg = "No account found with this email address. Please check your email or sign up.";
-          } else if (response.status === 400) {
-            errorMsg = "Invalid login request. Please check your inputs.";
-          } else if (response.status === 429) {
-            errorMsg = "Too many failed login attempts. Please wait 5 minutes before trying again.";
-          } else if (response.status >= 500) {
-            errorMsg = "Server error occurred while authenticating. Please try again later.";
-          } else {
-            errorMsg = `Login failed (${response.status}: ${response.statusText}).`;
-          }
-        }
-
-        window.showAuthError(errorMsg, "error", data.field || (response.status === 401 ? "login-password" : null));
+        let errorMsg = data.error || data.message || "Invalid email or password.";
+        window.showAuthError(errorMsg, "error", data.field || "login-password");
+        setButtonLoading(submitBtn, false, 'Log In', 'fa-solid fa-arrow-right');
         return;
       }
 
-      // Success
       const user = data.user || { name: email.split('@')[0], email: email, avatar: './pulse-logo.png' };
       window.showAuthSuccess(data.message || `Welcome back, ${user.name}!`);
       
-      // Save session
       if (data.token) {
         try {
           localStorage.setItem('pulse_auth_token', data.token);
@@ -3246,14 +3221,7 @@
       }, 400);
 
     } catch (networkErr) {
-      // Network Connection Failure Handling -> Static fallback
-      console.warn('[Auth Notice] Network failure, enabling static client session:', networkErr);
       const user = { name: email.split('@')[0] || 'Listener', email: email, avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}` };
-      try {
-        localStorage.setItem('pulse_auth_token', 'local_' + Date.now());
-        localStorage.setItem('pulse_user_data', JSON.stringify(user));
-      } catch (e) {}
-
       window.showAuthSuccess(`Welcome, ${user.name}!`);
       setTimeout(() => {
         window.loginUser(user.name, user.email, 'email', user.avatar);
@@ -3266,7 +3234,7 @@
   };
 
   /* --------------------------------------------------------------------------
-     REAL USER SIGNUP HANDLER
+     REAL USER SIGNUP HANDLER (Static Hosting & Server Hybrid Engine)
      -------------------------------------------------------------------------- */
   window.handleRealSignup = async function(e) {
     if (e) e.preventDefault();
@@ -3284,56 +3252,20 @@
     const password = passwordInput?.value || '';
     const confirmPassword = confirmPasswordInput?.value || '';
 
-    // 1. Comprehensive Client-Side Validation with Explicit Messages
+    // 1. Validation
     if (!name) {
       window.showAuthError("Full Name is required.", "error", "signup-name");
       nameInput?.focus();
       return;
     }
 
-    if (name.length < 2) {
-      window.showAuthError("Full name must be at least 2 characters.", "error", "signup-name");
-      nameInput?.focus();
-      return;
-    }
-
-    if (!email) {
-      window.showAuthError("Email address is required.", "error", "signup-email");
-      emailInput?.focus();
-      return;
-    }
-
-    if (!validateEmailRegex(email)) {
-      window.showAuthError("Please enter a valid email address (e.g. name@domain.com).", "error", "signup-email");
-      emailInput?.focus();
-      return;
-    }
-
-    if (!password) {
-      window.showAuthError("Password is required.", "error", "signup-password");
+    if (password.length < 6) {
+      window.showAuthError("Password must be at least 6 characters long.", "error", "signup-password");
       passwordInput?.focus();
       return;
     }
 
-    if (password.length < 8) {
-      window.showAuthError("Password must be at least 8 characters long.", "error", "signup-password");
-      passwordInput?.focus();
-      return;
-    }
-
-    if (!/[A-Za-z]/.test(password) || !/[0-9!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      window.showAuthError("Password must contain at least one letter and one number or special character.", "error", "signup-password");
-      passwordInput?.focus();
-      return;
-    }
-
-    if (!confirmPassword) {
-      window.showAuthError("Please confirm your password.", "error", "signup-confirm-password");
-      confirmPasswordInput?.focus();
-      return;
-    }
-
-    if (password !== confirmPassword) {
+    if (confirmPassword && password !== confirmPassword) {
       window.showAuthError("Passwords do not match. Please re-enter your password.", "error", "signup-confirm-password");
       confirmPasswordInput?.focus();
       return;
@@ -3342,9 +3274,39 @@
     // 2. Set Button Loading State
     setButtonLoading(submitBtn, true, 'Create Account', 'fa-solid fa-rocket');
 
-    // 3. Perform Signup Request
+    // 3. Static Hosting / GitHub Pages Direct Client Registration
+    const isStaticHost = typeof window !== 'undefined' && window.location && (
+      window.location.hostname.includes('github.io') ||
+      window.location.hostname.includes('netlify.app') ||
+      window.location.hostname.includes('vercel.app') ||
+      window.location.hostname.includes('firebaseapp.com') ||
+      window.location.protocol === 'file:'
+    );
+
+    if (isStaticHost) {
+      let storedUsers = {};
+      try { storedUsers = JSON.parse(localStorage.getItem('pulse_local_users') || '{}'); } catch(err) {}
+      const userAvatar = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`;
+      storedUsers[email.toLowerCase()] = { name, email, avatar: userAvatar };
+      try {
+        localStorage.setItem('pulse_local_users', JSON.stringify(storedUsers));
+        localStorage.setItem('pulse_auth_token', 'local_' + Date.now());
+        localStorage.setItem('pulse_user_data', JSON.stringify({ name, email, avatar: userAvatar }));
+      } catch (err) {}
+
+      window.showAuthSuccess(`Account created! Welcome, ${name}!`);
+      setTimeout(() => {
+        window.loginUser(name, email, 'email', userAvatar);
+        const modal = document.getElementById('auth-modal');
+        if (modal) modal.classList.add('hidden');
+        if (typeof window.showToast === 'function') window.showToast(`Welcome to Pulse, ${name}!`, 'success');
+        setButtonLoading(submitBtn, false, 'Create Account', 'fa-solid fa-rocket');
+      }, 300);
+      return;
+    }
+
+    // 4. Server-Side Registration
     try {
-      console.log(`[Auth Request] Submitting registration request to /api/auth/signup for: ${email}`);
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -3352,67 +3314,16 @@
       });
 
       const data = await response.json().catch(() => ({}));
-      
-      // Development logging of raw error/response
-      console.error('[Auth Error Debug - Signup Response]:', {
-        status: response.status,
-        statusText: response.statusText,
-        ok: response.ok,
-        responseBody: data
-      });
 
       if (!response.ok) {
-        // Fallback for static hosting / GitHub Pages demo mode
-        const isStaticHost = typeof window !== 'undefined' && window.location && (
-          window.location.hostname.includes('github.io') ||
-          window.location.hostname.includes('netlify.app') ||
-          window.location.hostname.includes('vercel.app') ||
-          window.location.hostname.includes('firebaseapp.com') ||
-          window.location.protocol === 'file:'
-        );
-
-        if ((response.status === 404 || isStaticHost) && typeof localStorage !== 'undefined') {
-          const user = { name: name, email: email, avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}` };
-          try {
-            const stored = JSON.parse(localStorage.getItem('pulse_local_users') || '{}');
-            stored[email.toLowerCase()] = { name, email, password };
-            localStorage.setItem('pulse_local_users', JSON.stringify(stored));
-            localStorage.setItem('pulse_auth_token', 'local_' + Date.now());
-            localStorage.setItem('pulse_user_data', JSON.stringify(user));
-          } catch(e) {}
-
-          window.showAuthSuccess(`Welcome to Pulse, ${name}! Your account is ready.`);
-          setTimeout(() => {
-            window.loginUser(user.name, user.email, 'email', user.avatar);
-            document.getElementById('auth-modal')?.classList.add('hidden');
-            window.showToast?.(`Welcome to Pulse, ${user.name}!`);
-          }, 400);
-          return;
-        }
-
-        // Specific Error Resolution
-        let errorMsg = data.error || data.message;
-        if (!errorMsg) {
-          if (response.status === 409) {
-            errorMsg = "An account with this email address already exists. Please log in instead.";
-          } else if (response.status === 422) {
-            errorMsg = "Passwords do not match. Please verify your passwords.";
-          } else if (response.status === 400) {
-            errorMsg = "Validation failed. Please check your information.";
-          } else if (response.status >= 500) {
-            errorMsg = "Server error occurred while creating your account. Please try again later.";
-          } else {
-            errorMsg = `Registration failed (${response.status}: ${response.statusText}).`;
-          }
-        }
-
-        window.showAuthError(errorMsg, "error", data.field || (response.status === 409 ? "signup-email" : null));
+        let errorMsg = data.error || data.message || "Registration failed.";
+        window.showAuthError(errorMsg, "error", data.field || "signup-email");
+        setButtonLoading(submitBtn, false, 'Create Account', 'fa-solid fa-rocket');
         return;
       }
 
-      // Success
-      const user = data.user || { name: name, email: email, avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}` };
-      window.showAuthSuccess(data.message || `Welcome to Pulse, ${name}! Your account is ready.`);
+      const user = data.user || { name, email, avatar: './pulse-logo.png' };
+      window.showAuthSuccess(data.message || `Account created successfully!`);
       
       if (data.token) {
         try {
@@ -3428,14 +3339,8 @@
       }, 400);
 
     } catch (networkErr) {
-      console.warn('[Auth Notice] Network failure on signup, enabling static client session:', networkErr);
-      const user = { name: name, email: email, avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}` };
-      try {
-        localStorage.setItem('pulse_auth_token', 'local_' + Date.now());
-        localStorage.setItem('pulse_user_data', JSON.stringify(user));
-      } catch (e) {}
-
-      window.showAuthSuccess(`Welcome to Pulse, ${name}!`);
+      const user = { name, email, avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}` };
+      window.showAuthSuccess(`Account created! Welcome, ${user.name}!`);
       setTimeout(() => {
         window.loginUser(user.name, user.email, 'email', user.avatar);
         document.getElementById('auth-modal')?.classList.add('hidden');
@@ -4465,35 +4370,36 @@
   // Native App Keyboard Shortcuts
   window.addEventListener('keydown', (e) => {
     const activeEl = document.activeElement;
-    const isInput = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.tagName === 'SELECT' || activeEl.isContentEditable);
+    const isInput = (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT' || e.target.isContentEditable || (typeof e.target.closest === 'function' && e.target.closest('input, textarea, select, [contenteditable="true"]')))) ||
+                    (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.tagName === 'SELECT' || activeEl.isContentEditable));
     
+    if (isInput) return; // NEVER block spacebar or typing in inputs
+
     // Disable browser zoom shortcuts (Ctrl + +, Ctrl + -, Ctrl + 0)
     if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
       e.preventDefault();
       return;
     }
 
-    if (!isInput) {
-      if (e.code === 'Space') {
-        e.preventDefault();
-        togglePlayPause();
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        seekRelative(5);
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        seekRelative(-5);
-      } else if (e.key.toLowerCase() === 'm') {
-        e.preventDefault();
-        toggleMute();
-      } else if (e.key.toLowerCase() === 'f') {
-        e.preventDefault();
-        if (el.fullscreenPlayer) {
-          if (el.fullscreenPlayer.classList.contains('active')) {
-            el.fullscreenPlayer.classList.remove('active');
-          } else {
-            el.fullscreenPlayer.classList.add('active');
-          }
+    if (e.code === 'Space') {
+      e.preventDefault();
+      togglePlayPause();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      seekRelative(5);
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      seekRelative(-5);
+    } else if (e.key.toLowerCase() === 'm') {
+      e.preventDefault();
+      toggleMute();
+    } else if (e.key.toLowerCase() === 'f') {
+      e.preventDefault();
+      if (el.fullscreenPlayer) {
+        if (el.fullscreenPlayer.classList.contains('active')) {
+          el.fullscreenPlayer.classList.remove('active');
+        } else {
+          el.fullscreenPlayer.classList.add('active');
         }
       }
     }
