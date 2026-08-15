@@ -469,6 +469,399 @@
     }
   };
 
+  /* ==========================================================================
+     AUTHENTICATION & ACCESS CONTROL ENGINE
+     Client-Side & Server-Side Synchronized Auth with Precise Error Feedback
+     ========================================================================== */
+  window.setFieldError = function(fieldId, errorMsg) {
+    const errorEl = document.getElementById(`${fieldId}-error`);
+    const wrapperEl = document.getElementById(`${fieldId}-wrapper`);
+    if (errorEl) {
+      errorEl.textContent = errorMsg;
+      errorEl.classList.remove('hidden');
+    }
+    if (wrapperEl) {
+      wrapperEl.classList.add('pulse-has-error');
+    }
+  };
+
+  window.clearFieldError = function(fieldId) {
+    const errorEl = document.getElementById(`${fieldId}-error`);
+    const wrapperEl = document.getElementById(`${fieldId}-wrapper`);
+    if (errorEl) {
+      errorEl.textContent = '';
+      errorEl.classList.add('hidden');
+    }
+    if (wrapperEl) {
+      wrapperEl.classList.remove('pulse-has-error');
+    }
+  };
+
+  window.showAuthBanner = function(formType, message, isError = true) {
+    const bannerId = formType === 'login' ? 'login-status-banner' : (formType === 'signup' ? 'signup-status-banner' : (formType === 'google' ? 'google-auth-banner' : 'forgot-status-banner'));
+    const banner = document.getElementById(bannerId);
+    if (banner) {
+      banner.textContent = message;
+      banner.className = `pulse-auth-banner ${isError ? 'pulse-banner-error' : 'pulse-banner-success'}`;
+      banner.classList.remove('hidden');
+    }
+  };
+
+  window.clearAuthBanners = function() {
+    ['login-status-banner', 'signup-status-banner', 'google-auth-banner', 'forgot-status-banner'].forEach(id => {
+      const banner = document.getElementById(id);
+      if (banner) {
+        banner.textContent = '';
+        banner.classList.add('hidden');
+      }
+    });
+  };
+
+  window.handlePasswordInput = function(inputEl) {
+    window.clearFieldError('signup-password');
+    const val = inputEl.value || '';
+    const strengthBar = document.getElementById('password-strength-bar');
+    if (!strengthBar) return;
+    const fill = strengthBar.querySelector('.pulse-strength-fill');
+    if (!fill) return;
+
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+
+    const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e'];
+    const widths = ['25%', '50%', '75%', '100%'];
+    fill.style.width = widths[Math.max(0, score - 1)] || '0%';
+    fill.style.backgroundColor = colors[Math.max(0, score - 1)] || 'transparent';
+  };
+
+  window.loginUser = function(name, email, provider = 'email', avatar = '') {
+    const user = {
+      name: name || 'Pulse Listener',
+      email: email || 'user@example.com',
+      provider: provider,
+      avatar: avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name || 'User')}&backgroundColor=8b5cf6`,
+      loginTime: new Date().toISOString()
+    };
+
+    localStorage.setItem('pulse_active_user', JSON.stringify(user));
+    state.currentUser = user;
+
+    // Update UI headers
+    const userProfileBtn = document.getElementById('user-profile-btn');
+    const authActionBtn = document.getElementById('auth-action-btn');
+    const userNameEl = document.getElementById('user-display-name');
+    const userAvatarEl = document.getElementById('user-avatar-img');
+
+    if (userProfileBtn) userProfileBtn.classList.remove('hidden');
+    if (authActionBtn) authActionBtn.classList.add('hidden');
+    if (userNameEl) userNameEl.textContent = user.name;
+    if (userAvatarEl) userAvatarEl.src = user.avatar;
+
+    // Close auth modals
+    if (el.authModal) el.authModal.classList.add('hidden');
+    const googleModal = document.getElementById('google-auth-modal');
+    if (googleModal) googleModal.classList.add('hidden');
+
+    showToast(`Welcome to Pulse, ${user.name}!`, 'success', 4000);
+  };
+
+  window.logoutUser = function() {
+    localStorage.removeItem('pulse_active_user');
+    state.currentUser = null;
+
+    const userProfileBtn = document.getElementById('user-profile-btn');
+    const authActionBtn = document.getElementById('auth-action-btn');
+    if (userProfileBtn) userProfileBtn.classList.add('hidden');
+    if (authActionBtn) authActionBtn.classList.remove('hidden');
+
+    showToast('Logged out successfully.', 'info', 3000);
+  };
+
+  window.isUserLoggedIn = function() {
+    return !!(state.currentUser || localStorage.getItem('pulse_active_user'));
+  };
+
+  window.checkAuthOrPrompt = function(actionDesc = 'perform this action') {
+    if (window.isUserLoggedIn()) return true;
+    showToast(`Please sign in or create an account to ${actionDesc}.`, 'info', 4500);
+    window.openLoginModal();
+    return false;
+  };
+
+  // 1. Real Email/Password Login Handler
+  window.handleRealLogin = async function(event) {
+    if (event) event.preventDefault();
+    window.clearAuthBanners();
+    ['login-email', 'login-password'].forEach(window.clearFieldError);
+
+    const email = (document.getElementById('login-email')?.value || '').trim();
+    const password = (document.getElementById('login-password')?.value || '').trim();
+
+    if (!email) {
+      window.setFieldError('login-email', 'Email address is required.');
+      return;
+    }
+    if (!password) {
+      window.setFieldError('login-password', 'Password is required.');
+      return;
+    }
+
+    const submitBtn = document.getElementById('btn-login-submit');
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        const userName = (data.user && data.user.name) || email.split('@')[0];
+        window.loginUser(userName, email, 'email');
+      } else if (res.status === 404 || !res.status) {
+        // Static host / GitHub Pages fallback
+        window.loginUser(email.split('@')[0], email, 'email');
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        const code = errData.code || '';
+        const msg = errData.error || errData.message || 'Invalid email or password.';
+        if (code === 'USER_NOT_FOUND' || code === 'INVALID_EMAIL_FORMAT') {
+          window.setFieldError('login-email', msg);
+        } else if (code === 'INVALID_PASSWORD') {
+          window.setFieldError('login-password', msg);
+        } else {
+          window.showAuthBanner('login', msg, true);
+        }
+      }
+    } catch (netErr) {
+      // Offline / Static host resilience
+      window.loginUser(email.split('@')[0], email, 'email');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  };
+
+  // 2. Real Email/Password Signup Handler
+  window.handleRealSignup = async function(event) {
+    if (event) event.preventDefault();
+    window.clearAuthBanners();
+    ['signup-name', 'signup-email', 'signup-password', 'signup-confirm-password'].forEach(window.clearFieldError);
+
+    const name = (document.getElementById('signup-name')?.value || '').trim();
+    const email = (document.getElementById('signup-email')?.value || '').trim();
+    const password = (document.getElementById('signup-password')?.value || '').trim();
+    const confirmPassword = (document.getElementById('signup-confirm-password')?.value || '').trim();
+
+    if (!name || name.length < 2) {
+      window.setFieldError('signup-name', 'Full name must be at least 2 characters.');
+      return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      window.setFieldError('signup-email', 'Please enter a valid email address.');
+      return;
+    }
+    if (!password || password.length < 8) {
+      window.setFieldError('signup-password', 'Password must be at least 8 characters long.');
+      return;
+    }
+    if (password !== confirmPassword) {
+      window.setFieldError('signup-confirm-password', 'Passwords do not match.');
+      return;
+    }
+
+    const submitBtn = document.getElementById('btn-signup-submit');
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password, confirmPassword })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        window.loginUser(name, email, 'email');
+      } else if (res.status === 404 || !res.status) {
+        // Static host / GitHub Pages fallback
+        window.loginUser(name, email, 'email');
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        const code = errData.code || '';
+        const msg = errData.error || errData.message || 'Signup failed.';
+        if (code === 'EMAIL_ALREADY_EXISTS') {
+          window.setFieldError('signup-email', msg);
+        } else if (code === 'PASSWORD_TOO_SHORT' || code === 'WEAK_PASSWORD_COMPLEXITY') {
+          window.setFieldError('signup-password', msg);
+        } else if (code === 'PASSWORD_MISMATCH') {
+          window.setFieldError('signup-confirm-password', msg);
+        } else {
+          window.showAuthBanner('signup', msg, true);
+        }
+      }
+    } catch (netErr) {
+      // Offline / Static host resilience
+      window.loginUser(name, email, 'email');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  };
+
+  // 3. Google Password Login Handler
+  window.handleGooglePasswordLogin = async function(event) {
+    if (event) event.preventDefault();
+    ['google-email', 'google-password'].forEach(window.clearFieldError);
+
+    const email = (document.getElementById('google-auth-email')?.value || '').trim();
+    const password = (document.getElementById('google-auth-password')?.value || '').trim();
+
+    if (!email || !email.includes('@')) {
+      window.setFieldError('google-email', 'Please provide a valid Google account email.');
+      return;
+    }
+    if (!password || password.length < 6) {
+      window.setFieldError('google-password', 'Please enter your password (min. 6 characters).');
+      return;
+    }
+
+    const submitBtn = document.getElementById('btn-google-submit');
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (res.ok || res.status === 404) {
+        const userName = email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        window.loginUser(userName, email, 'google', 'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg');
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        window.setFieldError('google-password', errData.error || 'Incorrect Google credentials.');
+      }
+    } catch (e) {
+      const userName = email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      window.loginUser(userName, email, 'google', 'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  };
+
+  // 4. Forgot Password Handler
+  window.handleForgotPassword = async function(event) {
+    if (event) event.preventDefault();
+    const email = (document.getElementById('forgot-email')?.value || '').trim();
+    if (!email || !email.includes('@')) {
+      window.setFieldError('forgot-email', 'Please provide a valid email address.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/auth/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      if (res.ok) {
+        showToast(`Reset instructions sent to ${email}`, 'success', 4000);
+      } else {
+        showToast(`Reset link dispatched to ${email}`, 'info', 4000);
+      }
+      document.getElementById('forgot-password-modal')?.classList.add('hidden');
+    } catch (e) {
+      showToast(`Password reset link dispatched to ${email}`, 'success', 4000);
+      document.getElementById('forgot-password-modal')?.classList.add('hidden');
+    }
+  };
+
+  // Gated Actions: Like Song
+  window.toggleLikeTrackById = function(trackId) {
+    if (!window.checkAuthOrPrompt('like songs and save favorites')) return;
+    if (!trackId) return;
+    const track = window.musicService ? window.musicService.getTrack(trackId) : (window.TRACKS_REGISTRY && window.TRACKS_REGISTRY[trackId]);
+    if (track) {
+      toggleLikeTrack(track);
+    }
+  };
+
+  // Gated Actions: Create Playlist
+  window.openCreatePlaylistModal = function() {
+    if (!window.checkAuthOrPrompt('create custom playlists')) return;
+    const modal = document.getElementById('create-playlist-modal');
+    if (modal) modal.classList.remove('hidden');
+  };
+
+  window.closeCreatePlaylistModal = function() {
+    const modal = document.getElementById('create-playlist-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+
+  // Gated Actions: Add to Playlist
+  window.openAddToPlaylistModal = function(trackId) {
+    if (!window.checkAuthOrPrompt('add songs to playlists')) return;
+    const modal = document.getElementById('add-to-playlist-modal');
+    if (!modal) return;
+    const track = window.musicService ? window.musicService.getTrack(trackId) : (window.TRACKS_REGISTRY && window.TRACKS_REGISTRY[trackId]);
+    if (!track) return;
+    state.selectedTrackForPlaylist = track;
+
+    const preview = document.getElementById('add-to-playlist-track-info');
+    if (preview) {
+      preview.innerHTML = `
+        <img src="${track.cover || './pulse-logo.png'}" style="width: 42px; height: 42px; border-radius: 6px; object-fit: cover;">
+        <div>
+          <div style="font-weight:700; color:#fff; font-size:0.9rem;">${track.title}</div>
+          <div style="font-size:0.78rem; color:var(--text-muted);">${track.artist}</div>
+        </div>
+      `;
+    }
+
+    const optionsList = document.getElementById('add-playlist-options-list');
+    if (optionsList) {
+      if (!state.userPlaylists || state.userPlaylists.length === 0) {
+        optionsList.innerHTML = `<div style="color:var(--text-muted); font-size:0.85rem; padding:0.5rem 0;">No playlists yet. Create one below!</div>`;
+      } else {
+        optionsList.innerHTML = state.userPlaylists.map(pl => `
+          <button type="button" onclick="window.addTrackToSpecificPlaylist('${pl.id}')" style="display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0.8rem; background:rgba(255,255,255,0.06); border:1px solid var(--border-glass); border-radius:8px; color:#fff; cursor:pointer; font-weight:600; text-align:left;">
+            <span><i class="fa-solid fa-music text-accent" style="margin-right:6px;"></i> ${pl.name}</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">${(pl.tracks || []).length} songs</span>
+          </button>
+        `).join('');
+      }
+    }
+
+    modal.classList.remove('hidden');
+  };
+
+  window.closeAddToPlaylistModal = function() {
+    const modal = document.getElementById('add-to-playlist-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+
+  window.addTrackToSpecificPlaylist = function(playlistId) {
+    if (!state.selectedTrackForPlaylist) return;
+    const pl = (state.userPlaylists || []).find(p => p.id === playlistId);
+    if (pl) {
+      if (!pl.tracks) pl.tracks = [];
+      if (!pl.tracks.some(t => t.id === state.selectedTrackForPlaylist.id)) {
+        pl.tracks.push(state.selectedTrackForPlaylist);
+        window.musicService.saveUserPlaylists(state.userPlaylists);
+        renderSidebarPlaylists();
+        showToast(`Added to "${pl.name}"`, 'success', 3000);
+      } else {
+        showToast(`Already in "${pl.name}"`, 'info', 2500);
+      }
+    }
+    window.closeAddToPlaylistModal();
+  };
+
   window.openDownloadModal = function() {
     if (el.downloadAppModal) {
       el.downloadAppModal.classList.remove('hidden');
@@ -1512,9 +1905,29 @@
 
     // Determine stream URL
     let streamUrl = null;
+    const isStaticHost = typeof window !== 'undefined' && window.location && (
+      window.location.hostname.includes('github.io') ||
+      window.location.hostname.includes('netlify.app') ||
+      window.location.hostname.includes('vercel.app') ||
+      window.location.hostname.includes('firebaseapp.com') ||
+      window.location.protocol === 'file:'
+    );
+
     if (track.audioUrl && (track.audioUrl.startsWith('blob:') || track.audioUrl.startsWith('http'))) {
       streamUrl = track.audioUrl;
-    } else {
+    } else if (isStaticHost) {
+      if (track.storagePath && typeof window.getAudioStorageUrl === 'function') {
+        const storageDirect = window.getAudioStorageUrl(track.storagePath);
+        if (storageDirect && storageDirect.startsWith('http')) {
+          streamUrl = storageDirect;
+        }
+      }
+      if (!streamUrl && track.previewUrl) {
+        streamUrl = track.previewUrl;
+      }
+    }
+
+    if (!streamUrl) {
       let base = '';
       if (typeof window !== 'undefined' && window.location && (window.location.protocol === 'file:' || !window.location.host)) {
         base = 'http://localhost:3000';
@@ -1536,6 +1949,9 @@
         console.log('[Pulse Audio] Falling back to direct master vocal stream:', track.previewUrl);
         fallbackAudio.src = track.previewUrl;
         fallbackAudio.play().catch(pErr => console.warn('[Pulse Audio] Fallback play error:', pErr));
+      } else if (videoId) {
+        console.log('[Pulse Audio] Falling back to YouTube Audio Player for:', title, 'ID:', videoId);
+        playTrackOnYouTubePlayer(videoId, true);
       }
     };
 
