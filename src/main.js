@@ -2663,27 +2663,43 @@
   };
 
   window.downloadPlatformApp = function(os = 'auto') {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    // 1. If native PWA prompt is available, trigger it
     if (window.deferredPrompt) {
-      window.deferredPrompt.prompt();
-      window.deferredPrompt.userChoice.then((choice) => {
-        if (choice.outcome === 'accepted') {
-          showToast('Pulse App installed successfully to your home screen!', 'success', 5000);
-          if (el.downloadAppModal) el.downloadAppModal.classList.add('hidden');
-        }
-        window.deferredPrompt = null;
-      });
-      return;
+      try {
+        window.deferredPrompt.prompt();
+        window.deferredPrompt.userChoice.then((choice) => {
+          if (choice.outcome === 'accepted') {
+            showToast('Pulse App installed successfully to your home screen!', 'success', 5000);
+            if (el.downloadAppModal) el.downloadAppModal.classList.add('hidden');
+          }
+          window.deferredPrompt = null;
+        });
+      } catch(e) {}
     }
 
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // 2. Trigger direct package file download
+    let fileName = '';
+    if (os === 'android' || (os === 'auto' && isAndroid)) fileName = 'Pulse-Music-v2.4.0.apk';
+    else if (os === 'windows' || (os === 'auto' && !isMobile)) fileName = 'Pulse-Music-Windows-Setup.exe';
+    else if (os === 'mac') fileName = 'Pulse-Music-v2.4.0.dmg';
+    else if (os === 'linux') fileName = 'Pulse-Music-v2.4.0.AppImage';
+
+    if (fileName) {
+      const a = document.createElement('a');
+      a.href = `./downloads/${fileName}`;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast(`Downloading ${fileName}... Check your browser downloads!`, 'success', 4500);
+    }
 
     if (isIOS) {
       showToast('To Install on iOS: Tap Share (⎋) in Safari -> Tap "Add to Home Screen" 📲', 'info', 7000);
-    } else if (isMobile) {
-      showToast('To Install on Android: Tap the 3 dots (⋮) in Chrome -> Tap "Install App" or "Add to Home screen" 📲', 'info', 7000);
-    } else {
-      showToast('To Install on PC / Mac: Click the Install icon (⊕) in your browser address bar -> "Install Pulse" 💻', 'info', 7000);
     }
   };
 

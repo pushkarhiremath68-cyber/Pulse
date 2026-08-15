@@ -22,6 +22,12 @@ def prepare_docs():
             shutil.copy2(src_logo, os.path.join(docs_dir, logo_name))
             shutil.copy2(src_logo, os.path.join(dist_dir, logo_name))
 
+    # Ensure downloads folder is copied to dist and docs
+    src_downloads = os.path.join(base_dir, "public", "downloads")
+    if os.path.exists(src_downloads):
+        shutil.copytree(src_downloads, os.path.join(docs_dir, "downloads"), dirs_exist_ok=True)
+        shutil.copytree(src_downloads, os.path.join(dist_dir, "downloads"), dirs_exist_ok=True)
+
     # Create .nojekyll in docs/, dist/ and root so GitHub Pages serves all assets
     for target in [docs_dir, dist_dir, base_dir]:
         with open(os.path.join(target, ".nojekyll"), "w") as f:
