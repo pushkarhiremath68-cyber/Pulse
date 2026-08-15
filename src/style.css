@@ -1960,7 +1960,6 @@ html, body {
   }
   .player-center { display: none; }
 }
-}
 
 /* ==========================================================================
    PWA APP DOWNLOAD & INSTALL STYLES
@@ -2228,7 +2227,6 @@ html, body {
   .install-guides-grid {
     grid-template-columns: 1fr;
   }
-}
 }
 
 /* ==========================================================================
@@ -2500,7 +2498,6 @@ html, body {
   transition: color var(--transition-fast);
 }
 .btn-guest-link:hover { color: var(--accent-primary); }
-}
 
 /* MULTI-PLATFORM DOWNLOAD CARDS */
 .platform-cards-grid {
@@ -3929,7 +3926,10 @@ body.is-installed-app-mode .install-app-card,
 body.is-installed-app-mode #hero-download-app-btn,
 body.is-installed-app-mode .btn-download-header,
 body.is-installed-app-mode .btn-download-hero,
-body.is-installed-app-mode .share-link-box,
+body.is-installed-app-mode .share-link-box {
+  display: none !important;
+}
+
 @media (display-mode: standalone), (display-mode: window-controls-overlay), (display-mode: minimal-ui) {
   body {
     user-select: none;
