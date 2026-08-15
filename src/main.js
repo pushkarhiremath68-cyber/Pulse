@@ -1995,10 +1995,97 @@
     progressInterval = setInterval(updateProgressTimeline, 500);
   }
 
+  /* ==========================================================================
+     YOUTUBE AUDIO STREAMING ENGINE (Static Web Hosting & Native Fallback)
+     ========================================================================== */
+  function playTrackOnYouTubePlayer(videoId, autoPlay = true) {
+    if (!videoId) return;
+    console.log('[Pulse Audio] Initiating YouTube Player playback for video ID:', videoId);
+    state.playbackSource = 'youtube';
+    showBuffering(true);
+
+    if (fallbackAudio) {
+      try {
+        fallbackAudio.pause();
+      } catch (e) {}
+    }
+
+    const startYT = (player) => {
+      try {
+        if (player && typeof player.loadVideoById === 'function') {
+          player.loadVideoById(videoId);
+          player.setVolume(state.volume * 100);
+          if (state.isMuted) player.mute();
+          else player.unMute();
+          if (autoPlay) {
+            player.playVideo();
+            state.isPlaying = true;
+            updatePlayPauseUI();
+          }
+          showBuffering(false);
+          return;
+        }
+      } catch (e) {
+        console.warn('[Pulse YouTube] Direct player load error:', e);
+      }
+
+      // Fallback iframe embed in container if YT player instance isn't ready
+      const fallbackContainer = document.getElementById('youtube-fallback-container');
+      if (fallbackContainer) {
+        fallbackContainer.innerHTML = `
+          <iframe width="240" height="240"
+            src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=${autoPlay ? 1 : 0}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}"
+            frameborder="0" allow="autoplay; encrypted-media">
+          </iframe>
+        `;
+        state.isPlaying = true;
+        updatePlayPauseUI();
+        showBuffering(false);
+      }
+    };
+
+    if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+      startYT(ytPlayer);
+    } else if (window._ytPlayerInstance && typeof window._ytPlayerInstance.loadVideoById === 'function') {
+      ytPlayer = window._ytPlayerInstance;
+      isYtReady = true;
+      startYT(ytPlayer);
+    } else {
+      // Register callback if player is still loading
+      const prevCallback = window._onYTPlayerCreated;
+      window._onYTPlayerCreated = function(player) {
+        if (prevCallback) prevCallback(player);
+        ytPlayer = player;
+        isYtReady = true;
+        startYT(player);
+      };
+      setTimeout(() => {
+        if (!state.isPlaying) {
+          startYT(null);
+        }
+      }, 1200);
+    }
+
+    if (progressInterval) clearInterval(progressInterval);
+    progressInterval = setInterval(updateProgressTimeline, 500);
+  }
+  window.playTrackOnYouTubePlayer = playTrackOnYouTubePlayer;
+
   function updateProgressTimeline() {
     if (!state.isPlaying) return;
 
-    if (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0) {
+    if (state.playbackSource === 'youtube' && ytPlayer && typeof ytPlayer.getCurrentTime === 'function' && typeof ytPlayer.getDuration === 'function') {
+      try {
+        const cur = ytPlayer.getCurrentTime();
+        const dur = ytPlayer.getDuration();
+        if (dur && dur > 0) {
+          state.currentTime = cur;
+          state.duration = dur;
+          if (el.playerTimeTotal) el.playerTimeTotal.textContent = formatTime(state.duration);
+          if (el.fsTimeTotal) el.fsTimeTotal.textContent = formatTime(state.duration);
+        }
+      } catch (e) {}
+    } else if (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0) {
       state.currentTime = fallbackAudio.currentTime;
       state.duration = fallbackAudio.duration;
       if (el.playerTimeTotal) el.playerTimeTotal.textContent = formatTime(state.duration);
@@ -2038,7 +2125,12 @@
     state.isPlaying = !state.isPlaying;
     updatePlayPauseUI();
 
-    if (fallbackAudio) {
+    if (state.playbackSource === 'youtube' && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+      try {
+        if (state.isPlaying) ytPlayer.playVideo();
+        else ytPlayer.pauseVideo();
+      } catch (e) {}
+    } else if (fallbackAudio) {
       if (state.isPlaying) {
         fallbackAudio.play()
           .then(() => {
@@ -2058,7 +2150,9 @@
     const targetTime = (percent / 100) * state.duration;
     state.currentTime = targetTime;
     
-    if (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0) {
+    if (state.playbackSource === 'youtube' && ytPlayer && typeof ytPlayer.seekTo === 'function') {
+      try { ytPlayer.seekTo(targetTime, true); } catch (e) {}
+    } else if (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0) {
       fallbackAudio.currentTime = targetTime;
     }
     
@@ -2070,7 +2164,9 @@
     const targetTime = Math.max(0, Math.min(state.duration, state.currentTime + seconds));
     state.currentTime = targetTime;
     
-    if (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0) {
+    if (state.playbackSource === 'youtube' && ytPlayer && typeof ytPlayer.seekTo === 'function') {
+      try { ytPlayer.seekTo(targetTime, true); } catch (e) {}
+    } else if (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0) {
       fallbackAudio.currentTime = targetTime;
     }
     
@@ -4207,18 +4303,67 @@
     }
   });
 
-  function initApp() {
-    bindElements();
-    supabaseClient = getSupabaseClient();
-    if (!supabaseClient) {
-      console.error("Supabase configuration is missing. Add VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY.");
+  /* ==========================================================================
+     GLOBAL MODAL & WINDOW HELPER REGISTRY
+     ========================================================================== */
+  window.openLoginModal = function() {
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      if (typeof window.switchAuthTab === 'function') window.switchAuthTab('login');
     }
-    initGoogleIdentityServices();
-    initYouTubePlayer();
-    loadUserPlaylists();
-    loadLikedTracks();
-    renderAllHomeGrids();
-    attachEventListeners();
+  };
+
+  window.openSignupModal = function() {
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      if (typeof window.switchAuthTab === 'function') window.switchAuthTab('signup');
+    }
+  };
+
+  window.closeAuthModal = function() {
+    const modal = document.getElementById('auth-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+
+  window.logout = function() {
+    if (typeof window.logoutUser === 'function') {
+      window.logoutUser();
+    } else {
+      localStorage.removeItem('pulse_auth_token');
+      localStorage.removeItem('pulse_user_data');
+      localStorage.removeItem('pulse_active_user');
+      const profile = document.getElementById('user-profile-container');
+      const authBtns = document.getElementById('auth-buttons-group');
+      if (profile) profile.classList.add('hidden');
+      if (authBtns) authBtns.classList.remove('hidden');
+      if (typeof window.showToast === 'function') window.showToast('Logged out successfully', 'info');
+    }
+  };
+
+  window.minimizeWindow = function() {
+    if (window.electronAPI && typeof window.electronAPI.minimize === 'function') window.electronAPI.minimize();
+  };
+
+  window.toggleMaximizeWindow = function() {
+    if (window.electronAPI && typeof window.electronAPI.maximize === 'function') window.electronAPI.maximize();
+  };
+
+  window.closeWindow = function() {
+    if (window.electronAPI && typeof window.electronAPI.close === 'function') window.electronAPI.close();
+  };
+
+  function initApp() {
+    try { bindElements(); } catch (e) { console.warn('bindElements notice:', e); }
+    try { supabaseClient = getSupabaseClient(); } catch (e) {}
+    try { initGoogleIdentityServices(); } catch (e) {}
+    try { initYouTubePlayer(); } catch (e) {}
+    try { loadUserPlaylists(); } catch (e) {}
+    try { loadLikedTracks(); } catch (e) {}
+    try { renderAllHomeGrids(); } catch (e) { console.error('renderAllHomeGrids notice:', e); }
+    try { attachEventListeners(); } catch (e) { console.error('attachEventListeners notice:', e); }
+    
     // Load custom admin published tracks from storage
     try {
       const customTracks = JSON.parse(localStorage.getItem('pulse_custom_admin_tracks') || '[]');
@@ -4236,23 +4381,27 @@
       }
     } catch (e) {}
 
-    if (window.isAdminAuthenticated && window.isAdminAuthenticated()) {
-      const sidebarAdminLink = document.getElementById('sidebar-admin-link');
-      if (sidebarAdminLink) sidebarAdminLink.classList.remove('hidden');
-    }
+    try {
+      if (window.isAdminAuthenticated && window.isAdminAuthenticated()) {
+        const sidebarAdminLink = document.getElementById('sidebar-admin-link');
+        if (sidebarAdminLink) sidebarAdminLink.classList.remove('hidden');
+      }
+    } catch (e) {}
 
-    if (window.location.hash === '#admin') {
-      switchView('admin-upload');
-    }
+    try {
+      if (window.location.hash === '#admin') {
+        switchView('admin-upload');
+      }
+    } catch (e) {}
 
     // Auto-login stored user if present
-    const savedUser = localStorage.getItem('pulse_active_user');
-    if (savedUser) {
-      try {
+    try {
+      const savedUser = localStorage.getItem('pulse_active_user');
+      if (savedUser) {
         const u = JSON.parse(savedUser);
         window.loginUser(u.name, u.email, u.provider, u.avatar);
-      } catch (e) {}
-    }
+      }
+    } catch (e) {}
 
     // Initialize Canvas Audio Visualizer
     try {
@@ -4266,11 +4415,13 @@
     }
 
     // Set initial track
-    const popular = window.musicService.getPopularTracks('popular-hindi');
-    if (popular.length > 0) {
-      state.queue = [...popular];
-      setTrack(popular[0], false);
-    }
+    try {
+      const popular = window.musicService.getPopularTracks('popular-hindi');
+      if (popular.length > 0) {
+        state.queue = [...popular];
+        setTrack(popular[0], false);
+      }
+    } catch (e) {}
 
     // Register Service Worker
     if ('serviceWorker' in navigator) {
