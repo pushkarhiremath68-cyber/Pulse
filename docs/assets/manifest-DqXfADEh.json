@@ -1,5 +1,5 @@
 {
-  "name": "Pulse Music",
+  "name": "Pulse Music - by Pushkar Hiremath",
   "short_name": "Pulse",
   "description": "Pulse Music - Free Music Streaming by Pushkar Hiremath in English, Hindi, Spanish, Punjabi & more",
   "start_url": "./index.html?source=pwa",
@@ -7,7 +7,7 @@
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui", "window-controls-overlay"],
   "orientation": "any",
-  "background_color": "#050508",
+  "background_color": "#0b0d14",
   "theme_color": "#8b5cf6",
   "prefer_related_applications": false,
   "icons": [

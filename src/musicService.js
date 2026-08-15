@@ -25,9 +25,7 @@
     }
     const supabaseUrl = (typeof window !== 'undefined' && window.PULSE_SUPABASE_URL && window.PULSE_SUPABASE_URL !== 'YOUR_SUPABASE_PROJECT_URL')
       ? window.PULSE_SUPABASE_URL
-      : ((typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_URL !== 'YOUR_SUPABASE_PROJECT_URL')
-        ? import.meta.env.VITE_SUPABASE_URL
-        : null);
+      : null;
 
     const bucket = (typeof window !== 'undefined' && window.PULSE_STORAGE_BUCKET) || 'music';
     const cleanPath = storagePath.replace(/^\/+/, '');
@@ -196,10 +194,14 @@
     if (Array.isArray(cleanCover) && cleanCover.length > 0) {
       cleanCover = cleanCover[cleanCover.length - 1]?.url || cleanCover[0]?.url || null;
     }
-    if (!cleanCover || cleanCover.includes('unsplash.com') || cleanCover === './pulse-logo.png') {
-      if (raw.ytId && typeof raw.ytId === 'string' && raw.ytId.length === 11) {
-        cleanCover = `https://i.ytimg.com/vi/${raw.ytId}/hqdefault.jpg`;
+    // Validate cover URL — must be a real URL, not empty/placeholder
+    if (!cleanCover || cleanCover === './pulse-logo.png' || cleanCover.includes('unsplash.com') || cleanCover.trim() === '') {
+      // Try YouTube thumbnail first if we have a video ID
+      const ytVideoId = raw.ytId || null;
+      if (ytVideoId && typeof ytVideoId === 'string' && ytVideoId.length === 11) {
+        cleanCover = `https://i.ytimg.com/vi/${ytVideoId}/hqdefault.jpg`;
       } else {
+        // Generate a rich, colorful SVG cover — NEVER leave a song without art
         cleanCover = generateTrackCover(cleanTitle, cleanArtist, raw.category);
       }
     }
@@ -26728,20 +26730,23 @@
         }
       });
 
-      // 2. SECONDARY: Query Online iTunes API if fewer results than limit or specific song query
-      if (results.length < limit && !isEnglish && !isHindi && !isTelugu && !isGujarati && !isMarathi && !isKannada && !isPunjabi && !isHaryanvi && !isSpanish && !isFrench) {
+      // 2. ALWAYS query iTunes API for metadata (song names, artist, cover art)
+      // iTunes is used for METADATA ONLY — audio comes from Invidious (full-length, no previews)
+      if (results.length < limit) {
         try {
           const encoded = encodeURIComponent(cleanQ);
-          const itunesUrl = `https://itunes.apple.com/search?term=${encoded}&entity=song&limit=${Math.min(limit - results.length, 25)}`;
+          const itunesLimit = Math.min(Math.max(limit - results.length, 15), 50);
+          const itunesUrl = `https://itunes.apple.com/search?term=${encoded}&entity=song&limit=${itunesLimit}`;
           const res = await fetch(itunesUrl, { cache: 'no-store' });
           
           if (res.ok) {
             const data = await res.json();
             if (data.results && Array.isArray(data.results)) {
               data.results.forEach(item => {
+                // High-res cover from iTunes (600x600) — guaranteed visible album art
                 const highResCover = item.artworkUrl100
                   ? item.artworkUrl100.replace('100x100bb', '600x600bb')
-                  : window.generateTrackCover(item.trackName, item.artistName, 'pop');
+                  : generateTrackCover(item.trackName || 'Track', item.artistName || 'Artist', 'pop');
 
                 const mins = Math.floor((item.trackTimeMillis || 210000) / 60000);
                 const secs = Math.floor(((item.trackTimeMillis || 210000) % 60000) / 1000);
@@ -26753,6 +26758,7 @@
                   const trackId = `itunes-${item.trackId}`;
                   seenIds.add(trackId);
 
+                  // NO previewUrl — all audio comes from Invidious (full-length tracks)
                   const trackObj = normalizeTrack({
                     id: trackId,
                     title: item.trackName,
@@ -26762,7 +26768,7 @@
                     duration: durationStr,
                     category: 'trending',
                     storagePath: `${trackId}.mp3`,
-                    ytSearchQuery: `${item.trackName} ${item.artistName}`,
+                    ytSearchQuery: `${item.trackName} ${item.artistName} official audio`,
                     source: 'Worldwide Music Catalog'
                   });
 

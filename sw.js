@@ -45,7 +45,7 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const url = event.request.url;
-  // Let streaming API, YouTube API, iTunes API, and Supabase bypass service worker cache
+  // Let streaming API, YouTube API, iTunes API, Invidious API, and Supabase bypass service worker cache
   if (
     url.includes('/api/') ||
     url.includes('youtube.com') ||
@@ -53,6 +53,13 @@ self.addEventListener('fetch', (event) => {
     url.includes('supabase.co') ||
     url.includes('apple.com') ||
     url.includes('invidious') ||
+    url.includes('puffyan.us') ||
+    url.includes('tux.pizza') ||
+    url.includes('fdn.fr') ||
+    url.includes('ggtyler.dev') ||
+    url.includes('nerdvpn.de') ||
+    url.includes('artemislena.eu') ||
+    url.includes('privacyredirect.com') ||
     url.includes('accounts.google.com')
   ) {
     return event.respondWith(fetch(event.request));
