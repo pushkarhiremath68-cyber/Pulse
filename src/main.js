@@ -975,7 +975,7 @@
         </div>
         <div class="card-info">
           <span class="card-title" title="${title}">${title}</span>
-          <span class="card-artist" title="${artist}">${artist}</span>
+          <span class="card-artist" title="Explore songs by ${artist}" onclick="event.stopPropagation(); window.executeSearch('${safeArtistEsc}')" style="cursor: pointer;">${artist}</span>
         </div>
       </div>
     `;
@@ -1153,14 +1153,14 @@
 
     if (!trimmed && !rawQ.trim()) {
       if (el.clearSearchBtn) el.clearSearchBtn.classList.add('hidden');
-      if (currentView === 'search-view') switchView('home');
+      if (state.activeView === 'search-view') switchView('home');
       return;
     }
 
     if (el.clearSearchBtn) el.clearSearchBtn.classList.remove('hidden');
 
     const doSearch = async () => {
-      if (currentView !== 'search-view') {
+      if (state.activeView !== 'search-view') {
         switchView('search-view');
       }
 
@@ -1171,7 +1171,7 @@
 
       if (searchLabel) searchLabel.textContent = trimmed || rawQ;
       if (loadingEl) loadingEl.classList.remove('hidden');
-      if (searchCountEl) searchCountEl.textContent = 'Searching...';
+      if (searchCountEl) searchCountEl.textContent = 'Searching catalog...';
 
       try {
         if (!window.musicService || typeof window.musicService.searchTracks !== 'function') return;
