@@ -143,16 +143,16 @@
    * Search Invidious for a video and return the video ID
    */
   async function invidiousSearchVideoId(query) {
-    for (let attempt = 0; attempt < INVIDIOUS_INSTANCES.length; attempt++) {
+    for (let attempt = 0; attempt < 2; attempt++) {
       const idx = (currentInvidiousIndex + attempt) % INVIDIOUS_INSTANCES.length;
       const instance = INVIDIOUS_INSTANCES[idx];
       try {
         const url = `${instance}/api/v1/search?q=${encodeURIComponent(query)}&type=video&sort_by=relevance`;
-        const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+        const res = await fetch(url, { signal: AbortSignal.timeout(1500) });
         if (!res.ok) continue;
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0 && data[0].videoId) {
-          currentInvidiousIndex = idx; // Remember working instance
+          currentInvidiousIndex = idx;
           return data[0].videoId;
         }
       } catch (e) {
@@ -168,29 +168,26 @@
    */
   async function invidiousGetAudioUrl(videoId) {
     if (!videoId) return null;
-    for (let attempt = 0; attempt < INVIDIOUS_INSTANCES.length; attempt++) {
+    for (let attempt = 0; attempt < 2; attempt++) {
       const idx = (currentInvidiousIndex + attempt) % INVIDIOUS_INSTANCES.length;
       const instance = INVIDIOUS_INSTANCES[idx];
       try {
         const url = `${instance}/api/v1/videos/${videoId}`;
-        const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+        const res = await fetch(url, { signal: AbortSignal.timeout(1500) });
         if (!res.ok) continue;
         const data = await res.json();
 
-        // Prefer adaptive audio formats (best quality, audio-only)
         if (data.adaptiveFormats && Array.isArray(data.adaptiveFormats)) {
-          // Sort by audio quality (bitrate)
           const audioFormats = data.adaptiveFormats
             .filter(f => f.type && f.type.startsWith('audio/'))
             .sort((a, b) => (b.bitrate || 0) - (a.bitrate || 0));
 
-          if (audioFormats.length > 0) {
+          if (audioFormats.length > 0 && audioFormats[0].url) {
             currentInvidiousIndex = idx;
             return { url: audioFormats[0].url, type: audioFormats[0].type };
           }
         }
 
-        // Fallback: use format streams (may include video but will play audio)
         if (data.formatStreams && Array.isArray(data.formatStreams) && data.formatStreams.length > 0) {
           currentInvidiousIndex = idx;
           return { url: data.formatStreams[0].url, type: 'audio/mp4' };
@@ -203,8 +200,48 @@
   }
 
   /**
+   * Fast YouTube Video ID Resolver for searched tracks
+   */
+  async function resolveYouTubeVideoId(query) {
+    if (!query) return null;
+    const cleanQ = query.toLowerCase().trim();
+
+    // 1. Check pre-indexed catalog
+    if (typeof DEMO_CATALOG !== 'undefined') {
+      const match = DEMO_CATALOG.find(t => {
+        if (!t.ytId) return false;
+        const titleMatch = (t.title || '').toLowerCase();
+        const artistMatch = (t.artist || '').toLowerCase();
+        return cleanQ.includes(titleMatch) || (titleMatch && cleanQ.includes(titleMatch.split(' ')[0]));
+      });
+      if (match && match.ytId) return match.ytId;
+    }
+
+    // 2. Fast CORS proxy search
+    const proxies = [
+      `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent('https://www.youtube.com/results?search_query=' + encodeURIComponent(query))}`,
+      `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.youtube.com/results?search_query=' + encodeURIComponent(query))}`
+    ];
+
+    for (const proxyUrl of proxies) {
+      try {
+        const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(2000) });
+        if (!res.ok) continue;
+        const text = await res.text();
+        const matches = text.match(/"videoId":"([a-zA-Z0-9_-]{11})"/g);
+        if (matches && matches.length > 0) {
+          const firstId = matches[0].replace(/"videoId":"|"/g, '');
+          if (firstId && firstId.length === 11) return firstId;
+        }
+      } catch (e) {}
+    }
+
+    return null;
+  }
+  window.resolveYouTubeVideoId = resolveYouTubeVideoId;
+
+  /**
    * Full pipeline: search query -> video ID -> audio URL
-   * Tries direct videoId first, then search by query
    */
   async function getFullAudioUrl(track) {
     if (!track) return null;
@@ -212,27 +249,10 @@
     const artist = track.artist || '';
 
     // 1. Try with known YouTube video ID
-    if (track.ytId && track.ytId.length === 11) {
-      const result = await invidiousGetAudioUrl(track.ytId);
-      if (result) return result;
-    }
-
-    // 2. Try with ytSearchQuery
-    const searchQuery = track.ytSearchQuery || `${title} ${artist}`;
-    const videoId = await invidiousSearchVideoId(searchQuery);
-    if (videoId) {
+    const videoId = track.ytId || getYouTubeIdForTrack(track);
+    if (videoId && videoId.length === 11) {
       const result = await invidiousGetAudioUrl(videoId);
       if (result) return result;
-    }
-
-    // 3. Try simplified search
-    if (title) {
-      const simpleQuery = `${title} ${artist} official audio`;
-      const simpleVideoId = await invidiousSearchVideoId(simpleQuery);
-      if (simpleVideoId) {
-        const result = await invidiousGetAudioUrl(simpleVideoId);
-        if (result) return result;
-      }
     }
 
     return null;
@@ -1177,14 +1197,14 @@
             <button class="btn-card-play" title="Play ${title}" onclick="event.stopPropagation(); window.playSpecificTrack('${track.id}')">
               <i class="fa-solid ${playIcon}"></i>
             </button>
+            <button class="btn-icon-small btn-card-like" title="${isLiked ? 'Unlike' : 'Like'}" onclick="event.stopPropagation(); window.toggleLikeTrackById('${track.id}')" style="position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.65); color: ${isLiked ? '#ff4757' : '#fff'}; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <i class="fa-${isLiked ? 'solid' : 'regular'} fa-heart"></i>
+            </button>
+            <button class="btn-icon-small btn-card-download" title="Download Song" onclick="event.stopPropagation(); window.downloadSong('${track.id}')" style="position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.65); color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <i class="fa-solid fa-arrow-down-to-line"></i>
+            </button>
           </div>
-          <button class="btn-icon-small btn-card-like" title="${isLiked ? 'Unlike' : 'Like'}" onclick="event.stopPropagation(); window.toggleLikeTrackById('${track.id}')" style="position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.65); color: ${isLiked ? '#ff4757' : '#fff'}; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2;">
-            <i class="fa-${isLiked ? 'solid' : 'regular'} fa-heart"></i>
-          </button>
-          <button class="btn-icon-small btn-card-download" title="Download Song" onclick="event.stopPropagation(); window.downloadSong('${track.id}')" style="position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.65); color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2;">
-            <i class="fa-solid fa-arrow-down-to-line"></i>
-          </button>
-          <span class="card-badge" style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); padding: 2px 7px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; color: #c084fc; z-index: 2;">${durationStr || '3:30'}</span>
+          <span class="card-duration">${durationStr || '3:30'}</span>
         </div>
         <div class="card-info">
           <span class="card-title" title="${title}">${title}</span>
@@ -4149,7 +4169,7 @@
   /* ==========================================================================
      YOUTUBE AUDIO STREAMING ENGINE (Static Web Hosting & Native Fallback)
      ========================================================================== */
-  function playTrackOnYouTubePlayer(videoIdOrQuery, autoPlay = true) {
+  async function playTrackOnYouTubePlayer(videoIdOrQuery, autoPlay = true) {
     if (!videoIdOrQuery) return;
     console.log('[Pulse Audio] Initiating YouTube Player playback for target:', videoIdOrQuery);
     state.playbackSource = 'youtube';
@@ -4164,28 +4184,22 @@
       } catch (e) {}
     }
 
-    const isVideoId = typeof videoIdOrQuery === 'string' && videoIdOrQuery.length >= 10 && videoIdOrQuery.length <= 12 && !videoIdOrQuery.includes(' ');
+    let isVideoId = typeof videoIdOrQuery === 'string' && videoIdOrQuery.length === 11 && !videoIdOrQuery.includes(' ');
+    let targetId = isVideoId ? videoIdOrQuery : null;
+
+    // If query, resolve to 11-char YouTube ID
+    if (!targetId) {
+      targetId = await resolveYouTubeVideoId(videoIdOrQuery);
+      if (targetId) isVideoId = true;
+    }
+
     const fallbackContainer = document.getElementById('youtube-fallback-container');
 
     // PRIMARY: Control via YouTube IFrame API if ready
-    if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+    if (targetId && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
       if (fallbackContainer) fallbackContainer.innerHTML = '';
       try {
-        if (isVideoId) {
-          ytPlayer.loadVideoById(videoIdOrQuery);
-        } else if (typeof ytPlayer.loadPlaylist === 'function') {
-          try {
-            ytPlayer.loadPlaylist({
-              listType: 'search',
-              list: videoIdOrQuery
-            });
-          } catch(pErr) {
-            ytPlayer.loadVideoById(videoIdOrQuery);
-          }
-        } else {
-          ytPlayer.loadVideoById(videoIdOrQuery);
-        }
-
+        ytPlayer.loadVideoById(targetId);
         try {
           ytPlayer.unMute();
           ytPlayer.setVolume(Math.max(50, Math.round((state.volume || 1) * 100)));
@@ -4213,11 +4227,10 @@
         console.warn('[Pulse YouTube] Direct player load error:', e);
       }
     } else if (fallbackContainer) {
-      // Fallback iframe ONLY if IFrame API player is not loaded
-      const cleanTarget = isVideoId ? videoIdOrQuery : encodeURIComponent(videoIdOrQuery);
-      const embedSrc = isVideoId
-        ? `https://www.youtube.com/embed/${cleanTarget}?autoplay=1&playsinline=1&enablejsapi=1&rel=0`
-        : `https://www.youtube.com/embed?listType=search&list=${cleanTarget}&autoplay=1&playsinline=1&enablejsapi=1&rel=0`;
+      // Fallback iframe
+      const embedSrc = targetId
+        ? `https://www.youtube.com/embed/${targetId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0`
+        : `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(videoIdOrQuery)}&autoplay=1&playsinline=1&enablejsapi=1&rel=0`;
 
       fallbackContainer.innerHTML = `
         <iframe id="bg-audio-iframe" width="100%" height="100%"

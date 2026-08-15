@@ -1099,18 +1099,18 @@ html, body {
   line-height: 1.2;
 }
 
-.card-badge {
+.card-duration {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  bottom: 8px;
+  left: 8px;
   background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  color: var(--accent-primary);
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-sm);
-  z-index: 5;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  z-index: 3;
+  pointer-events: none;
 }
 
 /* SEARCH & TRACK LIST VIEW */
