@@ -1928,9 +1928,10 @@
       if (!streamUrl && track.previewUrl) {
         streamUrl = track.previewUrl;
       }
-      if (!streamUrl && videoId) {
-        console.log('[Pulse Audio] Static host detected: streaming directly via YouTube Player for:', title, 'ID:', videoId);
-        playTrackOnYouTubePlayer(videoId, true);
+      if (!streamUrl) {
+        const playbackTarget = videoId || `${title} ${artist}`;
+        console.log('[Pulse Audio] Static host: streaming via YouTube Player for:', title, 'Target:', playbackTarget);
+        playTrackOnYouTubePlayer(playbackTarget, true);
         return;
       }
     }
@@ -2001,9 +2002,9 @@
   /* ==========================================================================
      YOUTUBE AUDIO STREAMING ENGINE (Static Web Hosting & Native Fallback)
      ========================================================================== */
-  function playTrackOnYouTubePlayer(videoId, autoPlay = true) {
-    if (!videoId) return;
-    console.log('[Pulse Audio] Initiating YouTube Player playback for video ID:', videoId);
+  function playTrackOnYouTubePlayer(videoIdOrQuery, autoPlay = true) {
+    if (!videoIdOrQuery) return;
+    console.log('[Pulse Audio] Initiating YouTube Player playback for target:', videoIdOrQuery);
     state.playbackSource = 'youtube';
     showBuffering(true);
 
@@ -2013,15 +2014,28 @@
       } catch (e) {}
     }
 
+    const isVideoId = typeof videoIdOrQuery === 'string' && videoIdOrQuery.length >= 10 && videoIdOrQuery.length <= 12 && !videoIdOrQuery.includes(' ');
+
     const startYT = (player) => {
       try {
-        if (player && typeof player.loadVideoById === 'function') {
-          player.loadVideoById(videoId);
+        if (player) {
+          if (isVideoId && typeof player.loadVideoById === 'function') {
+            player.loadVideoById(videoIdOrQuery);
+          } else if (typeof player.loadPlaylist === 'function') {
+            player.loadPlaylist({
+              listType: 'search',
+              list: videoIdOrQuery
+            });
+          } else if (typeof player.loadVideoById === 'function') {
+            player.loadVideoById(videoIdOrQuery);
+          }
+
           try {
             player.unMute();
             player.setVolume(Math.max(50, Math.round((state.volume || 1) * 100)));
           } catch(e) {}
-          if (autoPlay) {
+
+          if (autoPlay && typeof player.playVideo === 'function') {
             player.playVideo();
             state.isPlaying = true;
             updatePlayPauseUI();
@@ -2048,9 +2062,13 @@
       // Fallback iframe embed in container if YT player instance isn't ready
       const fallbackContainer = document.getElementById('youtube-fallback-container');
       if (fallbackContainer) {
+        const embedSrc = isVideoId
+          ? `https://www.youtube-nocookie.com/embed/${videoIdOrQuery}?autoplay=${autoPlay ? 1 : 0}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`
+          : `https://www.youtube-nocookie.com/embed?listType=search&list=${encodeURIComponent(videoIdOrQuery)}&autoplay=${autoPlay ? 1 : 0}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`;
+
         fallbackContainer.innerHTML = `
           <iframe id="bg-audio-iframe" width="200" height="120"
-            src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=${autoPlay ? 1 : 0}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}"
+            src="${embedSrc}"
             frameborder="0" allow="autoplay; encrypted-media">
           </iframe>
         `;
@@ -2060,9 +2078,9 @@
       }
     };
 
-    if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+    if (ytPlayer) {
       startYT(ytPlayer);
-    } else if (window._ytPlayerInstance && typeof window._ytPlayerInstance.loadVideoById === 'function') {
+    } else if (window._ytPlayerInstance) {
       ytPlayer = window._ytPlayerInstance;
       isYtReady = true;
       startYT(ytPlayer);
