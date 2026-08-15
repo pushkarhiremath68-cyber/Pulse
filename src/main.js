@@ -2036,6 +2036,30 @@
 
     const isVideoId = typeof videoIdOrQuery === 'string' && videoIdOrQuery.length >= 10 && videoIdOrQuery.length <= 12 && !videoIdOrQuery.includes(' ');
 
+    const fallbackContainer = document.getElementById('youtube-fallback-container');
+
+    // 1. Direct Embed in Fallback Container (Guaranteed to stream sound on all browsers & mobile devices)
+    if (fallbackContainer) {
+      const cleanTarget = isVideoId ? videoIdOrQuery : encodeURIComponent(videoIdOrQuery);
+      const embedSrc = isVideoId
+        ? `https://www.youtube.com/embed/${cleanTarget}?autoplay=1&playsinline=1&enablejsapi=1&rel=0`
+        : `https://www.youtube.com/embed?listType=search&list=${cleanTarget}&autoplay=1&playsinline=1&enablejsapi=1&rel=0`;
+
+      fallbackContainer.innerHTML = `
+        <iframe id="bg-audio-iframe" width="100%" height="100%"
+          src="${embedSrc}"
+          frameborder="0"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture; accelerometer; gyroscope"
+          allowfullscreen
+          style="width: 100%; height: 100%; border: none;">
+        </iframe>
+      `;
+      state.isPlaying = true;
+      updatePlayPauseUI();
+      showBuffering(false);
+    }
+
+    // 2. Control via YouTube IFrame API if ready
     const startYT = (player) => {
       try {
         if (player) {
@@ -2081,24 +2105,6 @@
       } catch (e) {
         console.warn('[Pulse YouTube] Direct player load error:', e);
       }
-
-      // Ensure fallback container is active if needed
-      const fallbackContainer = document.getElementById('youtube-fallback-container');
-      if (fallbackContainer && (!player || !isVideoId)) {
-        const embedSrc = isVideoId
-          ? `https://www.youtube-nocookie.com/embed/${videoIdOrQuery}?autoplay=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`
-          : `https://www.youtube-nocookie.com/embed?listType=search&list=${encodeURIComponent(videoIdOrQuery)}&autoplay=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`;
-
-        fallbackContainer.innerHTML = `
-          <iframe id="bg-audio-iframe" width="200" height="120"
-            src="${embedSrc}"
-            frameborder="0" allow="autoplay; encrypted-media">
-          </iframe>
-        `;
-        state.isPlaying = true;
-        updatePlayPauseUI();
-        showBuffering(false);
-      }
     };
 
     if (ytPlayer) {
@@ -2108,7 +2114,6 @@
       isYtReady = true;
       startYT(ytPlayer);
     } else {
-      // Register callback if player is still loading
       const prevCallback = window._onYTPlayerCreated;
       window._onYTPlayerCreated = function(player) {
         if (prevCallback) prevCallback(player);
@@ -2116,11 +2121,6 @@
         isYtReady = true;
         startYT(player);
       };
-      setTimeout(() => {
-        if (!state.isPlaying) {
-          startYT(null);
-        }
-      }, 1200);
     }
 
     if (progressInterval) clearInterval(progressInterval);
