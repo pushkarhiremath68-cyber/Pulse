@@ -1,0 +1,26 @@
+{
+  "name": "pulse-music-app",
+  "productName": "Pulse Music",
+  "version": "2.4.0",
+  "description": "Pulse Music - High-Fidelity Cross-Platform Music Streaming App by Pushkar Hiremath",
+  "main": "electron/main.cjs",
+  "author": "Pushkar Hiremath",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:icons": "python scripts/generate_all_app_icons.py",
+    "build:certs": "python scripts/generate_certificates.py",
+    "build:packages": "python scripts/build_release_packages.py",
+    "build:all": "npm run build:icons && npm run build:certs && npm run build:packages",
+    "test:auth": "python scripts/test_auth_api.py",
+    "test:download": "python scripts/test_download_api.py"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}

@@ -1,0 +1,26 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# Disable Netlify post-processing for instant 3-second deployments
+[build.processing]
+  skip_processing = true
+
+[build.processing.css]
+  bundle = false
+  minify = false
+
+[build.processing.js]
+  bundle = false
+  minify = false
+
+[build.processing.html]
+  pretty_urls = false
+
+[build.processing.images]
+  compress = false
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

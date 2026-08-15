@@ -1,0 +1,51 @@
+{
+  "appId": "app.pulsemusic.player",
+  "productName": "Pulse Music",
+  "copyright": "Copyright © 2026 Pushkar Hiremath",
+  "directories": {
+    "output": "dist/electron",
+    "buildResources": "public"
+  },
+  "files": [
+    "index.html",
+    "src/**/*",
+    "public/**/*",
+    "storage/music/**/*",
+    "catalog_resolved.json",
+    "manifest.json",
+    "pulse-logo.png",
+    "electron/**/*"
+  ],
+  "win": {
+    "target": ["nsis", "portable"],
+    "icon": "public/icons/icon.ico",
+    "artifactName": "${productName}-Setup-${version}.${ext}",
+    "certificateFile": "certs/pulse-authenticode.pfx",
+    "certificatePassword": "${env.PULSE_CODESIGN_PASSWORD}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Pulse Music",
+    "installerIcon": "public/icons/icon.ico",
+    "uninstallerIcon": "public/icons/icon.ico"
+  },
+  "mac": {
+    "target": ["dmg", "zip"],
+    "icon": "public/icons/icon-1024.png",
+    "category": "public.app-category.music",
+    "hardenedRuntime": true,
+    "gatekeeperAssess": false,
+    "entitlements": "electron/entitlements.mac.plist",
+    "entitlementsInherit": "electron/entitlements.mac.plist",
+    "artifactName": "${productName}-${version}.${ext}"
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "icon": "public/icons/icon-512.png",
+    "category": "Audio;AudioVideo;Player;",
+    "artifactName": "${productName}-${version}.${ext}"
+  }
+}

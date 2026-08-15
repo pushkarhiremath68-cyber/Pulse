@@ -1,0 +1,6 @@
+.git
+.git/*
+Pulse/
+.vscode/
+node_modules/
+*.log
