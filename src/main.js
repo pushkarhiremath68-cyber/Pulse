@@ -2637,21 +2637,31 @@
     const dlBtn = document.getElementById('primary-os-download-btn');
     const dlLabel = document.getElementById('primary-download-label');
 
+    let packageFile = 'Pulse-Music-Windows-Setup.exe';
+    if (detected.os === 'android') packageFile = 'Pulse-Music-v2.4.0.apk';
+    else if (detected.os === 'mac') packageFile = 'Pulse-Music-v2.4.0.dmg';
+    else if (detected.os === 'linux') packageFile = 'Pulse-Music-v2.4.0.AppImage';
+
     if (badgeText) badgeText.textContent = `Detected: ${detected.name}`;
     if (heading) heading.textContent = `Pulse Music for ${detected.name.split(' ')[0]}`;
-    if (subtext) subtext.textContent = `Install Pulse Music directly to your home screen or desktop. Ultra fast, offline audio, and 0 ads.`;
+    if (subtext) subtext.textContent = `Install Pulse Music directly to your device. Ultra fast, offline audio, and 0 ads.`;
+    
     if (dlBtn) {
-      dlBtn.removeAttribute('href');
+      dlBtn.href = `./downloads/${packageFile}`;
+      dlBtn.setAttribute('download', packageFile);
       dlBtn.onclick = function(e) {
-        if (e) e.preventDefault();
-        window.downloadPlatformApp(detected.os);
-        return false;
+        if (window.deferredPrompt) {
+          try {
+            window.deferredPrompt.prompt();
+          } catch(err) {}
+        }
+        showToast(`Downloading ${packageFile}... Check your browser downloads!`, 'success', 4500);
       };
     }
-    if (dlLabel) dlLabel.textContent = `Install for ${detected.name}`;
+    if (dlLabel) dlLabel.textContent = `Download for ${detected.name.split(' ')[0]}`;
 
     const sizeEl = document.getElementById('primary-file-size');
-    if (sizeEl) sizeEl.textContent = 'PWA (Native)';
+    if (sizeEl) sizeEl.textContent = 'Native Package';
   };
 
   window.copyPrimaryChecksum = function() {
@@ -2694,8 +2704,8 @@
       a.download = fileName;
       document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
-      showToast(`Downloading ${fileName}... Check your browser downloads!`, 'success', 4500);
+      setTimeout(() => a.remove(), 400);
+      showToast(`Downloading ${fileName}... Check your downloads folder!`, 'success', 4500);
     }
 
     if (isIOS) {
