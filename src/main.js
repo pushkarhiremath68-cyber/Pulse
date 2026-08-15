@@ -4938,8 +4938,85 @@
   };
 
   /* --------------------------------------------------------------------------
-     GOOGLE CREDENTIAL VERIFICATION MODAL CONTROLLERS
+     GOOGLE IDENTITY SERVICES & CREDENTIAL VERIFICATION ENGINE
      -------------------------------------------------------------------------- */
+  function parseJwt(token) {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function handleGoogleCredentialResponse(response) {
+    if (!response || !response.credential) return;
+    try {
+      const payload = parseJwt(response.credential);
+      if (payload) {
+        const name = payload.name || payload.given_name || 'Google Listener';
+        const email = payload.email || 'user@gmail.com';
+        const avatar = payload.picture || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}&backgroundColor=8b5cf6`;
+        
+        try {
+          localStorage.setItem('pulse_auth_token', response.credential);
+          localStorage.setItem('pulse_user_data', JSON.stringify({ name, email, avatar }));
+        } catch (e) {}
+
+        window.loginUser(name, email, 'google', avatar);
+        const authModal = document.getElementById('auth-modal');
+        if (authModal) authModal.classList.add('hidden');
+        const googleModal = document.getElementById('google-auth-modal');
+        if (googleModal) googleModal.classList.add('hidden');
+
+        showToast(`Welcome to Pulse, ${name}! (Signed in with Google)`, 'success', 4500);
+      }
+    } catch (err) {
+      console.warn('[Pulse Google Auth] Credential decode error:', err);
+    }
+  }
+  window.handleGoogleCredentialResponse = handleGoogleCredentialResponse;
+
+  function initGoogleIdentityServices() {
+    if (typeof window === 'undefined' || window.isUserLoggedIn()) return;
+    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+      try {
+        google.accounts.id.initialize({
+          client_id: window.PULSE_GOOGLE_CLIENT_ID || '819238472910-pulse.apps.googleusercontent.com',
+          callback: handleGoogleCredentialResponse,
+          auto_select: false,
+          cancel_on_tap_outside: true
+        });
+
+        // Try Google One-Tap prompt
+        google.accounts.id.prompt((notification) => {
+          if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+            console.log('[Pulse GSI] One-tap prompt skipped/closed');
+          }
+        });
+      } catch (e) {
+        console.warn('[Pulse GSI] Notice:', e);
+      }
+    }
+  }
+  window.initGoogleIdentityServices = initGoogleIdentityServices;
+
+  window.triggerGoogleOneTapLogin = function() {
+    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+      try {
+        google.accounts.id.prompt();
+      } catch (e) {
+        window.openGoogleAuthModal();
+      }
+    } else {
+      window.openGoogleAuthModal();
+    }
+  };
+
   window.openGoogleAuthModal = function() {
     document.getElementById('auth-modal')?.classList.add('hidden');
     const modal = document.getElementById('google-auth-modal');
