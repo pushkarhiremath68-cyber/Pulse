@@ -89,18 +89,13 @@
 
 
   <!-- NATIVE DESKTOP WINDOW TITLEBAR (Frameless Window / Electron & Native App) -->
-  <header id="app-titlebar" class="app-titlebar">
+  <header id="app-titlebar" class="app-titlebar" style="display: none;">
     <div class="titlebar-drag-region">
       <div class="titlebar-brand">
         <img src="./public/icons/icon-32.png" alt="Pulse Logo" class="titlebar-icon">
         <span class="titlebar-title">Pulse Music</span>
-        <span class="titlebar-badge">v2.4.0 Native</span>
+        <span class="titlebar-badge">v2.4.0</span>
       </div>
-    </div>
-    <div class="titlebar-window-controls">
-      <button id="titlebar-btn-min" class="titlebar-btn" title="Minimize" onclick="window.minimizeWindow()"><i class="fa-solid fa-minus"></i></button>
-      <button id="titlebar-btn-max" class="titlebar-btn" title="Maximize" onclick="window.toggleMaximizeWindow()"><i class="fa-regular fa-square"></i></button>
-      <button id="titlebar-btn-close" class="titlebar-btn btn-close" title="Close" onclick="window.closeWindow()"><i class="fa-solid fa-xmark"></i></button>
     </div>
   </header>
 
