@@ -82,6 +82,14 @@ export class PulseVisualizer {
       this.ctx = this.canvas.getContext('2d');
     }
 
+    // Only render frames if the fullscreen player or canvas is actually visible to conserve 100% CPU/GPU
+    const fsPlayer = document.getElementById('fullscreen-player');
+    const isVisible = fsPlayer && fsPlayer.classList.contains('active');
+    if (!isVisible) {
+      this.animFrameId = requestAnimationFrame(() => this.animate());
+      return;
+    }
+
     const rect = this.canvas.getBoundingClientRect();
     const width = rect.width || 440;
     const height = rect.height || 440;
@@ -104,34 +112,29 @@ export class PulseVisualizer {
         this.ctx.beginPath();
         this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         this.ctx.fillStyle = `hsla(${p.hue}, 85%, 65%, ${p.alpha * 0.6})`;
-        this.ctx.shadowBlur = 8;
-        this.ctx.shadowColor = `hsla(${p.hue}, 85%, 65%, 0.8)`;
         this.ctx.fill();
       });
 
       // Draw pulsating frequency bars around the disc
-      const count = 56;
+      const count = 44;
       for (let i = 0; i < count; i++) {
         const angle = (i / count) * Math.PI * 2 + (time * 0.2);
         const wave1 = Math.sin(time * 2.5 + i * 0.25);
         const wave2 = Math.cos(time * 1.8 + i * 0.15);
-        const amp = (Math.abs(wave1 * wave2) * 35) + 6;
+        const amp = (Math.abs(wave1 * wave2) * 32) + 5;
 
         const x1 = centerX + Math.cos(angle) * (baseRadius + 4);
         const y1 = centerY + Math.sin(angle) * (baseRadius + 4);
         const x2 = centerX + Math.cos(angle) * (baseRadius + amp + 4);
         const y2 = centerY + Math.sin(angle) * (baseRadius + amp + 4);
 
-        // Color based on angle
-        const hue = 265 + (i / count) * 60; // Violet to magenta
+        const hue = 265 + (i / count) * 60;
         this.ctx.beginPath();
         this.ctx.moveTo(x1, y1);
         this.ctx.lineTo(x2, y2);
         this.ctx.strokeStyle = `hsla(${hue}, 90%, 65%, 0.85)`;
-        this.ctx.lineWidth = 3.5;
+        this.ctx.lineWidth = 3;
         this.ctx.lineCap = 'round';
-        this.ctx.shadowBlur = 12;
-        this.ctx.shadowColor = `hsla(${hue}, 90%, 60%, 0.6)`;
         this.ctx.stroke();
       }
 
@@ -140,8 +143,6 @@ export class PulseVisualizer {
       this.ctx.arc(centerX, centerY, baseRadius + 2, 0, Math.PI * 2);
       this.ctx.strokeStyle = 'rgba(168, 85, 247, 0.4)';
       this.ctx.lineWidth = 2;
-      this.ctx.shadowBlur = 16;
-      this.ctx.shadowColor = '#a855f7';
       this.ctx.stroke();
 
     } else if (this.mode === 'bars') {
