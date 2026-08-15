@@ -1539,6 +1539,12 @@
               }
             },
             onStateChange: function(event) {
+              if (event.data === 1 && window._ytPlayerInstance) {
+                try {
+                  window._ytPlayerInstance.unMute();
+                  window._ytPlayerInstance.setVolume(100);
+                } catch(e) {}
+              }
               if (typeof window._onYTStateChange === 'function') {
                 window._onYTStateChange(event);
               }

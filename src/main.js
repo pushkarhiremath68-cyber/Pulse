@@ -2017,15 +2017,28 @@
       try {
         if (player && typeof player.loadVideoById === 'function') {
           player.loadVideoById(videoId);
-          player.setVolume(state.volume * 100);
-          if (state.isMuted) player.mute();
-          else player.unMute();
+          try {
+            player.unMute();
+            player.setVolume(Math.max(50, Math.round((state.volume || 1) * 100)));
+          } catch(e) {}
           if (autoPlay) {
             player.playVideo();
             state.isPlaying = true;
             updatePlayPauseUI();
           }
           showBuffering(false);
+
+          // Force unmuting across the first 2 seconds as video chunks stream
+          [100, 300, 600, 1000, 1800].forEach((ms) => {
+            setTimeout(() => {
+              try {
+                if (player && typeof player.unMute === 'function') {
+                  player.unMute();
+                  player.setVolume(Math.max(50, Math.round((state.volume || 1) * 100)));
+                }
+              } catch(e) {}
+            }, ms);
+          });
           return;
         }
       } catch (e) {
@@ -2036,7 +2049,7 @@
       const fallbackContainer = document.getElementById('youtube-fallback-container');
       if (fallbackContainer) {
         fallbackContainer.innerHTML = `
-          <iframe width="240" height="240"
+          <iframe id="bg-audio-iframe" width="200" height="120"
             src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=${autoPlay ? 1 : 0}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}"
             frameborder="0" allow="autoplay; encrypted-media">
           </iframe>
@@ -3744,6 +3757,8 @@
         state.isPlaying = true;
         updatePlayPauseUI();
         try {
+          ytPlayer.unMute();
+          ytPlayer.setVolume(Math.max(50, Math.round((state.volume || 1) * 100)));
           const ytDur = ytPlayer.getDuration();
           if (ytDur && ytDur > 0) {
             state.duration = ytDur;
@@ -3755,6 +3770,12 @@
       // Show buffering when video is buffering
       if (event.data === window.YT.PlayerState.BUFFERING) {
         showBuffering(true);
+        try {
+          if (ytPlayer) {
+            ytPlayer.unMute();
+            ytPlayer.setVolume(Math.max(50, Math.round((state.volume || 1) * 100)));
+          }
+        } catch (e) {}
       }
       // Track paused state
       if (event.data === window.YT.PlayerState.PAUSED) {
