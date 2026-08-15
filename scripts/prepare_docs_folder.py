@@ -15,16 +15,21 @@ def prepare_docs():
         
     shutil.copytree(dist_dir, docs_dir)
     
-    # Create .nojekyll in docs/ so GitHub Pages serves assets without ignoring _ folders
-    with open(os.path.join(docs_dir, ".nojekyll"), "w") as f:
-        f.write("")
-        
-    # Also create .nojekyll in root
-    with open(os.path.join(base_dir, ".nojekyll"), "w") as f:
-        f.write("")
+    # Ensure logo files are in docs and dist
+    for logo_name in ['pulse-logo.png', 'pulse-logo.svg', 'pulse-logo-backup.png']:
+        src_logo = os.path.join(base_dir, logo_name)
+        if os.path.exists(src_logo):
+            shutil.copy2(src_logo, os.path.join(docs_dir, logo_name))
+            shutil.copy2(src_logo, os.path.join(dist_dir, logo_name))
 
-    print(f"[SUCCESS] Copied dist/ to docs/ with .nojekyll: {os.listdir(docs_dir)}")
+    # Create .nojekyll in docs/, dist/ and root so GitHub Pages serves all assets
+    for target in [docs_dir, dist_dir, base_dir]:
+        with open(os.path.join(target, ".nojekyll"), "w") as f:
+            f.write("")
+
+    print(f"[SUCCESS] Prepared docs/ and dist/ with .nojekyll and assets: {os.listdir(docs_dir)}")
     return True
 
 if __name__ == '__main__':
     prepare_docs()
+
