@@ -4188,7 +4188,7 @@
     _activeAudioCandidates = candidates;
     _activeCandidateIndex = 0;
 
-    function attemptHtml5Candidate(url, timeoutMs = 1800) {
+    function attemptHtml5Candidate(url, timeoutMs = 1000) {
       return new Promise((resolve, reject) => {
         if (sessionId !== _currentPlaybackSessionId) {
           reject(new Error('Stale session'));
@@ -5692,36 +5692,41 @@
   window.renderGoogleAccountsList = function() {
     const listEl = document.getElementById('google-accounts-list');
     const formEl = document.getElementById('google-custom-account-form');
-    if (formEl) formEl.classList.add('hidden');
     if (!listEl) return;
-
-    listEl.classList.remove('hidden');
 
     let storedUsers = {};
     try { storedUsers = JSON.parse(localStorage.getItem('pulse_local_users') || '{}'); } catch(e) {}
 
-    const defaultGoogleUser = {
-      name: localStorage.getItem('pulse_last_google_name') || 'Pushkar Hiremath',
-      email: localStorage.getItem('pulse_last_google_email') || 'pushkarhiremath68@gmail.com'
-    };
-
-    let accounts = [defaultGoogleUser];
+    let accounts = [];
     for (const [em, u] of Object.entries(storedUsers)) {
-      if (em !== defaultGoogleUser.email.toLowerCase() && u.name) {
-        accounts.push({ name: u.name, email: u.email || em });
+      if (u && u.name && u.email) {
+        accounts.push({ name: u.name, email: u.email });
       }
     }
 
-    listEl.innerHTML = accounts.map((acc, idx) => {
+    if (accounts.length === 0) {
+      // If no stored accounts, open the Google sign-in form directly
+      if (listEl) listEl.classList.add('hidden');
+      if (formEl) {
+        formEl.classList.remove('hidden');
+        document.getElementById('google-custom-name')?.focus();
+      }
+      return;
+    }
+
+    if (formEl) formEl.classList.add('hidden');
+    listEl.classList.remove('hidden');
+
+    listEl.innerHTML = accounts.map((acc) => {
       const avatarUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(acc.name)}&backgroundColor=8b5cf6`;
       return `
         <div class="google-account-card" onclick="window.selectGoogleAccount('${acc.name.replace(/'/g, "\\'")}', '${acc.email.replace(/'/g, "\\'")}', '${avatarUrl}')">
           <img src="${avatarUrl}" alt="${acc.name}" class="google-account-avatar">
           <div class="google-account-info">
-            <div class="google-account-name">${acc.name}</div>
-            <div class="google-account-email">${acc.email}</div>
+            <div class="google-account-name">${escapeHtml(acc.name)}</div>
+            <div class="google-account-email">${escapeHtml(acc.email)}</div>
           </div>
-          <span class="google-account-tag">${idx === 0 ? 'Verified' : 'Google'}</span>
+          <span class="google-account-tag">Google</span>
         </div>
       `;
     }).join('') + `
@@ -5745,7 +5750,6 @@
     let storedUsers = {};
     try { storedUsers = JSON.parse(localStorage.getItem('pulse_local_users') || '{}'); } catch(e) {}
     
-    // Scenario A, B & C: Check, Link or Insert
     storedUsers[cleanEmail] = {
       id: `google-${Date.now()}`,
       name: cleanName,
@@ -5762,20 +5766,26 @@
     const authModal = document.getElementById('auth-modal');
     if (authModal) authModal.classList.add('hidden');
     if (typeof showToast === 'function') {
-      showToast(`Welcome back, ${cleanName}! Signed in with Google.`, 'success', 4000);
+      showToast(`Welcome, ${cleanName}! Signed in with Google.`, 'success', 4000);
     }
   };
 
   window.submitGoogleCustomAccount = function() {
     const nameInput = document.getElementById('google-custom-name');
     const emailInput = document.getElementById('google-custom-email');
-    const name = nameInput?.value.trim() || 'Pulse Listener';
+    const name = nameInput?.value.trim() || '';
     let email = emailInput?.value.trim() || '';
 
-    if (!email) {
-      email = `${name.toLowerCase().replace(/[^a-z0-9]/g, '') || 'listener'}@gmail.com`;
+    if (!name) {
+      if (typeof showToast === 'function') showToast('Please enter your full name', 'warning');
+      nameInput?.focus();
+      return;
     }
-    if (!email.includes('@')) email += '@gmail.com';
+    if (!email || !email.includes('@')) {
+      if (typeof showToast === 'function') showToast('Please enter a valid Google email address', 'warning');
+      emailInput?.focus();
+      return;
+    }
 
     const avatar = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}&backgroundColor=8b5cf6`;
     window.selectGoogleAccount(name, email, avatar);

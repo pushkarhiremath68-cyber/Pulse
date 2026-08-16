@@ -29318,88 +29318,46 @@
       const rawArtist = (track.artist || '').split(',')[0].split('&')[0].trim();
       const query = `${rawTitle} ${rawArtist}`.trim() || `${track.title || ''} ${track.artist || ''}`.trim();
 
-      // 4. JioSaavn 320k/160k authentic full-length master stream CDN with multi-proxy fallback
+      // 4. Fast JioSaavn 320k/160k stream resolution via parallel race
       if (query || rawTitle) {
-        const searchQueries = [query, rawTitle].filter(Boolean);
-        for (const sq of searchQueries) {
-          try {
-            const cleanQuery = sq.replace(/[()\\[\\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
-            const saavnRawUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=5&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
-            
-            let data = null;
-            // 4a. Local backend proxy
-            try {
-              const bRes = await fetch(`/api/saavn-search?q=${encodeURIComponent(cleanQuery)}`, { signal: AbortSignal.timeout(2000) });
-              if (bRes.ok) data = await bRes.json();
-            } catch (e) {}
+        const cleanQuery = (query || rawTitle).replace(/[()[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
+        const saavnRawUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=5&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
+        
+        try {
+          const fetchEndpoints = [
+            fetch(`/api/saavn-search?q=${encodeURIComponent(cleanQuery)}`, { signal: AbortSignal.timeout(1200) }),
+            fetch(`https://corsproxy.io/?url=${encodeURIComponent(saavnRawUrl)}`, { signal: AbortSignal.timeout(1400) }),
+            fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(saavnRawUrl)}`, { signal: AbortSignal.timeout(1400) })
+          ];
 
-            // 4b. Multi-CORS proxies
-            const proxies = [
-              `https://corsproxy.io/?url=${encodeURIComponent(saavnRawUrl)}`,
-              `https://api.allorigins.win/raw?url=${encodeURIComponent(saavnRawUrl)}`,
-              `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(saavnRawUrl)}`
-            ];
+          const response = await Promise.any(
+            fetchEndpoints.map(p => p.then(r => {
+              if (r.ok) return r.json();
+              throw new Error('Not ok');
+            }))
+          ).catch(() => null);
 
-            for (const pUrl of proxies) {
-              if (data && data.results) break;
-              try {
-                const cRes = await fetch(pUrl, { signal: AbortSignal.timeout(2500) });
-                if (cRes.ok) {
-                  const parsed = await cRes.json();
-                  if (parsed && parsed.results) data = parsed;
+          if (response && response.results && Array.isArray(response.results) && response.results.length > 0) {
+            for (const r of response.results) {
+              if (r.encrypted_media_url) {
+                const dec = decryptSaavnUrl(r.encrypted_media_url);
+                if (dec) {
+                  if (dec['320']) add(dec['320'], 'saavn-320k-lossless');
+                  if (dec['160']) add(dec['160'], 'saavn-160k-hq');
+                  if (dec['96']) add(dec['96'], 'saavn-96k');
                 }
-              } catch (e) {}
-            }
-
-            // 4c. Direct fetch
-            if (!data || !data.results) {
-              try {
-                const dRes = await fetch(saavnRawUrl, { cache: 'no-store', signal: AbortSignal.timeout(2000) });
-                if (dRes.ok) data = await dRes.json();
-              } catch (e) {}
-            }
-
-            if (data && data.results && data.results.length > 0) {
-              for (const r of data.results) {
-                if (r.encrypted_media_url) {
-                  const dec = decryptSaavnUrl(r.encrypted_media_url);
-                  if (dec) {
-                    if (dec['320']) add(dec['320'], 'saavn-320k-lossless');
-                    if (dec['160']) add(dec['160'], 'saavn-160k-hq');
-                    if (dec['96']) add(dec['96'], 'saavn-96k');
-                  }
-                }
-                if (r.image && (!track.cover || track.cover.includes('pulse-logo'))) {
-                  const hdImg = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
-                  track.cover = hdImg;
-                }
-                if (candidates.length > 2) break;
               }
+              if (r.image && (!track.cover || track.cover.includes('pulse-logo'))) {
+                track.cover = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
+              }
+              if (candidates.length >= 3) break;
             }
-          } catch (e) {}
-          if (candidates.some(c => c.label && c.label.startsWith('saavn'))) break;
-        }
+          }
+        } catch (e) {}
 
-        // 5. Apple iTunes audio stream preview fallback
+        // 5. iTunes stream fallback
         if (track.previewUrl) {
           add(track.previewUrl, 'itunes-preview');
-        } else {
-          try {
-            const itUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=1`;
-            const itRes = await fetch(itUrl, { cache: 'no-store', signal: AbortSignal.timeout(2000) });
-            if (itRes.ok) {
-              const itData = await itRes.json();
-              if (itData && itData.results && itData.results.length > 0) {
-                const itTrack = itData.results[0];
-                if (itTrack.previewUrl) {
-                  add(itTrack.previewUrl, 'itunes-aac-stream');
-                }
-                if (itTrack.artworkUrl100 && (!track.cover || track.cover.includes('pulse-logo'))) {
-                  track.cover = itTrack.artworkUrl100.replace('100x100bb', '600x600bb');
-                }
-              }
-            }
-          } catch (e) {}
         }
       }
 

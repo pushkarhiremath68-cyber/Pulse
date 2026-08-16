@@ -2050,9 +2050,8 @@ html, body {
   .brand { justify-content: center; }
   .nav-item { justify-content: center; padding: 0.8rem; }
   .bottom-player-bar {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(180px, 1fr) 1.5fr minmax(120px, 1fr);
   }
-  .player-right { display: none; }
 }
 
 @media (max-width: 600px) {
@@ -2060,14 +2059,22 @@ html, body {
     grid-template-columns: 1fr;
   }
   .sidebar { display: none; }
-  .hero-banner { padding: 1.5rem; flex-direction: column; }
+  .hero-banner { padding: 1.2rem; flex-direction: column; }
   .hero-image-wrapper { display: none; }
   .music-cards-grid { grid-template-columns: repeat(2, 1fr); }
   .bottom-player-bar {
-    grid-template-columns: 1fr;
-    height: 70px;
+    grid-template-columns: 1fr auto;
+    height: 72px;
+    padding: 0 0.8rem;
   }
-  .player-center { display: none; }
+  .player-timeline-container { display: none; }
+  .player-right { display: none !important; }
+  .player-center {
+    display: flex !important;
+    justify-content: flex-end;
+  }
+  .btn-player-control { display: none; }
+  .btn-player-main { display: flex !important; width: 42px; height: 42px; }
 }
 
 /* ==========================================================================
@@ -3054,6 +3061,11 @@ html, body {
   backdrop-filter: blur(14px);
   animation: bannerSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transition: all 0.3s ease;
+}
+
+.pulse-auth-banner.hidden,
+.pulse-auth-banner:empty {
+  display: none !important;
 }
 
 .pulse-auth-banner.error {
