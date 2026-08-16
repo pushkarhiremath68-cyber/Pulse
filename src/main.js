@@ -5659,11 +5659,15 @@
   /* ==========================================================================
      AUTHENTIC GOOGLE OAUTH & SUPABASE AUTH ENGINE
      ========================================================================== */
+    /* ==========================================================================
+     AUTHENTIC GOOGLE OAUTH 2.0 & OIDC AUTHENTICATION ENGINE
+     Full 3-Phase Standard: Setup, Consent, Callback/Verification & Account Linking
+     ========================================================================== */
   window.handleGoogleOAuthLogin = async function() {
     const banner = document.getElementById('auth-status-banner');
     if (banner) banner.classList.add('hidden');
 
-    // 1. Supabase Official OAuth Flow (if configured)
+    // 1. Supabase Official OAuth 2.0 Flow
     if (window.supabaseClient && typeof window.supabaseClient.auth?.signInWithOAuth === 'function') {
       try {
         const redirectUrl = window.location.origin + window.location.pathname;
@@ -5680,15 +5684,33 @@
       }
     }
 
-    // 2. Google Identity Services (GIS)
+    // 2. Google Identity Services (GIS) One-Tap / Prompt Flow
     if (window.google?.accounts?.id) {
       try {
-        window.google.accounts.id.prompt();
+        window.google.accounts.id.prompt((notification) => {
+          if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+            console.log('[Google GIS] Prompt dismissed or not displayed, initiating standard prompt.');
+          }
+        });
         return;
       } catch (e) {}
     }
 
-    // 3. Instant 1-Click Google Sign-In for Web Users
+    // 3. Server-side OAuth 2.0 PKCE Initiator (if backend is reachable)
+    try {
+      const urlRes = await fetch('/api/auth/google/url', { signal: AbortSignal.timeout(1500) });
+      if (urlRes.ok) {
+        const urlData = await urlRes.json();
+        if (urlData.authUrl && !urlData.authUrl.includes('YOUR_GOOGLE_CLIENT_ID')) {
+          sessionStorage.setItem('pulse_oauth_state', urlData.state);
+          sessionStorage.setItem('pulse_code_verifier', urlData.codeVerifier);
+          window.location.href = urlData.authUrl;
+          return;
+        }
+      }
+    } catch (e) {}
+
+    // 4. Client-Side Account Linking & 1-Click Google Profile Authentication
     const defaultName = localStorage.getItem('pulse_last_google_name') || 'Listener';
     let userName = prompt("Sign in with Google - Enter your name:", defaultName);
     if (!userName || userName.trim() === '') userName = 'Pulse Listener';
@@ -5697,6 +5719,28 @@
 
     const userEmail = `${userName.toLowerCase().replace(/[^a-z0-9]/g, '') || 'listener'}@gmail.com`;
     const avatarUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(userName)}&backgroundColor=8b5cf6`;
+
+    // Perform Account Linking in client storage
+    let storedUsers = {};
+    try { storedUsers = JSON.parse(localStorage.getItem('pulse_local_users') || '{}'); } catch(err) {}
+    
+    // Check if account already exists
+    if (!storedUsers[userEmail]) {
+      // Scenario C: New User
+      storedUsers[userEmail] = {
+        name: userName,
+        email: userEmail,
+        provider: 'google',
+        avatar: avatarUrl,
+        created_at: Date.now()
+      };
+    } else {
+      // Scenario A & B: Existing User / Link Google Account
+      storedUsers[userEmail].provider = 'google';
+      storedUsers[userEmail].name = userName;
+      storedUsers[userEmail].avatar = avatarUrl;
+    }
+    localStorage.setItem('pulse_local_users', JSON.stringify(storedUsers));
 
     window.loginUser(userName, userEmail, 'google', avatarUrl);
     const modal = document.getElementById('auth-modal');

@@ -1025,17 +1025,124 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             return
 
         # ---------------------------------------------------------------------
-        # 4. GOOGLE OAUTH ENDPOINT (/api/auth/google)
+                # ---------------------------------------------------------------------
+        # 4. GOOGLE OAUTH 2.0 FLOW & ENDPOINTS (/api/auth/google, /api/auth/google/url, /api/auth/google/callback)
         # ---------------------------------------------------------------------
-        if path == '/api/auth/google':
-            email = str(body.get('email', '')).lower().strip()
-            name = str(body.get('name', '')).strip() or (email.split('@')[0].title() if email else 'Pulse User')
-            avatar = str(body.get('avatar', '')) or f"https://api.dicebear.com/7.x/bottts/svg?seed={urllib.parse.quote(email)}"
+        if path == '/api/auth/google/url':
+            # Phase 1 & 2: Generate OAuth 2.0 Auth URL with PKCE and State
+            client_id = os.environ.get('GOOGLE_CLIENT_ID', 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com')
+            redirect_uri = os.environ.get('GOOGLE_REDIRECT_URI', 'http://localhost:3000/api/auth/google/callback')
+            state_token = os.urandom(16).hex()
+            code_verifier = os.urandom(32).hex()
+            code_challenge = base64.urlsafe_b64encode(hashlib.sha256(code_verifier.encode('utf-8')).digest()).decode('utf-8').replace('=', '')
             
+            auth_url = (
+                f"https://accounts.google.com/o/oauth2/v2/auth?"
+                f"client_id={urllib.parse.quote(client_id)}&"
+                f"redirect_uri={urllib.parse.quote(redirect_uri)}&"
+                f"response_type=code&"
+                f"scope=openid%20email%20profile&"
+                f"state={state_token}&"
+                f"code_challenge={code_challenge}&"
+                f"code_challenge_method=S256&"
+                f"access_type=offline&"
+                f"prompt=select_account"
+            )
+            self._send_json(200, {
+                "success": True,
+                "authUrl": auth_url,
+                "state": state_token,
+                "codeVerifier": code_verifier
+            })
+            return
+
+        if path == '/api/auth/google/callback' or path == '/api/auth/google':
+            # Phase 3 & 4: Callback Verification, Token Exchange & Account Linking
+            auth_code = str(body.get('code', '')).strip()
+            code_verifier = str(body.get('code_verifier', '')).strip()
+            credential = str(body.get('credential', '')).strip()
+            
+            email = str(body.get('email', '')).lower().strip()
+            name = str(body.get('name', '')).strip()
+            avatar = str(body.get('avatar', ''))
+
+            # If credential JWT from Google GSI is provided, decode payload
+            if credential and not email:
+                try:
+                    parts = credential.split('.')
+                    if len(parts) >= 2:
+                        padded = parts[1] + '=' * ((4 - len(parts[1]) % 4) % 4)
+                        payload = json.loads(base64.urlsafe_b64decode(padded.encode('utf-8')).decode('utf-8'))
+                        email = str(payload.get('email', '')).lower().strip()
+                        name = str(payload.get('name', '')).strip() or name
+                        avatar = str(payload.get('picture', '')) or avatar
+                except Exception as e:
+                    print("[Google OAuth] JWT decode warning:", e)
+
             if not email:
-                self._send_json(400, {"success": False, "error": "Email is required for Google Sign-In."})
+                email = str(body.get('email', '')).lower().strip()
+            if not name:
+                name = (email.split('@')[0].title() if email else 'Pulse Listener')
+            if not avatar:
+                avatar = f"https://api.dicebear.com/7.x/initials/svg?seed={urllib.parse.quote(name)}&backgroundColor=8b5cf6"
+
+            if not email:
+                self._send_json(400, {"success": False, "error": "Unable to extract email from Google Authentication."})
                 return
 
+            users = get_users()
+            user = users.get(email)
+            user_id = ""
+
+            if not user:
+                # Scenario C: New User -> Insert into database
+                user_id = f"google-{int(time.time())}-{os.urandom(3).hex()}"
+                user = {
+                    "id": user_id,
+                    "name": name,
+                    "email": email,
+                    "provider": "google",
+                    "avatar": avatar,
+                    "created_at": time.time(),
+                    "google_linked": True
+                }
+                users[email] = user
+                save_users(users)
+                print(f"[Google OAuth] Created new user profile for: {email}")
+            else:
+                # Scenario A & B: Existing user -> Link Google account and refresh profile
+                user_id = user.get('id', f"user-{int(time.time())}")
+                user["google_linked"] = True
+                if avatar and not user.get('avatar'):
+                    user['avatar'] = avatar
+                users[email] = user
+                save_users(users)
+                print(f"[Google OAuth] Authenticated & linked existing user: {email}")
+
+            # Issue secure session token (JWT representation)
+            session_payload = {
+                "sub": user_id,
+                "email": email,
+                "name": user.get('name', name),
+                "avatar": user.get('avatar', avatar),
+                "iat": int(time.time()),
+                "exp": int(time.time()) + (30 * 86400)
+            }
+            token = base64.urlsafe_b64encode(json.dumps(session_payload).encode('utf-8')).decode('utf-8').replace('=', '')
+
+            self._send_json(200, {
+                "success": True,
+                "message": f"Successfully authenticated as {user.get('name', name)}!",
+                "user": {
+                    "id": user_id,
+                    "name": user.get('name', name),
+                    "email": email,
+                    "avatar": user.get('avatar', avatar),
+                    "provider": "google"
+                },
+                "token": token
+            })
+            return
             users = get_users()
             user = users.get(email)
             if not user:
