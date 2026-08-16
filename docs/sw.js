@@ -3,7 +3,7 @@
    Designed by Pushkar Hiremath
    ========================================================================== */
 
-const CACHE_NAME = 'pulse-music-cache-v9';
+const CACHE_NAME = 'pulse-music-cache-v10';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -45,9 +45,15 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const url = event.request.url;
-  // Let streaming API, YouTube API, iTunes API, Invidious API, and Supabase bypass service worker cache
+  // NEVER intercept downloads, streaming API, or external media
   if (
+    url.includes('/downloads/') ||
     url.includes('/api/') ||
+    url.endsWith('.apk') ||
+    url.endsWith('.exe') ||
+    url.endsWith('.dmg') ||
+    url.endsWith('.AppImage') ||
+    url.endsWith('.ipa') ||
     url.includes('youtube.com') ||
     url.includes('googlevideo.com') ||
     url.includes('supabase.co') ||
@@ -62,7 +68,7 @@ self.addEventListener('fetch', (event) => {
     url.includes('privacyredirect.com') ||
     url.includes('accounts.google.com')
   ) {
-    return event.respondWith(fetch(event.request));
+    return;
   }
 
   // Network-First strategy: fetch latest code from server, fallback to cache if offline
