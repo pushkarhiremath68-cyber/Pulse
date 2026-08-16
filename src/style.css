@@ -4943,9 +4943,11 @@ body.is-installed-app-mode .share-link-box {
   }
 
   .bottom-player-bar {
-    max-width: 1600px;
-    left: 50% !important;
-    transform: translateX(-50%);
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
   }
 
   .mobile-bottom-nav {
@@ -5021,8 +5023,7 @@ body.is-standalone-app .btn-install-sidebar {
 .btn-primary-play,
 .btn-player-main,
 .lyrics-line,
-.modal-content,
-.bottom-player-bar {
+.modal-content {
   will-change: transform, opacity;
   transform: translateZ(0);
   backface-visibility: hidden;

@@ -1,5 +1,3 @@
-import { createClient } from '@supabase/supabase-js';
-
 export const PULSE_STORAGE_BUCKET = 'music';
 
 export const getSupabaseConfig = () => {
@@ -57,7 +55,9 @@ const getSupabaseClient = () => {
   const { url, key } = getSupabaseConfig();
   if (url && key && url !== 'YOUR_SUPABASE_PROJECT_URL' && key !== 'YOUR_SUPABASE_PUBLISHABLE_KEY') {
     try {
-      return createClient(url, key);
+      if (typeof window !== 'undefined' && window.supabase && typeof window.supabase.createClient === 'function') {
+        return window.supabase.createClient(url, key);
+      }
     } catch (e) {
       console.warn('[Pulse Supabase Init]', e);
     }
@@ -67,7 +67,7 @@ const getSupabaseClient = () => {
 
 export const supabase = getSupabaseClient();
 
-// Bind to window for universal access
+// Bind to window for universal access across module and vanilla scripts
 if (typeof window !== 'undefined') {
   window.getAudioStorageUrl = getAudioStorageUrl;
   window.PULSE_STORAGE_BUCKET = PULSE_STORAGE_BUCKET;
@@ -75,4 +75,3 @@ if (typeof window !== 'undefined') {
 }
 
 export default supabase;
-
