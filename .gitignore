@@ -50,8 +50,22 @@ Thumbs.db
 scratch/
 .system_generated/
 
-# Large Media Storage & Binary Distributions (Keep repo lightweight and GitHub-safe)
+# Large Media Storage & Binary Distributions
 storage/music/
+!docs/storage/music/
+!storage/music/in-itni-si-baat-hai.mp4
+!storage/music/in-kesariya.mp4
+!storage/music/in-udi-udi-jaye.mp4
+!storage/music/in-chaleya.mp4
+!storage/music/in-chaleya.m4a
+!storage/music/pj-wavy-karan-aujla.mp4
+!storage/music/in-shayad.mp4
+!storage/music/pj-softly-karan-aujla.mp4
+!storage/music/en-save-your-tears.mp4
+!storage/music/te-srivalli-telugu.mp4
+!storage/music/kn-singara-siriye.mp4
+!storage/music/hr-52-gaj-ka-daman.mp4
+!storage/music/dev-hanuman-chalisa-gulshan.mp4
 storage/downloads/*.exe
 storage/downloads/*.dmg
 storage/downloads/*.AppImage

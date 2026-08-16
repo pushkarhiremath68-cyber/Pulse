@@ -636,16 +636,19 @@
           _tryNextCandidateRef();
           return;
         }
-        // Only set playing=false if no candidate failover is in progress
-        if (_activeCandidateIndex >= _activeAudioCandidates.length && state.playbackSource !== 'youtube') {
+        
+        // If candidates exhausted, automatically failover to YouTube engine
+        const track = state.currentTrack;
+        if (track && state.playbackSource !== 'youtube') {
+          const exactTarget = track.ytId || getYouTubeIdForTrack(track) || `${track.title || ''} ${track.artist || ''}`;
+          console.log('[Pulse Audio] HTML5 error failover triggered for:', exactTarget);
+          playTrackOnYouTubePlayer(exactTarget, true);
+        } else {
           showBuffering(false);
           state.isPlaying = false;
           updatePlayPauseUI();
           if (canvasVisualizer) canvasVisualizer.stop();
         }
-        const track = state.currentTrack;
-        const trackTitle = track ? (track.title || track.name) : 'Selected song';
-        console.warn('[Pulse Audio] Audio stream notice for:', trackTitle, e);
       });
     }
   }
@@ -4111,7 +4114,7 @@
 
   /**
    * Primary Full-Length Audio Playback Engine
-   * Seamless multi-tier streaming powered by JioSaavn Master 320k/160k CDN, Local Storage Cache & YouTube Engine
+   * Seamless multi-tier streaming powered by Local Storage Master Audio, JioSaavn CDN & YouTube Audio Engine
    */
   async function startPlayback(track, initialSeekTime = null) {
     if (!track) return;
@@ -4162,8 +4165,7 @@
       const cleanStorage = String(track.storagePath || `${track.id || 'track'}.mp4`).replace(/^\/+/, '');
       candidates = [
         { url: `./storage/music/${cleanStorage}`, label: 'local-storage' },
-        { url: `/storage/music/${cleanStorage}`, label: 'local-abs' },
-        { url: `/api/stream?id=${encodeURIComponent(track.id || '')}&q=${encodeURIComponent(title + ' ' + artist)}`, label: 'backend-stream' }
+        { url: `/storage/music/${cleanStorage}`, label: 'local-abs' }
       ];
     }
 
@@ -4172,15 +4174,49 @@
     _activeAudioCandidates = candidates;
     _activeCandidateIndex = 0;
 
-    async function tryNextCandidate() {
-      if (sessionId !== _currentPlaybackSessionId) return false;
+    function attemptHtml5Candidate(url, timeoutMs = 1800) {
+      return new Promise((resolve, reject) => {
+        if (sessionId !== _currentPlaybackSessionId) {
+          reject(new Error('Stale session'));
+          return;
+        }
 
-      while (_activeCandidateIndex < _activeAudioCandidates.length) {
-        const item = _activeAudioCandidates[_activeCandidateIndex++];
-        const url = item.url;
-        console.log(`[Pulse Audio #${sessionId}] Playing source [${item.label}]:`, url);
+        let settled = false;
+        const timer = setTimeout(() => {
+          if (!settled) {
+            settled = true;
+            cleanup();
+            reject(new Error(`Timeout loading source (${timeoutMs}ms)`));
+          }
+        }, timeoutMs);
 
-        state.playbackSource = 'html5';
+        function onPlaying() {
+          if (!settled) {
+            settled = true;
+            cleanup();
+            resolve(true);
+          }
+        }
+
+        function onError(err) {
+          if (!settled) {
+            settled = true;
+            cleanup();
+            reject(err || new Error('HTML5 audio error event'));
+          }
+        }
+
+        function cleanup() {
+          clearTimeout(timer);
+          fallbackAudio.removeEventListener('playing', onPlaying);
+          fallbackAudio.removeEventListener('canplay', onPlaying);
+          fallbackAudio.removeEventListener('error', onError);
+        }
+
+        fallbackAudio.addEventListener('playing', onPlaying);
+        fallbackAudio.addEventListener('canplay', onPlaying);
+        fallbackAudio.addEventListener('error', onError);
+
         fallbackAudio.src = url;
         fallbackAudio.volume = state.volume !== undefined ? state.volume : 1;
         fallbackAudio.muted = state.isMuted || false;
@@ -4188,8 +4224,27 @@
           try { fallbackAudio.currentTime = seekTarget; } catch (e) {}
         }
 
+        const playPromise = fallbackAudio.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(err => {
+            onError(err);
+          });
+        }
+      });
+    }
+
+    async function tryNextCandidate() {
+      if (sessionId !== _currentPlaybackSessionId) return false;
+
+      while (_activeCandidateIndex < _activeAudioCandidates.length) {
+        const item = _activeAudioCandidates[_activeCandidateIndex++];
+        const url = item.url;
+        console.log(`[Pulse Audio #${sessionId}] Testing source [${item.label}]:`, url);
+
+        state.playbackSource = 'html5';
+
         try {
-          await fallbackAudio.play();
+          await attemptHtml5Candidate(url, 1800);
           if (sessionId !== _currentPlaybackSessionId) {
             fallbackAudio.pause();
             return false;
@@ -4203,16 +4258,17 @@
           if (canvasVisualizer) canvasVisualizer.start();
           if (progressInterval) clearInterval(progressInterval);
           progressInterval = setInterval(updateProgressTimeline, 400);
+          console.log(`[Pulse Audio #${sessionId}] Successfully started HTML5 playback via [${item.label}]`);
           return true;
         } catch (err) {
-          console.warn(`[Pulse Audio #${sessionId}] Source [${item.label}] failed:`, err.message);
+          console.warn(`[Pulse Audio #${sessionId}] Source [${item.label}] failed (${err.message}). Trying next...`);
         }
       }
 
-      // If all HTML5 sources failed, try YouTube engine as secondary fallback
+      // If all HTML5 sources failed, instantly fall back to YouTube engine without hanging
       const exactTarget = track.ytId || getYouTubeIdForTrack(track) || `${title} ${artist}`;
       console.log(`[Pulse Audio #${sessionId}] HTML5 sources exhausted, falling back to YouTube engine:`, exactTarget);
-      playTrackOnYouTubePlayer(exactTarget, true, sessionId);
+      await playTrackOnYouTubePlayer(exactTarget, true, sessionId);
       updateMediaSession(track);
       requestAudioWakeLock();
       enableBackgroundKeepAlive();
@@ -4233,7 +4289,7 @@
 
     console.log(`[Pulse Audio #${currentSession}] Initiating YouTube Player playback for target:`, videoIdOrQuery);
     state.playbackSource = 'youtube';
-    showBuffering(true);
+    showBuffering(false); // Immediately dismiss spinner
 
     // Stop HTML5 audio completely to prevent double playback
     if (fallbackAudio) {
@@ -4247,15 +4303,38 @@
     let isVideoId = typeof videoIdOrQuery === 'string' && videoIdOrQuery.length === 11 && !videoIdOrQuery.includes(' ');
     let targetId = isVideoId ? videoIdOrQuery : null;
 
-    // If query, resolve to 11-char YouTube ID
-    if (!targetId) {
-      targetId = await resolveYouTubeVideoId(videoIdOrQuery);
+    // Check catalog or map first
+    if (!targetId && state.currentTrack) {
+      targetId = state.currentTrack.ytId || getYouTubeIdForTrack(state.currentTrack);
       if (targetId) isVideoId = true;
+    }
+
+    // If query, resolve with quick timeout
+    if (!targetId) {
+      try {
+        targetId = await Promise.race([
+          resolveYouTubeVideoId(videoIdOrQuery),
+          new Promise(res => setTimeout(() => res(null), 1200))
+        ]);
+        if (targetId) isVideoId = true;
+      } catch (e) {}
     }
 
     if (parentSessionId && parentSessionId !== _currentPlaybackSessionId) return; // Stale
 
     const fallbackContainer = document.getElementById('youtube-fallback-container');
+    const hiddenContainer = document.getElementById('hidden-youtube-container');
+    if (hiddenContainer) {
+      hiddenContainer.style.position = 'fixed';
+      hiddenContainer.style.bottom = '10px';
+      hiddenContainer.style.right = '10px';
+      hiddenContainer.style.width = '180px';
+      hiddenContainer.style.height = '180px';
+      hiddenContainer.style.zIndex = '-1';
+      hiddenContainer.style.opacity = '0.01';
+      hiddenContainer.style.pointerEvents = 'none';
+      hiddenContainer.style.display = 'block';
+    }
 
     // PRIMARY: Control via YouTube IFrame API if exact 11-character video ID is resolved
     if (targetId && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
@@ -4298,7 +4377,7 @@
       if (targetId) {
         embedSrc = `https://www.youtube-nocookie.com/embed/${targetId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0&iv_load_policy=3&modestbranding=1&controls=0&disablekb=1`;
       } else {
-        const queryClean = encodeURIComponent(String(videoIdOrQuery).replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim());
+        const queryClean = encodeURIComponent(String(videoIdOrQuery).replace(/[()\\[\\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim());
         embedSrc = `https://www.youtube-nocookie.com/embed?listType=search&list=${queryClean}&autoplay=1&playsinline=1&enablejsapi=1&rel=0&iv_load_policy=3&modestbranding=1&controls=0&disablekb=1`;
       }
 
