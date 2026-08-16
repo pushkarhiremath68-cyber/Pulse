@@ -1096,6 +1096,28 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         path = parsed.path
         params = urllib.parse.parse_qs(parsed.query)
 
+        # API: JioSaavn Search Proxy (/api/saavn-search or /api/search)
+        if path in ['/api/saavn-search', '/api/search']:
+            query = params.get('q', [None])[0] or params.get('query', [None])[0]
+            if query:
+                try:
+                    clean_q = clean_query_string(query)
+                    s_url = "https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=25&p=1&_marker=0&ctx=android&q=" + urllib.parse.quote(clean_q)
+                    s_req = urllib.request.Request(s_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+                    with urllib.request.urlopen(s_req, timeout=5) as s_resp:
+                        raw_data = s_resp.read()
+                        self.send_response(200)
+                        self.send_header('Content-Type', 'application/json; charset=utf-8')
+                        self.send_header('Access-Control-Allow-Origin', '*')
+                        self.end_headers()
+                        self.wfile.write(raw_data)
+                        return
+                except Exception as e:
+                    self._send_json(500, {'success': False, 'error': str(e)})
+                    return
+            self._send_json(400, {'success': False, 'error': 'Query required'})
+            return
+
         # API: Audio Stream Endpoint (/api/stream)
         if path == '/api/stream':
             yt_id = params.get('ytId', [None])[0]
@@ -1111,14 +1133,14 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 try:
                     clean_q = clean_query_string(query)
                     s_url = "https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=3&p=1&_marker=0&ctx=android&q=" + urllib.parse.quote(clean_q)
-                    s_req = urllib.request.Request(s_url, headers={'User-Agent': 'Mozilla/5.0'})
-                    with urllib.request.urlopen(s_req, timeout=3) as s_resp:
+                    s_req = urllib.request.Request(s_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+                    with urllib.request.urlopen(s_req, timeout=4) as s_resp:
                         s_data = json.loads(s_resp.read().decode('utf-8', errors='ignore'))
                         s_res = s_data.get('results', [])
                         if s_res and s_res[0].get('encrypted_media_url'):
                             dec = decrypt_saavn_url(s_res[0]['encrypted_media_url'])
-                            if dec and (dec.get('320') or dec.get('160')):
-                                direct_url = dec.get('320') or dec.get('160')
+                            if dec and (dec.get('320') or dec.get('160') or dec.get('96')):
+                                direct_url = dec.get('320') or dec.get('160') or dec.get('96')
                                 self.send_response(302)
                                 self.send_header('Location', direct_url)
                                 self.send_header('Access-Control-Allow-Origin', '*')

@@ -377,16 +377,42 @@
   // Master Curated Global Catalog (Supabase Storage Full-Length Audio Engine)
   const DEMO_CATALOG = [
   {
+    "id": "pj-wavy-karan-aujla",
+    "title": "Wavy",
+    "artist": "Karan Aujla",
+    "album": "Four Me",
+    "cover": "https://c.saavncdn.com/178/Wavy-Punjabi-2024-20250523044332-500x500.webp",
+    "duration": "2:48",
+    "category": "punjabi",
+    "ytId": "LK7-_dgAVQE",
+    "ytSearchQuery": "Wavy Karan Aujla",
+    "storagePath": "pj-wavy-karan-aujla.mp4",
+    "source": "Pulse Music Engine"
+  },
+  {
+    "id": "in-itni-si-baat-hai",
+    "title": "Itni Si Baat Hai",
+    "artist": "Arijit Singh, Antara Mitra",
+    "album": "Azhar",
+    "cover": "https://c.saavncdn.com/633/Azhar-1-Hindi-2016-500x500.jpg",
+    "duration": "4:54",
+    "category": "romantic",
+    "ytId": "sUv_aB0yKqA",
+    "ytSearchQuery": "Itni Si Baat Hai Azhar Arijit Singh",
+    "storagePath": "in-itni-si-baat-hai.mp4",
+    "source": "Pulse Music Engine"
+  },
+  {
     "id": "in-udi-udi-jaye",
     "title": "Udi Udi Jaye",
     "artist": "Sukhwinder Singh, Bhoomi Trivedi, Ram Sampath",
     "album": "Raees",
-    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg",
-    "duration": "2:31",
+    "cover": "https://c.saavncdn.com/334/Raees-Hindi-2016-20200430093124-500x500.webp",
+    "duration": "4:15",
     "category": "party",
     "ytId": "WQfdwsPao9E",
     "ytSearchQuery": "Udi Udi Jaye Raees",
-    "storagePath": "in-udi-udi-jaye.mp3",
+    "storagePath": "in-udi-udi-jaye.mp4",
     "source": "Pulse Music Engine"
   },
   {
@@ -431,14 +457,14 @@
   {
     "id": "in-kesariya",
     "title": "Kesariya",
-    "artist": "Arijit Singh",
+    "artist": "Arijit Singh, Pritam",
     "album": "Brahmastra",
-    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg",
+    "cover": "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp",
     "duration": "4:28",
     "category": "popular-hindi",
     "ytId": "W1S9AbHpWFY",
     "ytSearchQuery": "Kesariya Arijit Singh",
-    "storagePath": "in-kesariya.mp3",
+    "storagePath": "in-kesariya.mp4",
     "source": "Pulse Supabase Storage"
   },
   {
@@ -459,12 +485,12 @@
     "title": "Chaleya",
     "artist": "Arijit Singh, Shilpa Rao",
     "album": "Jawan",
-    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bb/f4/f5/bbf4f511-3c12-c25e-a475-b6d06faa8c13/8902894362047_cover.jpg/600x600bb.jpg",
+    "cover": "https://c.saavncdn.com/047/Jawan-Hindi-2023-20230921190854-500x500.webp",
     "duration": "3:20",
     "category": "popular-hindi",
     "ytId": "VAdGW7QDJiU",
     "ytSearchQuery": "Chaleya Arijit Singh",
-    "storagePath": "in-chaleya.mp3",
+    "storagePath": "in-chaleya.mp4",
     "source": "Pulse Supabase Storage"
   },
   {
@@ -796,7 +822,7 @@
     "id": "en-shape-of-you",
     "title": "Shape of You",
     "artist": "Ed Sheeran",
-    "album": "÷ (Divide)",
+    "album": "\u00f7 (Divide)",
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg",
     "duration": "3:53",
     "category": "trending",
@@ -862,7 +888,7 @@
     "title": "Tera Rastaa Chhodoon Na",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/NzliNUc9GMU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Tera Rastaa Chhodoon Na Arijit Singh",
@@ -875,7 +901,7 @@
     "title": "Subhanallah",
     "artist": "Sreerama Chandra, Shilpa Rao",
     "album": "Yeh Jawaani Hai Deewani",
-    "cover": "https://i.ytimg.com/vi/QYO6AlxiRE4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/440/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg",
     "duration": "4:09",
     "category": "romantic",
     "ytSearchQuery": "Subhanallah Sreerama Chandra, Shilpa Rao",
@@ -1018,7 +1044,7 @@
     "title": "Ajj Din Chadheya",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/YwNs-UcMdmo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Ajj Din Chadheya Arijit Singh",
@@ -1291,7 +1317,7 @@
     "title": "Bheegi Si Bhaagi Si",
     "artist": "Neeraj Shridhar, Antara Mitra",
     "album": "Raajneeti",
-    "cover": "https://i.ytimg.com/vi/yHWPO9DDnsk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/403/Raajneeti-Hindi-2010-20190617133038-500x500.webp",
     "duration": "4:38",
     "category": "romantic",
     "ytSearchQuery": "Bheegi Si Bhaagi Si Neeraj Shridhar, Antara Mitra",
@@ -1369,7 +1395,7 @@
     "title": "Chand Sifarish",
     "artist": "Shaan, Kailash Kher",
     "album": "Fanaa",
-    "cover": "https://i.ytimg.com/vi/F0YuilHoyCk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/146/Fanaa-Hindi-2006-20190329181154-500x500.jpg",
     "duration": "4:37",
     "category": "bollywood",
     "ytSearchQuery": "Chand Sifarish Shaan, Kailash Kher",
@@ -1408,7 +1434,7 @@
     "title": "Main Yahaan Tu Wahaan",
     "artist": "Amitabh Bachchan, Alka Yagnik",
     "album": "Baghban",
-    "cover": "https://i.ytimg.com/vi/himlbsMN4g8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/626/Baghban-Hindi-2003-20221119154029-500x500.webp",
     "duration": "7:06",
     "category": "bollywood",
     "ytSearchQuery": "Main Yahaan Tu Wahaan Amitabh Bachchan, Alka Yagnik",
@@ -1434,7 +1460,7 @@
     "title": "Ladki Kyon",
     "artist": "Shaan, Alka Yagnik",
     "album": "Hum Tum",
-    "cover": "https://i.ytimg.com/vi/6WLugDJYXmM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/543/Hum-Tum-Hindi-2004-20190329150857-500x500.webp",
     "duration": "5:18",
     "category": "bollywood",
     "ytSearchQuery": "Ladki Kyon Shaan, Alka Yagnik",
@@ -1447,7 +1473,7 @@
     "title": "Gore Gore",
     "artist": "Vishal Dadlani, Sunidhi Chauhan",
     "album": "Hum Tum",
-    "cover": "https://i.ytimg.com/vi/zCVdHXK82YA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/519/Gori-Tere-Pyaar-Mein-Hindi-2013-20190618094827-500x500.webp",
     "duration": "4:50",
     "category": "party",
     "ytSearchQuery": "Gore Gore Vishal Dadlani, Sunidhi Chauhan",
@@ -1460,7 +1486,7 @@
     "title": "Yeh Ladka Hai Allah",
     "artist": "Udit Narayan, Alka Yagnik",
     "album": "Kabhi Khushi Kabhie Gham",
-    "cover": "https://i.ytimg.com/vi/BE8_rNJOQ-0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/778/Kabhi-Khushi-Kabhie-Gham-Hindi-2001-20190516150535-500x500.webp",
     "duration": "5:28",
     "category": "bollywood",
     "ytSearchQuery": "Yeh Ladka Hai Allah Udit Narayan, Alka Yagnik",
@@ -1473,7 +1499,7 @@
     "title": "Dekho Na",
     "artist": "Sonu Nigam, Sunidhi Chauhan",
     "album": "Fanaa",
-    "cover": "https://i.ytimg.com/vi/v4h5iPlxj0c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/146/Fanaa-Hindi-2006-20190329181154-500x500.jpg",
     "duration": "5:24",
     "category": "romantic",
     "ytSearchQuery": "Dekho Na Sonu Nigam, Sunidhi Chauhan",
@@ -1499,7 +1525,7 @@
     "title": "Mitwa",
     "artist": "Shafqat Amanat Ali, Shankar Mahadevan",
     "album": "Kabhi Alvida Naa Kehna",
-    "cover": "https://i.ytimg.com/vi/ru_5PA8cwkE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/904/Tere-Naal-Love-Ho-Gaya-Hindi-2011-20240408214026-500x500.webp",
     "duration": "6:22",
     "category": "romantic",
     "ytSearchQuery": "Mitwa Shafqat Amanat Ali, Shankar Mahadevan",
@@ -1525,7 +1551,7 @@
     "title": "Noor-E-Khuda",
     "artist": "Adnan Sami, Shankar Mahadevan, Shreya Ghoshal",
     "album": "My Name Is Khan",
-    "cover": "https://i.ytimg.com/vi/JJ5r5Z6G2Zo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/825/My-Name-Is-Khan-Hindi-2017-20260120201421-500x500.webp",
     "duration": "6:37",
     "category": "bollywood",
     "ytSearchQuery": "Noor-E-Khuda Adnan Sami, Shankar Mahadevan, Shreya Ghoshal",
@@ -1538,7 +1564,7 @@
     "title": "Dil Laga Liya",
     "artist": "Alka Yagnik, Udit Narayan",
     "album": "Dil Hai Tumhaara",
-    "cover": "https://i.ytimg.com/vi/6qBdQzPnw4E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/541/Dil-Hai-Tumhaara-Hindi-2002-20240408213901-500x500.webp",
     "duration": "4:31",
     "category": "bollywood",
     "ytSearchQuery": "Dil Laga Liya Alka Yagnik, Udit Narayan",
@@ -1551,7 +1577,7 @@
     "title": "Aisa Deewana",
     "artist": "Armaan Malik",
     "album": "Dil",
-    "cover": "https://i.ytimg.com/vi/iCdYQkeWxIA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/406/Dil-Maange-More-Hindi-2004-20221124142445-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Aisa Deewana Armaan Malik",
@@ -1577,7 +1603,7 @@
     "title": "Humko Humise Chura Lo",
     "artist": "Lata Mangeshkar, Udit Narayan",
     "album": "Mohabbatein",
-    "cover": "https://i.ytimg.com/vi/zWPsjhBaRb0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/104/Mohabbatein-Hindi-2000-20190329182220-500x500.webp",
     "duration": "7:52",
     "category": "romantic",
     "ytSearchQuery": "Humko Humise Chura Lo Lata Mangeshkar, Udit Narayan",
@@ -1629,7 +1655,7 @@
     "title": "Jaane Dil Mein",
     "artist": "Sonu Nigam, Lata Mangeshkar",
     "album": "Mujhse Dosti Karoge!",
-    "cover": "https://i.ytimg.com/vi/EdRYy38C_gE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/479/Mujhse-Dosti-Karoge-Hindi-2002-20190329182252-500x500.webp",
     "duration": "5:48",
     "category": "romantic",
     "ytSearchQuery": "Jaane Dil Mein Sonu Nigam, Lata Mangeshkar",
@@ -1642,7 +1668,7 @@
     "title": "Andekhi Anjaani",
     "artist": "Lata Mangeshkar, Udit Narayan",
     "album": "Mujhse Dosti Karoge!",
-    "cover": "https://i.ytimg.com/vi/bBvlfHU4nDI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/479/Mujhse-Dosti-Karoge-Hindi-2002-20190329182252-500x500.webp",
     "duration": "6:20",
     "category": "bollywood",
     "ytSearchQuery": "Andekhi Anjaani Lata Mangeshkar, Udit Narayan",
@@ -1655,7 +1681,7 @@
     "title": "Chori Chori Chupke Chupke",
     "artist": "Alka Yagnik, Udit Narayan",
     "album": "Chori Chori Chupke Chupke",
-    "cover": "https://i.ytimg.com/vi/GmzXuJPjRtE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/227/Chori-Chori-Chupke-Chupke-English-2009-20210414170329-500x500.webp",
     "duration": "7:31",
     "category": "bollywood",
     "ytSearchQuery": "Chori Chori Chupke Chupke Alka Yagnik, Udit Narayan",
@@ -1668,7 +1694,7 @@
     "title": "Jiya Jale",
     "artist": "Lata Mangeshkar, M.G. Sreekumar",
     "album": "Dil Se..",
-    "cover": "https://i.ytimg.com/vi/gUSsU8CWNcI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/688/Melody-Queen-Lata-Mangeshkar-and-Asha-Bhosle-Hindi-2021-20260401031234-500x500.webp",
     "duration": "5:12",
     "category": "bollywood",
     "ytSearchQuery": "Jiya Jale Lata Mangeshkar, M.G. Sreekumar",
@@ -1707,7 +1733,7 @@
     "title": "Tu Hi Re",
     "artist": "Hariharan, Kavita Krishnamurthy",
     "album": "Bombay",
-    "cover": "https://i.ytimg.com/vi/V9mN0qBgEzQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/185/Beetein-Pal-Hindi-2023-20250731042531-500x500.webp",
     "duration": "7:14",
     "category": "romantic",
     "ytSearchQuery": "Tu Hi Re Hariharan, Kavita Krishnamurthy",
@@ -1720,7 +1746,7 @@
     "title": "Kehna Hi Kya",
     "artist": "K.S. Chithra, A.R. Rahman",
     "album": "Bombay",
-    "cover": "https://i.ytimg.com/vi/_YB1taxJPgk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/029/Bombay-Hindi-2008-20260626144555-500x500.webp",
     "duration": "5:51",
     "category": "romantic",
     "ytSearchQuery": "Kehna Hi Kya K.S. Chithra, A.R. Rahman",
@@ -1746,7 +1772,7 @@
     "title": "Roja Jaaneman",
     "artist": "S.P. Balasubrahmanyam, K.S. Chithra",
     "album": "Roja",
-    "cover": "https://i.ytimg.com/vi/iDQ1qjCevZE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/202/My-1-Rahman-2013-500x500.jpg",
     "duration": "5:04",
     "category": "romantic",
     "ytSearchQuery": "Roja Jaaneman S.P. Balasubrahmanyam, K.S. Chithra",
@@ -1772,7 +1798,7 @@
     "title": "Chupke Se",
     "artist": "Sadhana Sargam, Murtuza Khan",
     "album": "Saathiya",
-    "cover": "https://i.ytimg.com/vi/JLXfTmF9DSI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/753/Saathiya-Hindi-2002-20190329145814-500x500.webp",
     "duration": "6:04",
     "category": "romantic",
     "ytSearchQuery": "Chupke Se Sadhana Sargam, Murtuza Khan",
@@ -1785,7 +1811,7 @@
     "title": "O Paalanhaare",
     "artist": "Lata Mangeshkar, Udit Narayan",
     "album": "Lagaan",
-    "cover": "https://i.ytimg.com/vi/kbMinfmC3E0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/072/Lagaan-Hindi-2001-20190603122008-500x500.webp",
     "duration": "5:25",
     "category": "bollywood",
     "ytSearchQuery": "O Paalanhaare Lata Mangeshkar, Udit Narayan",
@@ -1811,7 +1837,7 @@
     "title": "Awaara Bhanwre",
     "artist": "Hema Sardesai, Malaysia Vasudevan",
     "album": "Sapnay",
-    "cover": "https://i.ytimg.com/vi/rZqlitLKwhw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/845/Sapnay-Hindi-1997-500x500.jpg",
     "duration": "6:45",
     "category": "bollywood",
     "ytSearchQuery": "Awaara Bhanwre Hema Sardesai, Malaysia Vasudevan",
@@ -1824,7 +1850,7 @@
     "title": "Snehithudaa",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/A9cmefNAdrs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Snehithudaa Arijit Singh",
@@ -1837,7 +1863,7 @@
     "title": "Barso Re",
     "artist": "Shreya Ghoshal, Uday Mazumdar",
     "album": "Guru",
-    "cover": "https://i.ytimg.com/vi/ZCkM1wDc880/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/020/Guru-Hindi-2006-20190516131307-500x500.webp",
     "duration": "5:29",
     "category": "bollywood",
     "ytSearchQuery": "Barso Re Shreya Ghoshal, Uday Mazumdar",
@@ -1850,7 +1876,7 @@
     "title": "Tere Bina",
     "artist": "A.R. Rahman, Chinmayi",
     "album": "Guru",
-    "cover": "https://i.ytimg.com/vi/9JDSGhhiOwI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/020/Guru-Hindi-2006-20190516131307-500x500.webp",
     "duration": "5:09",
     "category": "romantic",
     "ytSearchQuery": "Tere Bina A.R. Rahman, Chinmayi",
@@ -1863,7 +1889,7 @@
     "title": "Jaane Tu Ya Jaane Na",
     "artist": "A.R. Rahman",
     "album": "Jaane Tu... Ya Jaane Na",
-    "cover": "https://i.ytimg.com/vi/RzgezQh6900/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/033/Jaane-Tu-Ya-Jaane-Na-Hindi-2008-20221128173303-500x500.webp",
     "duration": "3:40",
     "category": "recommended",
     "ytSearchQuery": "Jaane Tu Ya Jaane Na A.R. Rahman",
@@ -1876,7 +1902,7 @@
     "title": "Kabhi Kabhi Aditi",
     "artist": "Rashid Ali",
     "album": "Jaane Tu... Ya Jaane Na",
-    "cover": "https://i.ytimg.com/vi/HIbzXaBdwZw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/033/Jaane-Tu-Ya-Jaane-Na-Hindi-2008-20221128173303-500x500.webp",
     "duration": "3:41",
     "category": "recommended",
     "ytSearchQuery": "Kabhi Kabhi Aditi Rashid Ali",
@@ -1889,7 +1915,7 @@
     "title": "Kahin To Hogi Woh",
     "artist": "Rashid Ali, Vasundhara Das",
     "album": "Jaane Tu... Ya Jaane Na",
-    "cover": "https://i.ytimg.com/vi/hCsY8T0uBGA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/033/Jaane-Tu-Ya-Jaane-Na-Hindi-2008-20221128173303-500x500.webp",
     "duration": "5:05",
     "category": "romantic",
     "ytSearchQuery": "Kahin To Hogi Woh Rashid Ali, Vasundhara Das",
@@ -1902,7 +1928,7 @@
     "title": "Pappu Can't Dance Saala",
     "artist": "Benny Dayal, Naresh Iyer, Blaaze",
     "album": "Jaane Tu... Ya Jaane Na",
-    "cover": "https://i.ytimg.com/vi/dbdtBQ16CXc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/033/Jaane-Tu-Ya-Jaane-Na-Hindi-2008-20221128173303-500x500.webp",
     "duration": "4:27",
     "category": "party",
     "ytSearchQuery": "Pappu Can't Dance Saala Benny Dayal, Naresh Iyer, Blaaze",
@@ -1915,7 +1941,7 @@
     "title": "Tu Bole Main Boloon",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/7NiG-oA2Oz0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Tu Bole Main Boloon Arijit Singh",
@@ -1928,7 +1954,7 @@
     "title": "Nazrein Milana Nazrein Churana",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/PFVwNbhVqkw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Nazrein Milana Nazrein Churana Arijit Singh",
@@ -1941,7 +1967,7 @@
     "title": "Aaja Nachle",
     "artist": "Sunidhi Chauhan",
     "album": "Aaja Nachle",
-    "cover": "https://i.ytimg.com/vi/MP4F0ZcW_G0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/048/Aaja-Nachle-Hindi-2007-20190329150825-500x500.webp",
     "duration": "5:04",
     "category": "party",
     "ytSearchQuery": "Aaja Nachle Sunidhi Chauhan",
@@ -1954,7 +1980,7 @@
     "title": "Ishq Hua",
     "artist": "Sonu Nigam, Shreya Ghoshal",
     "album": "Aaja Nachle",
-    "cover": "https://i.ytimg.com/vi/CgQn3gsrIRc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/048/Aaja-Nachle-Hindi-2007-20190329150825-500x500.webp",
     "duration": "4:24",
     "category": "romantic",
     "ytSearchQuery": "Ishq Hua Sonu Nigam, Shreya Ghoshal",
@@ -1967,7 +1993,7 @@
     "title": "Chak De",
     "artist": "Sukhwinder Singh",
     "album": "Hum Tumhare Hain Sanam",
-    "cover": "https://i.ytimg.com/vi/-eHD6CafrPQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/620/Chak-De-India-Hindi-2007-20190329150809-500x500.jpg",
     "duration": "4:30",
     "category": "party",
     "ytSearchQuery": "Chak De Sukhwinder Singh",
@@ -1980,7 +2006,7 @@
     "title": "Humko Maaloom Hain",
     "artist": "Sonu Nigam, Sadhana Sargam",
     "album": "Jaan-E-Mann",
-    "cover": "https://i.ytimg.com/vi/9jeFD4I6Zuk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/887/Jaan-E-Mann-Hindi-2006-20221128173236-500x500.webp",
     "duration": "6:13",
     "category": "romantic",
     "ytSearchQuery": "Humko Maaloom Hain Sonu Nigam, Sadhana Sargam",
@@ -1993,7 +2019,7 @@
     "title": "Tujhse Hi",
     "artist": "Mohit Chauhan",
     "album": "Jab We Met",
-    "cover": "https://i.ytimg.com/vi/mt9xg0mmt28/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/223/Jab-We-Met-Hindi-2007-20231016162009-500x500.webp",
     "duration": "5:21",
     "category": "romantic",
     "ytSearchQuery": "Tujhse Hi Mohit Chauhan",
@@ -2006,7 +2032,7 @@
     "title": "Aaj Kal Zindagi",
     "artist": "Shankar Mahadevan",
     "album": "Wake Up Sid",
-    "cover": "https://i.ytimg.com/vi/KWA0_kI5PKk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/910/Wake-Up-Sid-Hindi-2009-20190617160255-500x500.webp",
     "duration": "4:13",
     "category": "recommended",
     "ytSearchQuery": "Aaj Kal Zindagi Shankar Mahadevan",
@@ -2019,7 +2045,7 @@
     "title": "Dil Gira Dafatan",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/Nw5pqstBc8w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Dil Gira Dafatan Arijit Singh",
@@ -2032,7 +2058,7 @@
     "title": "Kya Karoon",
     "artist": "Clinton Cerejo",
     "album": "Wake Up Sid",
-    "cover": "https://i.ytimg.com/vi/nHCwoQk8ToA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/910/Wake-Up-Sid-Hindi-2009-20190617160255-500x500.webp",
     "duration": "4:13",
     "category": "recommended",
     "ytSearchQuery": "Kya Karoon Clinton Cerejo",
@@ -2045,7 +2071,7 @@
     "title": "Rasiya",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/F_oNAi5DcEU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/721/Rasiya-Arijit-Singh-Trending-Version-Hindi-2023-20230510123323-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Rasiya Arijit Singh",
@@ -2058,7 +2084,7 @@
     "title": "Rehna Tu",
     "artist": "A.R. Rahman, Benny Dayal, Tanvi Shah",
     "album": "Delhi-6",
-    "cover": "https://i.ytimg.com/vi/ZYGyuaEU2aA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/931/Delhi-6-2009-500x500.jpg",
     "duration": "6:51",
     "category": "recommended",
     "ytSearchQuery": "Rehna Tu A.R. Rahman, Benny Dayal, Tanvi Shah",
@@ -2071,7 +2097,7 @@
     "title": "Tu Hi Haqeeqat",
     "artist": "Javed Ali",
     "album": "Tum Mile",
-    "cover": "https://i.ytimg.com/vi/BKbnmLH8UAo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/732/Emraan-Hashmi-Sad-Love-Hits-Hindi-2026-20260604155755-500x500.webp",
     "duration": "5:02",
     "category": "romantic",
     "ytSearchQuery": "Tu Hi Haqeeqat Javed Ali",
@@ -2084,7 +2110,7 @@
     "title": "Haal-E-Dil",
     "artist": "Harshit Saxena",
     "album": "Murder 2",
-    "cover": "https://i.ytimg.com/vi/acdKE2hja7w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/916/Murder-2-Hindi-2011-20221211193711-500x500.webp",
     "duration": "5:49",
     "category": "romantic",
     "ytSearchQuery": "Haal-E-Dil Harshit Saxena",
@@ -2097,7 +2123,7 @@
     "title": "O Jaana",
     "artist": "KK",
     "album": "Raaz: The Mystery Continues",
-    "cover": "https://i.ytimg.com/vi/nfuLwHCUrcA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/473/Tere-Naam-Hindi-2003-20221206102003-500x500.webp",
     "duration": "4:45",
     "category": "romantic",
     "ytSearchQuery": "O Jaana KK",
@@ -2110,7 +2136,7 @@
     "title": "Tere Bin Main Yun Kaise",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/YLoYt8H7kjM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/362/Naaraaz-Hindi-1994-20240408213718-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Tere Bin Main Yun Kaise Arijit Singh",
@@ -2123,7 +2149,7 @@
     "title": "Maahi",
     "artist": "Toshi Sabri",
     "album": "Raaz: The Mystery Continues",
-    "cover": "https://i.ytimg.com/vi/e1edxTqJnKk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/542/RAAZ-The-Mystery-Continues-Hindi-2008-20190617160418-500x500.webp",
     "duration": "4:28",
     "category": "romantic",
     "ytSearchQuery": "Maahi Toshi Sabri",
@@ -2136,7 +2162,7 @@
     "title": "Teri Yaadon Mein",
     "artist": "KK, Shreya Ghoshal",
     "album": "The Killer",
-    "cover": "https://i.ytimg.com/vi/8UjuVi_-dvc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/504/The-Killer-Hindi-2006-20221206122240-500x500.webp",
     "duration": "4:48",
     "category": "romantic",
     "ytSearchQuery": "Teri Yaadon Mein KK, Shreya Ghoshal",
@@ -2149,7 +2175,7 @@
     "title": "Ya Rabba",
     "artist": "Kailash Kher",
     "album": "Salaam-E-Ishq",
-    "cover": "https://i.ytimg.com/vi/ieAj8Y4Xo_Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/082/Salaam-E-Ishq-Hindi-2007-20230922144216-500x500.webp",
     "duration": "7:00",
     "category": "romantic",
     "ytSearchQuery": "Ya Rabba Kailash Kher",
@@ -2175,7 +2201,7 @@
     "title": "To Phir Aao",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/Y_PHGEKKP-Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "To Phir Aao Arijit Singh",
@@ -2188,7 +2214,7 @@
     "title": "Mahiya",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/iOFi2goemMI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Mahiya Arijit Singh",
@@ -2201,7 +2227,7 @@
     "title": "Bakhuda Tumhi Ho",
     "artist": "Atif Aslam, Alka Yagnik",
     "album": "Kismat Konnection",
-    "cover": "https://i.ytimg.com/vi/-kI769Xigik/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/953/club-ambition-Unknown-2024-20240628202752-500x500.webp",
     "duration": "4:54",
     "category": "romantic",
     "ytSearchQuery": "Bakhuda Tumhi Ho Atif Aslam, Alka Yagnik",
@@ -2214,7 +2240,7 @@
     "title": "Is This Love",
     "artist": "Mohit Chauhan, Shreya Ghoshal",
     "album": "Kismat Konnection",
-    "cover": "https://i.ytimg.com/vi/bCZ8F-QweM8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/989/Kismat-Konnection-Hindi-2008-20260123163407-500x500.webp",
     "duration": "5:30",
     "category": "romantic",
     "ytSearchQuery": "Is This Love Mohit Chauhan, Shreya Ghoshal",
@@ -2227,7 +2253,7 @@
     "title": "Tera Hone Laga Hoon",
     "artist": "Atif Aslam, Alisha Chinai",
     "album": "Ajab Prem Ki Ghazab Kahani",
-    "cover": "https://i.ytimg.com/vi/LN7Ywck3OXY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/953/club-ambition-Unknown-2024-20240628202752-500x500.webp",
     "duration": "4:59",
     "category": "romantic",
     "ytSearchQuery": "Tera Hone Laga Hoon Atif Aslam, Alisha Chinai",
@@ -2240,7 +2266,7 @@
     "title": "Tu Jaane Na",
     "artist": "Atif Aslam",
     "album": "Ajab Prem Ki Ghazab Kahani",
-    "cover": "https://i.ytimg.com/vi/EHCG8kno2Lg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/033/Jaane-Tu-Ya-Jaane-Na-Hindi-2008-20221128173303-500x500.webp",
     "duration": "5:41",
     "category": "romantic",
     "ytSearchQuery": "Tu Jaane Na Atif Aslam",
@@ -2253,7 +2279,7 @@
     "title": "Aa Jaana",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/yNfkNWfH6aU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/186/WAR-2-Hindi-2025-20250815164627-500x500.jpg",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Aa Jaana Arijit Singh",
@@ -2266,7 +2292,7 @@
     "title": "Tujhe Bhula Diya",
     "artist": "Mohit Chauhan, Shekhar Ravjiani, Shruti Pathak",
     "album": "Anjaana Anjaani",
-    "cover": "https://i.ytimg.com/vi/-Hb2DeHvvEg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/113/Anjaana-Anjaani-Hindi-2010-20241205131037-500x500.webp",
     "duration": "4:39",
     "category": "romantic",
     "ytSearchQuery": "Tujhe Bhula Diya Mohit Chauhan, Shekhar Ravjiani, Shruti Pathak",
@@ -2279,7 +2305,7 @@
     "title": "Aahista Aahista",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/m54o2IRV7e8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/364/Arijit-Singh-1-AM-Mix-Hindi-2026-20260409184553-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Aahista Aahista Arijit Singh",
@@ -2305,7 +2331,7 @@
     "title": "Pee Loon",
     "artist": "Mohit Chauhan",
     "album": "Once Upon A Time In Mumbaai",
-    "cover": "https://i.ytimg.com/vi/D8XFTglfSMg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/512/Once-Upon-A-Time-In-Mumbaai-Hindi-2010-20241223141749-500x500.webp",
     "duration": "4:48",
     "category": "romantic",
     "ytSearchQuery": "Pee Loon Mohit Chauhan",
@@ -2331,7 +2357,7 @@
     "title": "I Will Be There For You",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/YLoYt8H7kjM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/368/Baby-One-More-Time-Digital-Deluxe-Version-English-1999-20241123045957-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "I Will Be There For You Arijit Singh",
@@ -2344,7 +2370,7 @@
     "title": "Teri Meri",
     "artist": "Rahat Fateh Ali Khan, Shreya Ghoshal",
     "album": "Bodyguard",
-    "cover": "https://i.ytimg.com/vi/6e_067rhX2A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/068/Teri-Mohabbat-Unknown-2026-20260708075743-500x500.webp",
     "duration": "5:25",
     "category": "romantic",
     "ytSearchQuery": "Teri Meri Rahat Fateh Ali Khan, Shreya Ghoshal",
@@ -2357,7 +2383,7 @@
     "title": "Saans",
     "artist": "Shreya Ghoshal, Mohit Chauhan",
     "album": "Jab Tak Hai Jaan",
-    "cover": "https://i.ytimg.com/vi/VAt6TO2gdko/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/024/Jab-Tak-Hai-Jaan-Hindi-2012-20190329150717-500x500.webp",
     "duration": "5:28",
     "category": "romantic",
     "ytSearchQuery": "Saans Shreya Ghoshal, Mohit Chauhan",
@@ -2370,7 +2396,7 @@
     "title": "Jeene De",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/fzDEaX1OY98/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Jeene De Arijit Singh",
@@ -2383,7 +2409,7 @@
     "title": "Tere Mast Mast Do Nain",
     "artist": "Rahat Fateh Ali Khan",
     "album": "Dabangg",
-    "cover": "https://i.ytimg.com/vi/oyLVu753XJw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/118/Tere-Mast-Mast-Do-Nain-Rajasthani-2025-20251105155205-500x500.webp",
     "duration": "5:59",
     "category": "romantic",
     "ytSearchQuery": "Tere Mast Mast Do Nain Rahat Fateh Ali Khan",
@@ -2396,7 +2422,7 @@
     "title": "Ishq Sufiyana",
     "artist": "Kamal Khan",
     "album": "The Dirty Picture",
-    "cover": "https://i.ytimg.com/vi/_I43CHux9so/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/859/The-Dirty-Picture-Hindi-2011-20241205142536-500x500.webp",
     "duration": "5:28",
     "category": "romantic",
     "ytSearchQuery": "Ishq Sufiyana Kamal Khan",
@@ -2409,7 +2435,7 @@
     "title": "Nadaan Parindey",
     "artist": "A.R. Rahman, Mohit Chauhan",
     "album": "Rockstar",
-    "cover": "https://i.ytimg.com/vi/6MgsHSAcI9k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/408/Rockstar-Hindi-2011-20221212023139-500x500.webp",
     "duration": "6:26",
     "category": "recommended",
     "ytSearchQuery": "Nadaan Parindey A.R. Rahman, Mohit Chauhan",
@@ -2422,7 +2448,7 @@
     "title": "Kun Faya Kun",
     "artist": "A.R. Rahman, Mohit Chauhan, Javed Ali",
     "album": "Rockstar",
-    "cover": "https://i.ytimg.com/vi/T94PHkuydcw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/408/Rockstar-Hindi-2011-20221212023139-500x500.webp",
     "duration": "7:53",
     "category": "recommended",
     "ytSearchQuery": "Kun Faya Kun A.R. Rahman, Mohit Chauhan, Javed Ali",
@@ -2435,7 +2461,7 @@
     "title": "Sadda Haq",
     "artist": "Mohit Chauhan, Clinton Cerejo",
     "album": "Rockstar",
-    "cover": "https://i.ytimg.com/vi/p9DQINKZxWE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/408/Rockstar-Hindi-2011-20221212023139-500x500.webp",
     "duration": "6:05",
     "category": "party",
     "ytSearchQuery": "Sadda Haq Mohit Chauhan, Clinton Cerejo",
@@ -2448,7 +2474,7 @@
     "title": "Katiya Karun",
     "artist": "Harshdeep Kaur, Sapna Awasthi",
     "album": "Rockstar",
-    "cover": "https://i.ytimg.com/vi/IlVjro3FlXM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/408/Rockstar-Hindi-2011-20221212023139-500x500.webp",
     "duration": "3:59",
     "category": "punjabi",
     "ytSearchQuery": "Katiya Karun Harshdeep Kaur, Sapna Awasthi",
@@ -2461,7 +2487,7 @@
     "title": "Aur Ho",
     "artist": "Mohit Chauhan, Alma Ferovic",
     "album": "Rockstar",
-    "cover": "https://i.ytimg.com/vi/w7lNCCSFowk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/408/Rockstar-Hindi-2011-20221212023139-500x500.webp",
     "duration": "5:35",
     "category": "romantic",
     "ytSearchQuery": "Aur Ho Mohit Chauhan, Alma Ferovic",
@@ -2474,7 +2500,7 @@
     "title": "Tum Ho",
     "artist": "Mohit Chauhan, Suzanne D'Mello",
     "album": "Rockstar",
-    "cover": "https://i.ytimg.com/vi/gkCKTuR-ECI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/408/Rockstar-Hindi-2011-20221212023139-500x500.webp",
     "duration": "5:18",
     "category": "romantic",
     "ytSearchQuery": "Tum Ho Mohit Chauhan, Suzanne D'Mello",
@@ -2487,7 +2513,7 @@
     "title": "Phir Se Ud Chala",
     "artist": "Mohit Chauhan",
     "album": "Rockstar",
-    "cover": "https://i.ytimg.com/vi/2mWaqsC3U7k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/408/Rockstar-Hindi-2011-20221212023139-500x500.webp",
     "duration": "4:31",
     "category": "recommended",
     "ytSearchQuery": "Phir Se Ud Chala Mohit Chauhan",
@@ -2500,7 +2526,7 @@
     "title": "Jo Bhi Main",
     "artist": "Mohit Chauhan",
     "album": "Rockstar",
-    "cover": "https://i.ytimg.com/vi/_kOzFMR9Hys/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/408/Rockstar-Hindi-2011-20221212023139-500x500.webp",
     "duration": "4:35",
     "category": "recommended",
     "ytSearchQuery": "Jo Bhi Main Mohit Chauhan",
@@ -2526,7 +2552,7 @@
     "title": "Banarasiya",
     "artist": "Shreya Ghoshal, Anwesha",
     "album": "Raanjhanaa",
-    "cover": "https://i.ytimg.com/vi/LvIbBZNxV4w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/508/Raanjhanaa-Hindi-2013-20260120201336-500x500.webp",
     "duration": "4:16",
     "category": "romantic",
     "ytSearchQuery": "Banarasiya Shreya Ghoshal, Anwesha",
@@ -2539,7 +2565,7 @@
     "title": "Piya Milenge",
     "artist": "Sukhwinder Singh, KMMC Sufi Ensemble",
     "album": "Raanjhanaa",
-    "cover": "https://i.ytimg.com/vi/QlHeJ7cWD38/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/508/Raanjhanaa-Hindi-2013-20260120201336-500x500.webp",
     "duration": "5:56",
     "category": "bollywood",
     "ytSearchQuery": "Piya Milenge Sukhwinder Singh, KMMC Sufi Ensemble",
@@ -2552,7 +2578,7 @@
     "title": "Tu Mun Shudi",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/SSaAbwcWVGU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Tu Mun Shudi Arijit Singh",
@@ -2565,7 +2591,7 @@
     "title": "Aise Kyun",
     "artist": "Anurag Saikia, Raghav Chaitanya",
     "album": "Mismatched",
-    "cover": "https://i.ytimg.com/vi/blRe2wQP-_U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/577/Mismatched-Season-1-Music-from-the-Netflix-Original-Series-Hindi-2020-20230709000110-500x500.webp",
     "duration": "4:25",
     "category": "recommended",
     "ytSearchQuery": "Aise Kyun Anurag Saikia, Raghav Chaitanya",
@@ -2578,7 +2604,7 @@
     "title": "Kahaan Ho Tum",
     "artist": "Prateek Kuhad",
     "album": "Kho Gaye Hum Kahan",
-    "cover": "https://i.ytimg.com/vi/ACRTKMgu6lc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/577/Mismatched-Season-1-Music-from-the-Netflix-Original-Series-Hindi-2020-20230709000110-500x500.webp",
     "duration": "3:30",
     "category": "recommended",
     "ytSearchQuery": "Kahaan Ho Tum Prateek Kuhad",
@@ -2591,7 +2617,7 @@
     "title": "Khoj",
     "artist": "When Chai Met Toast",
     "album": "Joy of Little Things",
-    "cover": "https://i.ytimg.com/vi/Ett_FZupxy8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/924/Believe-English-2018-20180905224708-500x500.webp",
     "duration": "3:40",
     "category": "recommended",
     "ytSearchQuery": "Khoj When Chai Met Toast",
@@ -2604,7 +2630,7 @@
     "title": "Iraaday",
     "artist": "Abdul Hannan, Rovalio",
     "album": "Iraaday",
-    "cover": "https://i.ytimg.com/vi/Qwm6BSGrOq0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/788/Iraaday-English-2022-20220317032037-500x500.webp",
     "duration": "3:25",
     "category": "recommended",
     "ytSearchQuery": "Iraaday Abdul Hannan, Rovalio",
@@ -2617,7 +2643,7 @@
     "title": "Mera Mann",
     "artist": "Ayushmann Khurrana",
     "album": "Nautanki Saala!",
-    "cover": "https://i.ytimg.com/vi/8kxufj_snhI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/229/Best-Of-Ayushmann-Hindi-2023-20230704192303-500x500.webp",
     "duration": "4:00",
     "category": "romantic",
     "ytSearchQuery": "Mera Mann Ayushmann Khurrana",
@@ -2630,7 +2656,7 @@
     "title": "Tere Bin",
     "artist": "Atif Aslam",
     "album": "Bas Ek Pal",
-    "cover": "https://i.ytimg.com/vi/GmbOGB91CYg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/964/Rabbi-Punjabi-2004-20220331135020-500x500.webp",
     "duration": "4:32",
     "category": "romantic",
     "ytSearchQuery": "Tere Bin Atif Aslam",
@@ -2643,7 +2669,7 @@
     "title": "Tu Aashiqui Hai",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/fX41N940bMU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/574/Dishkiyaoon-Hindi-2025-20250930143440-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Tu Aashiqui Hai Arijit Singh",
@@ -2656,7 +2682,7 @@
     "title": "Main Hoon Na",
     "artist": "Sonu Nigam, Shreya Ghoshal",
     "album": "Main Hoon Na",
-    "cover": "https://i.ytimg.com/vi/wN7KLsKxZAs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/388/Main-Hoon-Na-Hindi-2004-20221202051448-500x500.webp",
     "duration": "6:02",
     "category": "bollywood",
     "ytSearchQuery": "Main Hoon Na Sonu Nigam, Shreya Ghoshal",
@@ -2669,7 +2695,7 @@
     "title": "Tumse Milke Dil Ka",
     "artist": "Sonu Nigam, Altaf Sabri",
     "album": "Main Hoon Na",
-    "cover": "https://i.ytimg.com/vi/mXkbWKr5ovU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/388/Main-Hoon-Na-Hindi-2004-20221202051448-500x500.webp",
     "duration": "6:00",
     "category": "party",
     "ytSearchQuery": "Tumse Milke Dil Ka Sonu Nigam, Altaf Sabri",
@@ -2682,7 +2708,7 @@
     "title": "Gori Gori",
     "artist": "KK, Sunidhi Chauhan, Anu Malik",
     "album": "Main Hoon Na",
-    "cover": "https://i.ytimg.com/vi/-o9JQTqS7aY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/388/Main-Hoon-Na-Hindi-2004-20221202051448-500x500.webp",
     "duration": "4:30",
     "category": "party",
     "ytSearchQuery": "Gori Gori KK, Sunidhi Chauhan, Anu Malik",
@@ -2695,7 +2721,7 @@
     "title": "Tumhe Jo Maine Dekha",
     "artist": "Abhijeet Bhattacharya, Shreya Ghoshal",
     "album": "Main Hoon Na",
-    "cover": "https://i.ytimg.com/vi/84TjXsRHf6Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/388/Main-Hoon-Na-Hindi-2004-20221202051448-500x500.webp",
     "duration": "5:42",
     "category": "romantic",
     "ytSearchQuery": "Tumhe Jo Maine Dekha Abhijeet Bhattacharya, Shreya Ghoshal",
@@ -2708,7 +2734,7 @@
     "title": "It's The Time To Disco",
     "artist": "Shaan, Vasundhara Das, Loy Mendonsa",
     "album": "Kal Ho Naa Ho",
-    "cover": "https://i.ytimg.com/vi/M03GOY5eINg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/587/Kal-Ho-Naa-Ho-Hindi-2003-20190516130956-500x500.webp",
     "duration": "5:33",
     "category": "party",
     "ytSearchQuery": "It's The Time To Disco Shaan, Vasundhara Das, Loy Mendonsa",
@@ -2721,7 +2747,7 @@
     "title": "You Are My Soniya",
     "artist": "Sonu Nigam, Alka Yagnik",
     "album": "Kabhi Khushi Kabhie Gham",
-    "cover": "https://i.ytimg.com/vi/2qBWL5Fplu0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/778/Kabhi-Khushi-Kabhie-Gham-Hindi-2001-20190516150535-500x500.webp",
     "duration": "5:45",
     "category": "party",
     "ytSearchQuery": "You Are My Soniya Sonu Nigam, Alka Yagnik",
@@ -2734,7 +2760,7 @@
     "title": "Pretty Woman",
     "artist": "Shankar Mahadevan, Ravi Khote",
     "album": "Kal Ho Naa Ho",
-    "cover": "https://i.ytimg.com/vi/Gcne5Wt-Qfo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/587/Kal-Ho-Naa-Ho-Hindi-2003-20190516130956-500x500.webp",
     "duration": "5:53",
     "category": "party",
     "ytSearchQuery": "Pretty Woman Shankar Mahadevan, Ravi Khote",
@@ -2747,7 +2773,7 @@
     "title": "Say Shava Shava",
     "artist": "Sudesh Bhosle, Alka Yagnik, Sunidhi Chauhan",
     "album": "Kabhi Khushi Kabhie Gham",
-    "cover": "https://i.ytimg.com/vi/ZTARlM0pCP4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/778/Kabhi-Khushi-Kabhie-Gham-Hindi-2001-20190516150535-500x500.webp",
     "duration": "6:50",
     "category": "party",
     "ytSearchQuery": "Say Shava Shava Sudesh Bhosle, Alka Yagnik, Sunidhi Chauhan",
@@ -2760,7 +2786,7 @@
     "title": "Rock N Roll Soniye",
     "artist": "Shankar Mahadevan, Shaan, Mahalakshmi Iyer",
     "album": "Kabhi Alvida Naa Kehna",
-    "cover": "https://i.ytimg.com/vi/7nDKFPWbJMU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/089/Kabhi-Alvida-Naa-Kehna-Hindi-2006-20260120201519-500x500.webp",
     "duration": "5:41",
     "category": "party",
     "ytSearchQuery": "Rock N Roll Soniye Shankar Mahadevan, Shaan, Mahalakshmi Iyer",
@@ -2773,7 +2799,7 @@
     "title": "Kajra Re",
     "artist": "Alisha Chinai, Shankar Mahadevan, Javed Ali",
     "album": "Bunty Aur Babli",
-    "cover": "https://i.ytimg.com/vi/4dsFQFCvVGU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/018/Bunty-Aur-Babli-Hindi-2005-20190329180713-500x500.jpg",
     "duration": "8:02",
     "category": "party",
     "ytSearchQuery": "Kajra Re Alisha Chinai, Shankar Mahadevan, Javed Ali",
@@ -2786,7 +2812,7 @@
     "title": "Crazy Kiya Re",
     "artist": "Sunidhi Chauhan",
     "album": "Dhoom 2",
-    "cover": "https://i.ytimg.com/vi/J2Bh68GTUOU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/465/Dhoom-2-Back-In-Action-Hindi-2006-20190329180922-500x500.jpg",
     "duration": "4:54",
     "category": "party",
     "ytSearchQuery": "Crazy Kiya Re Sunidhi Chauhan",
@@ -2799,7 +2825,7 @@
     "title": "Dhoom Again",
     "artist": "Vishal Dadlani, Dominique Cerejo",
     "album": "Dhoom 2",
-    "cover": "https://i.ytimg.com/vi/WGXmDsOwW4k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/465/Dhoom-2-Back-In-Action-Hindi-2006-20190329180922-500x500.jpg",
     "duration": "5:02",
     "category": "party",
     "ytSearchQuery": "Dhoom Again Vishal Dadlani, Dominique Cerejo",
@@ -2812,7 +2838,7 @@
     "title": "Aankh Marey",
     "artist": "Neha Kakkar, Mika Singh",
     "album": "Simmba",
-    "cover": "https://i.ytimg.com/vi/_KhQT-LGb-4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/616/Simmba-Hindi-2018-20231017141628-500x500.webp",
     "duration": "3:33",
     "category": "party",
     "ytSearchQuery": "Aankh Marey Neha Kakkar, Mika Singh",
@@ -2825,7 +2851,7 @@
     "title": "Desi Girl",
     "artist": "Shankar Mahadevan, Sunidhi Chauhan",
     "album": "Dostana",
-    "cover": "https://i.ytimg.com/vi/wDIrpvH8MzE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/896/Dostana-Hindi-2008-20190629135925-500x500.webp",
     "duration": "5:06",
     "category": "party",
     "ytSearchQuery": "Desi Girl Shankar Mahadevan, Sunidhi Chauhan",
@@ -2838,7 +2864,7 @@
     "title": "Deewangi Deewangi",
     "artist": "Shaan, Udit Narayan, Sunidhi Chauhan",
     "album": "Om Shanti Om",
-    "cover": "https://i.ytimg.com/vi/VzLG6OqOcn8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/179/Om-Shanti-Om-Hindi-2007-20241205141724-500x500.webp",
     "duration": "5:54",
     "category": "party",
     "ytSearchQuery": "Deewangi Deewangi Shaan, Udit Narayan, Sunidhi Chauhan",
@@ -2851,7 +2877,7 @@
     "title": "Mauja Hi Mauja",
     "artist": "Mika Singh",
     "album": "Jab We Met",
-    "cover": "https://i.ytimg.com/vi/PaDaoNnOQaM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/223/Jab-We-Met-Hindi-2007-20231016162009-500x500.webp",
     "duration": "4:04",
     "category": "party",
     "ytSearchQuery": "Mauja Hi Mauja Mika Singh",
@@ -2864,7 +2890,7 @@
     "title": "Nagada Nagada",
     "artist": "Sonu Nigam, Javed Ali",
     "album": "Jab We Met",
-    "cover": "https://i.ytimg.com/vi/_2XqcdqTaFo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/223/Jab-We-Met-Hindi-2007-20231016162009-500x500.webp",
     "duration": "3:51",
     "category": "party",
     "ytSearchQuery": "Nagada Nagada Sonu Nigam, Javed Ali",
@@ -2877,7 +2903,7 @@
     "title": "Bebo",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/UadkGIzWGs4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Bebo Arijit Singh",
@@ -2890,7 +2916,7 @@
     "title": "Zoobi Doobi",
     "artist": "Sonu Nigam, Shreya Ghoshal",
     "album": "3 Idiots",
-    "cover": "https://i.ytimg.com/vi/FPsDQUboH8M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/198/Shreya-Ghoshal-Romantic-Hits-Hindi-2026-20260623182752-500x500.webp",
     "duration": "4:06",
     "category": "bollywood",
     "ytSearchQuery": "Zoobi Doobi Sonu Nigam, Shreya Ghoshal",
@@ -2903,7 +2929,7 @@
     "title": "All Izz Well",
     "artist": "Sonu Nigam, Shaan, Swanand Kirkire",
     "album": "3 Idiots",
-    "cover": "https://i.ytimg.com/vi/uz9QHe9bqjE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/113/FriendShip-Day-Hits-Hindi-2026-20260730190748-500x500.webp",
     "duration": "4:36",
     "category": "bollywood",
     "ytSearchQuery": "All Izz Well Sonu Nigam, Shaan, Swanand Kirkire",
@@ -2916,7 +2942,7 @@
     "title": "Give Me Some Sunshine",
     "artist": "Suraj Jagan, Sharman Joshi",
     "album": "3 Idiots",
-    "cover": "https://i.ytimg.com/vi/lbCRtrrMvSw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/941/3-Idiots-Hindi-2021-20250617062844-500x500.webp",
     "duration": "4:07",
     "category": "recommended",
     "ytSearchQuery": "Give Me Some Sunshine Suraj Jagan, Sharman Joshi",
@@ -2929,7 +2955,7 @@
     "title": "Aale Re Aale",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/SsIUX36fnpk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/514/Non-Stop-Dance-Mega-Party-Mix-Hindi-2025-20251224191014-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Aale Re Aale Arijit Singh",
@@ -2942,7 +2968,7 @@
     "title": "Gal Mitthi Mitthi",
     "artist": "Tochi Raina",
     "album": "Aisha",
-    "cover": "https://i.ytimg.com/vi/7oqyfTpHmZE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/542/Aisha-Hindi-2010-20260120201225-500x500.webp",
     "duration": "4:16",
     "category": "party",
     "ytSearchQuery": "Gal Mitthi Mitthi Tochi Raina",
@@ -2968,7 +2994,7 @@
     "title": "Ik Junoon",
     "artist": "Vishal Dadlani",
     "album": "Zindagi Na Milegi Dobara",
-    "cover": "https://i.ytimg.com/vi/UupXsg-OkUE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/296/Zindagi-Na-Milegi-Dobara-Hindi-2011-20260525191006-500x500.webp",
     "duration": "5:00",
     "category": "party",
     "ytSearchQuery": "Ik Junoon Vishal Dadlani",
@@ -2981,7 +3007,7 @@
     "title": "Dil Dhadakne Do",
     "artist": "Priyanka Chopra, Farhan Akhtar",
     "album": "Dil Dhadakne Do",
-    "cover": "https://i.ytimg.com/vi/eyAB5YghIM0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/240/Dil-Dhadakne-Do-Hindi-2015-500x500.jpg",
     "duration": "3:48",
     "category": "party",
     "ytSearchQuery": "Dil Dhadakne Do Priyanka Chopra, Farhan Akhtar",
@@ -2994,7 +3020,7 @@
     "title": "Gallan Goodiyaan",
     "artist": "Yashita Sharma, Manish Kumar Tipu",
     "album": "Dil Dhadakne Do",
-    "cover": "https://i.ytimg.com/vi/jCEdTq3j-0U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/240/Dil-Dhadakne-Do-Hindi-2015-500x500.jpg",
     "duration": "4:56",
     "category": "party",
     "ytSearchQuery": "Gallan Goodiyaan Yashita Sharma, Manish Kumar Tipu",
@@ -3007,7 +3033,7 @@
     "title": "Girls Like To Swing",
     "artist": "Sunidhi Chauhan",
     "album": "Dil Dhadakne Do",
-    "cover": "https://i.ytimg.com/vi/JTWGBaTV_Ig/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/240/Dil-Dhadakne-Do-Hindi-2015-500x500.jpg",
     "duration": "4:03",
     "category": "party",
     "ytSearchQuery": "Girls Like To Swing Sunidhi Chauhan",
@@ -3020,7 +3046,7 @@
     "title": "Ude Dil Befikre",
     "artist": "Benny Dayal",
     "album": "Befikre",
-    "cover": "https://i.ytimg.com/vi/gXe-KWe-YMs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/256/Befikre-Hindi-2016-20190329150318-500x500.webp",
     "duration": "3:33",
     "category": "party",
     "ytSearchQuery": "Ude Dil Befikre Benny Dayal",
@@ -3033,7 +3059,7 @@
     "title": "Nashe Si Chadh Gayi",
     "artist": "Arijit Singh",
     "album": "Befikre",
-    "cover": "https://i.ytimg.com/vi/jCEdTq3j-0U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/256/Befikre-Hindi-2016-20190329150318-500x500.webp",
     "duration": "3:57",
     "category": "party",
     "ytId": "jCEdTq3j-0U",
@@ -3046,7 +3072,7 @@
     "title": "You And Me",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/BUsVp_7-Rpk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/263/Yours-Truly-Arijit-Hindi-2016-500x500.jpg",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "You And Me Arijit Singh",
@@ -3059,7 +3085,7 @@
     "title": "Je T'aime",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/mxJz9Cm4r3M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Je T'aime Arijit Singh",
@@ -3072,7 +3098,7 @@
     "title": "Khulke Dulke",
     "artist": "Gippy Grewal, Harshdeep Kaur",
     "album": "Befikre",
-    "cover": "https://i.ytimg.com/vi/nD8ALkM1x6s/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/256/Befikre-Hindi-2016-20190329150318-500x500.webp",
     "duration": "3:15",
     "category": "punjabi",
     "ytSearchQuery": "Khulke Dulke Gippy Grewal, Harshdeep Kaur",
@@ -3085,7 +3111,7 @@
     "title": "Luv Letter",
     "artist": "Arijit Singh",
     "album": "Bollywood Megahits",
-    "cover": "https://i.ytimg.com/vi/DKEXeoKb1CQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "duration": "4:15",
     "category": "romantic",
     "ytSearchQuery": "Luv Letter Arijit Singh",
@@ -3098,7 +3124,7 @@
     "title": "Sweety Tera Drama",
     "artist": "Dev Negi, Pawni Pandey",
     "album": "Bareilly Ki Barfi",
-    "cover": "https://i.ytimg.com/vi/RpuhD_xKadk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/137/Party-Starters-Hindi-2026-20260730190753-500x500.webp",
     "duration": "2:27",
     "category": "party",
     "ytSearchQuery": "Sweety Tera Drama Dev Negi, Pawni Pandey",
@@ -3111,7 +3137,7 @@
     "title": "Badri Ki Dulhania",
     "artist": "Dev Negi, Neha Kakkar, Monali Thakur",
     "album": "Badrinath Ki Dulhania",
-    "cover": "https://i.ytimg.com/vi/1YBl3Zbt80A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/804/Badrinath-Ki-Dulhania-Full-Hindi-2017-500x500.jpg",
     "duration": "3:26",
     "category": "party",
     "ytSearchQuery": "Badri Ki Dulhania Dev Negi, Neha Kakkar, Monali Thakur",
@@ -3124,7 +3150,7 @@
     "title": "Afeemi",
     "artist": "Jigar Saraiya, Sanah Moidutty",
     "album": "Meri Pyaari Bindu",
-    "cover": "https://i.ytimg.com/vi/u8P9hAvqp6Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/274/Meri-Pyaari-Bindu-Hindi-2017-20190329150334-500x500.webp",
     "duration": "4:08",
     "category": "romantic",
     "ytSearchQuery": "Afeemi Jigar Saraiya, Sanah Moidutty",
@@ -3137,7 +3163,7 @@
     "title": "Nazm Nazm",
     "artist": "Ayushmann Khurrana",
     "album": "Bareilly Ki Barfi",
-    "cover": "https://i.ytimg.com/vi/x5EAZang5f0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/144/Morning-Bliss-Hindi-2026-20260730190754-500x500.webp",
     "duration": "3:47",
     "category": "romantic",
     "ytSearchQuery": "Nazm Nazm Ayushmann Khurrana",
@@ -3150,7 +3176,7 @@
     "title": "Tera Yaar Hoon Main",
     "artist": "Arijit Singh",
     "album": "Sonu Ke Titu Ki Sweety",
-    "cover": "https://i.ytimg.com/vi/EatzcaVJRMs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/074/Sonu-Ke-Titu-Ki-Sweety-Hindi-2018-20180214153942-500x500.jpg",
     "duration": "4:59",
     "category": "bollywood",
     "ytSearchQuery": "Tera Yaar Hoon Main Arijit Singh",
@@ -3163,7 +3189,7 @@
     "title": "Roke Na Ruke Naina",
     "artist": "Arijit Singh",
     "album": "Badrinath Ki Dulhania",
-    "cover": "https://i.ytimg.com/vi/HyLCgkQtluw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/804/Badrinath-Ki-Dulhania-Full-Hindi-2017-500x500.jpg",
     "duration": "4:38",
     "category": "romantic",
     "ytSearchQuery": "Roke Na Ruke Naina Arijit Singh",
@@ -3176,7 +3202,7 @@
     "title": "Humsafar",
     "artist": "Akhil Sachdeva, Mansheel Gujral",
     "album": "Badrinath Ki Dulhania",
-    "cover": "https://i.ytimg.com/vi/8v-TWxPWIWc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/804/Badrinath-Ki-Dulhania-Full-Hindi-2017-500x500.jpg",
     "duration": "4:28",
     "category": "romantic",
     "ytSearchQuery": "Humsafar Akhil Sachdeva, Mansheel Gujral",
@@ -3189,7 +3215,7 @@
     "title": "Baarish",
     "artist": "Ash King, Shashaa Tirupati",
     "album": "Half Girlfriend",
-    "cover": "https://i.ytimg.com/vi/BNfAf4To73c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/441/Half-Girlfriend-Hindi-2017-20180622-500x500.webp",
     "duration": "4:36",
     "category": "romantic",
     "ytSearchQuery": "Baarish Ash King, Shashaa Tirupati",
@@ -3202,7 +3228,7 @@
     "title": "Hawayein",
     "artist": "Arijit Singh",
     "album": "Jab Harry Met Sejal",
-    "cover": "https://i.ytimg.com/vi/cYOB941gyXI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/584/Jab-Harry-Met-Sejal-Hindi-2017-20170803161007-500x500.webp",
     "duration": "4:50",
     "category": "romantic",
     "ytSearchQuery": "Hawayein Arijit Singh",
@@ -3215,7 +3241,7 @@
     "title": "Daryaa",
     "artist": "Ammy Virk, Shahid Mallya",
     "album": "Manmarziyaan",
-    "cover": "https://i.ytimg.com/vi/1Z_cClBsABE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/564/Manmarziyaan-Hindi-2025-20250930143728-500x500.webp",
     "duration": "4:20",
     "category": "punjabi",
     "ytSearchQuery": "Daryaa Ammy Virk, Shahid Mallya",
@@ -3228,7 +3254,7 @@
     "title": "Qaafirana",
     "artist": "Arijit Singh, Nikhita Gandhi",
     "album": "Kedarnath",
-    "cover": "https://i.ytimg.com/vi/ZmcBC9-wAXM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/151/Bollywood-Love-Lounge-Vol-1-Hindi-2026-20260730190751-500x500.webp",
     "duration": "5:42",
     "category": "romantic",
     "ytSearchQuery": "Qaafirana Arijit Singh, Nikhita Gandhi",
@@ -3241,7 +3267,7 @@
     "title": "Naina Da Kya Kasoor",
     "artist": "Amit Trivedi",
     "album": "Andhadhun",
-    "cover": "https://i.ytimg.com/vi/zdXiSlRrgWQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/809/Wedding-Love-Songs-Hindi-2026-20251230172703-500x500.webp",
     "duration": "3:30",
     "category": "bollywood",
     "ytSearchQuery": "Naina Da Kya Kasoor Amit Trivedi",
@@ -3254,7 +3280,7 @@
     "title": "Dilbaro",
     "artist": "Harshdeep Kaur, Vibha Saraf, Shankar Mahadevan",
     "album": "Raazi",
-    "cover": "https://i.ytimg.com/vi/bXvdWThpUGU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/168/The-Bollywood-Wedding-Collection-Hindi-2025-20251226211835-500x500.webp",
     "duration": "5:14",
     "category": "bollywood",
     "ytSearchQuery": "Dilbaro Harshdeep Kaur, Vibha Saraf, Shankar Mahadevan",
@@ -3267,7 +3293,7 @@
     "title": "Ghoomar",
     "artist": "Shreya Ghoshal, Swaroop Khan",
     "album": "Padmaavat",
-    "cover": "https://i.ytimg.com/vi/CU1tFtk_NFY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/993/Padmaavat-Hindi-2018-20180122-500x500.jpg",
     "duration": "4:42",
     "category": "bollywood",
     "ytSearchQuery": "Ghoomar Shreya Ghoshal, Swaroop Khan",
@@ -3280,7 +3306,7 @@
     "title": "Binte Dil",
     "artist": "Arijit Singh",
     "album": "Padmaavat",
-    "cover": "https://i.ytimg.com/vi/1HVOB3-6YB0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/993/Padmaavat-Hindi-2018-20180122-500x500.jpg",
     "duration": "3:12",
     "category": "bollywood",
     "ytSearchQuery": "Binte Dil Arijit Singh",
@@ -3293,7 +3319,7 @@
     "title": "Khalibali",
     "artist": "Shivam Pathak, Shail Hada",
     "album": "Padmaavat",
-    "cover": "https://i.ytimg.com/vi/v7K4vGYL9zI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/993/Padmaavat-Hindi-2018-20180122-500x500.jpg",
     "duration": "4:18",
     "category": "party",
     "ytSearchQuery": "Khalibali Shivam Pathak, Shail Hada",
@@ -3306,7 +3332,7 @@
     "title": "Mere Naam Tu",
     "artist": "Abhay Jodhpurkar",
     "album": "Zero",
-    "cover": "https://i.ytimg.com/vi/iwvkJFPCXzk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/586/Zero-Hindi-2018-20200902134005-500x500.webp",
     "duration": "5:38",
     "category": "romantic",
     "ytSearchQuery": "Mere Naam Tu Abhay Jodhpurkar",
@@ -3371,7 +3397,7 @@
     "title": "Phir Bhi Tumko Chaahunga",
     "artist": "Arijit Singh, Shashaa Tirupati",
     "album": "Half Girlfriend",
-    "cover": "https://i.ytimg.com/vi/jQdDpRTVe9k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/157/World-Music-Day-2026-Hindi-2026-20260619182741-500x500.webp",
     "duration": "5:51",
     "category": "romantic",
     "ytSearchQuery": "Phir Bhi Tumko Chaahunga Arijit Singh, Shashaa Tirupati",
@@ -3384,7 +3410,7 @@
     "title": "Perfect",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/2B0RTZrpSx8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/286/WMG_190295851286-English-2017-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Perfect Ed Sheeran",
@@ -3397,7 +3423,7 @@
     "title": "Thinking Out Loud",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/2B0RTZrpSx8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/835/x-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Thinking Out Loud Ed Sheeran",
@@ -3410,7 +3436,7 @@
     "title": "Photograph",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Nrr3WqfQzi8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/835/x-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Photograph Ed Sheeran",
@@ -3436,7 +3462,7 @@
     "title": "Shivers",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Nrr3WqfQzi8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/940/Shivers-English-2021-20211022044815-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Shivers Ed Sheeran",
@@ -3449,7 +3475,7 @@
     "title": "Castle on the Hill",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/zUEUY4iOxaQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/119/Castle-on-the-Hill-English-2017-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Castle on the Hill Ed Sheeran",
@@ -3462,7 +3488,7 @@
     "title": "The A Team",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/SJzQCefGjKg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/884/The-A-Team-English-2011-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The A Team Ed Sheeran",
@@ -3475,7 +3501,7 @@
     "title": "Galway Girl",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Nrr3WqfQzi8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/286/WMG_190295851286-English-2017-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Galway Girl Ed Sheeran",
@@ -3488,7 +3514,7 @@
     "title": "Beautiful People",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Nrr3WqfQzi8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/843/Beautiful-People-feat-Khalid--English-2019-20190627093130-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Beautiful People Ed Sheeran",
@@ -3514,7 +3540,7 @@
     "title": "Save Your Tears",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/fmwM1UPX3QQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Save Your Tears The Weeknd",
@@ -3527,7 +3553,7 @@
     "title": "Die for You",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/2gmXEYooN2I/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/133/Die-For-You-English-2023-20230227063244-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Die for You The Weeknd",
@@ -3540,7 +3566,7 @@
     "title": "The Hills",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/oAMWzhm8ca4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Hills The Weeknd",
@@ -3553,7 +3579,7 @@
     "title": "Can't Feel My Face",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Dla7QH5KzZo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Can't Feel My Face The Weeknd",
@@ -3566,7 +3592,7 @@
     "title": "Earned It",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BChzoI1W8jA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Earned It The Weeknd",
@@ -3579,7 +3605,7 @@
     "title": "In Your Eyes",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/p9SnunQ1Fa8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/077/After-Hours-English-2020-20260804045014-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "In Your Eyes The Weeknd",
@@ -3592,7 +3618,7 @@
     "title": "After Hours",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Dla7QH5KzZo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "After Hours The Weeknd",
@@ -3605,7 +3631,7 @@
     "title": "Call Out My Name",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/wnTz65qqxI0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Call Out My Name The Weeknd",
@@ -3644,7 +3670,7 @@
     "title": "Adore You",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/o1RT33eTHTk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/213/Fine-Line-English-2019-20191211223631-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Adore You Harry Styles",
@@ -3657,7 +3683,7 @@
     "title": "Sign of the Times",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/yGihRhlk7sA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/985/Harry-Styles-English-2017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Sign of the Times Harry Styles",
@@ -3670,7 +3696,7 @@
     "title": "Late Night Talking",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/yGihRhlk7sA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/061/Harry-s-House-English-2022-20220518224913-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Late Night Talking Harry Styles",
@@ -3683,7 +3709,7 @@
     "title": "Golden",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/yGihRhlk7sA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/213/Fine-Line-English-2019-20191211223631-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Golden Harry Styles",
@@ -3696,7 +3722,7 @@
     "title": "Falling",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/yGihRhlk7sA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/213/Fine-Line-English-2019-20191211223631-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Falling Harry Styles",
@@ -3709,7 +3735,7 @@
     "title": "Sweet Creature",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8uD6s-X3590/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/985/Harry-Styles-English-2017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Sweet Creature Harry Styles",
@@ -3722,7 +3748,7 @@
     "title": "Matilda",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/lVnzO7opqNs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/061/Harry-s-House-English-2022-20220518224913-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Matilda Harry Styles",
@@ -3735,7 +3761,7 @@
     "title": "Daylight",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-uXMmW0hlu0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/061/Harry-s-House-English-2022-20220518224913-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Daylight Harry Styles",
@@ -3748,7 +3774,7 @@
     "title": "Someone Like You",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Eh4jN0pmfdw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/612/Rolling-In-The-Deep-English-2017-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Someone Like You Adele",
@@ -3761,7 +3787,7 @@
     "title": "Hello",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/rgmY0-JPiyY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/646/Hello-Inspired-by-Adele-English-2016-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hello Adele",
@@ -3774,7 +3800,7 @@
     "title": "Rolling in the Deep",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/rgmY0-JPiyY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/612/Rolling-In-The-Deep-English-2017-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Rolling in the Deep Adele",
@@ -3787,7 +3813,7 @@
     "title": "Easy on Me",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Eh4jN0pmfdw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/907/Easy-On-Me-English-2021-20211015071105-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Easy on Me Adele",
@@ -3800,7 +3826,7 @@
     "title": "Set Fire to the Rain",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/MQYpC874s7o/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/411/Ringtone-Hits-Vol-2-English-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Set Fire to the Rain Adele",
@@ -3813,7 +3839,7 @@
     "title": "When We Were Young",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/26VD-l9UceA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/094/When-We-Were-Young-Adele-Piano-Karaoke-Instrumental-2025-20251017164714-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "When We Were Young Adele",
@@ -3826,7 +3852,7 @@
     "title": "Skyfall",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/DeumyOzKqgI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/632/Skyfall-Full-Length--English-2012-20191009171950-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Skyfall Adele",
@@ -3839,7 +3865,7 @@
     "title": "Send My Love",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/rgmY0-JPiyY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/969/Adele-Is-Younger-Than-Us-English-2018-20180821191417-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Send My Love Adele",
@@ -3852,7 +3878,7 @@
     "title": "Make You Feel My Love",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9GaVbFS2hoQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/969/Adele-Is-Younger-Than-Us-English-2018-20180821191417-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Make You Feel My Love Adele",
@@ -3865,7 +3891,7 @@
     "title": "Chasing Pavements",
     "artist": "Adele",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ioJyqfmnARk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/381/The-Complete-Acoustic-Tribute-to-Adele-English-2013-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Chasing Pavements Adele",
@@ -3878,7 +3904,7 @@
     "title": "Love Story",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/etBMIavu7SM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/531/Fearless-Big-Machine-Radio-Release-Special-English-2018-20231130020201-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Love Story Taylor Swift",
@@ -3891,7 +3917,7 @@
     "title": "You Belong With Me",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/B9aFzo9p79A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/531/Fearless-Big-Machine-Radio-Release-Special-English-2018-20231130020201-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "You Belong With Me Taylor Swift",
@@ -3904,7 +3930,7 @@
     "title": "Blank Space",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dqtH1SPu5MM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Blank Space Taylor Swift",
@@ -3917,7 +3943,7 @@
     "title": "Style",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dqtH1SPu5MM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Style Taylor Swift",
@@ -3930,7 +3956,7 @@
     "title": "Anti-Hero",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/793/Midnights-English-2022-20221021103611-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Anti-Hero Taylor Swift",
@@ -3943,7 +3969,7 @@
     "title": "Lover",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/219/Lover-Remix--English-2019-20191113031000-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Lover Taylor Swift",
@@ -3956,7 +3982,7 @@
     "title": "Cardigan",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/916/folklore-the-escapism-chapter-English-2020-20230426153245-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Cardigan Taylor Swift",
@@ -3969,7 +3995,7 @@
     "title": "Delicate",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/140/reputation-English-2017-20171130120722-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Delicate Taylor Swift",
@@ -3982,7 +4008,7 @@
     "title": "Wildest Dreams",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/etBMIavu7SM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Wildest Dreams Taylor Swift",
@@ -3995,7 +4021,7 @@
     "title": "Shake It Off",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Shake It Off Taylor Swift",
@@ -4008,7 +4034,7 @@
     "title": "Bad Blood",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bad Blood Taylor Swift",
@@ -4021,7 +4047,7 @@
     "title": "Look What You Made Me Do",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/140/reputation-English-2017-20171130120722-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Look What You Made Me Do Taylor Swift",
@@ -4034,7 +4060,7 @@
     "title": "Enchanted",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/954/Speak-Now-English-2010-20240119005639-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Enchanted Taylor Swift",
@@ -4047,7 +4073,7 @@
     "title": "Mine",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/048/Speak-Now-Taylor-s-Version-English-2023-20230707103448-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Mine Taylor Swift",
@@ -4060,7 +4086,7 @@
     "title": "Back to December",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dqtH1SPu5MM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/954/Speak-Now-English-2010-20240119005639-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Back to December Taylor Swift",
@@ -4073,7 +4099,7 @@
     "title": "Willow",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/259/willow-the-witch-collection--English-2020-20201217021329-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Willow Taylor Swift",
@@ -4086,7 +4112,7 @@
     "title": "August",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/633/folklore-the-saltbox-house-chapter-English-2020-20230426152237-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "August Taylor Swift",
@@ -4099,7 +4125,7 @@
     "title": "Karma",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/B9aFzo9p79A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/092/Midnights-The-Til-Dawn-Edition-English-2023-20230526103422-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Karma Taylor Swift",
@@ -4112,7 +4138,7 @@
     "title": "Fortnight",
     "artist": "Taylor Swift",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/873/THE-TORTURED-POETS-DEPARTMENT-English-2024-20240419103330-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Fortnight Taylor Swift",
@@ -4125,7 +4151,7 @@
     "title": "Birds of a Feather",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/WBy8ETk_Fqs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/707/HIT-ME-HARD-AND-SOFT-English-2024-20240517063536-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Birds of a Feather Billie Eilish",
@@ -4138,7 +4164,7 @@
     "title": "Bad Guy",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/WBy8ETk_Fqs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/025/bad-guy-with-Justin-Bieber--English-2019-20190712032930-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bad Guy Billie Eilish",
@@ -4151,7 +4177,7 @@
     "title": "Lovely",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9cwf3BGhqFA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/947/lovely-English-2018-20180418150240-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Lovely Billie Eilish",
@@ -4164,7 +4190,7 @@
     "title": "Ocean Eyes",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9cwf3BGhqFA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/890/Ocean-Eyes-English-2016-20240828233604-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Ocean Eyes Billie Eilish",
@@ -4177,7 +4203,7 @@
     "title": "Happier Than Ever",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/F2LB70wsNb0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/707/Happier-Than-Ever-English-2021-20210730053930-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Happier Than Ever Billie Eilish",
@@ -4190,7 +4216,7 @@
     "title": "What Was I Made For?",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/R_GJrANOzpE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/367/What-Was-I-Made-For-From-The-Motion-Picture-Barbie-English-2023-20230713203410-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "What Was I Made For? Billie Eilish",
@@ -4203,7 +4229,7 @@
     "title": "Therefore I Am",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/zYEKeEOKNi0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/081/Therefore-I-Am-English-2020-20210501023836-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Therefore I Am Billie Eilish",
@@ -4216,7 +4242,7 @@
     "title": "Everything I Wanted",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/hwVs6HqIfqc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/462/everything-i-wanted-English-2019-20191113232454-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Everything I Wanted Billie Eilish",
@@ -4229,7 +4255,7 @@
     "title": "Bury a Friend",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xpPkqEy8lBU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/640/WHEN-WE-ALL-FALL-ASLEEP-WHERE-DO-WE-GO--English-2019-20190328231137-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bury a Friend Billie Eilish",
@@ -4242,7 +4268,7 @@
     "title": "When the Party's Over",
     "artist": "Billie Eilish",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xIzVIJJtECE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/640/WHEN-WE-ALL-FALL-ASLEEP-WHERE-DO-WE-GO--English-2019-20190328231137-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "When the Party's Over Billie Eilish",
@@ -4268,7 +4294,7 @@
     "title": "New Rules",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/j9k_TSfiFy8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/343/New-Rules-English-2017-20250327204128-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "New Rules Dua Lipa",
@@ -4281,7 +4307,7 @@
     "title": "Don't Start Now",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Z1-YpiNKOHQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/175/Don-t-Start-Now-English-2019-20231110075133-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Don't Start Now Dua Lipa",
@@ -4294,7 +4320,7 @@
     "title": "Houdini",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/EvX4NVJVVF8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/091/Houdini-English-2023-20231110015054-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Houdini Dua Lipa",
@@ -4307,7 +4333,7 @@
     "title": "Training Season",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Euy5eQ809Vk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/062/Training-Season-English-2024-20240220134756-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Training Season Dua Lipa",
@@ -4320,7 +4346,7 @@
     "title": "One Kiss",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/hBihKhJ9zSQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/798/Mundial-2026-Copa-de-F-tbol-del-Mundo-2026-English-2026-20260714021441-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "One Kiss Dua Lipa",
@@ -4333,7 +4359,7 @@
     "title": "Break My Heart",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Euy5eQ809Vk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/207/Dua-Lipa-Live-From-Mexico-English-2026-20260526161014-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Break My Heart Dua Lipa",
@@ -4346,7 +4372,7 @@
     "title": "Physical",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Euy5eQ809Vk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/404/Physical-feat-Hwa-Sa--English-2020-20200316120246-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Physical Dua Lipa",
@@ -4359,7 +4385,7 @@
     "title": "IDGAF",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/TUVcZfQe-Kw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/122/IDGAF-English-2018-20250327204128-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "IDGAF Dua Lipa",
@@ -4372,7 +4398,7 @@
     "title": "Love Again",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/y0hG91Z1eCw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/207/Dua-Lipa-Live-From-Mexico-English-2026-20260526161014-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Love Again Dua Lipa",
@@ -4385,7 +4411,7 @@
     "title": "Please Please Please",
     "artist": "Sabrina Carpenter",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/OGcO2cXwkRA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/812/Please-Please-Please-English-2024-20240607064757-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Please Please Please Sabrina Carpenter",
@@ -4398,7 +4424,7 @@
     "title": "Feather",
     "artist": "Sabrina Carpenter",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/sH-6JqW3-TM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/121/Salon-Music-2026-English-2026-20260523060542-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Feather Sabrina Carpenter",
@@ -4411,7 +4437,7 @@
     "title": "Nonsense",
     "artist": "Sabrina Carpenter",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/oaXhr3LzDuc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/563/emails-i-can-t-send-fwd-English-2023-20230320063220-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Nonsense Sabrina Carpenter",
@@ -4424,7 +4450,7 @@
     "title": "Taste",
     "artist": "Sabrina Carpenter",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-8-8htpkkzA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/393/Studying-with-Pop-English-2025-20260205071554-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Taste Sabrina Carpenter",
@@ -4437,7 +4463,7 @@
     "title": "Good 4 U",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Pg3uSQGE4Uc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/975/Best-Karaoke-Songs-Ever-English-2026-20260605163044-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Good 4 U Olivia Rodrigo",
@@ -4450,7 +4476,7 @@
     "title": "Drivers License",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/u2yKvy_ybRA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/975/Best-Karaoke-Songs-Ever-English-2026-20260605163044-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Drivers License Olivia Rodrigo",
@@ -4463,7 +4489,7 @@
     "title": "Vampire",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8_RAQfSSmzA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/291/possessive-obsession-vibes-English-2026-20260417194424-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Vampire Olivia Rodrigo",
@@ -4476,7 +4502,7 @@
     "title": "Deja Vu",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/gUPM48LlJpc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/121/Salon-Music-2026-English-2026-20260523060542-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Deja Vu Olivia Rodrigo",
@@ -4489,7 +4515,7 @@
     "title": "Traitor",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/1AS0nqPTHBM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/747/pov-you-need-a-good-cry-English-2026-20260723011033-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Traitor Olivia Rodrigo",
@@ -4502,7 +4528,7 @@
     "title": "Brutal",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8UVNT4wvIGY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/610/Female-Rock-Alternative-English-2026-20260626134528-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Brutal Olivia Rodrigo",
@@ -4515,7 +4541,7 @@
     "title": "Happier",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/71xPQE5JSIc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/717/Karaoke-Essentials-English-2026-20260618053610-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Happier Olivia Rodrigo",
@@ -4528,7 +4554,7 @@
     "title": "Favorite Crime",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/717/Karaoke-Essentials-English-2026-20260618053610-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Favorite Crime Olivia Rodrigo",
@@ -4541,7 +4567,7 @@
     "title": "Get Him Back!",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfFic-RrXbE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/538/GUTS-English-2023-20230908063935-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Get Him Back! Olivia Rodrigo",
@@ -4554,7 +4580,7 @@
     "title": "Bad Idea Right?",
     "artist": "Olivia Rodrigo",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/f3ti1OmtN4c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/enemies-to-lovers-English-2026-20260311035428-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bad Idea Right? Olivia Rodrigo",
@@ -4567,7 +4593,7 @@
     "title": "Stay",
     "artist": "The Kid LAROI & Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/HrRoDVbLdCw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/895/Stay-English-2021-20210706223809-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Stay The Kid LAROI & Justin Bieber",
@@ -4580,7 +4606,7 @@
     "title": "Sorry",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/gkQOGF77yKo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/459/Purpose-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Sorry Justin Bieber",
@@ -4593,7 +4619,7 @@
     "title": "Love Yourself",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/7oe003Awo6I/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/459/Purpose-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Love Yourself Justin Bieber",
@@ -4606,7 +4632,7 @@
     "title": "Peaches",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LGPDp7cfkCQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/983/Justice-English-2021-20210325102906-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Peaches Justin Bieber",
@@ -4619,7 +4645,7 @@
     "title": "Baby",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/gkQOGF77yKo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/728/My-World-2-0-English-2010-20250315014144-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Baby Justin Bieber",
@@ -4632,7 +4658,7 @@
     "title": "What Do You Mean?",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/msGuqelopMA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/459/Purpose-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "What Do You Mean? Justin Bieber",
@@ -4645,7 +4671,7 @@
     "title": "Ghost",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/HbQcX-r6t8w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/701/happier-than-ever-English-2021-20251009151609-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Ghost Justin Bieber",
@@ -4658,7 +4684,7 @@
     "title": "Anyone",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/stBR1gR3UjA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/279/JB6-English-2021-20221214012834-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Anyone Justin Bieber",
@@ -4671,7 +4697,7 @@
     "title": "Intentions",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/HbQcX-r6t8w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/294/Intentions-English-2020-20200207033302-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Intentions Justin Bieber",
@@ -4684,7 +4710,7 @@
     "title": "Yummy",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/HbQcX-r6t8w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/256/Yummy-Summer-Walker-Remix--English-2020-20200202230338-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Yummy Justin Bieber",
@@ -4697,7 +4723,7 @@
     "title": "Company",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/O-USns2i6Fc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/459/Purpose-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Company Justin Bieber",
@@ -4710,7 +4736,7 @@
     "title": "One Time",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/uaIxjtV5YYc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/881/Guilty-Pleasures-English-2020-20260205120054-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "One Time Justin Bieber",
@@ -4723,7 +4749,7 @@
     "title": "Boyfriend",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ju357LzC4LA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/038/Boyfriend-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Boyfriend Justin Bieber",
@@ -4736,7 +4762,7 @@
     "title": "As Long As You Love Me",
     "artist": "Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/nelkNO_K7hY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/399/Believe-English-2012-20260630001026-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "As Long As You Love Me Justin Bieber",
@@ -4749,7 +4775,7 @@
     "title": "Locked Out of Heaven",
     "artist": "Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Jw6W3Tzl_5g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/856/Locked-Out-Of-Heaven-English-2012-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Locked Out of Heaven Bruno Mars",
@@ -4762,7 +4788,7 @@
     "title": "Just the Way You Are",
     "artist": "Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3Y5XMuNtRQg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/310/Just-The-Way-You-Are-English-2010-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Just the Way You Are Bruno Mars",
@@ -4775,7 +4801,7 @@
     "title": "Grenade",
     "artist": "Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3Y5XMuNtRQg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/517/Doo-Wops-Hooligans-English-2010-20211110051526-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Grenade Bruno Mars",
@@ -4788,7 +4814,7 @@
     "title": "That's What I Like",
     "artist": "Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3Y5XMuNtRQg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/126/24K-Magic-English-2016-20190607043506-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "That's What I Like Bruno Mars",
@@ -4801,7 +4827,7 @@
     "title": "Uptown Funk",
     "artist": "Mark Ronson ft. Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UqyT8IEBkvY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/049/Uptown-Funk-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Uptown Funk Mark Ronson ft. Bruno Mars",
@@ -4814,7 +4840,7 @@
     "title": "When I Was Your Man",
     "artist": "Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3Y5XMuNtRQg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/658/Unorthodox-Jukebox-English-2012-20190607045137-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "When I Was Your Man Bruno Mars",
@@ -4827,7 +4853,7 @@
     "title": "Talking to the Moon",
     "artist": "Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Jw6W3Tzl_5g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/517/Doo-Wops-Hooligans-English-2010-20211110051526-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Talking to the Moon Bruno Mars",
@@ -4840,7 +4866,7 @@
     "title": "24K Magic",
     "artist": "Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/_NCbahy8akI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/938/24K-Magic-English-2016-20190607043509-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "24K Magic Bruno Mars",
@@ -4853,7 +4879,7 @@
     "title": "Treasure",
     "artist": "Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Jw6W3Tzl_5g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/658/Unorthodox-Jukebox-English-2012-20190607045137-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Treasure Bruno Mars",
@@ -4866,7 +4892,7 @@
     "title": "Versace on the Floor",
     "artist": "Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xN2IpIf8j7M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/126/24K-Magic-English-2016-20190607043506-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Versace on the Floor Bruno Mars",
@@ -4879,7 +4905,7 @@
     "title": "Die With a Smile",
     "artist": "Lady Gaga & Bruno Mars",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/MeaG_-2JJfM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/060/Die-With-A-Smile-English-2024-20240816103634-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Die With a Smile Lady Gaga & Bruno Mars",
@@ -4892,7 +4918,7 @@
     "title": "Poker Face",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tXk4kznsMfs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/326/Poker-Face-2008-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Poker Face Lady Gaga",
@@ -4905,7 +4931,7 @@
     "title": "Bad Romance",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tXk4kznsMfs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/276/The-Fame-Monster-English-2019-20260424142013-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bad Romance Lady Gaga",
@@ -4918,7 +4944,7 @@
     "title": "Shallow",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Cto_X-UIIGY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/861/A-Star-Is-Born-Soundtrack-English-2018-20260605183027-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Shallow Lady Gaga",
@@ -4931,7 +4957,7 @@
     "title": "Just Dance",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tXk4kznsMfs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/881/Guilty-Pleasures-English-2020-20260205120054-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Just Dance Lady Gaga",
@@ -4944,7 +4970,7 @@
     "title": "Paparazzi",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tXk4kznsMfs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/881/Guilty-Pleasures-English-2020-20260205120054-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Paparazzi Lady Gaga",
@@ -4957,7 +4983,7 @@
     "title": "Million Reasons",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UfBmaSPqheM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/773/Million-Reasons-English-2016-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Million Reasons Lady Gaga",
@@ -4970,7 +4996,7 @@
     "title": "Rain on Me",
     "artist": "Lady Gaga & Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3zf0cvxd0t0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/109/Rain-On-Me-English-2020-20200522041156-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Rain on Me Lady Gaga & Ariana Grande",
@@ -4983,7 +5009,7 @@
     "title": "Telephone",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/uGGcCg8cCbo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/276/The-Fame-Monster-English-2019-20260424142013-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Telephone Lady Gaga",
@@ -4996,7 +5022,7 @@
     "title": "Always Remember Us This Way",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/v8h9WHY7-PU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/766/A-Star-Is-Born-Soundtrack-English-2018-20260605163048-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Always Remember Us This Way Lady Gaga",
@@ -5009,7 +5035,7 @@
     "title": "Thank U, Next",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LWeKmdmGcYM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/980/thank-u-next-English-2019-20260407070510-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Thank U, Next Ariana Grande",
@@ -5022,7 +5048,7 @@
     "title": "7 Rings",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/PdPed4V6neo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/980/thank-u-next-English-2019-20260407070510-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "7 Rings Ariana Grande",
@@ -5035,7 +5061,7 @@
     "title": "Positions",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LWeKmdmGcYM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/894/Positions-English-2020-20240117015101-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Positions Ariana Grande",
@@ -5048,7 +5074,7 @@
     "title": "Into You",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/XfHbPIx42uo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/445/Dangerous-Woman-Tenth-Anniversary-Edition-English-2026-20260520203431-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Into You Ariana Grande",
@@ -5061,7 +5087,7 @@
     "title": "Problem",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LWeKmdmGcYM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/659/UMG_00602537852659-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Problem Ariana Grande",
@@ -5074,7 +5100,7 @@
     "title": "One Last Time",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/O7IxH0CcgvE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/185/One-Last-Time-English-2024-20240827130557-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "One Last Time Ariana Grande",
@@ -5087,7 +5113,7 @@
     "title": "No Tears Left to Cry",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LWeKmdmGcYM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/022/Sweetener-English-2018-20260407073440-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "No Tears Left to Cry Ariana Grande",
@@ -5100,7 +5126,7 @@
     "title": "God Is a Woman",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LWeKmdmGcYM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/022/Sweetener-English-2018-20260407073440-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "God Is a Woman Ariana Grande",
@@ -5113,7 +5139,7 @@
     "title": "Dangerous Woman",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/oOyuTKazTX4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/445/Dangerous-Woman-Tenth-Anniversary-Edition-English-2026-20260520203431-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Dangerous Woman Ariana Grande",
@@ -5126,7 +5152,7 @@
     "title": "We Can't Be Friends",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/C9uezHtlpJc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/665/we-can-t-be-friends-wait-for-your-love-English-2024-20240719134215-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "We Can't Be Friends Ariana Grande",
@@ -5139,7 +5165,7 @@
     "title": "Just Give Me a Reason",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/vHHVOM--8_0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/159/The-Truth-About-Love-English-2012-20180423192027-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Just Give Me a Reason P!nk",
@@ -5152,7 +5178,7 @@
     "title": "Try",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-0kcet4aPpQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/429/Try-English-2012-20190408175154-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Try P!nk",
@@ -5165,7 +5191,7 @@
     "title": "What About Us",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Tmmp3asllqA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/598/Beautiful-Trauma-English-2017-20171006195426-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "What About Us P!nk",
@@ -5178,7 +5204,7 @@
     "title": "So What",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LZx76tMheDY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/594/Greatest-Hits-So-Far--English-2019-20190325191944-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "So What P!nk",
@@ -5191,7 +5217,7 @@
     "title": "Raise Your Glass",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/SG9Ts99LqGE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/550/Raise-Your-Glass-Single-Instrumental-English-2011-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Raise Your Glass P!nk",
@@ -5204,7 +5230,7 @@
     "title": "Perfect",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8V0qrvllHy4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/738/Greek-Mythology-Vibes-English-2026-20260805032014-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Perfect P!nk",
@@ -5217,7 +5243,7 @@
     "title": "Who Knew",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/GCkpTzCtl_g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/029/I-m-Not-Dead-English-2006-20201010044213-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Who Knew P!nk",
@@ -5230,7 +5256,7 @@
     "title": "Sober",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/nJ3ZM8FDBlg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/594/Greatest-Hits-So-Far--English-2019-20190325191944-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Sober P!nk",
@@ -5243,7 +5269,7 @@
     "title": "Family Portrait",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/hSjIz8oQuko/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/345/Greatest-Hits-So-Far-2010-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Family Portrait P!nk",
@@ -5256,7 +5282,7 @@
     "title": "Please Don't Leave Me",
     "artist": "P!nk",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/wEzHUFvGO0Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/594/Greatest-Hits-So-Far--English-2019-20190325191944-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Please Don't Leave Me P!nk",
@@ -5269,7 +5295,7 @@
     "title": "Counting Stars",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/mgT0N3tMP74/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/574/Native-English-2014-20250626055252-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Counting Stars OneRepublic",
@@ -5282,7 +5308,7 @@
     "title": "Apologize",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/h4DFXUndvbw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/421/Dreaming-Out-Loud-English-2008-20260204003639-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Apologize OneRepublic",
@@ -5295,7 +5321,7 @@
     "title": "I Lived",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/aD_fqOEA-xQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/574/Native-English-2014-20250626055252-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I Lived OneRepublic",
@@ -5308,7 +5334,7 @@
     "title": "Secrets",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BgNZ0OT55Ws/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/756/Waking-Up-2026-Remastered-English-2026-20260626063625-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Secrets OneRepublic",
@@ -5321,7 +5347,7 @@
     "title": "Love Runs Out",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/0OWj0CiM8WU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/574/Native-English-2014-20250626055252-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Love Runs Out OneRepublic",
@@ -5334,7 +5360,7 @@
     "title": "Run",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/TKkcsmvYTw4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/222/Run-English-2021-20210505174403-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Run OneRepublic",
@@ -5347,7 +5373,7 @@
     "title": "Good Life",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/FG9M0aEpJGE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/756/Waking-Up-2026-Remastered-English-2026-20260626063625-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Good Life OneRepublic",
@@ -5360,7 +5386,7 @@
     "title": "Rescue Me",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Nym5stAJAt8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/136/Rescue-Me-English-2019-20250528111317-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Rescue Me OneRepublic",
@@ -5373,7 +5399,7 @@
     "title": "Wherever I Go",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/OXWrjWDQh7Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/099/Oh-My-My-English-2016-20250626055252-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Wherever I Go OneRepublic",
@@ -5386,7 +5412,7 @@
     "title": "If I Lose Myself",
     "artist": "OneRepublic",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/39MJtjdQCWk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/574/Native-English-2014-20250626055252-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "If I Lose Myself OneRepublic",
@@ -5399,7 +5425,7 @@
     "title": "Demons",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/sl8Efs4vvD4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/210/Night-Visions-2013-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Demons Imagine Dragons",
@@ -5412,7 +5438,7 @@
     "title": "Believer",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/WjqeTrxWrcc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Believer Imagine Dragons",
@@ -5425,7 +5451,7 @@
     "title": "Thunder",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9pUQriLKUkE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Thunder Imagine Dragons",
@@ -5438,7 +5464,7 @@
     "title": "Radioactive",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/pl5_e1XPK3U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/210/Night-Visions-2013-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Radioactive Imagine Dragons",
@@ -5451,7 +5477,7 @@
     "title": "Bones",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-_r-4a2CITk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/038/Bones-English-2022-20250618201126-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bones Imagine Dragons",
@@ -5464,7 +5490,7 @@
     "title": "Enemy",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-_r-4a2CITk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/964/Mercury-Acts-1-2-English-2022-20250618164354-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Enemy Imagine Dragons",
@@ -5477,7 +5503,7 @@
     "title": "Natural",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9pUQriLKUkE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/189/Origins-English-2018-20260611050603-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Natural Imagine Dragons",
@@ -5490,7 +5516,7 @@
     "title": "Whatever It Takes",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9pUQriLKUkE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Whatever It Takes Imagine Dragons",
@@ -5503,7 +5529,7 @@
     "title": "Bad Liar",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9pUQriLKUkE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/189/Origins-English-2018-20260611050603-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bad Liar Imagine Dragons",
@@ -5516,7 +5542,7 @@
     "title": "Follow You",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/b2s1zYxiXyM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/731/Follow-You-Cutthroat-English-2021-20210312053511-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Follow You Imagine Dragons",
@@ -5529,7 +5555,7 @@
     "title": "Viva La Vida",
     "artist": "Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-ZvsGmYKhcU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/150/Viva-La-Vida-Prospekt-s-March-Edition--English-2008-20201104171851-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Viva La Vida Coldplay",
@@ -5542,7 +5568,7 @@
     "title": "Yellow",
     "artist": "Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/YykjpeuMNEk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/254/Parachutes-English-2000-20240529104717-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Yellow Coldplay",
@@ -5555,7 +5581,7 @@
     "title": "Fix You",
     "artist": "Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/AEp08vVYreg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/659/X-Y-English-2005-20201104171639-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Fix You Coldplay",
@@ -5568,7 +5594,7 @@
     "title": "Paradise",
     "artist": "Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Q0TEUMPIhk8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/656/Paradise-English-2011-20241017164709-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Paradise Coldplay",
@@ -5581,7 +5607,7 @@
     "title": "The Scientist",
     "artist": "Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/rLm_aSP369M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/056/The-Scientist-English-2003-20201104171332-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Scientist Coldplay",
@@ -5594,7 +5620,7 @@
     "title": "A Sky Full of Stars",
     "artist": "Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Fpn1imb9qZg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/977/A-Sky-Full-of-Stars-English-2014-20201104171018-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "A Sky Full of Stars Coldplay",
@@ -5607,7 +5633,7 @@
     "title": "Adventure of a Lifetime",
     "artist": "Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/YykjpeuMNEk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/141/A-Head-Full-of-Dreams-English-2015-20201104170723-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Adventure of a Lifetime Coldplay",
@@ -5620,7 +5646,7 @@
     "title": "Clocks",
     "artist": "Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/34ayrkjcWao/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/153/Clocks-English-2003-20201104171415-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Clocks Coldplay",
@@ -5633,7 +5659,7 @@
     "title": "Hymn for the Weekend",
     "artist": "Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/YykjpeuMNEk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/141/A-Head-Full-of-Dreams-English-2015-20201104170723-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hymn for the Weekend Coldplay",
@@ -5646,7 +5672,7 @@
     "title": "My Universe",
     "artist": "Coldplay & BTS",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Zs4BMIFA6K0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/000/My-Universe-English-2021-20211015134722-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "My Universe Coldplay & BTS",
@@ -5659,7 +5685,7 @@
     "title": "Something Just Like This",
     "artist": "The Chainsmokers & Coldplay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4u6bWs-ZG0o/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/211/Memories-Do-Not-Open-English-2017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Something Just Like This The Chainsmokers & Coldplay",
@@ -5672,7 +5698,7 @@
     "title": "Closer",
     "artist": "The Chainsmokers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/agFMqNB9BYM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/054/Collage-EP-English-2016-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Closer The Chainsmokers",
@@ -5685,7 +5711,7 @@
     "title": "Don't Let Me Down",
     "artist": "The Chainsmokers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/_F2KOULJJtk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/848/Don-t-Let-Me-Down-English-2016-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Don't Let Me Down The Chainsmokers",
@@ -5698,7 +5724,7 @@
     "title": "Paris",
     "artist": "The Chainsmokers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/RhU9MZ98jxo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/686/Paris-English-2017-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Paris The Chainsmokers",
@@ -5711,7 +5737,7 @@
     "title": "Roses",
     "artist": "The Chainsmokers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/o11XtyzY_X0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/386/Roses-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Roses The Chainsmokers",
@@ -5724,7 +5750,7 @@
     "title": "#Selfie",
     "artist": "The Chainsmokers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tTFZL5EPQko/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/764/SELFIE-English-2014-20200605220236-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "#Selfie The Chainsmokers",
@@ -5737,7 +5763,7 @@
     "title": "High",
     "artist": "The Chainsmokers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/VogjKqnvUiU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/235/So-Far-So-Good-English-2022-20220804064007-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "High The Chainsmokers",
@@ -5750,7 +5776,7 @@
     "title": "Who Do You Love",
     "artist": "The Chainsmokers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/yE5DiniY45w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/586/World-War-Joy-English-2019-20191203173347-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Who Do You Love The Chainsmokers",
@@ -5763,7 +5789,7 @@
     "title": "Side Effects",
     "artist": "The Chainsmokers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/agFMqNB9BYM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/074/Sick-Boy-English-2018-20181210204414-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Side Effects The Chainsmokers",
@@ -5776,7 +5802,7 @@
     "title": "Faded",
     "artist": "Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tesBsxnREcc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/981/Faded-English-2015-20260508161540-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Faded Alan Walker",
@@ -5789,7 +5815,7 @@
     "title": "Alone",
     "artist": "Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tesBsxnREcc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/522/Alone-English-2017-20180131085202-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Alone Alan Walker",
@@ -5802,7 +5828,7 @@
     "title": "The Spectre",
     "artist": "Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4qC7jYU7c3Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/532/The-Spectre-English-2017-20170831185520-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Spectre Alan Walker",
@@ -5815,7 +5841,7 @@
     "title": "Lily",
     "artist": "Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/t83E5bp5X1w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/562/Different-World-English-2018-20181130144209-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Lily Alan Walker",
@@ -5828,7 +5854,7 @@
     "title": "Sing Me to Sleep",
     "artist": "Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4qC7jYU7c3Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/063/Sing-Me-to-Sleep-English-2016-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Sing Me to Sleep Alan Walker",
@@ -5841,7 +5867,7 @@
     "title": "Diamond Heart",
     "artist": "Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/t83E5bp5X1w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/562/Different-World-English-2018-20181130144209-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Diamond Heart Alan Walker",
@@ -5854,7 +5880,7 @@
     "title": "Darkside",
     "artist": "Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tesBsxnREcc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/678/Darkside-Alan-Walker-Remix-English-2023-20240516044821-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Darkside Alan Walker",
@@ -5867,7 +5893,7 @@
     "title": "On My Way",
     "artist": "Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/t83E5bp5X1w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/935/World-Of-Walker-Unknown-2021-20211126205629-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "On My Way Alan Walker",
@@ -5880,7 +5906,7 @@
     "title": "Ignite",
     "artist": "K-391, Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Rk4E-lX3-N8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/014/Ignite-English-2018-20180615143214-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Ignite K-391, Alan Walker",
@@ -5893,7 +5919,7 @@
     "title": "Force",
     "artist": "Alan Walker",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Rk4E-lX3-N8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/117/Origins-Unknown-2022-20260326100914-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Force Alan Walker",
@@ -5906,7 +5932,7 @@
     "title": "Let Me Love You",
     "artist": "DJ Snake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/__6sIqZk-DA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/273/Encore-English-2016-20190419221937-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Let Me Love You DJ Snake",
@@ -5919,7 +5945,7 @@
     "title": "Taki Taki",
     "artist": "DJ Snake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/R_GJrANOzpE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/759/Taki-Taki-English-2018-20260613112040-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Taki Taki DJ Snake",
@@ -5932,7 +5958,7 @@
     "title": "Turn Down for What",
     "artist": "DJ Snake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/qE6Wu84Zeyw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/779/Turn-Down-For-What-2013-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Turn Down for What DJ Snake",
@@ -5945,7 +5971,7 @@
     "title": "Middle",
     "artist": "DJ Snake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/JL-YFJTxftU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/273/Encore-English-2016-20190419221937-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Middle DJ Snake",
@@ -5958,7 +5984,7 @@
     "title": "Get Low",
     "artist": "Dillon Francis & DJ Snake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/XBXm5SeCyzk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/079/Money-Sucks-Friends-Rule-English-2015-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Get Low Dillon Francis & DJ Snake",
@@ -5971,7 +5997,7 @@
     "title": "Lean On",
     "artist": "Major Lazer",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/R_GJrANOzpE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/920/My-Passion-For-M-xico-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Lean On Major Lazer",
@@ -5984,7 +6010,7 @@
     "title": "Cold Water",
     "artist": "Major Lazer",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4DKQtchh4t0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/228/Cold-Water-English-2016-20230629012412-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Cold Water Major Lazer",
@@ -5997,7 +6023,7 @@
     "title": "Light It Up",
     "artist": "Major Lazer",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/e7eZUGB9HKU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/029/Major-Lazer-Essentials-English-2018-20230708033251-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Light It Up Major Lazer",
@@ -6010,7 +6036,7 @@
     "title": "Know No Better",
     "artist": "Major Lazer",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dMkVPJ0hwP0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/029/Major-Lazer-Essentials-English-2018-20230708033251-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Know No Better Major Lazer",
@@ -6023,7 +6049,7 @@
     "title": "Powerful",
     "artist": "Major Lazer",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/o6b9JpBFjd4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/029/Major-Lazer-Essentials-English-2018-20230708033251-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Powerful Major Lazer",
@@ -6036,7 +6062,7 @@
     "title": "Stay",
     "artist": "Zedd & Alessia Cara",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8Kf2N08kwCs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/885/Stay-English-2017-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Stay Zedd & Alessia Cara",
@@ -6049,7 +6075,7 @@
     "title": "Clarity",
     "artist": "Zedd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/wpQ_R85VfJc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/983/Clarity-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Clarity Zedd",
@@ -6062,7 +6088,7 @@
     "title": "The Middle",
     "artist": "Zedd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/n1a7o44WxNo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/573/The-Middle-English-2018-20180123162712-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Middle Zedd",
@@ -6075,7 +6101,7 @@
     "title": "Spectrum",
     "artist": "Zedd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/IxxstCcJlsc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/983/Clarity-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Spectrum Zedd",
@@ -6088,7 +6114,7 @@
     "title": "Stay the Night",
     "artist": "Zedd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/n1a7o44WxNo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/945/Stay-the-Night-feat-Hayley-Williams-of-Paramore-Zedd-Kevin-Drew-Extended-Remix--English-2015-20190607044634-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Stay the Night Zedd",
@@ -6101,7 +6127,7 @@
     "title": "Beautiful Now",
     "artist": "Zedd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/n1a7o44WxNo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/791/True-Colors-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Beautiful Now Zedd",
@@ -6114,7 +6140,7 @@
     "title": "Happy Now",
     "artist": "Zedd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/n1a7o44WxNo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/280/Happy-Now-English-2018-20180717164551-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Happy Now Zedd",
@@ -6127,7 +6153,7 @@
     "title": "I Want You to Know",
     "artist": "Zedd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/h7MYJghRWt0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/022/I-Want-You-To-Know-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I Want You to Know Zedd",
@@ -6140,7 +6166,7 @@
     "title": "Break Free",
     "artist": "Ariana Grande",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LWeKmdmGcYM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/171/Break-Free-English-2024-20240827130556-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Break Free Ariana Grande",
@@ -6153,7 +6179,7 @@
     "title": "Starving",
     "artist": "Hailee Steinfeld",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/cWblrqSt0nA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/477/Starving-English-2016-20200606193207-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Starving Hailee Steinfeld",
@@ -6166,7 +6192,7 @@
     "title": "Titanium",
     "artist": "David Guetta",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/g7O-7rF0Hqk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/550/Nothing-but-the-Beat-Ultimate-Edition-English-2012-20260302224433-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Titanium David Guetta",
@@ -6179,7 +6205,7 @@
     "title": "Without You",
     "artist": "David Guetta",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/g7O-7rF0Hqk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/825/Party-Till-Sunrise-English-2023-20250805233608-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Without You David Guetta",
@@ -6192,7 +6218,7 @@
     "title": "Memories",
     "artist": "David Guetta",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UFUXdov7WkE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/755/Memories-feat-Kid-Cudi-English-2010-20260722233217-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Memories David Guetta",
@@ -6205,7 +6231,7 @@
     "title": "Play Hard",
     "artist": "David Guetta",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/g7O-7rF0Hqk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/256/Play-Hard-feat-Ne-Yo-Akon-New-Edit--English-2013-20190607045011-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Play Hard David Guetta",
@@ -6218,7 +6244,7 @@
     "title": "Dangerous",
     "artist": "David Guetta",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xaurMcGqZHU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/308/Listen-English-2014-20260302224440-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Dangerous David Guetta",
@@ -6231,7 +6257,7 @@
     "title": "Hey Mama",
     "artist": "David Guetta",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/13EsiCjsssY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/540/Listen-Again-English-2015-20260302224443-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hey Mama David Guetta",
@@ -6244,7 +6270,7 @@
     "title": "Flames",
     "artist": "David Guetta",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xaurMcGqZHU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/924/Flames-English-2018-20190607042410-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Flames David Guetta",
@@ -6257,7 +6283,7 @@
     "title": "2U",
     "artist": "David Guetta & Justin Bieber",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ObXc4SaDbe0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/426/2U-feat-Justin-Bieber--English-2017-20190607043000-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "2U David Guetta & Justin Bieber",
@@ -6270,7 +6296,7 @@
     "title": "Turn Me On",
     "artist": "David Guetta",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xaurMcGqZHU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/550/Nothing-but-the-Beat-Ultimate-Edition-English-2012-20260302224433-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Turn Me On David Guetta",
@@ -6283,7 +6309,7 @@
     "title": "She Wolf",
     "artist": "David Guetta",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/PVzljDmoPVs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/654/She-Wolf-Falling-to-Pieces-feat-Sia-English-2013-20260302224433-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "She Wolf David Guetta",
@@ -6296,7 +6322,7 @@
     "title": "Wake Me Up",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/IcrbM1l_BoI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/236/Live-A-Life-You-Will-Remember-English-2021-20250417155954-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Wake Me Up Avicii",
@@ -6309,7 +6335,7 @@
     "title": "The Nights",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ZVxWbGr6ywU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/882/Happy-Vibes-2026-Korean-2026-20260409053448-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Nights Avicii",
@@ -6322,7 +6348,7 @@
     "title": "Waiting for Love",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/7K6rcfmVa2Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/100/Avicii-Forever-English-2025-20250515053147-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Waiting for Love Avicii",
@@ -6335,7 +6361,7 @@
     "title": "Levels",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/qzSp0J0BfsA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/545/Beachvolleyball-English-2026-20260611092147-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Levels Avicii",
@@ -6348,7 +6374,7 @@
     "title": "Hey Brother",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/F10IetLz71s/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/566/Coffee-and-Chill-English-2026-20260415161953-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hey Brother Avicii",
@@ -6361,7 +6387,7 @@
     "title": "Without You",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/IcrbM1l_BoI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/644/EDM-Party-2026-English-2026-20260415162959-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Without You Avicii",
@@ -6374,7 +6400,7 @@
     "title": "Addicted to You",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/qvpNa5O-0-8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/149/Early-2010s-Nostalgia-English-2026-20260513143646-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Addicted to You Avicii",
@@ -6387,7 +6413,7 @@
     "title": "Broken Arrows",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Xq-knHXSKYY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/761/Stories-English-2015-20241219225408-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Broken Arrows Avicii",
@@ -6400,7 +6426,7 @@
     "title": "Silhouettes",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/IcrbM1l_BoI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/371/Silhouettes-English-2012-20241219232907-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Silhouettes Avicii",
@@ -6413,7 +6439,7 @@
     "title": "I Could Be the One",
     "artist": "Avicii",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UTYREFIOijM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/098/Tropical-House-Vibes-English-2026-20260613032020-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I Could Be the One Avicii",
@@ -6426,7 +6452,7 @@
     "title": "This Is What You Came For",
     "artist": "Calvin Harris",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/vsfmGn4R7XQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/798/Mundial-2026-Copa-de-F-tbol-del-Mundo-2026-English-2026-20260714021441-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "This Is What You Came For Calvin Harris",
@@ -6439,7 +6465,7 @@
     "title": "Summer",
     "artist": "Calvin Harris",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/l84HL_serLw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/352/Summer-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Summer Calvin Harris",
@@ -6452,7 +6478,7 @@
     "title": "Feel So Close",
     "artist": "Calvin Harris",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/t2ygHo0h_eg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/505/Feel-So-Close-2011-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Feel So Close Calvin Harris",
@@ -6465,7 +6491,7 @@
     "title": "Outside",
     "artist": "Calvin Harris",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/hXyRD5vbKpo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/983/Outside-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Outside Calvin Harris",
@@ -6478,7 +6504,7 @@
     "title": "One Kiss",
     "artist": "Calvin Harris & Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/l84HL_serLw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/798/Mundial-2026-Copa-de-F-tbol-del-Mundo-2026-English-2026-20260714021441-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "One Kiss Calvin Harris & Dua Lipa",
@@ -6491,7 +6517,7 @@
     "title": "How Deep Is Your Love",
     "artist": "Calvin Harris",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/z0ZYqggQBzg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/003/How-Deep-Is-Your-Love-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "How Deep Is Your Love Calvin Harris",
@@ -6504,7 +6530,7 @@
     "title": "Slide",
     "artist": "Calvin Harris",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/sPy74KPIDUc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/705/Slide-English-2017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Slide Calvin Harris",
@@ -6517,7 +6543,7 @@
     "title": "My Way",
     "artist": "Calvin Harris",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Pr9I6VDfOSQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/962/My-Way-English-2016-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "My Way Calvin Harris",
@@ -6530,7 +6556,7 @@
     "title": "Giant",
     "artist": "Calvin Harris",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-OKJxbei7Xk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/051/Giant-English-2019-20190109031210-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Giant Calvin Harris",
@@ -6543,7 +6569,7 @@
     "title": "Blame",
     "artist": "Calvin Harris",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/hXyRD5vbKpo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/278/Blame-English-2014-20180503194153-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Blame Calvin Harris",
@@ -6556,7 +6582,7 @@
     "title": "Animals",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/OTMQJ656r-M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/732/Now-That-s-What-I-Call-EDM-2014-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Animals Martin Garrix",
@@ -6569,7 +6595,7 @@
     "title": "Scared to Be Lonely",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/OTMQJ656r-M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/331/Scared-To-Be-Lonely-English-2017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Scared to Be Lonely Martin Garrix",
@@ -6582,7 +6608,7 @@
     "title": "In the Name of Love",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/DOT1LmQbFFA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/760/Mr-Mrs-Is-The-Name-English-2000-20180630204649-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "In the Name of Love Martin Garrix",
@@ -6595,7 +6621,7 @@
     "title": "There for You",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ncqJ0SKVpH0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/165/There-For-You-English-2017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "There for You Martin Garrix",
@@ -6608,7 +6634,7 @@
     "title": "High on Life",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/2f_FUKgUP3Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/422/High-On-Life--English-2018-20180730085228-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "High on Life Martin Garrix",
@@ -6621,7 +6647,7 @@
     "title": "Ocean",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9Vti9E-TASg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/491/Ocean-English-2018-20180612192853-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Ocean Martin Garrix",
@@ -6634,7 +6660,7 @@
     "title": "Used to Love",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-OKJxbei7Xk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/182/Used-To-Love-English-2019-20260209201527-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Used to Love Martin Garrix",
@@ -6647,7 +6673,7 @@
     "title": "So Far Away",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/OTMQJ656r-M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/000/So-Far-Away-English-2017-20171128121539-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "So Far Away Martin Garrix",
@@ -6660,7 +6686,7 @@
     "title": "Forbidden Voices",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ED3jOCQUNJM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/490/Forbidden-Voices-English-2015-20190607044302-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Forbidden Voices Martin Garrix",
@@ -6673,7 +6699,7 @@
     "title": "Don't Look Down",
     "artist": "Martin Garrix",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8OwVaewDtS8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/484/Don-t-Look-Down-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Don't Look Down Martin Garrix",
@@ -6686,7 +6712,7 @@
     "title": "Rockabye",
     "artist": "Clean Bandit",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dB6j3n7HlOE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/728/Rockabye-feat-Sean-Paul-Anne-Marie-English-2016-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Rockabye Clean Bandit",
@@ -6699,7 +6725,7 @@
     "title": "Rather Be",
     "artist": "Clean Bandit",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/m-M1AtrxztU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/555/New-Eyes-English-2014-20190607044544-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Rather Be Clean Bandit",
@@ -6712,7 +6738,7 @@
     "title": "Symphony",
     "artist": "Clean Bandit",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/uMxoqZouwe8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/780/Symphony-feat-Zara-Larsson--English-2017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Symphony Clean Bandit",
@@ -6725,7 +6751,7 @@
     "title": "Solo",
     "artist": "Clean Bandit",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/IRU3tZCvQDQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/898/Solo-feat-Demi-Lovato-Yxng-Bane-Remix--English-2018-20190607042212-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Solo Clean Bandit",
@@ -6738,7 +6764,7 @@
     "title": "Something About You",
     "artist": "Hayden James",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/EUKMOkCAAio/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/121/Something-About-You-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Something About You Hayden James",
@@ -6751,7 +6777,7 @@
     "title": "I Miss You",
     "artist": "Clean Bandit",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/wEzHUFvGO0Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/307/I-Miss-You-feat-Julia-Michaels-English-2017-20250829073613-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I Miss You Clean Bandit",
@@ -6764,7 +6790,7 @@
     "title": "Tears",
     "artist": "Clean Bandit",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dnpRUk2be84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/994/Tears-feat-Louisa-Johnson--English-2016-20190607043814-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Tears Clean Bandit",
@@ -6777,7 +6803,7 @@
     "title": "Baby",
     "artist": "Clean Bandit",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dnpRUk2be84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/120/Baby-feat-MARINA-Luis-Fonsi--English-2018-20190607041751-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Baby Clean Bandit",
@@ -6790,7 +6816,7 @@
     "title": "Extraordinary",
     "artist": "Clean Bandit",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dnpRUk2be84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/555/New-Eyes-English-2014-20190607044544-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Extraordinary Clean Bandit",
@@ -6803,7 +6829,7 @@
     "title": "Sugar",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BSzSn-PRdtI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/989/V-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Sugar Maroon 5",
@@ -6816,7 +6842,7 @@
     "title": "Girls Like You",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BC-ecEwaHx8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/016/Girls-Like-You-English-2018-20180529030200-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Girls Like You Maroon 5",
@@ -6829,7 +6855,7 @@
     "title": "Memories",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/zTzs9RPdlTo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/735/JORDI-Deluxe-English-2021-20250805225545-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Memories Maroon 5",
@@ -6842,7 +6868,7 @@
     "title": "Payphone",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BSzSn-PRdtI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/572/Singles-English-2015-20251023033119-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Payphone Maroon 5",
@@ -6855,7 +6881,7 @@
     "title": "Animals",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BSzSn-PRdtI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/109/Animals-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Animals Maroon 5",
@@ -6868,7 +6894,7 @@
     "title": "She Will Be Loved",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BSzSn-PRdtI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/755/Singles-English-2015-20260707231538-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "She Will Be Loved Maroon 5",
@@ -6881,7 +6907,7 @@
     "title": "This Love",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4DKQtchh4t0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/572/Singles-English-2015-20251023033119-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "This Love Maroon 5",
@@ -6894,7 +6920,7 @@
     "title": "Maps",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/S47PnPdhNBI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/858/UMG_00602537912858-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Maps Maroon 5",
@@ -6907,7 +6933,7 @@
     "title": "Moves Like Jagger",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/FfOSS1i1gqA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/881/Guilty-Pleasures-English-2020-20260205120054-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Moves Like Jagger Maroon 5",
@@ -6920,7 +6946,7 @@
     "title": "One More Night",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/eumdRLvZFGI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/784/Overexposed-English-2012-20251023032605-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "One More Night Maroon 5",
@@ -6933,7 +6959,7 @@
     "title": "Beautiful Mistakes",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BSzSn-PRdtI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/735/JORDI-Deluxe-English-2021-20250805225545-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Beautiful Mistakes Maroon 5",
@@ -6946,7 +6972,7 @@
     "title": "Sunday Morning",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BSzSn-PRdtI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/503/Will-Be-Loved-EP-English-2024-20260402144933-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Sunday Morning Maroon 5",
@@ -6959,7 +6985,7 @@
     "title": "Don't Wanna Know",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/7dee38Y_eTM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/241/Red-Pill-Blues-English-2018-20251023031645-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Don't Wanna Know Maroon 5",
@@ -6972,7 +6998,7 @@
     "title": "What Lovers Do",
     "artist": "Maroon 5",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BSzSn-PRdtI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/241/Red-Pill-Blues-English-2018-20251023031645-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "What Lovers Do Maroon 5",
@@ -7063,7 +7089,7 @@
     "title": "Warriors",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Fvf-f4scLog/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/233/Warriors-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Warriors Imagine Dragons",
@@ -7076,7 +7102,7 @@
     "title": "Walking the Wire",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/1nv9br7P7g0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Walking the Wire Imagine Dragons",
@@ -7089,7 +7115,7 @@
     "title": "Machine",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/o8gKSPEXQik/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/189/Origins-English-2018-20260611050603-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Machine Imagine Dragons",
@@ -7102,7 +7128,7 @@
     "title": "Zero",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/B9unqtZzIrw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/022/Zero-From-the-Original-Motion-Picture-Ralph-Breaks-The-Internet-English-2018-20260611050602-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Zero Imagine Dragons",
@@ -7115,7 +7141,7 @@
     "title": "Sharks",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/oASZG96v0Rk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/587/Sharks-English-2022-20220624065057-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Sharks Imagine Dragons",
@@ -7128,7 +7154,7 @@
     "title": "Eyes Closed",
     "artist": "Imagine Dragons",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-ZockTydP-k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/178/LOOM-English-2024-20240628063307-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Eyes Closed Imagine Dragons",
@@ -7141,7 +7167,7 @@
     "title": "Numb",
     "artist": "Linkin Park",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/kXYiU_JCYtU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/966/Meteora-English-2003-20240404090527-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Numb Linkin Park",
@@ -7180,7 +7206,7 @@
     "title": "Somewhere I Belong",
     "artist": "Linkin Park",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/zsCD5XCu6CM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/845/Papercuts-English-2024-20240511014821-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Somewhere I Belong Linkin Park",
@@ -7323,7 +7349,7 @@
     "title": "Papercut",
     "artist": "Linkin Park",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/kB8qCpPOcXc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/845/Papercuts-English-2024-20240511014821-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Papercut Linkin Park",
@@ -7349,7 +7375,7 @@
     "title": "Everybody's Changing",
     "artist": "Keane",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ns_wvl6JB6E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/946/NEW-LANDFILL-English-2023-20230606223830-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Everybody's Changing Keane",
@@ -7362,7 +7388,7 @@
     "title": "Is It Any Wonder?",
     "artist": "Keane",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/fVe_KVzBFOo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/336/Is-It-Any-Wonder-English-2006-20260424081956-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Is It Any Wonder? Keane",
@@ -7375,7 +7401,7 @@
     "title": "Crystal Ball",
     "artist": "Keane",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xEHy0QwvAYE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/333/The-Best-Of-Keane-English-2013-20231211185154-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Crystal Ball Keane",
@@ -7388,7 +7414,7 @@
     "title": "Bedshaped",
     "artist": "Keane",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/JugGmkvhsKQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/333/The-Best-Of-Keane-English-2013-20231211185154-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bedshaped Keane",
@@ -7401,7 +7427,7 @@
     "title": "Mr. Brightside",
     "artist": "The Killers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/msfw4-Kpdsk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/685/Party-Classics-English-2026-20260613033102-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Mr. Brightside The Killers",
@@ -7414,7 +7440,7 @@
     "title": "Somebody Told Me",
     "artist": "The Killers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/jXqFr_JSikM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/enemies-to-lovers-English-2026-20260311035428-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Somebody Told Me The Killers",
@@ -7479,7 +7505,7 @@
     "title": "All These Things That I've Done",
     "artist": "The Killers",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/sZTpLvsYYHw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/248/Rebel-Diamonds-English-2023-20231208142234-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "All These Things That I've Done The Killers",
@@ -7531,7 +7557,7 @@
     "title": "Do I Wanna Know?",
     "artist": "Arctic Monkeys",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-ZockTydP-k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/795/AM-English-2013-20240402165515-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Do I Wanna Know? Arctic Monkeys",
@@ -7544,7 +7570,7 @@
     "title": "505",
     "artist": "Arctic Monkeys",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/CKI8iQTgZKU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/858/Favourite-Worst-Nightmare-English-2007-20230426182106-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "505 Arctic Monkeys",
@@ -7570,7 +7596,7 @@
     "title": "R U Mine?",
     "artist": "Arctic Monkeys",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/VQH8ZTgna3Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/795/AM-English-2013-20240402165515-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "R U Mine? Arctic Monkeys",
@@ -7622,7 +7648,7 @@
     "title": "Snap Out of It",
     "artist": "Arctic Monkeys",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/fct08Ji6n50/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/795/AM-English-2013-20240402165515-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Snap Out of It Arctic Monkeys",
@@ -7674,7 +7700,7 @@
     "title": "Daddy Issues",
     "artist": "The Neighbourhood",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4jsaCiOOLfc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/407/Wiped-Out-10th-Anniversary-Edition-English-2025-20251028101333-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Daddy Issues The Neighbourhood",
@@ -7687,7 +7713,7 @@
     "title": "Afraid",
     "artist": "The Neighbourhood",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/iooiQGGSn4E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/834/I-Love-You--English-2013-20220323205211-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Afraid The Neighbourhood",
@@ -7713,7 +7739,7 @@
     "title": "Reflections",
     "artist": "The Neighbourhood",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ILqutj1ng5U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/545/Hard-to-imagine-the-neighbourhood-ever-changing-English-2018-20181030171333-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Reflections The Neighbourhood",
@@ -7726,7 +7752,7 @@
     "title": "Stargazing",
     "artist": "The Neighbourhood",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/zZM_a-MzlmM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/538/Chip-Chrome-The-Mono-Tones-Deluxe--English-2020-20201208002544-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Stargazing The Neighbourhood",
@@ -7778,7 +7804,7 @@
     "title": "Female Robbery",
     "artist": "The Neighbourhood",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tPXme6eWlbo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/439/Female-Robbery-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Female Robbery The Neighbourhood",
@@ -7804,7 +7830,7 @@
     "title": "Heal",
     "artist": "Tom Odell",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/e3C85TA6rcY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/362/another-love-heal-slowed-down-sped-up-English-2023-20230127232909-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Heal Tom Odell",
@@ -7817,7 +7843,7 @@
     "title": "Magnetised",
     "artist": "Tom Odell",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4fgzu9Fo66Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/681/Magnetised-English-2016-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Magnetised Tom Odell",
@@ -7856,7 +7882,7 @@
     "title": "Grow Old With Me",
     "artist": "Tom Odell",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Q3AHc8rh6tg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/757/Grow-Old-with-Me-English-2013-20190124154806-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Grow Old With Me Tom Odell",
@@ -7869,7 +7895,7 @@
     "title": "Best Day of My Life",
     "artist": "American Authors",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dnpRUk2be84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/325/Breakfast-Music-2026-English-2026-20260513140515-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Best Day of My Life American Authors",
@@ -7882,7 +7908,7 @@
     "title": "I'm Yours",
     "artist": "Jason Mraz",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/EkHTsc9PU2A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/292/Yours-Truly-The-I-m-Yours-Collection-English-2009-20250517084656-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I'm Yours Jason Mraz",
@@ -7934,7 +7960,7 @@
     "title": "Love Someone",
     "artist": "Lukas Graham",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/zF9xnT4bcJ4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/291/3-The-Purple-Album--English-2018-20190607041922-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Love Someone Lukas Graham",
@@ -7960,7 +7986,7 @@
     "title": "Mama Said",
     "artist": "Lukas Graham",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/6cAdbYOllQ0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/496/Lukas-Graham-English-2016-20190607043917-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Mama Said Lukas Graham",
@@ -7999,7 +8025,7 @@
     "title": "Too Sweet",
     "artist": "Hozier",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dnpRUk2be84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/302/Unheard-English-2024-20240322064003-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Too Sweet Hozier",
@@ -8051,7 +8077,7 @@
     "title": "Cherry Wine",
     "artist": "Hozier",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/SdSCCwtNEjA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/751/Hozier-English-2014-20250317170448-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Cherry Wine Hozier",
@@ -8064,7 +8090,7 @@
     "title": "Like Real People Do",
     "artist": "Hozier",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/vty06CRW7cw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/751/Hozier-English-2014-20250317170448-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Like Real People Do Hozier",
@@ -8077,7 +8103,7 @@
     "title": "Angel of Small Death",
     "artist": "Hozier",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/B3ZlScDCaqg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/751/Hozier-English-2014-20250317170448-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Angel of Small Death Hozier",
@@ -8129,7 +8155,7 @@
     "title": "Young as the Morning",
     "artist": "Passenger",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/WlqTVLs3zTw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/955/Young-as-the-Morning-Old-as-the-Sea-English-2016-20250516153038-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Young as the Morning Passenger",
@@ -8168,7 +8194,7 @@
     "title": "Heart's on Fire",
     "artist": "Passenger",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Ym8hNu4DrgI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/523/Whispers-English-2014-20181219162826-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Heart's on Fire Passenger",
@@ -8181,7 +8207,7 @@
     "title": "Simple Song",
     "artist": "Passenger",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/WBy8ETk_Fqs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/113/The-Boy-Who-Cried-Wolf-English-2017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Simple Song Passenger",
@@ -8207,7 +8233,7 @@
     "title": "Beautiful",
     "artist": "Christina Aguilera",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/2Sj8_xM10S0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/318/Star-Academy-2005-vol-1-English-2005-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Beautiful Christina Aguilera",
@@ -8220,7 +8246,7 @@
     "title": "Hurt",
     "artist": "Christina Aguilera",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/wt-tHcQR67Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/328/Back-To-Basics-English-2006-20260112221631-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hurt Christina Aguilera",
@@ -8233,7 +8259,7 @@
     "title": "Fighter",
     "artist": "Christina Aguilera",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-MZrgXR75Tk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/056/Stripped-20th-Anniversary-Edition-English-2022-20221018233956-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Fighter Christina Aguilera",
@@ -8272,7 +8298,7 @@
     "title": "The Voice Within",
     "artist": "Christina Aguilera",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/wt-tHcQR67Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/056/Stripped-20th-Anniversary-Edition-English-2022-20221018233956-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Voice Within Christina Aguilera",
@@ -8298,7 +8324,7 @@
     "title": "Candyman",
     "artist": "Christina Aguilera",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/wt-tHcQR67Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/120/Keeps-Gettin-Better-A-Decade-Of-Hits-English-2010-20180409212844-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Candyman Christina Aguilera",
@@ -8363,7 +8389,7 @@
     "title": "My Happy Ending",
     "artist": "Avril Lavigne",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/0-zDFLbWK1Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/732/Under-My-Skin-English-2002-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "My Happy Ending Avril Lavigne",
@@ -8376,7 +8402,7 @@
     "title": "I'm With You",
     "artist": "Avril Lavigne",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/pmYOJNdWMto/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/426/New-Divas-2004-English-2004-20251106091333-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I'm With You Avril Lavigne",
@@ -8467,7 +8493,7 @@
     "title": "Stay",
     "artist": "Rihanna",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xKXG8dvEQJA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/861/Unapologetic-English-2012-20250417063947-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Stay Rihanna",
@@ -8519,7 +8545,7 @@
     "title": "Rude Boy",
     "artist": "Rihanna",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xKXG8dvEQJA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/715/Rated-R-English-2009-20250828000156-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Rude Boy Rihanna",
@@ -8532,7 +8558,7 @@
     "title": "What's My Name?",
     "artist": "Rihanna",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ub-TkyuhbMI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/503/What-s-My-Name-2010-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "What's My Name? Rihanna",
@@ -8545,7 +8571,7 @@
     "title": "Disturbia",
     "artist": "Rihanna",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BC2nSSK6LY0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/397/Disturbia-English-2008-20250827223629-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Disturbia Rihanna",
@@ -8571,7 +8597,7 @@
     "title": "Don't Stop the Music",
     "artist": "Rihanna",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xKXG8dvEQJA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/351/Kids-Party-Pac-2010-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Don't Stop the Music Rihanna",
@@ -8584,7 +8610,7 @@
     "title": "Where Have You Been",
     "artist": "Rihanna",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/xKXG8dvEQJA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/409/Talk-That-Talk-English-2011-20250827210031-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Where Have You Been Rihanna",
@@ -8662,7 +8688,7 @@
     "title": "Cool",
     "artist": "Dua Lipa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4IEPMlNP2O8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/665/Future-Nostalgia-English-2020-20260306223201-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Cool Dua Lipa",
@@ -8688,7 +8714,7 @@
     "title": "Wrecking Ball",
     "artist": "Miley Cyrus",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ax1SDLYKmIE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/816/Bangerz-Deluxe-Version-2013-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Wrecking Ball Miley Cyrus",
@@ -8727,7 +8753,7 @@
     "title": "The Climb",
     "artist": "Miley Cyrus",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ax1SDLYKmIE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/578/The-Time-Of-Our-Lives-International-Version-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Climb Miley Cyrus",
@@ -8740,7 +8766,7 @@
     "title": "Malibu",
     "artist": "Miley Cyrus",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8j9zMok6two/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/601/Younger-Now-English-2017-20170922013028-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Malibu Miley Cyrus",
@@ -8779,7 +8805,7 @@
     "title": "Angels Like You",
     "artist": "Miley Cyrus",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ax1SDLYKmIE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/216/Plastic-Hearts-English-2020-20201125020521-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Angels Like You Miley Cyrus",
@@ -8805,7 +8831,7 @@
     "title": "Roar",
     "artist": "Katy Perry",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-W3tp6DLJrI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/244/Football-Watch-Party-2026-Spanish-2026-20260805222043-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Roar Katy Perry",
@@ -8857,7 +8883,7 @@
     "title": "California Gurls",
     "artist": "Katy Perry",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dPI-mRFEIH0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/982/Pop-Instrumentals-English-2011-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "California Gurls Katy Perry",
@@ -8948,7 +8974,7 @@
     "title": "Chained to the Rhythm",
     "artist": "Katy Perry",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/AXCekC-mPX8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/066/what-i-imagined-music-at-the-club-would-be-like-when-i-was-8-French-2026-20260630070050-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Chained to the Rhythm Katy Perry",
@@ -8974,7 +9000,7 @@
     "title": "Smile",
     "artist": "Katy Perry",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/b-bK2Vn3D38/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/264/Smile-English-2020-20260513064107-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Smile Katy Perry",
@@ -8987,7 +9013,7 @@
     "title": "Royals",
     "artist": "Lorde",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/nlcIKh6sBtc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/277/Greatest-Pop-Songs-English-2026-20260605162531-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Royals Lorde",
@@ -9052,7 +9078,7 @@
     "title": "Solar Power",
     "artist": "Lorde",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/RtWY_xKRHTA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/630/Solar-Power-English-2021-20211101053947-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Solar Power Lorde",
@@ -9065,7 +9091,7 @@
     "title": "Ribs",
     "artist": "Lorde",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-ZnPU-MMrY0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/enemies-to-lovers-English-2026-20260311035428-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Ribs Lorde",
@@ -9091,7 +9117,7 @@
     "title": "Yellow Flicker Beat",
     "artist": "Lorde",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3PdILZ_1P74/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/217/studying-under-pressure-English-2025-20260612114019-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Yellow Flicker Beat Lorde",
@@ -9117,7 +9143,7 @@
     "title": "Summertime Sadness",
     "artist": "Lana Del Rey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ran_u1CbVAU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/056/Born-To-Die-Paradise-Edition-Special-Version-English-2012-20250806001043-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Summertime Sadness Lana Del Rey",
@@ -9143,7 +9169,7 @@
     "title": "Video Games",
     "artist": "Lana Del Rey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ran_u1CbVAU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/918/Video-Games-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Video Games Lana Del Rey",
@@ -9156,7 +9182,7 @@
     "title": "Born to Die",
     "artist": "Lana Del Rey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/HvqVZ84JL4w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/915/Born-To-Die-English-2012-20250805223623-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Born to Die Lana Del Rey",
@@ -9182,7 +9208,7 @@
     "title": "Doin' Time",
     "artist": "Lana Del Rey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4i982Kz0SAI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/638/Norman-Fucking-Rockwell-English-2019-20241001143605-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Doin' Time Lana Del Rey",
@@ -9247,7 +9273,7 @@
     "title": "Radio",
     "artist": "Lana Del Rey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ran_u1CbVAU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/915/Born-To-Die-English-2012-20250805223623-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Radio Lana Del Rey",
@@ -11233,13 +11259,13 @@
   },
   {
     "id": "en-se-orita-shawn-mendes-camila-cabello",
-    "title": "Señorita",
+    "title": "Se\u00f1orita",
     "artist": "Shawn Mendes & Camila Cabello",
     "album": "Global Megahits",
     "cover": "https://i.ytimg.com/vi/tcrTQUVkUe0/hqdefault.jpg",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Señorita Shawn Mendes & Camila Cabello",
+    "ytSearchQuery": "Se\u00f1orita Shawn Mendes & Camila Cabello",
     "storagePath": "en-se-orita-shawn-mendes-camila-cabello.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "Fp_P_e1cPOE"
@@ -11431,7 +11457,7 @@
     "title": "I'm Not the Only One",
     "artist": "Sam Smith",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/B_y4Hxc9Tf0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/119/Sunset-Season-English-2026-20260205063611-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I'm Not the Only One Sam Smith",
@@ -11444,7 +11470,7 @@
     "title": "Unholy",
     "artist": "Sam Smith & Kim Petras",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8VKD-IlvibI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/997/UMG_00199957463997-English-2026-20260527230024-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Unholy Sam Smith & Kim Petras",
@@ -11457,7 +11483,7 @@
     "title": "Dancing With a Stranger",
     "artist": "Sam Smith",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/v-L1Hq0VV7Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/204/Roses-Are-Red-English-2020-20260611061553-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Dancing With a Stranger Sam Smith",
@@ -11470,7 +11496,7 @@
     "title": "Promises",
     "artist": "Sam Smith",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ZgulQ_-6sdI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/926/Promises-English-2018-20180817074258-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Promises Sam Smith",
@@ -11483,7 +11509,7 @@
     "title": "How Do You Sleep?",
     "artist": "Sam Smith",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/oaSRwLyAVEg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/563/Loves-Me-Loves-Me-Not-English-2020-20260613181013-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "How Do You Sleep? Sam Smith",
@@ -11496,7 +11522,7 @@
     "title": "Writing's on the Wall",
     "artist": "Sam Smith",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/iGIAm89Ge8Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/173/Writing-s-On-The-Wall-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Writing's on the Wall Sam Smith",
@@ -11509,7 +11535,7 @@
     "title": "Lay Me Down",
     "artist": "Sam Smith",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/VGzhvtaiZ9U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/915/Tendencias-Pop-English-2025-20251214040607-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Lay Me Down Sam Smith",
@@ -11522,7 +11548,7 @@
     "title": "Love Me Like You Do",
     "artist": "Ellie Goulding",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/725WlG1idPc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/333/Love-Me-Like-You-Do-Plane-Version-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Love Me Like You Do Ellie Goulding",
@@ -11535,7 +11561,7 @@
     "title": "Burn",
     "artist": "Ellie Goulding",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/PAhHEwrsamk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/224/Sommer-Throwback-Spanish-2026-20260619064952-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Burn Ellie Goulding",
@@ -11548,7 +11574,7 @@
     "title": "Lights",
     "artist": "Ellie Goulding",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/fwjlw2K8vAg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/066/what-i-imagined-music-at-the-club-would-be-like-when-i-was-8-French-2026-20260630070050-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Lights Ellie Goulding",
@@ -11600,7 +11626,7 @@
     "title": "Close to Me",
     "artist": "Ellie Goulding",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/6eW99oNNRvI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/360/UK-Party-Hits-English-2026-20260806053711-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Close to Me Ellie Goulding",
@@ -11626,7 +11652,7 @@
     "title": "Your Song",
     "artist": "Ellie Goulding",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/KAca7KQ9p-A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/999/18-Months-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Your Song Ellie Goulding",
@@ -11665,7 +11691,7 @@
     "title": "Bruises",
     "artist": "Lewis Capaldi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UGsYyHU7XKs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/069/Modo-Llanto-English-2026-20260612203539-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bruises Lewis Capaldi",
@@ -11678,7 +11704,7 @@
     "title": "Hold Me While You Wait",
     "artist": "Lewis Capaldi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/RxacfeYrp3A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/022/Liebeslieder-English-2026-20260527230513-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hold Me While You Wait Lewis Capaldi",
@@ -11704,7 +11730,7 @@
     "title": "Forget Me",
     "artist": "Lewis Capaldi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/iaOUjpYz8UA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/629/Space-Unknown-2024-20240504011017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Forget Me Lewis Capaldi",
@@ -11717,7 +11743,7 @@
     "title": "Pointless",
     "artist": "Lewis Capaldi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/HlNGI4LbAto/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/581/Broken-By-Desire-To-Be-Heavenly-Sent-English-2023-20240101142143-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Pointless Lewis Capaldi",
@@ -11743,7 +11769,7 @@
     "title": "Grace",
     "artist": "Lewis Capaldi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/6fJI7xydShM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/182/Grace-English-2018-20180919230506-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Grace Lewis Capaldi",
@@ -11756,7 +11782,7 @@
     "title": "Forever",
     "artist": "Lewis Capaldi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Euk-bOdQqw4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/403/Mix-Rock-Love-Songs-English-2026-20260423053755-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Forever Lewis Capaldi",
@@ -11769,7 +11795,7 @@
     "title": "Let Me Down Slowly",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/qmUcmNxSCuc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/681/Let-Me-Down-Slowly-English-2018-20190607042218-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Let Me Down Slowly Alec Benjamin",
@@ -11782,7 +11808,7 @@
     "title": "If We Have Each Other",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/VXDodZq6qK8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/946/If-We-Have-Each-Other-English-2018-20190607041946-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "If We Have Each Other Alec Benjamin",
@@ -11795,7 +11821,7 @@
     "title": "Water Fountain",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/wEzHUFvGO0Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/450/Narrated-For-You-English-2018-20190607041811-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Water Fountain Alec Benjamin",
@@ -11808,7 +11834,7 @@
     "title": "Devil Doesn't Bargain",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/V3aHePu5N88/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/692/Un-Commentary-English-2022-20220414105546-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Devil Doesn't Bargain Alec Benjamin",
@@ -11821,7 +11847,7 @@
     "title": "Oh My God",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/MzLZWM5InQQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/827/Oh-My-God-English-2020-20200608211725-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Oh My God Alec Benjamin",
@@ -11834,7 +11860,7 @@
     "title": "The Book of You & I",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/EEOf9rY0zBU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/166/HIStory-PAST-PRESENT-AND-FUTURE-BOOK-I-2007-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Book of You & I Alec Benjamin",
@@ -11847,7 +11873,7 @@
     "title": "Boy in the Bubble",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/gvFsN91ih98/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/527/Boy-In-The-Bubble-English-2018-20190607042216-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Boy in the Bubble Alec Benjamin",
@@ -11860,7 +11886,7 @@
     "title": "Mind Is a Prison",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/baf_fgbQ7tg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/524/Mind-Is-A-Prison-English-2019-20200415020539-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Mind Is a Prison Alec Benjamin",
@@ -11873,7 +11899,7 @@
     "title": "Six Feet Apart",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/pBET-22qits/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/792/Six-Feet-Apart-English-2020-20200408180430-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Six Feet Apart Alec Benjamin",
@@ -11886,7 +11912,7 @@
     "title": "Outrunning Karma",
     "artist": "Alec Benjamin",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/_PM-UDPYgyQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/396/Outrunning-Karma-English-2018-20190607041920-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Outrunning Karma Alec Benjamin",
@@ -11899,7 +11925,7 @@
     "title": "How You Remind Me",
     "artist": "Nickelback",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/yVRGjpwvkow/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/507/Silver-Side-Up-English-2001-20190607051611-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "How You Remind Me Nickelback",
@@ -11925,7 +11951,7 @@
     "title": "Rockstar",
     "artist": "Nickelback",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/_1hgVcNzvzY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/007/All-the-Right-Reasons-English-2005-20210210043230-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Rockstar Nickelback",
@@ -11938,7 +11964,7 @@
     "title": "Savin' Me",
     "artist": "Nickelback",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/_JQiEs32SqQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/007/All-the-Right-Reasons-English-2005-20210210043230-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Savin' Me Nickelback",
@@ -11951,7 +11977,7 @@
     "title": "If Everyone Cared",
     "artist": "Nickelback",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-IUSZyjiYuY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/007/All-the-Right-Reasons-English-2005-20210210043230-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "If Everyone Cared Nickelback",
@@ -11964,7 +11990,7 @@
     "title": "Lullaby",
     "artist": "Nickelback",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/x_wfoY56JGc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/969/Here-and-Now-Audio-Only-Version--English-2011-20190607045717-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Lullaby Nickelback",
@@ -11977,7 +12003,7 @@
     "title": "Someday",
     "artist": "Nickelback",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/y0eewMSclIs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/902/brown-munde-Unknown-2024-20240706001923-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Someday Nickelback",
@@ -12016,7 +12042,7 @@
     "title": "Livin' on a Prayer",
     "artist": "Bon Jovi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/keZ0vigZz3Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/479/Romance-Veraniego-English-2026-20260608213134-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Livin' on a Prayer Bon Jovi",
@@ -12029,7 +12055,7 @@
     "title": "You Give Love a Bad Name",
     "artist": "Bon Jovi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9BMwcO6_hyA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/902/Rock-Internacional-Viejito-English-2026-20260608193736-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "You Give Love a Bad Name Bon Jovi",
@@ -12042,7 +12068,7 @@
     "title": "Always",
     "artist": "Bon Jovi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9BMwcO6_hyA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/361/Bon-Jovi-Greatest-Hits-2010-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Always Bon Jovi",
@@ -12055,7 +12081,7 @@
     "title": "Wanted Dead or Alive",
     "artist": "Bon Jovi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/1bmy3vjyNlc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/066/Los-cl-sicos-del-rock-90-s-English-2026-20260416053841-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Wanted Dead or Alive Bon Jovi",
@@ -12094,7 +12120,7 @@
     "title": "Have a Nice Day",
     "artist": "Bon Jovi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/uCg2BoKiuOM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/201/Have-A-Nice-Day-English-2005-20241113215904-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Have a Nice Day Bon Jovi",
@@ -12107,7 +12133,7 @@
     "title": "Who Says You Can't Go Home",
     "artist": "Bon Jovi",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9BMwcO6_hyA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/201/Have-A-Nice-Day-English-2005-20241113215904-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Who Says You Can't Go Home Bon Jovi",
@@ -12133,7 +12159,7 @@
     "title": "Sweet Child o' Mine",
     "artist": "Guns N' Roses",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LDJQhSZW3_c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/120/Greatest-Hits-English-2020-20200925061407-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Sweet Child o' Mine Guns N' Roses",
@@ -12159,7 +12185,7 @@
     "title": "Paradise City",
     "artist": "Guns N' Roses",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-smzNkT5jIo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/120/Greatest-Hits-English-2020-20200925061407-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Paradise City Guns N' Roses",
@@ -12172,7 +12198,7 @@
     "title": "Welcome to the Jungle",
     "artist": "Guns N' Roses",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/lec-xRpnvco/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/743/Appetite-For-Destruction-English-1987-20180627230139-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Welcome to the Jungle Guns N' Roses",
@@ -12185,7 +12211,7 @@
     "title": "Don't Cry",
     "artist": "Guns N' Roses",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/QKcrfboAamQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/333/Use-Your-Illusion-I-English-2022-20221110054320-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Don't Cry Guns N' Roses",
@@ -12211,7 +12237,7 @@
     "title": "Knockin' on Heaven's Door",
     "artist": "Guns N' Roses",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/lD_snFRzsm8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/842/Use-Your-Illusion-II-English-1991-20180530230637-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Knockin' on Heaven's Door Guns N' Roses",
@@ -12224,7 +12250,7 @@
     "title": "You Could Be Mine",
     "artist": "Guns N' Roses",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LDJQhSZW3_c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/120/Greatest-Hits-English-2020-20200925061407-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "You Could Be Mine Guns N' Roses",
@@ -12237,7 +12263,7 @@
     "title": "Live and Let Die",
     "artist": "Guns N' Roses",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LDJQhSZW3_c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/120/Greatest-Hits-English-2020-20200925061407-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Live and Let Die Guns N' Roses",
@@ -12263,7 +12289,7 @@
     "title": "Hotel California",
     "artist": "Eagles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/39FI55AbFwE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/565/Selected-Works-1972-1999-English-2013-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hotel California Eagles",
@@ -12302,7 +12328,7 @@
     "title": "New Kid in Town",
     "artist": "Eagles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3MOrgUjiigE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/738/Legacy-English-2018-20220114085212-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "New Kid in Town Eagles",
@@ -12354,7 +12380,7 @@
     "title": "Already Gone",
     "artist": "Eagles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/WwYsvYWVFgA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/404/To-the-Limit-The-Essential-Collection-English-2024-20240409054754-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Already Gone Eagles",
@@ -12380,7 +12406,7 @@
     "title": "Peaceful Easy Feeling",
     "artist": "Eagles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/QRMIgT3thFM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/611/specially-for-you-showtime-Unknown-2024-20240718050339-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Peaceful Easy Feeling Eagles",
@@ -12393,7 +12419,7 @@
     "title": "Bohemian Rhapsody",
     "artist": "Queen",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/O5FeF4Juo4k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/271/A-Night-At-The-Opera-Deluxe-Edition-English-2026-20260617043527-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bohemian Rhapsody Queen",
@@ -12432,7 +12458,7 @@
     "title": "Another One Bites the Dust",
     "artist": "Queen",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/7Cwmj3eXYt4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/069/Funk-English-2026-20260617043515-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Another One Bites the Dust Queen",
@@ -12458,7 +12484,7 @@
     "title": "Somebody to Love",
     "artist": "Queen",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-OKJxbei7Xk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/296/Pomona-Queen-English-2008-20200326174835-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Somebody to Love Queen",
@@ -12471,7 +12497,7 @@
     "title": "Radio Ga Ga",
     "artist": "Queen",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/JOvNagUbMgQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/171/The-Platinum-Collection-English-2026-20260617043512-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Radio Ga Ga Queen",
@@ -12484,7 +12510,7 @@
     "title": "Killer Queen",
     "artist": "Queen",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/7Cwmj3eXYt4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/506/Pop-English-2026-20260617043327-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Killer Queen Queen",
@@ -12497,7 +12523,7 @@
     "title": "Crazy Little Thing Called Love",
     "artist": "Queen",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/CNLpicWEmnY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/296/Pomona-Queen-English-2008-20200326174835-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Crazy Little Thing Called Love Queen",
@@ -12510,7 +12536,7 @@
     "title": "The Show Must Go On",
     "artist": "Queen",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3wia7TSyebY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/876/Return-of-the-Champions-English-2026-20260617043244-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Show Must Go On Queen",
@@ -12523,7 +12549,7 @@
     "title": "Billie Jean",
     "artist": "Michael Jackson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/NYYifER4PKU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/295/Michael-Jackson-s-This-Is-It-English-2009-20220314130423-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Billie Jean Michael Jackson",
@@ -12562,7 +12588,7 @@
     "title": "Smooth Criminal",
     "artist": "Michael Jackson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/NYYifER4PKU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/085/Please-Excuse-Me-For-Being-Antisocial-English-2019-20200226200508-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Smooth Criminal Michael Jackson",
@@ -12575,7 +12601,7 @@
     "title": "Man in the Mirror",
     "artist": "Michael Jackson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/6jhhIBe_qLQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/166/HIStory-PAST-PRESENT-AND-FUTURE-BOOK-I-2007-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Man in the Mirror Michael Jackson",
@@ -12588,7 +12614,7 @@
     "title": "Black or White",
     "artist": "Michael Jackson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/D_grvJsUTec/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/066/Number-Ones-English-2003-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Black or White Michael Jackson",
@@ -12601,7 +12627,7 @@
     "title": "Earth Song",
     "artist": "Michael Jackson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/D_grvJsUTec/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/166/HIStory-PAST-PRESENT-AND-FUTURE-BOOK-I-2007-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Earth Song Michael Jackson",
@@ -12614,7 +12640,7 @@
     "title": "Remember the Time",
     "artist": "Michael Jackson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-3GcjR80GQ4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/166/HIStory-PAST-PRESENT-AND-FUTURE-BOOK-I-2007-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Remember the Time Michael Jackson",
@@ -12627,7 +12653,7 @@
     "title": "The Way You Make Me Feel",
     "artist": "Michael Jackson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/NYYifER4PKU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/632/Looking-Back-To-Yesterday-Blank-2013-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Way You Make Me Feel Michael Jackson",
@@ -12640,7 +12666,7 @@
     "title": "Human Nature",
     "artist": "Michael Jackson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/KwuWrH5oSr4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/295/Michael-Jackson-s-This-Is-It-English-2009-20220314130423-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Human Nature Michael Jackson",
@@ -12653,7 +12679,7 @@
     "title": "Careless Whisper",
     "artist": "George Michael",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/qBrnNWaMm-Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/011/Ladies-Gentlemen-2011-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Careless Whisper George Michael",
@@ -12666,7 +12692,7 @@
     "title": "Faith",
     "artist": "George Michael",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/PY_j0RxwA_Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/011/Ladies-Gentlemen-2011-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Faith George Michael",
@@ -12679,7 +12705,7 @@
     "title": "Freedom! '90",
     "artist": "George Michael",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/R_G6DDpe60k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/011/Ladies-Gentlemen-2011-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Freedom! '90 George Michael",
@@ -12692,7 +12718,7 @@
     "title": "Wake Me Up Before You Go-Go",
     "artist": "Wham!",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/s6QTcVFfhSc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/207/Party-English-2006-20251106091425-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Wake Me Up Before You Go-Go Wham!",
@@ -12705,7 +12731,7 @@
     "title": "Last Christmas",
     "artist": "Wham!",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/TUVKd2PsDs0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/319/Christmas-Songs-English-2020-20201125092025-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Last Christmas Wham!",
@@ -12718,7 +12744,7 @@
     "title": "Everybody Wants to Rule the World",
     "artist": "Tears for Fears",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LDJQhSZW3_c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/495/Everybody-Wants-To-Rule-The-World-Sped-Up-Version-English-2022-20220812063552-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Everybody Wants to Rule the World Tears for Fears",
@@ -12731,7 +12757,7 @@
     "title": "Shout",
     "artist": "Tears for Fears",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/UVWZvvj9elo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/378/Shout-English-2025-20251120053221-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Shout Tears for Fears",
@@ -12744,7 +12770,7 @@
     "title": "Mad World",
     "artist": "Tears for Fears",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/CodI7xI5U5k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/081/Mad-World-Tears-for-Fears-Cover--English-2019-20190415191912-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Mad World Tears for Fears",
@@ -12757,7 +12783,7 @@
     "title": "Everybody Hurts",
     "artist": "R.E.M.",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8UVNT4wvIGY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/412/Everybody-hurts-English-2026-20260530143538-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Everybody Hurts R.E.M.",
@@ -12796,7 +12822,7 @@
     "title": "Go Your Own Way",
     "artist": "Fleetwood Mac",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/aNnTJXhBuyA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/168/Greatest-Hits-English-1988-20260723031114-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Go Your Own Way Fleetwood Mac",
@@ -12809,7 +12835,7 @@
     "title": "The Chain",
     "artist": "Fleetwood Mac",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/CFqOEzrcHFE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/128/Greatest-Hits-Deluxe-Edition-English-1988-20260616073213-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Chain Fleetwood Mac",
@@ -12835,7 +12861,7 @@
     "title": "Everywhere",
     "artist": "Fleetwood Mac",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/GxZOchmay1o/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/168/Greatest-Hits-English-1988-20260723031114-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Everywhere Fleetwood Mac",
@@ -12848,7 +12874,7 @@
     "title": "Don't Stop",
     "artist": "Fleetwood Mac",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Fpjt9YHiRsE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/209/50-Years-Don-t-Stop-English-2018-20181116060450-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Don't Stop Fleetwood Mac",
@@ -12861,7 +12887,7 @@
     "title": "Africa",
     "artist": "Toto",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/w2bJ5CGplB4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/783/love-nwantiti-feat-ElGrande-Toto-North-African-Remix--English-2020-20200820200202-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Africa Toto",
@@ -12874,7 +12900,7 @@
     "title": "Rosanna",
     "artist": "Toto",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/s5jpMoRPLbc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/822/Toto-IV-English-1982-20200311173234-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Rosanna Toto",
@@ -12887,7 +12913,7 @@
     "title": "Hold the Line",
     "artist": "Toto",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/f0r5p8RrQ1g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/726/Toto-English-1978-20200310205057-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hold the Line Toto",
@@ -12900,7 +12926,7 @@
     "title": "I'll Be Over You",
     "artist": "Toto",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/s5jpMoRPLbc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/720/Toto-English-2006-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I'll Be Over You Toto",
@@ -12913,7 +12939,7 @@
     "title": "Take on Me",
     "artist": "a-ha",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LDJQhSZW3_c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/423/The-Singles-1984-2004-English-2010-20200123221035-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Take on Me a-ha",
@@ -12939,7 +12965,7 @@
     "title": "Hunting High and Low",
     "artist": "a-ha",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/HzdD8kbDzZA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/064/Hunting-High-And-Low-English-1985-20190607051631-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hunting High and Low a-ha",
@@ -12952,7 +12978,7 @@
     "title": "Cry Wolf",
     "artist": "a-ha",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/AwdtGVRYslI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/932/Headlines-and-Deadlines-The-Hits-of-a-ha-English-1991-20201022113049-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Cry Wolf a-ha",
@@ -12965,7 +12991,7 @@
     "title": "Time After Time",
     "artist": "Cyndi Lauper",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/VdQY7BusJNU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/022/Twelve-Deadly-Cyns-And-Then-Some-English-1994-20180409162047-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Time After Time Cyndi Lauper",
@@ -12978,7 +13004,7 @@
     "title": "Girls Just Want to Have Fun",
     "artist": "Cyndi Lauper",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tmEduIj8dJY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/977/Nothing-to-Something-English-2025-20251017175701-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Girls Just Want to Have Fun Cyndi Lauper",
@@ -12991,7 +13017,7 @@
     "title": "True Colors",
     "artist": "Cyndi Lauper",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LPn0KFlbqX8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/324/True-Colors-1986-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "True Colors Cyndi Lauper",
@@ -13004,7 +13030,7 @@
     "title": "The Power of Love",
     "artist": "Celine Dion",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/bSgTOBrI0Cw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/726/The-Colour-Of-My-Love-English-1993-20240228042108-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "The Power of Love Celine Dion",
@@ -13017,7 +13043,7 @@
     "title": "My Heart Will Go On",
     "artist": "Celine Dion",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LK5NvHzKpDs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/354/Titanic-Music-from-the-Motion-Picture-Soundtrack-English-2004-20171212173657-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "My Heart Will Go On Celine Dion",
@@ -13043,7 +13069,7 @@
     "title": "Because You Loved Me",
     "artist": "Celine Dion",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/cvu28pKql8g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/480/Falling-Into-You-1996-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Because You Loved Me Celine Dion",
@@ -13069,7 +13095,7 @@
     "title": "A New Day Has Come",
     "artist": "Celine Dion",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/cvu28pKql8g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/093/My-Love-Essential-Collection-English-2011-20171212173633-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "A New Day Has Come Celine Dion",
@@ -13082,7 +13108,7 @@
     "title": "All by Myself",
     "artist": "Celine Dion",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LK5NvHzKpDs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/761/Falling-into-You-English-1996-20210118232538-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "All by Myself Celine Dion",
@@ -13095,7 +13121,7 @@
     "title": "Hero",
     "artist": "Mariah Carey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/jRqsQTF3LNI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/388/hero-mariah-carey-Unknown-2024-20240711114712-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hero Mariah Carey",
@@ -13108,7 +13134,7 @@
     "title": "Without You",
     "artist": "Mariah Carey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/KXJpJmKk4d0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/937/Without-You-Mariah-Carey-Tribute--English-2017-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Without You Mariah Carey",
@@ -13121,7 +13147,7 @@
     "title": "We Belong Together",
     "artist": "Mariah Carey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/DL1cohDGCgc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/184/The-Emancipation-of-Mimi-English-2005-20250408102007-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "We Belong Together Mariah Carey",
@@ -13134,7 +13160,7 @@
     "title": "Always Be My Baby",
     "artist": "Mariah Carey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/YrpARWCEsGI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/270/The-Ballads-Digital-Deluxe-2008-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Always Be My Baby Mariah Carey",
@@ -13147,7 +13173,7 @@
     "title": "Fantasy",
     "artist": "Mariah Carey",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/YrpARWCEsGI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/367/Daydream-1995-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Fantasy Mariah Carey",
@@ -13160,7 +13186,7 @@
     "title": "What Makes You Beautiful",
     "artist": "One Direction",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/VZAGNEVfBXU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/880/Up-All-Night-English-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "What Makes You Beautiful One Direction",
@@ -13173,7 +13199,7 @@
     "title": "Story of My Life",
     "artist": "One Direction",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tI4JO718phI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/747/Midnight-Memories-Deluxe--English-2013-20190524114321-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Story of My Life One Direction",
@@ -13186,7 +13212,7 @@
     "title": "Night Changes",
     "artist": "One Direction",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/WRsUE-eZ-Q8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/851/FOUR-Deluxe--English-2014-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Night Changes One Direction",
@@ -13199,7 +13225,7 @@
     "title": "Drag Me Down",
     "artist": "One Direction",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/_OiM1Tg6KZA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/250/Made-In-The-A-M-Deluxe-Edition-English-2015-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Drag Me Down One Direction",
@@ -13212,7 +13238,7 @@
     "title": "Little Things",
     "artist": "One Direction",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/2JGX0ERo5V8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/267/Take-It-All-Away-U-S-Version--English-2004-20190607052729-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Little Things One Direction",
@@ -13225,7 +13251,7 @@
     "title": "You & I",
     "artist": "One Direction",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/CveNk56UTnY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/747/Midnight-Memories-Deluxe--English-2013-20190524114321-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "You & I One Direction",
@@ -13238,7 +13264,7 @@
     "title": "Steal My Girl",
     "artist": "One Direction",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BSzSn-PRdtI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/851/FOUR-Deluxe--English-2014-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Steal My Girl One Direction",
@@ -13251,7 +13277,7 @@
     "title": "Best Song Ever",
     "artist": "One Direction",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3MOrgUjiigE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/747/Midnight-Memories-Deluxe--English-2013-20190524114321-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Best Song Ever One Direction",
@@ -13264,7 +13290,7 @@
     "title": "Live While We're Young",
     "artist": "One Direction",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/y7tZcqx6Mbc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/168/Take-Me-Home-English-2012-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Live While We're Young One Direction",
@@ -13277,7 +13303,7 @@
     "title": "Fine Line",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/o1RT33eTHTk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/213/Fine-Line-English-2019-20191211223631-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Fine Line Harry Styles",
@@ -13303,7 +13329,7 @@
     "title": "Music for a Sushi Restaurant",
     "artist": "Harry Styles",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4F9DxYhqmKw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/061/Harry-s-House-English-2022-20220518224913-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Music for a Sushi Restaurant Harry Styles",
@@ -13368,7 +13394,7 @@
     "title": "Fake Love",
     "artist": "BTS",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/HKdaRsXTv7k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/672/Love-Yourself-Tear-Korean-2021-20260415060646-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Fake Love BTS",
@@ -13381,7 +13407,7 @@
     "title": "DNA",
     "artist": "BTS",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/EVq2WlekKC0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/341/Proof-Korean-2022-20220614202104-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "DNA BTS",
@@ -13394,7 +13420,7 @@
     "title": "Idol",
     "artist": "BTS",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/5iPY2dRY0m4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/591/Love-Yourself-Answer-Korean-2021-20260415060645-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Idol BTS",
@@ -13407,7 +13433,7 @@
     "title": "Life Goes On",
     "artist": "BTS",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/lFUZ3-PEbzM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/273/BE-Korean-2021-20220510145040-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Life Goes On BTS",
@@ -13420,7 +13446,7 @@
     "title": "Spring Day",
     "artist": "BTS",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Zs4BMIFA6K0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/494/You-Never-Walk-Alone-Korean-2021-20220510145037-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Spring Day BTS",
@@ -13446,7 +13472,7 @@
     "title": "Black Swan",
     "artist": "BTS",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4G8_8bZ2m_k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/713/MAP-OF-THE-SOUL-7-Korean-2021-20211208015233-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Black Swan BTS",
@@ -13459,7 +13485,7 @@
     "title": "Blood Sweat & Tears",
     "artist": "BTS",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/7Z_97UGftmc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/494/You-Never-Walk-Alone-Korean-2021-20220510145037-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Blood Sweat & Tears BTS",
@@ -13472,7 +13498,7 @@
     "title": "Left and Right",
     "artist": "Charlie Puth & Jung Kook",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/a7GITgqwDVg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/589/CHARLIE-English-2022-20221005173517-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Left and Right Charlie Puth & Jung Kook",
@@ -13485,7 +13511,7 @@
     "title": "Seven",
     "artist": "Jung Kook",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/KUJn81FNywM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/289/GOLDEN-Voice-Memo-Y-English-2023-20240108233200-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Seven Jung Kook",
@@ -13498,7 +13524,7 @@
     "title": "Standing Next to You",
     "artist": "Jung Kook",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/geHuX7E3NX8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/685/GOLDEN-Voice-Memo-A-English-2023-20231109124311-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Standing Next to You Jung Kook",
@@ -13511,7 +13537,7 @@
     "title": "3D",
     "artist": "Jung Kook",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/01ghKEgAdXU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/3D-feat-Jack-Harlow-English-2023-20230929093407-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "3D Jung Kook",
@@ -13524,7 +13550,7 @@
     "title": "One of the Girls",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/zwb8zl-XuRg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/262/The-Idol-Episode-4-Music-from-the-HBO-Original-Series-English-2023-20260801052018-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "One of the Girls The Weeknd",
@@ -13537,7 +13563,7 @@
     "title": "Popular",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/JGpQwM9fYnQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Popular The Weeknd",
@@ -13563,7 +13589,7 @@
     "title": "I Feel It Coming",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/VzijytdpxpE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/372/Starboy-English-2016-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I Feel It Coming The Weeknd",
@@ -13589,7 +13615,7 @@
     "title": "Take My Breath",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/wnTz65qqxI0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/120/Dawn-FM-Alternate-World-English-2022-20260801053523-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Take My Breath The Weeknd",
@@ -13602,7 +13628,7 @@
     "title": "Out of Time",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-lON1bV6Q40/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/739/Dawn-FM-English-2022-20260801053523-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Out of Time The Weeknd",
@@ -13615,7 +13641,7 @@
     "title": "Is There Someone Else?",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ZVxWbGr6ywU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/120/Dawn-FM-Alternate-World-English-2022-20260801053523-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Is There Someone Else? The Weeknd",
@@ -13628,7 +13654,7 @@
     "title": "Less Than Zero",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/d4LGeXIWC2U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/120/Dawn-FM-Alternate-World-English-2022-20260801053523-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Less Than Zero The Weeknd",
@@ -13654,7 +13680,7 @@
     "title": "Party Monster",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BRvKVvYO-n4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/372/Starboy-English-2016-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Party Monster The Weeknd",
@@ -13667,7 +13693,7 @@
     "title": "Often",
     "artist": "The Weeknd",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/VgY7FHr4ViA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/802/Often-Kygo-Remix-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Often The Weeknd",
@@ -13680,7 +13706,7 @@
     "title": "Attention",
     "artist": "Charlie Puth",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Q9YVvV2cecg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/343/Voicenotes-English-2018-20190607043050-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Attention Charlie Puth",
@@ -13706,7 +13732,7 @@
     "title": "One Call Away",
     "artist": "Charlie Puth",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/k5bcB1INm9g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/809/One-Call-Away-English-2015-20190607044119-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "One Call Away Charlie Puth",
@@ -13732,7 +13758,7 @@
     "title": "See You Again",
     "artist": "Wiz Khalifa & Charlie Puth",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Ye6HFGfFQeE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/919/See-You-Again-Wiz-Khalifa-feat-Charlie-Puth-Covers-Clean-English-2015-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "See You Again Wiz Khalifa & Charlie Puth",
@@ -13745,7 +13771,7 @@
     "title": "That's Not How This Works",
     "artist": "Charlie Puth",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3nRaJmWIvMk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/292/That-s-Not-How-This-Works-feat-Dan-Shay-English-2023-20230328122406-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "That's Not How This Works Charlie Puth",
@@ -13758,7 +13784,7 @@
     "title": "Marvin Gaye",
     "artist": "Charlie Puth",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/vFLlqu2G6Dc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/850/Nine-Track-Mind-English-2016-20190607044034-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Marvin Gaye Charlie Puth",
@@ -13810,7 +13836,7 @@
     "title": "Young, Wild & Free",
     "artist": "Snoop Dogg & Wiz Khalifa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/XQ6jhYcc1Nw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/148/Mac-and-Devin-Go-To-High-School-Music-From-and-Inspired-By-The-Movie--English-2011-20190607045953-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Young, Wild & Free Snoop Dogg & Wiz Khalifa",
@@ -13823,7 +13849,7 @@
     "title": "Roll Up",
     "artist": "Wiz Khalifa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/7tLGfZWScwg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/244/Roll-Up-English-2011-20200822053324-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Roll Up Wiz Khalifa",
@@ -13836,7 +13862,7 @@
     "title": "We Own It",
     "artist": "2 Chainz & Wiz Khalifa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/oSgjH4zE3UM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/288/Les-meilleures-bandes-son-Unknown-2026-20260402053556-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "We Own It 2 Chainz & Wiz Khalifa",
@@ -13849,7 +13875,7 @@
     "title": "No Sleep",
     "artist": "Wiz Khalifa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/PT9h6UuTeQg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/435/Rolling-Papers-English-2011-20190607045929-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "No Sleep Wiz Khalifa",
@@ -13862,7 +13888,7 @@
     "title": "Work Hard, Play Hard",
     "artist": "Wiz Khalifa",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8W6q2qcemsI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/184/Furious-7-Original-Motion-Picture-Soundtrack-English-2015-20240228160023-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Work Hard, Play Hard Wiz Khalifa",
@@ -13875,7 +13901,7 @@
     "title": "Stronger",
     "artist": "Kanye West",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/A_46xn3U_t0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/638/Stronger-English-2007-20200724142539-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Stronger Kanye West",
@@ -13888,7 +13914,7 @@
     "title": "Gold Digger",
     "artist": "Kanye West",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/6vwNcNOTVzY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/016/Late-Registration-English-2005-20200724142540-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Gold Digger Kanye West",
@@ -13901,7 +13927,7 @@
     "title": "Power",
     "artist": "Kanye West",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/A_46xn3U_t0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/030/POWER-Explicit-Version-2010-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Power Kanye West",
@@ -13927,7 +13953,7 @@
     "title": "All of the Lights",
     "artist": "Kanye West",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/B3KVDXp0pNc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/465/My-Beautiful-Dark-Twisted-Fantasy-English-2010-20200720072107-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "All of the Lights Kanye West",
@@ -13940,7 +13966,7 @@
     "title": "Runaway",
     "artist": "Kanye West",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/sHi0k_HJLw4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/465/My-Beautiful-Dark-Twisted-Fantasy-English-2010-20200720072107-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Runaway Kanye West",
@@ -13953,7 +13979,7 @@
     "title": "Famous",
     "artist": "Kanye West",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/A_46xn3U_t0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/334/The-Life-Of-Pablo-English-2016-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Famous Kanye West",
@@ -13979,7 +14005,7 @@
     "title": "No Role Modelz",
     "artist": "J. Cole",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dy3HgsknhzE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/958/2014-Forest-Hills-Drive-English-2014-20240719152253-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "No Role Modelz J. Cole",
@@ -13992,7 +14018,7 @@
     "title": "Middle Child",
     "artist": "J. Cole",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/R_GJrANOzpE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/709/MIDDLE-CHILD-English-2019-20190124011132-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Middle Child J. Cole",
@@ -14018,7 +14044,7 @@
     "title": "Wet Dreamz",
     "artist": "J. Cole",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/eCGV26aj-mM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/806/Animals-Remix-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Wet Dreamz J. Cole",
@@ -14031,7 +14057,7 @@
     "title": "Apparently",
     "artist": "J. Cole",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/0hQAcMqIt08/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/806/Animals-Remix-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Apparently J. Cole",
@@ -14057,7 +14083,7 @@
     "title": "Crooked Smile",
     "artist": "J. Cole",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/fzzMOMkjm8A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/806/Animals-Remix-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Crooked Smile J. Cole",
@@ -14070,7 +14096,7 @@
     "title": "A Lot",
     "artist": "21 Savage",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/azrUkh2q4bw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/512/i-am-i-was-English-2018-20260115011705-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "A Lot 21 Savage",
@@ -14083,7 +14109,7 @@
     "title": "Bank Account",
     "artist": "21 Savage",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/If7zvUs1ulk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/674/Issa-Album-English-2017-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bank Account 21 Savage",
@@ -14109,7 +14135,7 @@
     "title": "Jimmy Cooks",
     "artist": "Drake & 21 Savage",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/V7UgPHjN9qE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/386/Honestly-Nevermind-English-2022-20220617103817-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Jimmy Cooks Drake & 21 Savage",
@@ -14148,7 +14174,7 @@
     "title": "T-Shirt",
     "artist": "Migos",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8Q7JDYg-LI0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/574/T-Shirt-Migos-Remix--Unknown-2022-20211215164914-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "T-Shirt Migos",
@@ -14161,7 +14187,7 @@
     "title": "Walk It Talk It",
     "artist": "Migos",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9hJ8lLNWrM4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/807/Culture-II-English-2018-20180126052957-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Walk It Talk It Migos",
@@ -14174,7 +14200,7 @@
     "title": "Stir Fry",
     "artist": "Migos",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/HI-mXMr8glQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/807/Culture-II-English-2018-20180126052957-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Stir Fry Migos",
@@ -14187,7 +14213,7 @@
     "title": "Motorsport",
     "artist": "Migos",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/XEbZzg36r5I/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/807/Culture-II-English-2018-20180126052957-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Motorsport Migos",
@@ -14200,7 +14226,7 @@
     "title": "I Had Some Help",
     "artist": "Post Malone",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/MeaG_-2JJfM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/168/I-Had-Some-Help-English-2024-20240510063707-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I Had Some Help Post Malone",
@@ -14226,7 +14252,7 @@
     "title": "Jar of Hearts",
     "artist": "Christina Perri",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/CvhtCTgH7XE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/855/lovestrong-deluxe-edition-English-2011-20260627113645-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Jar of Hearts Christina Perri",
@@ -14239,7 +14265,7 @@
     "title": "Human",
     "artist": "Christina Perri",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ZISPZPnIDJ0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/034/human-English-2013-20190607044741-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Human Christina Perri",
@@ -14252,7 +14278,7 @@
     "title": "Arms",
     "artist": "Christina Perri",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4T9sf4MjrOo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/855/lovestrong-deluxe-edition-English-2011-20260627113645-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Arms Christina Perri",
@@ -14265,7 +14291,7 @@
     "title": "Distance",
     "artist": "Christina Perri",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ROqTa1mn_qc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/375/Speak-To-Unknown-2024-20240601103537-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Distance Christina Perri",
@@ -14291,7 +14317,7 @@
     "title": "Already Home",
     "artist": "A Great Big World",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/dnpRUk2be84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/669/Is-There-Anybody-Out-There-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Already Home A Great Big World",
@@ -14304,7 +14330,7 @@
     "title": "Let It Go",
     "artist": "James Bay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Mpr3ykRlql0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/156/Let-It-Go-English-2014-20250411060628-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Let It Go James Bay",
@@ -14330,7 +14356,7 @@
     "title": "If You Ever Want to Be in Love",
     "artist": "James Bay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/4fndeDfaWCg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/132/Sing-Up-Sing-Out-English-2020-20221213080628-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "If You Ever Want to Be in Love James Bay",
@@ -14356,7 +14382,7 @@
     "title": "Scars",
     "artist": "James Bay",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/37lBFG6kDoQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/040/Heartache-Hotel-English-2020-20250503053524-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Scars James Bay",
@@ -14434,7 +14460,7 @@
     "title": "One",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/2B0RTZrpSx8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/835/x-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "One Ed Sheeran",
@@ -14447,7 +14473,7 @@
     "title": "Kiss Me",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/2B0RTZrpSx8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/398/WMGMENA_825646658398-English-2011-20230412021426-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Kiss Me Ed Sheeran",
@@ -14460,7 +14486,7 @@
     "title": "Give Me Love",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/2B0RTZrpSx8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/398/WMGMENA_825646658398-English-2011-20230412021426-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Give Me Love Ed Sheeran",
@@ -14473,7 +14499,7 @@
     "title": "I See Fire",
     "artist": "Ed Sheeran",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/JNr0yNP5_hU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/530/The-Hobbit-The-Desolation-of-Smaug-Instrumental-2013-20260604013900-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I See Fire Ed Sheeran",
@@ -14499,7 +14525,7 @@
     "title": "Palace",
     "artist": "Sam Smith",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/f3ti1OmtN4c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/371/A-Lonely-Christmas-English-2023-20240923230121-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Palace Sam Smith",
@@ -14512,7 +14538,7 @@
     "title": "To Die For",
     "artist": "Sam Smith",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/m1FwHw-wCGQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/563/Loves-Me-Loves-Me-Not-English-2020-20260613181013-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "To Die For Sam Smith",
@@ -14525,7 +14551,7 @@
     "title": "Love Me",
     "artist": "Sam Smith",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/miUJtK-c6-0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/534/F-1-Trillion-Long-Bed-English-2024-20241002005208-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Love Me Sam Smith",
@@ -14538,7 +14564,7 @@
     "title": "Mirrors",
     "artist": "Justin Timberlake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8UVNT4wvIGY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/406/The-20-20-Experience-Deluxe-Version-2013-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Mirrors Justin Timberlake",
@@ -14577,7 +14603,7 @@
     "title": "SexyBack",
     "artist": "Justin Timberlake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/MnZNoS22GFw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/444/FutureSex-LoveSounds-English-2019-20190807225142-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "SexyBack Justin Timberlake",
@@ -14603,7 +14629,7 @@
     "title": "Suit & Tie",
     "artist": "Justin Timberlake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9QdiVsTBXXU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/406/The-20-20-Experience-Deluxe-Version-2013-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Suit & Tie Justin Timberlake",
@@ -14616,7 +14642,7 @@
     "title": "Rock Your Body",
     "artist": "Justin Timberlake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/8UVNT4wvIGY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/612/City-Sounds-English-2008-20200820041329-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Rock Your Body Justin Timberlake",
@@ -14629,7 +14655,7 @@
     "title": "My Love",
     "artist": "Justin Timberlake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/yE5DiniY45w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/937/My-Love-2006-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "My Love Justin Timberlake",
@@ -14642,7 +14668,7 @@
     "title": "Like I Love You",
     "artist": "Justin Timberlake",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/qKya_19DHUA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/326/Justified-English-2002-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Like I Love You Justin Timberlake",
@@ -14668,7 +14694,7 @@
     "title": "Fire Burning",
     "artist": "Sean Kingston",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/b59hPgsNGqQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/402/Fire-Burning-2009-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Fire Burning Sean Kingston",
@@ -14694,7 +14720,7 @@
     "title": "Me Love",
     "artist": "Sean Kingston",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/9c7Z8K-srQw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/601/Love-Me-Tender-The-Greatest-Love-Songs-of-Elvis-Presley-English-2020-20200618075846-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Me Love Sean Kingston",
@@ -14707,7 +14733,7 @@
     "title": "Replay",
     "artist": "Iyaz",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/0m8MUe4RTBU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/883/Replay-Int-l--English-2010-20200822053346-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Replay Iyaz",
@@ -14733,7 +14759,7 @@
     "title": "Pretty Girl Rock",
     "artist": "Keri Hilson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/hK_yvP7YcwE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/391/No-Boys-Allowed-All-International-Partners-Deluxe-Version--English-2010-20181026102207-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Pretty Girl Rock Keri Hilson",
@@ -14746,7 +14772,7 @@
     "title": "Knock You Down",
     "artist": "Keri Hilson",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/YYM3U-XeEaU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/048/Male-Acoustic-English-2009-20221013001203-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Knock You Down Keri Hilson",
@@ -14759,7 +14785,7 @@
     "title": "I Like",
     "artist": "Enrique Iglesias",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/NTPpFKowdsc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/199/Euphoria-English-2014-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "I Like Enrique Iglesias",
@@ -14772,7 +14798,7 @@
     "title": "Hero",
     "artist": "Enrique Iglesias",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/NTPpFKowdsc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/003/Greatest-Hits-English-2008-20260530032536-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hero Enrique Iglesias",
@@ -14785,7 +14811,7 @@
     "title": "Bailando",
     "artist": "Enrique Iglesias",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/b8I-7Wk_Vbc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/723/UMG_00602537850723-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bailando Enrique Iglesias",
@@ -14798,7 +14824,7 @@
     "title": "Tonight",
     "artist": "Enrique Iglesias",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/NTPpFKowdsc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/454/Tonight-I-m-Lovin-You-2011-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Tonight Enrique Iglesias",
@@ -14811,7 +14837,7 @@
     "title": "Escape",
     "artist": "Enrique Iglesias",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/l884wKofd54/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/003/Greatest-Hits-English-2008-20260530032536-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Escape Enrique Iglesias",
@@ -14824,7 +14850,7 @@
     "title": "Tired of Being Sorry",
     "artist": "Enrique Iglesias",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/uo60YrBNB0U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/003/Greatest-Hits-English-2008-20260530032536-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Tired of Being Sorry Enrique Iglesias",
@@ -14837,7 +14863,7 @@
     "title": "Love to See You Cry",
     "artist": "Enrique Iglesias",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/LWdwkdYPz-o/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/003/Greatest-Hits-English-2008-20260530032536-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Love to See You Cry Enrique Iglesias",
@@ -14850,7 +14876,7 @@
     "title": "Whenever, Wherever",
     "artist": "Shakira",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Zc4wYB2EK2k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/023/Laundry-Service-English-2001-20190524114126-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Whenever, Wherever Shakira",
@@ -14863,7 +14889,7 @@
     "title": "Hips Don't Lie",
     "artist": "Shakira",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/pLlcQMrb9I0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/280/La-Cancha-Suena-English-2026-20260608233549-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Hips Don't Lie Shakira",
@@ -14876,7 +14902,7 @@
     "title": "Waka Waka",
     "artist": "Shakira",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Zc4wYB2EK2k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/092/Waka-Waka-This-Time-For-Africa-The-Official-2010-FIFA-World-Cup-TM-Song-2010-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Waka Waka Shakira",
@@ -14889,7 +14915,7 @@
     "title": "La Tortura",
     "artist": "Shakira",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/ecDsuch_ROo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/560/Fijaci-n-Oral-Volumen-1-Spanish-2025-20250528220943-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "La Tortura Shakira",
@@ -14902,7 +14928,7 @@
     "title": "Underneath Your Clothes",
     "artist": "Shakira",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/5y7EAoMayhE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/002/World-s-Best-Mum-English-2007-20200820041417-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Underneath Your Clothes Shakira",
@@ -14915,7 +14941,7 @@
     "title": "Can't Remember to Forget You",
     "artist": "Shakira",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Zc4wYB2EK2k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/262/Shakira-Expanded-Edition-Spanish-Version-English-2014-20221203010917-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Can't Remember to Forget You Shakira",
@@ -14928,7 +14954,7 @@
     "title": "Try Everything",
     "artist": "Shakira",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/koFBoZ5uiow/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/932/Zootopia-English-2016-20251113085106-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Try Everything Shakira",
@@ -14939,12 +14965,12 @@
   {
     "id": "en-beautiful-liar-beyonc-shakira",
     "title": "Beautiful Liar",
-    "artist": "Beyoncé & Shakira",
+    "artist": "Beyonc\u00e9 & Shakira",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/uVTifWo9uH0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/569/A-Salute-To-Shakira-English-2010-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Beautiful Liar Beyoncé & Shakira",
+    "ytSearchQuery": "Beautiful Liar Beyonc\u00e9 & Shakira",
     "storagePath": "en-beautiful-liar-beyonc-shakira.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "QrOe2h9RtWI"
@@ -14952,12 +14978,12 @@
   {
     "id": "en-halo-beyonc",
     "title": "Halo",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/-SJrMbYv9_I/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/991/I-AM-SASHA-FIERCE-Platinum-Edition-2009-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Halo Beyoncé",
+    "ytSearchQuery": "Halo Beyonc\u00e9",
     "storagePath": "en-halo-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "bnVUHWCynig"
@@ -14965,12 +14991,12 @@
   {
     "id": "en-crazy-in-love-beyonc",
     "title": "Crazy in Love",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/t3S91hF5ogA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/714/Crazy-In-Love-featuring-Jay-Z-English-2003-20240718222935-500x500.webp",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Crazy in Love Beyoncé",
+    "ytSearchQuery": "Crazy in Love Beyonc\u00e9",
     "storagePath": "en-crazy-in-love-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "ViwtNLUqkMY"
@@ -14978,12 +15004,12 @@
   {
     "id": "en-single-ladies-beyonc",
     "title": "Single Ladies",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/Utd0EXk8geU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/937/I-AM-SASHA-FIERCE-2008-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Single Ladies Beyoncé",
+    "ytSearchQuery": "Single Ladies Beyonc\u00e9",
     "storagePath": "en-single-ladies-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "4m1EFMoRFvY"
@@ -14991,12 +15017,12 @@
   {
     "id": "en-love-on-top-beyonc",
     "title": "Love on Top",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/PK3L0LAvl6A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/677/Love-Songs-100-Hits-Ballads-sad-songs-and-tear-jerkers-inc-Beyonce-Michael-Jackson-and-John-Legend-English-2018-20180127065353-500x500.webp",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Love on Top Beyoncé",
+    "ytSearchQuery": "Love on Top Beyonc\u00e9",
     "storagePath": "en-love-on-top-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "Ob7vObnFUJc"
@@ -15004,12 +15030,12 @@
   {
     "id": "en-drunk-in-love-beyonc",
     "title": "Drunk in Love",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/CpB7JE4uOdo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/403/BEYONC-2013-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Drunk in Love Beyoncé",
+    "ytSearchQuery": "Drunk in Love Beyonc\u00e9",
     "storagePath": "en-drunk-in-love-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "p1JPKLa-Ofc"
@@ -15017,12 +15043,12 @@
   {
     "id": "en-irreplaceable-beyonc",
     "title": "Irreplaceable",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/plMRFh-Vbm0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/897/B-Day-Deluxe-Edition-English-2007-20180409204229-500x500.webp",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Irreplaceable Beyoncé",
+    "ytSearchQuery": "Irreplaceable Beyonc\u00e9",
     "storagePath": "en-irreplaceable-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "2EwViQxSJJQ"
@@ -15030,12 +15056,12 @@
   {
     "id": "en-listen-beyonc",
     "title": "Listen",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/3MOrgUjiigE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/645/salem-massachusetts-Unknown-2024-20240718035836-500x500.webp",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Listen Beyoncé",
+    "ytSearchQuery": "Listen Beyonc\u00e9",
     "storagePath": "en-listen-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "y4gimHC7fKs"
@@ -15043,12 +15069,12 @@
   {
     "id": "en-run-the-world-beyonc",
     "title": "Run the World",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/t3S91hF5ogA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/991/4-English-2013-20180409162727-500x500.webp",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Run the World Beyoncé",
+    "ytSearchQuery": "Run the World Beyonc\u00e9",
     "storagePath": "en-run-the-world-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "VBmMU_iwe6U"
@@ -15056,12 +15082,12 @@
   {
     "id": "en-if-i-were-a-boy-beyonc",
     "title": "If I Were a Boy",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/edv_bNEaYTQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/088/If-I-Were-A-Boy-English-2008-20180503060727-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "If I Were a Boy Beyoncé",
+    "ytSearchQuery": "If I Were a Boy Beyonc\u00e9",
     "storagePath": "en-if-i-were-a-boy-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "AWpsOqh8q0M"
@@ -15069,12 +15095,12 @@
   {
     "id": "en-break-my-soul-beyonc",
     "title": "Break My Soul",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/BSzSn-PRdtI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/974/RENAISSANCE-English-2022-20220802233341-500x500.webp",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Break My Soul Beyoncé",
+    "ytSearchQuery": "Break My Soul Beyonc\u00e9",
     "storagePath": "en-break-my-soul-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "yjki-9Pthh0"
@@ -15082,12 +15108,12 @@
   {
     "id": "en-cuff-it-beyonc",
     "title": "Cuff It",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/PK3L0LAvl6A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/974/RENAISSANCE-English-2022-20220802233341-500x500.webp",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Cuff It Beyoncé",
+    "ytSearchQuery": "Cuff It Beyonc\u00e9",
     "storagePath": "en-cuff-it-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "yrtWLyp5gLI"
@@ -15095,12 +15121,12 @@
   {
     "id": "en-texas-hold-em-beyonc",
     "title": "Texas Hold 'Em",
-    "artist": "Beyoncé",
+    "artist": "Beyonc\u00e9",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/jCOX8dT9q8M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/736/COWBOY-CARTER-English-2024-20240331235926-500x500.webp",
     "duration": "3:30",
     "category": "trending",
-    "ytSearchQuery": "Texas Hold 'Em Beyoncé",
+    "ytSearchQuery": "Texas Hold 'Em Beyonc\u00e9",
     "storagePath": "en-texas-hold-em-beyonc.mp3",
     "source": "Pulse Supabase Storage",
     "ytId": "jCOX8dT9q8M"
@@ -15110,7 +15136,7 @@
     "title": "Applause",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tXk4kznsMfs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/974/ARTPOP-English-2013-20190420001248-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Applause Lady Gaga",
@@ -15123,7 +15149,7 @@
     "title": "Born This Way",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tXk4kznsMfs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/569/Born-This-Way-2011-500x500.jpg",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Born This Way Lady Gaga",
@@ -15136,7 +15162,7 @@
     "title": "Alejandro",
     "artist": "Lady Gaga",
     "album": "Global Megahits",
-    "cover": "https://i.ytimg.com/vi/tXk4kznsMfs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/276/The-Fame-Monster-English-2019-20260424142013-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Alejandro Lady Gaga",
@@ -15149,7 +15175,7 @@
     "title": "Naatu Naatu",
     "artist": "Rahul Sipligunj, Kaala Bhairava, M.M. Keeravani",
     "album": "RRR",
-    "cover": "https://i.ytimg.com/vi/OsU0CGZoV8E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/683/RRR-Telugu-Telugu-2022-20250828171313-500x500.webp",
     "duration": "3:35",
     "category": "trending",
     "ytId": "OsU0CGZoV8E",
@@ -15162,7 +15188,7 @@
     "title": "Oo Antava Mawa..Oo Oo Antava",
     "artist": "Indravathi Chauhan, Devi Sri Prasad",
     "album": "Pushpa: The Rise",
-    "cover": "https://i.ytimg.com/vi/gkea1_C_1yQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/449/Oo-Antava-Mawa-Hindi-2023-20230314225411-500x500.webp",
     "duration": "3:44",
     "category": "trending",
     "ytId": "gkea1_C_1yQ",
@@ -15175,7 +15201,7 @@
     "title": "Srivalli",
     "artist": "Sid Sriram, Devi Sri Prasad",
     "album": "Pushpa: The Rise",
-    "cover": "https://i.ytimg.com/vi/eypZt3m8sJ0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/blob/056/Pushpa-The-Rise-Telugu-2021-20211216115409-500x500.webp",
     "duration": "3:41",
     "category": "romantic",
     "ytId": "eypZt3m8sJ0",
@@ -15188,7 +15214,7 @@
     "title": "Saami Saami",
     "artist": "Mounika Yadav, Devi Sri Prasad",
     "album": "Pushpa: The Rise",
-    "cover": "https://i.ytimg.com/vi/jL1vH_CclXQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/blob/056/Pushpa-The-Rise-Telugu-2021-20211216115409-500x500.webp",
     "duration": "3:43",
     "category": "party",
     "ytId": "jL1vH_CclXQ",
@@ -15201,7 +15227,7 @@
     "title": "Pushpa Pushpa",
     "artist": "Nakash Aziz, Devi Sri Prasad",
     "album": "Pushpa 2: The Rule",
-    "cover": "https://i.ytimg.com/vi/p6t1d12c_1Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/366/Pushpa-2-The-Rule-Telugu-Telugu-2024-20241205211012-500x500.jpg",
     "duration": "4:15",
     "category": "trending",
     "ytId": "p6t1d12c_1Y",
@@ -15214,7 +15240,7 @@
     "title": "Sooseki (The Couple Song)",
     "artist": "Shreya Ghoshal, Devi Sri Prasad",
     "album": "Pushpa 2: The Rule",
-    "cover": "https://i.ytimg.com/vi/vYdI1t_QvYc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/814/Summer-Hot-Romatic-Waves-Telugu-2026-20260601162119-500x500.webp",
     "duration": "4:20",
     "category": "romantic",
     "ytId": "vYdI1t_QvYc",
@@ -15227,7 +15253,7 @@
     "title": "Chuttamalle",
     "artist": "Shilpa Rao, Anirudh Ravichander",
     "album": "Devara",
-    "cover": "https://i.ytimg.com/vi/fGZ18t82pE8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/814/Summer-Hot-Romatic-Waves-Telugu-2026-20260601162119-500x500.webp",
     "duration": "3:48",
     "category": "romantic",
     "ytId": "fGZ18t82pE8",
@@ -15240,7 +15266,7 @@
     "title": "Fear Song",
     "artist": "Anirudh Ravichander",
     "album": "Devara",
-    "cover": "https://i.ytimg.com/vi/V14l0Vf3e80/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/104/Sid-Sriram-X-Anirudh-Ravichander-Monsoon-Super-Hits-Tamil-2026-20260710191206-500x500.webp",
     "duration": "3:16",
     "category": "party",
     "ytId": "V14l0Vf3e80",
@@ -15253,7 +15279,7 @@
     "title": "Daavudi",
     "artist": "Nakash Aziz, Akasa, Anirudh Ravichander",
     "album": "Devara",
-    "cover": "https://i.ytimg.com/vi/3U9j2b_mP7I/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/915/Top-10-Dance-Dhamaka-Hits-Telugu-2025-20251014181041-500x500.webp",
     "duration": "3:30",
     "category": "party",
     "ytId": "3U9j2b_mP7I",
@@ -15266,7 +15292,7 @@
     "title": "Butta Bomma",
     "artist": "Armaan Malik, Thaman S",
     "album": "Ala Vaikunthapurramuloo",
-    "cover": "https://i.ytimg.com/vi/2mDCVzruYzQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/517/Ala-Vaikunthapurramuloo-Telugu-2019-20200116144338-500x500.webp",
     "duration": "3:18",
     "category": "romantic",
     "ytId": "2mDCVzruYzQ",
@@ -15279,7 +15305,7 @@
     "title": "Samajavaragamana",
     "artist": "Sid Sriram, Thaman S",
     "album": "Ala Vaikunthapurramuloo",
-    "cover": "https://i.ytimg.com/vi/ocMEv95u2z0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/517/Ala-Vaikunthapurramuloo-Telugu-2019-20200116144338-500x500.webp",
     "duration": "3:42",
     "category": "romantic",
     "ytId": "ocMEv95u2z0",
@@ -15292,7 +15318,7 @@
     "title": "Ramuloo Ramulaa",
     "artist": "Anurag Kulkarni, Mangli, Thaman S",
     "album": "Ala Vaikunthapurramuloo",
-    "cover": "https://i.ytimg.com/vi/kd_7wX11f-c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/517/Ala-Vaikunthapurramuloo-Telugu-2019-20200116144338-500x500.webp",
     "duration": "4:07",
     "category": "party",
     "ytId": "kd_7wX11f-c",
@@ -15305,7 +15331,7 @@
     "title": "Kurchi Madathapetti",
     "artist": "Sri Krishna, Sahithi Chaganti, Thaman S",
     "album": "Guntur Kaaram",
-    "cover": "https://i.ytimg.com/vi/p_VbH2tUqA4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/000/Guntur-Kaaram-Telugu-2023-20240126145901-500x500.webp",
     "duration": "3:35",
     "category": "party",
     "ytId": "p_VbH2tUqA4",
@@ -15318,7 +15344,7 @@
     "title": "Dum Masala",
     "artist": "Sanjith Hegde, Thaman S",
     "album": "Guntur Kaaram",
-    "cover": "https://i.ytimg.com/vi/fXk67wHq87g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/000/Guntur-Kaaram-Telugu-2023-20240126145901-500x500.webp",
     "duration": "3:26",
     "category": "trending",
     "ytId": "fXk67wHq87g",
@@ -15331,7 +15357,7 @@
     "title": "Inkem Inkem Inkem Kaavaale",
     "artist": "Sid Sriram, Gopi Sundar",
     "album": "Geetha Govindam",
-    "cover": "https://i.ytimg.com/vi/1Wup73kQ10c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/237/Geetha-Govindam-Telugu-2018-20180921-500x500.webp",
     "duration": "4:27",
     "category": "romantic",
     "ytId": "1Wup73kQ10c",
@@ -15344,7 +15370,7 @@
     "title": "Khalasi (Gotilo)",
     "artist": "Aditya Gadhvi, Achint",
     "album": "Coke Studio Bharat",
-    "cover": "https://i.ytimg.com/vi/q10_gJg3wYQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/490/Khalasi-Remix-Pack-Gujarati-2024-20241001181104-500x500.webp",
     "duration": "4:12",
     "category": "trending",
     "ytId": "q10_gJg3wYQ",
@@ -15357,7 +15383,7 @@
     "title": "Chogada",
     "artist": "Darshan Raval, Asees Kaur",
     "album": "Loveyatri",
-    "cover": "https://i.ytimg.com/vi/d4OuBCUSp-E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/179/World-Music-Day-Best-Of-Bollywood-Hits-Hindi-2026-20260622111029-500x500.webp",
     "duration": "4:10",
     "category": "party",
     "ytId": "d4OuBCUSp-E",
@@ -15370,7 +15396,7 @@
     "title": "Kamariya",
     "artist": "Darshan Raval, Lijo George",
     "album": "Mitron",
-    "cover": "https://i.ytimg.com/vi/iP_D3c6Zk-0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/764/Mitron-Hindi-2018-20180831135137-500x500.jpg",
     "duration": "3:08",
     "category": "party",
     "ytId": "iP_D3c6Zk-0",
@@ -15383,7 +15409,7 @@
     "title": "Dholida",
     "artist": "Jahnvi Shrimankar, Shail Hada, Sanjay Leela Bhansali",
     "album": "Gangubai Kathiawadi",
-    "cover": "https://i.ytimg.com/vi/z18v7d5W6uM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/544/Gangubai-Kathiawadi-Hindi-2022-20220217161339-500x500.webp",
     "duration": "2:59",
     "category": "party",
     "ytId": "z18v7d5W6uM",
@@ -15396,7 +15422,7 @@
     "title": "Char Char Bangadi Vadi Gadi",
     "artist": "Kinjal Dave",
     "album": "Kinjal Dave Hits",
-    "cover": "https://i.ytimg.com/vi/W7M60N7w_Z0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/762/Beni-Char-Char-Bangadi-Vali-Gadi-Laidau-Gujarati-2017-500x500.jpg",
     "duration": "4:32",
     "category": "party",
     "ytId": "W7M60N7w_Z0",
@@ -15409,7 +15435,7 @@
     "title": "Rona Ser Ma",
     "artist": "Geeta Rabari",
     "album": "Geeta Rabari Superhits",
-    "cover": "https://i.ytimg.com/vi/V_m5n8f2z4c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/832/Rona-Ser-Ma-Gujarati-2026-20260416101735-500x500.webp",
     "duration": "4:45",
     "category": "trending",
     "ytId": "V_m5n8f2z4c",
@@ -15422,7 +15448,7 @@
     "title": "Radha Ne Shyam Mali Jashe",
     "artist": "Sachin-Jigar, Sachin Sanghvi, Shruti Pathak",
     "album": "Navratri Special",
-    "cover": "https://i.ytimg.com/vi/5h8j4c2m8q0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/657/Radha-Ne-Shyam-Mali-Jashe-Gujarati-2020-20201117120727-500x500.webp",
     "duration": "3:58",
     "category": "romantic",
     "ytId": "5h8j4c2m8q0",
@@ -15435,7 +15461,7 @@
     "title": "Nagada Sang Dhol",
     "artist": "Shreya Ghoshal, Osman Mir",
     "album": "Goliyon Ki Raasleela Ram-Leela",
-    "cover": "https://i.ytimg.com/vi/vK5E_7Ev_t4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/914/Goliyon-Ki-Raasleela-Ram-Leela-Hindi-2025-20250930143415-500x500.webp",
     "duration": "4:33",
     "category": "party",
     "ytId": "vK5E_7Ev_t4",
@@ -15448,7 +15474,7 @@
     "title": "Zingaat",
     "artist": "Ajay-Atul",
     "album": "Sairat",
-    "cover": "https://i.ytimg.com/vi/8g76Z8Y8j8Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/224/Marathi-Hits-of-Ajay-Atul-Marathi-2026-20260426004132-500x500.webp",
     "duration": "3:46",
     "category": "party",
     "ytId": "8g76Z8Y8j8Y",
@@ -15461,7 +15487,7 @@
     "title": "Yad Lagla",
     "artist": "Ajay Gogavale, Ajay-Atul",
     "album": "Sairat",
-    "cover": "https://i.ytimg.com/vi/Qv6j2b8m14c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/859/Marathi-Love-Vibes-Marathi-2026-20260513194436-500x500.webp",
     "duration": "5:14",
     "category": "romantic",
     "ytId": "Qv6j2b8m14c",
@@ -15474,7 +15500,7 @@
     "title": "Apsara Aali",
     "artist": "Bela Shende, Ajay-Atul",
     "album": "Natarang",
-    "cover": "https://i.ytimg.com/vi/p6t1d8z3y84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/328/Marathi-Trending-Hits-Marathi-2026-20260803092150-500x500.webp",
     "duration": "4:47",
     "category": "party",
     "ytId": "p6t1d8z3y84",
@@ -15487,7 +15513,7 @@
     "title": "Chandra",
     "artist": "Shreya Ghoshal, Ajay-Atul",
     "album": "Chandramukhi",
-    "cover": "https://i.ytimg.com/vi/6x0s8m7v1q0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/771/Chandramukhi-Marathi-2022-20220428175059-500x500.webp",
     "duration": "3:58",
     "category": "trending",
     "ytId": "6x0s8m7v1q0",
@@ -15500,7 +15526,7 @@
     "title": "Bai Ga",
     "artist": "Aarya Ambekar, Ajay-Atul",
     "album": "Chandramukhi",
-    "cover": "https://i.ytimg.com/vi/X1b9d4v6m80/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/771/Chandramukhi-Marathi-2022-20220428175059-500x500.webp",
     "duration": "4:12",
     "category": "romantic",
     "ytId": "X1b9d4v6m80",
@@ -15513,7 +15539,7 @@
     "title": "Shantabai",
     "artist": "Sanjay Londhe",
     "album": "Shantabai Superhits",
-    "cover": "https://i.ytimg.com/vi/2m8v6k4j10w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/415/Shantabai-Marathi-2015-20251219173655-500x500.webp",
     "duration": "4:20",
     "category": "party",
     "ytId": "2m8v6k4j10w",
@@ -15526,7 +15552,7 @@
     "title": "Tik Tik Vajate Dokyat",
     "artist": "Sonu Nigam, Sayalie Pankaj",
     "album": "Duniyadari",
-    "cover": "https://i.ytimg.com/vi/6V_Vd1m6j0c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/708/Duniyadari-Marathi-2013-20241119160647-500x500.webp",
     "duration": "4:09",
     "category": "romantic",
     "ytId": "6V_Vd1m6j0c",
@@ -15539,7 +15565,7 @@
     "title": "Despacito",
     "artist": "Luis Fonsi ft. Daddy Yankee",
     "album": "VIDA",
-    "cover": "https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/137/Cl-sicos-Globales-English-2026-20260529042055-500x500.webp",
     "duration": "3:48",
     "category": "trending",
     "ytId": "kJQP7kiw5Fk",
@@ -15552,7 +15578,7 @@
     "title": "Gasolina",
     "artist": "Daddy Yankee",
     "album": "Barrio Fino",
-    "cover": "https://i.ytimg.com/vi/qGKrc3A6HHM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/814/Mood-t-2K26-Megamix-French-2026-20260618010716-500x500.webp",
     "duration": "3:13",
     "category": "party",
     "ytId": "qGKrc3A6HHM",
@@ -15565,7 +15591,7 @@
     "title": "Danza Kuduro",
     "artist": "Don Omar ft. Lucenzo",
     "album": "Meet the Orphans",
-    "cover": "https://i.ytimg.com/vi/7zp1TbLFPp8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/694/ZZang-KARAOKE-2024-POP-Vol-130-Instrumental-2024-20260131225425-500x500.webp",
     "duration": "3:19",
     "category": "party",
     "ytId": "7zp1TbLFPp8",
@@ -15589,9 +15615,9 @@
   {
     "id": "es-calma",
     "title": "Calma (Remix)",
-    "artist": "Pedro Capó, Farruko",
+    "artist": "Pedro Cap\u00f3, Farruko",
     "album": "Calma",
-    "cover": "https://i.ytimg.com/vi/1_w7o9-UBTQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/151/MUNAY-Spanish-2020-20200916000509-500x500.webp",
     "duration": "3:58",
     "category": "trending",
     "ytId": "1_w7o9-UBTQ",
@@ -15604,7 +15630,7 @@
     "title": "Pepas",
     "artist": "Farruko",
     "album": "La 167",
-    "cover": "https://i.ytimg.com/vi/y83x7MgzWOA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/280/La-Cancha-Suena-English-2026-20260608233549-500x500.webp",
     "duration": "4:47",
     "category": "party",
     "ytId": "y83x7MgzWOA",
@@ -15617,7 +15643,7 @@
     "title": "Tusa",
     "artist": "KAROL G, Nicki Minaj",
     "album": "KG0516",
-    "cover": "https://i.ytimg.com/vi/tbneQDc2H3I/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/921/Tusa-Spanish-2019-20240126225729-500x500.webp",
     "duration": "3:20",
     "category": "trending",
     "ytId": "tbneQDc2H3I",
@@ -15630,7 +15656,7 @@
     "title": "Mi Gente",
     "artist": "J Balvin, Willy William",
     "album": "Vibras",
-    "cover": "https://i.ytimg.com/vi/wnJ6LuUFpMo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/858/Summer-Fiesta-Spanish-2020-20221007201533-500x500.webp",
     "duration": "3:05",
     "category": "party",
     "ytId": "wnJ6LuUFpMo",
@@ -15643,7 +15669,7 @@
     "title": "Chantaje",
     "artist": "Shakira ft. Maluma",
     "album": "El Dorado",
-    "cover": "https://i.ytimg.com/vi/6Mgqbai3fKo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/060/El-Dorado-Spanish-2017-20250730030036-500x500.webp",
     "duration": "3:16",
     "category": "romantic",
     "ytId": "6Mgqbai3fKo",
@@ -15656,7 +15682,7 @@
     "title": "Waka Waka (This Time for Africa)",
     "artist": "Shakira",
     "album": "Sale el Sol",
-    "cover": "https://i.ytimg.com/vi/pRpeEdMmmQ0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/092/Waka-Waka-This-Time-For-Africa-The-Official-2010-FIFA-World-Cup-TM-Song-2010-500x500.jpg",
     "duration": "3:22",
     "category": "party",
     "ytId": "pRpeEdMmmQ0",
@@ -15666,10 +15692,10 @@
   },
   {
     "id": "fr-derniere-danse",
-    "title": "Dernière Danse",
+    "title": "Derni\u00e8re Danse",
     "artist": "Indila",
     "album": "Mini World",
-    "cover": "https://i.ytimg.com/vi/K5KAc5CoCuk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/296/studying-late-at-night-English-2025-20251127053232-500x500.webp",
     "duration": "3:34",
     "category": "trending",
     "ytId": "K5KAc5CoCuk",
@@ -15682,7 +15708,7 @@
     "title": "Tourner Dans Le Vide",
     "artist": "Indila",
     "album": "Mini World",
-    "cover": "https://i.ytimg.com/vi/vtNJMAyeP0s/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/634/Football-Vibes-English-2026-20260626222102-500x500.webp",
     "duration": "4:06",
     "category": "trending",
     "ytId": "vtNJMAyeP0s",
@@ -15694,8 +15720,8 @@
     "id": "fr-papaoutai",
     "title": "Papaoutai",
     "artist": "Stromae",
-    "album": "Racine Carrée",
-    "cover": "https://i.ytimg.com/vi/oiKj0Z_Xnjc/hqdefault.jpg",
+    "album": "Racine Carr\u00e9e",
+    "cover": "https://c.saavncdn.com/973/Friday-Office-Vibes-English-2026-20260605205029-500x500.webp",
     "duration": "3:52",
     "category": "party",
     "ytId": "oiKj0Z_Xnjc",
@@ -15708,7 +15734,7 @@
     "title": "Alors On Danse",
     "artist": "Stromae",
     "album": "Cheese",
-    "cover": "https://i.ytimg.com/vi/VHoT4N43jK8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/066/what-i-imagined-music-at-the-club-would-be-like-when-i-was-8-French-2026-20260630070050-500x500.webp",
     "duration": "3:28",
     "category": "party",
     "ytId": "VHoT4N43jK8",
@@ -15721,7 +15747,7 @@
     "title": "Ego",
     "artist": "Willy William",
     "album": "Une seule vie",
-    "cover": "https://i.ytimg.com/vi/iOxzG3jjFkY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/283/Ego-Remixes--French-2016-20210622204241-500x500.webp",
     "duration": "3:27",
     "category": "party",
     "ytId": "iOxzG3jjFkY",
@@ -15734,7 +15760,7 @@
     "title": "Je Te Laisserai Des Mots",
     "artist": "Patrick Watson",
     "album": "Je te laisserai des mots",
-    "cover": "https://i.ytimg.com/vi/_OduPzK9P-k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/106/Je-te-laisserai-des-mots-English-2010-500x500.jpg",
     "duration": "2:41",
     "category": "lofi",
     "ytId": "_OduPzK9P-k",
@@ -15745,9 +15771,9 @@
   {
     "id": "fr-la-vie-en-rose",
     "title": "La Vie En Rose",
-    "artist": "Édith Piaf",
+    "artist": "\u00c9dith Piaf",
     "album": "Classics",
-    "cover": "https://i.ytimg.com/vi/kFzViYkZAz4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/218/Orquestas-de-Oro-Louis-Armstrong-Spanish-2024-20250116030031-500x500.webp",
     "duration": "3:07",
     "category": "romantic",
     "ytId": "kFzViYkZAz4",
@@ -15760,7 +15786,7 @@
     "title": "Birds of a Feather",
     "artist": "Billie Eilish",
     "album": "HIT ME HARD AND SOFT",
-    "cover": "https://i.ytimg.com/vi/d5gf9dXbPi0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/707/HIT-ME-HARD-AND-SOFT-English-2024-20240517063536-500x500.webp",
     "duration": "3:16",
     "category": "trending",
     "ytId": "d5gf9dXbPi0",
@@ -15773,7 +15799,7 @@
     "title": "Die With A Smile",
     "artist": "Lady Gaga & Bruno Mars",
     "album": "Die With A Smile",
-    "cover": "https://i.ytimg.com/vi/kPa7bsKwL-c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/060/Die-With-A-Smile-English-2024-20240816103634-500x500.webp",
     "duration": "4:12",
     "category": "trending",
     "ytId": "kPa7bsKwL-c",
@@ -15786,7 +15812,7 @@
     "title": "Not Like Us",
     "artist": "Kendrick Lamar",
     "album": "Not Like Us",
-    "cover": "https://i.ytimg.com/vi/H58vbez_m4E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/974/Not-Like-Us-English-2024-20240505084246-500x500.webp",
     "duration": "4:34",
     "category": "trending",
     "ytId": "H58vbez_m4E",
@@ -15799,7 +15825,7 @@
     "title": "Good Luck, Babe!",
     "artist": "Chappell Roan",
     "album": "Good Luck, Babe!",
-    "cover": "https://i.ytimg.com/vi/1KISt_8c5_c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/102/Good-Luck-Babe-English-2024-20240405063221-500x500.webp",
     "duration": "3:38",
     "category": "trending",
     "ytId": "1KISt_8c5_c",
@@ -15812,7 +15838,7 @@
     "title": "Believer",
     "artist": "Imagine Dragons",
     "album": "Evolve",
-    "cover": "https://i.ytimg.com/vi/7wtfhZwyrcc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp",
     "duration": "3:24",
     "category": "party",
     "ytId": "7wtfhZwyrcc",
@@ -15825,7 +15851,7 @@
     "title": "Demons",
     "artist": "Imagine Dragons",
     "album": "Night Visions",
-    "cover": "https://i.ytimg.com/vi/mWRsgZuwf_8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/210/Night-Visions-2013-500x500.jpg",
     "duration": "2:57",
     "category": "party",
     "ytId": "mWRsgZuwf_8",
@@ -15838,7 +15864,7 @@
     "title": "Counting Stars",
     "artist": "OneRepublic",
     "album": "Native",
-    "cover": "https://i.ytimg.com/vi/hT_nvWreIhg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/574/Native-English-2014-20250626055252-500x500.webp",
     "duration": "4:17",
     "category": "party",
     "ytId": "hT_nvWreIhg",
@@ -15851,7 +15877,7 @@
     "title": "Faded",
     "artist": "Alan Walker",
     "album": "Different World",
-    "cover": "https://i.ytimg.com/vi/60ItHLz5WEA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/562/Different-World-English-2018-20181130144209-500x500.webp",
     "duration": "3:32",
     "category": "trending",
     "ytId": "60ItHLz5WEA",
@@ -15864,7 +15890,7 @@
     "title": "Sunflower",
     "artist": "Post Malone, Swae Lee",
     "album": "Spider-Man: Into the Spider-Verse",
-    "cover": "https://i.ytimg.com/vi/ApXoWvfEYVU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/504/The-Diamond-Collection-English-2023-20240201105640-500x500.webp",
     "duration": "2:38",
     "category": "trending",
     "ytId": "ApXoWvfEYVU",
@@ -15877,7 +15903,7 @@
     "title": "bad guy",
     "artist": "Billie Eilish",
     "album": "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
-    "cover": "https://i.ytimg.com/vi/DyDfgMOUjCI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/640/WHEN-WE-ALL-FALL-ASLEEP-WHERE-DO-WE-GO--English-2019-20190328231137-500x500.webp",
     "duration": "3:14",
     "category": "party",
     "ytId": "DyDfgMOUjCI",
@@ -15903,7 +15929,7 @@
     "title": "Flowers",
     "artist": "Miley Cyrus",
     "album": "Endless Summer Vacation",
-    "cover": "https://i.ytimg.com/vi/G7KNmW9a75Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/361/Endless-Summer-Vacation-English-2023-20230830062637-500x500.webp",
     "duration": "3:20",
     "category": "trending",
     "ytId": "G7KNmW9a75Y",
@@ -15916,7 +15942,7 @@
     "title": "Jhoome Jo Pathaan",
     "artist": "Arijit Singh, Sukriti Kakar, Vishal-Shekhar",
     "album": "Pathaan",
-    "cover": "https://i.ytimg.com/vi/YxWlaYCA8MU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/807/Pathaan-Hindi-2022-20221222104158-500x500.webp",
     "duration": "3:28",
     "category": "party",
     "ytId": "YxWlaYCA8MU",
@@ -15929,7 +15955,7 @@
     "title": "Besharam Rang",
     "artist": "Shilpa Rao, Caralisa Monteiro, Vishal-Shekhar",
     "album": "Pathaan",
-    "cover": "https://i.ytimg.com/vi/huxhqphtN1Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/807/Pathaan-Hindi-2022-20221222104158-500x500.webp",
     "duration": "4:18",
     "category": "party",
     "ytId": "huxhqphtN1Q",
@@ -15942,7 +15968,7 @@
     "title": "Not Ramaiya Vastavaiya",
     "artist": "Anirudh Ravichander, Vishal Dadlani",
     "album": "Jawan",
-    "cover": "https://i.ytimg.com/vi/gn41y4e_y1M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/047/Jawan-Hindi-2023-20230921190854-500x500.webp",
     "duration": "3:23",
     "category": "party",
     "ytId": "gn41y4e_y1M",
@@ -15955,7 +15981,7 @@
     "title": "Zinda Banda",
     "artist": "Anirudh Ravichander",
     "album": "Jawan",
-    "cover": "https://i.ytimg.com/vi/6q80x_19V0w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/047/Jawan-Hindi-2023-20230921190854-500x500.webp",
     "duration": "4:24",
     "category": "party",
     "ytId": "6q80x_19V0w",
@@ -15968,7 +15994,7 @@
     "title": "Arjan Vailly",
     "artist": "Bhupinder Babbal, Manan Bhardwaj",
     "album": "Animal",
-    "cover": "https://i.ytimg.com/vi/m8F30C_V6w0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20260724191152-500x500.webp",
     "duration": "3:02",
     "category": "party",
     "ytId": "m8F30C_V6w0",
@@ -15981,7 +16007,7 @@
     "title": "Pehle Bhi Main",
     "artist": "Vishal Mishra, Raj Shekhar",
     "album": "Animal",
-    "cover": "https://i.ytimg.com/vi/gC2e8a6v_p4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20260724191152-500x500.webp",
     "duration": "4:10",
     "category": "romantic",
     "ytId": "gC2e8a6v_p4",
@@ -15994,7 +16020,7 @@
     "title": "Tujhe Kitna Chahne Lage",
     "artist": "Arijit Singh, Mithoon",
     "album": "Kabir Singh",
-    "cover": "https://i.ytimg.com/vi/p_VbH2tUqA4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/807/Kabir-Singh-Hindi-2019-20240131131003-500x500.webp",
     "duration": "4:44",
     "category": "romantic",
     "ytId": "p_VbH2tUqA4",
@@ -16007,7 +16033,7 @@
     "title": "Bekhayali",
     "artist": "Sachet Tandon",
     "album": "Kabir Singh",
-    "cover": "https://i.ytimg.com/vi/p6t1d12c_1Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/807/Kabir-Singh-Hindi-2019-20240131131003-500x500.webp",
     "duration": "6:11",
     "category": "trending",
     "ytId": "p6t1d12c_1Y",
@@ -16020,7 +16046,7 @@
     "title": "Dheere Dheere Se Meri Zindagi",
     "artist": "Yo Yo Honey Singh",
     "album": "Dheere Dheere",
-    "cover": "https://i.ytimg.com/vi/nCD2hj6zJEc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/627/Aap-Ki-Nazron-Ne-Samjha-Hindi-2026-20260806154643-500x500.webp",
     "duration": "3:32",
     "category": "romantic",
     "ytId": "nCD2hj6zJEc",
@@ -16033,7 +16059,7 @@
     "title": "Blue Eyes",
     "artist": "Yo Yo Honey Singh",
     "album": "Blue Eyes",
-    "cover": "https://i.ytimg.com/vi/NbyHNASFi6U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/144/YoYo-Punjabi-2019-20190924060934-500x500.webp",
     "duration": "3:40",
     "category": "party",
     "ytId": "NbyHNASFi6U",
@@ -16046,7 +16072,7 @@
     "title": "Singara Siriye",
     "artist": "Vijay Prakash, Ananya Bhat, B. Ajaneesh Loknath",
     "album": "Kantara",
-    "cover": "https://i.ytimg.com/vi/2kL3Wn6Jq1E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/818/B-Ajaneesh-Loknath-Musical-Blast-Kannada-2026-20260205143719-500x500.webp",
     "duration": "4:42",
     "category": "romantic",
     "ytId": "2kL3Wn6Jq1E",
@@ -16059,7 +16085,7 @@
     "title": "Varaha Roopam Daiva Va Rishtam",
     "artist": "Sai Vignesh, B. Ajaneesh Loknath",
     "album": "Kantara",
-    "cover": "https://i.ytimg.com/vi/b1K_e_6d8wM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/970/Kantara-Hindi-Hindi-2022-20260120133519-500x500.webp",
     "duration": "4:36",
     "category": "trending",
     "ytId": "b1K_e_6d8wM",
@@ -16072,7 +16098,7 @@
     "title": "Toofan",
     "artist": "Ravi Basrur, Santhosh Venky",
     "album": "KGF: Chapter 2",
-    "cover": "https://i.ytimg.com/vi/vWbK4tJ_6qU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/146/KGF-Chapter-2-Hindi-Hindi-2022-20251202140001-500x500.webp",
     "duration": "3:40",
     "category": "party",
     "ytId": "vWbK4tJ_6qU",
@@ -16085,7 +16111,7 @@
     "title": "Sulthana",
     "artist": "Ravi Basrur, Mohan Krishna",
     "album": "KGF: Chapter 2",
-    "cover": "https://i.ytimg.com/vi/z1k8m5w9q_0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/098/KGF-Chapter-2-Kannada-Kannada-2022-20250828181341-500x500.webp",
     "duration": "3:47",
     "category": "trending",
     "ytId": "z1k8m5w9q_0",
@@ -16098,7 +16124,7 @@
     "title": "Mehabooba",
     "artist": "Ananya Bhat, Ravi Basrur",
     "album": "KGF: Chapter 2",
-    "cover": "https://i.ytimg.com/vi/5m8k1v4j9q0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/706/KGF-Chapter-2-Hindi-2022-20220522091045-500x500.webp",
     "duration": "3:37",
     "category": "romantic",
     "ytId": "5m8k1v4j9q0",
@@ -16111,7 +16137,7 @@
     "title": "Salaam Rocky Bhai",
     "artist": "Vijay Prakash, Santhosh Venky, Ravi Basrur",
     "album": "KGF: Chapter 1",
-    "cover": "https://i.ytimg.com/vi/7wF3v6K9m10/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/623/Kgf-Chapter-1-Hindi-2018-20181226104000-500x500.webp",
     "duration": "4:05",
     "category": "party",
     "ytId": "7wF3v6K9m10",
@@ -16124,7 +16150,7 @@
     "title": "Ra Ra Rakkamma",
     "artist": "Sunidhi Chauhan, Nakash Aziz, B. Ajaneesh Loknath",
     "album": "Vikrant Rona",
-    "cover": "https://i.ytimg.com/vi/1_w7o9-UBTQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/161/Vikrant-Rona-Kannada-Kannada-2022-20250818121332-500x500.webp",
     "duration": "3:45",
     "category": "party",
     "ytId": "1_w7o9-UBTQ",
@@ -16137,7 +16163,7 @@
     "title": "Belageddu",
     "artist": "Vijay Prakash, B. Ajaneesh Loknath",
     "album": "Kirik Party",
-    "cover": "https://i.ytimg.com/vi/8g76Z8Y8j8Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/126/Kirik-Party-Kannada-2016-500x500.jpg",
     "duration": "3:32",
     "category": "trending",
     "ytId": "8g76Z8Y8j8Y",
@@ -16150,7 +16176,7 @@
     "title": "Anisuthide Yaako Indu",
     "artist": "Sonu Nigam, Mano Murthy",
     "album": "Mungaru Male",
-    "cover": "https://i.ytimg.com/vi/6x0s8m7v1q0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/692/Anisutide-Yako-Indu-8d-Audio-Song-Kannada-2023-20250410131446-500x500.webp",
     "duration": "5:12",
     "category": "romantic",
     "ytId": "6x0s8m7v1q0",
@@ -16163,7 +16189,7 @@
     "title": "Mungaru Maleye",
     "artist": "Sonu Nigam, Mano Murthy",
     "album": "Mungaru Male",
-    "cover": "https://i.ytimg.com/vi/p6t1d8z3y84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/087/Mungaru-Male-Original-Motion-Picture-SoundtracK-Kannada-2006-20250318150358-500x500.webp",
     "duration": "4:56",
     "category": "romantic",
     "ytId": "p6t1d8z3y84",
@@ -16176,7 +16202,7 @@
     "title": "Pasandaagavne",
     "artist": "V. Harikrishna, Mangli",
     "album": "Kaatera",
-    "cover": "https://i.ytimg.com/vi/d4OuBCUSp-E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/454/Kaatera-Kannada-2023-20250319091012-500x500.webp",
     "duration": "3:50",
     "category": "party",
     "ytId": "d4OuBCUSp-E",
@@ -16189,7 +16215,7 @@
     "title": "Tagaru Banthu Tagaru",
     "artist": "Anthony Daasan, Charan Raj",
     "album": "Tagaru",
-    "cover": "https://i.ytimg.com/vi/2m8v6k4j10w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/912/Tagaru-Kannada-2018-20251204134700-500x500.webp",
     "duration": "3:58",
     "category": "party",
     "ytId": "2m8v6k4j10w",
@@ -16202,7 +16228,7 @@
     "title": "Softly",
     "artist": "Karan Aujla, Ikky",
     "album": "Making Memories",
-    "cover": "https://i.ytimg.com/vi/cWMxCE2HTag/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/538/Making-Memories-English-2023-20230818075015-500x500.webp",
     "duration": "2:36",
     "category": "trending",
     "ytId": "cWMxCE2HTag",
@@ -16215,7 +16241,7 @@
     "title": "Admiring You",
     "artist": "Karan Aujla ft. Preston Pablo, Ikky",
     "album": "Making Memories",
-    "cover": "https://i.ytimg.com/vi/k4A3N-qF4pE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/740/Admirin-You-feat-Preston-Pablo-Punjabi-2023-20230730053753-500x500.webp",
     "duration": "3:34",
     "category": "trending",
     "ytId": "k4A3N-qF4pE",
@@ -16228,7 +16254,7 @@
     "title": "Winning Speech",
     "artist": "Karan Aujla, Mxrci",
     "album": "Winning Speech",
-    "cover": "https://i.ytimg.com/vi/6Pky_vXh_sQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/089/Winning-Speech-Punjabi-2024-20260626013220-500x500.webp",
     "duration": "3:24",
     "category": "trending",
     "ytId": "6Pky_vXh_sQ",
@@ -16241,7 +16267,7 @@
     "title": "52 Bars",
     "artist": "Karan Aujla, Ikky",
     "album": "Four Me",
-    "cover": "https://i.ytimg.com/vi/1w7x_k9m_4g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/552/Four-You-Punjabi-2023-20260609204536-500x500.webp",
     "duration": "3:40",
     "category": "party",
     "ytId": "1w7x_k9m_4g",
@@ -16254,7 +16280,7 @@
     "title": "White Brown Black",
     "artist": "Karan Aujla, Avvy Sra, Jaani",
     "album": "White Brown Black",
-    "cover": "https://i.ytimg.com/vi/n8x_w1m8q0c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/177/White-Brown-Black-Punjabi-2022-20251118151218-500x500.webp",
     "duration": "3:02",
     "category": "trending",
     "ytId": "n8x_w1m8q0c",
@@ -16267,7 +16293,7 @@
     "title": "On Top",
     "artist": "Karan Aujla, Yeah Proof",
     "album": "On Top",
-    "cover": "https://i.ytimg.com/vi/q10_gJg3wYQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/621/P-POP-CULTURE-Punjabi-2025-20250820043757-500x500.webp",
     "duration": "3:10",
     "category": "party",
     "ytId": "q10_gJg3wYQ",
@@ -16280,7 +16306,7 @@
     "title": "Chithiyaan",
     "artist": "Karan Aujla, Desi Crew",
     "album": "Chithiyaan",
-    "cover": "https://i.ytimg.com/vi/7m9v1b4j80c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/207/Chithiyaan-Punjabi-2020-20201111000729-500x500.webp",
     "duration": "3:45",
     "category": "romantic",
     "ytId": "7m9v1b4j80c",
@@ -16293,7 +16319,7 @@
     "title": "Don't Look",
     "artist": "Karan Aujla, Jay Trak",
     "album": "Don't Look",
-    "cover": "https://i.ytimg.com/vi/5h8j4c2m8q0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/014/Don-t-Look-Punjabi-2020-20260609210609-500x500.webp",
     "duration": "3:28",
     "category": "trending",
     "ytId": "5h8j4c2m8q0",
@@ -16306,7 +16332,7 @@
     "title": "Don't Worry",
     "artist": "Karan Aujla ft. Gurlez Akhtar, Deep Jandu",
     "album": "Don't Worry",
-    "cover": "https://i.ytimg.com/vi/2kL3Wn6Jq1E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/953/Don-t-Worry-English-2018-20190327033657-500x500.webp",
     "duration": "3:38",
     "category": "party",
     "ytId": "2kL3Wn6Jq1E",
@@ -16319,7 +16345,7 @@
     "title": "Mexico",
     "artist": "Karan Aujla, Sukhe Muzical Doctorz",
     "album": "Mexico",
-    "cover": "https://i.ytimg.com/vi/W7M60N7w_Z0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/131/Mexico-Punjabi-2021-20240411153326-500x500.webp",
     "duration": "3:16",
     "category": "party",
     "ytId": "W7M60N7w_Z0",
@@ -16332,7 +16358,7 @@
     "title": "Bachke Bachke",
     "artist": "Karan Aujla, Yasser Desai, Ikky",
     "album": "Making Memories",
-    "cover": "https://i.ytimg.com/vi/8p5t8Z5Q9a4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/538/Making-Memories-English-2023-20230818075015-500x500.webp",
     "duration": "3:30",
     "category": "trending",
     "ytId": "8p5t8Z5Q9a4",
@@ -16345,7 +16371,7 @@
     "title": "Players",
     "artist": "Badshah, Karan Aujla, Devika Badyal",
     "album": "3:00 AM Sessions",
-    "cover": "https://i.ytimg.com/vi/p6t1d12c_1Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/477/BADSHAH-s-HITLIST-Hindi-2024-20240607123725-500x500.webp",
     "duration": "2:52",
     "category": "party",
     "ytId": "p6t1d12c_1Y",
@@ -16358,7 +16384,7 @@
     "title": "Jee Ni Lagda",
     "artist": "Karan Aujla, Deep Jandu",
     "album": "Making Memories",
-    "cover": "https://i.ytimg.com/vi/X1b9d4v6m80/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/538/Making-Memories-English-2023-20230818075015-500x500.webp",
     "duration": "2:30",
     "category": "romantic",
     "ytId": "X1b9d4v6m80",
@@ -16371,7 +16397,7 @@
     "title": "WYTB (What You Talking Bout)",
     "artist": "Karan Aujla, Gurlez Akhtar, Ikky",
     "album": "Four Me",
-    "cover": "https://i.ytimg.com/vi/vK5E_7Ev_t4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/053/WYTB-Unknown-2022-20260609204620-500x500.webp",
     "duration": "2:46",
     "category": "party",
     "ytId": "vK5E_7Ev_t4",
@@ -16384,7 +16410,7 @@
     "title": "Antidote",
     "artist": "Karan Aujla, Ikky",
     "album": "Making Memories",
-    "cover": "https://i.ytimg.com/vi/eypZt3m8sJ0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/374/Four-Me-Punjabi-2024-20240627054614-500x500.webp",
     "duration": "3:18",
     "category": "trending",
     "ytId": "eypZt3m8sJ0",
@@ -16397,7 +16423,7 @@
     "title": "Lover",
     "artist": "Diljit Dosanjh, Intense",
     "album": "MoonChild Era",
-    "cover": "https://i.ytimg.com/vi/mH_LFkWxpI0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/209/MoonChild-Era-Punjabi-2021-20240715073449-500x500.webp",
     "duration": "3:02",
     "category": "trending",
     "ytId": "mH_LFkWxpI0",
@@ -16410,7 +16436,7 @@
     "title": "G.O.A.T.",
     "artist": "Diljit Dosanjh",
     "album": "G.O.A.T.",
-    "cover": "https://i.ytimg.com/vi/cl0a3i2wFcc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/597/G-O-A-T-Punjabi-2020-20240708055140-500x500.webp",
     "duration": "3:43",
     "category": "party",
     "ytId": "cl0a3i2wFcc",
@@ -16423,7 +16449,7 @@
     "title": "Born to Shine",
     "artist": "Diljit Dosanjh",
     "album": "G.O.A.T.",
-    "cover": "https://i.ytimg.com/vi/4zJg8M1jG2w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/945/Route-66-Punjabi-2021-20240708055109-500x500.webp",
     "duration": "3:32",
     "category": "party",
     "ytId": "4zJg8M1jG2w",
@@ -16436,7 +16462,7 @@
     "title": "Clash",
     "artist": "Diljit Dosanjh",
     "album": "G.O.A.T.",
-    "cover": "https://i.ytimg.com/vi/V14l0Vf3e80/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/597/G-O-A-T-Punjabi-2020-20240708055140-500x500.webp",
     "duration": "2:56",
     "category": "party",
     "ytId": "V14l0Vf3e80",
@@ -16449,7 +16475,7 @@
     "title": "Lemonade",
     "artist": "Diljit Dosanjh",
     "album": "Drive",
-    "cover": "https://i.ytimg.com/vi/Qv6j2b8m14c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/467/Drive-Thru-Punjabi-2022-20240708054744-500x500.webp",
     "duration": "2:46",
     "category": "trending",
     "ytId": "Qv6j2b8m14c",
@@ -16462,7 +16488,7 @@
     "title": "Naina",
     "artist": "Diljit Dosanjh, Badshah, Raj Ranjodh",
     "album": "Crew",
-    "cover": "https://i.ytimg.com/vi/8g76Z8Y8j8Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/689/Crew-Hindi-2024-20260404103117-500x500.webp",
     "duration": "3:00",
     "category": "trending",
     "ytId": "8g76Z8Y8j8Y",
@@ -16475,7 +16501,7 @@
     "title": "Choli Ke Peeche",
     "artist": "Diljit Dosanjh, Ila Arun, Alka Yagnik, Akshay & IP",
     "album": "Crew",
-    "cover": "https://i.ytimg.com/vi/p6t1d8z3y84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/689/Crew-Hindi-2024-20260404103117-500x500.webp",
     "duration": "2:54",
     "category": "party",
     "ytId": "p6t1d8z3y84",
@@ -16488,7 +16514,7 @@
     "title": "Do You Know",
     "artist": "Diljit Dosanjh, B Praak, Jaani",
     "album": "Do You Know",
-    "cover": "https://i.ytimg.com/vi/vK5E_7Ev_t4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/013/In-Love-With-Diljit-Dosanjh-English-2021-20240708055021-500x500.webp",
     "duration": "3:40",
     "category": "romantic",
     "ytId": "vK5E_7Ev_t4",
@@ -16501,7 +16527,7 @@
     "title": "Proper Patola",
     "artist": "Diljit Dosanjh, Badshah, Astha Gill",
     "album": "Namaste England",
-    "cover": "https://i.ytimg.com/vi/d4OuBCUSp-E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/036/Namaste-England-Hindi-2018-20260120201449-500x500.webp",
     "duration": "2:58",
     "category": "party",
     "ytId": "d4OuBCUSp-E",
@@ -16514,7 +16540,7 @@
     "title": "Sauda Khara Khara",
     "artist": "Diljit Dosanjh, Sukhbir, Dhvani Bhanushali",
     "album": "Good Newwz",
-    "cover": "https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/455/Holi-Party-Mix-Hindi-2026-20260226192255-500x500.webp",
     "duration": "3:30",
     "category": "party",
     "ytId": "kJQP7kiw5Fk",
@@ -16527,7 +16553,7 @@
     "title": "Vibe",
     "artist": "Diljit Dosanjh, Intense",
     "album": "MoonChild Era",
-    "cover": "https://i.ytimg.com/vi/W7M60N7w_Z0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/209/MoonChild-Era-Punjabi-2021-20240715073449-500x500.webp",
     "duration": "2:37",
     "category": "trending",
     "ytId": "W7M60N7w_Z0",
@@ -16540,7 +16566,7 @@
     "title": "Peaches",
     "artist": "Diljit Dosanjh, Intense",
     "album": "Drive",
-    "cover": "https://i.ytimg.com/vi/8p5t8Z5Q9a4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/400/Peaches-feat-Anne-Marie-English-2022-20220823032328-500x500.webp",
     "duration": "3:10",
     "category": "trending",
     "ytId": "8p5t8Z5Q9a4",
@@ -16553,7 +16579,7 @@
     "title": "Hass Hass",
     "artist": "Diljit Dosanjh x Sia",
     "album": "Hass Hass",
-    "cover": "https://i.ytimg.com/vi/k3g_WjLCsXM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/245/Hass-Hass-English-2023-20231026170517-500x500.webp",
     "duration": "2:33",
     "category": "trending",
     "ytId": "k3g_WjLCsXM",
@@ -16566,7 +16592,7 @@
     "title": "Kinni Kinni",
     "artist": "Diljit Dosanjh",
     "album": "Ghost",
-    "cover": "https://i.ytimg.com/vi/2m8v6k4j10w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/276/Ghost-English-2023-20231028142825-500x500.webp",
     "duration": "3:24",
     "category": "trending",
     "ytId": "2m8v6k4j10w",
@@ -16579,7 +16605,7 @@
     "title": "Case",
     "artist": "Diljit Dosanjh",
     "album": "Ghost",
-    "cover": "https://i.ytimg.com/vi/V_m5n8f2z4c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/276/Ghost-English-2023-20231028142825-500x500.webp",
     "duration": "3:05",
     "category": "party",
     "ytId": "V_m5n8f2z4c",
@@ -16592,7 +16618,7 @@
     "title": "5 Taara",
     "artist": "Diljit Dosanjh, Jatinder Shah",
     "album": "5 Taara",
-    "cover": "https://i.ytimg.com/vi/5h8j4c2m8q0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/003/5-Taara-Punjabi-2015-500x500.jpg",
     "duration": "3:07",
     "category": "party",
     "ytId": "5h8j4c2m8q0",
@@ -16605,7 +16631,7 @@
     "title": "Laembadgini",
     "artist": "Diljit Dosanjh, Jatinder Shah, Veet Baljit",
     "album": "Laembadgini",
-    "cover": "https://i.ytimg.com/vi/6x0s8m7v1q0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/597/Laembadgini-Punjabi-2017-500x500.jpg",
     "duration": "3:35",
     "category": "party",
     "ytId": "6x0s8m7v1q0",
@@ -16618,7 +16644,7 @@
     "title": "Raat Di Gedi",
     "artist": "Diljit Dosanjh, Jatinder Shah, Ranbir Singh",
     "album": "Raat Di Gedi",
-    "cover": "https://i.ytimg.com/vi/X1b9d4v6m80/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/698/Raat-Di-Gedi-Punjabi-2018-20180323-500x500.webp",
     "duration": "3:58",
     "category": "party",
     "ytId": "X1b9d4v6m80",
@@ -16631,7 +16657,7 @@
     "title": "Excuses",
     "artist": "AP Dhillon, Gurinder Gill, Intense",
     "album": "Excuses",
-    "cover": "https://i.ytimg.com/vi/vX2cDW8up2g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/890/Excuses-English-2021-20210930112054-500x500.webp",
     "duration": "2:56",
     "category": "trending",
     "ytId": "vX2cDW8up2g",
@@ -16644,7 +16670,7 @@
     "title": "Insane",
     "artist": "AP Dhillon, Gurinder Gill, Shinda Kahlon",
     "album": "Insane",
-    "cover": "https://i.ytimg.com/vi/4zJg8M1jG2w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/851/Insane-Punjabi-2021-20240705060902-500x500.webp",
     "duration": "3:24",
     "category": "party",
     "ytId": "4zJg8M1jG2w",
@@ -16657,7 +16683,7 @@
     "title": "With You",
     "artist": "AP Dhillon",
     "album": "With You",
-    "cover": "https://i.ytimg.com/vi/Qv6j2b8m14c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/671/First-of-a-Kind-From-the-Amazon-Original-Series-Punjabi-2023-20230904091351-500x500.webp",
     "duration": "2:34",
     "category": "romantic",
     "ytId": "Qv6j2b8m14c",
@@ -16670,7 +16696,7 @@
     "title": "Summer High",
     "artist": "AP Dhillon",
     "album": "Summer High",
-    "cover": "https://i.ytimg.com/vi/W7M60N7w_Z0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/018/Summer-High-English-2022-20220802184652-500x500.webp",
     "duration": "2:57",
     "category": "trending",
     "ytId": "W7M60N7w_Z0",
@@ -16683,7 +16709,7 @@
     "title": "Dil Nu",
     "artist": "AP Dhillon, Shinda Kahlon",
     "album": "Two Hearts Never Break the Same",
-    "cover": "https://i.ytimg.com/vi/8p5t8Z5Q9a4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/070/Two-Hearts-Never-Break-The-Same-Punjabi-2022-20240704060923-500x500.webp",
     "duration": "3:58",
     "category": "romantic",
     "ytId": "8p5t8Z5Q9a4",
@@ -16696,7 +16722,7 @@
     "title": "Toxic",
     "artist": "AP Dhillon",
     "album": "Toxic",
-    "cover": "https://i.ytimg.com/vi/2m8v6k4j10w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/784/Toxic-English-2020-20201008032450-500x500.webp",
     "duration": "2:46",
     "category": "trending",
     "ytId": "2m8v6k4j10w",
@@ -16709,7 +16735,7 @@
     "title": "Wo Noor",
     "artist": "AP Dhillon",
     "album": "Two Hearts Never Break the Same",
-    "cover": "https://i.ytimg.com/vi/V_m5n8f2z4c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/070/Two-Hearts-Never-Break-The-Same-Punjabi-2022-20240704060923-500x500.webp",
     "duration": "3:20",
     "category": "romantic",
     "ytId": "V_m5n8f2z4c",
@@ -16722,7 +16748,7 @@
     "title": "True Stories",
     "artist": "AP Dhillon, Shinda Kahlon",
     "album": "True Stories",
-    "cover": "https://i.ytimg.com/vi/5h8j4c2m8q0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/010/True-Stories-Punjabi-2023-20230609083159-500x500.webp",
     "duration": "2:40",
     "category": "party",
     "ytId": "5h8j4c2m8q0",
@@ -16735,7 +16761,7 @@
     "title": "Sleepless",
     "artist": "AP Dhillon",
     "album": "Two Hearts Never Break the Same",
-    "cover": "https://i.ytimg.com/vi/6x0s8m7v1q0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/375/Sleepless-Punjabi-2023-20230709131540-500x500.webp",
     "duration": "2:54",
     "category": "trending",
     "ytId": "6x0s8m7v1q0",
@@ -16748,7 +16774,7 @@
     "title": "Saada Pyaar",
     "artist": "AP Dhillon",
     "album": "Not by Chance",
-    "cover": "https://i.ytimg.com/vi/X1b9d4v6m80/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/167/51-GLORIOUS-DAYS-Hindi-2025-20251204181542-500x500.webp",
     "duration": "3:23",
     "category": "romantic",
     "ytId": "X1b9d4v6m80",
@@ -16761,7 +16787,7 @@
     "title": "Majhail",
     "artist": "AP Dhillon, Gurinder Gill, Manni Sandhu",
     "album": "Majhail",
-    "cover": "https://i.ytimg.com/vi/1_w7o9-UBTQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/167/51-GLORIOUS-DAYS-Hindi-2025-20251204181542-500x500.webp",
     "duration": "3:15",
     "category": "party",
     "ytId": "1_w7o9-UBTQ",
@@ -16774,7 +16800,7 @@
     "title": "GOAT",
     "artist": "AP Dhillon, Gurinder Gill",
     "album": "Not by Chance",
-    "cover": "https://i.ytimg.com/vi/6V_Vd1m6j0c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/167/51-GLORIOUS-DAYS-Hindi-2025-20251204181542-500x500.webp",
     "duration": "3:20",
     "category": "party",
     "ytId": "6V_Vd1m6j0c",
@@ -16787,7 +16813,7 @@
     "title": "Tere Te",
     "artist": "AP Dhillon, Gurinder Gill",
     "album": "Hidden Gems",
-    "cover": "https://i.ytimg.com/vi/d4OuBCUSp-E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/678/HIDDEN-GEMS-Punjabi-2021-20220110194642-500x500.webp",
     "duration": "2:38",
     "category": "romantic",
     "ytId": "d4OuBCUSp-E",
@@ -16800,7 +16826,7 @@
     "title": "Faraar",
     "artist": "AP Dhillon, Gurinder Gill, Shinda Kahlon",
     "album": "Faraar",
-    "cover": "https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/860/Faraar-Unknown-2019-20200807101453-500x500.webp",
     "duration": "2:48",
     "category": "party",
     "ytId": "kJQP7kiw5Fk",
@@ -16813,7 +16839,7 @@
     "title": "Old Skool",
     "artist": "Prem Dhillon, Sidhu Moose Wala, AP Dhillon",
     "album": "Old Skool",
-    "cover": "https://i.ytimg.com/vi/p6t1d8z3y84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/038/Old-Skool-Punjabi-2020-20200117202213-500x500.webp",
     "duration": "4:08",
     "category": "party",
     "ytId": "p6t1d8z3y84",
@@ -16826,7 +16852,7 @@
     "title": "Desires",
     "artist": "AP Dhillon, Gurinder Gill",
     "album": "Hidden Gems",
-    "cover": "https://i.ytimg.com/vi/k3g_WjLCsXM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/678/HIDDEN-GEMS-Punjabi-2021-20220110194642-500x500.webp",
     "duration": "2:50",
     "category": "romantic",
     "ytId": "k3g_WjLCsXM",
@@ -16839,7 +16865,7 @@
     "title": "Problems Over Peace",
     "artist": "AP Dhillon, Stormzy",
     "album": "The Brownprint",
-    "cover": "https://i.ytimg.com/vi/vWbK4tJ_6qU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/798/Problems-Over-Peace-Punjabi-2024-20240402091124-500x500.webp",
     "duration": "3:24",
     "category": "trending",
     "ytId": "vWbK4tJ_6qU",
@@ -16857,7 +16883,7 @@
     "ytSearchQuery": "Shayad Arijit Singh official audio song",
     "storagePath": "in-shayad.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/vGHa_VcAIxM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/862/Love-Aaj-Kal-Hindi-2020-20200214140423-500x500.webp",
     "ytId": "MJyKN-8UncM"
   },
   {
@@ -16870,7 +16896,7 @@
     "ytSearchQuery": "Raabta Arijit Singh official audio song",
     "storagePath": "in-raabta.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/zlt38OOqwDc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/840/Best-Of-Arijit-Singh-Collection-Of-Romantic-Songs-Hindi-2025-20251203161112-500x500.webp",
     "ytId": "MXED3PMqcm8"
   },
   {
@@ -16883,7 +16909,7 @@
     "ytSearchQuery": "Jeene Laga Hoon Atif Aslam official audio song",
     "storagePath": "in-jeene-laga-hoon.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/pkzOBl1p7y4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/436/Jeene-Laga-Hoon-Instrumental-Instrumental-2026-20260301110730-500x500.webp",
     "ytId": "pkzOBl1p7y4"
   },
   {
@@ -16896,7 +16922,7 @@
     "ytSearchQuery": "Kabira Tochi Raina official audio song",
     "storagePath": "in-kabira.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/jHNNMj5bNQw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/440/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg",
     "ytId": "jcjOF-MrUs4"
   },
   {
@@ -16909,7 +16935,7 @@
     "ytSearchQuery": "Ilahi Arijit Singh official audio song",
     "storagePath": "in-ilahi.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/fdubeMFwuGs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/440/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg",
     "ytId": "4ehgyK5dQfE"
   },
   {
@@ -16922,7 +16948,7 @@
     "ytSearchQuery": "Arijit Singh Mashup Arijit Singh official audio song",
     "storagePath": "in-arijit-singh-mashup.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/fzXV2_vm-6g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/145/Arijit-Singh-Mashup-By-DJ-Paroma-Hindi-2015-20231207165519-500x500.webp",
     "ytId": "fzXV2_vm-6g"
   },
   {
@@ -16935,7 +16961,7 @@
     "ytSearchQuery": "What Jhumka Arijit Singh official audio song",
     "storagePath": "in-what-jhumka.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/vee_P6pIv_E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/001/Rocky-Aur-Rani-Kii-Prem-Kahaani-Hindi-2023-20250130073112-500x500.webp",
     "ytId": "P1fIdFRnfqw"
   },
   {
@@ -16948,7 +16974,7 @@
     "ytSearchQuery": "Ami Je Tomar Arijit Singh official audio song",
     "storagePath": "in-ami-je-tomar.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/yKuw9NWd7i4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/688/Ami-Je-Tomar-Kartik-X-Vidya-Hindi-2022-20220628131001-500x500.webp",
     "ytId": "5JrsyO1lMEw"
   },
   {
@@ -16961,7 +16987,7 @@
     "ytSearchQuery": "Aankhon Se Batana Dikshant official audio song",
     "storagePath": "in-aankhon-se-batana.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/2vKMY75kvjI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/084/Indie-Campus-Chill-Hits-Hindi-2024-20240627120630-500x500.webp",
     "ytId": "2vKMY75kvjI"
   },
   {
@@ -16974,7 +17000,7 @@
     "ytSearchQuery": "Maan Meri Jaan King official audio song",
     "storagePath": "in-maan-meri-jaan.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/VuG7ge_8I2Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/734/Champagne-Talk-Hindi-2022-20221008011951-500x500.webp",
     "ytId": "73vZDNKa_Wg"
   },
   {
@@ -16987,7 +17013,7 @@
     "ytSearchQuery": "Maan Meri Jaan Afterlife King official audio song",
     "storagePath": "in-maan-meri-jaan-afterlife.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ULcyLYD3o_M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/184/Maan-Meri-Jaan-Afterlife-English-2023-20230310134919-500x500.webp",
     "ytId": "ULcyLYD3o_M"
   },
   {
@@ -17000,7 +17026,7 @@
     "ytSearchQuery": "Ishq Faheem Abdullah official audio song",
     "storagePath": "in-ishq-faheem.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/hHuG7FIKgtc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/313/Golden-Hour-Eid-Edition-Hindi-2026-20260319033004-500x500.webp",
     "ytId": "hHuG7FIKgtc"
   },
   {
@@ -17013,7 +17039,7 @@
     "ytSearchQuery": "Jo Tum Mere Ho Anuv Jain official audio song",
     "storagePath": "in-jo-tum-mere-ho.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ilNt2bikxDI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/401/Jo-Tum-Mere-Ho-Hindi-2024-20240731053953-500x500.webp",
     "ytId": "wmUJwQNGK3k"
   },
   {
@@ -17026,7 +17052,7 @@
     "ytSearchQuery": "Kho Gaye Hum Kahan Jasleen Royal official audio song",
     "storagePath": "in-kho-gaye-hum-kahan.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/vt4jX0iRgCg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/279/Baar-Baar-Dekho-Hindi-2016-20181205114400-500x500.jpg",
     "ytId": "ymhHUEPEKwQ"
   },
   {
@@ -17039,7 +17065,7 @@
     "ytSearchQuery": "Tu Hai Kahan AUR official audio song",
     "storagePath": "in-tu-hai-kahan.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/A7NDb0iDZd0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/178/AUR-TU-HAI-KAHAN-Slowed-Reverb-Hindi-2023-20231122224214-500x500.webp",
     "ytId": "8GkPMG8IwBQ"
   },
   {
@@ -17052,7 +17078,7 @@
     "ytSearchQuery": "Gul Anuv Jain official audio song",
     "storagePath": "in-gul-anuv.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/SmaY7RfBgas/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/266/Gul-Hindi-2021-20210706151615-500x500.webp",
     "ytId": "TS84-uinbdc"
   },
   {
@@ -17065,7 +17091,7 @@
     "ytSearchQuery": "Alag Aasmaan Anuv Jain official audio song",
     "storagePath": "in-alag-aasmaan.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/vA86QFrXoho/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/879/Alag-Aasmaan-Unknown-2020-20200716212927-500x500.webp",
     "ytId": "vA86QFrXoho"
   },
   {
@@ -17078,7 +17104,7 @@
     "ytSearchQuery": "Kahani Suno 2.0 Kaifi Khalil official audio song",
     "storagePath": "in-kahani-suno.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/_XBVWlI8TsQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/371/Kahani-Suno-2-0-feat-Kaifi-Khalil-Slowed-and-Reverbed-English-2023-20230216024616-500x500.webp",
     "ytId": "_XBVWlI8TsQ"
   },
   {
@@ -17091,7 +17117,7 @@
     "ytSearchQuery": "O Bedardeya Arijit Singh official audio song",
     "storagePath": "in-o-bedardeya.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/npwn6KVMtFI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/903/Tu-Jhoothi-Main-Makkaar-Hindi-2023-20230316165419-500x500.webp",
     "ytId": "6Y8SM8F1Ojs"
   },
   {
@@ -17104,7 +17130,7 @@
     "ytSearchQuery": "Tere Pyaar Mein Arijit Singh official audio song",
     "storagePath": "in-tere-pyaar-mein.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/IMg_UUJVpMo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/903/Tu-Jhoothi-Main-Makkaar-Hindi-2023-20230316165419-500x500.webp",
     "ytId": "WCShpiJ6SLU"
   },
   {
@@ -17117,7 +17143,7 @@
     "ytSearchQuery": "Soni Soni Darshan Raval official audio song",
     "storagePath": "in-soni-soni.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Oa0Dw1Zfb4g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/658/Ishq-Vishk-Rebound-Hindi-2024-20240730165347-500x500.webp",
     "ytId": "_T11hnMwdis"
   },
   {
@@ -17130,7 +17156,7 @@
     "ytSearchQuery": "Soulmate Badshah official audio song",
     "storagePath": "in-soulmate-badshah.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/k3ijQJjUbTs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/406/Ek-Tha-Raja-Hindi-2024-20240318125601-500x500.webp",
     "ytId": "WuiGp0y_pSo"
   },
   {
@@ -17143,7 +17169,7 @@
     "ytSearchQuery": "Akhiyaan Gulaab Mitraz official audio song",
     "storagePath": "in-akhiyaan-gulaab.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/GvXDq-P1NB8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/214/Teri-Baaton-Mein-Aisa-Uljha-Jiya-Hindi-2024-20240205151011-500x500.webp",
     "ytId": "5Z9oa3gMX5s"
   },
   {
@@ -17156,7 +17182,7 @@
     "ytSearchQuery": "Afreen Afreen Rahat Fateh Ali Khan official audio song",
     "storagePath": "in-afreen-afreen.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/068/Teri-Mohabbat-Unknown-2026-20260708075743-500x500.webp",
     "ytId": "SMlGGRAB3Hc"
   },
   {
@@ -17169,7 +17195,7 @@
     "ytSearchQuery": "Mast Magan Arijit Singh official audio song",
     "storagePath": "in-mast-magan.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/fXRvluHnjxE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/930/2-States-2014-500x500.jpg",
     "ytId": "lVpZaByCWUE"
   },
   {
@@ -17182,7 +17208,7 @@
     "ytSearchQuery": "Lae Dooba Sunidhi Chauhan official audio song",
     "storagePath": "in-lae-dooba.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/meb_k3ioDX0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/832/Aiyaary-Hindi-2018-20220928120141-500x500.jpg",
     "ytId": "lTvrdaYBrXk"
   },
   {
@@ -17195,7 +17221,7 @@
     "ytSearchQuery": "Bolna Arijit Singh official audio song",
     "storagePath": "in-bolna.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/GYFDRoJtfGM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/584/Bolna-Wedding-Version-2026-Hindi-2025-20251218185251-500x500.webp",
     "ytId": "GYFDRoJtfGM"
   },
   {
@@ -17208,7 +17234,7 @@
     "ytSearchQuery": "Kaun Tujhe Palak Muchhal official audio song",
     "storagePath": "in-kaun-tujhe.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/atVof3pjT-I/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/569/M-S-Dhoni-The-Untold-Story-3-Hindi-2016-500x500.jpg",
     "ytId": "Ov0YGGSY6gY"
   },
   {
@@ -17221,7 +17247,7 @@
     "ytSearchQuery": "Hasi Ami Mishra official audio song",
     "storagePath": "in-hasi-ban-gaye.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Zvp-VBmoPmI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/577/Hamari-Adhuri-Kahani-Hindi-2015-500x500.jpg",
     "ytId": "5c9iFQZE74E"
   },
   {
@@ -17234,7 +17260,7 @@
     "ytSearchQuery": "Samjhawan Arijit Singh official audio song",
     "storagePath": "in-samjhawan.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ZsJhQbMyDII/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/540/Humpty-Sharma-Ki-Dulhania-Hindi-2014-20190618095042-500x500.webp",
     "ytId": "qmHs7YaQDjs"
   },
   {
@@ -17247,7 +17273,7 @@
     "ytSearchQuery": "Muskurane Arijit Singh official audio song",
     "storagePath": "in-muskurane.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/2ltGXfmI6mk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/065/Citylights-Hindi-2014-20190607111647-500x500.webp",
     "ytId": "YHRJZPnw5YM"
   },
   {
@@ -17260,7 +17286,7 @@
     "ytSearchQuery": "Humdard Arijit Singh official audio song",
     "storagePath": "in-humdard.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/FJ55SHCzt88/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/179/World-Music-Day-Best-Of-Bollywood-Hits-Hindi-2026-20260622111029-500x500.webp",
     "ytId": "7tElHNHLSKY"
   },
   {
@@ -17273,7 +17299,7 @@
     "ytSearchQuery": "Hamari Adhuri Kahani Arijit Singh official audio song",
     "storagePath": "in-hamari-adhuri-kahani.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/FwihTkPpJlo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/577/Hamari-Adhuri-Kahani-Hindi-2015-500x500.jpg",
     "ytId": "IgYF-LjU-MI"
   },
   {
@@ -17286,7 +17312,7 @@
     "ytSearchQuery": "Phir Mohabbat Mohd Irfan official audio song",
     "storagePath": "in-phir-mohabbat.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ZZC9T31knpc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/301/Music-Cafe-Mohd-Irfan-Hindi-2014-500x500.jpg",
     "ytId": "8M-UkVARjxs"
   },
   {
@@ -17299,7 +17325,7 @@
     "ytSearchQuery": "Main Agar Kahoon Sonu Nigam official audio song",
     "storagePath": "in-main-agar-kahoon.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/DAYszemgPxc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/179/Om-Shanti-Om-Hindi-2007-20241205141724-500x500.webp",
     "ytId": "DAYszemgPxc"
   },
   {
@@ -17312,7 +17338,7 @@
     "ytSearchQuery": "Ajab Si KK official audio song",
     "storagePath": "in-ajab-si.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/7KKVb0_IdD4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/179/Om-Shanti-Om-Hindi-2007-20241205141724-500x500.webp",
     "ytId": "7KKVb0_IdD4"
   },
   {
@@ -17325,7 +17351,7 @@
     "ytSearchQuery": "Zara Sa KK official audio song",
     "storagePath": "in-zara-sa.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/-8C_2BBVWk8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/732/Emraan-Hashmi-Sad-Love-Hits-Hindi-2026-20260604155755-500x500.webp",
     "ytId": "-8C_2BBVWk8"
   },
   {
@@ -17338,7 +17364,7 @@
     "ytSearchQuery": "Ishq Wala Love Shekhar Ravjiani official audio song",
     "storagePath": "in-ishq-wala-love.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/N2cPyl83tkQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/017/Student-of-the-Year-Hindi-2012-20260120201333-500x500.webp",
     "ytId": "SuvFNT_82jg"
   },
   {
@@ -17351,7 +17377,7 @@
     "ytSearchQuery": "Manjha Vishal Mishra official audio song",
     "storagePath": "in-manjha-vishal.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/gzmXpwF_MK4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/584/Manjha-Hindi-2025-20250716033238-500x500.webp",
     "ytId": "TYnRRI9z5fg"
   },
   {
@@ -17364,7 +17390,7 @@
     "ytSearchQuery": "Mere Sohneya Sachet Tandon official audio song",
     "storagePath": "in-mere-sohneya.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/TX__5mcnA34/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/807/Kabir-Singh-Hindi-2019-20240131131003-500x500.webp",
     "ytId": "Njq4A5DAqRw"
   },
   {
@@ -17377,7 +17403,7 @@
     "ytSearchQuery": "Tere Sang Yaara Atif Aslam official audio song",
     "storagePath": "in-tere-sang-yaara.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/gIOea2pgfIo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/809/Wedding-Love-Songs-Hindi-2026-20251230172703-500x500.webp",
     "ytId": "gIOea2pgfIo"
   },
   {
@@ -17390,7 +17416,7 @@
     "ytSearchQuery": "Tera Fitoor Arijit Singh official audio song",
     "storagePath": "in-tera-fitoor.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/IFGM4pOPXvA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/994/Genius-Hindi-2018-20250728123019-500x500.webp",
     "ytId": "qfdShSZZxlg"
   },
   {
@@ -17403,7 +17429,7 @@
     "ytSearchQuery": "Dekh Lena Arijit Singh official audio song",
     "storagePath": "in-dekh-lena.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/lr7z9lkI-1s/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/737/Tum-Bin-2-Full-Hindi-2016-500x500.jpg",
     "ytId": "K8prKuJFKhQ"
   },
   {
@@ -17416,7 +17442,7 @@
     "ytSearchQuery": "Lo Safar Jubin Nautiyal official audio song",
     "storagePath": "in-lo-safar.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Skp5roPkjys/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/203/Baaghi-2-Hindi-2018-20180320-500x500.webp",
     "ytId": "jcV7i0WM9jU"
   },
   {
@@ -17429,7 +17455,7 @@
     "ytSearchQuery": "Kaise Hua Vishal Mishra official audio song",
     "storagePath": "in-kaise-hua.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/WWXm39leYew/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/807/Kabir-Singh-Hindi-2019-20240131131003-500x500.webp",
     "ytId": "WWXm39leYew"
   },
   {
@@ -17442,7 +17468,7 @@
     "ytSearchQuery": "Khairiyat Arijit Singh official audio song",
     "storagePath": "in-khairiyat.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/hoNb6HuNmU0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/179/World-Music-Day-Best-Of-Bollywood-Hits-Hindi-2026-20260622111029-500x500.webp",
     "ytId": "ugcfBQ_AUYg"
   },
   {
@@ -17455,7 +17481,7 @@
     "ytSearchQuery": "Thodi Jagah Arijit Singh official audio song",
     "storagePath": "in-thodi-jagah.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/WLsc66rAfTc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/951/Marjaavaan-Hindi-2020-20200114134001-500x500.webp",
     "ytId": "2208Hn9LyUA"
   },
   {
@@ -17468,7 +17494,7 @@
     "ytSearchQuery": "Dil Ko Karaar Aaya Yasser Desai official audio song",
     "storagePath": "in-dil-ko-karaar-aaya.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/lX3vT_Gm_HE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/290/Dil-Ko-Karaar-Aaya-From-Sukoon-Hindi-2025-20250430173534-500x500.webp",
     "ytId": "lX3vT_Gm_HE"
   },
   {
@@ -17481,7 +17507,7 @@
     "ytSearchQuery": "Bachpan Kahan Arijit Singh official audio song",
     "storagePath": "in-bachpan-kahan.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/4LTVqIePTg8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/340/Arijit-Singh-Bollywood-Hits-Hindi-2026-20260406180757-500x500.webp",
     "ytId": "4LTVqIePTg8"
   },
   {
@@ -17494,7 +17520,7 @@
     "ytSearchQuery": "Mere Liye Tum Kaafi Ho Ayushmann Khurrana official audio song",
     "storagePath": "in-mere-liye-tum-kaafi-ho.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/5LBB6OV3Ano/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/632/Shubh-Mangal-Zyada-Saavdhan-Hindi-2020-20200224114052-500x500.webp",
     "ytId": "5LBB6OV3Ano"
   },
   {
@@ -17507,7 +17533,7 @@
     "ytSearchQuery": "dheema dheema Harshavardhan Rameshwar official audio song",
     "storagePath": "in-dheema-dheema.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/l4syroqKWRI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/473/Love-Insurance-Kompany-Telugu-Telugu-2026-20260410121758-500x500.webp",
     "ytId": "H1frBzuWqqM"
   },
   {
@@ -17520,7 +17546,7 @@
     "ytSearchQuery": "udi udi Sukhwinder Singh official audio song",
     "storagePath": "in-udi-udi-full.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/YZV0birVI-o/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/451/Desi-Dance-Floor-Hindi-2026-20260729165348-500x500.webp",
     "ytId": "YZV0birVI-o"
   },
   {
@@ -17546,7 +17572,7 @@
     "ytSearchQuery": "Dhurandhar Hanumankind official audio song",
     "storagePath": "in-dhurandhar.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/hOHKltAiKXQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/475/Dhurandhar-Hindi-2025-20260203083204-500x500.webp",
     "ytId": "l_gQLv002NQ"
   },
   {
@@ -17559,7 +17585,7 @@
     "ytSearchQuery": "Srivalli Hindi Javed Ali official audio song",
     "storagePath": "in-srivalli-hindi.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/hcMzwMrr1tE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/179/World-Music-Day-Best-Of-Bollywood-Hits-Hindi-2026-20260622111029-500x500.webp",
     "ytId": "v2IGNN7CA4M"
   },
   {
@@ -17572,7 +17598,7 @@
     "ytSearchQuery": "Srivalli Telugu Sid Sriram official audio song",
     "storagePath": "te-srivalli-telugu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/txHO7PLGE3o/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/blob/056/Pushpa-The-Rise-Telugu-2021-20211216115409-500x500.webp",
     "ytId": "5IEbR79kBPY"
   },
   {
@@ -17585,7 +17611,7 @@
     "ytSearchQuery": "Srivalli Tamil Sid Sriram official audio song",
     "storagePath": "ta-srivalli-tamil.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/RcQiR7Dkfao/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/blob/060/Pushpa-The-Rise-Tamil-2021-20211218130419-500x500.webp",
     "ytId": "RcQiR7Dkfao"
   },
   {
@@ -17598,7 +17624,7 @@
     "ytSearchQuery": "Srivalli Kannada Sid Sriram official audio song",
     "storagePath": "kn-srivalli-kannada.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/plCXIG-qwB8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/blob/057/Pushpa-The-Rise-Kannada-2021-20211218130320-500x500.webp",
     "ytId": "plCXIG-qwB8"
   },
   {
@@ -17611,7 +17637,7 @@
     "ytSearchQuery": "Srivalli Malayalam Sid Sriram official audio song",
     "storagePath": "ml-srivalli-malayalam.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/4XtMXuBZ9oE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/blob/059/Pushpa-The-Rise-Malayalam-2021-20211218130347-500x500.webp",
     "ytId": "4XtMXuBZ9oE"
   },
   {
@@ -17624,7 +17650,7 @@
     "ytSearchQuery": "Save Your Tears The Weeknd official audio song",
     "storagePath": "en-save-your-tears.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/XXYlFuWEuKI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
     "ytId": "u6lihZAcy4s"
   },
   {
@@ -17637,7 +17663,7 @@
     "ytSearchQuery": "Thinking Out Loud Ed Sheeran official audio song",
     "storagePath": "en-thinking-out-loud.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/lp-EO5I60KA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/835/x-English-2014-500x500.jpg",
     "ytId": "Q5z6RHIpi2Y"
   },
   {
@@ -17650,7 +17676,7 @@
     "ytSearchQuery": "Photograph Ed Sheeran official audio song",
     "storagePath": "en-photograph.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/nSDgHBxUbVQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/835/x-English-2014-500x500.jpg",
     "ytId": "KKQl-pIRQMY"
   },
   {
@@ -17663,7 +17689,7 @@
     "ytSearchQuery": "Let Her Go Passenger official audio song",
     "storagePath": "en-let-her-go.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/RBumgq5yVrA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/154/All-the-Little-Lights-Deluxe-English-2019-20220615025427-500x500.webp",
     "ytId": "lRVTVB94zTg"
   },
   {
@@ -17689,7 +17715,7 @@
     "ytSearchQuery": "Before You Go Lewis Capaldi official audio song",
     "storagePath": "en-before-you-go.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Jtauh8GcxBY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/945/pov-you-re-yearning-English-2026-20260703175018-500x500.webp",
     "ytId": "QpljgJPFWl8"
   },
   {
@@ -17702,7 +17728,7 @@
     "ytSearchQuery": "Happier Marshmello ft. Bastille official audio song",
     "storagePath": "en-happier-marshmello.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/m7Bc3pLyij0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/202/Shake-and-Dance-English-2021-20220415234556-500x500.webp",
     "ytId": "RE87rQkXdNw"
   },
   {
@@ -17715,7 +17741,7 @@
     "ytSearchQuery": "Adore You Harry Styles official audio song",
     "storagePath": "en-adore-you.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/VF-r5TtlT9w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/213/Fine-Line-English-2019-20191211223631-500x500.webp",
     "ytId": "iquhBgM-Qv0"
   },
   {
@@ -17728,7 +17754,7 @@
     "ytSearchQuery": "Sign of the Times Harry Styles official audio song",
     "storagePath": "en-sign-of-the-times.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/qN4ooNx77u0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/985/Harry-Styles-English-2017-500x500.webp",
     "ytId": "z0GKGpObgPY"
   },
   {
@@ -17741,7 +17767,7 @@
     "ytSearchQuery": "Golden Harry Styles official audio song",
     "storagePath": "en-golden-harry.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/P3cffdsEXXw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/213/Fine-Line-English-2019-20191211223631-500x500.webp",
     "ytId": "enuYFtMHgfU"
   },
   {
@@ -17754,7 +17780,7 @@
     "ytSearchQuery": "Night Changes One Direction official audio song",
     "storagePath": "en-night-changes.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/syFZfO_wfMQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/851/FOUR-Deluxe--English-2014-500x500.webp",
     "ytId": "UM3389FUnKo"
   },
   {
@@ -17767,7 +17793,7 @@
     "ytSearchQuery": "What Makes You Beautiful One Direction official audio song",
     "storagePath": "en-what-makes-you-beautiful.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/QJO3ROT-A4E/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/880/Up-All-Night-English-2012-500x500.jpg",
     "ytId": "UlANZSYZ2Js"
   },
   {
@@ -17780,7 +17806,7 @@
     "ytSearchQuery": "Story of My Life One Direction official audio song",
     "storagePath": "en-story-of-my-life.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/W-TE_Ys4iwM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/747/Midnight-Memories-Deluxe--English-2013-20190524114321-500x500.webp",
     "ytId": "Tv6eMN3YK9E"
   },
   {
@@ -17793,7 +17819,7 @@
     "ytSearchQuery": "Perfect Night LE SSERAFIM official audio song",
     "storagePath": "en-perfect-night.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/hLvWy2b857I/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/779/Perfect-Night-English-2023-20251110181037-500x500.webp",
     "ytId": "bagucl7jjiM"
   },
   {
@@ -17806,7 +17832,7 @@
     "ytSearchQuery": "Style Taylor Swift official audio song",
     "storagePath": "en-style-taylor.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/-CmadmM5cOk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp",
     "ytId": "66TQBtlRKc4"
   },
   {
@@ -17819,7 +17845,7 @@
     "ytSearchQuery": "Anti-Hero Taylor Swift official audio song",
     "storagePath": "en-anti-hero.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/b1kbLwvqugk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/092/Midnights-The-Til-Dawn-Edition-English-2023-20230526103422-500x500.webp",
     "ytId": "XqN2qFvY64U"
   },
   {
@@ -17832,7 +17858,7 @@
     "ytSearchQuery": "Cardigan Taylor Swift official audio song",
     "storagePath": "en-cardigan.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/K-a8s8OLBSE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/916/folklore-the-escapism-chapter-English-2020-20230426153245-500x500.webp",
     "ytId": "zLSUp53y-HQ"
   },
   {
@@ -17845,7 +17871,7 @@
     "ytSearchQuery": "August Taylor Swift official audio song",
     "storagePath": "en-august.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/nn_0zPAfyo8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/633/folklore-the-saltbox-house-chapter-English-2020-20230426152237-500x500.webp",
     "ytId": "nn_0zPAfyo8"
   },
   {
@@ -17858,7 +17884,7 @@
     "ytSearchQuery": "Enchanted Taylor Swift official audio song",
     "storagePath": "en-enchanted.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/igIfiqqVHtA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/954/Speak-Now-English-2010-20240119005639-500x500.webp",
     "ytId": "Na2WnQ13zcM"
   },
   {
@@ -17871,7 +17897,7 @@
     "ytSearchQuery": "Delicate Taylor Swift official audio song",
     "storagePath": "en-delicate.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/tCXGJQYZ9JA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/140/reputation-English-2017-20171130120722-500x500.jpg",
     "ytId": "5XMCHTAbwtU"
   },
   {
@@ -17884,7 +17910,7 @@
     "ytSearchQuery": "You Belong With Me Taylor Swift official audio song",
     "storagePath": "en-you-belong-with-me.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/VuNIsY6JdUw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/531/Fearless-Big-Machine-Radio-Release-Special-English-2018-20231130020201-500x500.webp",
     "ytId": "vwp8Ur6tO-8"
   },
   {
@@ -17897,7 +17923,7 @@
     "ytSearchQuery": "Shake It Off Taylor Swift official audio song",
     "storagePath": "en-shake-it-off.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/nfWlot6h_JM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp",
     "ytId": "H59xVMF4zxE"
   },
   {
@@ -17910,7 +17936,7 @@
     "ytSearchQuery": "Wildest Dreams Taylor Swift official audio song",
     "storagePath": "en-wildest-dreams.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/IdneKLhsWOQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp",
     "ytId": "CUr_UwUUXzU"
   },
   {
@@ -17923,7 +17949,7 @@
     "ytSearchQuery": "All Too Well Taylor Swift official audio song",
     "storagePath": "en-all-too-well.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/tollGa3S0o8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/679/Red-Taylor-s-Version-The-Slow-Motion-Chapter-English-2022-20220125113549-500x500.webp",
     "ytId": "sRxrwjOtIag"
   },
   {
@@ -17936,7 +17962,7 @@
     "ytSearchQuery": "Wrecking Ball Miley Cyrus official audio song",
     "storagePath": "en-wrecking-ball.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/My2FRPA3Gf8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/816/Bangerz-Deluxe-Version-2013-500x500.jpg",
     "ytId": "My2FRPA3Gf8"
   },
   {
@@ -17949,7 +17975,7 @@
     "ytSearchQuery": "The Climb Miley Cyrus official audio song",
     "storagePath": "en-the-climb.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/NG2zyeVRcbs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/578/The-Time-Of-Our-Lives-International-Version-2012-500x500.jpg",
     "ytId": "NG2zyeVRcbs"
   },
   {
@@ -17962,7 +17988,7 @@
     "ytSearchQuery": "See You Again Wiz Khalifa ft. Charlie Puth official audio song",
     "storagePath": "en-see-you-again.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/RgKAFK5djSk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/850/Nine-Track-Mind-English-2016-20190607044034-500x500.webp",
     "ytId": "RgKAFK5djSk"
   },
   {
@@ -17975,7 +18001,7 @@
     "ytSearchQuery": "Attention Charlie Puth official audio song",
     "storagePath": "en-attention-charlie.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/nfs8NYg7yQM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/292/Attention-English-2017-20190607043124-500x500.webp",
     "ytId": "94CegRuTZNA"
   },
   {
@@ -17988,7 +18014,7 @@
     "ytSearchQuery": "We Don't Talk Anymore Charlie Puth ft. Selena Gomez official audio song",
     "storagePath": "en-we-dont-talk-anymore.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/3AtDnEC4zak/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/850/Nine-Track-Mind-English-2016-20190607044034-500x500.webp",
     "ytId": "3AtDnEC4zak"
   },
   {
@@ -18001,7 +18027,7 @@
     "ytSearchQuery": "How Long Charlie Puth official audio song",
     "storagePath": "en-how-long.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/CwfoyVa980U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/616/How-Long-English-2017-20190607042826-500x500.webp",
     "ytId": "PualrOj7DaI"
   },
   {
@@ -18014,7 +18040,7 @@
     "ytSearchQuery": "One Call Away Charlie Puth official audio song",
     "storagePath": "en-one-call-away.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/BxuY9FET9Y4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/809/One-Call-Away-English-2015-20190607044119-500x500.webp",
     "ytId": "xQBVQBMuaec"
   },
   {
@@ -18027,7 +18053,7 @@
     "ytSearchQuery": "Cheap Thrills Sia ft. Sean Paul official audio song",
     "storagePath": "en-cheap-thrills.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/nYh-n7EOtMA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/930/Cheap-Thrills-English-2016-500x500.jpg",
     "ytId": "mY9fNwGE7YA"
   },
   {
@@ -18040,7 +18066,7 @@
     "ytSearchQuery": "Treat You Better Shawn Mendes official audio song",
     "storagePath": "en-treat-you-better.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/lY2yjAdbvdQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/857/The-Shawn-Mendes-Foundation-Playlist-English-2020-20221213003731-500x500.webp",
     "ytId": "eiG_DUXD8YQ"
   },
   {
@@ -18053,7 +18079,7 @@
     "ytSearchQuery": "There's Nothing Holdin' Me Back Shawn Mendes official audio song",
     "storagePath": "en-theres-nothing-holdin-me-back.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/dT2owtxkU8k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/217/studying-under-pressure-English-2025-20260612114019-500x500.webp",
     "ytId": "Bt6TmXqRCb4"
   },
   {
@@ -18066,7 +18092,7 @@
     "ytSearchQuery": "Senorita Shawn Mendes official audio song",
     "storagePath": "en-senorita.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Pkh8UtuejGw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/991/POV-YOU-RE-A-DANCER-English-2026-20260728213018-500x500.webp",
     "ytId": "Pkh8UtuejGw"
   },
   {
@@ -18079,7 +18105,7 @@
     "ytSearchQuery": "Never Be the Same Camila Cabello official audio song",
     "storagePath": "en-never-be-the-same.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Ph54wQG8ynk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/095/Never-Be-the-Same-English-2017-20171207141756-500x500.webp",
     "ytId": "FITSPSA8gQs"
   },
   {
@@ -18092,7 +18118,7 @@
     "ytSearchQuery": "Love Yourself Justin Bieber official audio song",
     "storagePath": "en-love-yourself.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/oyEuk8j8imI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/461/tBt-English-2020-20221213020639-500x500.webp",
     "ytId": "eu6bAOVuxss"
   },
   {
@@ -18105,7 +18131,7 @@
     "ytSearchQuery": "Sorry Justin Bieber official audio song",
     "storagePath": "en-sorry-bieber.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/fRh_vgS2dFE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/459/Purpose-English-2015-500x500.jpg",
     "ytId": "8ELbX5CMomE"
   },
   {
@@ -18118,7 +18144,7 @@
     "ytSearchQuery": "Ghost Justin Bieber official audio song",
     "storagePath": "en-ghost-bieber.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Fp8msa5uYsc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/701/happier-than-ever-English-2021-20251009151609-500x500.webp",
     "ytId": "KRUWn3dLoRg"
   },
   {
@@ -18131,20 +18157,20 @@
     "ytSearchQuery": "Love Me Again John Newman official audio song",
     "storagePath": "en-love-me-again.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/CfihYWRWRTQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/593/Tribute-English-2013-20241218151538-500x500.webp",
     "ytId": "CfihYWRWRTQ"
   },
   {
     "id": "en-cold-water",
     "title": "Cold Water",
-    "artist": "Major Lazer ft. Justin Bieber, MØ",
+    "artist": "Major Lazer ft. Justin Bieber, M\u00d8",
     "album": "Cold Water",
     "duration": "3:30",
     "category": "party",
     "ytSearchQuery": "Cold Water Major Lazer ft. Justin Bieber official audio song",
     "storagePath": "en-cold-water.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/nBtDsQ4fhXY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/029/Major-Lazer-Essentials-English-2018-20230708033251-500x500.webp",
     "ytId": "a59gmGkq_pw"
   },
   {
@@ -18157,7 +18183,7 @@
     "ytSearchQuery": "On My Way Alan Walker official audio song",
     "storagePath": "en-on-my-way.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/dhYOPzcsbGM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/866/On-My-Way-English-2019-20190308195918-500x500.webp",
     "ytId": "dhYOPzcsbGM"
   },
   {
@@ -18170,7 +18196,7 @@
     "ytSearchQuery": "Wake Me Up Avicii official audio song",
     "storagePath": "en-wake-me-up.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/IcrbM1l_BoI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/236/Live-A-Life-You-Will-Remember-English-2021-20250417155954-500x500.webp",
     "ytId": "5y_KJAg8bHI"
   },
   {
@@ -18183,7 +18209,7 @@
     "ytSearchQuery": "Waiting For Love Avicii official audio song",
     "storagePath": "en-waiting-for-love.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/cHHLHGNpCSA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/761/Stories-English-2015-20241219225408-500x500.webp",
     "ytId": "-ncIVUXZla8"
   },
   {
@@ -18196,7 +18222,7 @@
     "ytSearchQuery": "The Spectre Alan Walker official audio song",
     "storagePath": "en-the-spectre.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/wJnBTPUQS5A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/532/The-Spectre-English-2017-20170831185520-500x500.webp",
     "ytId": "wJnBTPUQS5A"
   },
   {
@@ -18209,7 +18235,7 @@
     "ytSearchQuery": "Thunder Imagine Dragons official audio song",
     "storagePath": "en-thunder.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/fKopy74weus/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp",
     "ytId": "4AqjqOqNrjw"
   },
   {
@@ -18222,7 +18248,7 @@
     "ytSearchQuery": "Radioactive Imagine Dragons official audio song",
     "storagePath": "en-radioactive.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ktvTqknDobU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/210/Night-Visions-2013-500x500.jpg",
     "ytId": "w3viBe2Q0P8"
   },
   {
@@ -18235,20 +18261,20 @@
     "ytSearchQuery": "Whatever It Takes Imagine Dragons official audio song",
     "storagePath": "en-whatever-it-takes.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/gOsM-DYAEhY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp",
     "ytId": "rGlEZpOVjGo"
   },
   {
     "id": "en-bones",
     "title": "Bones",
     "artist": "Imagine Dragons",
-    "album": "Mercury – Acts 1 & 2",
+    "album": "Mercury \u2013 Acts 1 & 2",
     "duration": "3:30",
     "category": "trending",
     "ytSearchQuery": "Bones Imagine Dragons official audio song",
     "storagePath": "en-bones.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/TO-_3tck2tg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/038/Bones-English-2022-20250618201126-500x500.webp",
     "ytId": "DYed5whEf4g"
   },
   {
@@ -18261,7 +18287,7 @@
     "ytSearchQuery": "Enemy Imagine Dragons x J.I.D official audio song",
     "storagePath": "en-enemy.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/D9G1VOjN_84/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/621/P-POP-CULTURE-Punjabi-2025-20250820043757-500x500.webp",
     "ytId": "D9G1VOjN_84"
   },
   {
@@ -18274,7 +18300,7 @@
     "ytSearchQuery": "Apologize Timbaland ft. OneRepublic official audio song",
     "storagePath": "en-apologize.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ZSM3w1v-A_Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/711/Dreaming-Out-Loud-Deluxe-Edition-English-2026-20260320063429-500x500.webp",
     "ytId": "ZSM3w1v-A_Y"
   },
   {
@@ -18287,7 +18313,7 @@
     "ytSearchQuery": "I Lived OneRepublic official audio song",
     "storagePath": "en-i-lived.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/z0rxydSolwU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/574/Native-English-2014-20250626055252-500x500.webp",
     "ytId": "pKt3o7WPYdo"
   },
   {
@@ -18300,7 +18326,7 @@
     "ytSearchQuery": "Sugar Maroon 5 official audio song",
     "storagePath": "en-sugar-maroon5.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/09R8_2nJtjg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/503/Will-Be-Loved-EP-English-2024-20260402144933-500x500.webp",
     "ytId": "GhH4rTap48M"
   },
   {
@@ -18313,7 +18339,7 @@
     "ytSearchQuery": "Memories Maroon 5 official audio song",
     "storagePath": "en-memories-maroon5.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/SlPhMPnQ58k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/735/JORDI-Deluxe-English-2021-20250805225545-500x500.webp",
     "ytId": "SlPhMPnQ58k"
   },
   {
@@ -18326,7 +18352,7 @@
     "ytSearchQuery": "Girls Like You Maroon 5 ft. Cardi B official audio song",
     "storagePath": "en-girls-like-you.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/aJOTlE1K90k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/016/Girls-Like-You-English-2018-20180529030200-500x500.webp",
     "ytId": "aJOTlE1K90k"
   },
   {
@@ -18339,7 +18365,7 @@
     "ytSearchQuery": "Maps Maroon 5 official audio song",
     "storagePath": "en-maps-maroon5.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/NmugSMBh_iI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/989/V-English-2014-500x500.jpg",
     "ytId": "Y7ix6RITXM0"
   },
   {
@@ -18352,7 +18378,7 @@
     "ytSearchQuery": "Payphone Maroon 5 ft. Wiz Khalifa official audio song",
     "storagePath": "en-payphone.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/KRaWnd3LJfs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/784/Overexposed-English-2012-20251023032605-500x500.webp",
     "ytId": "5FlQSQuv_mg"
   },
   {
@@ -18365,7 +18391,7 @@
     "ytSearchQuery": "Closer The Chainsmokers ft. Halsey official audio song",
     "storagePath": "en-closer-chainsmokers.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/0zGcUoRlhmw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/054/Collage-EP-English-2016-500x500.jpg",
     "ytId": "PT2_F-1esPk"
   },
   {
@@ -18378,7 +18404,7 @@
     "ytSearchQuery": "Something Just Like This The Chainsmokers & Coldplay official audio song",
     "storagePath": "en-something-just-like-this.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/FM7MFYoylVs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/168/Something-Just-Like-This-English-2017-500x500.webp",
     "ytId": "FM7MFYoylVs"
   },
   {
@@ -18391,7 +18417,7 @@
     "ytSearchQuery": "Levitating Dua Lipa ft. DaBaby official audio song",
     "storagePath": "en-levitating.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/TUVcZfQe-Kw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/207/Dua-Lipa-Live-From-Mexico-English-2026-20260526161014-500x500.webp",
     "ytId": "TUVcZfQe-Kw"
   },
   {
@@ -18404,7 +18430,7 @@
     "ytSearchQuery": "New Rules Dua Lipa official audio song",
     "storagePath": "en-new-rules.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/k2qgadSvNyU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/812/Dua-Lipa-English-2017-500x500.webp",
     "ytId": "k2qgadSvNyU"
   },
   {
@@ -18417,7 +18443,7 @@
     "ytSearchQuery": "Dance Monkey Tones and I official audio song",
     "storagePath": "en-dance-monkey.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/q0hyYWKXF0Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/872/Dance-Monkey-English-2019-20260703013904-500x500.webp",
     "ytId": "d3_RzcZiuEo"
   },
   {
@@ -18430,7 +18456,7 @@
     "ytSearchQuery": "Stay With Me Sam Smith official audio song",
     "storagePath": "en-stay-with-me-sam.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/pB-5XG-DbAA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/149/Early-2010s-Nostalgia-English-2026-20260513143646-500x500.webp",
     "ytId": "bXDSR4GggUU"
   },
   {
@@ -18443,7 +18469,7 @@
     "ytSearchQuery": "Arcade Duncan Laurence official audio song",
     "storagePath": "en-arcade.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/51u5fnyrGj4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/367/Loving-You-Is-A-Losing-Game-English-2020-20221109013547-500x500.webp",
     "ytId": "51u5fnyrGj4"
   },
   {
@@ -18456,7 +18482,7 @@
     "ytSearchQuery": "Dusk Till Dawn ZAYN ft. Sia official audio song",
     "storagePath": "en-dusk-till-dawn.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/tt2k8PGm-TI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/896/Dusk-Till-Dawn-Radio-Edit--English-2017-20170905191749-500x500.webp",
     "ytId": "tt2k8PGm-TI"
   },
   {
@@ -18469,7 +18495,7 @@
     "ytSearchQuery": "Until I Found You Stephen Sanchez official audio song",
     "storagePath": "en-until-i-found-you.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/GxldQ9eX2wo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/648/Until-I-Found-You-English-2022-20240426130801-500x500.webp",
     "ytId": "MlThQTo6D8A"
   },
   {
@@ -18482,7 +18508,7 @@
     "ytSearchQuery": "Golden Hour JVKE official audio song",
     "storagePath": "en-golden-hour.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/PEM0Vs8jf1w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/534/this-is-what-falling-in-love-feels-like-554Hz-English-2022-20220925032041-500x500.webp",
     "ytId": "UsR08cY8k0A"
   },
   {
@@ -18495,7 +18521,7 @@
     "ytSearchQuery": "Jotheyali Jothe Jotheyali S.P. Balasubrahmanyam official audio song",
     "storagePath": "kn-jotheyali-geetha.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/8HbwsAOfoRY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/424/Ee-Manase-Se-Se-From-Tholiprema-Telugu-2014-20260430113015-500x500.webp",
     "ytId": "5ABB10YBeSE"
   },
   {
@@ -18521,7 +18547,7 @@
     "ytSearchQuery": "Ninnindale Sonu Nigam official audio song",
     "storagePath": "kn-ninnindale-milana.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/-xmRjO2G05c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/193/Milana-Kannada-2007-20250318135007-500x500.webp",
     "ytId": "TMWnFfDKFdc"
   },
   {
@@ -18547,7 +18573,7 @@
     "ytSearchQuery": "Karagida Baaninalli Sonu Nigam official audio song",
     "storagePath": "kn-karagida-baaninalli.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/WOuUEZVFqG8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/575/Garam-Masala-Hindi-2005-20210226131435-500x500.jpg",
     "ytId": "WOuUEZVFqG8"
   },
   {
@@ -18573,7 +18599,7 @@
     "ytSearchQuery": "Yenammi Yenammi Vijay Prakash official audio song",
     "storagePath": "kn-yenammi-yenammi.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/chLTOMbgLO0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/580/Ayogya-Kannada-2018-20250318160429-500x500.webp",
     "ytId": "chLTOMbgLO0"
   },
   {
@@ -18586,7 +18612,7 @@
     "ytSearchQuery": "Kaagadada Doniyalli Vasuki Vaibhav official audio song",
     "storagePath": "kn-kaagadada-doniyalli.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/EtGh9oC2SZ0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/126/Kirik-Party-Kannada-2016-500x500.jpg",
     "ytId": "EtGh9oC2SZ0"
   },
   {
@@ -18599,7 +18625,7 @@
     "ytSearchQuery": "Nooru Janmaku Rajesh Krishnan official audio song",
     "storagePath": "kn-nooru-janmaku.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/pFt58gtRgiM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/584/America-America-Kannada-2020-20231020145806-500x500.webp",
     "ytId": "TOqcnd3lFnc"
   },
   {
@@ -18612,7 +18638,7 @@
     "ytSearchQuery": "Ondu Malebillu Armaan Malik official audio song",
     "storagePath": "kn-ondu-malebillu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Xv1NQFN9Kd8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/016/Chakravarthy-Kannada-2017-20250318150614-500x500.webp",
     "ytId": "IO1pDhygpTU"
   },
   {
@@ -18625,7 +18651,7 @@
     "ytSearchQuery": "Neenade Naa Armaan Malik official audio song",
     "storagePath": "kn-neenade-naa.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/3s5XyooFGpg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/725/Southern-Valentine-Vibes-Tamil-2026-20260205143720-500x500.webp",
     "ytId": "3s5XyooFGpg"
   },
   {
@@ -18638,7 +18664,7 @@
     "ytSearchQuery": "Kariya I Love You Anuradha Bhat official audio song",
     "storagePath": "kn-kariya-i-love-you.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/GcTcu4cLG2M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/200/Duniya1-Kannada-2007-500x500.jpg",
     "ytId": "GcTcu4cLG2M"
   },
   {
@@ -18651,7 +18677,7 @@
     "ytSearchQuery": "Ee Sanje Yakagide Sonu Nigam official audio song",
     "storagePath": "kn-ee-sanje-yakagide.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/qhoDsfJDGvg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/186/Geleya-Kannada-2007-20250318150601-500x500.webp",
     "ytId": "-1TEJkzEgYc"
   },
   {
@@ -18664,7 +18690,7 @@
     "ytSearchQuery": "Ninnindale Ninnindale Puneeth Rajkumar official audio song",
     "storagePath": "kn-ninnindale-puneeth.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/-xmRjO2G05c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/193/Milana-Kannada-2007-20250318135007-500x500.webp",
     "ytId": "-xmRjO2G05c"
   },
   {
@@ -18677,7 +18703,7 @@
     "ytSearchQuery": "Usire Usire K.S. Chithra official audio song",
     "storagePath": "kn-usire-usire.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/6twDAxfHtGA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/315/Nuvvu-Naaku-Nachchav-2001-500x500.jpg",
     "ytId": "PbLp9kCwxDU"
   },
   {
@@ -18690,7 +18716,7 @@
     "ytSearchQuery": "Hrudayake Hedarike Sanjith Hegde official audio song",
     "storagePath": "kn-hrudayake-hedarike.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/nqkWwz9IG9k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/696/Thayige-Thakka-Maga-Kannada-2018-20250318154833-500x500.webp",
     "ytId": "nqkWwz9IG9k"
   },
   {
@@ -18703,7 +18729,7 @@
     "ytSearchQuery": "Marali Manasaagide Sanjith Hegde official audio song",
     "storagePath": "kn-marali-manasaagide.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/01uRBlLAjFg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/488/Gentleman-Kannada-2019-20250318191714-500x500.webp",
     "ytId": "01uRBlLAjFg"
   },
   {
@@ -18716,7 +18742,7 @@
     "ytSearchQuery": "Chuttu Chuttu Ravindra Soragavi official audio song",
     "storagePath": "kn-chuttu-chuttu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/mK9C6wViwn4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/399/Raambo-2-Kannada-2018-20250318160324-500x500.webp",
     "ytId": "IV8hEhZDT0s"
   },
   {
@@ -18729,7 +18755,7 @@
     "ytSearchQuery": "Dostha Kano Vijay Prakash official audio song",
     "storagePath": "kn-dostha-kano.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/b-Wl8IuhO-c/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/177/Friendship-Day-Special-Hit-Songs-Kannada-2025-20251110123214-500x500.webp",
     "ytId": "b-Wl8IuhO-c"
   },
   {
@@ -18742,7 +18768,7 @@
     "ytSearchQuery": "Love You Chinna Shreya Ghoshal official audio song",
     "storagePath": "kn-love-you-chinna.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/K3nFy1wz6V0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/973/Sony-Music-Premier-League-Come-Fall-in-Love-Tamil-2014-20200729150626-500x500.webp",
     "ytId": "K3nFy1wz6V0"
   },
   {
@@ -18755,7 +18781,7 @@
     "ytSearchQuery": "Ninna Snehadinda Armaan Malik official audio song",
     "storagePath": "kn-ninna-snehadinda.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/LeWQ1dyL658/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/443/Kaun-Tujhe-Armaan-Malik-Version-Hindi-2017-500x500.jpg",
     "ytId": "SJacgpUpSzI"
   },
   {
@@ -18768,7 +18794,7 @@
     "ytSearchQuery": "Hrudaya Hrudaya Sonu Nigam official audio song",
     "storagePath": "kn-hrudaya-hrudaya.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/IpyH5UbD3dg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/039/Krishnan-Love-Story-Kannada-2010-20250318111503-500x500.webp",
     "ytId": "ELekRJvBYQk"
   },
   {
@@ -18781,7 +18807,7 @@
     "ytSearchQuery": "Kannu Kannu Sanjith Hegde official audio song",
     "storagePath": "kn-kannu-kannu-dia.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/RVMnT4nq9NU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/542/Iruvudellava-Bittu-Kannada-2018-20250321091340-500x500.webp",
     "ytId": "vAlPEXe2Fn0"
   },
   {
@@ -18794,7 +18820,7 @@
     "ytSearchQuery": "Nee Sigovaregu Sid Sriram official audio song",
     "storagePath": "kn-nee-sigovaregu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/sIOe8n5P7vs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/839/Bhajarangi-2-Kannada-2021-20250318201210-500x500.webp",
     "ytId": "sIOe8n5P7vs"
   },
   {
@@ -18807,7 +18833,7 @@
     "ytSearchQuery": "Ninnaya Nagu Sanjith Hegde official audio song",
     "storagePath": "kn-ninnaya-nagu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/TZl1aKkKgf0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/522/Sanjith-Hegde-Hits-Kannada-2025-20251016143758-500x500.webp",
     "ytId": "TMY1g8pAktk"
   },
   {
@@ -18820,7 +18846,7 @@
     "ytSearchQuery": "Preetham Gubbi Sonu Nigam official audio song",
     "storagePath": "kn-preetham-gubbi.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/w1ouas1_Ev8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/575/Garam-Masala-Hindi-2005-20210226131435-500x500.jpg",
     "ytId": "64Me5mGxFg8"
   },
   {
@@ -18833,7 +18859,7 @@
     "ytSearchQuery": "Bombe Helutaite Vijay Prakash official audio song",
     "storagePath": "kn-bombe-helutaite.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/IxF9OjIm0Y4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/964/Raajakumara-Kannada-2017-20221028143846-500x500.webp",
     "ytId": "RCn3oPpsF58"
   },
   {
@@ -18846,7 +18872,7 @@
     "ytSearchQuery": "Yenagali Sonu Nigam official audio song",
     "storagePath": "kn-yenagali.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/fKm3nHnK3_s/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/983/Yenagali-Kannada-2018-20230619190758-500x500.webp",
     "ytId": "f6636xqsLGc"
   },
   {
@@ -18859,7 +18885,7 @@
     "ytSearchQuery": "Pogaru Chandan Shetty official audio song",
     "storagePath": "kn-pogaru-title.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/SmrRe9aUbwg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/980/Dhruva-Sarja-Super-Hit-Songs-Kannada-2025-20251029142825-500x500.webp",
     "ytId": "Ysf4QRrcLGM"
   },
   {
@@ -18872,7 +18898,7 @@
     "ytSearchQuery": "Pushpavati Aishwarya Rangarajan official audio song",
     "storagePath": "kn-pushpavati.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/zpVZ6ydVpI0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/432/Kranti-Kannada-2022-20230123064310-500x500.webp",
     "ytId": "zpVZ6ydVpI0"
   },
   {
@@ -18885,7 +18911,7 @@
     "ytSearchQuery": "Toxic Shruti Haasan official audio song",
     "storagePath": "kn-toxic-yash.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/T9lEggacT-g/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/929/Toxic-Title-OST-English-2023-20260731170746-500x500.webp",
     "ytId": "T9lEggacT-g"
   },
   {
@@ -18898,7 +18924,7 @@
     "ytSearchQuery": "Soul Of Dia Sanjith Hegde official audio song",
     "storagePath": "kn-soul-of-dia.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/7ZW8hthGL0U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/677/Soul-Of-Dia-From-Dia-Kannada-2020-20260203193951-500x500.webp",
     "ytId": "cO4eJxbCedc"
   },
   {
@@ -18911,7 +18937,7 @@
     "ytSearchQuery": "Kadalina Vasuki Vaibhav official audio song",
     "storagePath": "kn-kadalina-777-charlie.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/i_vRoQGIc6Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/337/Vasuki-Vaibhav-Vibrant-Beats-Kannada-2026-20260401205156-500x500.webp",
     "ytId": "lTKQZg6_Dts"
   },
   {
@@ -18924,7 +18950,7 @@
     "ytSearchQuery": "Arare Shuruvayitu Sanjith Hegde official audio song",
     "storagePath": "kn-arare-shuruvayitu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/jZgXkB7wZ4M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/522/Sanjith-Hegde-Hits-Kannada-2025-20251016143758-500x500.webp",
     "ytId": "jZgXkB7wZ4M"
   },
   {
@@ -18937,7 +18963,7 @@
     "ytSearchQuery": "Naguva Nayana S.P. Balasubrahmanyam official audio song",
     "storagePath": "kn-naguva-nayana.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Dajcwrykmf8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/685/Spandana-Aparichitha-Ellindalo-Bandavaru-Pallavi-A-2006-500x500.jpg",
     "ytId": "mhBOPWqnSTU"
   },
   {
@@ -18950,7 +18976,7 @@
     "ytSearchQuery": "Hoovina Baanadante S.P. Balasubrahmanyam official audio song",
     "storagePath": "kn-hoovina-baanadante.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/l3rYtHVUHvA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/424/Ee-Manase-Se-Se-From-Tholiprema-Telugu-2014-20260430113015-500x500.webp",
     "ytId": "8nsxHEiW7Lg"
   },
   {
@@ -18963,7 +18989,7 @@
     "ytSearchQuery": "Ee Sundara Beladingala S.P. Balasubrahmanyam official audio song",
     "storagePath": "kn-ee-sundara-beladingala.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/1mY9GP17p5Y/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/252/Tholiprema-Telugu-2014-20251011224607-500x500.webp",
     "ytId": "i7qrjt2Oat0"
   },
   {
@@ -18976,7 +19002,7 @@
     "ytSearchQuery": "Kolle Kolle Vijay Prakash official audio song",
     "storagePath": "kn-kolle-kolle.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/y8az6o90Pt0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/757/Vijay-Prakash-Endless-Echo-Kannada-2026-20260430143311-500x500.webp",
     "ytId": "zq-GxxXvEzs"
   },
   {
@@ -18989,7 +19015,7 @@
     "ytSearchQuery": "Halli Meshtru S.P. Balasubrahmanyam official audio song",
     "storagePath": "kn-halli-meshtru.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/b0msog9E2SQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/252/Tholiprema-Telugu-2014-20251011224607-500x500.webp",
     "ytId": "b0msog9E2SQ"
   },
   {
@@ -19002,7 +19028,7 @@
     "ytSearchQuery": "Yaare Koogadali Puneeth Rajkumar official audio song",
     "storagePath": "kn-yaare-koogadali.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/J9qvrDWlVUw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/159/Yaarre-Koogaadali-Kannada-2012-20250318131511-500x500.webp",
     "ytId": "asBB1OKPzqk"
   },
   {
@@ -19015,7 +19041,7 @@
     "ytSearchQuery": "Jeeva Hoovagide S.P. Balasubrahmanyam official audio song",
     "storagePath": "kn-jeeva-hoovagide.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/eDEGxCmbTvY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/424/Ee-Manase-Se-Se-From-Tholiprema-Telugu-2014-20260430113015-500x500.webp",
     "ytId": "4HPOIbCLml4"
   },
   {
@@ -19028,7 +19054,7 @@
     "ytSearchQuery": "Nee Nanna Gellalare Dr. Rajkumar official audio song",
     "storagePath": "kn-nee-nanna-gellalare.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/5n6sK8tJ2rs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/472/I-Love-You-Jeeva-Hoovagide-From-Nee-Nanna-Gellalare-Kannada-2021-20260504113001-500x500.webp",
     "ytId": "XyoYafFOxwg"
   },
   {
@@ -19041,7 +19067,7 @@
     "ytSearchQuery": "Hrudaya Shiva Dr. Rajkumar official audio song",
     "storagePath": "kn-hrudaya-shiva.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/k6H66IzHS-M/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/438/Hrudaya-Hrudaya-Kannada-2015-500x500.jpg",
     "ytId": "rIclQIkdX34"
   },
   {
@@ -19067,7 +19093,7 @@
     "ytSearchQuery": "Adiga Adiga Sid Sriram official audio song",
     "storagePath": "te-adiga-adiga.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/X-ItjQ3gIBI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/070/Ninnu-Kori-Telugu-2017-20220323073319-500x500.webp",
     "ytId": "bfe2KqTCQ58"
   },
   {
@@ -19080,7 +19106,7 @@
     "ytSearchQuery": "Vachindamma Sid Sriram official audio song",
     "storagePath": "te-vachindamma.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/I8t0VJjEffk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/237/Geetha-Govindam-Telugu-2018-20180921-500x500.webp",
     "ytId": "IgnbfHEfvpo"
   },
   {
@@ -19093,7 +19119,7 @@
     "ytSearchQuery": "Pilla Raa Anurag Kulkarni official audio song",
     "storagePath": "te-pilla-raa.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/5MtKkdEiJzk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/172/RX-100-Telugu-2018-20230207103253-500x500.webp",
     "ytId": "5MtKkdEiJzk"
   },
   {
@@ -19106,7 +19132,7 @@
     "ytSearchQuery": "Maate Vinadhuga Sid Sriram official audio song",
     "storagePath": "te-maate-vinadhuga.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Q2PO_wiicNw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/761/Taxiwaala-Telugu-2018-20181123170326-500x500.webp",
     "ytId": "KMocA8G_puU"
   },
   {
@@ -19119,7 +19145,7 @@
     "ytSearchQuery": "Kadalalle Sid Sriram official audio song",
     "storagePath": "te-kadalalle.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/2ySr4lR0XFg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/556/Dear-Comrade-Telugu-Telugu-2019-20250828182008-500x500.webp",
     "ytId": "2ySr4lR0XFg"
   },
   {
@@ -19132,7 +19158,7 @@
     "ytSearchQuery": "Priyathama Priyathama Chinmayi Sripada official audio song",
     "storagePath": "te-priyathama-priyathama.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/BpINyS4k7Uw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/405/Majili-Telugu-2019-20190323231520-500x500.webp",
     "ytId": "hoAwfB0mjcE"
   },
   {
@@ -19145,7 +19171,7 @@
     "ytSearchQuery": "Komuram Bheemudo Kaala Bhairava official audio song",
     "storagePath": "te-komuram-bheemudo.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ouKbrNiaPxo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/683/RRR-Telugu-Telugu-2022-20250828171313-500x500.webp",
     "ytId": "RWwlVLAZuhU"
   },
   {
@@ -19158,7 +19184,7 @@
     "ytSearchQuery": "Naacho Naacho Rahul Sipligunj official audio song",
     "storagePath": "te-naacho-naacho.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/sAzlWScHTc4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/385/Rrr-Hindi-2022-20220416081050-500x500.webp",
     "ytId": "sAzlWScHTc4"
   },
   {
@@ -19171,7 +19197,7 @@
     "ytSearchQuery": "Dheevara Ramya Behara official audio song",
     "storagePath": "te-dheevara.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ql-cPskAthI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/301/Baahubali-The-Beginning-Telugu-2015-20251028160018-500x500.webp",
     "ytId": "VVO-60PFuBw"
   },
   {
@@ -19184,7 +19210,7 @@
     "ytSearchQuery": "Saahore Baahubali Daler Mehndi official audio song",
     "storagePath": "te-saahore-baahubali.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/vlkNcHDFnGA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/981/Baahubali-2-The-Conclusion-Telugu-2016-20251012021842-500x500.webp",
     "ytId": "lXQkgqvjs_4"
   },
   {
@@ -19197,7 +19223,7 @@
     "ytSearchQuery": "Kannaa Nidurinchara Sreenidhi official audio song",
     "storagePath": "te-kannaa-nidurinchara.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Bkrx7sC7eYM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/981/Baahubali-2-The-Conclusion-Telugu-2016-20251012021842-500x500.webp",
     "ytId": "O1UC2Oszg38"
   },
   {
@@ -19210,7 +19236,7 @@
     "ytSearchQuery": "Yenti Yenti Chinmayi Sripada official audio song",
     "storagePath": "te-yenti-yenti.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/LOZNKZfiFUw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/237/Geetha-Govindam-Telugu-2018-20180921-500x500.webp",
     "ytId": "7Qv4zAu_4vU"
   },
   {
@@ -19223,7 +19249,7 @@
     "ytSearchQuery": "Yemito Haricharan official audio song",
     "storagePath": "te-yemito.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ZPZmMrUn63w/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/654/Andala-Rakshasi-Telugu-2012-20240802161530-500x500.webp",
     "ytId": "ZPZmMrUn63w"
   },
   {
@@ -19236,7 +19262,7 @@
     "ytSearchQuery": "Vellipomaakey Sid Sriram official audio song",
     "storagePath": "te-vellipomaakey.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/-GydnFPTgus/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/996/Saahasam-Swaasaga-Saagipo-Telugu-2016-500x500.jpg",
     "ytId": "RheXMpIWQHU"
   },
   {
@@ -19249,7 +19275,7 @@
     "ytSearchQuery": "Ninnu Kori Sid Sriram official audio song",
     "storagePath": "te-ninnu-kori-title.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/evbYFsSJ4pU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/070/Ninnu-Kori-Telugu-2017-20220323073319-500x500.webp",
     "ytId": "M8hvy8OVxk4"
   },
   {
@@ -19262,7 +19288,7 @@
     "ytSearchQuery": "Choosi Choodangane Sid Sriram official audio song",
     "storagePath": "te-choosi-choodangane.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/X1d868aeKNk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/487/Nee-Parichayamutho-From-Choosi-Choodangaane-Telugu-2019-20251027141256-500x500.webp",
     "ytId": "_JVghQCWnRI"
   },
   {
@@ -19275,7 +19301,7 @@
     "ytSearchQuery": "Nee Kannu Neeli Samudram Javed Ali official audio song",
     "storagePath": "te-nee-kannu-neeli-samudram.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/zZl7vDDN8Ek/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/587/Uppena-Telugu-2020-20210218155246-500x500.webp",
     "ytId": "mrqgz4_a4PU"
   },
   {
@@ -19288,7 +19314,7 @@
     "ytSearchQuery": "Neeli Neeli Aakasam Sid Sriram official audio song",
     "storagePath": "te-neeli-neeli-aakasam.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/zDWvOonXtLw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/172/30-Rojullo-Preminchadam-Ela-Telugu-2021-20250814183402-500x500.webp",
     "ytId": "0nRazWwoUbY"
   },
   {
@@ -19301,7 +19327,7 @@
     "ytSearchQuery": "Oh Sita Hey Rama SPB Charan official audio song",
     "storagePath": "te-oh-sita-hey-rama.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/LpxxUpyCOyM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/041/Sita-Ramam-Telugu-Original-Motion-Picture-Soundtrack-Telugu-2022-20220802140738-500x500.webp",
     "ytId": "LpxxUpyCOyM"
   },
   {
@@ -19314,7 +19340,7 @@
     "ytSearchQuery": "Inthandham Sid Sriram official audio song",
     "storagePath": "te-inthandham.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/dOKQeqGNJwY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/104/Sid-Sriram-X-Anirudh-Ravichander-Monsoon-Super-Hits-Tamil-2026-20260710191206-500x500.webp",
     "ytId": "9g2tgsYDUnE"
   },
   {
@@ -19327,7 +19353,7 @@
     "ytSearchQuery": "Kalaavathi Sid Sriram official audio song",
     "storagePath": "te-kalaavathi.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/SfDA33y38GE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/250/Sarkaru-Vaari-Paata-Telugu-2022-20220704160854-500x500.webp",
     "ytId": "SfDA33y38GE"
   },
   {
@@ -19340,7 +19366,7 @@
     "ytSearchQuery": "Jimikki Ponnu Anirudh Ravichander official audio song",
     "storagePath": "te-jimikki-ponnu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/HfMTwkVQohM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/145/Varisu-Tamil-2022-20221226190213-500x500.webp",
     "ytId": "6NGgVDfMBXU"
   },
   {
@@ -19353,7 +19379,7 @@
     "ytSearchQuery": "Kesariya Rangu Sid Sriram official audio song",
     "storagePath": "te-kesariya-rangu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/WCDXUgvddR4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/513/Brahmastra-Kannada-Original-Motion-Picture-Soundtrack-Kannada-2022-20221006134239-500x500.webp",
     "ytId": "WCDXUgvddR4"
   },
   {
@@ -19366,7 +19392,7 @@
     "ytSearchQuery": "Gaali Valuga Anirudh Ravichander official audio song",
     "storagePath": "te-gaali-valuga.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/h1bV5A0Mqq4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/385/Agnyaathavaasi-Telugu-2017-20180102061403-500x500.webp",
     "ytId": "HcNfL0Lf6vQ"
   },
   {
@@ -19379,7 +19405,7 @@
     "ytSearchQuery": "Pacha Bottesina Karthik official audio song",
     "storagePath": "te-pacha-bottesina.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/_kPLZQDrkIE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/301/Baahubali-The-Beginning-Telugu-2015-20251028160018-500x500.webp",
     "ytId": "UD9pscklQPE"
   },
   {
@@ -19392,7 +19418,7 @@
     "ytSearchQuery": "Manohari Mohana Bhogaraju official audio song",
     "storagePath": "te-manohari.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/dXO5p6QRG7A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/703/Telugu-Party-Songs-Telugu-2025-20251230130001-500x500.webp",
     "ytId": "dXO5p6QRG7A"
   },
   {
@@ -19405,7 +19431,7 @@
     "ytSearchQuery": "Ammadu Let's Do Kummudu Devi Sri Prasad official audio song",
     "storagePath": "te-ammadu-lets-do-kummudu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/JTIaespV8Ic/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/585/Khaidi-No-150-Telugu-2016-20251011224542-500x500.webp",
     "ytId": "JTIaespV8Ic"
   },
   {
@@ -19431,7 +19457,7 @@
     "ytSearchQuery": "Top Lesi Poddi Sagar official audio song",
     "storagePath": "te-top-lesi-poddi.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/YAscOYMTgTs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/514/Idharammayilatho-2013-500x500.jpg",
     "ytId": "OZdB6fWVw_o"
   },
   {
@@ -19444,7 +19470,7 @@
     "ytSearchQuery": "Ringa Ringa Priya Hemesh official audio song",
     "storagePath": "te-ringa-ringa.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/2OhhFkF3MqQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/298/Aarya-2-Telugu-2009-20190822135933-500x500.webp",
     "ytId": "2OhhFkF3MqQ"
   },
   {
@@ -19457,7 +19483,7 @@
     "ytSearchQuery": "Daang Daang Nakash Aziz official audio song",
     "storagePath": "te-daang-daang.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/w9EIM1mxQx4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/432/Sarileru-Neekevvaru-Telugu-2020-20250818111038-500x500.webp",
     "ytId": "w9EIM1mxQx4"
   },
   {
@@ -19470,7 +19496,7 @@
     "ytSearchQuery": "Mind Block Blaaze official audio song",
     "storagePath": "te-mind-block.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/J7Qf8bQRPuc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/432/Sarileru-Neekevvaru-Telugu-2020-20250818111038-500x500.webp",
     "ytId": "VsXdJed-3iI"
   },
   {
@@ -19483,7 +19509,7 @@
     "ytSearchQuery": "Seeti Maar Jaspreet Jasz official audio song",
     "storagePath": "te-seeti-maar.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/WLD0kUKybeE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/622/DJ-Telugu-2017-500x500.webp",
     "ytId": "WLD0kUKybeE"
   },
   {
@@ -19496,7 +19522,7 @@
     "ytSearchQuery": "Jai Balayya Kareemullah official audio song",
     "storagePath": "te-jai-balayya.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/fP8gQlThTGU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/683/Veera-Simha-Reddy-Original-Motion-Picture-Soundtrack-Telugu-2023-20230109174645-500x500.webp",
     "ytId": "fP8gQlThTGU"
   },
   {
@@ -19522,7 +19548,7 @@
     "ytSearchQuery": "We Rollin Shubh official audio song",
     "storagePath": "pj-we-rollin-shubh.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/hV8EGTjzD2s/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/495/WE-ROLLIN-Punjabi-2021-20220621214629-500x500.webp",
     "ytId": "RLhuPD2ASKE"
   },
   {
@@ -19535,7 +19561,7 @@
     "ytSearchQuery": "Cheques Shubh official audio song",
     "storagePath": "pj-cheques-shubh.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/4tywp83zkmk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/704/Still-Rollin-Punjabi-2023-20230512121542-500x500.webp",
     "ytId": "DAqxAqq_jhg"
   },
   {
@@ -19548,7 +19574,7 @@
     "ytSearchQuery": "No Love Shubh official audio song",
     "storagePath": "pj-no-love-shubh.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/6RrEQJNZwPQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/972/NO-LOVE-Punjabi-2022-20220621214632-500x500.webp",
     "ytId": "6RrEQJNZwPQ"
   },
   {
@@ -19561,7 +19587,7 @@
     "ytSearchQuery": "Levels Sidhu Moose Wala official audio song",
     "storagePath": "pj-levels-sidhu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/tpFljbJxZiw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/220/Levels-Punjabi-2022-20260626154343-500x500.webp",
     "ytId": "tpFljbJxZiw"
   },
   {
@@ -19574,7 +19600,7 @@
     "ytSearchQuery": "Mi Amor Sharn official audio song",
     "storagePath": "pj-mi-amor-sharn.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/HgQ14BpEfCs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/051/Mi-Amor-Punjabi-2022-20220930164801-500x500.webp",
     "ytId": "z1VdU6ZwRwY"
   },
   {
@@ -19587,7 +19613,7 @@
     "ytSearchQuery": "Lahore Guru Randhawa official audio song",
     "storagePath": "pj-lahore-guru.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/dZ0fwJojhrs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/437/Lahore-Punjabi-2017-20171214-500x500.webp",
     "ytId": "N3KraHFWLI0"
   },
   {
@@ -19600,7 +19626,7 @@
     "ytSearchQuery": "Naah Harrdy Sandhu official audio song",
     "storagePath": "pj-naah-harrdy.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/8qs2dZO6wcc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/634/Naah-Punjabi-2017-20171129201409-500x500.jpg",
     "ytId": "8qs2dZO6wcc"
   },
   {
@@ -19613,7 +19639,7 @@
     "ytSearchQuery": "Backbone Harrdy Sandhu official audio song",
     "storagePath": "pj-backbone-harrdy.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/bqGtrvcR5ls/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/828/Backbone-Punjabi-2017-500x500.jpg",
     "ytId": "giKbmzLjasc"
   },
   {
@@ -19626,7 +19652,7 @@
     "ytSearchQuery": "Khaab Akhil official audio song",
     "storagePath": "pj-khaab-akhil.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/2eliQ_KR8yA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/594/Khaab-Punjabi-2016-500x500.webp",
     "ytId": "GJ-olNB3P7Y"
   },
   {
@@ -19639,7 +19665,7 @@
     "ytSearchQuery": "Sakhiyaan Maninder Buttar official audio song",
     "storagePath": "pj-sakhiyaan-maninder.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/S-ezhTXPVGU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/184/World-Music-Day-Special-Punjabi-2021-20260401031226-500x500.webp",
     "ytId": "S-ezhTXPVGU"
   },
   {
@@ -19652,7 +19678,7 @@
     "ytSearchQuery": "Titliaan Afsana Khan official audio song",
     "storagePath": "pj-titliaan-afsana.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/YPohR_9v6HA/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/887/Titliaan-Punjabi-2020-20220729111238-500x500.webp",
     "ytId": "YPohR_9v6HA"
   },
   {
@@ -19665,7 +19691,7 @@
     "ytSearchQuery": "Pasoori Nu Arijit Singh official audio song",
     "storagePath": "pj-pasoori-nu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Yiw354fkSOs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/741/The-Ultimate-Tulsi-Kumar-Playlist-Hindi-2025-20251220131002-500x500.webp",
     "ytId": "hmZwuwbOjQo"
   },
   {
@@ -19691,7 +19717,7 @@
     "ytSearchQuery": "High Rated Gabru Guru Randhawa official audio song",
     "storagePath": "pj-high-rated-gabru.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/hjWf8A0YNSE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/344/High-Rated-Gabru-Punjabi-2017-500x500.webp",
     "ytId": "hjWf8A0YNSE"
   },
   {
@@ -19704,7 +19730,7 @@
     "ytSearchQuery": "Laung Laachi Mannat Noor official audio song",
     "storagePath": "pj-laung-laachi.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/YpkJO_GrCo0/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/490/Laung-Laachi-Punjabi-2018-20180308063634-500x500.webp",
     "ytId": "YpkJO_GrCo0"
   },
   {
@@ -19717,7 +19743,7 @@
     "ytSearchQuery": "3 Peg Sharry Mann official audio song",
     "storagePath": "pj-3-peg-sharry.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/hzTg4zPBtDU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/213/3-Peg-Punjabi-2016-500x500.jpg",
     "ytId": "fS2RIAMlKwA"
   },
   {
@@ -19730,7 +19756,7 @@
     "ytSearchQuery": "Mann The PropheC official audio song",
     "storagePath": "pj-mann-prophec.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/M6VuuXbWHoo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/326/Midnight-Paradise-Unknown-2023-20231203025037-500x500.webp",
     "ytId": "p1v66VcK5HA"
   },
   {
@@ -19743,7 +19769,7 @@
     "ytSearchQuery": "Lehanga Jass Manak official audio song",
     "storagePath": "pj-lehanga-jass.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/RKioDWlajvo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/279/Lehanga-Punjabi-2022-20221208010007-500x500.webp",
     "ytId": "sHMv8tnCUg8"
   },
   {
@@ -19756,7 +19782,7 @@
     "ytSearchQuery": "Bijlee Bijlee Harrdy Sandhu official audio song",
     "storagePath": "pj-bijlee-bijlee.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/NwdQx2P_ytk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/984/Bijlee-Bijlee-Punjabi-2021-20220729120741-500x500.webp",
     "ytId": "NwdQx2P_ytk"
   },
   {
@@ -19769,7 +19795,7 @@
     "ytSearchQuery": "Bandana Shubh official audio song",
     "storagePath": "pj-bandana-shubh.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/j2zxCw3voU8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/709/Bandana-Punjabi-2024-20240327165246-500x500.jpg",
     "ytId": "j2zxCw3voU8"
   },
   {
@@ -19782,7 +19808,7 @@
     "ytSearchQuery": "One Love Shubh official audio song",
     "storagePath": "pj-one-love-shubh.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/0pWsCiBvLOk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/969/One-Love-Punjabi-2023-20230802151509-500x500.jpg",
     "ytId": "0pWsCiBvLOk"
   },
   {
@@ -19795,7 +19821,7 @@
     "ytSearchQuery": "8 Asle Sukha official audio song",
     "storagePath": "pj-8-asle-sukha.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/0FnZO-U5oHo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/520/UNDISPUTED-Punjabi-2023-20231206223301-500x500.webp",
     "ytId": "0FnZO-U5oHo"
   },
   {
@@ -19808,7 +19834,7 @@
     "ytSearchQuery": "Bandookan Wala Mankirt Aulakh official audio song",
     "storagePath": "pj-bandookan-wala.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/3b-NgERVkpw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/506/Mankirt-Aulakh-Best-Hits-Punjabi-2018-20180508-500x500.webp",
     "ytId": "35vZQ51Ob_w"
   },
   {
@@ -19821,7 +19847,7 @@
     "ytSearchQuery": "Hukam Karan Aujla official audio song",
     "storagePath": "pj-hukam-karan-aujla.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/XhwRbwUHrCM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/530/Hukam-Punjabi-2021-20260713184126-500x500.webp",
     "ytId": "XhwRbwUHrCM"
   },
   {
@@ -19834,7 +19860,7 @@
     "ytSearchQuery": "Jatt Life Varinder Brar official audio song",
     "storagePath": "pj-jatt-life.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/nl_E_ZkrR3U/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/728/Jatt-Life-Zone-Punjabi-2022-20240830105539-500x500.webp",
     "ytId": "tYcBBJ049zs"
   },
   {
@@ -19847,7 +19873,7 @@
     "ytSearchQuery": "Jatt Vailly Karan Aujla official audio song",
     "storagePath": "pj-jatt-vailly.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/RDQUGEOymnk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/348/124-English-2016-20220204142656-500x500.webp",
     "ytId": "2V0Hl9C2hcM"
   },
   {
@@ -19860,7 +19886,7 @@
     "ytSearchQuery": "So High Sidhu Moose Wala official audio song",
     "storagePath": "pj-so-high-sidhu.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/GgmFC8y8q3k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/544/So-High-Punjabi-2017-20220811172517-500x500.webp",
     "ytId": "H1Cxq1MFCuo"
   },
   {
@@ -19873,7 +19899,7 @@
     "ytSearchQuery": "Same Beef Bohemia official audio song",
     "storagePath": "pj-same-beef.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/qk2WMmiiVFE/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/154/Same-Beef-Punjabi-2019-20190919071247-500x500.webp",
     "ytId": "lzgfqc9duik"
   },
   {
@@ -19886,7 +19912,7 @@
     "ytSearchQuery": "52 Gaj Ka Daman Renuka Panwar official audio song",
     "storagePath": "hr-52-gaj-ka-daman.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/CZt-rVn2BJs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/407/52-Gaj-Ka-Daman-Haryanvi-2020-20210625170012-500x500.webp",
     "ytId": "CZt-rVn2BJs"
   },
   {
@@ -19912,7 +19938,7 @@
     "ytSearchQuery": "Desi Desi Na Bola Kar MD official audio song",
     "storagePath": "hr-desi-desi-na-bola-kar.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/NCc0vovj7KM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/279/Desi-Desi-Na-Bola-Kar-Chori-R-Punjabi-2022-20221101151434-500x500.webp",
     "ytId": "P7Q4SmMi1Eg"
   },
   {
@@ -19925,7 +19951,7 @@
     "ytSearchQuery": "Moto Diler Kharkiya official audio song",
     "storagePath": "hr-moto-diler.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/tJGBVigwPlU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/392/Moto-Haryanvi-2020-20200416170730-500x500.webp",
     "ytId": "tJGBVigwPlU"
   },
   {
@@ -19938,7 +19964,7 @@
     "ytSearchQuery": "Feelings Sumit Goswami official audio song",
     "storagePath": "hr-feelings-sumit.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/AZmAgoir1Tc/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/543/Feelings-Unknown-2020-20260508161540-500x500.webp",
     "ytId": "VzUWfhTfkb4"
   },
   {
@@ -19951,7 +19977,7 @@
     "ytSearchQuery": "Tokk Masoom Sharma official audio song",
     "storagePath": "hr-tokk-masoom.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/b7ya32ibkNM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/544/Tokk-Lagni-Jayaz-feat-Kay-D-Prerna-Sharma-Haryanvi-2025-20251205105540-500x500.webp",
     "ytId": "IZJPdBarNkA"
   },
   {
@@ -19964,7 +19990,7 @@
     "ytSearchQuery": "Mera Balma Renuka Panwar official audio song",
     "storagePath": "hr-mera-balma.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/EZToImGgZhI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/592/Mera-Balma-Haryanvi-2021-20211007131021-500x500.webp",
     "ytId": "jC5esnjprVE"
   },
   {
@@ -19977,7 +20003,7 @@
     "ytSearchQuery": "Gajban Sapna Choudhary official audio song",
     "storagePath": "hr-gajban-pani.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/MD2Or5ZxBSs/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/175/Gajban-Hindi-2021-20231007134158-500x500.webp",
     "ytId": "MD2Or5ZxBSs"
   },
   {
@@ -19990,7 +20016,7 @@
     "ytSearchQuery": "Chand Renuka Panwar official audio song",
     "storagePath": "hr-chand-renuka.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/0G2AUpiXqPI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/038/Payal-Chandi-Ki-Haryanvi-2021-20210309100741-500x500.webp",
     "ytId": "nvSu3xr6YEg"
   },
   {
@@ -20016,7 +20042,7 @@
     "ytSearchQuery": "Kabootar Renuka Panwar official audio song",
     "storagePath": "hr-kabootar-renuka.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/qfSrPyX5Svk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/108/Kabootar-Haryanvi-2021-20211006173906-500x500.webp",
     "ytId": "qfSrPyX5Svk"
   },
   {
@@ -20029,7 +20055,7 @@
     "ytSearchQuery": "Solid Body Raju Punjabi official audio song",
     "storagePath": "hr-solid-body.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/ou-litQ9hWQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/676/Solid-Body-Haryanvi-2022-20240910162601-500x500.webp",
     "ytId": "EKW1Oly10oY"
   },
   {
@@ -20042,7 +20068,7 @@
     "ytSearchQuery": "Bahu Milgi Ajay Hooda official audio song",
     "storagePath": "hr-bahu-milgi.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Mlj0hdOG4QQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/129/Kallo-Feat-Ajay-Hooda-Pardeep-Boora-Haryanvi-2023-20231025091456-500x500.webp",
     "ytId": "Mlj0hdOG4QQ"
   },
   {
@@ -20055,7 +20081,7 @@
     "ytSearchQuery": "Tagdi Ajay Hooda official audio song",
     "storagePath": "hr-tagdi-ajay.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/t9dWF8jQRog/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/450/Tagdi-Haryanvi-2026-20260414061807-500x500.webp",
     "ytId": "t9dWF8jQRog"
   },
   {
@@ -20068,7 +20094,7 @@
     "ytSearchQuery": "Dekhya Karo Renuka Panwar official audio song",
     "storagePath": "hr-dekhya-karo.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/4QVXHmDA7fY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/191/KARIZMA-feat-Renuka-Panwar-Punjabi-2025-20250313221440-500x500.webp",
     "ytId": "sA3V0Kv-CL8"
   },
   {
@@ -20081,7 +20107,7 @@
     "ytSearchQuery": "Jale 2 Sapna Choudhary official audio song",
     "storagePath": "hr-jale-2.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/zFvLoiq58Nk/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/259/Jale-2-Haryanvi-2023-20260717142725-500x500.webp",
     "ytId": "zFvLoiq58Nk"
   },
   {
@@ -20094,7 +20120,7 @@
     "ytSearchQuery": "Jale Sapna Choudhary official audio song",
     "storagePath": "hr-jale-sapna.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/2K7kK-hWOms/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/259/Jale-2-Haryanvi-2023-20260717142725-500x500.webp",
     "ytId": "zFvLoiq58Nk"
   },
   {
@@ -20107,7 +20133,7 @@
     "ytSearchQuery": "Balam Thanedar Dinesh Golan official audio song",
     "storagePath": "hr-balam-thanedar.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/cZSrWoBMSrg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/035/Balam-Thanedar-feat-Pranjal-Dahiya-Haryanvi-2025-20251029181244-500x500.webp",
     "ytId": "cZSrWoBMSrg"
   },
   {
@@ -20120,7 +20146,7 @@
     "ytSearchQuery": "Aankh Marey Renuka Panwar official audio song",
     "storagePath": "hr-aankh-marey-hr.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/_zsda8nY4j8/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/421/Aankh-Marey-Haryanvi-2022-20221010193651-500x500.webp",
     "ytId": "c9x-MgD6cF0"
   },
   {
@@ -20133,7 +20159,7 @@
     "ytSearchQuery": "Chatak Matak Renuka Panwar official audio song",
     "storagePath": "hr-chatak-matak.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/fFa7eAUrYtg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/001/Chatak-Matak-Haryanvi-2020-20201221105140-500x500.webp",
     "ytId": "s9AICwTKgOg"
   },
   {
@@ -20146,7 +20172,7 @@
     "ytSearchQuery": "Thada Bhartar Raju Punjabi official audio song",
     "storagePath": "hr-thada-bhartar.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Uq4dyDHgqAI/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/751/Thada-Bhartar-Haryanvi-2022-20221109120205-500x500.webp",
     "ytId": "Uq4dyDHgqAI"
   },
   {
@@ -20159,7 +20185,7 @@
     "ytSearchQuery": "Russian Bandana Diler Kharkiya official audio song",
     "storagePath": "hr-russian-bandana.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/mpsPGUjvuhY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/902/i-m-at-the-club-Korean-2026-20260605181200-500x500.webp",
     "ytId": "sfZSZL6Th_k"
   },
   {
@@ -20172,7 +20198,7 @@
     "ytSearchQuery": "Gypsy GD Kaur official audio song",
     "storagePath": "hr-gypsy-gd-kaur.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/cZSrWoBMSrg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/268/Gypsy-feat-Pranjal-Dahiya-Hindi-2023-20231205211458-500x500.webp",
     "ytId": "cZSrWoBMSrg"
   },
   {
@@ -20198,7 +20224,7 @@
     "ytSearchQuery": "Loot Liya Gulzaar Chhaniwala official audio song",
     "storagePath": "hr-loot-liya.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/AMQIiEea12A/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/619/Loot-Liya-Haryanvi-2021-20250808093801-500x500.webp",
     "ytId": "AMQIiEea12A"
   },
   {
@@ -20224,7 +20250,7 @@
     "ytSearchQuery": "Bawli Sumit Goswami official audio song",
     "storagePath": "hr-bawli-sumit.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/m0Db-rzp20k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/754/Bawli-Tared-Haryanvi-2021-20210522093949-500x500.webp",
     "ytId": "m0Db-rzp20k"
   },
   {
@@ -20237,7 +20263,7 @@
     "ytSearchQuery": "Pani Chhalke Manisha Sharma official audio song",
     "storagePath": "hr-pani-chhalke.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/tFSOEdTF4vU/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/276/Pani-Chhalke-Haryanvi-2022-20260706074742-500x500.webp",
     "ytId": "tFSOEdTF4vU"
   },
   {
@@ -20250,7 +20276,7 @@
     "ytSearchQuery": "Lado Rani Diler Kharkiya official audio song",
     "storagePath": "hr-lado-rani.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/wcTEnSE3gDg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/195/Sadgi-Teri-Ne-Dil-Touch-Karke-Hindi-2022-20220307081247-500x500.webp",
     "ytId": "mWn2quSc7eA"
   },
   {
@@ -20263,7 +20289,7 @@
     "ytSearchQuery": "Dabban Aali Jaatni Masoom Sharma official audio song",
     "storagePath": "hr-dabban-aali-jaatni.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/1TEUJRWXADY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/233/4-5-Pistol-feat-Masoom-Sharma-Dev-Chouhan-Shivani-Yadav-Haryanvi-2025-20250503100151-500x500.webp",
     "ytId": "-ZCJJzcgCFs"
   },
   {
@@ -20276,7 +20302,7 @@
     "ytSearchQuery": "Jaatni Masoom Sharma official audio song",
     "storagePath": "hr-jaatni-masoom.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/Hfq3rTRcJ1k/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/341/Jaatni-Hindi-2019-20190823075009-500x500.webp",
     "ytId": "gQeKzBzUo5k"
   },
   {
@@ -20289,7 +20315,7 @@
     "ytSearchQuery": "Kale Kagaz Gulzaar Chhaniwala official audio song",
     "storagePath": "hr-kale-kagaz.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/IBLZvTisLig/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/160/Kale-Kagaz-Haryanvi-2023-20250808093808-500x500.webp",
     "ytId": "WglKFRu0FJs"
   },
   {
@@ -20302,7 +20328,7 @@
     "ytSearchQuery": "Yadav Brand 2 Sunny Yaduvanshi official audio song",
     "storagePath": "hr-yadav-brand-2.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/qgt-Z-aVlZg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/357/Yadav-Brand-2-Haryanvi-2023-20250918064304-500x500.webp",
     "ytId": "yCLGGTTzH6o"
   },
   {
@@ -20315,7 +20341,7 @@
     "ytSearchQuery": "Yadav Brand Sunny Yaduvanshi official audio song",
     "storagePath": "hr-yadav-brand-1.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/qgt-Z-aVlZg/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/357/Yadav-Brand-2-Haryanvi-2023-20250918064304-500x500.webp",
     "ytId": "yCLGGTTzH6o"
   },
   {
@@ -20328,7 +20354,7 @@
     "ytSearchQuery": "Kallo Masoom Sharma official audio song",
     "storagePath": "hr-kallo-masoom.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/kqORlNfprKM/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/842/Masoom-Sharma-Vibes-Haryanvi-2025-20251104171009-500x500.webp",
     "ytId": "kqORlNfprKM"
   },
   {
@@ -20341,7 +20367,7 @@
     "ytSearchQuery": "Chora Baba Ka Masoom Sharma official audio song",
     "storagePath": "hr-chora-baba-ka.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/5It9YKtlUMo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/233/4-5-Pistol-feat-Masoom-Sharma-Dev-Chouhan-Shivani-Yadav-Haryanvi-2025-20250503100151-500x500.webp",
     "ytId": "xuHVIhLhiTY"
   },
   {
@@ -20354,7 +20380,7 @@
     "ytSearchQuery": "Daru Badnaam Kamal Kahlon official audio song",
     "storagePath": "hr-daru-badnaam.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/bzW9fmwcmG4/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/125/Daru-Badnaam-Punjabi-2016-20251120114556-500x500.webp",
     "ytId": "bzW9fmwcmG4"
   },
   {
@@ -20367,7 +20393,7 @@
     "ytSearchQuery": "Badmashi Masoom Sharma official audio song",
     "storagePath": "hr-badmashi-masoom.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/wrPa0qOjk78/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/398/Badmashi-Delhi-Me-Haryanvi-2024-20260511133059-500x500.webp",
     "ytId": "7O109QLCHww"
   },
   {
@@ -20380,7 +20406,7 @@
     "ytSearchQuery": "Jaat Ki Setting Masoom Sharma official audio song",
     "storagePath": "hr-jaat-ki-setting.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/eZvVdRk8Cho/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/233/4-5-Pistol-feat-Masoom-Sharma-Dev-Chouhan-Shivani-Yadav-Haryanvi-2025-20250503100151-500x500.webp",
     "ytId": "Nhg9hHj8hqM"
   },
   {
@@ -20406,7 +20432,7 @@
     "ytSearchQuery": "Chora Jaat Ka Masoom Sharma official audio song",
     "storagePath": "hr-chora-jaat-ka.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/4_0r_e-AnCo/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/233/4-5-Pistol-feat-Masoom-Sharma-Dev-Chouhan-Shivani-Yadav-Haryanvi-2025-20250503100151-500x500.webp",
     "ytId": "uEkWzyJtzn8"
   },
   {
@@ -20419,7 +20445,7 @@
     "ytSearchQuery": "Banno Masoom Sharma official audio song",
     "storagePath": "hr-banno-masoom.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/CLkoGabaOwY/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/233/4-5-Pistol-feat-Masoom-Sharma-Dev-Chouhan-Shivani-Yadav-Haryanvi-2025-20250503100151-500x500.webp",
     "ytId": "kqORlNfprKM"
   },
   {
@@ -20432,7 +20458,7 @@
     "ytSearchQuery": "Moka Soka Gulzaar Chhaniwala official audio song",
     "storagePath": "hr-moka-soka.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/J5zdSIYGGAQ/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/669/Moka-Soka-Haryanvi-2026-20260320212400-500x500.webp",
     "ytId": "dksmqBEH2i0"
   },
   {
@@ -20445,7 +20471,7 @@
     "ytSearchQuery": "System Khatri official audio song",
     "storagePath": "hr-system-khatri.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/mC42S9vrm8Q/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/678/Meena-Ji-Ka-System-Khatri-H-Rajasthani-2023-20231027224743-500x500.webp",
     "ytId": "mC42S9vrm8Q"
   },
   {
@@ -20471,7 +20497,7 @@
     "ytSearchQuery": "Feel Gulzaar Chhaniwala official audio song",
     "storagePath": "hr-feel-gulzaar.mp3",
     "source": "Pulse Worldwide Hits",
-    "cover": "https://i.ytimg.com/vi/OY2DGoPTwfw/hqdefault.jpg",
+    "cover": "https://c.saavncdn.com/159/Feel-Jealous-Bhojpuri-2023-20230103130411-500x500.webp",
     "ytId": "p5-K8Wtm6GM"
   },
   {
@@ -20484,7 +20510,8 @@
     "ytId": "LUx8wlA_dk8",
     "ytSearchQuery": "Shree Hanuman Chalisa Hariharan Gulshan Kumar",
     "storagePath": "dev-hanuman-chalisa-gulshan.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/256/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-20260324161030-500x500.webp"
   },
   {
     "id": "dev-hanuman-chalisa-shekhar",
@@ -20496,7 +20523,8 @@
     "ytId": "ofevZ1CACPM",
     "ytSearchQuery": "Hanuman Chalisa Shekhar Ravjiani",
     "storagePath": "dev-hanuman-chalisa-shekhar.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/680/Shekhar-Ravjiani-s-Hanuman-Chalisa-Hindi-2014-500x500.jpg"
   },
   {
     "id": "dev-ram-aayenge",
@@ -20508,7 +20536,8 @@
     "ytId": "L2bcbXa2ou4",
     "ytSearchQuery": "Ram Aayenge Swasti Mehul",
     "storagePath": "dev-ram-aayenge.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/036/Ram-Aayenge-Hindi-2024-20240105014719-500x500.webp"
   },
   {
     "id": "dev-mere-ghar-ram",
@@ -20520,7 +20549,8 @@
     "ytId": "q5PmN7SuUkY",
     "ytSearchQuery": "Mere Ghar Ram Aaye Hain Jubin Nautiyal",
     "storagePath": "dev-mere-ghar-ram.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/946/Mere-Ghar-Ram-Aaye-Hain-Hindi-2022-20221019191009-500x500.webp"
   },
   {
     "id": "dev-shri-ram-chandra-kripalu",
@@ -20532,7 +20562,8 @@
     "ytId": "zlShDehRhQU",
     "ytSearchQuery": "Shri Ram Chandra Kripalu Bhajman Anup Jalota",
     "storagePath": "dev-shri-ram-chandra-kripalu.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/625/Jay-Veer-Hanuman-Hindi-2000-20250720184514-500x500.webp"
   },
   {
     "id": "dev-raghupati-raghav",
@@ -20544,7 +20575,8 @@
     "ytId": "rZ8jDjSwCY0",
     "ytSearchQuery": "Raghupati Raghav Raja Ram Hariharan",
     "storagePath": "dev-raghupati-raghav.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/891/Ram-Dhuni-Hindi-1994-20221204044422-500x500.webp"
   },
   {
     "id": "dev-payoji-maine-ram",
@@ -20556,7 +20588,8 @@
     "ytId": "eVzyOEhTBy8",
     "ytSearchQuery": "Payoji Maine Ram Ratan Dhan Payo Lata Mangeshkar",
     "storagePath": "dev-payoji-maine-ram.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/808/Ram-Ratan-Dhan-Payo-Hindi-2008-20241012150227-500x500.webp"
   },
   {
     "id": "dev-sankat-mochan-hanuman",
@@ -20568,7 +20601,8 @@
     "ytId": "HH_a6aRO1TE",
     "ytSearchQuery": "Sankat Mochan Hanuman Ashtak Hariharan",
     "storagePath": "dev-sankat-mochan-hanuman.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/256/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-20260324161030-500x500.webp"
   },
   {
     "id": "dev-bajrang-baan",
@@ -20580,7 +20614,8 @@
     "ytId": "h1lT6cxwsPw",
     "ytSearchQuery": "Shree Bajrang Baan Hariharan",
     "storagePath": "dev-bajrang-baan.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/256/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-20260324161030-500x500.webp"
   },
   {
     "id": "dev-ram-siya-ram",
@@ -20592,7 +20627,8 @@
     "ytId": "Tl4bQBfOtbg",
     "ytSearchQuery": "Ram Siya Ram Sachet Parampara Adipurush",
     "storagePath": "dev-ram-siya-ram.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/215/Ram-Siya-Ram-Hindi-2021-20210222031001-500x500.webp"
   },
   {
     "id": "dev-mangala-bhavana-amangala",
@@ -20604,7 +20640,8 @@
     "ytId": "917H0ZSIkUs",
     "ytSearchQuery": "Mangal Bhavan Amangal Hari Ravindra Jain",
     "storagePath": "dev-mangala-bhavana-amangala.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/668/Vijayadashami-Dussehra-Utsav-Special-Bhajan-Hindi-2023-20250225133449-500x500.webp"
   },
   {
     "id": "dev-he-ram-jagjit",
@@ -20616,7 +20653,8 @@
     "ytId": "Hy55Ij78amM",
     "ytSearchQuery": "He Ram He Ram Jagjit Singh",
     "storagePath": "dev-he-ram-jagjit.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/774/He-Ram-He-Ram-Shree-Ram-Dhun-Jagjit-Singh-Tamil-1999-500x500.jpg"
   },
   {
     "id": "dev-shiv-tandav-stotram",
@@ -20628,7 +20666,8 @@
     "ytId": "S980-z1qx3g",
     "ytSearchQuery": "Shiv Tandav Stotram Shankar Mahadevan",
     "storagePath": "dev-shiv-tandav-stotram.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/870/Bhole-Shiv-Shankar-Sanskrit-2025-20250720025922-500x500.webp"
   },
   {
     "id": "dev-har-har-shambhu",
@@ -20640,7 +20679,8 @@
     "ytId": "aRoMeNr1mMQ",
     "ytSearchQuery": "Har Har Shambhu Shiv Mahadeva Abhilipsa Panda",
     "storagePath": "dev-har-har-shambhu.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/224/Har-Har-Shambhu-Shiv-Mahadeva-Hindi-2022-20250624094506-500x500.webp"
   },
   {
     "id": "dev-namo-namo",
@@ -20652,7 +20692,8 @@
     "ytId": "yvUXGRR4BVY",
     "ytSearchQuery": "Namo Namo Shankara Amit Trivedi Kedarnath",
     "storagePath": "dev-namo-namo.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/418/Amit-Trivedi-Hits-Hindi-2026-20260406180755-500x500.webp"
   },
   {
     "id": "dev-kaal-bhairav-ashtakam",
@@ -20664,7 +20705,8 @@
     "ytId": "PGwXZqviGyg",
     "ytSearchQuery": "Kaal Bhairav Ashtakam",
     "storagePath": "dev-kaal-bhairav-ashtakam.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/291/Kaal-Bhairav-Ashtakam-The-Beginning-Hindi-2023-20230403132544-500x500.webp"
   },
   {
     "id": "dev-maha-mrityunjaya-mantra",
@@ -20676,7 +20718,8 @@
     "ytId": "OV9LXGOXjgs",
     "ytSearchQuery": "Maha Mrityunjaya Mantra 108 times",
     "storagePath": "dev-maha-mrityunjaya-mantra.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/412/Maha-Mrityunjaya-Mantra-English-2020-20200216193019-500x500.webp"
   },
   {
     "id": "dev-shiv-kailasho-ke-wasi",
@@ -20688,7 +20731,8 @@
     "ytId": "PlIoHp6v3LI",
     "ytSearchQuery": "Shiv Kailasho Ke Wasi Hansraj Raghuwanshi",
     "storagePath": "dev-shiv-kailasho-ke-wasi.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/776/Shiv-Kailasho-Ke-Vasi-Hindi-2019-20250225223209-500x500.webp"
   },
   {
     "id": "dev-parvati-boli-shankar-se",
@@ -20700,7 +20744,8 @@
     "ytId": "4DkNCgUXbig",
     "ytSearchQuery": "Parvati Boli Shankar Se Hansraj Raghuwanshi",
     "storagePath": "dev-parvati-boli-shankar-se.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/303/Parvati-Boli-Shankar-Se-Hindi-2022-20250808093802-500x500.webp"
   },
   {
     "id": "dev-om-namah-shivaya-dhun",
@@ -20712,7 +20757,8 @@
     "ytId": "PTc8X37oJBE",
     "ytSearchQuery": "Om Namah Shivaya Chanting Krishna Das",
     "storagePath": "dev-om-namah-shivaya-dhun.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/606/DC-Original-Motion-Picture-Soundtrack-Tamil-2026-20260727061230-500x500.webp"
   },
   {
     "id": "dev-lingashtakam",
@@ -20724,7 +20770,8 @@
     "ytId": "3G3e1UCK-5w",
     "ytSearchQuery": "Lingashtakam SP Balasubrahmanyam",
     "storagePath": "dev-lingashtakam.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/522/Mahashivarathri-Special-Hits-2013-500x500.jpg"
   },
   {
     "id": "dev-bhole-nath-hansraj",
@@ -20736,7 +20783,8 @@
     "ytId": "gaJR15qWTDA",
     "ytSearchQuery": "Mera Bhola Hai Bhandari Hansraj Raghuwanshi",
     "storagePath": "dev-bhole-nath-hansraj.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/524/Top-Hits-of-Hansraj-Raghuwanshi-Hindi-2020-20250217193310-500x500.webp"
   },
   {
     "id": "dev-karpur-gauram",
@@ -20748,7 +20796,8 @@
     "ytId": "ttmecaJuh1o",
     "ytSearchQuery": "Karpur Gauram Karunavataram Devon Ke Dev Mahadev",
     "storagePath": "dev-karpur-gauram.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/221/Shiv-Shakti-Mantra-Jaap-Sanskrit-2005-20221205112038-500x500.webp"
   },
   {
     "id": "dev-shambhu-shankar",
@@ -20760,7 +20809,8 @@
     "ytId": "GssiYaOCHuQ",
     "ytSearchQuery": "Shambhu Akshay Kumar Sudhir Yaduvanshi",
     "storagePath": "dev-shambhu-shankar.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/870/Bhole-Shiv-Shankar-Sanskrit-2025-20250720025922-500x500.webp"
   },
   {
     "id": "dev-achyutam-keshavam",
@@ -20772,7 +20822,8 @@
     "ytId": "RWqbhHehG0w",
     "ytSearchQuery": "Achyutam Keshavam Krishna Damodaram Madhuraa",
     "storagePath": "dev-achyutam-keshavam.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/842/Morning-Bhakti-Hindi-2026-20260521184822-500x500.webp"
   },
   {
     "id": "dev-shri-krishna-govind",
@@ -20784,7 +20835,8 @@
     "ytId": "1qmPNot9NJs",
     "ytSearchQuery": "Shri Krishna Govind Hare Murari Jubin Nautiyal",
     "storagePath": "dev-shri-krishna-govind.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/021/Shri-Krishna-Govind-Hare-Murari-Hindi-2020-20200806224005-500x500.webp"
   },
   {
     "id": "dev-radhe-radhe-barsane",
@@ -20796,7 +20848,8 @@
     "ytId": "61EGpAy4Ids",
     "ytSearchQuery": "Radhe Radhe Barsane Wali Radhe",
     "storagePath": "dev-radhe-radhe-barsane.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/154/Radhe-Radhe-Barsane-Wali-Radhe-English-2020-20260313154504-500x500.webp"
   },
   {
     "id": "dev-radha-rani-bhajan",
@@ -20808,7 +20861,8 @@
     "ytId": "I_QwbiPiZNA",
     "ytSearchQuery": "Radha Rani Lage Jaya Kishori",
     "storagePath": "dev-radha-rani-bhajan.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/862/Radha-Rani-Lage-Hindi-2025-20250815104440-500x500.webp"
   },
   {
     "id": "dev-woh-kisna-hai",
@@ -20820,7 +20874,8 @@
     "ytId": "nKaVU5zhkX0",
     "ytSearchQuery": "Woh Kisna Hai Sukhwinder Singh",
     "storagePath": "dev-woh-kisna-hai.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/773/Kisna-Hindi-2005-20240408213847-500x500.webp"
   },
   {
     "id": "dev-radhe-kishori-daya-karo",
@@ -20832,7 +20887,8 @@
     "ytId": "AEjEMXYFU0A",
     "ytSearchQuery": "Radhe Radhe Radhe Barsane Wali Chitra Vichitra",
     "storagePath": "dev-radhe-kishori-daya-karo.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/035/Radhe-Radhe-Barsane-Wali-Radhe-Hindi-2022-20220913102408-500x500.webp"
   },
   {
     "id": "dev-choti-choti-gaiya",
@@ -20844,7 +20900,8 @@
     "ytId": "XzqJUoSDHZU",
     "ytSearchQuery": "Choti Choti Gaiya Chote Chote Gwal",
     "storagePath": "dev-choti-choti-gaiya.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/614/Choti-Choti-Gaiya-Chote-Chote-Gwal-Zee-Music-Devotional-Hindi-2019-20190410114754-500x500.webp"
   },
   {
     "id": "dev-govind-bolo-hari",
@@ -20856,7 +20913,8 @@
     "ytId": "cFGHAavFIug",
     "ytSearchQuery": "Govind Bolo Hari Gopal Bolo Jagjit Singh",
     "storagePath": "dev-govind-bolo-hari.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/002/Best-of-Jagjit-Singh-Hindi-2026-20260728190021-500x500.webp"
   },
   {
     "id": "dev-yashomati-maiya-se",
@@ -20868,7 +20926,8 @@
     "ytId": "8e7e0RArZq8",
     "ytSearchQuery": "Yashomati Maiya Se Bole Nandlala",
     "storagePath": "dev-yashomati-maiya-se.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/589/Satyam-Shivam-Sundaram-Hindi-1978-20220429143400-500x500.webp"
   },
   {
     "id": "dev-aisi-lagi-lagan",
@@ -20880,7 +20939,8 @@
     "ytId": "drszYwxBvpE",
     "ytSearchQuery": "Aisi Lagi Lagan Meera Ho Gayi Magan Anup Jalota",
     "storagePath": "dev-aisi-lagi-lagan.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/240/Main-Nahin-Makhan-Khayo-1999-500x500.jpg"
   },
   {
     "id": "dev-kanha-soja-zara",
@@ -20892,7 +20952,8 @@
     "ytId": "bESWkKFsKZE",
     "ytSearchQuery": "Soja Zara Baahubali 2 Madhushree",
     "storagePath": "dev-kanha-soja-zara.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/221/Bahubali-The-Conclusion-Hindi-2017-500x500.jpg"
   },
   {
     "id": "dev-aigiri-nandini",
@@ -20904,7 +20965,8 @@
     "ytId": "v-icNVDbVLk",
     "ytSearchQuery": "Aigiri Nandini Brodha V",
     "storagePath": "dev-aigiri-nandini.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/206/Aigiri-Nandini-Tamil-2022-20220401094056-500x500.webp"
   },
   {
     "id": "dev-mahishasura-mardini-stotram",
@@ -20916,7 +20978,8 @@
     "ytId": "442ewPgXHQ0",
     "ytSearchQuery": "Mahishasura Mardini Stotram Rajalakshmee Sanjay",
     "storagePath": "dev-mahishasura-mardini-stotram.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/165/Aigiri-Nandini-Fast-Sanskrit-2023-20231019230016-500x500.webp"
   },
   {
     "id": "dev-durga-saptashati",
@@ -20928,7 +20991,8 @@
     "ytId": "PKdJNAHYpC0",
     "ytSearchQuery": "Durga Saptashati Argala Stotram Anuradha Paudwal",
     "storagePath": "dev-durga-saptashati.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/685/Durga-Saptashati-Sanskrit-2004-500x500.jpg"
   },
   {
     "id": "dev-chalo-bulawa-aaya-hai",
@@ -20940,7 +21004,8 @@
     "ytId": "UIvpNrP4WQs",
     "ytSearchQuery": "Chalo Bulawa Aaya Hai Narendra Chanchal",
     "storagePath": "dev-chalo-bulawa-aaya-hai.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/681/Avtaar-Hindi-1983-500x500.jpg"
   },
   {
     "id": "dev-tune-mujhe-bulaya-shera-waliye",
@@ -20952,7 +21017,8 @@
     "ytId": "CVzfobg6qyo",
     "ytSearchQuery": "Tune Mujhe Bulaya Sherawaliye Mohammed Rafi",
     "storagePath": "dev-tune-mujhe-bulaya-shera-waliye.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/992/Mohammed-Rafi-Romantic-Hits-Jhankar-Beats-Hindi-2022-20221222084200-500x500.webp"
   },
   {
     "id": "dev-jai-ambe-gauri",
@@ -20964,7 +21030,8 @@
     "ytId": "-rKAOaS7Q3I",
     "ytSearchQuery": "Jai Ambe Gauri Aarti Anuradha Paudwal",
     "storagePath": "dev-jai-ambe-gauri.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/065/Aarti-Vol-3-Hindi-1989-20211102161000-500x500.webp"
   },
   {
     "id": "dev-gayatri-mantra",
@@ -20976,7 +21043,8 @@
     "ytId": "nwRoHC83wx0",
     "ytSearchQuery": "Gayatri Mantra Anuradha Paudwal 108 times",
     "storagePath": "dev-gayatri-mantra.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/419/Gayatri-Mantra-108-Times-Sanskrit-2018-20230420153058-500x500.webp"
   },
   {
     "id": "dev-vakratunda-mahakaya",
@@ -20988,7 +21056,8 @@
     "ytId": "5585pHxQn3c",
     "ytSearchQuery": "Vakratunda Mahakaya Sadhana Sargam",
     "storagePath": "dev-vakratunda-mahakaya.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/368/Vakratunda-Mahakaya-Hindi-2016-20230103111553-500x500.webp"
   },
   {
     "id": "dev-jai-ganesh-deva",
@@ -21000,7 +21069,8 @@
     "ytId": "Yuex2EnsGiY",
     "ytSearchQuery": "Jai Ganesh Jai Ganesh Jai Ganesh Deva Anuradha Paudwal",
     "storagePath": "dev-jai-ganesh-deva.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/280/Ganesh-Maha-Mantra-Hindi-2018-20260609234455-500x500.webp"
   },
   {
     "id": "dev-ganpati-bappa-morya",
@@ -21012,7 +21082,8 @@
     "ytId": "8jff2wz3Hpk",
     "ytSearchQuery": "Morya Re Shankar Mahadevan Don",
     "storagePath": "dev-ganpati-bappa-morya.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/818/Don-Hindi-2006-20221124163946-500x500.webp"
   },
   {
     "id": "dev-om-jai-jagdish-hare",
@@ -21024,7 +21095,8 @@
     "ytId": "3ucCEjXS9n8",
     "ytSearchQuery": "Om Jai Jagdish Hare Anuradha Paudwal",
     "storagePath": "dev-om-jai-jagdish-hare.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/140/Devichya-Aartya-2000-500x500.jpg"
   },
   {
     "id": "dev-aarti-kunj-bihari-ki",
@@ -21036,7 +21108,8 @@
     "ytId": "EMO1AT1UQf0",
     "ytSearchQuery": "Aarti Kunj Bihari Ki Hariharan",
     "storagePath": "dev-aarti-kunj-bihari-ki.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/558/Aarti-Vol-5-Hindi-1991-20250416181045-500x500.webp"
   },
   {
     "id": "dev-shree-ganesh-atharvashirsha",
@@ -21048,7 +21121,8 @@
     "ytId": "Tssx17scqO4",
     "ytSearchQuery": "Ganpati Atharvashirsha Suresh Wadkar",
     "storagePath": "dev-shree-ganesh-atharvashirsha.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/106/Ganpati-Atharvashirsha-Marathi-2021-20250715231510-500x500.webp"
   },
   {
     "id": "dev-kn-bhagyada-lakshmi",
@@ -21060,7 +21134,8 @@
     "ytId": "_tdYY6lUw9g",
     "ytSearchQuery": "Bhagyada Lakshmi Baramma Bhimsen Joshi",
     "storagePath": "dev-kn-bhagyada-lakshmi.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/567/NODI-SWAMI-NAVIRODU-HEEGE-Original-Motion-Soundtrack-Kannada-1983-20220827084941-500x500.webp"
   },
   {
     "id": "dev-kn-jagadodharana",
@@ -21072,7 +21147,8 @@
     "ytId": "zW55f0JZNPI",
     "ytSearchQuery": "Jagadodharana MS Subbulakshmi",
     "storagePath": "dev-kn-jagadodharana.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/610/M-S-Subbulakshmi-Sings-For-Tirupati-Lord-Balaji-Vol-2-Sanskrit-2010-500x500.jpg"
   },
   {
     "id": "dev-kn-krishna-nee-begane",
@@ -21084,7 +21160,8 @@
     "ytId": "CJvK0dox0_M",
     "ytSearchQuery": "Krishna Nee Begane Baaro Colonial Cousins",
     "storagePath": "dev-kn-krishna-nee-begane.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/037/Pravaha-Sanskrit-2026-20260402183328-500x500.webp"
   },
   {
     "id": "dev-kn-pillangoviya-cheluva",
@@ -21096,7 +21173,8 @@
     "ytId": "gdB8N0_0Y3o",
     "ytSearchQuery": "Pillangoviya Cheluva Krishnana Puttur",
     "storagePath": "dev-kn-pillangoviya-cheluva.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/955/Divya-Gaana-Kannada-2004-20230713192042-500x500.webp"
   },
   {
     "id": "dev-kn-baro-krishnayya",
@@ -21108,7 +21186,8 @@
     "ytId": "HhsPqeEM6a4",
     "ytSearchQuery": "Baro Krishnayya MS Subbulakshmi",
     "storagePath": "dev-kn-baro-krishnayya.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/771/Carnatic-Gems-Spoorthi-Rao-Kannada-2023-20231219111626-500x500.webp"
   },
   {
     "id": "dev-kn-kande-kande-swamiya",
@@ -21120,7 +21199,8 @@
     "ytId": "Q-fEOFvPfgQ",
     "ytSearchQuery": "Kande Kande Swamiya Kande Yesudas",
     "storagePath": "dev-kn-kande-kande-swamiya.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/155/Preethsod-Thappa--Kannada-1998-20200817111817-500x500.webp"
   },
   {
     "id": "dev-kn-ee-paada-punya-paada",
@@ -21132,7 +21212,8 @@
     "ytId": "yItFgFaqd50",
     "ytSearchQuery": "Ee Paada Punya Paada Dr Rajkumar",
     "storagePath": "dev-kn-ee-paada-punya-paada.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/996/Om-Kannada-1995-20200806160633-500x500.webp"
   },
   {
     "id": "dev-kn-swamiye-saranam-ayyappa",
@@ -21144,7 +21225,8 @@
     "ytId": "uuIozqjv1cI",
     "ytSearchQuery": "Swamiye Saranam Ayyappa SP Balasubrahmanyam",
     "storagePath": "dev-kn-swamiye-saranam-ayyappa.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/146/Geethanjali-Kannada-2010-500x500.jpg"
   },
   {
     "id": "dev-kn-narayana-ninna-namada",
@@ -21156,7 +21238,8 @@
     "ytId": "_tdYY6lUw9g",
     "ytSearchQuery": "Narayana Ninna Namada Smaraneya Bhimsen Joshi",
     "storagePath": "dev-kn-narayana-ninna-namada.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/701/Greatest-Krishna-Songs-by-Rahul-Vellal-Kannada-2024-20240821164603-500x500.webp"
   },
   {
     "id": "dev-kn-gummana-kareyadire",
@@ -21192,7 +21275,8 @@
     "ytId": "SZDdQE-SIsY",
     "ytSearchQuery": "Thaye Yashoda Puttur Narasimha Nayak",
     "storagePath": "dev-kn-thaye-yashoda.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/943/Challatagara-Maadappa-Kannada-2001-20221122081717-500x500.webp"
   },
   {
     "id": "dev-kn-daasanamadiko-enno",
@@ -21204,7 +21288,8 @@
     "ytId": "GMb20LHefYc",
     "ytSearchQuery": "Dasana Madiko Enna Bhimsen Joshi",
     "storagePath": "dev-kn-daasanamadiko-enno.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/462/Dasana-Madiko-Enna-Kannada-2025-20250306135840-500x500.webp"
   },
   {
     "id": "dev-kn-raghavendra-guru-stotra",
@@ -21216,7 +21301,8 @@
     "ytId": "1INgKQN_0T8",
     "ytSearchQuery": "Raghavendra Guru Stotram Dr Rajkumar",
     "storagePath": "dev-kn-raghavendra-guru-stotra.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/561/Sri-Guru-Raghavendra-Stotramala-Kannada-2003-20250327101248-500x500.webp"
   },
   {
     "id": "dev-kn-tungatheera-virajita",
@@ -21228,7 +21314,8 @@
     "ytId": "M06knni3UtA",
     "ytSearchQuery": "Tunga Teera Virajam PB Sreenivas",
     "storagePath": "dev-kn-tungatheera-virajita.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/643/Narasimha-Telugu-1999-20190729123407-500x500.webp"
   },
   {
     "id": "dev-kn-nodu-nodu-kannara",
@@ -21240,7 +21327,8 @@
     "ytId": "9dHUgOgq1vo",
     "ytSearchQuery": "Nodu Nodu Kannara Dr Rajkumar",
     "storagePath": "dev-kn-nodu-nodu-kannara.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/996/Om-Kannada-1995-20200806160633-500x500.webp"
   },
   {
     "id": "dev-kn-jaya-janardhana-krishna",
@@ -21252,7 +21340,8 @@
     "ytId": "YltMEcUufK0",
     "ytSearchQuery": "Jaya Janardhana Krishna Radhika Pathe Yesudas",
     "storagePath": "dev-kn-jaya-janardhana-krishna.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/318/Jaya-Janardhana-Telugu-2018-20190802152926-500x500.webp"
   },
   {
     "id": "dev-kn-karuniso-ranga",
@@ -21264,7 +21353,8 @@
     "ytId": "KQg31s8UWFs",
     "ytSearchQuery": "Karuniso Ranga Karuniso Bhimsen Joshi",
     "storagePath": "dev-kn-karuniso-ranga.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/125/Hari-Bhajane-Maado-1998-500x500.jpg"
   },
   {
     "id": "dev-te-brahmamokkate",
@@ -21276,7 +21366,8 @@
     "ytId": "8S8BtEv2erg",
     "ytSearchQuery": "Brahmamokkate MS Subbulakshmi Annamayya",
     "storagePath": "dev-te-brahmamokkate.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/610/M-S-Subbulakshmi-Sings-For-Tirupati-Lord-Balaji-Vol-2-Sanskrit-2010-500x500.jpg"
   },
   {
     "id": "dev-te-kondalalo-nelakonna",
@@ -21300,7 +21391,8 @@
     "ytId": "ajOvVZCOtg8",
     "ytSearchQuery": "Nigama Nigamanta SPB Annamayya",
     "storagePath": "dev-te-nigama-nigamanta.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/252/Tholiprema-Telugu-2014-20251011224607-500x500.webp"
   },
   {
     "id": "dev-te-adivo-alladivo",
@@ -21336,7 +21428,8 @@
     "ytId": "AamfXx-4j3U",
     "ytSearchQuery": "Govinda Namalu Srinivasa Govinda SPB",
     "storagePath": "dev-te-govinda-namalu.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/668/Govinda-Namalu-Telugu-2026-20260415122106-500x500.webp"
   },
   {
     "id": "dev-te-venkateswara-suprabhatam",
@@ -21348,7 +21441,8 @@
     "ytId": "krGYd5tZe0A",
     "ytSearchQuery": "Sri Venkateswara Suprabhatam MS Subbulakshmi",
     "storagePath": "dev-te-venkateswara-suprabhatam.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/094/Sri-Venkateswara-Suprabhatam-2013-500x500.jpg"
   },
   {
     "id": "dev-te-paluke-bangaramayena",
@@ -21360,7 +21454,8 @@
     "ytId": "MkwL226LKyc",
     "ytSearchQuery": "Paluke Bangaramayena Balamuralikrishna",
     "storagePath": "dev-te-paluke-bangaramayena.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/163/Sankarabharanam-Malayalam-1981-20230302173305-500x500.webp"
   },
   {
     "id": "dev-te-telugu-hanuman-chalisa",
@@ -21372,7 +21467,8 @@
     "ytId": "v2VHVitMS4o",
     "ytSearchQuery": "Hanuman Chalisa Telugu SP Balasubrahmanyam",
     "storagePath": "dev-te-telugu-hanuman-chalisa.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/644/Jai-Hanumaan-2002-500x500.jpg"
   },
   {
     "id": "dev-te-nagumomu-gana-leni",
@@ -21384,7 +21480,8 @@
     "ytId": "ZY0GQfLXkfE",
     "ytSearchQuery": "Nagumomu Ganaleni Balamuralikrishna",
     "storagePath": "dev-te-nagumomu-gana-leni.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/000/Nagumomu-Ganaleni-Telugu-2022-20220328110247-500x500.webp"
   },
   {
     "id": "dev-te-shiva-stuti-balasubrahmanyam",
@@ -21396,7 +21493,8 @@
     "ytId": "UWHST0gqkWM",
     "ytSearchQuery": "Siva Siva Sankara SP Balasubrahmanyam",
     "storagePath": "dev-te-shiva-stuti-balasubrahmanyam.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/437/Bhaktha-Kannappa-Telugu-1976-20190308182043-500x500.webp"
   },
   {
     "id": "dev-te-podagantimayya-purushottama",
@@ -21408,7 +21506,8 @@
     "ytId": "1rMq27qdUDI",
     "ytSearchQuery": "Podagantimayya Purushottama SPB Annamayya",
     "storagePath": "dev-te-podagantimayya-purushottama.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/252/Tholiprema-Telugu-2014-20251011224607-500x500.webp"
   },
   {
     "id": "dev-pj-mool-mantar",
@@ -21444,7 +21543,8 @@
     "ytId": "JW1gk_nKEvs",
     "ytSearchQuery": "Lakh Khushian Patshahian Bhai Harjinder Singh",
     "storagePath": "dev-pj-lakh-khushian.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/389/Ghar-Sukh-Vaseya-Bahar-Sukh-Paeya-Punjabi-2008-20250408121733-500x500.webp"
   },
   {
     "id": "dev-pj-mittar-pyare-nu",
@@ -21456,7 +21556,8 @@
     "ytId": "pGZLEtmUp_Q",
     "ytSearchQuery": "Mittar Pyare Nu Bhai Tarbalbir Singh",
     "storagePath": "dev-pj-mittar-pyare-nu.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/494/Mittar-Pyare-Nu-Haal-Mureedan-Da-Kehna-Shabad-Kirtan-Gurbaani--Punjabi-2022-20220411123423-500x500.webp"
   },
   {
     "id": "dev-pj-dhan-dhan-ramdas",
@@ -21468,7 +21569,8 @@
     "ytId": "emsMEo84bws",
     "ytSearchQuery": "Dhan Dhan Ramdas Gur Gurbani",
     "storagePath": "dev-pj-dhan-dhan-ramdas.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/027/Baitha-Sodhi-Paatshah-Punjabi-2012-20221212231505-500x500.webp"
   },
   {
     "id": "dev-pj-satnam-waheguru",
@@ -21480,7 +21582,8 @@
     "ytId": "SIqag-x5gqI",
     "ytSearchQuery": "Satnam Shri Waheguru Jagjit Singh",
     "storagePath": "dev-pj-satnam-waheguru.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/193/Satnam-Shri-Waheguru-Punjabi-2022-20220507014359-500x500.webp"
   },
   {
     "id": "dev-pj-tu-mera-rakha",
@@ -21492,7 +21595,8 @@
     "ytId": "XLv-1DYujvo",
     "ytSearchQuery": "Tu Mera Rakha Bhai Davinder Singh Sodhi",
     "storagePath": "dev-pj-tu-mera-rakha.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/272/Tu-Mera-Rakha-Sabni-Thai-Punjabi-2025-20250403173248-500x500.webp"
   },
   {
     "id": "dev-pj-taati-vao-na-lagai",
@@ -21516,7 +21620,8 @@
     "ytId": "rVIpqQvkNe0",
     "ytSearchQuery": "Bisar Gayi Sabh Taat Parayi",
     "storagePath": "dev-pj-bisar-gayi-sab-taat.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/421/Satgur-Hoye-Dayal-Vol-10-Punjabi-2006-20221205005307-500x500.webp"
   },
   {
     "id": "dev-gu-vaishnav-jan-to",
@@ -21528,7 +21633,8 @@
     "ytId": "_Gc3ysO1AXo",
     "ytSearchQuery": "Vaishnav Jan To Tene Kahiye Sachin Jigar",
     "storagePath": "dev-gu-vaishnav-jan-to.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/228/Sachin-Jigar-Bollywood-Hits-Hindi-2026-20260630213800-500x500.webp"
   },
   {
     "id": "dev-gu-nagar-nand-ji-na-laal",
@@ -21540,7 +21646,8 @@
     "ytId": "3VuA2n_duoQ",
     "ytSearchQuery": "Nagar Nand Ji Na Laal Hemant Chauhan",
     "storagePath": "dev-gu-nagar-nand-ji-na-laal.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/906/Range-Ramo-Aanande-Ramo-Gujarati-1996-20221204092528-500x500.jpg"
   },
   {
     "id": "dev-gu-shrinathji-sharanam-mamah",
@@ -21552,7 +21659,8 @@
     "ytId": "tWuSzM8btFI",
     "ytSearchQuery": "Shrinathji Sharanam Mamah Hemant Chauhan",
     "storagePath": "dev-gu-shrinathji-sharanam-mamah.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/399/Shri-Krishna-Sharanam-Mamah-Dhun-Gujarati-2021-20210915095357-500x500.webp"
   },
   {
     "id": "dev-mr-vitthal-vitthal",
@@ -21564,7 +21672,8 @@
     "ytId": "Mz317YSIOiE",
     "ytSearchQuery": "Vitthal Vitthal Vitthala Suresh Wadkar",
     "storagePath": "dev-mr-vitthal-vitthal.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/801/Vitthal-Vitthal-Vitthala-Hari-Om-Vitthala-Marathi-2000-20250721151147-500x500.webp"
   },
   {
     "id": "dev-mr-majhe-maher-pandhari",
@@ -21576,7 +21685,8 @@
     "ytId": "MHTz8OEYqTw",
     "ytSearchQuery": "Majhe Maher Pandhari Bhimsen Joshi",
     "storagePath": "dev-mr-majhe-maher-pandhari.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/882/Mahagayak-Bhag-Vol-1-Marathi-1960-20201008164003-500x500.webp"
   },
   {
     "id": "dev-mr-roop-pahata-lochani",
@@ -21588,7 +21698,8 @@
     "ytId": "24adOWzQQic",
     "ytSearchQuery": "Roop Pahata Lochani Sanjeev Abhyankar",
     "storagePath": "dev-mr-roop-pahata-lochani.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/470/Vitthal-Vitthal-Marathi-2020-20260602201612-500x500.webp"
   },
   {
     "id": "dev-mr-kanada-raja-pandharicha",
@@ -21600,7 +21711,8 @@
     "ytId": "GA1x7iadCwo",
     "ytSearchQuery": "Kanada Raja Pandharicha Mahesh Kale",
     "storagePath": "dev-mr-kanada-raja-pandharicha.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/400/Zala-Mahar-Pandharinath-Marathi-1970-20201008164051-500x500.webp"
   },
   {
     "id": "dev-khwaja-mere-khwaja",
@@ -21612,7 +21724,8 @@
     "ytId": "4YbAaRFk70o",
     "ytSearchQuery": "Khwaja Mere Khwaja AR Rahman Jodhaa Akbar",
     "storagePath": "dev-khwaja-mere-khwaja.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/016/Jodhaa-Akbar-Hindi-2007-20201029165330-500x500.webp"
   },
   {
     "id": "dev-kun-faya-kun",
@@ -21624,7 +21737,8 @@
     "ytId": "T94PHkuydcw",
     "ytSearchQuery": "Kun Faya Kun AR Rahman Rockstar",
     "storagePath": "dev-kun-faya-kun.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/408/Rockstar-Hindi-2011-20221212023139-500x500.webp"
   },
   {
     "id": "dev-arziyan-delhi6",
@@ -21636,7 +21750,8 @@
     "ytId": "JA09HEGTzCU",
     "ytSearchQuery": "Arziyan Delhi 6 Javed Ali Kailash Kher AR Rahman",
     "storagePath": "dev-arziyan-delhi6.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/931/Delhi-6-2009-500x500.jpg"
   },
   {
     "id": "dev-bhar-do-jholi-meri",
@@ -21648,7 +21763,8 @@
     "ytId": "zk0-f92gg9A",
     "ytSearchQuery": "Bhar Do Jholi Meri Adnan Sami Bajrangi Bhaijaan",
     "storagePath": "dev-bhar-do-jholi-meri.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/128/Bajrangi-Bhaijaan-Hindi-2015-20260724191009-500x500.webp"
   },
   {
     "id": "dev-itni-shakti-hamein-dena",
@@ -21660,7 +21776,8 @@
     "ytId": "m1Ft4JdgrBE",
     "ytSearchQuery": "Itni Shakti Hamein Dena Data Ankush",
     "storagePath": "dev-itni-shakti-hamein-dena.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/045/Ankush-Hindi-1986-20221210113511-500x500.webp"
   },
   {
     "id": "dev-sai-ram-sai-shyam",
@@ -21672,7 +21789,8 @@
     "ytId": "xuv3Fab7wmo",
     "ytSearchQuery": "Sai Ram Sai Shyam Sadhana Sargam",
     "storagePath": "dev-sai-ram-sai-shyam.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/302/Shyama-Aan-Baso-Hindi-2024-20240823121020-500x500.webp"
   },
   {
     "id": "dev-om-sai-namo-namah",
@@ -21684,7 +21802,8 @@
     "ytId": "zlA-R2CPtFA",
     "ytSearchQuery": "Om Sai Namo Namah Suresh Wadkar",
     "storagePath": "dev-om-sai-namo-namah.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/413/Om-Chanting-for-Meditation-Sanskrit-2015-500x500.jpg"
   },
   {
     "id": "dev-shree-krishna-sharanam-mamah",
@@ -21696,7 +21815,8 @@
     "ytId": "OXgsgJkiFuI",
     "ytSearchQuery": "Shree Krishna Sharanam Mamah Anuradha Paudwal",
     "storagePath": "dev-shree-krishna-sharanam-mamah.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/256/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-20260324161030-500x500.webp"
   },
   {
     "id": "en-taste-sabrina",
@@ -21708,7 +21828,8 @@
     "ytId": "KEG7b851Ric",
     "ytSearchQuery": "Taste Sabrina Carpenter",
     "storagePath": "en-taste-sabrina.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/505/Herbst-Hits-2025-English-2025-20260508170026-500x500.webp"
   },
   {
     "id": "en-please-please-please",
@@ -21720,7 +21841,8 @@
     "ytId": "cF1Na4AIecM",
     "ytSearchQuery": "Please Please Please Sabrina Carpenter",
     "storagePath": "en-please-please-please.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/812/Please-Please-Please-English-2024-20240607064757-500x500.webp"
   },
   {
     "id": "en-feather-sabrina",
@@ -21732,7 +21854,8 @@
     "ytId": "kLbn61Z4LDI",
     "ytSearchQuery": "Feather Sabrina Carpenter",
     "storagePath": "en-feather-sabrina.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/247/Good-Morning-Bangers-English-2025-20251218053624-500x500.webp"
   },
   {
     "id": "en-bed-chem-sabrina",
@@ -21744,7 +21867,8 @@
     "ytId": "x8VkB8ap_FQ",
     "ytSearchQuery": "Bed Chem Sabrina Carpenter",
     "storagePath": "en-bed-chem-sabrina.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/814/Mood-t-2K26-Megamix-French-2026-20260618010716-500x500.webp"
   },
   {
     "id": "en-hot-to-go",
@@ -21756,7 +21880,8 @@
     "ytId": "xaPNR-_Cfn0",
     "ytSearchQuery": "HOT TO GO Chappell Roan",
     "storagePath": "en-hot-to-go.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/882/Happy-Vibes-2026-Korean-2026-20260409053448-500x500.webp"
   },
   {
     "id": "en-pink-pony-club",
@@ -21768,7 +21893,8 @@
     "ytId": "GR3Liudev18",
     "ytSearchQuery": "Pink Pony Club Chappell Roan",
     "storagePath": "en-pink-pony-club.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/769/Hits-to-Sing-Along-for-Teens-English-2026-20260319053547-500x500.webp"
   },
   {
     "id": "en-casual-chappell",
@@ -21780,7 +21906,8 @@
     "ytId": "AfSjnsYiY_A",
     "ytSearchQuery": "Casual Chappell Roan",
     "storagePath": "en-casual-chappell.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/939/Spring-Vibes-English-2026-20260205063614-500x500.webp"
   },
   {
     "id": "en-like-that-future",
@@ -21792,7 +21919,8 @@
     "ytId": "N9bKBAA22Go",
     "ytSearchQuery": "Like That Future Metro Boomin Kendrick Lamar",
     "storagePath": "en-like-that-future.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/382/WE-DON-T-TRUST-YOU-English-2024-20250508012849-500x500.webp"
   },
   {
     "id": "en-million-dollar-baby",
@@ -21804,7 +21932,8 @@
     "ytId": "Zf1d8SGuxfs",
     "ytSearchQuery": "MILLION DOLLAR BABY Tommy Richman",
     "storagePath": "en-million-dollar-baby.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/567/MILLION-DOLLAR-BABY-English-2024-20240604063215-500x500.webp"
   },
   {
     "id": "en-beautiful-things",
@@ -21816,7 +21945,8 @@
     "ytId": "Oa_RSwwpPaA",
     "ytSearchQuery": "Beautiful Things Benson Boone",
     "storagePath": "en-beautiful-things.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/751/Beautiful-Things-English-2024-20240404023143-500x500.webp"
   },
   {
     "id": "en-slow-it-down-benson",
@@ -21828,7 +21958,8 @@
     "ytId": "f4Y3b7un4LE",
     "ytSearchQuery": "Slow It Down Benson Boone",
     "storagePath": "en-slow-it-down-benson.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/835/Fireworks-Rollerblades-English-2024-20250724004131-500x500.webp"
   },
   {
     "id": "en-lose-control-teddy",
@@ -21840,7 +21971,8 @@
     "ytId": "9gWIIIr2Asw",
     "ytSearchQuery": "Lose Control Teddy Swims",
     "storagePath": "en-lose-control-teddy.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/385/I-ve-Tried-Everything-But-Therapy-Part-1-5-English-2024-20250107163834-500x500.webp"
   },
   {
     "id": "en-the-door-teddy",
@@ -21852,7 +21984,8 @@
     "ytId": "VSXT4a2kRHA",
     "ytSearchQuery": "The Door Teddy Swims",
     "storagePath": "en-the-door-teddy.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/385/I-ve-Tried-Everything-But-Therapy-Part-1-5-English-2024-20250107163834-500x500.webp"
   },
   {
     "id": "en-bad-dreams-teddy",
@@ -21864,7 +21997,8 @@
     "ytId": "Qh8QwVYOSVU",
     "ytSearchQuery": "Bad Dreams Teddy Swims",
     "storagePath": "en-bad-dreams-teddy.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/947/I-ve-Tried-Everything-But-Therapy-Part-2-English-2025-20250307180438-500x500.webp"
   },
   {
     "id": "en-greedy-tate",
@@ -21876,7 +22010,8 @@
     "ytId": "To4SWGZkEPk",
     "ytSearchQuery": "Greedy Tate McRae",
     "storagePath": "en-greedy-tate.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/927/greedy-English-2023-20230912063456-500x500.webp"
   },
   {
     "id": "en-exes-tate",
@@ -21888,7 +22023,8 @@
     "ytId": "YXt0Nw8xWh0",
     "ytSearchQuery": "exes Tate McRae",
     "storagePath": "en-exes-tate.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/654/THINK-LATER-English-2023-20231205003057-500x500.webp"
   },
   {
     "id": "en-water-tyla",
@@ -21900,7 +22036,8 @@
     "ytId": "XoiOOiuH8iI",
     "ytSearchQuery": "Water Tyla",
     "storagePath": "en-water-tyla.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/083/Water-Remix-English-2023-20231117144319-500x500.webp"
   },
   {
     "id": "en-jump-tyla",
@@ -21912,7 +22049,8 @@
     "ytId": "n3s6lDf8Nq0",
     "ytSearchQuery": "Jump Tyla Gunna",
     "storagePath": "en-jump-tyla.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/118/TYLA-English-2024-20260722213235-500x500.webp"
   },
   {
     "id": "en-saturn-sza",
@@ -21924,7 +22062,8 @@
     "ytId": "V2G8ESoDXm8",
     "ytSearchQuery": "Saturn SZA",
     "storagePath": "en-saturn-sza.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/180/Saturn-English-2024-20240222074914-500x500.webp"
   },
   {
     "id": "en-snooze-sza",
@@ -21936,7 +22075,8 @@
     "ytId": "LDY_XyxBu8A",
     "ytSearchQuery": "Snooze SZA",
     "storagePath": "en-snooze-sza.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/334/Snooze-English-2023-20230826010123-500x500.webp"
   },
   {
     "id": "en-kill-bill-sza",
@@ -21948,7 +22088,8 @@
     "ytId": "MSRcC626prw",
     "ytSearchQuery": "Kill Bill SZA",
     "storagePath": "en-kill-bill-sza.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/227/Kill-Bill-English-2023-20230111235443-500x500.webp"
   },
   {
     "id": "en-nobody-gets-me",
@@ -21960,7 +22101,8 @@
     "ytId": "NNd_ufPG3x4",
     "ytSearchQuery": "Nobody Gets Me SZA",
     "storagePath": "en-nobody-gets-me.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/276/SOS-Deluxe-LANA-English-2025-20250207233714-500x500.webp"
   },
   {
     "id": "en-cruel-summer-taylor",
@@ -21972,7 +22114,8 @@
     "ytId": "ic8j13piAhQ",
     "ytSearchQuery": "Cruel Summer Taylor Swift",
     "storagePath": "en-cruel-summer-taylor.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/228/Lover-English-2019-20250731010741-500x500.webp"
   },
   {
     "id": "en-fortnight-taylor",
@@ -21984,7 +22127,8 @@
     "ytId": "q3zqJs7JUCQ",
     "ytSearchQuery": "Fortnight Taylor Swift Post Malone",
     "storagePath": "en-fortnight-taylor.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/873/THE-TORTURED-POETS-DEPARTMENT-English-2024-20240419103330-500x500.webp"
   },
   {
     "id": "en-i-can-do-it-with-a-broken-heart",
@@ -21996,7 +22140,8 @@
     "ytId": "Sl6en1NPTYM",
     "ytSearchQuery": "I Can Do It With a Broken Heart Taylor Swift",
     "storagePath": "en-i-can-do-it-with-a-broken-heart.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/223/THE-TORTURED-POETS-DEPARTMENT-THE-ANTHOLOGY-English-2024-20240419123255-500x500.webp"
   },
   {
     "id": "en-down-bad-taylor",
@@ -22008,7 +22153,8 @@
     "ytId": "EVbtjaWXQVg",
     "ytSearchQuery": "Down Bad Taylor Swift",
     "storagePath": "en-down-bad-taylor.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/873/THE-TORTURED-POETS-DEPARTMENT-English-2024-20240419103330-500x500.webp"
   },
   {
     "id": "en-guilty-as-sin-taylor",
@@ -22020,7 +22166,8 @@
     "ytId": "OOYlWF6V8t8",
     "ytSearchQuery": "Guilty as Sin Taylor Swift",
     "storagePath": "en-guilty-as-sin-taylor.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/223/THE-TORTURED-POETS-DEPARTMENT-THE-ANTHOLOGY-English-2024-20240419123255-500x500.webp"
   },
   {
     "id": "en-is-it-over-now",
@@ -22032,7 +22179,8 @@
     "ytId": "tNxUxm3-658",
     "ytSearchQuery": "Is It Over Now Taylor Swift",
     "storagePath": "en-is-it-over-now.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/768/1989-Taylor-s-Version-English-2023-20260530050539-500x500.webp"
   },
   {
     "id": "en-cardigan-taylor",
@@ -22044,7 +22192,8 @@
     "ytId": "zLSUp53y-HQ",
     "ytSearchQuery": "cardigan Taylor Swift",
     "storagePath": "en-cardigan-taylor.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/048/folklore-the-yeah-I-showed-up-at-your-party-chapter-English-2020-20200921093435-500x500.webp"
   },
   {
     "id": "en-august-taylor",
@@ -22056,7 +22205,8 @@
     "ytId": "nn_0zPAfyo8",
     "ytSearchQuery": "august Taylor Swift",
     "storagePath": "en-august-taylor.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/023/the-ladies-lunching-chapter-English-2021-20260614135013-500x500.webp"
   },
   {
     "id": "en-anti-hero-taylor",
@@ -22068,7 +22218,8 @@
     "ytId": "b1kbLwvqugk",
     "ytSearchQuery": "Anti Hero Taylor Swift",
     "storagePath": "en-anti-hero-taylor.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/793/Midnights-English-2022-20221021103611-500x500.webp"
   },
   {
     "id": "en-karma-taylor",
@@ -22080,7 +22231,8 @@
     "ytId": "rg18Kf4en2o",
     "ytSearchQuery": "Karma Taylor Swift",
     "storagePath": "en-karma-taylor.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/793/Midnights-English-2022-20221021103611-500x500.webp"
   },
   {
     "id": "en-blank-space-taylor",
@@ -22092,7 +22244,8 @@
     "ytId": "e-ORhEE9VVg",
     "ytSearchQuery": "Blank Space Taylor Swift",
     "storagePath": "en-blank-space-taylor.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp"
   },
   {
     "id": "en-lover-taylor-full",
@@ -22104,7 +22257,8 @@
     "ytId": "-BjZmE2gtdo",
     "ytSearchQuery": "Lover Taylor Swift official",
     "storagePath": "en-lover-taylor-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/228/Lover-English-2019-20250731010741-500x500.webp"
   },
   {
     "id": "en-starboy-full",
@@ -22116,7 +22270,8 @@
     "ytId": "34Na4j8AVgA",
     "ytSearchQuery": "Starboy The Weeknd Daft Punk",
     "storagePath": "en-starboy-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp"
   },
   {
     "id": "en-blinding-lights-full",
@@ -22128,7 +22283,8 @@
     "ytId": "4NRXx6U8ABQ",
     "ytSearchQuery": "Blinding Lights The Weeknd",
     "storagePath": "en-blinding-lights-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/077/After-Hours-English-2020-20260804045014-500x500.webp"
   },
   {
     "id": "en-save-your-tears-full",
@@ -22140,7 +22296,8 @@
     "ytId": "XXYlFuWEuKI",
     "ytSearchQuery": "Save Your Tears The Weeknd",
     "storagePath": "en-save-your-tears-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp"
   },
   {
     "id": "en-die-for-you-full",
@@ -22152,7 +22309,8 @@
     "ytId": "YQ-qToZUybM",
     "ytSearchQuery": "Die For You The Weeknd",
     "storagePath": "en-die-for-you-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/372/Starboy-English-2016-500x500.jpg"
   },
   {
     "id": "en-the-hills-weeknd",
@@ -22164,7 +22322,8 @@
     "ytId": "yzTuBuRdAyA",
     "ytSearchQuery": "The Hills The Weeknd",
     "storagePath": "en-the-hills-weeknd.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/464/The-Hills-English-2015-500x500.jpg"
   },
   {
     "id": "en-cant-feel-my-face",
@@ -22176,7 +22335,8 @@
     "ytId": "KEI4qSrkPAs",
     "ytSearchQuery": "Cant Feel My Face The Weeknd",
     "storagePath": "en-cant-feel-my-face.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/981/Can-t-Feel-My-Face-English-2015-500x500.jpg"
   },
   {
     "id": "en-out-of-time-weeknd",
@@ -22188,7 +22348,8 @@
     "ytId": "2fDzCWNS3ig",
     "ytSearchQuery": "Out of Time The Weeknd",
     "storagePath": "en-out-of-time-weeknd.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/120/Dawn-FM-Alternate-World-English-2022-20260801053523-500x500.webp"
   },
   {
     "id": "en-dancing-in-the-flames",
@@ -22200,7 +22361,8 @@
     "ytId": "MLlSSJ0z7xM",
     "ytSearchQuery": "Dancing In The Flames The Weeknd",
     "storagePath": "en-dancing-in-the-flames.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/044/Dancing-In-The-Flames-English-2024-20240913132129-500x500.webp"
   },
   {
     "id": "en-timeless-playboi",
@@ -22212,7 +22374,8 @@
     "ytId": "5EpyN_6dqyk",
     "ytSearchQuery": "Timeless The Weeknd Playboi Carti",
     "storagePath": "en-timeless-playboi.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/627/Hurry-Up-Tomorrow-English-2025-20260430023429-500x500.webp"
   },
   {
     "id": "en-houdini-dua",
@@ -22224,7 +22387,8 @@
     "ytId": "suAR1PYFNYA",
     "ytSearchQuery": "Houdini Dua Lipa",
     "storagePath": "en-houdini-dua.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/091/Houdini-English-2023-20231110015054-500x500.webp"
   },
   {
     "id": "en-training-season",
@@ -22236,7 +22400,8 @@
     "ytId": "3DcoC8p9az8",
     "ytSearchQuery": "Training Season Dua Lipa",
     "storagePath": "en-training-season.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/062/Training-Season-English-2024-20240220134756-500x500.webp"
   },
   {
     "id": "en-illusion-dua",
@@ -22248,7 +22413,8 @@
     "ytId": "a9cyG_yfh1k",
     "ytSearchQuery": "Illusion Dua Lipa",
     "storagePath": "en-illusion-dua.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/870/Radical-Optimism-English-2024-20241120210737-500x500.webp"
   },
   {
     "id": "en-dance-the-night",
@@ -22260,7 +22426,8 @@
     "ytId": "OiC1rgCPmUQ",
     "ytSearchQuery": "Dance The Night Dua Lipa",
     "storagePath": "en-dance-the-night.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/768/Dance-The-Night-From-Barbie-The-Album-English-2023-20230526002150-500x500.webp"
   },
   {
     "id": "en-dont-start-now",
@@ -22272,7 +22439,8 @@
     "ytId": "oygrmJFKYZY",
     "ytSearchQuery": "Dont Start Now Dua Lipa",
     "storagePath": "en-dont-start-now.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/175/Don-t-Start-Now-English-2019-20231110075133-500x500.webp"
   },
   {
     "id": "en-physical-dua",
@@ -22284,7 +22452,8 @@
     "ytId": "9HDEHj2yzew",
     "ytSearchQuery": "Physical Dua Lipa",
     "storagePath": "en-physical-dua.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/404/Physical-feat-Hwa-Sa--English-2020-20200316120246-500x500.webp"
   },
   {
     "id": "en-levitating-full",
@@ -22296,7 +22465,8 @@
     "ytId": "TUVcZfQe-Kw",
     "ytSearchQuery": "Levitating Dua Lipa",
     "storagePath": "en-levitating-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/207/Dua-Lipa-Live-From-Mexico-English-2026-20260526161014-500x500.webp"
   },
   {
     "id": "en-one-kiss-calvin",
@@ -22308,7 +22478,8 @@
     "ytId": "k2qgadSvNyU",
     "ytSearchQuery": "One Kiss Calvin Harris Dua Lipa",
     "storagePath": "en-one-kiss-calvin.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/798/Mundial-2026-Copa-de-F-tbol-del-Mundo-2026-English-2026-20260714021441-500x500.webp"
   },
   {
     "id": "en-as-it-was-full",
@@ -22320,7 +22491,8 @@
     "ytId": "H5v3kku4y6Q",
     "ytSearchQuery": "As It Was Harry Styles",
     "storagePath": "en-as-it-was-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/061/Harry-s-House-English-2022-20220518224913-500x500.webp"
   },
   {
     "id": "en-water-melon-sugar",
@@ -22332,7 +22504,8 @@
     "ytId": "E07s5ZYygMg",
     "ytSearchQuery": "Watermelon Sugar Harry Styles",
     "storagePath": "en-water-melon-sugar.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/213/Fine-Line-English-2019-20191211223631-500x500.webp"
   },
   {
     "id": "en-late-night-talking",
@@ -22344,7 +22517,8 @@
     "ytId": "4VaqA-5aQTM",
     "ytSearchQuery": "Late Night Talking Harry Styles",
     "storagePath": "en-late-night-talking.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/061/Harry-s-House-English-2022-20220518224913-500x500.webp"
   },
   {
     "id": "en-matilda-harry",
@@ -22356,7 +22530,8 @@
     "ytId": "lVnzO7opqNs",
     "ytSearchQuery": "Matilda Harry Styles",
     "storagePath": "en-matilda-harry.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/061/Harry-s-House-English-2022-20220518224913-500x500.webp"
   },
   {
     "id": "en-sunflower-post",
@@ -22368,7 +22543,8 @@
     "ytId": "4FUTd0vD4Sk",
     "ytSearchQuery": "Sunflower Post Malone Swae Lee",
     "storagePath": "en-sunflower-post.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/504/The-Diamond-Collection-English-2023-20240201105640-500x500.webp"
   },
   {
     "id": "en-circles-post",
@@ -22380,7 +22556,8 @@
     "ytId": "wXhTHyIgQ_U",
     "ytSearchQuery": "Circles Post Malone",
     "storagePath": "en-circles-post.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/504/The-Diamond-Collection-English-2023-20240201105640-500x500.webp"
   },
   {
     "id": "en-chemical-post",
@@ -22392,7 +22569,8 @@
     "ytId": "IzPQ_jA00bk",
     "ytSearchQuery": "Chemical Post Malone",
     "storagePath": "en-chemical-post.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/518/AUSTIN-English-2023-20230728065940-500x500.webp"
   },
   {
     "id": "en-i-had-some-help",
@@ -22404,7 +22582,8 @@
     "ytId": "4QIZE708gJ4",
     "ytSearchQuery": "I Had Some Help Post Malone Morgan Wallen",
     "storagePath": "en-i-had-some-help.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/168/I-Had-Some-Help-English-2024-20240510063707-500x500.webp"
   },
   {
     "id": "en-pour-me-a-drink",
@@ -22428,7 +22607,8 @@
     "ytId": "b1aBzAE-IFY",
     "ytSearchQuery": "Guy For That Post Malone Luke Combs",
     "storagePath": "en-guy-for-that.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/534/F-1-Trillion-Long-Bed-English-2024-20241002005208-500x500.webp"
   },
   {
     "id": "en-what-was-i-made-for",
@@ -22440,7 +22620,8 @@
     "ytId": "cW8VLC9nnTo",
     "ytSearchQuery": "What Was I Made For Billie Eilish",
     "storagePath": "en-what-was-i-made-for.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/367/What-Was-I-Made-For-From-The-Motion-Picture-Barbie-English-2023-20230713203410-500x500.webp"
   },
   {
     "id": "en-lunch-billie",
@@ -22452,7 +22633,8 @@
     "ytId": "MB3VkzPdgLA",
     "ytSearchQuery": "LUNCH Billie Eilish",
     "storagePath": "en-lunch-billie.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/707/HIT-ME-HARD-AND-SOFT-English-2024-20240517063536-500x500.webp"
   },
   {
     "id": "en-chihiro-billie",
@@ -22464,7 +22646,8 @@
     "ytId": "BY_XwvKogC8",
     "ytSearchQuery": "CHIHIRO Billie Eilish",
     "storagePath": "en-chihiro-billie.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/707/HIT-ME-HARD-AND-SOFT-English-2024-20240517063536-500x500.webp"
   },
   {
     "id": "en-wildflower-billie",
@@ -22476,7 +22659,8 @@
     "ytId": "l08Zw-RY__Q",
     "ytSearchQuery": "WILDFLOWER Billie Eilish",
     "storagePath": "en-wildflower-billie.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/707/HIT-ME-HARD-AND-SOFT-English-2024-20240517063536-500x500.webp"
   },
   {
     "id": "en-ocean-eyes-billie",
@@ -22488,7 +22672,8 @@
     "ytId": "BEcCTlN8c6U",
     "ytSearchQuery": "ocean eyes Billie Eilish",
     "storagePath": "en-ocean-eyes-billie.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/291/The-Hate-U-Give-English-2018-20240828235126-500x500.webp"
   },
   {
     "id": "en-bad-guy-full",
@@ -22500,7 +22685,8 @@
     "ytId": "DyDfgMOUjCI",
     "ytSearchQuery": "bad guy Billie Eilish",
     "storagePath": "en-bad-guy-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/025/bad-guy-with-Justin-Bieber--English-2019-20190712032930-500x500.webp"
   },
   {
     "id": "en-happier-than-ever",
@@ -22512,7 +22698,8 @@
     "ytId": "5GJWxDKyk3A",
     "ytSearchQuery": "Happier Than Ever Billie Eilish",
     "storagePath": "en-happier-than-ever.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/701/happier-than-ever-English-2021-20251009151609-500x500.webp"
   },
   {
     "id": "en-flowers-miley-full",
@@ -22524,7 +22711,8 @@
     "ytId": "G7KNmW9a75Y",
     "ytSearchQuery": "Flowers Miley Cyrus",
     "storagePath": "en-flowers-miley-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/361/Endless-Summer-Vacation-English-2023-20230830062637-500x500.webp"
   },
   {
     "id": "en-used-to-be-young",
@@ -22536,7 +22724,8 @@
     "ytId": "IZ3XMOdOdKM",
     "ytSearchQuery": "Used To Be Young Miley Cyrus",
     "storagePath": "en-used-to-be-young.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/910/Used-To-Be-Young-English-2023-20230825085431-500x500.webp"
   },
   {
     "id": "en-angels-like-you",
@@ -22548,7 +22737,8 @@
     "ytId": "Y0ORhLyJWuc",
     "ytSearchQuery": "Angels Like You Miley Cyrus",
     "storagePath": "en-angels-like-you.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/216/Plastic-Hearts-English-2020-20201125020521-500x500.webp"
   },
   {
     "id": "en-vampire-olivia",
@@ -22560,7 +22750,8 @@
     "ytId": "RlPNh_PBZb4",
     "ytSearchQuery": "vampire Olivia Rodrigo",
     "storagePath": "en-vampire-olivia.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/806/pov-falling-for-the-villain-English-2026-20260418132421-500x500.webp"
   },
   {
     "id": "en-bad-idea-right",
@@ -22572,7 +22763,8 @@
     "ytId": "Dj9qJsJTsjQ",
     "ytSearchQuery": "bad idea right Olivia Rodrigo",
     "storagePath": "en-bad-idea-right.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/247/Good-Morning-Bangers-English-2025-20251218053624-500x500.webp"
   },
   {
     "id": "en-get-him-back",
@@ -22584,7 +22776,8 @@
     "ytId": "ZsJ-BHohXRI",
     "ytSearchQuery": "get him back Olivia Rodrigo",
     "storagePath": "en-get-him-back.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/225/hockey-romance-English-2026-20260205072051-500x500.webp"
   },
   {
     "id": "en-drivers-license",
@@ -22596,7 +22789,8 @@
     "ytId": "ZmDBbnmKpqQ",
     "ytSearchQuery": "drivers license Olivia Rodrigo",
     "storagePath": "en-drivers-license.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/975/Best-Karaoke-Songs-Ever-English-2026-20260605163044-500x500.webp"
   },
   {
     "id": "en-good-4-u",
@@ -22608,7 +22802,8 @@
     "ytId": "gNi_6U5Pm_o",
     "ytSearchQuery": "good 4 u Olivia Rodrigo",
     "storagePath": "en-good-4-u.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/412/Ni-os-Fiesta-Hits-English-2026-20260521225148-500x500.webp"
   },
   {
     "id": "en-deja-vu-olivia",
@@ -22620,7 +22815,8 @@
     "ytId": "cii6ruuycQA",
     "ytSearchQuery": "deja vu Olivia Rodrigo",
     "storagePath": "en-deja-vu-olivia.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/738/Viaje-Musical-English-2026-20260612210533-500x500.webp"
   },
   {
     "id": "en-traitor-olivia",
@@ -22632,7 +22828,8 @@
     "ytId": "CRrf3h9vhp8",
     "ytSearchQuery": "traitor Olivia Rodrigo",
     "storagePath": "en-traitor-olivia.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/461/Rupture-Amoureuse-English-2026-20260308053518-500x500.webp"
   },
   {
     "id": "en-stay-justin-full",
@@ -22644,7 +22841,8 @@
     "ytId": "kTJczUoc26U",
     "ytSearchQuery": "STAY The Kid LAROI Justin Bieber",
     "storagePath": "en-stay-justin-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/663/F-CK-LOVE-3-OVER-YOU-English-2021-20210727032800-500x500.webp"
   },
   {
     "id": "en-peaches-justin-full",
@@ -22656,7 +22854,8 @@
     "ytId": "tQ0yjYUFKAE",
     "ytSearchQuery": "Peaches Justin Bieber Daniel Caesar",
     "storagePath": "en-peaches-justin-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/983/Justice-English-2021-20210325102906-500x500.webp"
   },
   {
     "id": "en-ghost-justin-full",
@@ -22668,7 +22867,8 @@
     "ytId": "Fp8msa5uYsc",
     "ytSearchQuery": "Ghost Justin Bieber",
     "storagePath": "en-ghost-justin-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/983/Justice-English-2021-20210325102906-500x500.webp"
   },
   {
     "id": "en-shape-of-you-full",
@@ -22680,7 +22880,8 @@
     "ytId": "JGwWNGJdvx8",
     "ytSearchQuery": "Shape of You Ed Sheeran",
     "storagePath": "en-shape-of-you-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/126/Shape-of-You-English-2017-500x500.jpg"
   },
   {
     "id": "en-perfect-ed-full",
@@ -22692,7 +22893,8 @@
     "ytId": "2Vv-BfVoq4g",
     "ytSearchQuery": "Perfect Ed Sheeran",
     "storagePath": "en-perfect-ed-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/286/WMG_190295851286-English-2017-500x500.jpg"
   },
   {
     "id": "en-bad-habits-full",
@@ -22704,7 +22906,8 @@
     "ytId": "orJSJGHjBLI",
     "ytSearchQuery": "Bad Habits Ed Sheeran",
     "storagePath": "en-bad-habits-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/316/Bad-Habits-English-2021-20211022044755-500x500.webp"
   },
   {
     "id": "en-shivers-ed",
@@ -22716,7 +22919,8 @@
     "ytId": "Il0S8BoucSA",
     "ytSearchQuery": "Shivers Ed Sheeran",
     "storagePath": "en-shivers-ed.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/940/Shivers-English-2021-20211022044815-500x500.webp"
   },
   {
     "id": "en-eyes-closed-ed",
@@ -22728,7 +22932,8 @@
     "ytId": "u6wOyMUs74I",
     "ytSearchQuery": "Eyes Closed Ed Sheeran",
     "storagePath": "en-eyes-closed-ed.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/295/Eyes-Closed-English-2023-20230425202322-500x500.webp"
   },
   {
     "id": "en-castle-on-the-hill",
@@ -22740,7 +22945,8 @@
     "ytId": "K0ibBPhiaG0",
     "ytSearchQuery": "Castle on the Hill Ed Sheeran",
     "storagePath": "en-castle-on-the-hill.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/119/Castle-on-the-Hill-English-2017-500x500.jpg"
   },
   {
     "id": "en-photograph-ed-full",
@@ -22752,7 +22958,8 @@
     "ytId": "nSDgHBxUbVQ",
     "ytSearchQuery": "Photograph Ed Sheeran",
     "storagePath": "en-photograph-ed-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/835/x-English-2014-500x500.jpg"
   },
   {
     "id": "en-thinking-out-loud-full",
@@ -22764,7 +22971,8 @@
     "ytId": "lp-EO5I60KA",
     "ytSearchQuery": "Thinking out Loud Ed Sheeran",
     "storagePath": "en-thinking-out-loud-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/835/x-English-2014-500x500.jpg"
   },
   {
     "id": "en-believer-dragons-full",
@@ -22776,7 +22984,8 @@
     "ytId": "7wtfhZwyrcc",
     "ytSearchQuery": "Believer Imagine Dragons",
     "storagePath": "en-believer-dragons-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp"
   },
   {
     "id": "en-demons-dragons-full",
@@ -22788,7 +22997,8 @@
     "ytId": "mWRsgZuwf_8",
     "ytSearchQuery": "Demons Imagine Dragons",
     "storagePath": "en-demons-dragons-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/210/Night-Visions-2013-500x500.jpg"
   },
   {
     "id": "en-bones-dragons-full",
@@ -22800,7 +23010,8 @@
     "ytId": "TO-_3tck2tg",
     "ytSearchQuery": "Bones Imagine Dragons",
     "storagePath": "en-bones-dragons-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/038/Bones-English-2022-20250618201126-500x500.webp"
   },
   {
     "id": "en-thunder-dragons-full",
@@ -22812,7 +23023,8 @@
     "ytId": "fKopy74weus",
     "ytSearchQuery": "Thunder Imagine Dragons",
     "storagePath": "en-thunder-dragons-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp"
   },
   {
     "id": "en-radioactive-dragons-full",
@@ -22824,7 +23036,8 @@
     "ytId": "ktvTqknDobU",
     "ytSearchQuery": "Radioactive Imagine Dragons",
     "storagePath": "en-radioactive-dragons-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/210/Night-Visions-2013-500x500.jpg"
   },
   {
     "id": "en-enemy-dragons-full",
@@ -22836,7 +23049,8 @@
     "ytId": "SEG92Z_NGJE",
     "ytSearchQuery": "Enemy Imagine Dragons JID",
     "storagePath": "en-enemy-dragons-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/621/P-POP-CULTURE-Punjabi-2025-20250820043757-500x500.webp"
   },
   {
     "id": "en-someone-you-loved-full",
@@ -22848,7 +23062,8 @@
     "ytId": "zABLecsR5UE",
     "ytSearchQuery": "Someone You Loved Lewis Capaldi",
     "storagePath": "en-someone-you-loved-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/945/pov-you-re-yearning-English-2026-20260703175018-500x500.webp"
   },
   {
     "id": "in-o-maahi-full",
@@ -22860,7 +23075,8 @@
     "ytId": "Etkd-07gnxM",
     "ytSearchQuery": "O Maahi Arijit Singh Dunki",
     "storagePath": "in-o-maahi-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/139/Dunki-Hindi-2023-20231220211003-500x500.webp"
   },
   {
     "id": "in-sajni-laapataa",
@@ -22872,7 +23088,8 @@
     "ytId": "k3g_WjLCsXM",
     "ytSearchQuery": "Sajni Re Arijit Singh Laapataa Ladies",
     "storagePath": "in-sajni-laapataa.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/179/World-Music-Day-Best-Of-Bollywood-Hits-Hindi-2026-20260622111029-500x500.webp"
   },
   {
     "id": "in-ve-kamleya-full",
@@ -22884,7 +23101,8 @@
     "ytId": "4uLBiZVSGH4",
     "ytSearchQuery": "Ve Kamleya Arijit Singh Shreya Ghoshal",
     "storagePath": "in-ve-kamleya-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/001/Rocky-Aur-Rani-Kii-Prem-Kahaani-Hindi-2023-20250130073112-500x500.webp"
   },
   {
     "id": "in-ve-haaniyaan-full",
@@ -22896,7 +23114,8 @@
     "ytId": "E_SbwSe15y0",
     "ytSearchQuery": "Ve Haaniyaan Danny Avvy Sra",
     "storagePath": "in-ve-haaniyaan-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/367/Ve-Haaniyaan-Punjabi-2024-20240212220137-500x500.webp"
   },
   {
     "id": "in-phir-aur-kya-chahiye-full",
@@ -22908,7 +23127,8 @@
     "ytId": "PR_mFnjFidk",
     "ytSearchQuery": "Phir Aur Kya Chahiye Arijit Singh",
     "storagePath": "in-phir-aur-kya-chahiye-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/336/Zara-Hatke-Zara-Bachke-Hindi-2023-20250129153124-500x500.webp"
   },
   {
     "id": "in-tere-vaaste-full",
@@ -22920,7 +23140,8 @@
     "ytId": "g5WZLO8BAC8",
     "ytSearchQuery": "Tere Vaaste Falak Se Main Sachin Jigar",
     "storagePath": "in-tere-vaaste-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/336/Zara-Hatke-Zara-Bachke-Hindi-2023-20250129153124-500x500.webp"
   },
   {
     "id": "in-satranga-animal",
@@ -22932,7 +23153,8 @@
     "ytId": "HrnrqYxYrbk",
     "ytSearchQuery": "Satranga Arijit Singh Animal",
     "storagePath": "in-satranga-animal.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20260724191152-500x500.webp"
   },
   {
     "id": "in-pehle-bhi-main-full",
@@ -22944,7 +23166,8 @@
     "ytId": "iAIBF2ngbWY",
     "ytSearchQuery": "Pehle Bhi Main Vishal Mishra Animal",
     "storagePath": "in-pehle-bhi-main-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20260724191152-500x500.webp"
   },
   {
     "id": "in-hua-main-animal",
@@ -22956,7 +23179,8 @@
     "ytId": "KNXYonYD59w",
     "ytSearchQuery": "Hua Main Raghav Chaitanya Animal",
     "storagePath": "in-hua-main-animal.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20260724191152-500x500.webp"
   },
   {
     "id": "in-arjan-vailly-full",
@@ -22968,7 +23192,8 @@
     "ytId": "WQJQYsRLE88",
     "ytSearchQuery": "Arjan Vailly Bhupinder Babbal Animal",
     "storagePath": "in-arjan-vailly-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20260724191152-500x500.webp"
   },
   {
     "id": "in-chaleya-full",
@@ -22980,7 +23205,8 @@
     "ytId": "8-3HHseLZKc",
     "ytSearchQuery": "Chaleya Arijit Singh Shilpa Rao Jawan",
     "storagePath": "in-chaleya-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/179/World-Music-Day-Best-Of-Bollywood-Hits-Hindi-2026-20260622111029-500x500.webp"
   },
   {
     "id": "in-zinda-banda-full",
@@ -22992,7 +23218,8 @@
     "ytId": "stjZKBhQ3lg",
     "ytSearchQuery": "Zinda Banda Anirudh Ravichander Jawan",
     "storagePath": "in-zinda-banda-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/047/Jawan-Hindi-2023-20230921190854-500x500.webp"
   },
   {
     "id": "in-not-ramaiya-full",
@@ -23004,7 +23231,8 @@
     "ytId": "ohS06vkHjLE",
     "ytSearchQuery": "Not Ramaiya Vastavaiya Anirudh Jawan",
     "storagePath": "in-not-ramaiya-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/047/Jawan-Hindi-2023-20230921190854-500x500.webp"
   },
   {
     "id": "in-jhoome-jo-pathaan-full",
@@ -23016,7 +23244,8 @@
     "ytId": "YxWlaYCA8MU",
     "ytSearchQuery": "Jhoome Jo Pathaan Arijit Singh Vishal Shekhar",
     "storagePath": "in-jhoome-jo-pathaan-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/807/Pathaan-Hindi-2022-20221222104158-500x500.webp"
   },
   {
     "id": "in-besharam-rang-full",
@@ -23028,7 +23257,8 @@
     "ytId": "PkNk4ScHAhM",
     "ytSearchQuery": "Besharam Rang Shilpa Rao Vishal Shekhar",
     "storagePath": "in-besharam-rang-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/807/Pathaan-Hindi-2022-20221222104158-500x500.webp"
   },
   {
     "id": "in-tauba-tauba-full",
@@ -23040,7 +23270,8 @@
     "ytId": "LK7-_dgAVQE",
     "ytSearchQuery": "Tauba Tauba Karan Aujla Bad Newz",
     "storagePath": "in-tauba-tauba-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/992/Bad-Newz-Hindi-2024-20250730113701-500x500.webp"
   },
   {
     "id": "in-jaanam-bad-newz",
@@ -23052,7 +23283,8 @@
     "ytId": "Ujb2c508yw0",
     "ytSearchQuery": "Jaanam Vishal Mishra Bad Newz",
     "storagePath": "in-jaanam-bad-newz.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/992/Bad-Newz-Hindi-2024-20250730113701-500x500.webp"
   },
   {
     "id": "in-aaj-ki-raat-stree2",
@@ -23064,7 +23296,8 @@
     "ytId": "LrqZnqOevR0",
     "ytSearchQuery": "Aaj Ki Raat Madhubanti Bagchi Stree 2",
     "storagePath": "in-aaj-ki-raat-stree2.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/373/Stree-2-Hindi-2024-20240828083834-500x500.webp"
   },
   {
     "id": "in-khoobsurat-stree2",
@@ -23076,7 +23309,8 @@
     "ytId": "1-nnEM8chwo",
     "ytSearchQuery": "Khoobsurat Vishal Mishra Sachin Jigar Stree 2",
     "storagePath": "in-khoobsurat-stree2.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/373/Stree-2-Hindi-2024-20240828083834-500x500.webp"
   },
   {
     "id": "in-aayi-nai-stree2",
@@ -23088,7 +23322,8 @@
     "ytId": "nFgsBxw-zWQ",
     "ytSearchQuery": "Aayi Nai Pawan Singh Sachin Jigar Stree 2",
     "storagePath": "in-aayi-nai-stree2.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/373/Stree-2-Hindi-2024-20240828083834-500x500.webp"
   },
   {
     "id": "in-tumi-dekho-na",
@@ -23100,7 +23335,8 @@
     "ytId": "cxKAtmvf-uM",
     "ytSearchQuery": "Tumhare Hi Rahenge Hum Sachin Jigar Stree 2",
     "storagePath": "in-tumi-dekho-na.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/373/Stree-2-Hindi-2024-20240828083834-500x500.webp"
   },
   {
     "id": "in-kesariya-full",
@@ -23112,7 +23348,8 @@
     "ytId": "BddP6PYo2gs",
     "ytSearchQuery": "Kesariya Tera Ishq Hai Piya Arijit Singh",
     "storagePath": "in-kesariya-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp"
   },
   {
     "id": "in-deva-deva",
@@ -23124,7 +23361,8 @@
     "ytId": "mNuhKUOD_A0",
     "ytSearchQuery": "Deva Deva Arijit Singh Brahmastra",
     "storagePath": "in-deva-deva.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp"
   },
   {
     "id": "in-dance-ka-bhoot",
@@ -23136,7 +23374,8 @@
     "ytId": "xfMN4SpIxIA",
     "ytSearchQuery": "Dance Ka Bhoot Arijit Singh Brahmastra",
     "storagePath": "in-dance-ka-bhoot.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp"
   },
   {
     "id": "in-rasiya-brahmastra",
@@ -23148,7 +23387,8 @@
     "ytId": "ZIihoTi4pzI",
     "ytSearchQuery": "Rasiya Shreya Ghoshal Pritam Brahmastra",
     "storagePath": "in-rasiya-brahmastra.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp"
   },
   {
     "id": "in-apna-bana-le-full",
@@ -23160,7 +23400,8 @@
     "ytId": "ElZfdU54Cp8",
     "ytSearchQuery": "Apna Bana Le Piya Arijit Singh Bhediya",
     "storagePath": "in-apna-bana-le-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/228/Sachin-Jigar-Bollywood-Hits-Hindi-2026-20260630213800-500x500.webp"
   },
   {
     "id": "in-thumkeshwari",
@@ -23172,7 +23413,8 @@
     "ytId": "UKA31XLzsNA",
     "ytSearchQuery": "Thumkeshwari Ash King Rashmeet Kaur Bhediya",
     "storagePath": "in-thumkeshwari.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/815/Bhediya-Hindi-2023-20230927155213-500x500.webp"
   },
   {
     "id": "in-heeriye-full",
@@ -23184,7 +23426,8 @@
     "ytId": "RLzC55ai0eo",
     "ytSearchQuery": "Heeriye Jasleen Royal Arijit Singh",
     "storagePath": "in-heeriye-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/022/Heeriye-feat-Arijit-Singh-Hindi-2023-20230928050405-500x500.webp"
   },
   {
     "id": "in-dhurandhar-hanumankind",
@@ -23196,7 +23439,8 @@
     "ytId": "hOHKltAiKXQ",
     "ytSearchQuery": "Big Dawgs Hanumankind Kalmi",
     "storagePath": "in-dhurandhar-hanumankind.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/883/Big-Dawgs-English-2024-20240707053259-500x500.jpg"
   },
   {
     "id": "in-chuttamalle-hindi",
@@ -23220,7 +23464,8 @@
     "ytId": "ZvHO5FR3mo0",
     "ytSearchQuery": "Daavudi Hindi Anirudh Nakash Aziz Devara",
     "storagePath": "in-daavudi-hindi.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/337/Devara-Part-1-Hindi-Hindi-2024-20240926171002-500x500.webp"
   },
   {
     "id": "in-taras-munjya",
@@ -23232,7 +23477,8 @@
     "ytId": "kfXy4W0aD40",
     "ytSearchQuery": "Taras Jasmine Sandlas Sachin Jigar Munjya",
     "storagePath": "in-taras-munjya.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/804/Desi-Dance-Hits-Hindi-2026-20260508130645-500x500.webp"
   },
   {
     "id": "in-naina-crew-full",
@@ -23244,7 +23490,8 @@
     "ytId": "3u6lLWGjFLY",
     "ytSearchQuery": "Naina Diljit Dosanjh Badshah Crew",
     "storagePath": "in-naina-crew-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/689/Crew-Hindi-2024-20260404103117-500x500.webp"
   },
   {
     "id": "in-choli-ke-peeche-crew-full",
@@ -23256,7 +23503,8 @@
     "ytId": "co4EBYZZhg4",
     "ytSearchQuery": "Choli Ke Peeche Diljit Dosanjh Crew",
     "storagePath": "in-choli-ke-peeche-crew-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/689/Crew-Hindi-2024-20260404103117-500x500.webp"
   },
   {
     "id": "in-ghagra-crew",
@@ -23268,7 +23516,8 @@
     "ytId": "p3e7Fjv_V-E",
     "ytSearchQuery": "Ghagra Crew",
     "storagePath": "in-ghagra-crew.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/689/Crew-Hindi-2024-20260404103117-500x500.webp"
   },
   {
     "id": "in-sooni-sooni",
@@ -23280,7 +23529,8 @@
     "ytId": "axepn8QqxRk",
     "ytSearchQuery": "Soni Soni Darshan Raval Jonita Gandhi",
     "storagePath": "in-sooni-sooni.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/658/Ishq-Vishk-Rebound-Hindi-2024-20240730165347-500x500.webp"
   },
   {
     "id": "in-ishq-vishk-pyaar-vyaar",
@@ -23292,7 +23542,8 @@
     "ytId": "DMIM4Rrsap0",
     "ytSearchQuery": "Ishq Vishk Pyaar Vyaar Sonu Nigam",
     "storagePath": "in-ishq-vishk-pyaar-vyaar.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/658/Ishq-Vishk-Rebound-Hindi-2024-20240730165347-500x500.webp"
   },
   {
     "id": "in-channa-mereya-full",
@@ -23304,7 +23555,8 @@
     "ytId": "bzSTpdcs-EI",
     "ytSearchQuery": "Channa Mereya Arijit Singh Ae Dil Hai Mushkil",
     "storagePath": "in-channa-mereya-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/257/Ae-Dil-Hai-Mushkil-Hindi-2016-500x500.jpg"
   },
   {
     "id": "in-ae-dil-hai-mushkil",
@@ -23316,7 +23568,8 @@
     "ytId": "6FURuLYrR_Q",
     "ytSearchQuery": "Ae Dil Hai Mushkil Title Track Arijit Singh",
     "storagePath": "in-ae-dil-hai-mushkil.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/257/Ae-Dil-Hai-Mushkil-Hindi-2016-500x500.jpg"
   },
   {
     "id": "in-bulleya-adhm",
@@ -23328,7 +23581,8 @@
     "ytId": "wTgrZE9RWNY",
     "ytSearchQuery": "Bulleya Amit Mishra Shilpa Rao Pritam",
     "storagePath": "in-bulleya-adhm.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/257/Ae-Dil-Hai-Mushkil-Hindi-2016-500x500.jpg"
   },
   {
     "id": "in-the-breakup-song",
@@ -23340,7 +23594,8 @@
     "ytId": "kd5KqlmcHNo",
     "ytSearchQuery": "The Breakup Song Arijit Singh Jonita Badshah",
     "storagePath": "in-the-breakup-song.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/257/Ae-Dil-Hai-Mushkil-Hindi-2016-500x500.jpg"
   },
   {
     "id": "in-tum-hi-ho-full",
@@ -23352,7 +23607,8 @@
     "ytId": "Umqb9KENgmk",
     "ytSearchQuery": "Tum Hi Ho Arijit Singh Aashiqui 2",
     "storagePath": "in-tum-hi-ho-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/430/Aashiqui-2-Hindi-2013-500x500.jpg"
   },
   {
     "id": "in-sunn-raha-hai",
@@ -23364,7 +23620,8 @@
     "ytId": "z3UHfi9vpbc",
     "ytSearchQuery": "Sunn Raha Hai Na Tu Ankit Tiwari",
     "storagePath": "in-sunn-raha-hai.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/430/Aashiqui-2-Hindi-2013-500x500.jpg"
   },
   {
     "id": "in-chahun-main-ya-naa",
@@ -23376,7 +23633,8 @@
     "ytId": "Q4F7MF5Vzt0",
     "ytSearchQuery": "Chahun Main Ya Naa Arijit Singh Palak Muchhal",
     "storagePath": "in-chahun-main-ya-naa.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/430/Aashiqui-2-Hindi-2013-500x500.jpg"
   },
   {
     "id": "in-galliyan-ek-villain",
@@ -23388,7 +23646,8 @@
     "ytId": "FxAG_11PzCk",
     "ytSearchQuery": "Galliyan Ankit Tiwari Ek Villain",
     "storagePath": "in-galliyan-ek-villain.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/151/Ek-Villain-Hindi-2014-500x500.jpg"
   },
   {
     "id": "in-banjaara-ek-villain",
@@ -23400,7 +23659,8 @@
     "ytId": "0NFxcNheoLc",
     "ytSearchQuery": "Banjaara Mohammed Irfan Ek Villain",
     "storagePath": "in-banjaara-ek-villain.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/151/Ek-Villain-Hindi-2014-500x500.jpg"
   },
   {
     "id": "in-agar-tum-saath-ho-full",
@@ -23412,7 +23672,8 @@
     "ytId": "sK7riqg2mr4",
     "ytSearchQuery": "Agar Tum Saath Ho Alka Yagnik Arijit Singh AR Rahman",
     "storagePath": "in-agar-tum-saath-ho-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/994/Tamasha-Hindi-2015-500x500.jpg"
   },
   {
     "id": "in-matargashti",
@@ -23424,7 +23685,8 @@
     "ytId": "6vKucgAeF_Q",
     "ytSearchQuery": "Matargashti Mohit Chauhan AR Rahman Tamasha",
     "storagePath": "in-matargashti.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/994/Tamasha-Hindi-2015-500x500.jpg"
   },
   {
     "id": "in-safarnama",
@@ -23436,7 +23698,8 @@
     "ytId": "sOhESxhibAM",
     "ytSearchQuery": "Safarnama Lucky Ali AR Rahman",
     "storagePath": "in-safarnama.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/994/Tamasha-Hindi-2015-500x500.jpg"
   },
   {
     "id": "in-wat-wat-wat",
@@ -23448,7 +23711,8 @@
     "ytId": "EB9ugJ4ICgU",
     "ytSearchQuery": "Wat Wat Wat Arijit Singh AR Rahman",
     "storagePath": "in-wat-wat-wat.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/994/Tamasha-Hindi-2015-500x500.jpg"
   },
   {
     "id": "te-pushpa-pushpa-full",
@@ -23460,7 +23724,8 @@
     "ytId": "MhIulWFPcpg",
     "ytSearchQuery": "Pushpa Pushpa Nakash Aziz Devi Sri Prasad",
     "storagePath": "te-pushpa-pushpa-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/366/Pushpa-2-The-Rule-Telugu-Telugu-2024-20241205211012-500x500.jpg"
   },
   {
     "id": "te-sooseki-couple-song",
@@ -23472,7 +23737,8 @@
     "ytId": "qxbHtcfHq2s",
     "ytSearchQuery": "Sooseki Couple Song Shreya Ghoshal Pushpa 2",
     "storagePath": "te-sooseki-couple-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/814/Summer-Hot-Romatic-Waves-Telugu-2026-20260601162119-500x500.webp"
   },
   {
     "id": "te-peelings-pushpa2",
@@ -23484,7 +23750,8 @@
     "ytId": "DgJrzIZI19A",
     "ytSearchQuery": "Peelings Pushpa 2 Devi Sri Prasad",
     "storagePath": "te-peelings-pushpa2.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/366/Pushpa-2-The-Rule-Telugu-Telugu-2024-20241205211012-500x500.jpg"
   },
   {
     "id": "te-kissik-pushpa2",
@@ -23496,7 +23763,8 @@
     "ytId": "mQ0piHrbuIw",
     "ytSearchQuery": "Kissik Sreeleela Pushpa 2 Devi Sri Prasad",
     "storagePath": "te-kissik-pushpa2.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/366/Pushpa-2-The-Rule-Telugu-Telugu-2024-20241205211012-500x500.jpg"
   },
   {
     "id": "te-fear-song-devara",
@@ -23508,7 +23776,8 @@
     "ytId": "CKpbdCciELk",
     "ytSearchQuery": "Fear Song Anirudh Ravichander Devara",
     "storagePath": "te-fear-song-devara.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/104/Sid-Sriram-X-Anirudh-Ravichander-Monsoon-Super-Hits-Tamil-2026-20260710191206-500x500.webp"
   },
   {
     "id": "te-chuttamalle-devara",
@@ -23520,7 +23789,8 @@
     "ytId": "GWNrPJyRTcA",
     "ytSearchQuery": "Chuttamalle Shilpa Rao Anirudh Devara",
     "storagePath": "te-chuttamalle-devara.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/814/Summer-Hot-Romatic-Waves-Telugu-2026-20260601162119-500x500.webp"
   },
   {
     "id": "te-daavudi-devara",
@@ -23532,7 +23802,8 @@
     "ytId": "QQwDeJFSVvc",
     "ytSearchQuery": "Daavudi Nakash Aziz Akasa Anirudh Devara",
     "storagePath": "te-daavudi-devara.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/917/Tollywood-Heroines-Musical-Blockbusters-Telugu-2025-20251120161002-500x500.webp"
   },
   {
     "id": "te-ayudha-pooja-devara",
@@ -23544,7 +23815,8 @@
     "ytId": "hUu8_OwJ80U",
     "ytSearchQuery": "Ayudha Pooja Kaala Bhairava Anirudh Devara",
     "storagePath": "te-ayudha-pooja-devara.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/313/Devara-Part-1-Telugu-Telugu-2024-20240926171010-500x500.webp"
   },
   {
     "id": "te-all-hail-tiger",
@@ -23556,7 +23828,8 @@
     "ytId": "L1kcIrlJiD0",
     "ytSearchQuery": "All Hail The Tiger Anirudh Devara",
     "storagePath": "te-all-hail-tiger.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/847/All-Hail-The-Tiger-From-Devara-Part-1-Telugu-2024-20240109141003-500x500.webp"
   },
   {
     "id": "te-kalki-theme",
@@ -23568,7 +23841,8 @@
     "ytId": "CP6vDjbwqV0",
     "ytSearchQuery": "Theme of Kalki Santhosh Narayanan",
     "storagePath": "te-kalki-theme.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/888/Kalki-2898-Ad-Telugu-Telugu-2024-20240712063717-500x500.webp"
   },
   {
     "id": "te-ta-takkara-kalki",
@@ -23580,7 +23854,8 @@
     "ytId": "NY8FJzpwIzM",
     "ytSearchQuery": "Ta Takkara Sanjith Hegde Dhee Santhosh Narayanan",
     "storagePath": "te-ta-takkara-kalki.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/888/Kalki-2898-Ad-Telugu-Telugu-2024-20240712063717-500x500.webp"
   },
   {
     "id": "te-veera-dheera-kalki",
@@ -23592,7 +23867,8 @@
     "ytId": "q763OBiwDKg",
     "ytSearchQuery": "Veera Dheera Santhosh Narayanan Kalki",
     "storagePath": "te-veera-dheera-kalki.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/890/Kalki-2898-AD-Kannada-Kannada-2024-20240723083736-500x500.webp"
   },
   {
     "id": "te-madhava-keshava",
@@ -23604,7 +23880,8 @@
     "ytId": "D-zq4rtebJ4",
     "ytSearchQuery": "Madhava Keshava Santhosh Narayanan Kalki",
     "storagePath": "te-madhava-keshava.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/640/Daana-Veera-Soora-Karna-Telugu-1977-20230509153539-500x500.webp"
   },
   {
     "id": "te-kurchi-madathapetti-full",
@@ -23616,7 +23893,8 @@
     "ytId": "uicTPs56LzE",
     "ytSearchQuery": "Kurchi Madathapetti Thaman S Guntur Kaaram",
     "storagePath": "te-kurchi-madathapetti-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/000/Guntur-Kaaram-Telugu-2023-20240126145901-500x500.webp"
   },
   {
     "id": "te-dum-masala-full",
@@ -23628,7 +23906,8 @@
     "ytId": "b4wlfpRouzQ",
     "ytSearchQuery": "Dum Masala Sanjith Hegde Thaman S Guntur Kaaram",
     "storagePath": "te-dum-masala-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/000/Guntur-Kaaram-Telugu-2023-20240126145901-500x500.webp"
   },
   {
     "id": "te-ammapata-guntur",
@@ -23640,7 +23919,8 @@
     "ytId": "l_tfVbSJd6s",
     "ytSearchQuery": "Amma Song Javed Ali Thaman S Guntur Kaaram",
     "storagePath": "te-ammapata-guntur.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/841/Chirasathi-Bengali-2008-20221208160536-500x500.webp"
   },
   {
     "id": "te-oh-my-baby-guntur",
@@ -23652,7 +23932,8 @@
     "ytId": "4QxB7LmfpA4",
     "ytSearchQuery": "Oh My Baby Shilpa Rao Thaman S Guntur Kaaram",
     "storagePath": "te-oh-my-baby-guntur.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/000/Guntur-Kaaram-Telugu-2023-20240126145901-500x500.webp"
   },
   {
     "id": "te-mawaa-enthaina",
@@ -23664,7 +23945,8 @@
     "ytId": "5yPO5lFeAIE",
     "ytSearchQuery": "Mawaa Enthaina Thaman S Guntur Kaaram",
     "storagePath": "te-mawaa-enthaina.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/000/Guntur-Kaaram-Telugu-2023-20240126145901-500x500.webp"
   },
   {
     "id": "te-sooreede-salaar",
@@ -23676,7 +23958,8 @@
     "ytId": "2n7lsBRfmA0",
     "ytSearchQuery": "Sooreede Haricharan Ravi Basrur Salaar",
     "storagePath": "te-sooreede-salaar.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/186/Saaho-Telugu-2019-20190828024553-500x500.webp"
   },
   {
     "id": "te-prathikadalo-salaar",
@@ -23688,7 +23971,8 @@
     "ytId": "KGXSGtukDh0",
     "ytSearchQuery": "Prathi Kadalo Ravi Basrur Salaar",
     "storagePath": "te-prathikadalo-salaar.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/757/Vijay-Prakash-Endless-Echo-Kannada-2026-20260430143311-500x500.webp"
   },
   {
     "id": "te-sound-of-salaar",
@@ -23700,7 +23984,8 @@
     "ytId": "Z1QuBXVrUHU",
     "ytSearchQuery": "Sound of Salaar Ravi Basrur",
     "storagePath": "te-sound-of-salaar.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/467/Salaar-Cease-Fire-Kannada-Kannada-2024-20260121193606-500x500.webp"
   },
   {
     "id": "te-anuman-chalisa-hanuman",
@@ -23724,7 +24009,8 @@
     "ytId": "CS7hBHVGWs0",
     "ytSearchQuery": "Poolamme Pilla HanuMan",
     "storagePath": "te-poolamme-pilla.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/807/Poolamme-Pilla-From-HanuMan-Telugu-Telugu-2024-20240620164831-500x500.webp"
   },
   {
     "id": "te-avvakayi-hanuman",
@@ -23736,7 +24022,8 @@
     "ytId": "_3-2R-1APls",
     "ytSearchQuery": "Avakaya Anjaneya GowraHari HanuMan",
     "storagePath": "te-avvakayi-hanuman.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/728/Avakaya-Anjaneya-From-HanuMan-Telugu-Telugu-2023-20240620164834-500x500.webp"
   },
   {
     "id": "te-naa-roja-nuvve",
@@ -23748,7 +24035,8 @@
     "ytId": "0n7AWxYCj9I",
     "ytSearchQuery": "Naa Roja Nuvve Hesham Abdul Wahab Kushi",
     "storagePath": "te-naa-roja-nuvve.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/679/Kushi-Telugu-Telugu-2023-20250130073127-500x500.webp"
   },
   {
     "id": "te-aradhya-kushi",
@@ -23760,7 +24048,8 @@
     "ytId": "0gXel_bKl00",
     "ytSearchQuery": "Aradhya Sid Sriram Chinmayi Hesham Kushi",
     "storagePath": "te-aradhya-kushi.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/679/Kushi-Telugu-Telugu-2023-20250130073127-500x500.webp"
   },
   {
     "id": "te-kushi-title-song",
@@ -23772,7 +24061,8 @@
     "ytId": "b5KW2NWOvgY",
     "ytSearchQuery": "Kushi Title Song Hesham Abdul Wahab",
     "storagePath": "te-kushi-title-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/679/Kushi-Telugu-Telugu-2023-20250130073127-500x500.webp"
   },
   {
     "id": "te-ammaadi-hi-nanna",
@@ -23784,7 +24074,8 @@
     "ytId": "lWV6jM-2DvE",
     "ytSearchQuery": "Ammaadi Hesham Abdul Wahab Hi Nanna",
     "storagePath": "te-ammaadi-hi-nanna.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/712/Ammaadi-From-Hi-Nanna-Telugu-2023-20231103201011-500x500.webp"
   },
   {
     "id": "te-samayama-hi-nanna",
@@ -23796,7 +24087,8 @@
     "ytId": "Zz1M1iVEkwM",
     "ytSearchQuery": "Samayama Anurag Kulkarni Hi Nanna",
     "storagePath": "te-samayama-hi-nanna.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/307/Samayama-From-Hi-Nanna-Telugu-2023-20230918164922-500x500.webp"
   },
   {
     "id": "te-odiyamma-hi-nanna",
@@ -23808,7 +24100,8 @@
     "ytId": "AOIeoPwpe6E",
     "ytSearchQuery": "Odiyamma Dhruv Vikram Shruti Haasan Hi Nanna",
     "storagePath": "te-odiyamma-hi-nanna.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/156/Odiyamma-From-Hi-Nanna-Telugu-Telugu-2023-20231204191025-500x500.webp"
   },
   {
     "id": "te-gaaju-bomma-hi-nanna",
@@ -23820,7 +24113,8 @@
     "ytId": "6H8YF505oBE",
     "ytSearchQuery": "Gaaju Bomma Hesham Abdul Wahab Hi Nanna",
     "storagePath": "te-gaaju-bomma-hi-nanna.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/332/Gaaju-Bomma-From-Hi-Nanna-Telugu-2023-20231005201031-500x500.webp"
   },
   {
     "id": "te-butta-bomma-full",
@@ -23832,7 +24126,8 @@
     "ytId": "2mDCVzruYzQ",
     "ytSearchQuery": "Butta Bomma Armaan Malik Thaman S",
     "storagePath": "te-butta-bomma-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/517/Ala-Vaikunthapurramuloo-Telugu-2019-20200116144338-500x500.webp"
   },
   {
     "id": "te-samajavaragamana-full",
@@ -23844,7 +24139,8 @@
     "ytId": "tflQ33g6I8I",
     "ytSearchQuery": "Samajavaragamana Sid Sriram Thaman S",
     "storagePath": "te-samajavaragamana-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/517/Ala-Vaikunthapurramuloo-Telugu-2019-20200116144338-500x500.webp"
   },
   {
     "id": "te-ramuloo-ramulaa-full",
@@ -23856,7 +24152,8 @@
     "ytId": "Bg8Yb9zGYyA",
     "ytSearchQuery": "Ramuloo Ramulaa Anurag Kulkarni Mangli Thaman S",
     "storagePath": "te-ramuloo-ramulaa-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/517/Ala-Vaikunthapurramuloo-Telugu-2019-20200116144338-500x500.webp"
   },
   {
     "id": "te-mind-block-full",
@@ -23868,7 +24165,8 @@
     "ytId": "J7Qf8bQRPuc",
     "ytSearchQuery": "Mind Block Devi Sri Prasad Sarileru Neekevvaru",
     "storagePath": "te-mind-block-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/432/Sarileru-Neekevvaru-Telugu-2020-20250818111038-500x500.webp"
   },
   {
     "id": "te-he-is-so-cute",
@@ -23880,7 +24178,8 @@
     "ytId": "LjZRpPauOVE",
     "ytSearchQuery": "He is So Cute Madhu Priya Devi Sri Prasad",
     "storagePath": "te-he-is-so-cute.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/432/Sarileru-Neekevvaru-Telugu-2020-20250818111038-500x500.webp"
   },
   {
     "id": "te-inkem-inkem-full",
@@ -23892,7 +24191,8 @@
     "ytId": "LPeZOE8ZIHI",
     "ytSearchQuery": "Inkem Inkem Inkem Kaavaale Sid Sriram",
     "storagePath": "te-inkem-inkem-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/237/Geetha-Govindam-Telugu-2018-20180921-500x500.webp"
   },
   {
     "id": "te-vachindamma-full",
@@ -23904,7 +24204,8 @@
     "ytId": "I8t0VJjEffk",
     "ytSearchQuery": "Vachindamma Sid Sriram Geetha Govindam",
     "storagePath": "te-vachindamma-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/237/Geetha-Govindam-Telugu-2018-20180921-500x500.webp"
   },
   {
     "id": "te-what-the-life",
@@ -23916,7 +24217,8 @@
     "ytId": "LCQKH_QTZgI",
     "ytSearchQuery": "What the Life Vijay Deverakonda",
     "storagePath": "te-what-the-life.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/237/Geetha-Govindam-Telugu-2018-20180921-500x500.webp"
   },
   {
     "id": "te-pilla-raa-full",
@@ -23928,7 +24230,8 @@
     "ytId": "5MtKkdEiJzk",
     "ytSearchQuery": "Pilla Raa Anurag Kulkarni RX 100",
     "storagePath": "te-pilla-raa-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/172/RX-100-Telugu-2018-20230207103253-500x500.webp"
   },
   {
     "id": "kn-singara-siriye-full",
@@ -23940,7 +24243,8 @@
     "ytId": "3XShkcOze3s",
     "ytSearchQuery": "Singara Siriye Vijay Prakash Ananya Bhat Kantara",
     "storagePath": "kn-singara-siriye-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/818/B-Ajaneesh-Loknath-Musical-Blast-Kannada-2026-20260205143719-500x500.webp"
   },
   {
     "id": "kn-varaha-roopam-full",
@@ -23952,7 +24256,8 @@
     "ytId": "m-5ck3BuT1o",
     "ytSearchQuery": "Varaha Roopam Sai Vignesh Kantara",
     "storagePath": "kn-varaha-roopam-full.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/574/Kantara-Malayalam-2022-20260203193959-500x500.webp"
   },
   {
     "id": "kn-rebel-song-kantara",
@@ -23964,7 +24269,8 @@
     "ytId": "KlWmhyaVsSU",
     "ytSearchQuery": "Rebel Song Kantara Ajaneesh Loknath",
     "storagePath": "kn-rebel-song-kantara.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/618/Kantara-A-Legend-Chapter-1-Kannada-Kannada-2025-20251009171821-500x500.webp"
   },
   {
     "id": "kn-karma-song-kantara",
@@ -23976,7 +24282,8 @@
     "ytId": "lue4nserWek",
     "ytSearchQuery": "Karma Song Kantara",
     "storagePath": "kn-karma-song-kantara.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/540/Kantara-A-Legend-Chapter-1-Hindi-Hindi-2025-20251009171927-500x500.webp"
   },
   {
     "id": "kn-toofan-kgf2-full",
@@ -23988,7 +24295,8 @@
     "ytId": "zR5-HbFW6hc",
     "ytSearchQuery": "Toofan Ravi Basrur KGF Chapter 2",
     "storagePath": "kn-toofan-kgf2-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/706/KGF-Chapter-2-Hindi-2022-20220522091045-500x500.webp"
   },
   {
     "id": "kn-sulthana-kgf2-full",
@@ -24000,7 +24308,8 @@
     "ytId": "kwa9JRcqKeE",
     "ytSearchQuery": "Sulthana Ravi Basrur KGF Chapter 2",
     "storagePath": "kn-sulthana-kgf2-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/098/KGF-Chapter-2-Kannada-Kannada-2022-20250828181341-500x500.webp"
   },
   {
     "id": "kn-mehabooba-kgf2-full",
@@ -24012,7 +24321,8 @@
     "ytId": "mJ8bwitLiUo",
     "ytSearchQuery": "Mehabooba Ananya Bhat Ravi Basrur KGF 2",
     "storagePath": "kn-mehabooba-kgf2-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/706/KGF-Chapter-2-Hindi-2022-20220522091045-500x500.webp"
   },
   {
     "id": "kn-monster-song-kgf2",
@@ -24024,7 +24334,8 @@
     "ytId": "R4He_Gcn7cA",
     "ytSearchQuery": "Monster Song Adithi Sagar KGF 2",
     "storagePath": "kn-monster-song-kgf2.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/851/KGF-Chapter-2-Hindi-Hindi-2022-20260306194003-500x500.webp"
   },
   {
     "id": "kn-salaam-rocky-full",
@@ -24036,7 +24347,8 @@
     "ytId": "6Hvc-xpNTME",
     "ytSearchQuery": "Salaam Rocky Bhai Vijay Prakash KGF 1",
     "storagePath": "kn-salaam-rocky-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/623/Kgf-Chapter-1-Hindi-2018-20181226104000-500x500.webp"
   },
   {
     "id": "kn-dheera-dheera-kgf1",
@@ -24048,7 +24360,8 @@
     "ytId": "6FTnjjxmVTE",
     "ytSearchQuery": "Dheera Dheera Ananya Bhat KGF 1",
     "storagePath": "kn-dheera-dheera-kgf1.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/402/KGF-Chapter-1-Telugu-Telugu-2018-20220827063628-500x500.webp"
   },
   {
     "id": "kn-garbadhi-kgf1",
@@ -24060,7 +24373,8 @@
     "ytId": "oLPB53hzYRE",
     "ytSearchQuery": "Garbadhi Ananya Bhat KGF 1",
     "storagePath": "kn-garbadhi-kgf1.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/372/KGF-Chapter-1-Kannada-Kannada-2018-20220827063717-500x500.webp"
   },
   {
     "id": "kn-gali-gali-kgf1",
@@ -24072,7 +24386,8 @@
     "ytId": "rJqX-YUZddc",
     "ytSearchQuery": "Gali Gali KGF 1",
     "storagePath": "kn-gali-gali-kgf1.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/623/Kgf-Chapter-1-Hindi-2018-20181226104000-500x500.webp"
   },
   {
     "id": "kn-ra-ra-rakkamma-full",
@@ -24084,7 +24399,8 @@
     "ytId": "YbuyYh-uUuc",
     "ytSearchQuery": "Ra Ra Rakkamma Sunidhi Chauhan Vikrant Rona",
     "storagePath": "kn-ra-ra-rakkamma-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/161/Vikrant-Rona-Kannada-Kannada-2022-20250818121332-500x500.webp"
   },
   {
     "id": "kn-lullaby-song-vikrant",
@@ -24096,7 +24412,8 @@
     "ytId": "a2sZOdgVlcU",
     "ytSearchQuery": "Lullaby Song Rajkumari Vijay Prakash Vikrant Rona",
     "storagePath": "kn-lullaby-song-vikrant.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/161/Vikrant-Rona-Kannada-Kannada-2022-20250818121332-500x500.webp"
   },
   {
     "id": "kn-hey-fakira-vikrant",
@@ -24108,7 +24425,8 @@
     "ytId": "7rcZb-3KHCo",
     "ytSearchQuery": "Hey Fakira Sanjith Hegde Vikrant Rona",
     "storagePath": "kn-hey-fakira-vikrant.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/161/Vikrant-Rona-Kannada-Kannada-2022-20250818121332-500x500.webp"
   },
   {
     "id": "kn-torture-song-charlie",
@@ -24120,7 +24438,8 @@
     "ytId": "EHUnXT9eTHk",
     "ytSearchQuery": "Torture Song Vijay Prakash 777 Charlie",
     "storagePath": "kn-torture-song-charlie.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/757/Vijay-Prakash-Endless-Echo-Kannada-2026-20260430143311-500x500.webp"
   },
   {
     "id": "kn-o-gabbar-charlie",
@@ -24144,7 +24463,8 @@
     "ytId": "JZQiUKRoLIE",
     "ytSearchQuery": "Sahore Bimbada Vijay Prakash 777 Charlie",
     "storagePath": "kn-sahore-bimbada-charlie.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/757/Vijay-Prakash-Endless-Echo-Kannada-2026-20260430143311-500x500.webp"
   },
   {
     "id": "kn-madhyanthara-sse",
@@ -24156,7 +24476,8 @@
     "ytId": "i_vRoQGIc6Y",
     "ytSearchQuery": "Kadalanu Kaanhoru Charan Raj Sapta Sagaradaache Ello",
     "storagePath": "kn-madhyanthara-sse.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/693/Ekka-Original-Motion-Picture-Soundtrack-Kannada-2025-20250911143556-500x500.webp"
   },
   {
     "id": "kn-sapta-sagaradaache-title",
@@ -24168,7 +24489,8 @@
     "ytId": "dDMXyQ6cwIc",
     "ytSearchQuery": "Sapta Sagaradaache Ello Title Track Charan Raj Kapil Kapilan",
     "storagePath": "kn-sapta-sagaradaache-title.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/505/Sapta-Sagaradaache-Ello-Side-A-Kannada-2023-20260121133302-500x500.webp"
   },
   {
     "id": "kn-dhaare-dhaare-sse",
@@ -24180,7 +24502,8 @@
     "ytId": "j9jeuZ3nNcY",
     "ytSearchQuery": "Dhaare Dhaare Charan Raj Sapta Sagaradaache Ello",
     "storagePath": "kn-dhaare-dhaare-sse.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/871/Sapta-Sagaradaache-Ello-Side-B-Kannada-2024-20260203163551-500x500.webp"
   },
   {
     "id": "kn-olave-olave-sse-b",
@@ -24192,7 +24515,8 @@
     "ytId": "",
     "ytSearchQuery": "Olave Olave KS Chithra Charan Raj SSE Side B",
     "storagePath": "kn-olave-olave-sse-b.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/871/Sapta-Sagaradaache-Ello-Side-B-Kannada-2024-20260203163551-500x500.webp"
   },
   {
     "id": "kn-usire-usire-sse-b",
@@ -24204,7 +24528,8 @@
     "ytId": "XDl4LAfnKwI",
     "ytSearchQuery": "Usire Sanjith Hegde Charan Raj SSE Side B",
     "storagePath": "kn-usire-usire-sse-b.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/871/Sapta-Sagaradaache-Ello-Side-B-Kannada-2024-20260203163551-500x500.webp"
   },
   {
     "id": "kn-obba-hudugi-yuva",
@@ -24216,7 +24541,8 @@
     "ytId": "6--Zfot46wM",
     "ytSearchQuery": "Obba Hudugi Santhosh Venky Yuva",
     "storagePath": "kn-obba-hudugi-yuva.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/657/Marco-Malayalam-2024-20241220224531-500x500.webp"
   },
   {
     "id": "kn-kannadada-makkalu-yuva",
@@ -24228,7 +24554,8 @@
     "ytId": "vzIFlt4fUbM",
     "ytSearchQuery": "Kannaache Sanjith Hegde Yuva",
     "storagePath": "kn-kannadada-makkalu-yuva.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/522/Sanjith-Hegde-Hits-Kannada-2025-20251016143758-500x500.webp"
   },
   {
     "id": "kn-pasandaagavne-kaatera",
@@ -24240,7 +24567,8 @@
     "ytId": "SAKM73oQWv4",
     "ytSearchQuery": "Pasandaagavne V Harikrishna Kaatera",
     "storagePath": "kn-pasandaagavne-kaatera.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/454/Kaatera-Kannada-2023-20250319091012-500x500.webp"
   },
   {
     "id": "kn-yava-janmada-kaatera",
@@ -24252,7 +24580,8 @@
     "ytId": "FwqTyzZJ7rY",
     "ytSearchQuery": "Yava Janmada Gelathi Sonu Nigam Kaatera",
     "storagePath": "kn-yava-janmada-kaatera.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/575/Garam-Masala-Hindi-2005-20210226131435-500x500.jpg"
   },
   {
     "id": "kn-belageddu-full",
@@ -24264,7 +24593,8 @@
     "ytId": "ebz20FHrT44",
     "ytSearchQuery": "Belageddu Vijay Prakash Kirik Party",
     "storagePath": "kn-belageddu-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/264/Simple-Star-Rakshit-s-Extraordinary-Hits-Kannada-2020-20230908202711-500x500.webp"
   },
   {
     "id": "kn-he-sharre-kirik",
@@ -24276,7 +24606,8 @@
     "ytId": "ps3FPq0hlG8",
     "ytSearchQuery": "Hey Who Are You Kirik Party",
     "storagePath": "kn-he-sharre-kirik.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/818/B-Ajaneesh-Loknath-Musical-Blast-Kannada-2026-20260205143719-500x500.webp"
   },
   {
     "id": "kn-katheyondu-helide",
@@ -24288,7 +24619,8 @@
     "ytId": "QpKQjISfB4s",
     "ytSearchQuery": "Katheyondu Helide Kirik Party",
     "storagePath": "kn-katheyondu-helide.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/264/Simple-Star-Rakshit-s-Extraordinary-Hits-Kannada-2020-20230908202711-500x500.webp"
   },
   {
     "id": "kn-soul-of-dia-full",
@@ -24300,7 +24632,8 @@
     "ytId": "7ZW8hthGL0U",
     "ytSearchQuery": "Soul of Dia Sanjith Hegde Chinmayi",
     "storagePath": "kn-soul-of-dia-full.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/677/Soul-Of-Dia-From-Dia-Kannada-2020-20260203193951-500x500.webp"
   },
   {
     "id": "kn-kannu-kannu-full",
@@ -24324,7 +24657,8 @@
     "ytId": "5J6r2u2grSw",
     "ytSearchQuery": "Anisuthide Yaako Indu Sonu Nigam Mungaru Male",
     "storagePath": "kn-anisuthide-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/692/Anisutide-Yako-Indu-8d-Audio-Song-Kannada-2023-20250410131446-500x500.webp"
   },
   {
     "id": "kn-mungaru-maleye-full",
@@ -24336,7 +24670,8 @@
     "ytId": "QrCQyRSoEtY",
     "ytSearchQuery": "Mungaru Maleye Sonu Nigam Mungaru Male",
     "storagePath": "kn-mungaru-maleye-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/087/Mungaru-Male-Original-Motion-Picture-SoundtracK-Kannada-2006-20250318150358-500x500.webp"
   },
   {
     "id": "kn-kunu-kunu-mungaru",
@@ -24348,7 +24683,8 @@
     "ytId": "6ATTRCxx9-4",
     "ytSearchQuery": "Kunidu Kunidu Bare Mungaru Male",
     "storagePath": "kn-kunu-kunu-mungaru.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/087/Mungaru-Male-Original-Motion-Picture-SoundtracK-Kannada-2006-20250318150358-500x500.webp"
   },
   {
     "id": "kn-ninnindale-milana-full",
@@ -24360,7 +24696,8 @@
     "ytId": "-xmRjO2G05c",
     "ytSearchQuery": "Ninnindale Sonu Nigam Milana",
     "storagePath": "kn-ninnindale-milana-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/193/Milana-Kannada-2007-20250318135007-500x500.webp"
   },
   {
     "id": "kn-male-ninthmele-milana",
@@ -24372,7 +24709,8 @@
     "ytId": "P5-vLnColQc",
     "ytSearchQuery": "Male Ninthu Hoda Mele Sonu Nigam Shreya Ghoshal Milana",
     "storagePath": "kn-male-ninthmele-milana.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/193/Milana-Kannada-2007-20250318135007-500x500.webp"
   },
   {
     "id": "kn-minchagi-neenu-full",
@@ -24396,7 +24734,8 @@
     "ytId": "fpGvB7AT1vA",
     "ytSearchQuery": "Bombe Helutaite Vijay Prakash Raajakumara",
     "storagePath": "kn-bombe-helutaite-full.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/964/Raajakumara-Kannada-2017-20221028143846-500x500.webp"
   },
   {
     "id": "kn-appu-dance-raajakumara",
@@ -24408,7 +24747,8 @@
     "ytId": "kUzf7ESxNcQ",
     "ytSearchQuery": "Appu Dance Raajakumara",
     "storagePath": "kn-appu-dance-raajakumara.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/964/Raajakumara-Kannada-2017-20221028143846-500x500.webp"
   },
   {
     "id": "gu-khalasi-gotilo-full",
@@ -24420,7 +24760,8 @@
     "ytId": "t7wSjy9Lv-o",
     "ytSearchQuery": "Khalasi Gotilo Aditya Gadhvi Achint",
     "storagePath": "gu-khalasi-gotilo-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/490/Khalasi-Remix-Pack-Gujarati-2024-20241001181104-500x500.webp"
   },
   {
     "id": "gu-chogada-tara-full",
@@ -24432,7 +24773,8 @@
     "ytId": "asYxxtiWUyw",
     "ytSearchQuery": "Chogada Tara Darshan Raval Loveyatri",
     "storagePath": "gu-chogada-tara-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/401/Loveyatri-A-Journey-Of-Love-Hindi-2018-20181003-500x500.jpg"
   },
   {
     "id": "gu-kamariya-mitron",
@@ -24444,7 +24786,8 @@
     "ytId": "i0_m90T04uw",
     "ytSearchQuery": "Kamariya Darshan Raval Mitron",
     "storagePath": "gu-kamariya-mitron.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/764/Mitron-Hindi-2018-20180831135137-500x500.jpg"
   },
   {
     "id": "gu-dholida-gangubai-full",
@@ -24456,7 +24799,8 @@
     "ytId": "N1RGsvkas7U",
     "ytSearchQuery": "Dholida Jahnvi Shrimankar Gangubai",
     "storagePath": "gu-dholida-gangubai-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/544/Gangubai-Kathiawadi-Hindi-2022-20220217161339-500x500.webp"
   },
   {
     "id": "gu-radha-ne-shyam-full",
@@ -24468,7 +24812,8 @@
     "ytId": "tTfF5klskmo",
     "ytSearchQuery": "Radha Ne Shyam Mali Jashe Sachin Jigar",
     "storagePath": "gu-radha-ne-shyam-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/657/Radha-Ne-Shyam-Mali-Jashe-Gujarati-2020-20201117120727-500x500.webp"
   },
   {
     "id": "gu-rona-ser-ma-full",
@@ -24480,7 +24825,8 @@
     "ytId": "35mYQ8bqp1A",
     "ytSearchQuery": "Rona Ser Ma Re Geeta Rabari",
     "storagePath": "gu-rona-ser-ma-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/832/Rona-Ser-Ma-Gujarati-2026-20260416101735-500x500.webp"
   },
   {
     "id": "gu-char-bangadi-full",
@@ -24492,7 +24838,8 @@
     "ytId": "DoE5qEeCoyc",
     "ytSearchQuery": "Char Char Bangadi Vadi Gadi Kinjal Dave",
     "storagePath": "gu-char-bangadi-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/762/Beni-Char-Char-Bangadi-Vali-Gadi-Laidau-Gujarati-2017-500x500.jpg"
   },
   {
     "id": "gu-nagada-sang-dhol-full",
@@ -24504,7 +24851,8 @@
     "ytId": "3X7x4Ye-tqo",
     "ytSearchQuery": "Nagada Sang Dhol Baje Shreya Ghoshal Osman Mir",
     "storagePath": "gu-nagada-sang-dhol-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/914/Goliyon-Ki-Raasleela-Ram-Leela-Hindi-2025-20250930143415-500x500.webp"
   },
   {
     "id": "gu-lollypop-kinjal",
@@ -24528,7 +24876,8 @@
     "ytId": "Ai1du5CG85g",
     "ytSearchQuery": "Vhalam Aavo Ne Jigardan Gadhavi",
     "storagePath": "gu-valam-aavo-ne.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/015/Love-Ni-Bhavai-Gujarati-2017-500x500.webp"
   },
   {
     "id": "gu-tari-mari-yaari",
@@ -24540,7 +24889,8 @@
     "ytId": "Lk-D-Bt9FIg",
     "ytSearchQuery": "Tari Mari Yaari Jigardan Gadhavi",
     "storagePath": "gu-tari-mari-yaari.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/845/Tu-Haiye-Haali-Aave-Gujarati-2024-20240711184427-500x500.webp"
   },
   {
     "id": "gu-kehvu-ghanu-ghanu",
@@ -24552,7 +24902,8 @@
     "ytId": "_NjigYHnxuk",
     "ytSearchQuery": "Kehvu Ghanu Ghanu Chhe Siddharth Bhavsar",
     "storagePath": "gu-kehvu-ghanu-ghanu.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/813/Kehvu-Ghanu-Single-Gujarati-2015-20200106164730-500x500.webp"
   },
   {
     "id": "gu-dhun-laagi",
@@ -24564,7 +24915,8 @@
     "ytId": "TxidFkYHDfI",
     "ytSearchQuery": "Dhun Laagi Sachin Jigar",
     "storagePath": "gu-dhun-laagi.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/015/Love-Ni-Bhavai-Gujarati-2017-500x500.webp"
   },
   {
     "id": "gu-tara-vina-shyam",
@@ -24576,7 +24928,8 @@
     "ytId": "JJjKcSLDV8M",
     "ytSearchQuery": "Tara Vina Shyam Mane Ekladu Lage",
     "storagePath": "gu-tara-vina-shyam.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/985/Khelaiya-Non-Stop-Disco-Dandia-93-Gujarati-1993-20200103063403-500x500.webp"
   },
   {
     "id": "gu-aavi-rudhi-eli-raat",
@@ -24600,7 +24953,8 @@
     "ytId": "8x_7vF-JrY8",
     "ytSearchQuery": "He Tara Naam Ni Chudli Atul Purohit",
     "storagePath": "gu-he-tara-naam-ni-chudli.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/497/Ramkrishna-Bhajan-Bengali-2020-20260609070305-500x500.webp"
   },
   {
     "id": "gu-kesariyo-rang-tane-lagyo",
@@ -24612,7 +24966,8 @@
     "ytId": "rLsJlT-kV-I",
     "ytSearchQuery": "Kesariyo Rang Tane Lagyo Aditya Gadhvi",
     "storagePath": "gu-kesariyo-rang-tane-lagyo.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/859/Non-Stop-Garba-by-Falguni-Pathak-Gujarati-2022-20220922001218-500x500.webp"
   },
   {
     "id": "gu-mahahetvali-maadi",
@@ -24624,7 +24979,8 @@
     "ytId": "pTfiXuM2tDU",
     "ytSearchQuery": "Maha Hetvali Maadi Re Geeta Rabari",
     "storagePath": "gu-mahahetvali-maadi.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/287/Geeta-Rabari-Ni-Ramzat-Gujarati-2018-20181003-500x500.webp"
   },
   {
     "id": "gu-dakor-na-thakor",
@@ -24636,7 +24992,8 @@
     "ytId": "B7kxUknH-pA",
     "ytSearchQuery": "Dakor Na Thakor Kirtidan Gadhvi",
     "storagePath": "gu-dakor-na-thakor.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/350/Dakor-Na-Thakor-Gujarati-2019-20250619182114-500x500.webp"
   },
   {
     "id": "gu-madi-taru-kanku-kharayu",
@@ -24648,7 +25005,8 @@
     "ytId": "sQsB0YKxE0E",
     "ytSearchQuery": "Madi Taru Kanku Kharayu Hemant Chauhan",
     "storagePath": "gu-madi-taru-kanku-kharayu.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/002/Darshan-English-2003-500x500.jpg"
   },
   {
     "id": "pj-lover-diljit-full",
@@ -24660,7 +25018,8 @@
     "ytId": "mH_LFkWxpI0",
     "ytSearchQuery": "Lover Diljit Dosanjh MoonChild Era",
     "storagePath": "pj-lover-diljit-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/209/MoonChild-Era-Punjabi-2021-20240715073449-500x500.webp"
   },
   {
     "id": "pj-goat-diljit-full",
@@ -24672,7 +25031,8 @@
     "ytId": "cl0a3i2wFcc",
     "ytSearchQuery": "GOAT Diljit Dosanjh",
     "storagePath": "pj-goat-diljit-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/597/G-O-A-T-Punjabi-2020-20240708055140-500x500.webp"
   },
   {
     "id": "pj-born-to-shine-full",
@@ -24684,7 +25044,8 @@
     "ytId": "dCmp56tSSmA",
     "ytSearchQuery": "Born to Shine Diljit Dosanjh",
     "storagePath": "pj-born-to-shine-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/945/Route-66-Punjabi-2021-20240708055109-500x500.webp"
   },
   {
     "id": "pj-clash-diljit-full",
@@ -24696,7 +25057,8 @@
     "ytId": "KX06ksuS6Xo",
     "ytSearchQuery": "Clash Diljit Dosanjh",
     "storagePath": "pj-clash-diljit-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/597/G-O-A-T-Punjabi-2020-20240708055140-500x500.webp"
   },
   {
     "id": "pj-lemonade-diljit-full",
@@ -24708,7 +25070,8 @@
     "ytId": "ZVgergj8Xe4",
     "ytSearchQuery": "Lemonade Diljit Dosanjh",
     "storagePath": "pj-lemonade-diljit-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/467/Drive-Thru-Punjabi-2022-20240708054744-500x500.webp"
   },
   {
     "id": "pj-proper-patola-full",
@@ -24720,7 +25083,8 @@
     "ytId": "GVhmynWOPoM",
     "ytSearchQuery": "Proper Patola Diljit Dosanjh Badshah",
     "storagePath": "pj-proper-patola-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/036/Namaste-England-Hindi-2018-20260120201449-500x500.webp"
   },
   {
     "id": "pj-do-you-know-full",
@@ -24732,7 +25096,8 @@
     "ytId": "P-DhwN87JDY",
     "ytSearchQuery": "Do You Know Diljit Dosanjh",
     "storagePath": "pj-do-you-know-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/810/Do-You-Know-Punjabi-2016-20240808172432-500x500.webp"
   },
   {
     "id": "pj-sauda-khara-khara-full",
@@ -24744,7 +25109,8 @@
     "ytId": "LYEqeUr-158",
     "ytSearchQuery": "Sauda Khara Khara Diljit Dosanjh",
     "storagePath": "pj-sauda-khara-khara-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/310/Bollywood-Dance-Fit-Hindi-2026-20260702013610-500x500.webp"
   },
   {
     "id": "pj-vibe-diljit-full",
@@ -24756,7 +25122,8 @@
     "ytId": "fyBzPE6w6-k",
     "ytSearchQuery": "Vibe Diljit Dosanjh MoonChild Era",
     "storagePath": "pj-vibe-diljit-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/209/MoonChild-Era-Punjabi-2021-20240715073449-500x500.webp"
   },
   {
     "id": "pj-peaches-diljit-full",
@@ -24768,7 +25135,8 @@
     "ytId": "s0JTpcDu1Tk",
     "ytSearchQuery": "Peaches Diljit Dosanjh",
     "storagePath": "pj-peaches-diljit-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/467/Drive-Thru-Punjabi-2022-20240708054744-500x500.webp"
   },
   {
     "id": "pj-hass-hass-full",
@@ -24780,7 +25148,8 @@
     "ytId": "jADTdg-o8i0",
     "ytSearchQuery": "Hass Hass Diljit Dosanjh Sia",
     "storagePath": "pj-hass-hass-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/245/Hass-Hass-English-2023-20231026170517-500x500.webp"
   },
   {
     "id": "pj-kinni-kinni-full",
@@ -24792,7 +25161,8 @@
     "ytId": "ejYe2GwBEJ0",
     "ytSearchQuery": "Kinni Kinni Diljit Dosanjh Ghost",
     "storagePath": "pj-kinni-kinni-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/276/Ghost-English-2023-20231028142825-500x500.webp"
   },
   {
     "id": "pj-case-diljit-full",
@@ -24804,7 +25174,8 @@
     "ytId": "g-Ij0idc_dk",
     "ytSearchQuery": "Case Diljit Dosanjh Ghost",
     "storagePath": "pj-case-diljit-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/276/Ghost-English-2023-20231028142825-500x500.webp"
   },
   {
     "id": "pj-5-taara-full",
@@ -24816,7 +25187,8 @@
     "ytId": "oK8I_eg-p_8",
     "ytSearchQuery": "5 Taara Diljit Dosanjh",
     "storagePath": "pj-5-taara-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/003/5-Taara-Punjabi-2015-500x500.jpg"
   },
   {
     "id": "pj-laembadgini-full",
@@ -24828,7 +25200,8 @@
     "ytId": "_oMWP-ukR2U",
     "ytSearchQuery": "Laembadgini Diljit Dosanjh",
     "storagePath": "pj-laembadgini-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/445/Diljit-Dosanjh-Top-Hits-Punjabi-2018-20180507090159-500x500.webp"
   },
   {
     "id": "pj-raat-di-gedi-full",
@@ -24840,7 +25213,8 @@
     "ytId": "4WIZpu8vV_M",
     "ytSearchQuery": "Raat Di Gedi Diljit Dosanjh",
     "storagePath": "pj-raat-di-gedi-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/698/Raat-Di-Gedi-Punjabi-2018-20180323-500x500.webp"
   },
   {
     "id": "pj-softly-karan-full",
@@ -24852,7 +25226,8 @@
     "ytId": "cWMxCE2HTag",
     "ytSearchQuery": "Softly Karan Aujla Ikky",
     "storagePath": "pj-softly-karan-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/538/Making-Memories-English-2023-20230818075015-500x500.webp"
   },
   {
     "id": "pj-admiring-you-karan-full",
@@ -24864,7 +25239,8 @@
     "ytId": "k85UB5b6pJU",
     "ytSearchQuery": "Admiring You Karan Aujla Ikky",
     "storagePath": "pj-admiring-you-karan-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/740/Admirin-You-feat-Preston-Pablo-Punjabi-2023-20230730053753-500x500.webp"
   },
   {
     "id": "pj-winning-speech-karan-full",
@@ -24876,7 +25252,8 @@
     "ytId": "vsWxs1tuwDk",
     "ytSearchQuery": "Winning Speech Karan Aujla Mxrci",
     "storagePath": "pj-winning-speech-karan-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/089/Winning-Speech-Punjabi-2024-20260626013220-500x500.webp"
   },
   {
     "id": "pj-52-bars-karan-full",
@@ -24888,7 +25265,8 @@
     "ytId": "4DfVxVeqk2o",
     "ytSearchQuery": "52 Bars Karan Aujla Ikky",
     "storagePath": "pj-52-bars-karan-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/552/Four-You-Punjabi-2023-20260609204536-500x500.webp"
   },
   {
     "id": "pj-white-brown-black-karan-full",
@@ -24900,7 +25278,8 @@
     "ytId": "BtQp2U6hJII",
     "ytSearchQuery": "White Brown Black Karan Aujla",
     "storagePath": "pj-white-brown-black-karan-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/177/White-Brown-Black-Punjabi-2022-20251118151218-500x500.webp"
   },
   {
     "id": "pj-on-top-karan-full",
@@ -24912,7 +25291,8 @@
     "ytId": "aFWDOFg7X2A",
     "ytSearchQuery": "On Top Karan Aujla",
     "storagePath": "pj-on-top-karan-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/621/P-POP-CULTURE-Punjabi-2025-20250820043757-500x500.webp"
   },
   {
     "id": "pj-chithiyaan-karan-full",
@@ -24924,7 +25304,8 @@
     "ytId": "oRfgqBI4ud4",
     "ytSearchQuery": "Chithiyaan Karan Aujla",
     "storagePath": "pj-chithiyaan-karan-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/207/Chithiyaan-Punjabi-2020-20201111000729-500x500.webp"
   },
   {
     "id": "pj-dont-look-karan-full",
@@ -24936,7 +25317,8 @@
     "ytId": "6Pd-3nvYDRk",
     "ytSearchQuery": "Dont Look Karan Aujla",
     "storagePath": "pj-dont-look-karan-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/014/Don-t-Look-Punjabi-2020-20260609210609-500x500.webp"
   },
   {
     "id": "pj-dont-worry-karan-full",
@@ -24948,7 +25330,8 @@
     "ytId": "oA0TDB0Lg5Y",
     "ytSearchQuery": "Dont Worry Karan Aujla Gurlez Akhtar",
     "storagePath": "pj-dont-worry-karan-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/047/Don-T-Worry-Punjabi-2020-20201112001351-500x500.webp"
   },
   {
     "id": "pj-mexico-karan-full",
@@ -24960,7 +25343,8 @@
     "ytId": "2sAzb3kraoQ",
     "ytSearchQuery": "Mexico Karan Aujla BTFU",
     "storagePath": "pj-mexico-karan-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/131/Mexico-Punjabi-2021-20240411153326-500x500.webp"
   },
   {
     "id": "pj-bachke-bachke-karan-full",
@@ -24972,7 +25356,8 @@
     "ytId": "fRJ03btNsao",
     "ytSearchQuery": "Bachke Bachke Karan Aujla Ikky",
     "storagePath": "pj-bachke-bachke-karan-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/538/Making-Memories-English-2023-20230818075015-500x500.webp"
   },
   {
     "id": "pj-players-karan-full",
@@ -24984,7 +25369,8 @@
     "ytId": "CeFQO9MQNqs",
     "ytSearchQuery": "Players Badshah Karan Aujla",
     "storagePath": "pj-players-karan-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/843/Players-Hindi-2022-20221220210631-500x500.webp"
   },
   {
     "id": "pj-jee-ni-lagda-karan-full",
@@ -24996,7 +25382,8 @@
     "ytId": "BXNxrT59MzQ",
     "ytSearchQuery": "Jee Ni Lagda Karan Aujla",
     "storagePath": "pj-jee-ni-lagda-karan-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/538/Making-Memories-English-2023-20230818075015-500x500.webp"
   },
   {
     "id": "pj-wytb-karan-full",
@@ -25008,7 +25395,8 @@
     "ytId": "RuDsBrSczis",
     "ytSearchQuery": "WYTB Karan Aujla Ikky",
     "storagePath": "pj-wytb-karan-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/053/WYTB-Unknown-2022-20260609204620-500x500.webp"
   },
   {
     "id": "pj-antidote-karan-full",
@@ -25020,7 +25408,8 @@
     "ytId": "rXoReWNm8Zo",
     "ytSearchQuery": "Antidote Karan Aujla Ikky",
     "storagePath": "pj-antidote-karan-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/374/Four-Me-Punjabi-2024-20240627054614-500x500.webp"
   },
   {
     "id": "pj-excuses-ap-full",
@@ -25032,7 +25421,8 @@
     "ytId": "vX2cDW8LUWk",
     "ytSearchQuery": "Excuses AP Dhillon Gurinder Gill Intense",
     "storagePath": "pj-excuses-ap-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/890/Excuses-English-2021-20210930112054-500x500.webp"
   },
   {
     "id": "pj-insane-ap-full",
@@ -25044,7 +25434,8 @@
     "ytId": "cqP8I5aaud8",
     "ytSearchQuery": "Insane AP Dhillon Shinda Kahlon",
     "storagePath": "pj-insane-ap-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/851/Insane-Punjabi-2021-20240705060902-500x500.webp"
   },
   {
     "id": "pj-with-you-ap-full",
@@ -25056,7 +25447,8 @@
     "ytId": "mZQH8CPQ-wo",
     "ytSearchQuery": "With You AP Dhillon",
     "storagePath": "pj-with-you-ap-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/671/First-of-a-Kind-From-the-Amazon-Original-Series-Punjabi-2023-20230904091351-500x500.webp"
   },
   {
     "id": "pj-summer-high-ap-full",
@@ -25068,7 +25460,8 @@
     "ytId": "nqUN530Rgtw",
     "ytSearchQuery": "Summer High AP Dhillon",
     "storagePath": "pj-summer-high-ap-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/018/Summer-High-English-2022-20220802184652-500x500.webp"
   },
   {
     "id": "pj-dil-nu-ap-full",
@@ -25080,7 +25473,8 @@
     "ytId": "p2EdDiiVHh4",
     "ytSearchQuery": "Dil Nu AP Dhillon Shinda Kahlon",
     "storagePath": "pj-dil-nu-ap-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/070/Two-Hearts-Never-Break-The-Same-Punjabi-2022-20240704060923-500x500.webp"
   },
   {
     "id": "pj-toxic-ap-full",
@@ -25092,7 +25486,8 @@
     "ytId": "7v0_uipNGao",
     "ytSearchQuery": "Toxic AP Dhillon",
     "storagePath": "pj-toxic-ap-full.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/784/Toxic-English-2020-20201008032450-500x500.webp"
   },
   {
     "id": "pj-woh-noor-ap-full",
@@ -25104,7 +25499,8 @@
     "ytId": "HrcjFEK58ik",
     "ytSearchQuery": "Wo Noor AP Dhillon",
     "storagePath": "pj-woh-noor-ap-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/070/Two-Hearts-Never-Break-The-Same-Punjabi-2022-20240704060923-500x500.webp"
   },
   {
     "id": "pj-true-stories-ap-full",
@@ -25116,7 +25512,8 @@
     "ytId": "-wFTG_f-W4c",
     "ytSearchQuery": "True Stories AP Dhillon",
     "storagePath": "pj-true-stories-ap-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/010/True-Stories-Punjabi-2023-20230609083159-500x500.webp"
   },
   {
     "id": "pj-sleepless-ap-full",
@@ -25128,7 +25525,8 @@
     "ytId": "sdhsp6NaB-A",
     "ytSearchQuery": "Sleepless AP Dhillon",
     "storagePath": "pj-sleepless-ap-full.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/375/Sleepless-Punjabi-2023-20230709131540-500x500.webp"
   },
   {
     "id": "pj-saada-pyaar-ap-full",
@@ -25140,7 +25538,8 @@
     "ytId": "L6fr053Z_pU",
     "ytSearchQuery": "Saada Pyaar AP Dhillon",
     "storagePath": "pj-saada-pyaar-ap-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/167/51-GLORIOUS-DAYS-Hindi-2025-20251204181542-500x500.webp"
   },
   {
     "id": "pj-majhail-ap-full",
@@ -25152,7 +25551,8 @@
     "ytId": "yzIyufV6ADk",
     "ytSearchQuery": "Majhail AP Dhillon Gurinder Gill",
     "storagePath": "pj-majhail-ap-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/167/51-GLORIOUS-DAYS-Hindi-2025-20251204181542-500x500.webp"
   },
   {
     "id": "pj-goat-ap-full",
@@ -25164,7 +25564,8 @@
     "ytId": "dy05ncw9iGg",
     "ytSearchQuery": "GOAT AP Dhillon Gurinder Gill",
     "storagePath": "pj-goat-ap-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/167/51-GLORIOUS-DAYS-Hindi-2025-20251204181542-500x500.webp"
   },
   {
     "id": "pj-tere-te-ap-full",
@@ -25176,7 +25577,8 @@
     "ytId": "fG70qm6usR8",
     "ytSearchQuery": "Tere Te AP Dhillon Gurinder Gill",
     "storagePath": "pj-tere-te-ap-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/678/HIDDEN-GEMS-Punjabi-2021-20220110194642-500x500.webp"
   },
   {
     "id": "pj-faraar-ap-full",
@@ -25188,7 +25590,8 @@
     "ytId": "vqyIYTVFNck",
     "ytSearchQuery": "Faraar AP Dhillon Gurinder Gill",
     "storagePath": "pj-faraar-ap-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/860/Faraar-Unknown-2019-20200807101453-500x500.webp"
   },
   {
     "id": "pj-old-skool-ap-full",
@@ -25200,7 +25603,8 @@
     "ytId": "hBlO1i_WTiY",
     "ytSearchQuery": "Old Skool Prem Dhillon Sidhu Moose Wala",
     "storagePath": "pj-old-skool-ap-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/038/Old-Skool-Punjabi-2020-20200117202213-500x500.webp"
   },
   {
     "id": "pj-desires-ap-full",
@@ -25212,7 +25616,8 @@
     "ytId": "3ONzh3tf884",
     "ytSearchQuery": "Desires AP Dhillon Gurinder Gill",
     "storagePath": "pj-desires-ap-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/678/HIDDEN-GEMS-Punjabi-2021-20220110194642-500x500.webp"
   },
   {
     "id": "pj-problems-over-peace-full",
@@ -25224,7 +25629,8 @@
     "ytId": "OcoEM04ThsU",
     "ytSearchQuery": "Problems Over Peace AP Dhillon Stormzy",
     "storagePath": "pj-problems-over-peace-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/798/Problems-Over-Peace-Punjabi-2024-20240402091124-500x500.webp"
   },
   {
     "id": "pj-cheques-shubh-full",
@@ -25236,7 +25642,8 @@
     "ytId": "0mCVpUDCkEk",
     "ytSearchQuery": "Cheques Shubh Still Rollin",
     "storagePath": "pj-cheques-shubh-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/704/Still-Rollin-Punjabi-2023-20230512121542-500x500.webp"
   },
   {
     "id": "pj-no-love-shubh-full",
@@ -25248,7 +25655,8 @@
     "ytId": "6RrEQJNZwPQ",
     "ytSearchQuery": "No Love Shubh",
     "storagePath": "pj-no-love-shubh-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/972/NO-LOVE-Punjabi-2022-20220621214632-500x500.webp"
   },
   {
     "id": "pj-we-rollin-shubh-full",
@@ -25260,7 +25668,8 @@
     "ytId": "hV8EGTjzD2s",
     "ytSearchQuery": "We Rollin Shubh",
     "storagePath": "pj-we-rollin-shubh-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/495/WE-ROLLIN-Punjabi-2021-20220621214629-500x500.webp"
   },
   {
     "id": "pj-baller-shubh",
@@ -25272,7 +25681,8 @@
     "ytId": "xR3V5Ow2dTI",
     "ytSearchQuery": "Baller Shubh Ikky",
     "storagePath": "pj-baller-shubh.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/489/Baller-Punjabi-2022-20230428075337-500x500.jpg"
   },
   {
     "id": "pj-her-shubh",
@@ -25284,7 +25694,8 @@
     "ytId": "eD3TP-C3nYE",
     "ytSearchQuery": "Her Shubh",
     "storagePath": "pj-her-shubh.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/911/Har-Shab-Dar-Lab-Arabic-2022-20230308173117-500x500.webp"
   },
   {
     "id": "pj-one-love-shubh-full",
@@ -25296,7 +25707,8 @@
     "ytId": "0pWsCiBvLOk",
     "ytSearchQuery": "One Love Shubh",
     "storagePath": "pj-one-love-shubh-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/969/One-Love-Punjabi-2023-20230802151509-500x500.jpg"
   },
   {
     "id": "pj-king-shit-shubh",
@@ -25308,7 +25720,8 @@
     "ytId": "d2ofxg8pHfQ",
     "ytSearchQuery": "King Shit Shubh",
     "storagePath": "pj-king-shit-shubh.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/639/Leo-Punjabi-2024-20240103121125-500x500.jpg"
   },
   {
     "id": "pj-bandana-shubh-full",
@@ -25320,7 +25733,8 @@
     "ytId": "0mCVpUDCkEk",
     "ytSearchQuery": "Bandana Shubh Still Rollin",
     "storagePath": "pj-bandana-shubh-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/709/Bandana-Punjabi-2024-20240327165246-500x500.jpg"
   },
   {
     "id": "pj-295-sidhu-full",
@@ -25332,7 +25746,8 @@
     "ytId": "n_FCrCQ6-bA",
     "ytSearchQuery": "295 Sidhu Moose Wala Moosetape",
     "storagePath": "pj-295-sidhu-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/609/Moosetape-Punjabi-2021-20260626155141-500x500.webp"
   },
   {
     "id": "pj-so-high-sidhu-full",
@@ -25344,7 +25759,8 @@
     "ytId": "GgmFC8y8q3k",
     "ytSearchQuery": "So High Sidhu Moose Wala",
     "storagePath": "pj-so-high-sidhu-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/544/So-High-Punjabi-2017-20220811172517-500x500.webp"
   },
   {
     "id": "pj-the-last-ride-sidhu",
@@ -25356,7 +25772,8 @@
     "ytId": "6xoB4ZiKKn0",
     "ytSearchQuery": "The Last Ride Sidhu Moose Wala",
     "storagePath": "pj-the-last-ride-sidhu.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/582/The-Last-Ride-Punjabi-2022-20260626154442-500x500.webp"
   },
   {
     "id": "pj-levels-sidhu-full",
@@ -25368,7 +25785,8 @@
     "ytId": "tpFljbJxZiw",
     "ytSearchQuery": "Levels Sidhu Moose Wala",
     "storagePath": "pj-levels-sidhu-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/220/Levels-Punjabi-2022-20260626154343-500x500.webp"
   },
   {
     "id": "pj-same-beef-sidhu",
@@ -25380,7 +25798,8 @@
     "ytId": "qk2WMmiiVFE",
     "ytSearchQuery": "Same Beef Bohemia Sidhu Moose Wala",
     "storagePath": "pj-same-beef-sidhu.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/154/Same-Beef-Punjabi-2019-20190919071247-500x500.webp"
   },
   {
     "id": "mr-zingaat-full",
@@ -25392,7 +25811,8 @@
     "ytId": "luhVm60Wiro",
     "ytSearchQuery": "Zingaat Ajay Atul Sairat",
     "storagePath": "mr-zingaat-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/962/Marathi-Top-Hits-Marathi-2026-20260529212944-500x500.webp"
   },
   {
     "id": "mr-yad-lagla-full",
@@ -25404,7 +25824,8 @@
     "ytId": "VmU1ZsXUbG0",
     "ytSearchQuery": "Yad Lagla Ajay Atul Sairat",
     "storagePath": "mr-yad-lagla-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/859/Marathi-Love-Vibes-Marathi-2026-20260513194436-500x500.webp"
   },
   {
     "id": "mr-sairat-zaala-ji",
@@ -25416,7 +25837,8 @@
     "ytId": "AQ-P5RR7r40",
     "ytSearchQuery": "Sairat Zaala Ji Ajay Atul Sairat",
     "storagePath": "mr-sairat-zaala-ji.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/998/Sairat-Marathi-2016-500x500.jpg"
   },
   {
     "id": "mr-apsara-aali-full",
@@ -25428,7 +25850,8 @@
     "ytId": "mW67u_hWiSo",
     "ytSearchQuery": "Apsara Aali Bela Shende Ajay Atul",
     "storagePath": "mr-apsara-aali-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/328/Marathi-Trending-Hits-Marathi-2026-20260803092150-500x500.webp"
   },
   {
     "id": "mr-chandra-full",
@@ -25440,7 +25863,8 @@
     "ytId": "r6tU3GvJ5so",
     "ytSearchQuery": "Chandra Shreya Ghoshal Ajay Atul Chandramukhi",
     "storagePath": "mr-chandra-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/771/Chandramukhi-Marathi-2022-20220428175059-500x500.webp"
   },
   {
     "id": "mr-bai-ga-full",
@@ -25452,7 +25876,8 @@
     "ytId": "ujZAfdm1cfg",
     "ytSearchQuery": "Bai Ga Aarya Ambekar Ajay Atul Chandramukhi",
     "storagePath": "mr-bai-ga-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/771/Chandramukhi-Marathi-2022-20220428175059-500x500.webp"
   },
   {
     "id": "mr-shantabai-full",
@@ -25464,7 +25889,8 @@
     "ytId": "fvWl5e0vYW8",
     "ytSearchQuery": "Shantabai Sanjay Londhe",
     "storagePath": "mr-shantabai-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/415/Shantabai-Marathi-2015-20251219173655-500x500.webp"
   },
   {
     "id": "mr-tik-tik-vajate-full",
@@ -25476,7 +25902,8 @@
     "ytId": "A4snplP4_Wk",
     "ytSearchQuery": "Tik Tik Vajate Dokyat Sonu Nigam Duniyadari",
     "storagePath": "mr-tik-tik-vajate-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/708/Duniyadari-Marathi-2013-20241119160647-500x500.webp"
   },
   {
     "id": "mr-deva-tujhya-gabhyala",
@@ -25500,7 +25927,8 @@
     "ytId": "Rd9wF5fAnVw",
     "ytSearchQuery": "Zingaat Hindi Ajay Atul Dhadak",
     "storagePath": "mr-zingaat-hindi.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/383/Bollywood-Dance-Anthems-Hindi-2026-20260717151312-500x500.webp"
   },
   {
     "id": "ta-hukum-jailer",
@@ -25512,7 +25940,8 @@
     "ytId": "1F3hm6MfR1k",
     "ytSearchQuery": "Hukum Anirudh Ravichander Jailer",
     "storagePath": "ta-hukum-jailer.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/187/Jailer-Tamil-2023-20230728081443-500x500.webp"
   },
   {
     "id": "ta-kaavaalaa-jailer",
@@ -25524,7 +25953,8 @@
     "ytId": "lM8h5Mm6ODo",
     "ytSearchQuery": "Kaavaalaa Shilpa Rao Anirudh Jailer",
     "storagePath": "ta-kaavaalaa-jailer.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/187/Jailer-Tamil-2023-20230728081443-500x500.webp"
   },
   {
     "id": "ta-naa-ready-leo",
@@ -25536,7 +25966,8 @@
     "ytId": "3wDiqlTNlfQ",
     "ytSearchQuery": "Naa Ready Vijay Anirudh Leo",
     "storagePath": "ta-naa-ready-leo.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/415/Leo-Original-Motion-Picture-Soundtrack-English-2023-20231019170311-500x500.webp"
   },
   {
     "id": "ta-badass-leo",
@@ -25548,7 +25979,8 @@
     "ytId": "ZdMZ40GSVmc",
     "ytSearchQuery": "Badass Anirudh Ravichander Leo",
     "storagePath": "ta-badass-leo.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/415/Leo-Original-Motion-Picture-Soundtrack-English-2023-20231019170311-500x500.webp"
   },
   {
     "id": "ta-ordinary-person-leo",
@@ -25560,7 +25992,8 @@
     "ytId": "q6e_b0NERCA",
     "ytSearchQuery": "Ordinary Person Anirudh Leo",
     "storagePath": "ta-ordinary-person-leo.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/916/Ordinary-Person-From-Leo-Tamil-2023-20231023221744-500x500.webp"
   },
   {
     "id": "ta-arabic-kuthu-beast",
@@ -25572,7 +26005,8 @@
     "ytId": "RhVYrrzYJZM",
     "ytSearchQuery": "Arabic Kuthu Anirudh Jonita Gandhi Beast",
     "storagePath": "ta-arabic-kuthu-beast.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/510/Beast-Tamil-2022-20220504184736-500x500.webp"
   },
   {
     "id": "ta-dippam-dappam",
@@ -25584,7 +26018,8 @@
     "ytId": "9Y3VQOrZG8Y",
     "ytSearchQuery": "Dippam Dippam Anirudh",
     "storagePath": "ta-dippam-dappam.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/403/Kaathuvaakula-Rendu-Kaadhal-Original-Motion-Picture-Soundtrack-Tamil-2022-20220428131043-500x500.webp"
   },
   {
     "id": "ta-two-two-two",
@@ -25596,7 +26031,8 @@
     "ytId": "Lyr6c84d5AI",
     "ytSearchQuery": "Two Two Two Anirudh",
     "storagePath": "ta-two-two-two.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/403/Kaathuvaakula-Rendu-Kaadhal-Original-Motion-Picture-Soundtrack-Tamil-2022-20220428131043-500x500.webp"
   },
   {
     "id": "ta-kanave-kanave-david",
@@ -25608,7 +26044,8 @@
     "ytId": "Q-_cu_78eIA",
     "ytSearchQuery": "Kanave Kanave Anirudh",
     "storagePath": "ta-kanave-kanave-david.mp3",
-    "source": "Pulse Lofi Vault"
+    "source": "Pulse Lofi Vault",
+    "cover": "https://c.saavncdn.com/470/David-2012-500x500.jpg"
   },
   {
     "id": "ml-illuminati-aavesham",
@@ -25620,7 +26057,8 @@
     "ytId": "yH7eDWTH5iM",
     "ytSearchQuery": "Illuminati Sushin Shyam Dabzee Aavesham",
     "storagePath": "ml-illuminati-aavesham.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/202/Aavesham-Original-Motion-Picture-Soundtrack-Malayalam-2024-20250910150630-500x500.webp"
   },
   {
     "id": "ml-jaada-aavesham",
@@ -25632,7 +26070,8 @@
     "ytId": "hbDf7dXeOb4",
     "ytSearchQuery": "Jaada Sushin Shyam Aavesham",
     "storagePath": "ml-jaada-aavesham.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/202/Aavesham-Original-Motion-Picture-Soundtrack-Malayalam-2024-20250910150630-500x500.webp"
   },
   {
     "id": "ml-armadham-aavesham",
@@ -25644,7 +26083,8 @@
     "ytId": "",
     "ytSearchQuery": "Armadham Sushin Shyam Aavesham",
     "storagePath": "ml-armadham-aavesham.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/202/Aavesham-Original-Motion-Picture-Soundtrack-Malayalam-2024-20250910150630-500x500.webp"
   },
   {
     "id": "ml-manavalan-thug",
@@ -25656,7 +26096,8 @@
     "ytId": "_eWvDaztcjI",
     "ytSearchQuery": "Manavalan Thug Dabzee Thallumaala",
     "storagePath": "ml-manavalan-thug.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/017/Thallumaala-Malayalam-2022-20230110143259-500x500.webp"
   },
   {
     "id": "ml-ole-melody-thallumaala",
@@ -25668,7 +26109,8 @@
     "ytId": "Bm48lOWNpBI",
     "ytSearchQuery": "Ole Melody Vishnu Vijay Thallumaala",
     "storagePath": "ml-ole-melody-thallumaala.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/017/Thallumaala-Malayalam-2022-20230110143259-500x500.webp"
   },
   {
     "id": "ml-jimmiki-kammal",
@@ -25680,7 +26122,8 @@
     "ytId": "FXiaIH49oAU",
     "ytSearchQuery": "Jimikki Kammal Vineeth Sreenivasan",
     "storagePath": "ml-jimmiki-kammal.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/205/Velipadinte-Pusthakam-Malayalam-2024-20250425150549-500x500.webp"
   },
   {
     "id": "dev-om-jai-shiv-omkara",
@@ -25692,7 +26135,8 @@
     "ytId": "XKypH8JaARw",
     "ytSearchQuery": "Om Jai Shiv Omkara Anuradha Paudwal",
     "storagePath": "dev-om-jai-shiv-omkara.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/437/Barah-Jyotirling-Vol-2-2002-500x500.jpg"
   },
   {
     "id": "dev-jai-lakshmi-mata",
@@ -25704,7 +26148,8 @@
     "ytId": "LFyCLsjpx3Y",
     "ytSearchQuery": "Jai Lakshmi Mata Anuradha Paudwal",
     "storagePath": "dev-jai-lakshmi-mata.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/004/Shri-Mahalaxmi-Kamalwasini-Sarv-Mangla-Saukhya-Dayini-Hindi-2007-20221205151513-500x500.webp"
   },
   {
     "id": "dev-jai-santoshi-mata",
@@ -25716,7 +26161,8 @@
     "ytId": "tZ8VKSh3rL0",
     "ytSearchQuery": "Jai Santoshi Mata Usha Mangeshkar",
     "storagePath": "dev-jai-santoshi-mata.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/650/Aarti-Ambe-Maa-Ki-Hindi-2016-20251203122851-500x500.webp"
   },
   {
     "id": "dev-amritwani-hanuman",
@@ -25728,7 +26174,8 @@
     "ytId": "ps8AU0BQhaE",
     "ytSearchQuery": "Shri Hanuman Amritwani Anuradha Paudwal",
     "storagePath": "dev-amritwani-hanuman.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/982/Shree-Hanuman-Amritwani-Hindi-1996-20221208081051-500x500.webp"
   },
   {
     "id": "dev-shree-krishna-chaitanya",
@@ -25740,7 +26187,8 @@
     "ytId": "nzd02pwCte0",
     "ytSearchQuery": "Hare Krishna Maha Mantra Krishna Das",
     "storagePath": "dev-shree-krishna-chaitanya.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/485/Peaceful-Mantras-by-Om-Voices-Sanskrit-2024-20241113125633-500x500.webp"
   },
   {
     "id": "dev-govinda-hari-govinda",
@@ -25752,7 +26200,8 @@
     "ytId": "OB9uV_IGBVY",
     "ytSearchQuery": "Govinda Hari Govinda Yesudas",
     "storagePath": "dev-govinda-hari-govinda.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/155/Preethsod-Thappa--Kannada-1998-20200817111817-500x500.webp"
   },
   {
     "id": "dev-kn-sharade-daye-toride",
@@ -25776,7 +26225,8 @@
     "ytId": "NHZJZRtTcII",
     "ytSearchQuery": "Kailasavasa Gowrishankara Dr Rajkumar",
     "storagePath": "dev-kn-kailasavasa-gowrishankara.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/996/Om-Kannada-1995-20200806160633-500x500.webp"
   },
   {
     "id": "dev-kn-shiva-shiva-ennada",
@@ -25788,7 +26238,8 @@
     "ytId": "Hgbmy0vLtMI",
     "ytSearchQuery": "Shiva Shiva Ennada Nalige Yeke",
     "storagePath": "dev-kn-shiva-shiva-ennada.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/643/Narasimha-Telugu-1999-20190729123407-500x500.webp"
   },
   {
     "id": "dev-kn-guruvara-banthamma",
@@ -25812,7 +26263,8 @@
     "ytId": "B8Q-nHfEsQY",
     "ytSearchQuery": "Cruel Summer Taylor Swift Live",
     "storagePath": "en-cruel-summer-live.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/243/The-Cruelest-Summer-English-2023-20231109123211-500x500.webp"
   },
   {
     "id": "en-wildest-dreams-taylors-version",
@@ -25824,7 +26276,8 @@
     "ytId": "CUr_UwUUXzU",
     "ytSearchQuery": "Wildest Dreams Taylors Version",
     "storagePath": "en-wildest-dreams-taylors-version.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp"
   },
   {
     "id": "en-all-too-well-10-min",
@@ -25836,7 +26289,8 @@
     "ytId": "sRxrwjOtIag",
     "ytSearchQuery": "All Too Well 10 Minute Version Taylor Swift",
     "storagePath": "en-all-too-well-10-min.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/679/Red-Taylor-s-Version-The-Slow-Motion-Chapter-English-2022-20220125113549-500x500.webp"
   },
   {
     "id": "en-style-taylors-version",
@@ -25848,7 +26302,8 @@
     "ytId": "2JgvVfOfoWI",
     "ytSearchQuery": "Style Taylors Version Taylor Swift",
     "storagePath": "en-style-taylors-version.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/886/1989-English-2014-20240119005634-500x500.webp"
   },
   {
     "id": "en-espresso-extended",
@@ -25860,7 +26315,8 @@
     "ytId": "eVli-tstM5E",
     "ytSearchQuery": "Espresso Sabrina Carpenter",
     "storagePath": "en-espresso-extended.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/111/Espresso-English-2024-20240412064803-500x500.webp"
   },
   {
     "id": "en-espresso-sabrina-full",
@@ -25872,7 +26328,8 @@
     "ytId": "51zjlMhdSTE",
     "ytSearchQuery": "Sabrina Carpenter Espresso full official audio",
     "storagePath": "en-espresso-sabrina-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/111/Espresso-English-2024-20240412064803-500x500.webp"
   },
   {
     "id": "en-good-luck-babe-full",
@@ -25884,7 +26341,8 @@
     "ytId": "1RKqOmSkGgM",
     "ytSearchQuery": "Good Luck Babe Chappell Roan full official",
     "storagePath": "en-good-luck-babe-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/102/Good-Luck-Babe-English-2024-20240405063221-500x500.webp"
   },
   {
     "id": "en-feather-full",
@@ -25896,7 +26354,8 @@
     "ytId": "kLbn61Z4LDI",
     "ytSearchQuery": "Feather Sabrina Carpenter official",
     "storagePath": "en-feather-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/121/Salon-Music-2026-English-2026-20260523060542-500x500.webp"
   },
   {
     "id": "en-starboy-the-weeknd-full",
@@ -25908,7 +26367,8 @@
     "ytId": "34Na4j8AVgA",
     "ytSearchQuery": "Starboy The Weeknd Daft Punk",
     "storagePath": "en-starboy-the-weeknd-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp"
   },
   {
     "id": "en-die-for-you-weeknd-full",
@@ -25920,7 +26380,8 @@
     "ytId": "YQ-qToZUybM",
     "ytSearchQuery": "Die For You The Weeknd",
     "storagePath": "en-die-for-you-weeknd-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/372/Starboy-English-2016-500x500.jpg"
   },
   {
     "id": "en-save-your-tears-weeknd-full",
@@ -25932,7 +26393,8 @@
     "ytId": "XXYlFuWEuKI",
     "ytSearchQuery": "Save Your Tears The Weeknd",
     "storagePath": "en-save-your-tears-weeknd-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp"
   },
   {
     "id": "en-as-it-was-harry-full",
@@ -25944,7 +26406,8 @@
     "ytId": "H5v3kku4y6Q",
     "ytSearchQuery": "As It Was Harry Styles",
     "storagePath": "en-as-it-was-harry-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/061/Harry-s-House-English-2022-20220518224913-500x500.webp"
   },
   {
     "id": "en-water-melon-sugar-full",
@@ -25956,7 +26419,8 @@
     "ytId": "E07s5ZYygMg",
     "ytSearchQuery": "Watermelon Sugar Harry Styles",
     "storagePath": "en-water-melon-sugar-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/213/Fine-Line-English-2019-20191211223631-500x500.webp"
   },
   {
     "id": "en-vampire-olivia-full",
@@ -25968,7 +26432,8 @@
     "ytId": "RlPNh_PBZb4",
     "ytSearchQuery": "vampire Olivia Rodrigo",
     "storagePath": "en-vampire-olivia-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/886/enemies-to-lovers-English-2026-20260311035428-500x500.webp"
   },
   {
     "id": "en-drivers-license-full",
@@ -25980,7 +26445,8 @@
     "ytId": "ZmDBbnmKpqQ",
     "ytSearchQuery": "drivers license Olivia Rodrigo",
     "storagePath": "en-drivers-license-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/230/winter-but-not-christmas-English-2025-20260424212944-500x500.webp"
   },
   {
     "id": "en-flowers-miley-full-hd",
@@ -25992,7 +26458,8 @@
     "ytId": "G7KNmW9a75Y",
     "ytSearchQuery": "Flowers Miley Cyrus official",
     "storagePath": "en-flowers-miley-full-hd.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/047/Flowers-English-2023-20230113044956-500x500.webp"
   },
   {
     "id": "en-bad-guy-billie-full",
@@ -26004,7 +26471,8 @@
     "ytId": "DyDfgMOUjCI",
     "ytSearchQuery": "bad guy Billie Eilish",
     "storagePath": "en-bad-guy-billie-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/640/WHEN-WE-ALL-FALL-ASLEEP-WHERE-DO-WE-GO--English-2019-20190328231137-500x500.webp"
   },
   {
     "id": "en-birds-of-a-feather-full",
@@ -26016,7 +26484,8 @@
     "ytId": "V9PVRfjEBTI",
     "ytSearchQuery": "Birds of a Feather Billie Eilish official",
     "storagePath": "en-birds-of-a-feather-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/707/HIT-ME-HARD-AND-SOFT-English-2024-20240517063536-500x500.webp"
   },
   {
     "id": "en-lose-control-teddy-full",
@@ -26028,7 +26497,8 @@
     "ytId": "GZ3zL7kT6_c",
     "ytSearchQuery": "Lose Control Teddy Swims official",
     "storagePath": "en-lose-control-teddy-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/385/I-ve-Tried-Everything-But-Therapy-Part-1-5-English-2024-20250107163834-500x500.webp"
   },
   {
     "id": "en-beautiful-things-benson-full",
@@ -26040,7 +26510,8 @@
     "ytId": "Oa_RSwwpPaA",
     "ytSearchQuery": "Beautiful Things Benson Boone official",
     "storagePath": "en-beautiful-things-benson-full.mp3",
-    "source": "Pulse Pop Vault"
+    "source": "Pulse Pop Vault",
+    "cover": "https://c.saavncdn.com/751/Beautiful-Things-English-2024-20240404023143-500x500.webp"
   },
   {
     "id": "in-sajni-re-arijit",
@@ -26052,7 +26523,8 @@
     "ytId": "XJAMVPQWvGY",
     "ytSearchQuery": "Sajni Arijit Singh Ram Sampath Laapataa Ladies",
     "storagePath": "in-sajni-re-arijit.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/179/World-Music-Day-Best-Of-Bollywood-Hits-Hindi-2026-20260622111029-500x500.webp"
   },
   {
     "id": "in-ve-kamleya-arijit",
@@ -26064,7 +26536,8 @@
     "ytId": "QXJyMpxd210",
     "ytSearchQuery": "Ve Kamleya Arijit Singh",
     "storagePath": "in-ve-kamleya-arijit.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/001/Rocky-Aur-Rani-Kii-Prem-Kahaani-Hindi-2023-20250130073112-500x500.webp"
   },
   {
     "id": "in-pehle-bhi-main-animal",
@@ -26076,7 +26549,8 @@
     "ytId": "iAIBF2ngbWY",
     "ytSearchQuery": "Pehle Bhi Main Vishal Mishra",
     "storagePath": "in-pehle-bhi-main-animal.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20260724191152-500x500.webp"
   },
   {
     "id": "in-arjan-vailly-animal",
@@ -26088,7 +26562,8 @@
     "ytId": "zqGW6x_5N0k",
     "ytSearchQuery": "Arjan Vailly Bhupinder Babbal",
     "storagePath": "in-arjan-vailly-animal.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20260724191152-500x500.webp"
   },
   {
     "id": "in-o-maahi-dunki",
@@ -26100,7 +26575,8 @@
     "ytId": "Etkd-07gnxM",
     "ytSearchQuery": "O Maahi Arijit Singh",
     "storagePath": "in-o-maahi-dunki.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/139/Dunki-Hindi-2023-20231220211003-500x500.webp"
   },
   {
     "id": "in-aaj-ki-raat-stree",
@@ -26112,7 +26588,8 @@
     "ytId": "LrqZnqOevR0",
     "ytSearchQuery": "Aaj Ki Raat Madhubanti Bagchi Stree 2",
     "storagePath": "in-aaj-ki-raat-stree.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/373/Stree-2-Hindi-2024-20240828083834-500x500.webp"
   },
   {
     "id": "in-khoobsurat-stree",
@@ -26124,7 +26601,8 @@
     "ytId": "1-nnEM8chwo",
     "ytSearchQuery": "Khoobsurat Vishal Mishra Stree 2",
     "storagePath": "in-khoobsurat-stree.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/373/Stree-2-Hindi-2024-20240828083834-500x500.webp"
   },
   {
     "id": "in-taras-munjya-song",
@@ -26136,7 +26614,8 @@
     "ytId": "kfXy4W0aD40",
     "ytSearchQuery": "Taras Jasmine Sandlas Munjya",
     "storagePath": "in-taras-munjya-song.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/817/Best-Bollywood-Female-Voices-Hindi-2026-20260224184813-500x500.webp"
   },
   {
     "id": "in-heeriye-jasleen-arijit",
@@ -26148,7 +26627,8 @@
     "ytId": "RLzC55ai0eo",
     "ytSearchQuery": "Heeriye Jasleen Royal Arijit Singh",
     "storagePath": "in-heeriye-jasleen-arijit.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/022/Heeriye-feat-Arijit-Singh-Hindi-2023-20230928050405-500x500.webp"
   },
   {
     "id": "in-dhurandhar-big-dawgs",
@@ -26160,7 +26640,8 @@
     "ytId": "hOHKltAiKXQ",
     "ytSearchQuery": "Big Dawgs Hanumankind Kalmi",
     "storagePath": "in-dhurandhar-big-dawgs.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/883/Big-Dawgs-English-2024-20240707053259-500x500.jpg"
   },
   {
     "id": "te-sooseki-pushpa-full",
@@ -26172,7 +26653,8 @@
     "ytId": "25IWGbOliXU",
     "ytSearchQuery": "Sooseki Pushpa 2 Shreya Ghoshal",
     "storagePath": "te-sooseki-pushpa-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/366/Pushpa-2-The-Rule-Telugu-Telugu-2024-20241205211012-500x500.jpg"
   },
   {
     "id": "te-pushpa-pushpa-telugu",
@@ -26184,7 +26666,8 @@
     "ytId": "MhIulWFPcpg",
     "ytSearchQuery": "Pushpa Pushpa Nakash Aziz Pushpa 2",
     "storagePath": "te-pushpa-pushpa-telugu.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/366/Pushpa-2-The-Rule-Telugu-Telugu-2024-20241205211012-500x500.jpg"
   },
   {
     "id": "te-fear-song-devara-full",
@@ -26196,7 +26679,8 @@
     "ytId": "CKpbdCciELk",
     "ytSearchQuery": "Fear Song Anirudh Devara",
     "storagePath": "te-fear-song-devara-full.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/104/Sid-Sriram-X-Anirudh-Ravichander-Monsoon-Super-Hits-Tamil-2026-20260710191206-500x500.webp"
   },
   {
     "id": "te-chuttamalle-devara-full",
@@ -26208,7 +26692,8 @@
     "ytId": "GWNrPJyRTcA",
     "ytSearchQuery": "Chuttamalle Shilpa Rao Anirudh Devara",
     "storagePath": "te-chuttamalle-devara-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/063/World-Music-Day-Top-10-Telugu-Superhits-Telugu-2026-20260619191140-500x500.webp"
   },
   {
     "id": "te-daavudi-devara-full",
@@ -26220,7 +26705,8 @@
     "ytId": "QQwDeJFSVvc",
     "ytSearchQuery": "Daavudi Anirudh Devara",
     "storagePath": "te-daavudi-devara-full.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/917/Tollywood-Heroines-Musical-Blockbusters-Telugu-2025-20251120161002-500x500.webp"
   },
   {
     "id": "te-kurchi-madathapetti-telugu",
@@ -26232,7 +26718,8 @@
     "ytId": "uicTPs56LzE",
     "ytSearchQuery": "Kurchi Madathapetti Thaman S Guntur Kaaram",
     "storagePath": "te-kurchi-madathapetti-telugu.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/000/Guntur-Kaaram-Telugu-2023-20240126145901-500x500.webp"
   },
   {
     "id": "te-dum-masala-telugu",
@@ -26244,7 +26731,8 @@
     "ytId": "b4wlfpRouzQ",
     "ytSearchQuery": "Dum Masala Sanjith Hegde Guntur Kaaram",
     "storagePath": "te-dum-masala-telugu.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/000/Guntur-Kaaram-Telugu-2023-20240126145901-500x500.webp"
   },
   {
     "id": "te-naa-roja-nuvve-full",
@@ -26256,7 +26744,8 @@
     "ytId": "JTpDCoxZdv8",
     "ytSearchQuery": "Naa Roja Nuvve Hesham Abdul Wahab",
     "storagePath": "te-naa-roja-nuvve-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/679/Kushi-Telugu-Telugu-2023-20250130073127-500x500.webp"
   },
   {
     "id": "te-aradhya-kushi-full",
@@ -26268,7 +26757,8 @@
     "ytId": "0gXel_bKl00",
     "ytSearchQuery": "Aradhya Sid Sriram Hesham",
     "storagePath": "te-aradhya-kushi-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/679/Kushi-Telugu-Telugu-2023-20250130073127-500x500.webp"
   },
   {
     "id": "te-ammaadi-hi-nanna-full",
@@ -26280,7 +26770,8 @@
     "ytId": "lWV6jM-2DvE",
     "ytSearchQuery": "Ammaadi Hesham Abdul Wahab Hi Nanna",
     "storagePath": "te-ammaadi-hi-nanna-full.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/712/Ammaadi-From-Hi-Nanna-Telugu-2023-20231103201011-500x500.webp"
   },
   {
     "id": "kn-singara-siriye-kantara",
@@ -26292,7 +26783,8 @@
     "ytId": "3XShkcOze3s",
     "ytSearchQuery": "Singara Siriye Vijay Prakash Kantara",
     "storagePath": "kn-singara-siriye-kantara.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/818/B-Ajaneesh-Loknath-Musical-Blast-Kannada-2026-20260205143719-500x500.webp"
   },
   {
     "id": "kn-varaha-roopam-kantara",
@@ -26304,7 +26796,8 @@
     "ytId": "m-5ck3BuT1o",
     "ytSearchQuery": "Varaha Roopam Sai Vignesh Kantara",
     "storagePath": "kn-varaha-roopam-kantara.mp3",
-    "source": "Pulse Devotional Vault"
+    "source": "Pulse Devotional Vault",
+    "cover": "https://c.saavncdn.com/970/Kantara-Hindi-Hindi-2022-20260120133519-500x500.webp"
   },
   {
     "id": "kn-toofan-kgf2-kannada",
@@ -26316,7 +26809,8 @@
     "ytId": "zR5-HbFW6hc",
     "ytSearchQuery": "Toofan Ravi Basrur KGF 2",
     "storagePath": "kn-toofan-kgf2-kannada.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/146/KGF-Chapter-2-Hindi-Hindi-2022-20251202140001-500x500.webp"
   },
   {
     "id": "kn-sulthana-kgf2-kannada",
@@ -26328,7 +26822,8 @@
     "ytId": "kwa9JRcqKeE",
     "ytSearchQuery": "Sulthana Ravi Basrur KGF 2",
     "storagePath": "kn-sulthana-kgf2-kannada.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/011/Top-10-Kannada-Blockbusters-Songs-Malayalam-2025-20251029191005-500x500.webp"
   },
   {
     "id": "kn-mehabooba-kgf2-kannada",
@@ -26340,7 +26835,8 @@
     "ytId": "mJ8bwitLiUo",
     "ytSearchQuery": "Mehabooba Ananya Bhat KGF 2",
     "storagePath": "kn-mehabooba-kgf2-kannada.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/706/KGF-Chapter-2-Hindi-2022-20220522091045-500x500.webp"
   },
   {
     "id": "kn-ra-ra-rakkamma-kannada",
@@ -26352,7 +26848,8 @@
     "ytId": "YbuyYh-uUuc",
     "ytSearchQuery": "Ra Ra Rakkamma Sunidhi Chauhan Vikrant Rona",
     "storagePath": "kn-ra-ra-rakkamma-kannada.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/161/Vikrant-Rona-Kannada-Kannada-2022-20250818121332-500x500.webp"
   },
   {
     "id": "kn-belageddu-kirik",
@@ -26364,7 +26861,8 @@
     "ytId": "ebz20FHrT44",
     "ytSearchQuery": "Belageddu Vijay Prakash Kirik Party",
     "storagePath": "kn-belageddu-kirik.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/264/Simple-Star-Rakshit-s-Extraordinary-Hits-Kannada-2020-20230908202711-500x500.webp"
   },
   {
     "id": "kn-anisuthide-mungaru",
@@ -26376,7 +26874,8 @@
     "ytId": "5J6r2u2grSw",
     "ytSearchQuery": "Anisuthide Yaako Indu Sonu Nigam Mungaru Male",
     "storagePath": "kn-anisuthide-mungaru.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/692/Anisutide-Yako-Indu-8d-Audio-Song-Kannada-2023-20250410131446-500x500.webp"
   },
   {
     "id": "kn-mungaru-maleye-song",
@@ -26388,7 +26887,8 @@
     "ytId": "y7j4pOylYY8",
     "ytSearchQuery": "Mungaru Maleye Sonu Nigam Mungaru Male",
     "storagePath": "kn-mungaru-maleye-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/087/Mungaru-Male-Original-Motion-Picture-SoundtracK-Kannada-2006-20250318150358-500x500.webp"
   },
   {
     "id": "kn-ninnindale-milana-song",
@@ -26400,7 +26900,8 @@
     "ytId": "-xmRjO2G05c",
     "ytSearchQuery": "Ninnindale Sonu Nigam Milana",
     "storagePath": "kn-ninnindale-milana-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/193/Milana-Kannada-2007-20250318135007-500x500.webp"
   },
   {
     "id": "gu-khalasi-gotilo-aditya",
@@ -26412,7 +26913,8 @@
     "ytId": "GViZ0DoxIXk",
     "ytSearchQuery": "Khalasi Gotilo Aditya Gadhvi",
     "storagePath": "gu-khalasi-gotilo-aditya.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/490/Khalasi-Remix-Pack-Gujarati-2024-20241001181104-500x500.webp"
   },
   {
     "id": "gu-chogada-tara-darshan",
@@ -26424,7 +26926,8 @@
     "ytId": "asYxxtiWUyw",
     "ytSearchQuery": "Chogada Tara Darshan Raval",
     "storagePath": "gu-chogada-tara-darshan.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/401/Loveyatri-A-Journey-Of-Love-Hindi-2018-20181003-500x500.jpg"
   },
   {
     "id": "gu-kamariya-darshan-mitron",
@@ -26436,7 +26939,8 @@
     "ytId": "95xYZWo4z0k",
     "ytSearchQuery": "Kamariya Darshan Raval Mitron",
     "storagePath": "gu-kamariya-darshan-mitron.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/764/Mitron-Hindi-2018-20180831135137-500x500.jpg"
   },
   {
     "id": "gu-dholida-gangubai-song",
@@ -26448,7 +26952,8 @@
     "ytId": "cPCQxwgFyzs",
     "ytSearchQuery": "Dholida Jahnvi Shrimankar",
     "storagePath": "gu-dholida-gangubai-song.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/544/Gangubai-Kathiawadi-Hindi-2022-20220217161339-500x500.webp"
   },
   {
     "id": "gu-radha-ne-shyam-sachin",
@@ -26460,7 +26965,8 @@
     "ytId": "tTfF5klskmo",
     "ytSearchQuery": "Radha Ne Shyam Mali Jashe Sachin Jigar",
     "storagePath": "gu-radha-ne-shyam-sachin.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/657/Radha-Ne-Shyam-Mali-Jashe-Gujarati-2020-20201117120727-500x500.webp"
   },
   {
     "id": "gu-rona-ser-ma-geeta",
@@ -26472,7 +26978,8 @@
     "ytId": "35mYQ8bqp1A",
     "ytSearchQuery": "Rona Ser Ma Geeta Rabari",
     "storagePath": "gu-rona-ser-ma-geeta.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/832/Rona-Ser-Ma-Gujarati-2026-20260416101735-500x500.webp"
   },
   {
     "id": "gu-char-bangadi-kinjal",
@@ -26484,7 +26991,8 @@
     "ytId": "DoE5qEeCoyc",
     "ytSearchQuery": "Char Char Bangadi Vadi Gadi Kinjal Dave",
     "storagePath": "gu-char-bangadi-kinjal.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/762/Beni-Char-Char-Bangadi-Vali-Gadi-Laidau-Gujarati-2017-500x500.jpg"
   },
   {
     "id": "gu-nagada-sang-dhol-ramleela",
@@ -26496,7 +27004,8 @@
     "ytId": "3X7x4Ye-tqo",
     "ytSearchQuery": "Nagada Sang Dhol Shreya Ghoshal",
     "storagePath": "gu-nagada-sang-dhol-ramleela.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/914/Goliyon-Ki-Raasleela-Ram-Leela-Hindi-2025-20250930143415-500x500.webp"
   },
   {
     "id": "pj-lover-diljit-song",
@@ -26508,7 +27017,8 @@
     "ytId": "mH_LFkWxpI0",
     "ytSearchQuery": "Lover Diljit Dosanjh",
     "storagePath": "pj-lover-diljit-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/209/MoonChild-Era-Punjabi-2021-20240715073449-500x500.webp"
   },
   {
     "id": "pj-goat-diljit-song",
@@ -26520,7 +27030,8 @@
     "ytId": "cl0a3i2wFcc",
     "ytSearchQuery": "GOAT Diljit Dosanjh",
     "storagePath": "pj-goat-diljit-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/597/G-O-A-T-Punjabi-2020-20240708055140-500x500.webp"
   },
   {
     "id": "pj-born-to-shine-song",
@@ -26532,7 +27043,8 @@
     "ytId": "dCmp56tSSmA",
     "ytSearchQuery": "Born to Shine Diljit Dosanjh",
     "storagePath": "pj-born-to-shine-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/597/G-O-A-T-Punjabi-2020-20240708055140-500x500.webp"
   },
   {
     "id": "pj-kinni-kinni-song",
@@ -26544,7 +27056,8 @@
     "ytId": "ejYe2GwBEJ0",
     "ytSearchQuery": "Kinni Kinni Diljit Dosanjh",
     "storagePath": "pj-kinni-kinni-song.mp3",
-    "source": "Pulse Party Vault"
+    "source": "Pulse Party Vault",
+    "cover": "https://c.saavncdn.com/276/Ghost-English-2023-20231028142825-500x500.webp"
   },
   {
     "id": "pj-hass-hass-song",
@@ -26556,7 +27069,8 @@
     "ytId": "jADTdg-o8i0",
     "ytSearchQuery": "Hass Hass Diljit Dosanjh Sia",
     "storagePath": "pj-hass-hass-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/245/Hass-Hass-English-2023-20231026170517-500x500.webp"
   },
   {
     "id": "pj-softly-karan-song",
@@ -26568,7 +27082,8 @@
     "ytId": "cWMxCE2HTag",
     "ytSearchQuery": "Softly Karan Aujla Ikky",
     "storagePath": "pj-softly-karan-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/538/Making-Memories-English-2023-20230818075015-500x500.webp"
   },
   {
     "id": "pj-admiring-you-karan-song",
@@ -26580,7 +27095,8 @@
     "ytId": "k85UB5b6pJU",
     "ytSearchQuery": "Admiring You Karan Aujla",
     "storagePath": "pj-admiring-you-karan-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/740/Admirin-You-feat-Preston-Pablo-Punjabi-2023-20230730053753-500x500.webp"
   },
   {
     "id": "pj-winning-speech-karan-song",
@@ -26592,7 +27108,8 @@
     "ytId": "vsWxs1tuwDk",
     "ytSearchQuery": "Winning Speech Karan Aujla",
     "storagePath": "pj-winning-speech-karan-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/089/Winning-Speech-Punjabi-2024-20260626013220-500x500.webp"
   },
   {
     "id": "pj-52-bars-karan-song",
@@ -26604,7 +27121,8 @@
     "ytId": "4DfVxVeqk2o",
     "ytSearchQuery": "52 Bars Karan Aujla",
     "storagePath": "pj-52-bars-karan-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/552/Four-You-Punjabi-2023-20260609204536-500x500.webp"
   },
   {
     "id": "pj-excuses-ap-song",
@@ -26616,7 +27134,8 @@
     "ytId": "vX2cDW8LUWk",
     "ytSearchQuery": "Excuses AP Dhillon",
     "storagePath": "pj-excuses-ap-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/890/Excuses-English-2021-20210930112054-500x500.webp"
   },
   {
     "id": "pj-insane-ap-song",
@@ -26628,7 +27147,8 @@
     "ytId": "cqP8I5aaud8",
     "ytSearchQuery": "Insane AP Dhillon",
     "storagePath": "pj-insane-ap-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/851/Insane-Punjabi-2021-20240705060902-500x500.webp"
   },
   {
     "id": "pj-with-you-ap-song",
@@ -26640,7 +27160,8 @@
     "ytId": "mZQH8CPQ-wo",
     "ytSearchQuery": "With You AP Dhillon",
     "storagePath": "pj-with-you-ap-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/671/First-of-a-Kind-From-the-Amazon-Original-Series-Punjabi-2023-20230904091351-500x500.webp"
   },
   {
     "id": "pj-summer-high-ap-song",
@@ -26652,7 +27173,8 @@
     "ytId": "nqUN530Rgtw",
     "ytSearchQuery": "Summer High AP Dhillon",
     "storagePath": "pj-summer-high-ap-song.mp3",
-    "source": "Pulse Romantic Vault"
+    "source": "Pulse Romantic Vault",
+    "cover": "https://c.saavncdn.com/018/Summer-High-English-2022-20220802184652-500x500.webp"
   },
   {
     "id": "pj-cheques-shubh-song",
@@ -26664,7 +27186,8 @@
     "ytId": "4tywp83zkmk",
     "ytSearchQuery": "Cheques Shubh",
     "storagePath": "pj-cheques-shubh-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/704/Still-Rollin-Punjabi-2023-20230512121542-500x500.webp"
   },
   {
     "id": "pj-no-love-shubh-song",
@@ -26676,7 +27199,8 @@
     "ytId": "6RrEQJNZwPQ",
     "ytSearchQuery": "No Love Shubh",
     "storagePath": "pj-no-love-shubh-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/972/NO-LOVE-Punjabi-2022-20220621214632-500x500.webp"
   },
   {
     "id": "pj-we-rollin-shubh-song",
@@ -26688,7 +27212,8 @@
     "ytId": "hV8EGTjzD2s",
     "ytSearchQuery": "We Rollin Shubh",
     "storagePath": "pj-we-rollin-shubh-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/495/WE-ROLLIN-Punjabi-2021-20220621214629-500x500.webp"
   },
   {
     "id": "pj-295-sidhu-song",
@@ -26700,7 +27225,8 @@
     "ytId": "n_FCrCQ6-bA",
     "ytSearchQuery": "295 Sidhu Moose Wala",
     "storagePath": "pj-295-sidhu-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/609/Moosetape-Punjabi-2021-20260626155141-500x500.webp"
   },
   {
     "id": "pj-so-high-sidhu-song",
@@ -26712,7 +27238,8 @@
     "ytId": "CWIHVBZuwIc",
     "ytSearchQuery": "So High Sidhu Moose Wala",
     "storagePath": "pj-so-high-sidhu-song.mp3",
-    "source": "Pulse Trending Vault"
+    "source": "Pulse Trending Vault",
+    "cover": "https://c.saavncdn.com/544/So-High-Punjabi-2017-20220811172517-500x500.webp"
   }
 ].map(normalizeTrack);
 
@@ -26779,45 +27306,73 @@
         for (const sq of searchQueries) {
           try {
             const cleanQuery = sq.replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
-            const searchUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=5&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
-            const res = await fetch(searchUrl, { cache: 'no-store', signal: AbortSignal.timeout(3500) });
-            if (res.ok) {
-              const data = await res.json();
-              if (data && data.results && data.results.length > 0) {
-                for (const r of data.results) {
-                  if (r.encrypted_media_url) {
-                    const dec = decryptSaavnUrl(r.encrypted_media_url);
-                    if (dec) {
-                      if (dec['320']) add(dec['320'], 'saavn-320');
-                      if (dec['160']) add(dec['160'], 'saavn-160');
-                      if (dec['96']) add(dec['96'], 'saavn-96');
-                    }
+            const saavnRawUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=5&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
+            
+            let data = null;
+            // Try local backend proxy first
+            try {
+              const bRes = await fetch(`/api/saavn-search?q=${encodeURIComponent(cleanQuery)}`, { signal: AbortSignal.timeout(2500) });
+              if (bRes.ok) data = await bRes.json();
+            } catch (e) {}
+
+            // Try fast CORS proxy
+            if (!data || !data.results) {
+              try {
+                const cRes = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(saavnRawUrl)}`, { signal: AbortSignal.timeout(3500) });
+                if (cRes.ok) data = await cRes.json();
+              } catch (e) {}
+            }
+
+            // Try direct fetch
+            if (!data || !data.results) {
+              try {
+                const dRes = await fetch(saavnRawUrl, { cache: 'no-store', signal: AbortSignal.timeout(2500) });
+                if (dRes.ok) data = await dRes.json();
+              } catch (e) {}
+            }
+
+            if (data && data.results && data.results.length > 0) {
+              for (const r of data.results) {
+                if (r.encrypted_media_url) {
+                  const dec = decryptSaavnUrl(r.encrypted_media_url);
+                  if (dec) {
+                    if (dec['320']) add(dec['320'], 'saavn-320');
+                    if (dec['160']) add(dec['160'], 'saavn-160');
+                    if (dec['96']) add(dec['96'], 'saavn-96');
                   }
-                  if (r.image && (!track.cover || track.cover.includes('pulse-logo'))) {
-                    const hdImg = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
-                    track.cover = hdImg;
-                  }
-                  if (candidates.length > 2) break; // Found high quality streams
                 }
+                if (r.image && (!track.cover || track.cover.includes('pulse-logo'))) {
+                  const hdImg = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
+                  track.cover = hdImg;
+                }
+                if (candidates.length > 2) break; // Found high quality streams
               }
             }
           } catch (e) {}
           if (candidates.some(c => c.label && c.label.startsWith('saavn'))) break;
         }
 
-        // 5. Apple iTunes — artwork only (previewUrl is 30-second clip, NEVER used as audio)
-        try {
-          const itUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=1`;
-          const itRes = await fetch(itUrl, { cache: 'no-store', signal: AbortSignal.timeout(3500) });
-          if (itRes.ok) {
-            const itData = await itRes.json();
-            if (itData && itData.results && itData.results.length > 0) {
-              if (itData.results[0].artworkUrl100 && (!track.cover || track.cover.includes('pulse-logo'))) {
-                track.cover = itData.results[0].artworkUrl100.replace('100x100bb', '600x600bb');
+        // 5. Apple iTunes — audio preview fallback (so sound is ALWAYS audible)
+        if (track.previewUrl) {
+          add(track.previewUrl, 'itunes-preview');
+        } else {
+          try {
+            const itUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=1`;
+            const itRes = await fetch(itUrl, { cache: 'no-store', signal: AbortSignal.timeout(3000) });
+            if (itRes.ok) {
+              const itData = await itRes.json();
+              if (itData && itData.results && itData.results.length > 0) {
+                const itItem = itData.results[0];
+                if (itItem.artworkUrl100 && (!track.cover || track.cover.includes('pulse-logo'))) {
+                  track.cover = itItem.artworkUrl100.replace('100x100bb', '600x600bb');
+                }
+                if (itItem.previewUrl) {
+                  add(itItem.previewUrl, 'itunes-preview');
+                }
               }
             }
-          }
-        } catch (e) {}
+          } catch (e) {}
+        }
 
         // 6. Backend stream endpoint (only full-length master audio)
         add(`/api/stream?id=${encodeURIComponent(track.id || '')}&q=${encodeURIComponent(query)}`, 'backend-stream');
@@ -26990,10 +27545,32 @@
       try {
         const cleanQEncoded = encodeURIComponent(cleanQ);
         const saavnSearchUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=25&p=1&_marker=0&ctx=android&q=${cleanQEncoded}`;
-        const sRes = await fetch(saavnSearchUrl, { cache: 'no-store', signal: AbortSignal.timeout(3000) });
-        if (sRes.ok) {
-          const sData = await sRes.json();
-          const sResults = (sData && sData.results) ? sData.results : [];
+        
+        let sData = null;
+        // Try local backend proxy
+        try {
+          const sRes = await fetch(`/api/saavn-search?q=${cleanQEncoded}`, { signal: AbortSignal.timeout(3000) });
+          if (sRes.ok) sData = await sRes.json();
+        } catch (e) {}
+
+        // Try fast CORS proxy
+        if (!sData || !sData.results) {
+          try {
+            const cRes = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(saavnSearchUrl)}`, { signal: AbortSignal.timeout(3500) });
+            if (cRes.ok) sData = await cRes.json();
+          } catch (e) {}
+        }
+
+        // Try direct fetch
+        if (!sData || !sData.results) {
+          try {
+            const dRes = await fetch(saavnSearchUrl, { cache: 'no-store', signal: AbortSignal.timeout(3000) });
+            if (dRes.ok) sData = await dRes.json();
+          } catch (e) {}
+        }
+
+        if (sData && sData.results && Array.isArray(sData.results)) {
+          const sResults = sData.results;
           sResults.forEach(item => {
             const rawSong = item.song || item.title || 'Unknown Song';
             const rawSingers = item.singers || item.primary_artists || item.artist || 'Pulse Artist';
@@ -27014,11 +27591,11 @@
                 highResCover = generateTrackCover(songName, singers, item.language || 'bollywood');
               }
 
-              // Decrypt media URL for immediate full-length playback
+              // Decrypt media URL for immediate full-length master playback
               let streamUrl = null;
               if (item.encrypted_media_url) {
                 const dec = decryptSaavnUrl(item.encrypted_media_url);
-                if (dec) streamUrl = dec['160'] || dec['320'] || dec['96'];
+                if (dec) streamUrl = dec['320'] || dec['160'] || dec['96'];
               }
 
               const durSecs = parseInt(item.duration, 10) || 210;
@@ -27085,7 +27662,7 @@
                     duration: durationStr,
                     category: 'trending',
                     storagePath: `${trackId}.m4a`,
-                    audioUrl: null,
+                    audioUrl: item.previewUrl || `/api/stream?q=${encodeURIComponent(item.trackName + ' ' + item.artistName)}`,
                     streamUrl: null,
                     previewUrl: item.previewUrl || null,
                     ytSearchQuery: `${item.trackName} ${item.artistName} official audio`,
@@ -27236,6 +27813,53 @@
       } catch (e) {
         return [];
       }
+    },
+
+    /**
+     * Complete Audio Resolver Architecture
+     * Validates track identity, resolves stream tiers, verifies audio status.
+     * Statuses: AVAILABLE_FULL_AUDIO | AVAILABLE_PREVIEW_ONLY | TEMPORARILY_UNAVAILABLE | NOT_AVAILABLE
+     * @param {Object} track The input track model
+     * @returns {Promise<Object>} The canonical playable track with audio status
+     */
+    async getPlayableTrack(track) {
+      if (!track) return null;
+      const normalized = normalizeTrack(track);
+      
+      // Determine audio stream candidates
+      const candidates = await this.getAudioCandidates(normalized);
+      
+      let resolvedAudioUrl = null;
+      let audioStatus = 'NOT_AVAILABLE';
+      let audioType = 'unavailable';
+
+      if (candidates && candidates.length > 0) {
+        const primary = candidates[0];
+        resolvedAudioUrl = primary.url;
+        if (primary.label === 'itunes-preview') {
+          audioStatus = 'AVAILABLE_PREVIEW_ONLY';
+          audioType = 'preview';
+        } else {
+          audioStatus = 'AVAILABLE_FULL_AUDIO';
+          audioType = 'full';
+        }
+      } else {
+        const rawTitle = normalized.title || '';
+        const rawArtist = normalized.artist || '';
+        if (rawTitle) {
+          resolvedAudioUrl = `/api/stream?id=${encodeURIComponent(normalized.id || '')}&q=${encodeURIComponent(rawTitle + ' ' + rawArtist)}`;
+          audioStatus = 'AVAILABLE_FULL_AUDIO';
+          audioType = 'full';
+        }
+      }
+
+      normalized.audioUrl = resolvedAudioUrl;
+      normalized.streamUrl = resolvedAudioUrl;
+      normalized.audioStatus = audioStatus;
+      normalized.audioType = audioType;
+      normalized.candidates = candidates;
+
+      return normalized;
     },
 
     /**

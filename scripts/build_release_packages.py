@@ -265,6 +265,33 @@ Categories=AudioVideo;Audio;Player;
     with open(manifest_path, 'w', encoding='utf-8') as f:
         json.dump(manifest, f, indent=2)
 
+    # Synchronize to downloads/ and public/downloads/
+    import shutil
+    for target_dir_name in ['downloads', os.path.join('public', 'downloads')]:
+        target_dir = os.path.join(base_dir, target_dir_name)
+        os.makedirs(target_dir, exist_ok=True)
+        for fname in os.listdir(downloads_dir):
+            src_f = os.path.join(downloads_dir, fname)
+            dst_f = os.path.join(target_dir, fname)
+            if os.path.isfile(src_f):
+                shutil.copy2(src_f, dst_f)
+        
+        # Create user-friendly aliases
+        aliases = {
+            'Pulse-Music-Setup-2.4.0.exe': ['Pulse-Music-Windows-Setup.exe', 'Pulse-Music-2.4.0.exe', 'Pulse-Setup.exe'],
+            'Pulse-Music-2.4.0.dmg': ['Pulse-Music-v2.4.0.dmg', 'Pulse-Mac.dmg'],
+            'Pulse-Music-v2.4.0.apk': ['Pulse-Music-2.4.0.apk', 'Pulse-Android.apk'],
+            'Pulse-Music-2.4.0.AppImage': ['Pulse-Music-v2.4.0.AppImage', 'Pulse-Linux.AppImage'],
+            'Pulse-Music-v2.4.0.ipa': ['Pulse-Music-2.4.0.ipa', 'Pulse-iOS.ipa']
+        }
+        for base_pkg, alias_list in aliases.items():
+            b_path = os.path.join(target_dir, base_pkg)
+            if os.path.exists(b_path):
+                for a_pkg in alias_list:
+                    a_path = os.path.join(target_dir, a_pkg)
+                    if not os.path.exists(a_path):
+                        shutil.copy2(b_path, a_path)
+
     print("\n----------------------------------------------------------")
     for key, p in packages.items():
         print(f"  [{p['platform']:<8}] {p['filename']} ({p['size_display']}) | SHA256: {p['sha256'][:16]}...")
@@ -273,3 +300,4 @@ Categories=AudioVideo;Audio;Player;
 
 if __name__ == '__main__':
     build_all_packages()
+

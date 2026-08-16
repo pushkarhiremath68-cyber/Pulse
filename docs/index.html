@@ -97,6 +97,11 @@
         </div>
       </div>
     </div>
+    <div class="titlebar-controls" style="display: flex; align-items: center; -webkit-app-region: no-drag;">
+      <button id="titlebar-btn-min" class="titlebar-btn" onclick="window.minimizeWindow()" title="Minimize"><i class="fa-solid fa-minus"></i></button>
+      <button id="titlebar-btn-max" class="titlebar-btn" onclick="window.toggleMaximizeWindow()" title="Maximize"><i class="fa-regular fa-square"></i></button>
+      <button id="titlebar-btn-close" class="titlebar-btn btn-close" onclick="window.closeWindow()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
   </header>
 
   <!-- MAIN APP CONTAINER -->
@@ -824,7 +829,7 @@
 
       <!-- Social Login Section -->
       <div class="pulse-auth-social">
-        <button type="button" class="pulse-social-btn pulse-social-google" onclick="window.openGoogleAuthModal()">
+        <button type="button" class="pulse-social-btn pulse-social-google" onclick="window.handleGoogleOAuthLogin()">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="width: 20px; height: 20px;">
           <span>Continue with Google</span>
         </button>
@@ -951,134 +956,121 @@
     </div>
   </div>
 
-  <!-- AUTHENTIC MULTI-STEP GOOGLE SIGN-IN MODAL (Matches Real Google Flow) -->
-  <div id="google-auth-modal" class="modal-overlay hidden">
-    <div class="modal-content google-signin-card" style="max-width: 440px; border-radius: 28px; background: #202124; border: 1px solid #3c4043; box-shadow: 0 16px 50px rgba(0,0,0,0.75); position: relative; overflow: hidden; padding: 2rem 2.2rem 2.2rem;">
-      <!-- Animated Google 4-Color Progress Bar on top -->
-      <div id="google-progress-bar" class="google-progress-bar hidden">
-        <div class="google-progress-line"></div>
-      </div>
-
-      <!-- Close button -->
-      <button class="pulse-auth-close" onclick="window.closeGoogleAuthModal()" title="Close Google Sign-In" style="top: 16px; right: 16px;">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <!-- Google Brand Header -->
-      <div class="google-card-header" style="text-align: left; padding: 0.25rem 0 0.5rem 0;">
-        <svg viewBox="0 0 48 48" width="40" height="40" style="margin-bottom: 0.75rem; display: block;">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-          <path fill="none" d="M0 0h48v48H0z"/>
-        </svg>
-      </div>
-
-      <!-- Status Banner -->
-      <div id="google-auth-banner" class="pulse-auth-banner hidden" style="margin-bottom: 1rem;"></div>
-
-      <!-- STEP 1: EMAIL / PHONE INPUT OR SAVED ACCOUNT SELECTION -->
-      <div id="google-step-1" class="google-auth-step">
-        <h2 class="google-heading" style="font-size: 1.55rem; font-weight: 500; color: #e8eaed; margin-bottom: 0.35rem; font-family: 'Roboto', 'Google Sans', sans-serif;">Sign in</h2>
-        <p class="google-subheading" style="font-size: 0.95rem; color: #9aa0a6; margin-bottom: 1.5rem; font-family: 'Roboto', 'Google Sans', sans-serif;">to continue to <strong style="color: #fff;">Pulse Music</strong></p>
-
-        <!-- Quick Select Saved Google Accounts -->
-        <div id="google-saved-accounts-container" class="hidden" style="margin-bottom: 1.25rem;">
-          <div style="font-size: 0.78rem; color: #9aa0a6; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Saved Google Account</div>
-          <div id="google-saved-accounts-list" style="display: flex; flex-direction: column; gap: 0.4rem;">
-            <!-- Populated via JS -->
-          </div>
-          <div class="sidebar-divider" style="margin: 0.85rem 0;"></div>
-        </div>
-
-        <form id="google-form-step-email" onsubmit="window.handleGoogleEmailNext(event); return false;" novalidate>
-          <div class="google-input-wrapper" id="g-email-wrapper">
-            <input type="email" id="g-input-email" required placeholder=" " autocomplete="email" oninput="window.clearGoogleFieldError('g-email')">
-            <label for="g-input-email">Email or phone</label>
-            <div class="google-input-outline"></div>
-          </div>
-          <div class="google-field-error hidden" id="g-email-error"></div>
-
-          <div style="margin-top: 0.65rem; margin-bottom: 1.4rem;">
-            <a href="#" onclick="window.handleGoogleForgotEmail(event); return false;" style="color: #8ab4f8; font-size: 0.875rem; font-weight: 500; text-decoration: none; font-family: 'Roboto', sans-serif;">Forgot email?</a>
-          </div>
-
-          <div style="font-size: 0.82rem; color: #9aa0a6; line-height: 1.45; margin-bottom: 1.8rem; font-family: 'Roboto', sans-serif;">
-            To continue, Google will share your name, email address, language preference, and profile picture with <strong>Pulse Music</strong>.
-          </div>
-
-          <div class="google-actions-row" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
-            <button type="button" class="google-btn-text" onclick="window.handleGoogleCreateAccount(event)">Create account</button>
-            <button type="submit" id="btn-g-email-next" class="google-btn-primary">
-              <span class="btn-text">Next</span>
-              <i class="fa-solid fa-arrow-right btn-icon" style="margin-left: 6px;"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- STEP 2: PASSWORD VERIFICATION -->
-      <div id="google-step-2" class="google-auth-step hidden">
-        <!-- Selected Account Chip with Switcher -->
-        <div id="g-selected-account-chip" class="google-account-chip" onclick="window.handleGoogleBackToEmail()" title="Click to switch account">
-          <img id="g-chip-avatar" src="./pulse-logo.png" alt="Avatar" class="google-chip-img">
-          <span id="g-chip-email" class="google-chip-email">user@gmail.com</span>
-          <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: #9aa0a6; margin-left: auto;"></i>
-        </div>
-
-        <h2 id="g-welcome-heading" class="google-heading" style="font-size: 1.55rem; font-weight: 500; color: #e8eaed; margin-bottom: 0.35rem; font-family: 'Roboto', 'Google Sans', sans-serif;">Welcome</h2>
-        <p class="google-subheading" style="font-size: 0.95rem; color: #9aa0a6; margin-bottom: 1.5rem; font-family: 'Roboto', 'Google Sans', sans-serif;">To continue, first verify that it's you</p>
-
-        <form id="google-form-step-password" onsubmit="window.handleGooglePasswordNext(event); return false;" novalidate>
-          <div class="google-input-wrapper" id="g-password-wrapper">
-            <input type="password" id="g-input-password" required placeholder=" " autocomplete="current-password" oninput="window.clearGoogleFieldError('g-password')">
-            <label for="g-input-password">Enter your password</label>
-            <button type="button" class="google-eye-toggle" onclick="window.toggleGooglePasswordVisibility()" title="Show password">
-              <i class="fa-solid fa-eye" id="g-eye-icon"></i>
-            </button>
-            <div class="google-input-outline"></div>
-          </div>
-          <div class="google-field-error hidden" id="g-password-error"></div>
-
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; margin-bottom: 2rem;">
-            <label class="google-show-pwd-label" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem; color: #bdc1c6;">
-              <input type="checkbox" id="g-show-pwd-checkbox" onchange="window.toggleGooglePasswordVisibility(this.checked)">
-              <span>Show password</span>
-            </label>
-            <a href="#" onclick="window.handleGoogleForgotPassword(event); return false;" style="color: #8ab4f8; font-size: 0.875rem; font-weight: 500; text-decoration: none;">Forgot password?</a>
-          </div>
-
-          <div class="google-actions-row" style="display: flex; justify-content: space-between; align-items: center;">
-            <button type="button" class="google-btn-text" onclick="window.handleGoogleBackToEmail()"><i class="fa-solid fa-arrow-left" style="margin-right: 6px;"></i> Back</button>
-            <button type="submit" id="btn-g-password-next" class="google-btn-primary">
-              <span class="btn-text">Next</span>
-              <i class="fa-solid fa-arrow-right btn-icon" style="margin-left: 6px;"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- STEP 3: INSTANT CONSENT & SYNC -->
-      <div id="google-step-3" class="google-auth-step hidden" style="text-align: center; padding: 1rem 0;">
-        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
-          <img src="./pulse-logo.png" style="width: 52px; height: 52px; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.5);">
-          <i class="fa-solid fa-arrow-right-arrow-left" style="color: #8ab4f8; font-size: 1.25rem;"></i>
-          <img id="g-consent-avatar" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width: 52px; height: 52px; border-radius: 50%; background: #fff; padding: 4px;">
-        </div>
-        <h3 style="color: #e8eaed; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Continue to Pulse Music</h3>
-        <p style="color: #9aa0a6; font-size: 0.88rem; max-width: 320px; margin: 0 auto 1.5rem;">
-          Sign in as <strong id="g-consent-name" style="color: #fff;">User</strong> (<span id="g-consent-email">user@gmail.com</span>)
-        </p>
-        <button type="button" class="google-btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem 1.5rem; font-size: 1rem;" onclick="window.confirmGoogleLoginFinal()">
-          <i class="fa-solid fa-check" style="margin-right: 8px;"></i> Allow & Continue
+  <!-- ARTIST DETAIL & LIVE EVENTS MODAL -->
+  <div id="artist-detail-modal" class="modal-overlay hidden">
+    <div class="modal-content artist-detail-card" style="max-width: 760px; max-height: 88vh; overflow-y: auto; border-radius: 20px; background: var(--bg-surface); border: 1px solid var(--border-glow); padding: 0;">
+      <!-- Hero Banner with Artist Image and Follow Button -->
+      <div class="artist-hero-banner" id="artist-hero-banner" style="position: relative; height: 260px; background: linear-gradient(180deg, rgba(168,85,247,0.3) 0%, rgba(11,13,20,0.95) 100%), url('./pulse-logo.png') center/cover; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <button class="pulse-auth-close" onclick="window.closeArtistModal()" title="Close" style="top: 14px; right: 14px; z-index: 10;">
+          <i class="fa-solid fa-xmark"></i>
         </button>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span class="artist-verified-badge" style="background: rgba(168,85,247,0.25); border: 1px solid var(--accent-primary); color: #d8b4fe; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <i class="fa-solid fa-circle-check text-accent"></i> Verified Artist
+          </span>
+        </div>
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h1 id="artist-modal-name" style="font-size: 2.2rem; font-weight: 900; color: #fff; margin: 0; text-shadow: 0 4px 12px rgba(0,0,0,0.8);">Artist Name</h1>
+            <p id="artist-modal-listeners" style="color: var(--text-secondary); font-size: 0.9rem; margin: 0.25rem 0 0 0;">3,500,000+ monthly listeners</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <button type="button" id="btn-follow-artist" class="btn-primary-play" style="padding: 0.6rem 1.4rem; font-size: 0.9rem;" onclick="window.toggleFollowCurrentArtist()">
+              <i class="fa-solid fa-heart"></i> <span id="artist-follow-text">Follow</span>
+            </button>
+            <button type="button" class="btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: 20px;" onclick="window.playArtistTopTracks()">
+              <i class="fa-solid fa-play"></i> Play Top Songs
+            </button>
+          </div>
+        </div>
       </div>
 
+      <!-- Artist Body: Bio, Top Tracks, Albums, Live Events -->
+      <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+        <!-- Bio -->
+        <div id="artist-bio-section" class="artist-bio-box" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1.2rem;">
+          <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #fff;"><i class="fa-solid fa-book-open text-accent"></i> About</h4>
+          <p id="artist-modal-bio" style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            Leading playback singer and recording artist.
+          </p>
+        </div>
+
+        <!-- Popular Songs -->
+        <div>
+          <h4 style="margin: 0 0 0.85rem 0; font-size: 1.05rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-fire text-accent"></i> Popular Songs
+          </h4>
+          <div id="artist-top-tracks-list" style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Live Events -->
+        <div id="artist-events-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+            <h4 style="margin: 0; font-size: 1.05rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-calendar-days text-accent"></i> Live Events & Concerts
+            </h4>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Verified Tour Dates</span>
+          </div>
+          <div id="artist-events-list">
+            <!-- Events or empty state populated via JS -->
+          </div>
+        </div>
+
+        <!-- Related Artists -->
+        <div>
+          <h4 style="margin: 0 0 0.85rem 0; font-size: 1.05rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-users text-accent"></i> Fans Also Like
+          </h4>
+          <div id="artist-related-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.85rem;">
+            <!-- Related artists populated via JS -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- FORGOT PASSWORD MODAL -->
+  <!-- SONG CREDITS MODAL -->
+  <div id="song-credits-modal" class="modal-overlay hidden">
+    <div class="modal-content song-credits-card" style="max-width: 480px; border-radius: 20px; background: var(--bg-surface); border: 1px solid var(--border-glow); padding: 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-circle-info text-accent"></i> Song Credits
+        </h3>
+        <button class="pulse-auth-close" onclick="window.closeCreditsModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div id="credits-track-header" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem; background: var(--bg-glass-card); border-radius: 12px; margin-bottom: 1.25rem;">
+        <img id="credits-track-cover" src="./pulse-logo.png" style="width: 56px; height: 56px; border-radius: 8px; object-fit: cover;">
+        <div style="min-width: 0;">
+          <h4 id="credits-track-title" style="margin: 0; font-size: 1rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Song Title</h4>
+          <p id="credits-track-artist" style="margin: 0.2rem 0 0 0; font-size: 0.85rem; color: var(--text-secondary);">Artist Name</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.88rem;">
+        <div class="credit-row" style="display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-glass);">
+          <span style="color: var(--text-muted);">Performed by</span>
+          <span id="credits-performers" style="color: #fff; font-weight: 600; text-align: right;">Artist Name</span>
+        </div>
+        <div class="credit-row" style="display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-glass);">
+          <span style="color: var(--text-muted);">Written by</span>
+          <span id="credits-writers" style="color: #fff; font-weight: 600; text-align: right;">Lyricist</span>
+        </div>
+        <div class="credit-row" style="display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-glass);">
+          <span style="color: var(--text-muted);">Produced / Composed by</span>
+          <span id="credits-producers" style="color: #fff; font-weight: 600; text-align: right;">Music Director</span>
+        </div>
+        <div class="credit-row" style="display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-glass);">
+          <span style="color: var(--text-muted);">Audio Engine</span>
+          <span id="credits-source" style="color: #d8b4fe; font-weight: 600;">Pulse Lossless Master</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD RESET MODAL -->
   <div id="forgot-password-modal" class="modal-overlay hidden">
     <div class="modal-content pulse-auth-modal" style="max-width: 420px;">
       <div class="pulse-auth-glow"></div>
@@ -1114,52 +1106,6 @@
     </div>
   </div>
 
-
-
-  <!-- QR CODE QUICK SCAN LOGIN MODAL -->
-  <div id="qr-code-modal" class="modal-overlay hidden">
-    <div class="modal-content spotify-auth-modal" style="width:420px; text-align:center;">
-      <div class="spotify-auth-header" style="justify-content:space-between;">
-        <h3><i class="fa-solid fa-qrcode text-accent"></i> Log in with QR Code</h3>
-        <button class="btn-icon-small" onclick="window.closeQrCodeModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="spotify-auth-body" style="align-items:center; padding: 1.5rem 1rem;">
-        <p style="font-size:0.85rem; color:#b3b3b3; margin-bottom:1rem;">
-          1. Open the <strong>Spotify / Pulse app</strong> on your mobile device.<br>
-          2. Tap <strong>Search <i class="fa-solid fa-magnifying-glass"></i></strong> -> Camera Icon <i class="fa-solid fa-camera"></i>.<br>
-          3. Point your camera at this QR code to log in instantly!
-        </p>
-        <div class="qr-code-box" style="background:#fff; padding:1rem; border-radius:12px; display:inline-block; box-shadow:0 0 20px rgba(168,85,247,0.3); margin-bottom:1rem;">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://pulse-music.app/login/sync-pushkar" alt="Pulse Spotify Login QR Code" style="width:180px; height:180px; display:block;">
-        </div>
-        <button type="button" class="btn-spotify-green" onclick="window.handleQrScanLogin()">
-          <i class="fa-solid fa-bolt"></i> 1-Tap QR Scan Instant Sign In
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- FORGOT PASSWORD RESET MODAL -->
-  <div id="forgot-password-modal" class="modal-overlay hidden">
-    <div class="modal-content spotify-auth-modal" style="width:420px;">
-      <div class="spotify-auth-header" style="justify-content:space-between;">
-        <h3><i class="fa-solid fa-key text-accent"></i> Reset Password</h3>
-        <button class="btn-icon-small" onclick="window.closeForgotPasswordModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="spotify-auth-body" style="padding: 1.5rem 1rem;">
-        <p style="font-size:0.85rem; color:#b3b3b3; margin-bottom:1rem;">
-          Enter your email address or profile username and we will send you a password reset link.
-        </p>
-        <div class="form-group" style="margin-bottom:1rem;">
-          <label style="font-size:0.82rem; font-weight:700; color:#fff; display:block; margin-bottom:0.4rem;">Email address or username</label>
-          <input type="email" id="reset-password-email" placeholder="Enter your email or username" style="width:100%;" required>
-        </div>
-        <button type="button" class="btn-spotify-green" onclick="window.handleSendResetLink()">
-          Send Password Reset Link
-        </button>
-      </div>
-    </div>
-  </div>
 
 
 

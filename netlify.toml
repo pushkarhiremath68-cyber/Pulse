@@ -2,7 +2,7 @@
   publish = "dist"
   command = "npm run build"
 
-# Disable Netlify post-processing for instant 3-second deployments
+# Disable Netlify post-processing for instant deployments
 [build.processing]
   skip_processing = true
 
@@ -20,7 +20,59 @@
 [build.processing.images]
   compress = false
 
+[[headers]]
+  for = "/downloads/*.apk"
+  [headers.values]
+    Content-Type = "application/vnd.android.package-archive"
+    Content-Disposition = "attachment"
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/downloads/*.exe"
+  [headers.values]
+    Content-Type = "application/vnd.microsoft.portable-executable"
+    Content-Disposition = "attachment"
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/downloads/*.dmg"
+  [headers.values]
+    Content-Type = "application/x-apple-diskimage"
+    Content-Disposition = "attachment"
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/downloads/*.AppImage"
+  [headers.values]
+    Content-Type = "application/x-executable"
+    Content-Disposition = "attachment"
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/downloads/*.ipa"
+  [headers.values]
+    Content-Type = "application/octet-stream"
+    Content-Disposition = "attachment"
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/downloads/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    X-Content-Type-Options = "nosniff"
+
+[[redirects]]
+  from = "/downloads/*"
+  to = "/downloads/:splat"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+

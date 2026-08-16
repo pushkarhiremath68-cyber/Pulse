@@ -1,8 +1,4 @@
-/* ==========================================================================
-   SUPABASE CLIENT & STORAGE HELPER
-   Compatible with Vite Bundler & Static HTTP Server environments.
-   Designed for Pulse Music Full-Length Audio Engine.
-   ========================================================================== */
+import { createClient } from '@supabase/supabase-js';
 
 export const PULSE_STORAGE_BUCKET = 'music';
 
@@ -58,20 +54,25 @@ export function getAudioStorageUrl(storagePath) {
 }
 
 const getSupabaseClient = () => {
-  if (typeof window !== 'undefined' && window.supabase && typeof window.supabase.createClient === 'function') {
-    const { url, key } = getSupabaseConfig();
-    if (url && key && url !== 'YOUR_SUPABASE_PROJECT_URL' && key !== 'YOUR_SUPABASE_PUBLISHABLE_KEY') {
-      return window.supabase.createClient(url, key);
+  const { url, key } = getSupabaseConfig();
+  if (url && key && url !== 'YOUR_SUPABASE_PROJECT_URL' && key !== 'YOUR_SUPABASE_PUBLISHABLE_KEY') {
+    try {
+      return createClient(url, key);
+    } catch (e) {
+      console.warn('[Pulse Supabase Init]', e);
     }
   }
   return null;
 };
 
-// Bind to window for universal access across module and vanilla scripts
+export const supabase = getSupabaseClient();
+
+// Bind to window for universal access
 if (typeof window !== 'undefined') {
   window.getAudioStorageUrl = getAudioStorageUrl;
   window.PULSE_STORAGE_BUCKET = PULSE_STORAGE_BUCKET;
+  window.supabaseClient = supabase;
 }
 
-export const supabase = getSupabaseClient();
 export default supabase;
+

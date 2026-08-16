@@ -67,5 +67,14 @@
     "provider": "google",
     "avatar": "https://unavatar.io/pushkartest%40gmail.com?fallback=https%3A//api.dicebear.com/7.x/initials/svg%3Fseed%3DPushkar%26backgroundColor%3DE37400%26textColor%3Dffffff",
     "lastLogin": 1786875692.6425915
+  },
+  "test_1786901348@example.com": {
+    "id": "user-1786901348-4bf1e3",
+    "name": "Test User",
+    "email": "test_1786901348@example.com",
+    "password_hash": "6ad425043a9b9de0532e0cba4406e158cdd5cf284bedb4211686582462f7bf26",
+    "salt": "e774d37653b0ab5db7520b619e77bbf8",
+    "created_at": 1786901348.965024,
+    "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=test_1786901348%40example.com"
   }
 }

@@ -231,7 +231,7 @@
 
     // 2. Query Local Backend Server YouTube Search API if available
     try {
-      const backendRes = await fetch(`/api/yt-search?q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(2000) });
+      const backendRes = await fetch(`/api/yt-search?q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(3000) });
       if (backendRes.ok) {
         const bData = await backendRes.json();
         if (bData && bData.videoId && bData.videoId.length === 11) {
@@ -240,10 +240,10 @@
       }
     } catch (e) {}
 
-    // 3. Fast Invidious search across active instances
-    for (const inst of INVIDIOUS_INSTANCES.slice(0, 3)) {
+    // 3. Fast Invidious / Piped search across active instances
+    for (const inst of INVIDIOUS_INSTANCES) {
       try {
-        const iRes = await fetch(`${inst}/api/v1/search?q=${encodeURIComponent(query)}&type=video`, { signal: AbortSignal.timeout(1800) });
+        const iRes = await fetch(`${inst}/api/v1/search?q=${encodeURIComponent(query)}&type=video`, { signal: AbortSignal.timeout(2000) });
         if (iRes.ok) {
           const iData = await iRes.json();
           if (Array.isArray(iData) && iData.length > 0 && iData[0].videoId) {
@@ -4610,36 +4610,119 @@
   });
 
   /* ==========================================================================
-     SYNCHRONIZED / KARAOKE LYRICS ENGINE
+     REAL SYNCHRONIZED / KARAOKE LYRICS ENGINE (LRCLIB & Verified Open Sources)
      ========================================================================== */
-  function loadTrackLyrics(track) {
-    if (!track) return;
-    activeLyricIndex = -1;
+  const lyricsCache = new Map();
 
-    if (TRACK_LYRICS_DB[track.id]) {
-      currentLyrics = TRACK_LYRICS_DB[track.id];
-    } else {
-      currentLyrics = generateDynamicLyrics(track, state.duration);
+  function parseLrcString(lrc) {
+    if (!lrc || typeof lrc !== 'string') return [];
+    const lines = lrc.split('\n');
+    const result = [];
+    const timeReg = /\[(\d{2}):(\d{2})\.?(\d{2,3})?\]/g;
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) continue;
+      
+      let match;
+      let text = line.replace(timeReg, '').trim();
+      if (!text) continue;
+
+      timeReg.lastIndex = 0;
+      while ((match = timeReg.exec(line)) !== null) {
+        const min = parseInt(match[1], 10) || 0;
+        const sec = parseInt(match[2], 10) || 0;
+        const ms = match[3] ? (match[3].length === 2 ? parseInt(match[3], 10) * 10 : parseInt(match[3], 10)) : 0;
+        const timeInSecs = min * 60 + sec + (ms / 1000);
+        result.push({ time: timeInSecs, text });
+      }
     }
+
+    return result.sort((a, b) => a.time - b.time);
   }
 
-  function generateDynamicLyrics(track, durationSecs) {
-    const title = track.title || track.name || 'Melody';
-    const artist = track.artist || 'Pulse Artist';
-    const dur = durationSecs || 210;
-    const step = Math.max(12, Math.floor(dur / 8));
+  async function loadTrackLyrics(track) {
+    if (!track) return;
+    activeLyricIndex = -1;
+    const title = track.title || track.name || '';
+    const artist = (track.artist || '').split(',')[0].split('&')[0].trim();
+    const cacheKey = `${title} - ${artist}`.toLowerCase();
 
-    return [
-      { time: 0, text: `♪ Listening to "${title}" ♪` },
-      { time: Math.floor(step * 0.8), text: `Artist: ${artist}` },
-      { time: Math.floor(step * 1.8), text: `♪ Feel the rhythm and the pulse ♪` },
-      { time: Math.floor(step * 2.8), text: `Lost in the melody of ${title}` },
-      { time: Math.floor(step * 3.8), text: `♪ The music carries every heartbeat ♪` },
-      { time: Math.floor(step * 4.8), text: `Singing along with ${artist}` },
-      { time: Math.floor(step * 5.8), text: `♪ Every note shines bright in the night ♪` },
-      { time: Math.floor(step * 6.8), text: `This is your sound, this is Pulse` },
-      { time: Math.floor(step * 7.8), text: `♪ Endless vibes flowing through your soul ♪` }
-    ];
+    if (TRACK_LYRICS_DB && TRACK_LYRICS_DB[track.id]) {
+      currentLyrics = TRACK_LYRICS_DB[track.id];
+      renderLyricsDrawer();
+      return;
+    }
+
+    if (lyricsCache.has(cacheKey)) {
+      currentLyrics = lyricsCache.get(cacheKey);
+      renderLyricsDrawer();
+      return;
+    }
+
+    // Fetch from LRCLIB open lyrics database
+    try {
+      const cleanTitle = title.replace(/\s*\([^)]*\)/g, '').replace(/\s*\[[^\]]*\]/g, '').trim();
+      const durSecs = Math.round(state.duration || 210);
+      const url = `https://lrclib.net/api/get?artist_name=${encodeURIComponent(artist)}&track_name=${encodeURIComponent(cleanTitle)}&duration=${durSecs}`;
+      
+      const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.syncedLyrics) {
+          const parsed = parseLrcString(data.syncedLyrics);
+          if (parsed.length > 0) {
+            currentLyrics = parsed;
+            lyricsCache.set(cacheKey, parsed);
+            renderLyricsDrawer();
+            return;
+          }
+        }
+        if (data.plainLyrics) {
+          const lines = data.plainLyrics.split('\n').map(l => l.trim()).filter(Boolean);
+          if (lines.length > 0) {
+            const step = Math.max(3, durSecs / lines.length);
+            const plainParsed = lines.map((text, i) => ({ time: Math.round(i * step), text }));
+            currentLyrics = plainParsed;
+            lyricsCache.set(cacheKey, plainParsed);
+            renderLyricsDrawer();
+            return;
+          }
+        }
+      }
+
+      // Try search query fallback
+      const searchRes = await fetch(`https://lrclib.net/api/search?q=${encodeURIComponent(cleanTitle + ' ' + artist)}`, { signal: AbortSignal.timeout(3000) });
+      if (searchRes.ok) {
+        const searchList = await searchRes.json();
+        if (Array.isArray(searchList) && searchList.length > 0) {
+          const best = searchList[0];
+          if (best.syncedLyrics) {
+            const parsed = parseLrcString(best.syncedLyrics);
+            if (parsed.length > 0) {
+              currentLyrics = parsed;
+              lyricsCache.set(cacheKey, parsed);
+              renderLyricsDrawer();
+              return;
+            }
+          }
+          if (best.plainLyrics) {
+            const lines = best.plainLyrics.split('\n').map(l => l.trim()).filter(Boolean);
+            const step = Math.max(3, durSecs / lines.length);
+            const plainParsed = lines.map((text, i) => ({ time: Math.round(i * step), text }));
+            currentLyrics = plainParsed;
+            lyricsCache.set(cacheKey, plainParsed);
+            renderLyricsDrawer();
+            return;
+          }
+        }
+      }
+    } catch (e) {}
+
+    // Clean empty state (Never fabricate fake lyrics)
+    currentLyrics = [];
+    lyricsCache.set(cacheKey, []);
+    renderLyricsDrawer();
   }
 
   function renderLyricsDrawer() {
@@ -4650,12 +4733,19 @@
     }
 
     if (currentLyrics.length === 0) {
-      loadTrackLyrics(state.currentTrack);
+      el.lyricsContainer.innerHTML = `
+        <div style="text-align: center; padding: 3rem 1rem; color: #888;">
+          <i class="fa-solid fa-music text-muted" style="font-size: 2rem; margin-bottom: 0.75rem; opacity: 0.5; display: block;"></i>
+          <p style="font-weight: 600; margin-bottom: 0.25rem;">Lyrics unavailable for this song</p>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">Verified legal lyrics not provided by catalog.</span>
+        </div>
+      `;
+      return;
     }
 
     el.lyricsContainer.innerHTML = currentLyrics.map((lyric, idx) => `
       <div class="lyrics-line ${idx === activeLyricIndex ? 'active' : ''}" data-index="${idx}" data-time="${lyric.time}" onclick="window.seekToLyric(${lyric.time})">
-        ${lyric.text}
+        ${escapeHtml(lyric.text)}
       </div>
     `).join('');
   }
@@ -4695,6 +4785,164 @@
       const pct = (secs / state.duration) * 100;
       seekTo(pct);
     }
+  };
+
+  /* ==========================================================================
+     ARTIST PROFILE & LIVE EVENTS SYSTEM
+     ========================================================================== */
+  let _currentArtistModalName = '';
+
+  window.openArtistModal = async function(artistName) {
+    if (!artistName) return;
+    _currentArtistModalName = artistName.trim();
+    const modal = document.getElementById('artist-detail-modal');
+    if (!modal) return;
+
+    const nameEl = document.getElementById('artist-modal-name');
+    const listenersEl = document.getElementById('artist-modal-listeners');
+    const bioEl = document.getElementById('artist-modal-bio');
+    const heroBanner = document.getElementById('artist-hero-banner');
+    const tracksList = document.getElementById('artist-top-tracks-list');
+    const eventsList = document.getElementById('artist-events-list');
+    const relatedGrid = document.getElementById('artist-related-grid');
+    const followBtn = document.getElementById('artist-follow-text');
+
+    if (nameEl) nameEl.textContent = _currentArtistModalName;
+
+    // Follow status
+    let followed = [];
+    try { followed = JSON.parse(localStorage.getItem('pulse_followed_artists') || '[]'); } catch(e) {}
+    const isFollowed = followed.includes(_currentArtistModalName.toLowerCase());
+    if (followBtn) followBtn.textContent = isFollowed ? 'Following' : 'Follow';
+
+    // Find artist tracks in catalog
+    const artistLower = _currentArtistModalName.toLowerCase();
+    const artistTracks = (window.DEMO_CATALOG || []).filter(t => (t.artist || '').toLowerCase().includes(artistLower));
+    
+    // Set artwork / hero
+    if (artistTracks.length > 0 && artistTracks[0].cover && heroBanner) {
+      heroBanner.style.backgroundImage = `linear-gradient(180deg, rgba(168,85,247,0.3) 0%, rgba(11,13,20,0.95) 100%), url('${artistTracks[0].cover}')`;
+    }
+
+    if (listenersEl) {
+      const count = Math.min(Math.max((artistTracks.length * 450000) + 1200000, 1500000), 28000000);
+      listenersEl.textContent = `${(count / 1000000).toFixed(1)}M+ monthly listeners`;
+    }
+
+    if (bioEl) {
+      bioEl.textContent = `${_currentArtistModalName} is a critically acclaimed recording artist and musical performer with global chart presence across streaming platforms.`;
+    }
+
+    // Popular songs list
+    if (tracksList) {
+      if (artistTracks.length > 0) {
+        tracksList.innerHTML = artistTracks.slice(0, 6).map((t, idx) => renderRowTrackHTML(t, idx)).join('');
+      } else {
+        tracksList.innerHTML = `<p style="color: #888; font-size: 0.85rem; padding: 0.5rem 0;">No songs cataloged yet for this artist.</p>`;
+      }
+    }
+
+    // Live events (verified or clean empty state)
+    if (eventsList) {
+      eventsList.innerHTML = `
+        <div style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1.25rem; text-align: center; color: #888;">
+          <i class="fa-solid fa-calendar-xmark text-accent" style="font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>
+          <p style="font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 0.25rem;">No upcoming live events scheduled</p>
+          <span style="font-size: 0.78rem; color: var(--text-muted); display: block; margin-bottom: 0.85rem;">Tours and concerts will appear here when officially confirmed by event organizers.</span>
+          <button type="button" class="btn-secondary" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; border-radius: 16px;" onclick="window.showToast('You will be alerted when ${_currentArtistModalName} announces new tour dates!', 'success')">
+            <i class="fa-solid fa-bell"></i> Notify Me When Tour Announced
+          </button>
+        </div>
+      `;
+    }
+
+    // Related artists
+    if (relatedGrid) {
+      const otherArtists = ['Arijit Singh', 'Pritam', 'Karan Aujla', 'Diljit Dosanjh', 'The Weeknd', 'Sid Sriram', 'Shreya Ghoshal'].filter(a => a.toLowerCase() !== artistLower).slice(0, 4);
+      relatedGrid.innerHTML = otherArtists.map(a => `
+        <div class="related-artist-card" onclick="window.openArtistModal('${a}')" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: 10px; padding: 0.75rem; text-align: center; cursor: pointer; transition: transform 0.2s;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-primary), #6366f1); margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700;">
+            ${a.charAt(0)}
+          </div>
+          <div style="font-size: 0.82rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${a}</div>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">Artist</div>
+        </div>
+      `).join('');
+    }
+
+    modal.classList.remove('hidden');
+  };
+
+  window.closeArtistModal = function() {
+    document.getElementById('artist-detail-modal')?.classList.add('hidden');
+  };
+
+  window.toggleFollowCurrentArtist = function() {
+    if (!_currentArtistModalName) return;
+    const followBtn = document.getElementById('artist-follow-text');
+    let followed = [];
+    try { followed = JSON.parse(localStorage.getItem('pulse_followed_artists') || '[]'); } catch(e) {}
+    
+    const key = _currentArtistModalName.toLowerCase();
+    if (followed.includes(key)) {
+      followed = followed.filter(a => a !== key);
+      if (followBtn) followBtn.textContent = 'Follow';
+      showToast(`Unfollowed ${_currentArtistModalName}`, 'info');
+    } else {
+      followed.push(key);
+      if (followBtn) followBtn.textContent = 'Following';
+      showToast(`Now following ${_currentArtistModalName}!`, 'success');
+    }
+    localStorage.setItem('pulse_followed_artists', JSON.stringify(followed));
+  };
+
+  window.playArtistTopTracks = function() {
+    if (!_currentArtistModalName) return;
+    const artistLower = _currentArtistModalName.toLowerCase();
+    const artistTracks = (window.DEMO_CATALOG || []).filter(t => (t.artist || '').toLowerCase().includes(artistLower));
+    if (artistTracks.length > 0) {
+      window.playSpecificTrack(artistTracks[0].id);
+      window.closeArtistModal();
+    }
+  };
+
+  /* ==========================================================================
+     SONG CREDITS SYSTEM
+     ========================================================================== */
+  window.openSongCreditsModal = function(trackId = null) {
+    const track = trackId ? (window.musicService?.getTrack(trackId) || window.TRACKS_REGISTRY?.[trackId]) : state.currentTrack;
+    if (!track) {
+      showToast('Please select or play a song first.', 'warning');
+      return;
+    }
+
+    const modal = document.getElementById('song-credits-modal');
+    if (!modal) return;
+
+    const coverEl = document.getElementById('credits-track-cover');
+    const titleEl = document.getElementById('credits-track-title');
+    const artistEl = document.getElementById('credits-track-artist');
+    const perfEl = document.getElementById('credits-performers');
+    const writEl = document.getElementById('credits-writers');
+    const prodEl = document.getElementById('credits-producers');
+    const srcEl = document.getElementById('credits-source');
+
+    const title = track.title || track.name || 'Song Title';
+    const artist = track.artist || 'Artist';
+
+    if (coverEl) coverEl.src = track.cover || './pulse-logo.png';
+    if (titleEl) titleEl.textContent = title;
+    if (artistEl) artistEl.textContent = `${artist} • ${track.album || 'Single'}`;
+    if (perfEl) perfEl.textContent = artist;
+    if (writEl) writEl.textContent = track.lyricist || artist.split(',')[0] || 'Lyricist';
+    if (prodEl) prodEl.textContent = track.composer || track.producer || 'Pulse Studio Production';
+    if (srcEl) srcEl.textContent = track.source || 'Pulse Lossless Master (320kbps)';
+
+    modal.classList.remove('hidden');
+  };
+
+  window.closeCreditsModal = function() {
+    document.getElementById('song-credits-modal')?.classList.add('hidden');
   };
 
   /* ==========================================================================
@@ -4988,7 +5236,7 @@
   };
 
   window.handleQrScanLogin = function() {
-    window.loginUser('Pushkar (QR Synced)', 'pushkar@pulsemusic.app', 'qr-code', './pulse-logo.png');
+    window.showToast('Please sign in using your email and password or Google account.', 'info'); window.openLoginModal('login');
     window.closeQrCodeModal();
     showToast('Logged in instantly via QR Code sync!', 'success', 4000);
   };
@@ -5306,275 +5554,45 @@
   }
   window.deriveGoogleAvatar = deriveGoogleAvatar;
 
-  window.openGoogleAuthModal = function() {
-    // Hide standard auth modal
-    document.getElementById('auth-modal')?.classList.add('hidden');
-    const gModal = document.getElementById('google-auth-modal');
-    if (!gModal) return;
+  /* ==========================================================================
+     AUTHENTIC GOOGLE OAUTH & SUPABASE AUTH ENGINE
+     ========================================================================== */
+  window.handleGoogleOAuthLogin = async function() {
+    const banner = document.getElementById('auth-status-banner');
+    if (banner) banner.classList.add('hidden');
 
-    // Reset to Step 1
-    const step1 = document.getElementById('google-step-1');
-    const step2 = document.getElementById('google-step-2');
-    const step3 = document.getElementById('google-step-3');
-    const progressBar = document.getElementById('google-progress-bar');
-    const banner = document.getElementById('google-auth-banner');
-
-    if (step1) step1.classList.remove('hidden');
-    if (step2) step2.classList.add('hidden');
-    if (step3) step3.classList.add('hidden');
-    if (progressBar) progressBar.classList.add('hidden');
-    if (banner) {
-      banner.className = 'pulse-auth-banner hidden';
-      banner.innerHTML = '';
-    }
-
-    // Reset field errors and inputs
-    window.clearGoogleFieldError('g-email');
-    window.clearGoogleFieldError('g-password');
-    const emailInput = document.getElementById('g-input-email');
-    const passInput = document.getElementById('g-input-password');
-    if (emailInput) {
-      emailInput.value = '';
-    }
-    if (passInput) {
-      passInput.value = '';
-      passInput.type = 'password';
-    }
-    const showPwdCb = document.getElementById('g-show-pwd-checkbox');
-    if (showPwdCb) showPwdCb.checked = false;
-
-    // Render previously saved Google accounts if any
-    let savedAccounts = [];
-    try {
-      savedAccounts = JSON.parse(localStorage.getItem('pulse_saved_google_accounts') || '[]');
-    } catch(e) {}
-
-    const savedContainer = document.getElementById('google-saved-accounts-container');
-    const savedList = document.getElementById('google-saved-accounts-list');
-    if (savedContainer && savedList) {
-      if (Array.isArray(savedAccounts) && savedAccounts.length > 0) {
-        savedContainer.classList.remove('hidden');
-        savedList.innerHTML = savedAccounts.map((acc, idx) => `
-          <div class="google-saved-account-item" onclick="window.handleGoogleSelectSavedAccountByIndex(${idx})">
-            <img src="${acc.avatar || deriveGoogleAvatar(acc.name, acc.email)}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
-            <div style="min-width: 0; flex: 1;">
-              <div style="font-weight: 500; font-size: 0.9rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${acc.name || 'Google User'}</div>
-              <div style="font-size: 0.78rem; color: #9aa0a6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${acc.email}</div>
-            </div>
-            <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: #9aa0a6;"></i>
-          </div>
-        `).join('');
-      } else {
-        savedContainer.classList.add('hidden');
+    // 1. Supabase Official OAuth Flow
+    if (window.supabaseClient && typeof window.supabaseClient.auth?.signInWithOAuth === 'function') {
+      try {
+        const redirectUrl = window.location.origin + window.location.pathname;
+        const { data, error } = await window.supabaseClient.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo: redirectUrl
+          }
+        });
+        if (error) {
+          window.showAuthError(error.message || 'Google OAuth failed. Please try email login.', 'error');
+        }
+        return;
+      } catch (err) {
+        console.warn('[Pulse Supabase OAuth]', err);
       }
     }
 
-    gModal.classList.remove('hidden');
-    if (emailInput) setTimeout(() => emailInput.focus(), 150);
-  };
-
-  window.closeGoogleAuthModal = function() {
-    const gModal = document.getElementById('google-auth-modal');
-    if (gModal) gModal.classList.add('hidden');
-  };
-
-  window.clearGoogleFieldError = function(field) {
-    const wrapper = document.getElementById(`${field}-wrapper`);
-    const errorEl = document.getElementById(`${field}-error`);
-    if (wrapper) wrapper.classList.remove('has-error');
-    if (errorEl) {
-      errorEl.classList.add('hidden');
-      errorEl.innerHTML = '';
-    }
-  };
-
-  window.showGoogleFieldError = function(field, msg) {
-    const wrapper = document.getElementById(`${field}-wrapper`);
-    const errorEl = document.getElementById(`${field}-error`);
-    if (wrapper) wrapper.classList.add('has-error');
-    if (errorEl) {
-      errorEl.innerHTML = `<i class="fa-solid fa-circle-exclamation" style="margin-right: 4px;"></i> <span>${msg}</span>`;
-      errorEl.classList.remove('hidden');
-    }
-  };
-
-  window.handleGoogleEmailNext = function(e) {
-    if (e) e.preventDefault();
-    window.clearGoogleFieldError('g-email');
-    const input = document.getElementById('g-input-email');
-    const rawVal = input ? input.value.trim() : '';
-
-    if (!rawVal) {
-      window.showGoogleFieldError('g-email', 'Enter an email or phone number');
-      input?.focus();
-      return;
+    // 2. Google Identity Services (GIS) / GSI prompt if available
+    if (window.google?.accounts?.id) {
+      try {
+        window.google.accounts.id.prompt();
+        return;
+      } catch (e) {}
     }
 
-    // Support phone number (e.g. 10 digits) or email
-    const isPhone = /^\+?[0-9\s\-()]{7,15}$/.test(rawVal);
-    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawVal) || rawVal.includes('@');
-
-    if (!isPhone && !isEmail) {
-      window.showGoogleFieldError('g-email', 'Enter a valid email or phone number');
-      input?.focus();
-      return;
-    }
-
-    const email = isPhone ? `${rawVal.replace(/[^0-9]/g, '')}@gmail.com` : (rawVal.includes('@') ? rawVal.toLowerCase() : `${rawVal.toLowerCase()}@gmail.com`);
-    _gPendingEmail = email;
-    _gPendingName = deriveGoogleDisplayName(email);
-    _gPendingAvatar = deriveGoogleAvatar(_gPendingName, _gPendingEmail);
-
-    // Update Step 2 elements
-    const chipEmail = document.getElementById('g-chip-email');
-    const chipAvatar = document.getElementById('g-chip-avatar');
-    const welcomeHeading = document.getElementById('g-welcome-heading');
-
-    if (chipEmail) chipEmail.textContent = _gPendingEmail;
-    if (chipAvatar) chipAvatar.src = _gPendingAvatar;
-    if (welcomeHeading) welcomeHeading.textContent = `Hi ${_gPendingName.split(' ')[0]}`;
-
-    // Switch to Step 2
-    document.getElementById('google-step-1')?.classList.add('hidden');
-    const step2 = document.getElementById('google-step-2');
-    if (step2) step2.classList.remove('hidden');
-
-    const passInput = document.getElementById('g-input-password');
-    if (passInput) {
-      passInput.value = '';
-      setTimeout(() => passInput.focus(), 150);
-    }
+    // 3. Fallback info notice if Supabase credentials need project setup
+    window.showAuthError("Google OAuth is enabled. To connect your Supabase project, configure VITE_SUPABASE_URL in your environment, or sign in directly with email & password below.", "warning");
+    window.switchAuthTab('login');
   };
-
-  window.handleGoogleBackToEmail = function() {
-    window.clearGoogleFieldError('g-password');
-    document.getElementById('google-step-2')?.classList.add('hidden');
-    document.getElementById('google-step-3')?.classList.add('hidden');
-    const step1 = document.getElementById('google-step-1');
-    if (step1) step1.classList.remove('hidden');
-    const emailInput = document.getElementById('g-input-email');
-    if (emailInput) setTimeout(() => emailInput.focus(), 100);
-  };
-
-  window.handleGoogleSelectSavedAccount = function(email, name, avatar) {
-    _gPendingEmail = email;
-    _gPendingName = name || deriveGoogleDisplayName(email);
-    _gPendingAvatar = avatar || deriveGoogleAvatar(_gPendingName, _gPendingEmail);
-
-    const chipEmail = document.getElementById('g-chip-email');
-    const chipAvatar = document.getElementById('g-chip-avatar');
-    const welcomeHeading = document.getElementById('g-welcome-heading');
-
-    if (chipEmail) chipEmail.textContent = _gPendingEmail;
-    if (chipAvatar) chipAvatar.src = _gPendingAvatar;
-    if (welcomeHeading) welcomeHeading.textContent = `Hi ${_gPendingName.split(' ')[0]}`;
-
-    document.getElementById('google-step-1')?.classList.add('hidden');
-    const step2 = document.getElementById('google-step-2');
-    if (step2) step2.classList.remove('hidden');
-
-    const passInput = document.getElementById('g-input-password');
-    if (passInput) {
-      passInput.value = '';
-      setTimeout(() => passInput.focus(), 150);
-    }
-  };
-
-  window.handleGoogleSelectSavedAccountByIndex = function(idx) {
-    try {
-      const saved = JSON.parse(localStorage.getItem('pulse_saved_google_accounts') || '[]');
-      if (Array.isArray(saved) && saved[idx]) {
-        const acc = saved[idx];
-        window.handleGoogleSelectSavedAccount(acc.email, acc.name, acc.avatar);
-      }
-    } catch (e) {}
-  };
-
-  window.toggleGooglePasswordVisibility = function(forcedState = null) {
-    const input = document.getElementById('g-input-password');
-    const icon = document.getElementById('g-eye-icon');
-    const checkbox = document.getElementById('g-show-pwd-checkbox');
-    if (!input) return;
-
-    const isVisible = forcedState !== null ? forcedState : (input.type === 'text');
-    const shouldShow = forcedState !== null ? forcedState : !isVisible;
-
-    input.type = shouldShow ? 'text' : 'password';
-    if (icon) icon.className = shouldShow ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
-    if (checkbox && forcedState === null) checkbox.checked = shouldShow;
-  };
-
-  window.handleGooglePasswordNext = async function(e) {
-    if (e) e.preventDefault();
-    window.clearGoogleFieldError('g-password');
-    const passInput = document.getElementById('g-input-password');
-    const password = passInput ? passInput.value : '';
-
-    if (!password) {
-      window.showGoogleFieldError('g-password', 'Enter a password');
-      passInput?.focus();
-      return;
-    }
-
-    if (password.length < 6) {
-      window.showGoogleFieldError('g-password', 'Wrong password. Try again (min. 6 characters).');
-      passInput?.focus();
-      return;
-    }
-
-    const progressBar = document.getElementById('google-progress-bar');
-    const submitBtn = document.getElementById('btn-g-password-next');
-    if (progressBar) progressBar.classList.remove('hidden');
-    if (submitBtn) submitBtn.disabled = true;
-
-    // Save to user's saved Google accounts list for instant 1-tap next time
-    try {
-      let saved = JSON.parse(localStorage.getItem('pulse_saved_google_accounts') || '[]');
-      if (!Array.isArray(saved)) saved = [];
-      const existingIdx = saved.findIndex(a => a.email.toLowerCase() === _gPendingEmail.toLowerCase());
-      const accObj = { email: _gPendingEmail, name: _gPendingName, avatar: _gPendingAvatar, lastLogin: Date.now() };
-      if (existingIdx !== -1) {
-        saved[existingIdx] = accObj;
-      } else {
-        saved.unshift(accObj);
-      }
-      localStorage.setItem('pulse_saved_google_accounts', JSON.stringify(saved.slice(0, 5)));
-    } catch(err) {}
-
-    // Post to Server API if backend available
-    try {
-      fetch('/api/auth/google', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: _gPendingEmail, name: _gPendingName, avatar: _gPendingAvatar, password })
-      }).catch(() => {});
-    } catch(e) {}
-
-    // Smooth transition
-    setTimeout(() => {
-      if (progressBar) progressBar.classList.add('hidden');
-      if (submitBtn) submitBtn.disabled = false;
-      window.loginUser(_gPendingName, _gPendingEmail, 'google', _gPendingAvatar);
-      window.closeGoogleAuthModal();
-      window.showToast?.(`Signed in with Google as ${_gPendingName}!`, 'success', 4000);
-    }, 450);
-  };
-
-  window.handleGoogleForgotEmail = function(e) {
-    if (e) e.preventDefault();
-    window.showToast?.('Enter your Google email address or mobile number.', 'info', 4000);
-  };
-
-  window.handleGoogleForgotPassword = function(e) {
-    if (e) e.preventDefault();
-    window.showToast?.(`Password reset link dispatched for ${_gPendingEmail || 'your Google account'}.`, 'success', 4000);
-  };
-
-  window.handleGoogleCreateAccount = function(e) {
-    if (e) e.preventDefault();
-    window.closeGoogleAuthModal();
-    window.openSignupModal();
-  };
+  window.openGoogleAuthModal = window.handleGoogleOAuthLogin;
 
   /* --------------------------------------------------------------------------
      AUTHENTICATION MODAL UI CONTROLLERS
