@@ -43,5 +43,21 @@
     "salt": "fedeb1055b6a4c6db50219e805909868",
     "created_at": 1786753410.850571,
     "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=alex.test.1786753410%40example.com"
+  },
+  "pushkar.hiremath@gmail.com": {
+    "name": "Pushkar Hiremath",
+    "email": "pushkar.hiremath@gmail.com",
+    "password": "google_secure_password_123",
+    "provider": "google",
+    "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Pushkar",
+    "lastLogin": 1786874554.9429872
+  },
+  "pushkarhiremath68@gmail.com": {
+    "name": "Pushkarhiremath68",
+    "email": "pushkarhiremath68@gmail.com",
+    "password": "test_password_123",
+    "provider": "email",
+    "avatar": "https://unavatar.io/pushkarhiremath68%40gmail.com?fallback=https%3A//api.dicebear.com/7.x/initials/svg%3Fseed%3DPushkarhiremath68%26backgroundColor%3DEA4335%26textColor%3Dffffff",
+    "createdAt": 1786874845.6434495
   }
 }

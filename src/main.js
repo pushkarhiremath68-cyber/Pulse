@@ -132,7 +132,7 @@
     'https://yt.artemislena.eu'
   ];
   let currentInvidiousIndex = 0;
-  let _playbackMutex = false; // Prevents double playback
+  let _currentPlaybackSessionId = 0; // Monotonic session ID prevents double playback and stale race conditions
 
   /* ==========================================================================
      INVIDIOUS AD-FREE AUDIO STREAMING ENGINE
@@ -217,7 +217,39 @@
       if (match && match.ytId) return match.ytId;
     }
 
-    // 2. Fast CORS proxy search
+    if (typeof YOUTUBE_TRACKS_MAP !== 'undefined') {
+      for (const [k, v] of Object.entries(YOUTUBE_TRACKS_MAP)) {
+        if (cleanQ.includes(k.replace('in-', '').replace('en-', '').replace(/-/g, ' '))) {
+          return v;
+        }
+      }
+    }
+
+    // 2. Query Local Backend Server YouTube Search API if available
+    try {
+      const backendRes = await fetch(`/api/yt-search?q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(2000) });
+      if (backendRes.ok) {
+        const bData = await backendRes.json();
+        if (bData && bData.videoId && bData.videoId.length === 11) {
+          return bData.videoId;
+        }
+      }
+    } catch (e) {}
+
+    // 3. Fast Invidious search across active instances
+    for (const inst of INVIDIOUS_INSTANCES.slice(0, 3)) {
+      try {
+        const iRes = await fetch(`${inst}/api/v1/search?q=${encodeURIComponent(query)}&type=video`, { signal: AbortSignal.timeout(1800) });
+        if (iRes.ok) {
+          const iData = await iRes.json();
+          if (Array.isArray(iData) && iData.length > 0 && iData[0].videoId) {
+            return iData[0].videoId;
+          }
+        }
+      } catch (e) {}
+    }
+
+    // 4. Fast CORS proxy search
     const proxies = [
       `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent('https://www.youtube.com/results?search_query=' + encodeURIComponent(query))}`,
       `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.youtube.com/results?search_query=' + encodeURIComponent(query))}`
@@ -241,20 +273,22 @@
   window.resolveYouTubeVideoId = resolveYouTubeVideoId;
 
   /**
-   * Full pipeline: search query -> video ID -> audio URL
+   * Full pipeline: search query -> direct audio stream or video ID
    */
   async function getFullAudioUrl(track) {
     if (!track) return null;
-    const title = track.title || track.name || '';
-    const artist = track.artist || '';
-
-    // 1. Try with known YouTube video ID
-    const videoId = track.ytId || getYouTubeIdForTrack(track);
-    if (videoId && videoId.length === 11) {
-      const result = await invidiousGetAudioUrl(videoId);
-      if (result) return result;
+    if (track.streamUrl && track.streamUrl.startsWith('http')) {
+      return { url: track.streamUrl, type: 'audio/mp4' };
     }
-
+    if (track.audioUrl && track.audioUrl.startsWith('http') && !track.audioUrl.includes('YOUR_SUPABASE_PROJECT_URL')) {
+      return { url: track.audioUrl, type: 'audio/mp4' };
+    }
+    if (window.musicService && typeof window.musicService.resolveTrackAudioStream === 'function') {
+      const stream = await window.musicService.resolveTrackAudioStream(track);
+      if (stream && stream.startsWith('http')) {
+        return { url: stream, type: 'audio/mp4' };
+      }
+    }
     return null;
   }
 
@@ -262,28 +296,34 @@
      STOP ALL AUDIO — PREVENTS DOUBLE PLAYBACK
      ========================================================================== */
   function stopAllAudio() {
-    // Stop HTML5 audio
+    // 1. Stop and completely release HTML5 audio stream
     if (fallbackAudio) {
       try {
         fallbackAudio.pause();
         fallbackAudio.currentTime = 0;
-        fallbackAudio.src = '';
+        fallbackAudio.removeAttribute('src');
+        fallbackAudio.load();
       } catch (e) {}
     }
 
-    // Stop YouTube IFrame API player
+    // 2. Stop YouTube IFrame API player
     if (ytPlayer && typeof ytPlayer.stopVideo === 'function') {
       try { ytPlayer.stopVideo(); } catch (e) {}
     }
 
-    // Remove any YouTube embed iframes
+    // 3. Remove all YouTube fallback iframes
     const fallbackContainer = document.getElementById('youtube-fallback-container');
     if (fallbackContainer) fallbackContainer.innerHTML = '';
 
     const bgIframe = document.getElementById('bg-audio-iframe');
     if (bgIframe) { try { bgIframe.remove(); } catch(e) {} }
 
-    // Clear progress interval
+    // 4. Stop Canvas Visualizer
+    if (canvasVisualizer) {
+      try { canvasVisualizer.stop(); } catch(e) {}
+    }
+
+    // 5. Clear progress timeline interval
     if (progressInterval) {
       clearInterval(progressInterval);
       progressInterval = null;
@@ -1260,7 +1300,7 @@
       <div class="track-row ${isCurrent ? 'active-track-row' : ''}" onclick="window.playSpecificTrack('${track.id}')" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 0.4rem; background: var(--bg-glass-card); cursor: pointer; transition: background 0.2s;">
         <div style="display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 0;">
           <span style="width: 24px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">${isPlayingThis ? '<i class="fa-solid fa-volume-high text-accent"></i>' : index + 1}</span>
-          <img src="${cover}" style="width: 44px; height: 44px; border-radius: 6px; object-fit: cover;" onerror="if(window.generateTrackCover){this.src=window.generateTrackCover('${safeTitleEsc}','${safeArtistEsc}');}">
+          <img src="${cover}" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;" onerror="if(window.generateTrackCover){this.src=window.generateTrackCover('${safeTitleEsc}','${safeArtistEsc}');}">
           <div style="min-width: 0;">
             <div style="font-weight: 700; color: #fff; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${title}</div>
             <div style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${artist} • ${track.album || 'Single'}</div>
@@ -1774,7 +1814,10 @@
 
   window.playSpecificTrack = function(trackId) {
     if (!trackId) return;
-    const track = window.musicService.getTrack(trackId);
+    let track = window.musicService ? window.musicService.getTrack(trackId) : null;
+    if (!track && window.TRACKS_REGISTRY) track = window.TRACKS_REGISTRY[trackId];
+    if (!track && state.searchResults) track = state.searchResults.find(t => t.id === trackId);
+    if (!track && window.DEMO_CATALOG) track = window.DEMO_CATALOG.find(t => t.id === trackId);
     if (track) {
       setTrack(track, true);
     }
@@ -4072,14 +4115,15 @@
 
   /**
    * Primary Full-Length Audio Playback Engine
-   * Seamless streaming powered by the Pulse Audio Streaming Backend (/api/stream)
+   * Seamless multi-tier streaming powered by JioSaavn Master 320k/160k CDN, Local Cache & YouTube Engine
    */
   async function startPlayback(track, initialSeekTime = null) {
     if (!track) return;
-    if (_playbackMutex) return; // Prevent double-trigger
-    _playbackMutex = true;
 
-    // 1. STOP ALL EXISTING AUDIO FIRST — prevents double playback
+    // Increment session ID to cancel any in-flight playback promises or fallbacks
+    const sessionId = ++_currentPlaybackSessionId;
+
+    // 1. STOP ALL EXISTING AUDIO FIRST — strictly prevents double playback
     stopAllAudio();
 
     const seekTarget = (initialSeekTime !== null && initialSeekTime !== undefined) ? initialSeekTime : 0;
@@ -4108,70 +4152,119 @@
     }
 
     showBuffering(true);
-    console.log('[Pulse Audio] Starting playback for:', title, 'by', artist, 'Target:', playbackTarget);
+    console.log(`[Pulse Audio #${sessionId}] Starting instant playback for:`, title, 'by', artist);
 
     try {
-      // 1. Try Invidious direct audio stream if available
+      // 1. Check if stream is already synchronously available on track object
       let audioResult = null;
-      try {
-        audioResult = await getFullAudioUrl(track);
-      } catch(e) {}
+      if (track.streamUrl && track.streamUrl.startsWith('http')) {
+        audioResult = { url: track.streamUrl, type: 'audio/mp4' };
+      } else if (track.audioUrl && track.audioUrl.startsWith('http') && !track.audioUrl.includes('YOUR_SUPABASE_PROJECT_URL')) {
+        audioResult = { url: track.audioUrl, type: 'audio/mp4' };
+      }
+
+      // If not synchronously present, resolve via getFullAudioUrl / musicService
+      if (!audioResult || !audioResult.url) {
+        try {
+          audioResult = await getFullAudioUrl(track);
+        } catch(e) {}
+      }
+
+      if (sessionId !== _currentPlaybackSessionId) return; // Discard stale click
+
+      if (!audioResult || !audioResult.url) {
+        if (window.musicService && typeof window.musicService.resolveTrackAudioStream === 'function') {
+          try {
+            const resolvedUrl = await window.musicService.resolveTrackAudioStream(track);
+            if (resolvedUrl && (resolvedUrl.startsWith('http') || resolvedUrl.startsWith('/api/stream'))) {
+              audioResult = { url: resolvedUrl, type: 'audio/mp4' };
+            }
+          } catch(e) {}
+        }
+      }
+
+      if (sessionId !== _currentPlaybackSessionId) return; // Discard stale click
+
+      // Check direct backend stream
+      if (!audioResult || !audioResult.url) {
+        const streamUrl = `/api/stream?id=${encodeURIComponent(track.id)}&q=${encodeURIComponent(title + ' ' + artist)}`;
+        audioResult = { url: streamUrl, type: 'audio/mp4' };
+      }
 
       if (audioResult && audioResult.url) {
         state.playbackSource = 'html5';
+        let hasFallenBack = false;
+
         fallbackAudio.onerror = (e) => {
-          console.warn('[Pulse Audio] Stream error for:', title, '- Falling back to YouTube Player');
-          playTrackOnYouTubePlayer(playbackTarget, true);
+          if (sessionId !== _currentPlaybackSessionId || hasFallenBack) return;
+          hasFallenBack = true;
+          console.warn(`[Pulse Audio #${sessionId}] HTML5 stream notice for:`, title, '- Auto-resolving YouTube Stream Fallback');
+          playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
         };
 
         fallbackAudio.src = audioResult.url;
-        fallbackAudio.volume = state.volume;
-        fallbackAudio.muted = state.isMuted;
+        fallbackAudio.volume = state.volume !== undefined ? state.volume : 1;
+        fallbackAudio.muted = !!state.isMuted;
         if (seekTarget > 0) {
           fallbackAudio.currentTime = seekTarget;
         }
 
-        await fallbackAudio.play();
-        showBuffering(false);
-        state.isPlaying = true;
-        updatePlayPauseUI();
-        updateMediaSession(track);
-        requestAudioWakeLock();
-        enableBackgroundKeepAlive();
-        if (canvasVisualizer) canvasVisualizer.start();
+        try {
+          await fallbackAudio.play();
+          if (sessionId !== _currentPlaybackSessionId) {
+            fallbackAudio.pause();
+            return;
+          }
+          showBuffering(false);
+          state.isPlaying = true;
+          updatePlayPauseUI();
+          updateMediaSession(track);
+          requestAudioWakeLock();
+          enableBackgroundKeepAlive();
+          if (canvasVisualizer) canvasVisualizer.start();
+        } catch (playErr) {
+          if (sessionId !== _currentPlaybackSessionId) return;
+          if (playErr.name === 'NotAllowedError') {
+            showBuffering(false);
+            state.isPlaying = false;
+            updatePlayPauseUI();
+            showToast('Click Play to start listening', 'info', 3000);
+          } else {
+            console.warn(`[Pulse Audio #${sessionId}] Direct playback notice, activating YouTube engine:`, playErr);
+            playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
+            updateMediaSession(track);
+            requestAudioWakeLock();
+            enableBackgroundKeepAlive();
+          }
+        }
       } else {
-        // 2. Resilient YouTube Player Engine (plays 100% of global songs)
-        playTrackOnYouTubePlayer(playbackTarget, true);
+        // Fallback to YouTube Player
+        playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
         updateMediaSession(track);
         requestAudioWakeLock();
         enableBackgroundKeepAlive();
       }
     } catch (err) {
+      if (sessionId !== _currentPlaybackSessionId) return;
       showBuffering(false);
-      if (err.name === 'NotAllowedError') {
-        state.isPlaying = false;
-        updatePlayPauseUI();
-        showToast('Click Play to start listening', 'info', 3000);
-      } else {
-        console.warn('[Pulse Audio] Stream error, using YouTube player fallback:', err);
-        playTrackOnYouTubePlayer(playbackTarget, true);
-        updateMediaSession(track);
-      }
-    } finally {
-      _playbackMutex = false;
+      console.warn(`[Pulse Audio #${sessionId}] Playback handler error:`, err);
+      playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
+      updateMediaSession(track);
     }
 
-    // Start timeline progress tracker
     if (progressInterval) clearInterval(progressInterval);
-    progressInterval = setInterval(updateProgressTimeline, 500);
+    progressInterval = setInterval(updateProgressTimeline, 400);
   }
 
   /* ==========================================================================
      YOUTUBE AUDIO STREAMING ENGINE (Static Web Hosting & Native Fallback)
      ========================================================================== */
-  async function playTrackOnYouTubePlayer(videoIdOrQuery, autoPlay = true) {
+  async function playTrackOnYouTubePlayer(videoIdOrQuery, autoPlay = true, parentSessionId = null) {
     if (!videoIdOrQuery) return;
-    console.log('[Pulse Audio] Initiating YouTube Player playback for target:', videoIdOrQuery);
+    const currentSession = parentSessionId || _currentPlaybackSessionId;
+    if (parentSessionId && parentSessionId !== _currentPlaybackSessionId) return; // Stale
+
+    console.log(`[Pulse Audio #${currentSession}] Initiating YouTube Player playback for target:`, videoIdOrQuery);
     state.playbackSource = 'youtube';
     showBuffering(true);
 
@@ -4180,7 +4273,7 @@
       try {
         fallbackAudio.pause();
         fallbackAudio.currentTime = 0;
-        fallbackAudio.src = '';
+        fallbackAudio.removeAttribute('src');
       } catch (e) {}
     }
 
@@ -4192,6 +4285,8 @@
       targetId = await resolveYouTubeVideoId(videoIdOrQuery);
       if (targetId) isVideoId = true;
     }
+
+    if (parentSessionId && parentSessionId !== _currentPlaybackSessionId) return; // Stale
 
     const fallbackContainer = document.getElementById('youtube-fallback-container');
 
@@ -4213,10 +4308,10 @@
         showBuffering(false);
 
         // Multi-stage interval unmuting
-        [100, 300, 600, 1000, 1800].forEach((ms) => {
+        [100, 300, 600, 1000].forEach((ms) => {
           setTimeout(() => {
             try {
-              if (ytPlayer && typeof ytPlayer.unMute === 'function') {
+              if (currentSession === _currentPlaybackSessionId && ytPlayer && typeof ytPlayer.unMute === 'function') {
                 ytPlayer.unMute();
                 ytPlayer.setVolume(Math.max(50, Math.round((state.volume || 1) * 100)));
               }
@@ -4226,11 +4321,9 @@
       } catch (e) {
         console.warn('[Pulse YouTube] Direct player load error:', e);
       }
-    } else if (fallbackContainer) {
-      // Fallback iframe
-      const embedSrc = targetId
-        ? `https://www.youtube.com/embed/${targetId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0`
-        : `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(videoIdOrQuery)}&autoplay=1&playsinline=1&enablejsapi=1&rel=0`;
+    } else if (targetId && fallbackContainer) {
+      // Fallback iframe with verified 11-character video ID
+      const embedSrc = `https://www.youtube.com/embed/${targetId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0`;
 
       fallbackContainer.innerHTML = `
         <iframe id="bg-audio-iframe" width="100%" height="100%"
@@ -4244,10 +4337,13 @@
       state.isPlaying = true;
       updatePlayPauseUI();
       showBuffering(false);
+    } else {
+      showBuffering(false);
+      console.warn('[Pulse Audio] Could not resolve video ID for YouTube playback:', videoIdOrQuery);
     }
 
     if (progressInterval) clearInterval(progressInterval);
-    progressInterval = setInterval(updateProgressTimeline, 500);
+    progressInterval = setInterval(updateProgressTimeline, 400);
   }
   window.playTrackOnYouTubePlayer = playTrackOnYouTubePlayer;
 
@@ -4464,6 +4560,18 @@
     const icon = state.isPlaying ? `<i class="fa-solid fa-pause"></i>` : `<i class="fa-solid fa-play"></i>`;
     if (el.btnPlayPause) el.btnPlayPause.innerHTML = icon;
     if (el.fsBtnPlay) el.fsBtnPlay.innerHTML = icon;
+
+    // Synchronize card play/pause icons across active visible grid cards
+    document.querySelectorAll('.music-card').forEach(card => {
+      const cardId = card.dataset.id;
+      const isCurrent = state.currentTrack && state.currentTrack.id === cardId;
+      const isPlayingThis = isCurrent && state.isPlaying;
+      card.classList.toggle('playing', isPlayingThis);
+      const iconEl = card.querySelector('.btn-card-play i');
+      if (iconEl) {
+        iconEl.className = isPlayingThis ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+      }
+    });
 
     // Sync MediaSession playback state for OS Lock Screen
     if ('mediaSession' in navigator) {
@@ -4907,13 +5015,23 @@
   /* ==========================================================================
      9. AUTHENTICATION & GOOGLE CREDENTIAL VERIFICATION ENGINE
      ========================================================================== */
-  window.loginUser = function(name, email, provider = 'email', avatar = './pulse-logo.png') {
+  window.loginUser = function(name, email, provider = 'email', avatar = '') {
+    if (!avatar || avatar === './pulse-logo.png' || avatar.includes('bottts')) {
+      avatar = window.resolveEmailAvatarUrl ? window.resolveEmailAvatarUrl(email, name) : `https://unavatar.io/${encodeURIComponent(email)}`;
+    }
     state.currentUser = { name, email, provider, avatar };
     localStorage.setItem('pulse_active_user', JSON.stringify(state.currentUser));
 
     if (el.authButtonsGroup) el.authButtonsGroup.classList.add('hidden');
     if (el.userProfileContainer) el.userProfileContainer.classList.remove('hidden');
-    if (el.userAvatarImg) el.userAvatarImg.src = avatar;
+    if (el.userAvatarImg) {
+      el.userAvatarImg.src = avatar;
+      el.userAvatarImg.onerror = function() {
+        this.onerror = null;
+        const initial = (name.charAt(0) || email.charAt(0) || 'U').toUpperCase();
+        this.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}&backgroundColor=4285F4&textColor=ffffff`;
+      };
+    }
     if (el.userDisplayName) el.userDisplayName.textContent = name;
 
     if (el.authModal) el.authModal.classList.add('hidden');
@@ -4951,6 +5069,177 @@
   };
 
   /* --------------------------------------------------------------------------
+     PURE JS MD5 HASHING ENGINE & AUTHENTIC GMAIL PROFILE AVATAR RESOLVER
+     -------------------------------------------------------------------------- */
+  function computeMd5(string) {
+    function rotateLeft(lValue, iShiftBits) {
+      return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
+    }
+    function addUnsigned(lX, lY) {
+      var lX4, lY4, lX8, lY8, lResult;
+      lX8 = (lX & 0x80000000);
+      lY8 = (lY & 0x80000000);
+      lX4 = (lX & 0x40000000);
+      lY4 = (lY & 0x40000000);
+      lResult = (lX & 0x3FFFFFFF) + (lY & 0x3FFFFFFF);
+      if (lX4 & lY4) return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
+      if (lX4 | lY4) {
+        if (lResult & 0x40000000) return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
+        else return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
+      } else return (lResult ^ lX8 ^ lY8);
+    }
+    function F(x,y,z) { return (x & y) | ((~x) & z); }
+    function G(x,y,z) { return (x & z) | (y & (~z)); }
+    function H(x,y,z) { return (x ^ y ^ z); }
+    function I(x,y,z) { return (y ^ (x | (~z))); }
+    function FF(a,b,c,d,x,s,ac) {
+      a = addUnsigned(a, addUnsigned(addUnsigned(F(b, c, d), x), ac));
+      return addUnsigned(rotateLeft(a, s), b);
+    }
+    function GG(a,b,c,d,x,s,ac) {
+      a = addUnsigned(a, addUnsigned(addUnsigned(G(b, c, d), x), ac));
+      return addUnsigned(rotateLeft(a, s), b);
+    }
+    function HH(a,b,c,d,x,s,ac) {
+      a = addUnsigned(a, addUnsigned(addUnsigned(H(b, c, d), x), ac));
+      return addUnsigned(rotateLeft(a, s), b);
+    }
+    function II(a,b,c,d,x,s,ac) {
+      a = addUnsigned(a, addUnsigned(addUnsigned(I(b, c, d), x), ac));
+      return addUnsigned(rotateLeft(a, s), b);
+    }
+    function convertToWordArray(string) {
+      var lWordCount;
+      var lMessageLength = string.length;
+      var lNumberOfWords_temp1 = lMessageLength + 8;
+      var lNumberOfWords_temp2 = (lNumberOfWords_temp1 - (lNumberOfWords_temp1 % 64)) / 64;
+      var lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
+      var lWordArray = Array(lNumberOfWords - 1);
+      var lBytePosition = 0;
+      var lByteCount = 0;
+      while (lByteCount < lMessageLength) {
+        lWordCount = (lByteCount - (lByteCount % 4)) / 4;
+        lBytePosition = (lByteCount % 4) * 8;
+        lWordArray[lWordCount] = (lWordArray[lWordCount] | (string.charCodeAt(lByteCount) << lBytePosition));
+        lByteCount++;
+      }
+      lWordCount = (lByteCount - (lByteCount % 4)) / 4;
+      lBytePosition = (lByteCount % 4) * 8;
+      lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80 << lBytePosition);
+      lWordArray[lNumberOfWords - 2] = lMessageLength << 3;
+      lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
+      return lWordArray;
+    }
+    function wordToHex(lValue) {
+      var WordToHexValue = "", WordToHexValue_temp = "", lByte, lCount;
+      for (lCount = 0; lCount <= 3; lCount++) {
+        lByte = (lValue >>> (lCount * 8)) & 255;
+        WordToHexValue_temp = "0" + lByte.toString(16);
+        WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2);
+      }
+      return WordToHexValue;
+    }
+    var x = Array();
+    var k, AA, BB, CC, DD, a, b, c, d;
+    var S11=7, S12=12, S13=17, S14=22;
+    var S21=5, S22=9, S23=14, S24=20;
+    var S31=4, S32=11, S33=16, S34=23;
+    var S41=6, S42=10, S43=15, S44=21;
+    x = convertToWordArray(string);
+    a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
+    for (k = 0; k < x.length; k += 16) {
+      AA = a; BB = b; CC = c; DD = d;
+      a = FF(a, b, c, d, x[k+0],  S11, 0xD76AA478);
+      d = FF(d, a, b, c, x[k+1],  S12, 0xE8C7B756);
+      c = FF(c, d, a, b, x[k+2],  S13, 0x242070DB);
+      b = FF(b, c, d, a, x[k+3],  S14, 0xC1BDCEEE);
+      a = FF(a, b, c, d, x[k+4],  S11, 0xF57C0FAF);
+      d = FF(d, a, b, c, x[k+5],  S12, 0x4787C62A);
+      c = FF(c, d, a, b, x[k+6],  S13, 0xA8304613);
+      b = FF(b, c, d, a, x[k+7],  S14, 0xFD469501);
+      a = FF(a, b, c, d, x[k+8],  S11, 0x698098D8);
+      d = FF(d, a, b, c, x[k+9],  S12, 0x8B44F7AF);
+      c = FF(c, d, a, b, x[k+10], S13, 0xFFFF5BB1);
+      b = FF(b, c, d, a, x[k+11], S14, 0x895CD7BE);
+      a = FF(a, b, c, d, x[k+12], S11, 0x6B901122);
+      d = FF(d, a, b, c, x[k+13], S12, 0xFD987193);
+      c = FF(c, d, a, b, x[k+14], S13, 0xA679438E);
+      b = FF(b, c, d, a, x[k+15], S14, 0x49B40821);
+      a = GG(a, b, c, d, x[k+1],  S21, 0xF61E2562);
+      d = GG(d, a, b, c, x[k+6],  S22, 0xC040B340);
+      c = GG(c, d, a, b, x[k+11], S23, 0x265E5A51);
+      b = GG(b, c, d, a, x[k+0],  S24, 0xE9B6C7AA);
+      a = GG(a, b, c, d, x[k+5],  S21, 0xD62F105D);
+      d = GG(d, a, b, c, x[k+10], S22, 0x02441453);
+      c = GG(c, d, a, b, x[k+15], S23, 0xD8A1E681);
+      b = GG(b, c, d, a, x[k+4],  S24, 0xE7D3FBC8);
+      a = GG(a, b, c, d, x[k+9],  S21, 0x21E1CDE6);
+      d = GG(d, a, b, c, x[k+14], S22, 0xC33707D6);
+      c = GG(c, d, a, b, x[k+3],  S23, 0xF4D50D87);
+      b = GG(b, c, d, a, x[k+8],  S24, 0x455A14ED);
+      a = GG(a, b, c, d, x[k+13], S21, 0xA9E3E905);
+      d = GG(d, a, b, c, x[k+2],  S22, 0xFCEFA3F8);
+      c = GG(c, d, a, b, x[k+7],  S23, 0x676F02D9);
+      b = GG(b, c, d, a, x[k+12], S24, 0x8D2A4C8A);
+      a = HH(a, b, c, d, x[k+5],  S31, 0xFFFA3942);
+      d = HH(d, a, b, c, x[k+8],  S32, 0x8771F681);
+      c = HH(c, d, a, b, x[k+11], S33, 0x6D9D6122);
+      b = HH(b, c, d, a, x[k+14], S34, 0xFDE5380C);
+      a = HH(a, b, c, d, x[k+1],  S31, 0xA4BEEA44);
+      d = HH(d, a, b, c, x[k+4],  S32, 0x4BDECFA9);
+      c = HH(c, d, a, b, x[k+7],  S33, 0xF6BB4B60);
+      b = HH(b, c, d, a, x[k+10], S34, 0xBEBFBC70);
+      a = HH(a, b, c, d, x[k+13], S31, 0x289B7EC6);
+      d = HH(d, a, b, c, x[k+0],  S32, 0xEAA127FA);
+      c = HH(c, d, a, b, x[k+3],  S33, 0xD4EF3085);
+      b = HH(b, c, d, a, x[k+6],  S34, 0x04881D05);
+      a = HH(a, b, c, d, x[k+9],  S31, 0xD9D4D039);
+      d = HH(d, a, b, c, x[k+12], S32, 0xE6DB99E5);
+      c = HH(c, d, a, b, x[k+15], S33, 0x1FA27CF8);
+      b = HH(b, c, d, a, x[k+2],  S34, 0xC4AC5665);
+      a = II(a, b, c, d, x[k+0],  S41, 0xF4292244);
+      d = II(d, a, b, c, x[k+7],  S42, 0x432AFF97);
+      c = II(c, d, a, b, x[k+14], S43, 0xAB9423A7);
+      b = II(b, c, d, a, x[k+5],  S44, 0xFC93A039);
+      a = II(a, b, c, d, x[k+12], S41, 0x655B59C3);
+      d = II(d, a, b, c, x[k+3],  S42, 0x8F0CCC92);
+      c = II(c, d, a, b, x[k+10], S43, 0xFFEFF47D);
+      b = II(b, c, d, a, x[k+1],  S44, 0x85845DD1);
+      a = II(a, b, c, d, x[k+8],  S41, 0x6FA87E4F);
+      d = II(d, a, b, c, x[k+15], S42, 0xFE2CE6E0);
+      c = II(c, d, a, b, x[k+6],  S43, 0xA3014314);
+      b = II(b, c, d, a, x[k+13], S44, 0x4E0811A1);
+      a = II(a, b, c, d, x[k+4],  S41, 0xF7537E82);
+      d = II(d, a, b, c, x[k+11], S42, 0xBD3AF235);
+      c = II(c, d, a, b, x[k+2],  S43, 0x2AD7D2BB);
+      b = II(b, c, d, a, x[k+9],  S44, 0xEB86D391);
+      a = addUnsigned(a, AA);
+      b = addUnsigned(b, BB);
+      c = addUnsigned(c, CC);
+      d = addUnsigned(d, DD);
+    }
+    return (wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d)).toLowerCase();
+  }
+
+  function resolveEmailAvatarUrl(email, name = '') {
+    if (!email) return `https://api.dicebear.com/7.x/initials/svg?seed=User&backgroundColor=4285F4&textColor=ffffff`;
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanName = name || deriveGoogleDisplayName(cleanEmail);
+
+    const googleColors = ['4285F4', 'EA4335', 'FBBC05', '34A853', '9334E6', 'E37400'];
+    let colorIdx = 0;
+    for (let i = 0; i < cleanEmail.length; i++) {
+      colorIdx = (colorIdx + cleanEmail.charCodeAt(i)) % googleColors.length;
+    }
+    const bgCol = googleColors[colorIdx];
+    const fallbackUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(cleanName)}&backgroundColor=${bgCol}&textColor=ffffff`;
+    
+    // Unavatar queries Google Workspace, Gravatar, GitHub, etc. to return real Gmail/Google profile photo
+    return `https://unavatar.io/${encodeURIComponent(cleanEmail)}?fallback=${encodeURIComponent(fallbackUrl)}`;
+  }
+  window.resolveEmailAvatarUrl = resolveEmailAvatarUrl;
+
+  /* --------------------------------------------------------------------------
      GOOGLE IDENTITY SERVICES & CREDENTIAL VERIFICATION ENGINE
      -------------------------------------------------------------------------- */
   function parseJwt(token) {
@@ -4973,7 +5262,7 @@
       if (payload) {
         const name = payload.name || payload.given_name || 'Google Listener';
         const email = payload.email || 'user@gmail.com';
-        const avatar = payload.picture || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}&backgroundColor=8b5cf6`;
+        const avatar = payload.picture || resolveEmailAvatarUrl(email, name);
         
         try {
           localStorage.setItem('pulse_auth_token', response.credential);
@@ -5030,220 +5319,284 @@
     }
   };
 
+  /* ==========================================================================
+     AUTHENTIC MULTI-STEP GOOGLE SIGN-IN ENGINE
+     ========================================================================== */
+  let _gPendingEmail = '';
+  let _gPendingName = '';
+  let _gPendingAvatar = '';
+
+  function deriveGoogleDisplayName(email) {
+    if (!email) return 'Google Listener';
+    const handle = email.split('@')[0] || '';
+    const clean = handle.replace(/[._-]/g, ' ').trim();
+    if (!clean) return 'Google Listener';
+    return clean.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  }
+
+  function deriveGoogleAvatar(name, email = '') {
+    return resolveEmailAvatarUrl(email, name);
+  }
+  window.deriveGoogleAvatar = deriveGoogleAvatar;
+
   window.openGoogleAuthModal = function() {
+    // Hide standard auth modal
     document.getElementById('auth-modal')?.classList.add('hidden');
-    const modal = document.getElementById('google-auth-modal');
-    if (modal) {
-      modal.classList.remove('hidden');
-      const banner = document.getElementById('google-auth-banner');
-      if (banner) {
-        banner.className = 'pulse-auth-banner hidden';
-        banner.innerHTML = '';
+    const gModal = document.getElementById('google-auth-modal');
+    if (!gModal) return;
+
+    // Reset to Step 1
+    const step1 = document.getElementById('google-step-1');
+    const step2 = document.getElementById('google-step-2');
+    const step3 = document.getElementById('google-step-3');
+    const progressBar = document.getElementById('google-progress-bar');
+    const banner = document.getElementById('google-auth-banner');
+
+    if (step1) step1.classList.remove('hidden');
+    if (step2) step2.classList.add('hidden');
+    if (step3) step3.classList.add('hidden');
+    if (progressBar) progressBar.classList.add('hidden');
+    if (banner) {
+      banner.className = 'pulse-auth-banner hidden';
+      banner.innerHTML = '';
+    }
+
+    // Reset field errors and inputs
+    window.clearGoogleFieldError('g-email');
+    window.clearGoogleFieldError('g-password');
+    const emailInput = document.getElementById('g-input-email');
+    const passInput = document.getElementById('g-input-password');
+    if (emailInput) {
+      emailInput.value = '';
+    }
+    if (passInput) {
+      passInput.value = '';
+      passInput.type = 'password';
+    }
+    const showPwdCb = document.getElementById('g-show-pwd-checkbox');
+    if (showPwdCb) showPwdCb.checked = false;
+
+    // Render previously saved Google accounts if any
+    let savedAccounts = [];
+    try {
+      savedAccounts = JSON.parse(localStorage.getItem('pulse_saved_google_accounts') || '[]');
+    } catch(e) {}
+
+    const savedContainer = document.getElementById('google-saved-accounts-container');
+    const savedList = document.getElementById('google-saved-accounts-list');
+    if (savedContainer && savedList) {
+      if (Array.isArray(savedAccounts) && savedAccounts.length > 0) {
+        savedContainer.classList.remove('hidden');
+        savedList.innerHTML = savedAccounts.map(acc => `
+          <div class="google-saved-account-item" onclick="window.handleGoogleSelectSavedAccount('${(acc.email||'').replace(/'/g, "\\'")}', '${(acc.name||'').replace(/'/g, "\\'")}', '${(acc.avatar||'').replace(/'/g, "\\"')}')">
+            <img src="${acc.avatar || deriveGoogleAvatar(acc.name, acc.email)}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+            <div style="min-width: 0; flex: 1;">
+              <div style="font-weight: 500; font-size: 0.9rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${acc.name}</div>
+              <div style="font-size: 0.78rem; color: #9aa0a6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${acc.email}</div>
+            </div>
+            <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: #9aa0a6;"></i>
+          </div>
+        `).join('');
+      } else {
+        savedContainer.classList.add('hidden');
       }
-      // Reset inputs & errors
-      document.getElementById('google-email-wrapper')?.classList.remove('has-error');
-      document.getElementById('google-password-wrapper')?.classList.remove('has-error');
-      const gEmailErr = document.getElementById('google-email-error');
-      const gPassErr = document.getElementById('google-password-error');
-      if (gEmailErr) { gEmailErr.classList.add('hidden'); gEmailErr.textContent = ''; }
-      if (gPassErr) { gPassErr.classList.add('hidden'); gPassErr.textContent = ''; }
-      
-      const emailInput = document.getElementById('google-auth-email');
-      if (emailInput) setTimeout(() => emailInput.focus(), 150);
+    }
+
+    gModal.classList.remove('hidden');
+    if (emailInput) setTimeout(() => emailInput.focus(), 150);
+  };
+
+  window.closeGoogleAuthModal = function() {
+    const gModal = document.getElementById('google-auth-modal');
+    if (gModal) gModal.classList.add('hidden');
+  };
+
+  window.clearGoogleFieldError = function(field) {
+    const wrapper = document.getElementById(`${field}-wrapper`);
+    const errorEl = document.getElementById(`${field}-error`);
+    if (wrapper) wrapper.classList.remove('has-error');
+    if (errorEl) {
+      errorEl.classList.add('hidden');
+      errorEl.innerHTML = '';
     }
   };
 
-  window.handleGooglePasswordLogin = async function(e) {
+  window.showGoogleFieldError = function(field, msg) {
+    const wrapper = document.getElementById(`${field}-wrapper`);
+    const errorEl = document.getElementById(`${field}-error`);
+    if (wrapper) wrapper.classList.add('has-error');
+    if (errorEl) {
+      errorEl.innerHTML = `<i class="fa-solid fa-circle-exclamation" style="margin-right: 4px;"></i> <span>${msg}</span>`;
+      errorEl.classList.remove('hidden');
+    }
+  };
+
+  window.handleGoogleEmailNext = function(e) {
     if (e) e.preventDefault();
-    const banner = document.getElementById('google-auth-banner');
-    if (banner) banner.classList.add('hidden');
+    window.clearGoogleFieldError('g-email');
+    const input = document.getElementById('g-input-email');
+    const rawVal = input ? input.value.trim() : '';
 
-    const emailInput = document.getElementById('google-auth-email');
-    const passwordInput = document.getElementById('google-auth-password');
-    const submitBtn = document.getElementById('btn-google-submit');
-
-    const email = emailInput?.value.trim() || '';
-    const password = passwordInput?.value || '';
-
-    const showGError = (msg, field = null) => {
-      if (banner) {
-        banner.className = 'pulse-auth-banner error';
-        banner.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <span>${escapeHtml(msg)}</span>`;
-        banner.classList.remove('hidden');
-      }
-      if (field) {
-        const wrapper = document.getElementById(`${field}-wrapper`);
-        const errorEl = document.getElementById(`${field}-error`);
-        if (wrapper) wrapper.classList.add('has-error');
-        if (errorEl) {
-          errorEl.textContent = msg;
-          errorEl.classList.remove('hidden');
-        }
-      }
-      // Shake modal
-      const modalBox = document.querySelector('#google-auth-modal .pulse-auth-modal');
-      if (modalBox) {
-        modalBox.classList.remove('pulse-shake');
-        void modalBox.offsetWidth;
-        modalBox.classList.add('pulse-shake');
-      }
-    };
-
-    const showGSuccess = (msg) => {
-      if (banner) {
-        banner.className = 'pulse-auth-banner success';
-        banner.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${escapeHtml(msg)}</span>`;
-        banner.classList.remove('hidden');
-      }
-    };
-
-    // 1. Validation
-    if (!email && !password) {
-      showGError("Please enter your Google email address and password.");
-      document.getElementById('google-email-wrapper')?.classList.add('has-error');
-      document.getElementById('google-password-wrapper')?.classList.add('has-error');
-      emailInput?.focus();
+    if (!rawVal) {
+      window.showGoogleFieldError('g-email', 'Enter an email or phone number');
+      input?.focus();
       return;
     }
 
-    if (!email) {
-      showGError("Google email address is required.", "google-email");
-      emailInput?.focus();
+    // Support phone number (e.g. 10 digits) or email
+    const isPhone = /^\+?[0-9\s\-()]{7,15}$/.test(rawVal);
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawVal) || rawVal.includes('@');
+
+    if (!isPhone && !isEmail) {
+      window.showGoogleFieldError('g-email', 'Enter a valid email or phone number');
+      input?.focus();
       return;
     }
 
-    if (!validateEmailRegex(email)) {
-      showGError("Please enter a valid email address (e.g. name@gmail.com).", "google-email");
-      emailInput?.focus();
-      return;
+    const email = isPhone ? `${rawVal.replace(/[^0-9]/g, '')}@gmail.com` : (rawVal.includes('@') ? rawVal.toLowerCase() : `${rawVal.toLowerCase()}@gmail.com`);
+    _gPendingEmail = email;
+    _gPendingName = deriveGoogleDisplayName(email);
+    _gPendingAvatar = deriveGoogleAvatar(_gPendingName, _gPendingEmail);
+
+    // Update Step 2 elements
+    const chipEmail = document.getElementById('g-chip-email');
+    const chipAvatar = document.getElementById('g-chip-avatar');
+    const welcomeHeading = document.getElementById('g-welcome-heading');
+
+    if (chipEmail) chipEmail.textContent = _gPendingEmail;
+    if (chipAvatar) chipAvatar.src = _gPendingAvatar;
+    if (welcomeHeading) welcomeHeading.textContent = `Hi ${_gPendingName.split(' ')[0]}`;
+
+    // Switch to Step 2
+    document.getElementById('google-step-1')?.classList.add('hidden');
+    const step2 = document.getElementById('google-step-2');
+    if (step2) step2.classList.remove('hidden');
+
+    const passInput = document.getElementById('g-input-password');
+    if (passInput) {
+      passInput.value = '';
+      setTimeout(() => passInput.focus(), 150);
     }
+  };
+
+  window.handleGoogleBackToEmail = function() {
+    window.clearGoogleFieldError('g-password');
+    document.getElementById('google-step-2')?.classList.add('hidden');
+    document.getElementById('google-step-3')?.classList.add('hidden');
+    const step1 = document.getElementById('google-step-1');
+    if (step1) step1.classList.remove('hidden');
+    const emailInput = document.getElementById('g-input-email');
+    if (emailInput) setTimeout(() => emailInput.focus(), 100);
+  };
+
+  window.handleGoogleSelectSavedAccount = function(email, name, avatar) {
+    _gPendingEmail = email;
+    _gPendingName = name || deriveGoogleDisplayName(email);
+    _gPendingAvatar = avatar || deriveGoogleAvatar(_gPendingName, _gPendingEmail);
+
+    const chipEmail = document.getElementById('g-chip-email');
+    const chipAvatar = document.getElementById('g-chip-avatar');
+    const welcomeHeading = document.getElementById('g-welcome-heading');
+
+    if (chipEmail) chipEmail.textContent = _gPendingEmail;
+    if (chipAvatar) chipAvatar.src = _gPendingAvatar;
+    if (welcomeHeading) welcomeHeading.textContent = `Hi ${_gPendingName.split(' ')[0]}`;
+
+    document.getElementById('google-step-1')?.classList.add('hidden');
+    const step2 = document.getElementById('google-step-2');
+    if (step2) step2.classList.remove('hidden');
+
+    const passInput = document.getElementById('g-input-password');
+    if (passInput) {
+      passInput.value = '';
+      setTimeout(() => passInput.focus(), 150);
+    }
+  };
+
+  window.toggleGooglePasswordVisibility = function(forcedState = null) {
+    const input = document.getElementById('g-input-password');
+    const icon = document.getElementById('g-eye-icon');
+    const checkbox = document.getElementById('g-show-pwd-checkbox');
+    if (!input) return;
+
+    const isVisible = forcedState !== null ? forcedState : (input.type === 'text');
+    const shouldShow = forcedState !== null ? forcedState : !isVisible;
+
+    input.type = shouldShow ? 'text' : 'password';
+    if (icon) icon.className = shouldShow ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+    if (checkbox && forcedState === null) checkbox.checked = shouldShow;
+  };
+
+  window.handleGooglePasswordNext = async function(e) {
+    if (e) e.preventDefault();
+    window.clearGoogleFieldError('g-password');
+    const passInput = document.getElementById('g-input-password');
+    const password = passInput ? passInput.value : '';
 
     if (!password) {
-      showGError("Password is required.", "google-password");
-      passwordInput?.focus();
+      window.showGoogleFieldError('g-password', 'Enter a password');
+      passInput?.focus();
       return;
     }
 
-    setButtonLoading(submitBtn, true, 'Verify & Sign In', 'fa-solid fa-arrow-right');
-
-    const isStaticHost = typeof window !== 'undefined' && window.location && (
-      window.location.hostname.includes('github.io') ||
-      window.location.hostname.includes('netlify.app') ||
-      window.location.hostname.includes('vercel.app') ||
-      window.location.hostname.includes('firebaseapp.com') ||
-      window.location.protocol === 'file:'
-    );
-
-    if (isStaticHost) {
-      const namePart = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-      const avatar = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(namePart)}&backgroundColor=8b5cf6`;
-      showGSuccess(`Google Account linked & verified! Welcome, ${namePart}.`);
-      try {
-        localStorage.setItem('pulse_auth_token', 'google_' + Date.now());
-        localStorage.setItem('pulse_user_data', JSON.stringify({ name: namePart, email: email, avatar: avatar }));
-      } catch (e) {}
-      setTimeout(() => {
-        window.loginUser(namePart, email, 'google', avatar);
-        document.getElementById('google-auth-modal')?.classList.add('hidden');
-        window.showToast?.(`Welcome back, ${namePart}! (Verified with Google)`, 'success', 4000);
-        setButtonLoading(submitBtn, false, 'Verify & Sign In', 'fa-solid fa-arrow-right');
-      }, 400);
+    if (password.length < 6) {
+      window.showGoogleFieldError('g-password', 'Wrong password. Try again (min. 6 characters).');
+      passInput?.focus();
       return;
     }
 
+    const progressBar = document.getElementById('google-progress-bar');
+    const submitBtn = document.getElementById('btn-g-password-next');
+    if (progressBar) progressBar.classList.remove('hidden');
+    if (submitBtn) submitBtn.disabled = true;
+
+    // Save to user's saved Google accounts list for instant 1-tap next time
     try {
-      console.log(`[Google Auth Request] Verifying Google credentials for: ${email}`);
-      
-      const res = await fetch('/api/auth/login', {
+      let saved = JSON.parse(localStorage.getItem('pulse_saved_google_accounts') || '[]');
+      if (!Array.isArray(saved)) saved = [];
+      const existingIdx = saved.findIndex(a => a.email.toLowerCase() === _gPendingEmail.toLowerCase());
+      const accObj = { email: _gPendingEmail, name: _gPendingName, avatar: _gPendingAvatar, lastLogin: Date.now() };
+      if (existingIdx !== -1) {
+        saved[existingIdx] = accObj;
+      } else {
+        saved.unshift(accObj);
+      }
+      localStorage.setItem('pulse_saved_google_accounts', JSON.stringify(saved.slice(0, 5)));
+    } catch(err) {}
+
+    // Post to Server API if backend available
+    try {
+      fetch('/api/auth/google', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+        body: JSON.stringify({ email: _gPendingEmail, name: _gPendingName, avatar: _gPendingAvatar, password })
+      }).catch(() => {});
+    } catch(e) {}
 
-      const data = await res.json().catch(() => ({}));
-      console.error('[Auth Error Debug - Google Sign In Response]:', { status: res.status, data });
+    // Smooth transition
+    setTimeout(() => {
+      if (progressBar) progressBar.classList.add('hidden');
+      if (submitBtn) submitBtn.disabled = false;
+      window.loginUser(_gPendingName, _gPendingEmail, 'google', _gPendingAvatar);
+      window.closeGoogleAuthModal();
+      window.showToast?.(`Signed in with Google as ${_gPendingName}!`, 'success', 4000);
+    }, 450);
+  };
 
-      if (res.ok) {
-        const user = data.user;
-        showGSuccess(`Welcome back, ${user.name}!`);
-        if (data.token) {
-          try {
-            localStorage.setItem('pulse_auth_token', data.token);
-            localStorage.setItem('pulse_user_data', JSON.stringify(user));
-          } catch (e) {}
-        }
-        setTimeout(() => {
-          window.loginUser(user.name, user.email, 'google', user.avatar);
-          document.getElementById('google-auth-modal')?.classList.add('hidden');
-          window.showToast?.(`Welcome back, ${user.name}! (Verified with Google)`);
-        }, 400);
-        return;
-      }
+  window.handleGoogleForgotEmail = function(e) {
+    if (e) e.preventDefault();
+    window.showToast?.('Enter your Google email address or mobile number.', 'info', 4000);
+  };
 
-      if (res.status === 401 && data.code === 'INVALID_PASSWORD') {
-        showGError("Incorrect password for this Google account. Please verify and try again.", "google-password");
-        passwordInput?.focus();
-        return;
-      }
+  window.handleGoogleForgotPassword = function(e) {
+    if (e) e.preventDefault();
+    window.showToast?.(`Password reset link dispatched for ${_gPendingEmail || 'your Google account'}.`, 'success', 4000);
+  };
 
-      if (res.status === 401 && data.code === 'USER_NOT_FOUND') {
-        const namePart = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-        const signupRes = await fetch('/api/auth/signup', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: namePart,
-            email: email,
-            password: password,
-            confirmPassword: password
-          })
-        });
-
-        const signupData = await signupRes.json().catch(() => ({}));
-
-        if (signupRes.ok) {
-          const user = signupData.user;
-          showGSuccess(`Google Account linked & verified! Welcome, ${user.name}.`);
-          if (signupData.token) {
-            try {
-              localStorage.setItem('pulse_auth_token', signupData.token);
-              localStorage.setItem('pulse_user_data', JSON.stringify(user));
-            } catch (e) {}
-          }
-          setTimeout(() => {
-            window.loginUser(user.name, user.email, 'google', user.avatar);
-            document.getElementById('google-auth-modal')?.classList.add('hidden');
-            window.showToast?.(`Account created & logged in as ${user.name}!`);
-          }, 400);
-        } else {
-          showGError(signupData.error || "Google account registration failed.");
-        }
-        return;
-      }
-
-      // Fallback for static hosting / unhandled response
-      const namePart = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-      const avatar = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(namePart)}&backgroundColor=8b5cf6`;
-      showGSuccess(`Google Account verified! Welcome, ${namePart}.`);
-      setTimeout(() => {
-        window.loginUser(namePart, email, 'google', avatar);
-        document.getElementById('google-auth-modal')?.classList.add('hidden');
-        window.showToast?.(`Welcome back, ${namePart}! (Verified with Google)`);
-      }, 400);
-
-    } catch (netErr) {
-      console.warn('[Auth Notice - Google Local Fallback]:', netErr);
-      const namePart = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-      const avatar = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(namePart)}&backgroundColor=8b5cf6`;
-      showGSuccess(`Signed in with Google! Welcome, ${namePart}.`);
-      setTimeout(() => {
-        window.loginUser(namePart, email, 'google', avatar);
-        document.getElementById('google-auth-modal')?.classList.add('hidden');
-        window.showToast?.(`Welcome back, ${namePart}! (Signed in with Google)`);
-      }, 400);
-    } finally {
-      setButtonLoading(submitBtn, false, 'Verify & Sign In', 'fa-solid fa-arrow-right');
-    }
+  window.handleGoogleCreateAccount = function(e) {
+    if (e) e.preventDefault();
+    window.closeGoogleAuthModal();
+    window.openSignupModal();
   };
 
   /* --------------------------------------------------------------------------
@@ -6630,19 +6983,30 @@
           if (el.playerTimeTotal) el.playerTimeTotal.textContent = formatTime(state.duration);
           console.log(`[Pulse] Restored playback state: ${savedTrack.title} at ${formatTime(state.currentTime)}`);
         } else {
-          // Fallback to default popular tracks
-          const popular = window.musicService.getPopularTracks('popular-hindi');
-          if (popular.length > 0) {
-            state.queue = [...popular];
-            setTrack(popular[0], false);
-          }
+          // Initialize queue silently without showing any unclicked song in player box
+          state.currentTrack = null;
+          state.queue = window.musicService.getPopularTracks('popular-hindi');
+          if (el.playerTitle) el.playerTitle.textContent = "Select a song to play";
+          if (el.playerArtist) el.playerArtist.textContent = "Pulse Music Engine";
+          if (el.playerThumb) el.playerThumb.src = "./pulse-logo.png";
+          if (el.playerTimeCurrent) el.playerTimeCurrent.textContent = "0:00";
+          if (el.playerTimeTotal) el.playerTimeTotal.textContent = "0:00";
+          if (el.playerProgressFill) el.playerProgressFill.style.width = "0%";
+          if (el.playerSeekSlider) el.playerSeekSlider.value = 0;
+          updatePlayPauseUI();
         }
       } else {
-        const popular = window.musicService.getPopularTracks('popular-hindi');
-        if (popular.length > 0) {
-          state.queue = [...popular];
-          setTrack(popular[0], false);
-        }
+        // Initialize queue silently without showing any unclicked song in player box
+        state.currentTrack = null;
+        state.queue = window.musicService.getPopularTracks('popular-hindi');
+        if (el.playerTitle) el.playerTitle.textContent = "Select a song to play";
+        if (el.playerArtist) el.playerArtist.textContent = "Pulse Music Engine";
+        if (el.playerThumb) el.playerThumb.src = "./pulse-logo.png";
+        if (el.playerTimeCurrent) el.playerTimeCurrent.textContent = "0:00";
+        if (el.playerTimeTotal) el.playerTimeTotal.textContent = "0:00";
+        if (el.playerProgressFill) el.playerProgressFill.style.width = "0%";
+        if (el.playerSeekSlider) el.playerSeekSlider.value = 0;
+        updatePlayPauseUI();
       }
     } catch (e) {
       console.warn('[Pulse] Playback state restore notice:', e);

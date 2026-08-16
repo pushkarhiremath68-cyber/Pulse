@@ -18,7 +18,139 @@
     USER_PLAYLISTS: 'pulse_user_playlists_v2'
   };
 
-    function getAudioStorageUrl(storagePath) {
+  // =========================================================================
+  // PURE JAVASCRIPT DES ECB DECRYPTOR FOR JIOSAAVN 320k/160k MASTER STREAMS
+  // =========================================================================
+  const DES_PC1 = [57, 49, 41, 33, 25, 17, 9, 1, 58, 50, 42, 34, 26, 18, 10, 2, 59, 51, 43, 35, 27, 19, 11, 3, 60, 52, 44, 36, 63, 55, 47, 39, 31, 23, 15, 7, 62, 54, 46, 38, 30, 22, 14, 6, 61, 53, 45, 37, 29, 21, 13, 5, 28, 20, 12, 4];
+  const DES_PC2 = [14, 17, 11, 24, 1, 5, 3, 28, 15, 6, 21, 10, 23, 19, 12, 4, 26, 8, 16, 7, 27, 20, 13, 2, 41, 52, 31, 37, 47, 55, 30, 40, 51, 45, 33, 48, 44, 49, 39, 56, 34, 53, 46, 42, 50, 36, 29, 32];
+  const DES_SHIFTS = [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1];
+  const DES_IP = [58, 50, 42, 34, 26, 18, 10, 2, 60, 52, 44, 36, 28, 20, 12, 4, 62, 54, 46, 38, 30, 22, 14, 6, 64, 56, 48, 40, 32, 24, 16, 8, 57, 49, 41, 33, 25, 17, 9, 1, 59, 51, 43, 35, 27, 19, 11, 3, 61, 53, 45, 37, 29, 21, 13, 5, 63, 55, 47, 39, 31, 23, 15, 7];
+  const DES_FP = [40, 8, 48, 16, 56, 24, 64, 32, 39, 7, 47, 15, 55, 23, 63, 31, 38, 6, 46, 14, 54, 22, 62, 30, 37, 5, 45, 13, 53, 21, 61, 29, 36, 4, 44, 12, 52, 20, 60, 28, 35, 3, 43, 11, 51, 19, 59, 27, 34, 2, 42, 10, 50, 18, 58, 26, 33, 1, 41, 9, 49, 17, 57, 25];
+  const DES_E = [32, 1, 2, 3, 4, 5, 4, 5, 6, 7, 8, 9, 8, 9, 10, 11, 12, 13, 12, 13, 14, 15, 16, 17, 16, 17, 18, 19, 20, 21, 20, 21, 22, 23, 24, 25, 24, 25, 26, 27, 28, 29, 28, 29, 30, 31, 32, 1];
+  const DES_P = [16, 7, 20, 21, 29, 12, 28, 17, 1, 15, 23, 26, 5, 18, 31, 10, 2, 8, 24, 14, 32, 27, 3, 9, 19, 13, 30, 6, 22, 11, 4, 25];
+  const DES_SBOXES = [
+    [[14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7],[0, 15, 7, 4, 14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 3, 8],[4, 1, 14, 8, 13, 6, 2, 11, 15, 12, 9, 7, 3, 10, 5, 0],[15, 12, 8, 2, 4, 9, 1, 7, 5, 11, 3, 14, 10, 0, 6, 13]],
+    [[15, 1, 8, 14, 6, 11, 3, 4, 9, 7, 2, 13, 12, 0, 5, 10],[3, 13, 4, 7, 15, 2, 8, 14, 12, 0, 1, 10, 6, 9, 11, 5],[0, 14, 7, 11, 10, 4, 13, 1, 5, 8, 12, 6, 9, 3, 2, 15],[13, 8, 10, 1, 3, 15, 4, 2, 11, 6, 7, 12, 0, 5, 14, 9]],
+    [[10, 0, 9, 14, 6, 3, 15, 5, 1, 13, 12, 7, 11, 4, 2, 8],[13, 7, 0, 9, 3, 4, 6, 10, 2, 8, 5, 14, 12, 11, 15, 1],[13, 6, 4, 9, 8, 15, 3, 0, 11, 1, 2, 12, 5, 10, 14, 7],[1, 10, 13, 0, 6, 9, 8, 7, 4, 15, 14, 3, 11, 5, 2, 12]],
+    [[7, 13, 14, 3, 0, 6, 9, 10, 1, 2, 8, 5, 11, 12, 4, 15],[13, 8, 11, 5, 6, 15, 0, 3, 4, 7, 2, 12, 1, 10, 14, 9],[10, 6, 9, 0, 12, 11, 7, 13, 15, 1, 3, 14, 5, 2, 8, 4],[3, 15, 0, 6, 10, 1, 13, 8, 9, 4, 5, 11, 12, 7, 2, 14]],
+    [[2, 12, 4, 1, 7, 10, 11, 6, 8, 5, 3, 15, 13, 0, 14, 9],[14, 11, 2, 12, 4, 7, 13, 1, 5, 0, 15, 10, 3, 9, 8, 6],[4, 2, 1, 11, 10, 13, 7, 8, 15, 9, 12, 5, 6, 3, 0, 14],[11, 8, 12, 7, 1, 14, 2, 13, 6, 15, 0, 9, 10, 4, 5, 3]],
+    [[12, 1, 10, 15, 9, 2, 6, 8, 0, 13, 3, 4, 14, 7, 5, 11],[10, 15, 4, 2, 7, 12, 9, 5, 6, 1, 13, 14, 0, 11, 3, 8],[9, 14, 15, 5, 2, 8, 12, 3, 7, 0, 4, 10, 1, 13, 11, 6],[4, 3, 2, 12, 9, 5, 15, 10, 11, 14, 1, 7, 6, 0, 8, 13]],
+    [[4, 11, 2, 14, 15, 0, 8, 13, 3, 12, 9, 7, 5, 10, 6, 1],[13, 0, 11, 7, 4, 9, 1, 10, 14, 3, 5, 12, 2, 15, 8, 6],[1, 4, 11, 13, 12, 3, 7, 14, 10, 15, 6, 8, 0, 5, 9, 2],[6, 11, 13, 8, 1, 4, 10, 7, 9, 5, 0, 15, 14, 2, 3, 12]],
+    [[13, 2, 8, 4, 6, 15, 11, 1, 10, 9, 3, 14, 5, 0, 12, 7],[1, 15, 13, 8, 10, 3, 7, 4, 12, 5, 6, 11, 0, 14, 9, 2],[7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8],[2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11]]
+  ];
+
+  function _desPermute(input, table) {
+    const output = [];
+    for (let i = 0; i < table.length; i++) {
+      output.push(input[table[i] - 1]);
+    }
+    return output;
+  }
+  function _desLeftShift(arr, n) { return arr.slice(n).concat(arr.slice(0, n)); }
+  function _desXor(a, b) {
+    const res = [];
+    for (let i = 0; i < a.length; i++) res.push(a[i] ^ b[i]);
+    return res;
+  }
+  function _desGenerateSubkeys(keyBits) {
+    const keyPerm = _desPermute(keyBits, DES_PC1);
+    let c = keyPerm.slice(0, 28);
+    let d = keyPerm.slice(28, 56);
+    const subkeys = [];
+    for (let i = 0; i < 16; i++) {
+      c = _desLeftShift(c, DES_SHIFTS[i]);
+      d = _desLeftShift(d, DES_SHIFTS[i]);
+      subkeys.push(_desPermute(c.concat(d), DES_PC2));
+    }
+    return subkeys;
+  }
+  function _desFeistel(r, subkey) {
+    const expanded = _desPermute(r, DES_E);
+    const xored = _desXor(expanded, subkey);
+    const sOutput = [];
+    for (let i = 0; i < 8; i++) {
+      const chunk = xored.slice(i * 6, (i + 1) * 6);
+      const row = (chunk[0] << 1) | chunk[5];
+      const col = (chunk[1] << 3) | (chunk[2] << 2) | (chunk[3] << 1) | chunk[4];
+      const val = DES_SBOXES[i][row][col];
+      sOutput.push((val >> 3) & 1, (val >> 2) & 1, (val >> 1) & 1, val & 1);
+    }
+    return _desPermute(sOutput, DES_P);
+  }
+  function _desDecryptBlock(blockBits, subkeys) {
+    const perm = _desPermute(blockBits, DES_IP);
+    let l = perm.slice(0, 32);
+    let r = perm.slice(32, 64);
+    for (let i = 15; i >= 0; i--) {
+      const nextL = r;
+      const fRes = _desFeistel(r, subkeys[i]);
+      r = _desXor(l, fRes);
+      l = nextL;
+    }
+    return _desPermute(r.concat(l), DES_FP);
+  }
+  function _desBytesToBits(bytes) {
+    const bits = [];
+    for (let i = 0; i < bytes.length; i++) {
+      for (let b = 7; b >= 0; b--) {
+        bits.push((bytes[i] >> b) & 1);
+      }
+    }
+    return bits;
+  }
+  function _desBitsToBytes(bits) {
+    const bytes = [];
+    for (let i = 0; i < bits.length; i += 8) {
+      let byte = 0;
+      for (let b = 0; b < 8; b++) {
+        byte = (byte << 1) | bits[i + b];
+      }
+      bytes.push(byte);
+    }
+    return bytes;
+  }
+  function _desBase64ToBytes(base64) {
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes;
+  }
+
+  function decryptSaavnUrl(encryptedBase64) {
+    if (!encryptedBase64) return null;
+    try {
+      const rawBytes = _desBase64ToBytes(encryptedBase64);
+      const keyBytes = new TextEncoder().encode('38346591');
+      const subkeys = _desGenerateSubkeys(_desBytesToBits(keyBytes));
+      let decryptedBytes = [];
+      for (let i = 0; i < rawBytes.length; i += 8) {
+        const chunk = rawBytes.slice(i, i + 8);
+        if (chunk.length < 8) break;
+        const blockBits = _desBytesToBits(chunk);
+        const decBits = _desDecryptBlock(blockBits, subkeys);
+        decryptedBytes = decryptedBytes.concat(_desBitsToBytes(decBits));
+      }
+      const padLen = decryptedBytes[decryptedBytes.length - 1];
+      if (padLen >= 1 && padLen <= 8) {
+        decryptedBytes = decryptedBytes.slice(0, decryptedBytes.length - padLen);
+      }
+      const url = new TextDecoder().decode(new Uint8Array(decryptedBytes));
+      const u320 = url.replace('_96.mp4', '_320.mp4').replace('_48.mp4', '_320.mp4').replace('_160.mp4', '_320.mp4');
+      const u160 = url.replace('_96.mp4', '_160.mp4').replace('_48.mp4', '_160.mp4').replace('_320.mp4', '_160.mp4');
+      return {
+        '320': u320,
+        '160': u160,
+        '96': url
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+  window.decryptSaavnUrl = decryptSaavnUrl;
+
+  function getAudioStorageUrl(storagePath) {
     if (!storagePath) return null;
     if (storagePath.startsWith('http://') || storagePath.startsWith('https://') || storagePath.startsWith('blob:')) {
       return storagePath;
@@ -215,10 +347,13 @@
     }
 
     // Storage Path & Full-Length Audio URL Resolution
-    const cleanStoragePath = raw.storagePath || `${cleanId}.mp3`;
-    const cleanAudioUrl = (typeof window !== 'undefined' && window.getAudioStorageUrl)
-      ? window.getAudioStorageUrl(cleanStoragePath)
-      : getAudioStorageUrl(cleanStoragePath);
+    const cleanStoragePath = raw.storagePath || `${cleanId}.mp4`;
+    let cleanAudioUrl = raw.audioUrl || raw.streamUrl || null;
+    if (!cleanAudioUrl || cleanAudioUrl.includes('YOUR_SUPABASE_PROJECT_URL')) {
+      cleanAudioUrl = (typeof window !== 'undefined' && window.getAudioStorageUrl)
+        ? window.getAudioStorageUrl(cleanStoragePath)
+        : getAudioStorageUrl(cleanStoragePath);
+    }
 
     return {
       id: cleanId,
@@ -230,11 +365,12 @@
       category: raw.category || 'bollywood',
       storagePath: cleanStoragePath,
       audioUrl: cleanAudioUrl,
+      streamUrl: raw.streamUrl || (cleanAudioUrl && cleanAudioUrl.startsWith('http') ? cleanAudioUrl : null),
       language: raw.language || 'Hindi',
       year: raw.year || 2024,
       ytId: raw.ytId || null,
       ytSearchQuery: raw.ytSearchQuery || `${cleanTitle} ${cleanArtist}`,
-      source: raw.source || 'Pulse Supabase Storage'
+      source: raw.source || 'Pulse Master Studio Engine'
     };
   }
 
@@ -26584,7 +26720,57 @@
   window.TRACKS_REGISTRY = window.TRACKS_REGISTRY || {};
   DEMO_CATALOG.forEach(t => { window.TRACKS_REGISTRY[t.id] = t; });
 
-  const musicService = {
+    /**
+     * Resolves the best direct full-length playable audio URL for a track.
+     * Uses JioSaavn master stream, local storage cache, or fallback URL.
+     */
+    async resolveTrackAudioStream(track) {
+      if (!track) return null;
+
+      // 1. If audioUrl already has a valid direct HTTP URL (not a dummy storage path)
+      if (track.audioUrl && (track.audioUrl.startsWith('http://') || track.audioUrl.startsWith('https://')) && !track.audioUrl.includes('YOUR_SUPABASE_PROJECT_URL')) {
+        return track.audioUrl;
+      }
+
+      // 2. If direct 320k/160k stream URL in track
+      if (track.streamUrl) {
+        return track.streamUrl;
+      }
+
+      const query = `${track.title || ''} ${track.artist || ''}`.trim();
+      if (!query) return null;
+
+      // 3. Query JioSaavn Live Search & Decrypt 320k/160k authentic master stream
+      try {
+        const cleanQuery = query.replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
+        const searchUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=3&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
+        const res = await fetch(searchUrl, { cache: 'no-store', signal: AbortSignal.timeout(3000) });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.results && data.results.length > 0) {
+            const r = data.results[0];
+            const enc = r.encrypted_media_url;
+            if (enc) {
+              const urls = decryptSaavnUrl(enc);
+              if (urls && (urls['160'] || urls['320'])) {
+                const stream = urls['160'] || urls['320'];
+                track.audioUrl = stream;
+                track.streamUrl = stream;
+                if (r.image) {
+                  const hdImg = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
+                  track.cover = hdImg;
+                }
+                return stream;
+              }
+            }
+          }
+        }
+      } catch (e) {}
+
+      // 4. Try backend stream endpoint if server is running
+      return `/api/stream?id=${encodeURIComponent(track.id)}&q=${encodeURIComponent(query)}`;
+    },
+
     /**
      * Search tracks across local curated catalog and online services
      * @param {string} query Search terms (song, artist, album, genre, Hindi keywords)
@@ -26730,20 +26916,82 @@
         }
       });
 
-      // 2. ALWAYS query iTunes API for metadata (song names, artist, cover art)
-      // iTunes is used for METADATA ONLY — audio comes from Invidious (full-length, no previews)
+      // 2. SECONDARY: Query JioSaavn Live Search API for 100% full-length master audio & HD artwork
+      try {
+        const cleanQEncoded = encodeURIComponent(cleanQ);
+        const saavnSearchUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=25&p=1&_marker=0&ctx=android&q=${cleanQEncoded}`;
+        const sRes = await fetch(saavnSearchUrl, { cache: 'no-store', signal: AbortSignal.timeout(3000) });
+        if (sRes.ok) {
+          const sData = await sRes.json();
+          const sResults = (sData && sData.results) ? sData.results : [];
+          sResults.forEach(item => {
+            const rawSong = item.song || item.title || 'Unknown Song';
+            const rawSingers = item.singers || item.primary_artists || item.artist || 'Pulse Artist';
+            const rawAlbum = item.album || 'Single Release';
+
+            const songName = rawSong.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, '&').trim();
+            const singers = rawSingers.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, '&').trim();
+            const albumName = rawAlbum.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, '&').trim();
+
+            const titleKey = `${songName} - ${singers}`.toLowerCase();
+            if (!seenTitles.has(titleKey)) {
+              seenTitles.add(titleKey);
+              const trackId = `saavn-${item.id || Math.random().toString(36).substr(2, 8)}`;
+              seenIds.add(trackId);
+
+              let highResCover = item.image ? item.image.replace('150x150', '500x500').replace('50x50', '500x500') : null;
+              if (!highResCover) {
+                highResCover = generateTrackCover(songName, singers, item.language || 'bollywood');
+              }
+
+              // Decrypt media URL for immediate full-length playback
+              let streamUrl = null;
+              if (item.encrypted_media_url) {
+                const dec = decryptSaavnUrl(item.encrypted_media_url);
+                if (dec) streamUrl = dec['160'] || dec['320'] || dec['96'];
+              }
+
+              const durSecs = parseInt(item.duration, 10) || 210;
+              const mins = Math.floor(durSecs / 60);
+              const secs = durSecs % 60;
+              const durationStr = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+
+              const trackObj = normalizeTrack({
+                id: trackId,
+                title: songName,
+                artist: singers,
+                album: albumName,
+                cover: highResCover,
+                duration: durationStr,
+                category: item.language || 'trending',
+                storagePath: `${trackId}.mp4`,
+                audioUrl: streamUrl || `/api/stream?q=${encodeURIComponent(songName + ' ' + singers)}`,
+                streamUrl: streamUrl,
+                ytSearchQuery: `${songName} ${singers} official audio`,
+                source: 'Pulse Master Studio Engine'
+              });
+
+              results.push(trackObj);
+              window.TRACKS_REGISTRY[trackObj.id] = trackObj;
+            }
+          });
+        }
+      } catch (err) {
+        console.warn("[Pulse JioSaavn Search Notice]", err);
+      }
+
+      // 3. TERTIARY: Query iTunes Search API for international/global music coverage
       if (results.length < limit) {
         try {
           const encoded = encodeURIComponent(cleanQ);
           const itunesLimit = Math.min(Math.max(limit - results.length, 15), 50);
           const itunesUrl = `https://itunes.apple.com/search?term=${encoded}&entity=song&limit=${itunesLimit}`;
-          const res = await fetch(itunesUrl, { cache: 'no-store' });
+          const res = await fetch(itunesUrl, { cache: 'no-store', signal: AbortSignal.timeout(3000) });
           
           if (res.ok) {
             const data = await res.json();
             if (data.results && Array.isArray(data.results)) {
               data.results.forEach(item => {
-                // High-res cover from iTunes (600x600) — guaranteed visible album art
                 const highResCover = item.artworkUrl100
                   ? item.artworkUrl100.replace('100x100bb', '600x600bb')
                   : generateTrackCover(item.trackName || 'Track', item.artistName || 'Artist', 'pop');
@@ -26758,7 +27006,6 @@
                   const trackId = `itunes-${item.trackId}`;
                   seenIds.add(trackId);
 
-                  // NO previewUrl — all audio comes from Invidious (full-length tracks)
                   const trackObj = normalizeTrack({
                     id: trackId,
                     title: item.trackName,
@@ -26767,7 +27014,9 @@
                     cover: highResCover,
                     duration: durationStr,
                     category: 'trending',
-                    storagePath: `${trackId}.mp3`,
+                    storagePath: `${trackId}.m4a`,
+                    audioUrl: `/api/stream?q=${encodeURIComponent(item.trackName + ' ' + item.artistName)}`,
+                    previewUrl: item.previewUrl || null,
                     ytSearchQuery: `${item.trackName} ${item.artistName} official audio`,
                     source: 'Worldwide Music Catalog'
                   });
@@ -26779,7 +27028,7 @@
             }
           }
         } catch (err) {
-          console.warn("Online music search notice:", err);
+          console.warn("[Pulse iTunes Search Notice]:", err);
         }
       }
 

@@ -21,14 +21,14 @@
   </script>
   
   <!-- PWA & Mobile Meta -->
-  <link rel="manifest" href="./assets/manifest-DqXfADEh.json">
+  <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#8b5cf6">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Pulse Music">
-  <link rel="icon" type="image/png" href="./assets/icon-192-BrVpSW3B.png">
-  <link rel="apple-touch-icon" href="./assets/icon-192-BrVpSW3B.png">
+  <link rel="icon" type="image/png" href="./public/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./public/icons/icon-192.png">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,7 +59,8 @@
       }
       return './storage/music/' + cleanPath;
     };
-  </script>
+  </script>
+  <link rel="stylesheet" href="./src/style.css?v=FRESH_RESTORED_v1000">
   <style>
     :root { color-scheme: dark; }
     html, body {
@@ -72,8 +73,6 @@
     .brand-logo-img { width: 42px !important; height: 42px !important; object-fit: contain; }
     .titlebar-icon { width: 18px !important; height: 18px !important; }
   </style>
-  <script type="module" crossorigin src="./assets/index-Do1t2of6.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-nwwokgOO.css">
 </head>
 <body>
 <!-- Splash Screen Disabled Temporarily for Direct Interactive Load -->
@@ -93,7 +92,7 @@
   <header id="app-titlebar" class="app-titlebar">
     <div class="titlebar-drag-region">
       <div class="titlebar-brand" style="display: flex; align-items: center; gap: 0.6rem;">
-        <img src="data:image/png;base64,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" alt="Pulse Logo" class="titlebar-icon" style="width: 22px; height: 22px; border-radius: 5px;">
+        <img src="./public/icons/icon-32.png" alt="Pulse Logo" class="titlebar-icon" style="width: 22px; height: 22px; border-radius: 5px;">
         <div style="display: flex; flex-direction: column; justify-content: center; line-height: 1.15;">
           <div style="display: flex; align-items: center; gap: 6px;">
             <span class="titlebar-title" style="font-size: 0.84rem; font-weight: 700; color: #fff;">Pulse Music</span>
@@ -112,7 +111,7 @@
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-logo">
-          <img src="./assets/pulse-logo-CG85IKCd.png" alt="Pulse Logo" class="brand-logo-img">
+          <img src="./pulse-logo.png" alt="Pulse Logo" class="brand-logo-img">
         </div>
         <div class="brand-text">
           <span class="brand-name">PULSE</span>
@@ -213,7 +212,7 @@
           </div>
 
           <div id="user-profile-container" class="user-profile hidden">
-            <img id="user-avatar-img" src="./assets/pulse-logo-CG85IKCd.png" alt="User Avatar" class="avatar">
+            <img id="user-avatar-img" src="./pulse-logo.png" alt="User Avatar" class="avatar">
             <span id="user-display-name" class="user-name">Listener</span>
             <button id="user-logout-btn" class="btn-icon-small" title="Log Out" onclick="window.logout()"><i class="fa-solid fa-right-from-bracket"></i></button>
           </div>
@@ -589,7 +588,7 @@
 
                 <!-- Cover Preview Box -->
                 <div style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center; background: rgba(255,255,255,0.03); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-glass);">
-                  <img id="admin-cover-preview-img" src="./assets/pulse-logo-CG85IKCd.png" alt="Cover Preview" style="width: 60px; height: 60px; border-radius: 6px; object-fit: cover;">
+                  <img id="admin-cover-preview-img" src="./pulse-logo.png" alt="Cover Preview" style="width: 60px; height: 60px; border-radius: 6px; object-fit: cover;">
                   <div style="flex: 1;">
                     <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.2rem;">Artwork / Cover URL</label>
                     <input type="text" id="admin-track-cover" class="pulse-text-input" placeholder="https://... or ./pulse-logo.png" value="./pulse-logo.png" oninput="document.getElementById('admin-cover-preview-img').src = this.value || './pulse-logo.png'">
@@ -818,7 +817,7 @@
       <!-- Header -->
       <div class="pulse-auth-header">
         <div class="pulse-auth-logo-wrapper">
-          <img src="./assets/pulse-logo-CG85IKCd.png" alt="Pulse Logo" class="pulse-auth-logo">
+          <img src="./pulse-logo.png" alt="Pulse Logo" class="pulse-auth-logo">
           <div class="pulse-auth-logo-ring"></div>
         </div>
         <h2 id="spotify-auth-heading" class="pulse-auth-title">Welcome to Pulse</h2>
@@ -957,60 +956,130 @@
     </div>
   </div>
 
-  <!-- REAL GOOGLE AUTHENTICATION MODAL -->
+  <!-- AUTHENTIC MULTI-STEP GOOGLE SIGN-IN MODAL (Matches Real Google Flow) -->
   <div id="google-auth-modal" class="modal-overlay hidden">
-    <div class="modal-content pulse-auth-modal" style="max-width: 440px;">
-      <div class="pulse-auth-glow" style="background: radial-gradient(circle, rgba(66, 133, 244, 0.25) 0%, transparent 70%);"></div>
-      <button class="pulse-auth-close" onclick="document.getElementById('google-auth-modal').classList.add('hidden')">
+    <div class="modal-content google-signin-card" style="max-width: 440px; border-radius: 28px; background: #202124; border: 1px solid #3c4043; box-shadow: 0 16px 50px rgba(0,0,0,0.75); position: relative; overflow: hidden; padding: 2rem 2.2rem 2.2rem;">
+      <!-- Animated Google 4-Color Progress Bar on top -->
+      <div id="google-progress-bar" class="google-progress-bar hidden">
+        <div class="google-progress-line"></div>
+      </div>
+
+      <!-- Close button -->
+      <button class="pulse-auth-close" onclick="window.closeGoogleAuthModal()" title="Close Google Sign-In" style="top: 16px; right: 16px;">
         <i class="fa-solid fa-xmark"></i>
       </button>
-      <div class="pulse-auth-header">
-        <div class="pulse-auth-logo-wrapper" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15);">
-          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="width: 32px; height: 32px;">
-        </div>
-        <h2 class="pulse-auth-title" style="font-size: 1.55rem;">Sign in with Google</h2>
-        <p class="pulse-auth-subtitle">Verify your Google email address and password to continue</p>
+
+      <!-- Google Brand Header -->
+      <div class="google-card-header" style="text-align: left; padding: 0.25rem 0 0.5rem 0;">
+        <svg viewBox="0 0 48 48" width="40" height="40" style="margin-bottom: 0.75rem; display: block;">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          <path fill="none" d="M0 0h48v48H0z"/>
+        </svg>
       </div>
-      
-      <div id="google-auth-banner" class="pulse-auth-banner hidden"></div>
-      
-      <form id="google-auth-form" class="pulse-auth-form" onsubmit="window.handleGooglePasswordLogin(event); return false;" novalidate>
-        <div class="pulse-input-group">
-          <div class="pulse-input-wrapper" id="google-email-wrapper">
-            <i class="fa-solid fa-envelope pulse-input-icon"></i>
-            <input type="email" id="google-auth-email" placeholder=" " required autocomplete="email" oninput="window.clearFieldError('google-email')">
-            <label for="google-auth-email">Google Email (e.g. name@gmail.com)</label>
-            <div class="pulse-input-highlight"></div>
+
+      <!-- Status Banner -->
+      <div id="google-auth-banner" class="pulse-auth-banner hidden" style="margin-bottom: 1rem;"></div>
+
+      <!-- STEP 1: EMAIL / PHONE INPUT OR SAVED ACCOUNT SELECTION -->
+      <div id="google-step-1" class="google-auth-step">
+        <h2 class="google-heading" style="font-size: 1.55rem; font-weight: 500; color: #e8eaed; margin-bottom: 0.35rem; font-family: 'Roboto', 'Google Sans', sans-serif;">Sign in</h2>
+        <p class="google-subheading" style="font-size: 0.95rem; color: #9aa0a6; margin-bottom: 1.5rem; font-family: 'Roboto', 'Google Sans', sans-serif;">to continue to <strong style="color: #fff;">Pulse Music</strong></p>
+
+        <!-- Quick Select Saved Google Accounts -->
+        <div id="google-saved-accounts-container" class="hidden" style="margin-bottom: 1.25rem;">
+          <div style="font-size: 0.78rem; color: #9aa0a6; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Saved Google Account</div>
+          <div id="google-saved-accounts-list" style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <!-- Populated via JS -->
           </div>
-          <div class="pulse-field-error hidden" id="google-email-error"></div>
+          <div class="sidebar-divider" style="margin: 0.85rem 0;"></div>
         </div>
-        
-        <div class="pulse-input-group">
-          <div class="pulse-input-wrapper" id="google-password-wrapper">
-            <i class="fa-solid fa-lock pulse-input-icon"></i>
-            <input type="password" id="google-auth-password" placeholder=" " required autocomplete="current-password" oninput="window.clearFieldError('google-password')">
-            <label for="google-auth-password">Enter your password</label>
-            <button type="button" class="pulse-password-toggle" onclick="window.togglePasswordVisibility(this)" title="Toggle password visibility">
-              <i class="fa-solid fa-eye"></i>
+
+        <form id="google-form-step-email" onsubmit="window.handleGoogleEmailNext(event); return false;" novalidate>
+          <div class="google-input-wrapper" id="g-email-wrapper">
+            <input type="email" id="g-input-email" required placeholder=" " autocomplete="email" oninput="window.clearGoogleFieldError('g-email')">
+            <label for="g-input-email">Email or phone</label>
+            <div class="google-input-outline"></div>
+          </div>
+          <div class="google-field-error hidden" id="g-email-error"></div>
+
+          <div style="margin-top: 0.65rem; margin-bottom: 1.4rem;">
+            <a href="#" onclick="window.handleGoogleForgotEmail(event); return false;" style="color: #8ab4f8; font-size: 0.875rem; font-weight: 500; text-decoration: none; font-family: 'Roboto', sans-serif;">Forgot email?</a>
+          </div>
+
+          <div style="font-size: 0.82rem; color: #9aa0a6; line-height: 1.45; margin-bottom: 1.8rem; font-family: 'Roboto', sans-serif;">
+            To continue, Google will share your name, email address, language preference, and profile picture with <strong>Pulse Music</strong>.
+          </div>
+
+          <div class="google-actions-row" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+            <button type="button" class="google-btn-text" onclick="window.handleGoogleCreateAccount(event)">Create account</button>
+            <button type="submit" id="btn-g-email-next" class="google-btn-primary">
+              <span class="btn-text">Next</span>
+              <i class="fa-solid fa-arrow-right btn-icon" style="margin-left: 6px;"></i>
             </button>
-            <div class="pulse-input-highlight"></div>
           </div>
-          <div class="pulse-field-error hidden" id="google-password-error"></div>
+        </form>
+      </div>
+
+      <!-- STEP 2: PASSWORD VERIFICATION -->
+      <div id="google-step-2" class="google-auth-step hidden">
+        <!-- Selected Account Chip with Switcher -->
+        <div id="g-selected-account-chip" class="google-account-chip" onclick="window.handleGoogleBackToEmail()" title="Click to switch account">
+          <img id="g-chip-avatar" src="./pulse-logo.png" alt="Avatar" class="google-chip-img">
+          <span id="g-chip-email" class="google-chip-email">user@gmail.com</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: #9aa0a6; margin-left: auto;"></i>
         </div>
 
-        <div style="font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.4; margin: 0.2rem 0 0.8rem 0.2rem;">
-          <i class="fa-solid fa-shield-halved" style="color: #4285F4; margin-right: 4px;"></i> Credentials are authenticated securely with verified password matching.
-        </div>
-        
-        <button type="submit" id="btn-google-submit" class="pulse-auth-submit" style="background: linear-gradient(135deg, #4285F4, #34A853); box-shadow: 0 4px 20px rgba(66, 133, 244, 0.35);">
-          <span class="btn-text">Verify & Sign In</span>
-          <i class="fa-solid fa-arrow-right btn-icon"></i>
-        </button>
+        <h2 id="g-welcome-heading" class="google-heading" style="font-size: 1.55rem; font-weight: 500; color: #e8eaed; margin-bottom: 0.35rem; font-family: 'Roboto', 'Google Sans', sans-serif;">Welcome</h2>
+        <p class="google-subheading" style="font-size: 0.95rem; color: #9aa0a6; margin-bottom: 1.5rem; font-family: 'Roboto', 'Google Sans', sans-serif;">To continue, first verify that it's you</p>
 
-        <p class="pulse-auth-switch" style="margin-top: 1rem;">
-          Or use standard email login? <a href="#" onclick="document.getElementById('google-auth-modal').classList.add('hidden'); window.openLoginModal('login'); return false;">Back to login</a>
+        <form id="google-form-step-password" onsubmit="window.handleGooglePasswordNext(event); return false;" novalidate>
+          <div class="google-input-wrapper" id="g-password-wrapper">
+            <input type="password" id="g-input-password" required placeholder=" " autocomplete="current-password" oninput="window.clearGoogleFieldError('g-password')">
+            <label for="g-input-password">Enter your password</label>
+            <button type="button" class="google-eye-toggle" onclick="window.toggleGooglePasswordVisibility()" title="Show password">
+              <i class="fa-solid fa-eye" id="g-eye-icon"></i>
+            </button>
+            <div class="google-input-outline"></div>
+          </div>
+          <div class="google-field-error hidden" id="g-password-error"></div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; margin-bottom: 2rem;">
+            <label class="google-show-pwd-label" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem; color: #bdc1c6;">
+              <input type="checkbox" id="g-show-pwd-checkbox" onchange="window.toggleGooglePasswordVisibility(this.checked)">
+              <span>Show password</span>
+            </label>
+            <a href="#" onclick="window.handleGoogleForgotPassword(event); return false;" style="color: #8ab4f8; font-size: 0.875rem; font-weight: 500; text-decoration: none;">Forgot password?</a>
+          </div>
+
+          <div class="google-actions-row" style="display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="google-btn-text" onclick="window.handleGoogleBackToEmail()"><i class="fa-solid fa-arrow-left" style="margin-right: 6px;"></i> Back</button>
+            <button type="submit" id="btn-g-password-next" class="google-btn-primary">
+              <span class="btn-text">Next</span>
+              <i class="fa-solid fa-arrow-right btn-icon" style="margin-left: 6px;"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 3: INSTANT CONSENT & SYNC -->
+      <div id="google-step-3" class="google-auth-step hidden" style="text-align: center; padding: 1rem 0;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
+          <img src="./pulse-logo.png" style="width: 52px; height: 52px; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.5);">
+          <i class="fa-solid fa-arrow-right-arrow-left" style="color: #8ab4f8; font-size: 1.25rem;"></i>
+          <img id="g-consent-avatar" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width: 52px; height: 52px; border-radius: 50%; background: #fff; padding: 4px;">
+        </div>
+        <h3 style="color: #e8eaed; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Continue to Pulse Music</h3>
+        <p style="color: #9aa0a6; font-size: 0.88rem; max-width: 320px; margin: 0 auto 1.5rem;">
+          Sign in as <strong id="g-consent-name" style="color: #fff;">User</strong> (<span id="g-consent-email">user@gmail.com</span>)
         </p>
-      </form>
+        <button type="button" class="google-btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem 1.5rem; font-size: 1rem;" onclick="window.confirmGoogleLoginFinal()">
+          <i class="fa-solid fa-check" style="margin-right: 8px;"></i> Allow & Continue
+        </button>
+      </div>
+
     </div>
   </div>
 
@@ -1151,7 +1220,7 @@
       <div class="modal-header">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <div class="pulse-auth-logo-wrapper" style="width: 38px; height: 38px;">
-            <img src="./assets/pulse-logo-CG85IKCd.png" alt="Pulse Logo" style="width: 24px; height: 24px;">
+            <img src="./pulse-logo.png" alt="Pulse Logo" style="width: 24px; height: 24px;">
           </div>
           <div>
             <h3 style="margin: 0; font-size: 1.25rem;"><i class="fa-solid fa-cloud-arrow-down text-accent"></i> Download Pulse Music</h3>
@@ -1609,6 +1678,9 @@
         }
       });
     }
-  </script>
+  </script>
+  <script type="module" src="./src/musicService.js"></script>
+  <script type="module" src="./src/visualizer.js"></script>
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>

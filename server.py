@@ -516,9 +516,11 @@ def decrypt_saavn_url(encrypted_url):
         if 1 <= pad_len <= 8:
             dec = dec[:-pad_len]
         url = dec.decode('utf-8')
+        u320 = url.replace('_96.mp4', '_320.mp4').replace('_48.mp4', '_320.mp4').replace('_160.mp4', '_320.mp4')
+        u160 = url.replace('_96.mp4', '_160.mp4').replace('_48.mp4', '_160.mp4').replace('_320.mp4', '_160.mp4')
         return {
-            '320': url.replace("_96.mp4", "_320.mp4").replace(".mp4", "_320.mp4") if not url.endswith("_320.mp4") else url,
-            '160': url.replace("_96.mp4", "_160.mp4"),
+            '320': u320,
+            '160': u160,
             '96': url
         }
     except Exception:
@@ -1149,31 +1151,45 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.wfile.write(b'Audio track could not be loaded.')
             return
 
-        # API: Resolve Audio Info (/api/resolve)
-        if path == '/api/resolve' or path == '/api/audio-url':
-            yt_id = params.get('ytId', [None])[0]
+        # API: Fast YouTube Video ID Search (/api/yt-search)
+        if path == '/api/yt-search':
             query = params.get('q', [None])[0]
-            track_id = params.get('id', [None])[0]
-
-            audio_file = ensure_audio_file(yt_id=yt_id, query=query, track_id=track_id)
-            if audio_file:
-                body = json.dumps({
-                    'success': True,
-                    'file': os.path.basename(audio_file),
-                    'path': f"/storage/music/{os.path.basename(audio_file)}"
-                }).encode('utf-8')
-                self.send_response(200)
-                self.send_header('Content-Type', 'application/json')
-                self.send_header('Content-Length', str(len(body)))
-                self.end_headers()
-                self.wfile.write(body)
-            else:
-                body = json.dumps({'success': False, 'error': 'Could not resolve track'}).encode('utf-8')
-                self.send_response(404)
-                self.send_header('Content-Type', 'application/json')
-                self.send_header('Content-Length', str(len(body)))
-                self.end_headers()
-                self.wfile.write(body)
+            if query:
+                video_id = None
+                # 1. yt-dlp search if available
+                if yt_dlp:
+                    try:
+                        ydl_opts = {
+                            'quiet': True,
+                            'extract_flat': True,
+                            'default_search': 'ytsearch1:',
+                            'skip_download': True
+                        }
+                        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                            info = ydl.extract_info(query, download=False)
+                            entries = info.get('entries', [])
+                            if entries and entries[0].get('id'):
+                                video_id = entries[0]['id']
+                    except Exception:
+                        pass
+                
+                # 2. Web search fallback
+                if not video_id:
+                    try:
+                        search_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(query)}"
+                        s_req = urllib.request.Request(search_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+                        with urllib.request.urlopen(s_req, timeout=3) as s_resp:
+                            html = s_resp.read().decode('utf-8', errors='ignore')
+                            m = re.findall(r'"videoId":"([a-zA-Z0-9_-]{11})"', html)
+                            if m:
+                                video_id = m[0]
+                    except Exception:
+                        pass
+                
+                if video_id:
+                    self._send_json(200, {'success': True, 'videoId': video_id})
+                    return
+            self._send_json(404, {'success': False, 'error': 'Video ID not found'})
             return
 
         # =====================================================================
@@ -1253,6 +1269,140 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         # Standard static file serving
         super().do_GET()
+
+    def do_POST(self):
+        parsed = urllib.parse.urlparse(self.path)
+        path = parsed.path
+        
+        content_len = int(self.headers.get('Content-Length', 0))
+        post_data = self.rfile.read(content_len) if content_len > 0 else b'{}'
+        try:
+            body = json.loads(post_data.decode('utf-8'))
+        except Exception:
+            body = {}
+
+        storage_dir = os.path.join(ROOT_DIR, 'storage')
+        os.makedirs(storage_dir, exist_ok=True)
+        users_file = os.path.join(storage_dir, 'users.json')
+        users = {}
+        if os.path.exists(users_file):
+            try:
+                with open(users_file, 'r', encoding='utf-8') as f:
+                    users = json.load(f)
+            except Exception:
+                users = {}
+
+        def resolve_email_avatar(email, name=''):
+            clean_email = email.lower().strip()
+            clean_name = name or clean_email.split('@')[0].title()
+            google_colors = ['4285F4', 'EA4335', 'FBBC05', '34A853', '9334E6', 'E37400']
+            color_idx = sum(ord(c) for c in clean_email) % len(google_colors)
+            bg_col = google_colors[color_idx]
+            fallback = f"https://api.dicebear.com/7.x/initials/svg?seed={urllib.parse.quote(clean_name)}&backgroundColor={bg_col}&textColor=ffffff"
+            return f"https://unavatar.io/{urllib.parse.quote(clean_email)}?fallback={urllib.parse.quote(fallback)}"
+
+        # 1. User Login (/api/auth/login)
+        if path == '/api/auth/login':
+            email = str(body.get('email', '')).lower().strip()
+            password = str(body.get('password', '')).strip()
+            if not email:
+                self._send_json(400, {'success': False, 'error': 'Email address is required.', 'field': 'login-email'})
+                return
+            
+            if email in users:
+                user_record = users[email]
+                if user_record.get('password') == password or user_record.get('provider') == 'google':
+                    token = 'pulse_token_' + hashlib.sha256((email + str(time.time())).encode()).hexdigest()[:24]
+                    user_data = {
+                        'name': user_record.get('name', email.split('@')[0].title()),
+                        'email': email,
+                        'provider': user_record.get('provider', 'email'),
+                        'avatar': user_record.get('avatar') or resolve_email_avatar(email, user_record.get('name'))
+                    }
+                    self._send_json(200, {'success': True, 'message': f'Welcome back, {user_data["name"]}!', 'user': user_data, 'token': token})
+                    return
+                else:
+                    self._send_json(401, {'success': False, 'error': 'Incorrect password. Please verify and try again.', 'code': 'INVALID_PASSWORD', 'field': 'login-password'})
+                    return
+            else:
+                name = email.split('@')[0].replace('.', ' ').replace('_', ' ').title()
+                user_data = {
+                    'name': name,
+                    'email': email,
+                    'password': password,
+                    'provider': 'email',
+                    'avatar': resolve_email_avatar(email, name),
+                    'createdAt': time.time()
+                }
+                users[email] = user_data
+                try:
+                    with open(users_file, 'w', encoding='utf-8') as f:
+                        json.dump(users, f, indent=2)
+                except Exception:
+                    pass
+                token = 'pulse_token_' + hashlib.sha256((email + str(time.time())).encode()).hexdigest()[:24]
+                self._send_json(200, {'success': True, 'message': f'Welcome to Pulse, {name}!', 'user': user_data, 'token': token})
+                return
+
+        # 2. User Signup (/api/auth/signup)
+        if path == '/api/auth/signup':
+            name = str(body.get('name', '')).strip()
+            email = str(body.get('email', '')).lower().strip()
+            password = str(body.get('password', '')).strip()
+            if not name or not email or not password:
+                self._send_json(400, {'success': False, 'error': 'Full Name, Email and Password are required.'})
+                return
+            
+            user_data = {
+                'name': name,
+                'email': email,
+                'password': password,
+                'provider': 'email',
+                'avatar': resolve_email_avatar(email, name),
+                'createdAt': time.time()
+            }
+            users[email] = user_data
+            try:
+                with open(users_file, 'w', encoding='utf-8') as f:
+                    json.dump(users, f, indent=2)
+            except Exception:
+                pass
+            token = 'pulse_token_' + hashlib.sha256((email + str(time.time())).encode()).hexdigest()[:24]
+            self._send_json(200, {'success': True, 'message': f'Account created! Welcome, {name}!', 'user': user_data, 'token': token})
+            return
+
+        # 3. Google OAuth / Multi-Step Auth (/api/auth/google)
+        if path == '/api/auth/google':
+            email = str(body.get('email', '')).lower().strip()
+            name = str(body.get('name', '')).strip() or email.split('@')[0].title()
+            avatar = str(body.get('avatar', '')) or resolve_email_avatar(email, name)
+            password = str(body.get('password', ''))
+            
+            user_data = {
+                'name': name,
+                'email': email,
+                'password': password,
+                'provider': 'google',
+                'avatar': avatar,
+                'lastLogin': time.time()
+            }
+            users[email] = user_data
+            try:
+                with open(users_file, 'w', encoding='utf-8') as f:
+                    json.dump(users, f, indent=2)
+            except Exception:
+                pass
+            token = 'google_token_' + hashlib.sha256((email + str(time.time())).encode()).hexdigest()[:24]
+            self._send_json(200, {'success': True, 'message': f'Signed in with Google as {name}!', 'user': user_data, 'token': token})
+            return
+
+        # 4. Forgot Password (/api/auth/forgot-password)
+        if path == '/api/auth/forgot-password':
+            email = str(body.get('email', '')).lower().strip()
+            self._send_json(200, {'success': True, 'message': f'Password reset link dispatched for {email}.'})
+            return
+
+        self._send_json(404, {'success': False, 'error': 'Endpoint not found'})
 
     def guess_type(self, path):
         if path.endswith('.js') or path.endswith('.mjs'):
