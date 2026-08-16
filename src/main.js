@@ -5290,21 +5290,15 @@
   window.handleGoogleCredentialResponse = handleGoogleCredentialResponse;
 
   function initGoogleIdentityServices() {
+    // Only initialize GSI if a valid custom client ID is configured
     if (typeof window === 'undefined' || window.isUserLoggedIn()) return;
-    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+    if (window.PULSE_GOOGLE_CLIENT_ID && typeof google !== 'undefined' && google.accounts && google.accounts.id) {
       try {
         google.accounts.id.initialize({
-          client_id: window.PULSE_GOOGLE_CLIENT_ID || '819238472910-pulse.apps.googleusercontent.com',
+          client_id: window.PULSE_GOOGLE_CLIENT_ID,
           callback: handleGoogleCredentialResponse,
           auto_select: false,
           cancel_on_tap_outside: true
-        });
-
-        // Try Google One-Tap prompt
-        google.accounts.id.prompt((notification) => {
-          if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-            console.log('[Pulse GSI] One-tap prompt skipped/closed');
-          }
         });
       } catch (e) {
         console.warn('[Pulse GSI] Notice:', e);
@@ -5314,15 +5308,7 @@
   window.initGoogleIdentityServices = initGoogleIdentityServices;
 
   window.triggerGoogleOneTapLogin = function() {
-    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-      try {
-        google.accounts.id.prompt();
-      } catch (e) {
-        window.openGoogleAuthModal();
-      }
-    } else {
-      window.openGoogleAuthModal();
-    }
+    window.openGoogleAuthModal();
   };
 
   /* ==========================================================================
