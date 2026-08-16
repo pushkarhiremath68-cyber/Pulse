@@ -1579,8 +1579,18 @@
   <!-- YOUTUBE API INIT (must run BEFORE module scripts to catch the callback) -->
   <script>
     (function() {
-      // Fix race condition: register the callback immediately so it's ready
-      // even if the YouTube IFrame API loads before our module scripts.
+      // Global Ad & Popup Shield - Blocks ad popups, window.open hijacking, and ad redirects
+      try {
+        const originalOpen = window.open;
+        window.open = function(url, target, features) {
+          if (!url || typeof url !== 'string' || url.includes('doubleclick') || url.includes('adnxs') || url.includes('adservice') || url.includes('syndication') || url.includes('popads')) {
+            console.warn('[Pulse Ad Shield] Blocked suspicious ad popup:', url);
+            return null;
+          }
+          return originalOpen.apply(window, arguments);
+        };
+      } catch (e) {}
+
       window._ytPlayerReady = false;
       window._ytPlayerInstance = null;
 
@@ -1601,22 +1611,36 @@
             playsinline: 1,
             showinfo: 0,
             enablejsapi: 1,
+            iv_load_policy: 3,
+            modestbranding: 1,
+            cc_load_policy: 0,
             origin: window.location.origin
           },
           events: {
             onReady: function() {
               window._ytPlayerReady = true;
-              console.log('[Pulse] YouTube Player API ready (early init)');
-              // Notify main.js if it's already loaded
+              console.log('[Pulse] YouTube Player API ready (Ad-Free Engine Active)');
               if (typeof window._onYTPlayerCreated === 'function') {
                 window._onYTPlayerCreated(window._ytPlayerInstance);
               }
             },
             onStateChange: function(event) {
-              if (event.data === 1 && window._ytPlayerInstance) {
+              if (window._ytPlayerInstance) {
                 try {
-                  window._ytPlayerInstance.unMute();
-                  window._ytPlayerInstance.setVolume(100);
+                  // Automatic Ad-Skipper & Muter
+                  var videoData = (typeof window._ytPlayerInstance.getVideoData === 'function') ? window._ytPlayerInstance.getVideoData() : null;
+                  var dur = (typeof window._ytPlayerInstance.getDuration === 'function') ? window._ytPlayerInstance.getDuration() : 0;
+                  
+                  // Detect ad state or short promo clip (< 30s)
+                  if ((videoData && videoData.isAd) || (dur > 0 && dur <= 30 && videoData && videoData.title && videoData.title.toLowerCase().includes('ad'))) {
+                    window._ytPlayerInstance.mute();
+                    if (typeof window._ytPlayerInstance.seekTo === 'function') {
+                      window._ytPlayerInstance.seekTo(dur, true);
+                    }
+                  } else if (event.data === 1) {
+                    window._ytPlayerInstance.unMute();
+                    window._ytPlayerInstance.setVolume(100);
+                  }
                 } catch(e) {}
               }
               if (typeof window._onYTStateChange === 'function') {
@@ -1624,7 +1648,7 @@
               }
             },
             onError: function(event) {
-              console.error('[Pulse] YouTube Player error:', event.data);
+              console.error('[Pulse] YouTube Player notice:', event.data);
               if (typeof window._onYTError === 'function') {
                 window._onYTError(event);
               }
