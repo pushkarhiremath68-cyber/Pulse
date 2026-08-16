@@ -206,7 +206,7 @@
     if (!query) return null;
     const cleanQ = query.toLowerCase().trim();
 
-    // 1. Strict match in pre-indexed catalog (prevent partial single-word false matches)
+    // 1. Strict match in pre-indexed catalog (0ms instantaneous lookup)
     if (typeof DEMO_CATALOG !== 'undefined') {
       const match = DEMO_CATALOG.find(t => {
         if (!t.ytId) return false;
@@ -222,7 +222,7 @@
 
     if (typeof YOUTUBE_TRACKS_MAP !== 'undefined') {
       for (const [k, v] of Object.entries(YOUTUBE_TRACKS_MAP)) {
-        const cleanK = k.replace('in-', '').replace('en-', '').replace('te-', '').replace('kn-', '').replace('pj-', '').replace(/-/g, ' ');
+        const cleanK = k.replace(/^in-|^en-|^te-|^kn-|^pj-|^gu-|^mr-|^hr-|^es-|^fr-|^dev-|^ta-/, '').replace(/-/g, ' ');
         if (cleanQ === cleanK || (cleanK.length >= 5 && cleanQ.includes(cleanK))) {
           return v;
         }
@@ -231,7 +231,7 @@
 
     // 2. Query Local Backend Server YouTube Search API if available
     try {
-      const backendRes = await fetch(`/api/yt-search?q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(3000) });
+      const backendRes = await fetch(`/api/yt-search?q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(2000) });
       if (backendRes.ok) {
         const bData = await backendRes.json();
         if (bData && bData.videoId && bData.videoId.length === 11) {
@@ -240,18 +240,32 @@
       }
     } catch (e) {}
 
-    // 3. Fast Invidious / Piped search across active instances
-    for (const inst of INVIDIOUS_INSTANCES) {
-      try {
-        const iRes = await fetch(`${inst}/api/v1/search?q=${encodeURIComponent(query)}&type=video`, { signal: AbortSignal.timeout(2000) });
-        if (iRes.ok) {
-          const iData = await iRes.json();
-          if (Array.isArray(iData) && iData.length > 0 && iData[0].videoId) {
-            return iData[0].videoId;
-          }
-        }
-      } catch (e) {}
-    }
+    // 3. Fast Parallel Invidious & Piped Multi-Instance Search
+    const fastInstances = [
+      'https://invidious.nerdvpn.de',
+      'https://inv.nadeko.net',
+      'https://invidious.jing.rocks',
+      'https://yt.drgnz.club'
+    ];
+
+    try {
+      const fetchPromises = fastInstances.map(inst =>
+        fetch(`${inst}/api/v1/search?q=${encodeURIComponent(query)}&type=video`, { signal: AbortSignal.timeout(2200) })
+          .then(r => r.ok ? r.json() : null)
+          .then(data => {
+            if (Array.isArray(data) && data.length > 0 && data[0].videoId && data[0].videoId.length === 11) {
+              return data[0].videoId;
+            }
+            return null;
+          })
+          .catch(() => null)
+      );
+
+      const firstValidId = await Promise.any(
+        fetchPromises.map(p => p.then(id => id || Promise.reject()))
+      );
+      if (firstValidId) return firstValidId;
+    } catch (e) {}
 
     return null;
   }

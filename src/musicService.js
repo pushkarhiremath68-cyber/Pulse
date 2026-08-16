@@ -27240,8 +27240,2024 @@
     "storagePath": "pj-so-high-sidhu-song.mp3",
     "source": "Pulse Trending Vault",
     "cover": "https://c.saavncdn.com/544/So-High-Punjabi-2017-20220811172517-500x500.webp"
-  }
+  },
+{
+    "id": "in-tum-se-hi-jab-we-met",
+    "title": "Tum Se Hi",
+    "artist": "Mohit Chauhan, Pritam",
+    "album": "Jab We Met",
+    "duration": "5:23",
+    "category": "bollywood",
+    "ytId": "mt9xg0mmt28",
+    "ytSearchQuery": "Tum Se Hi Mohit Chauhan, Pritam",
+    "storagePath": "in-tum-se-hi-jab-we-met.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/131/Jab-We-Met-Hindi-2007-20221206122607-500x500.webp"
+},
+{
+    "id": "in-pee-loon-once-upon-a-time",
+    "title": "Pee Loon",
+    "artist": "Mohit Chauhan, Pritam",
+    "album": "Once Upon A Time In Mumbaai",
+    "duration": "4:47",
+    "category": "bollywood",
+    "ytId": "z-f93n_T298",
+    "ytSearchQuery": "Pee Loon Mohit Chauhan, Pritam",
+    "storagePath": "in-pee-loon-once-upon-a-time.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/209/Once-Upon-A-Time-In-Mumbaai-Hindi-2010-20221213031023-500x500.webp"
+},
+{
+    "id": "in-phir-se-ud-chala-rockstar",
+    "title": "Phir Se Ud Chala",
+    "artist": "Mohit Chauhan, A.R. Rahman",
+    "album": "Rockstar",
+    "duration": "4:31",
+    "category": "bollywood",
+    "ytId": "2mWaqanuXiE",
+    "ytSearchQuery": "Phir Se Ud Chala Mohit Chauhan, A.R. Rahman",
+    "storagePath": "in-phir-se-ud-chala-rockstar.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Rockstar-Hindi-2011-20221212023537-500x500.webp"
+},
+{
+    "id": "in-kun-faaya-kun-rockstar",
+    "title": "Kun Faya Kun",
+    "artist": "A.R. Rahman, Mohit Chauhan, Javed Ali",
+    "album": "Rockstar",
+    "duration": "7:53",
+    "category": "devotional",
+    "ytId": "T94PHkuydcw",
+    "ytSearchQuery": "Kun Faya Kun A.R. Rahman, Mohit Chauhan, Javed Ali",
+    "storagePath": "in-kun-faaya-kun-rockstar.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Rockstar-Hindi-2011-20221212023537-500x500.webp"
+},
+{
+    "id": "in-nadaan-parinde-rockstar",
+    "title": "Nadaan Parinde",
+    "artist": "A.R. Rahman, Mohit Chauhan",
+    "album": "Rockstar",
+    "duration": "6:26",
+    "category": "bollywood",
+    "ytId": "ttmg3fl7p_0",
+    "ytSearchQuery": "Nadaan Parinde A.R. Rahman, Mohit Chauhan",
+    "storagePath": "in-nadaan-parinde-rockstar.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Rockstar-Hindi-2011-20221212023537-500x500.webp"
+},
+{
+    "id": "in-sadda-haq-rockstar",
+    "title": "Sadda Haq",
+    "artist": "Mohit Chauhan, A.R. Rahman",
+    "album": "Rockstar",
+    "duration": "6:05",
+    "category": "bollywood",
+    "ytId": "p9DQAGb8as8",
+    "ytSearchQuery": "Sadda Haq Mohit Chauhan, A.R. Rahman",
+    "storagePath": "in-sadda-haq-rockstar.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Rockstar-Hindi-2011-20221212023537-500x500.webp"
+},
+{
+    "id": "in-tum-ho-rockstar",
+    "title": "Tum Ho",
+    "artist": "Mohit Chauhan, Suzanne D'Mello",
+    "album": "Rockstar",
+    "duration": "5:18",
+    "category": "bollywood",
+    "ytId": "gkCKzA7nzdU",
+    "ytSearchQuery": "Tum Ho Mohit Chauhan, Suzanne D'Mello",
+    "storagePath": "in-tum-ho-rockstar.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Rockstar-Hindi-2011-20221212023537-500x500.webp"
+},
+{
+    "id": "in-hawa-hawa-rockstar",
+    "title": "Hawa Hawa",
+    "artist": "Mohit Chauhan",
+    "album": "Rockstar",
+    "duration": "5:42",
+    "category": "bollywood",
+    "ytId": "jAoxp3vU0yA",
+    "ytSearchQuery": "Hawa Hawa Mohit Chauhan",
+    "storagePath": "in-hawa-hawa-rockstar.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Rockstar-Hindi-2011-20221212023537-500x500.webp"
+},
+{
+    "id": "in-ilahi-ye-jawaani-hai-deewani",
+    "title": "Ilahi",
+    "artist": "Arijit Singh, Pritam",
+    "album": "Yeh Jawaani Hai Deewani",
+    "duration": "3:49",
+    "category": "bollywood",
+    "ytId": "fdubeMFqc34",
+    "ytSearchQuery": "Ilahi Arijit Singh, Pritam",
+    "storagePath": "in-ilahi-ye-jawaani-hai-deewani.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/023/Yeh-Jawaani-Hai-Deewani-Hindi-2013-500x500.webp"
+},
+{
+    "id": "in-subhanallah-yjhd",
+    "title": "Subhanallah",
+    "artist": "Sreerama Chandra, Shilpa Rao",
+    "album": "Yeh Jawaani Hai Deewani",
+    "duration": "4:09",
+    "category": "bollywood",
+    "ytId": "0P_fFmFq3tM",
+    "ytSearchQuery": "Subhanallah Sreerama Chandra, Shilpa Rao",
+    "storagePath": "in-subhanallah-yjhd.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/023/Yeh-Jawaani-Hai-Deewani-Hindi-2013-500x500.webp"
+},
+{
+    "id": "in-kabira-encore-yjhd",
+    "title": "Kabira (Encore)",
+    "artist": "Arijit Singh, Harshdeep Kaur",
+    "album": "Yeh Jawaani Hai Deewani",
+    "duration": "4:29",
+    "category": "bollywood",
+    "ytId": "cyXZS_2bZfE",
+    "ytSearchQuery": "Kabira (Encore) Arijit Singh, Harshdeep Kaur",
+    "storagePath": "in-kabira-encore-yjhd.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/023/Yeh-Jawaani-Hai-Deewani-Hindi-2013-500x500.webp"
+},
+{
+    "id": "in-ghagra-yjhd",
+    "title": "Ghagra",
+    "artist": "Vishal Dadlani, Rekha Bhardwaj",
+    "album": "Yeh Jawaani Hai Deewani",
+    "duration": "5:04",
+    "category": "bollywood",
+    "ytId": "caoGNx1LF24",
+    "ytSearchQuery": "Ghagra Vishal Dadlani, Rekha Bhardwaj",
+    "storagePath": "in-ghagra-yjhd.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/023/Yeh-Jawaani-Hai-Deewani-Hindi-2013-500x500.webp"
+},
+{
+    "id": "in-badtameez-dil-yjhd",
+    "title": "Badtameez Dil",
+    "artist": "Benny Dayal, Shefali Alvares",
+    "album": "Yeh Jawaani Hai Deewani",
+    "duration": "4:12",
+    "category": "bollywood",
+    "ytId": "II2EO3NwUr8",
+    "ytSearchQuery": "Badtameez Dil Benny Dayal, Shefali Alvares",
+    "storagePath": "in-badtameez-dil-yjhd.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/023/Yeh-Jawaani-Hai-Deewani-Hindi-2013-500x500.webp"
+},
+{
+    "id": "in-dilliwaali-girlfriend-yjhd",
+    "title": "Dilliwaali Girlfriend",
+    "artist": "Arijit Singh, Sunidhi Chauhan",
+    "album": "Yeh Jawaani Hai Deewani",
+    "duration": "4:20",
+    "category": "bollywood",
+    "ytId": "1cDoRqPnHi4",
+    "ytSearchQuery": "Dilliwaali Girlfriend Arijit Singh, Sunidhi Chauhan",
+    "storagePath": "in-dilliwaali-girlfriend-yjhd.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/023/Yeh-Jawaani-Hai-Deewani-Hindi-2013-500x500.webp"
+},
+{
+    "id": "in-matargashti-tamasha",
+    "title": "Matargashti",
+    "artist": "Mohit Chauhan, A.R. Rahman",
+    "album": "Tamasha",
+    "duration": "5:28",
+    "category": "bollywood",
+    "ytId": "k1-TrAvP_38",
+    "ytSearchQuery": "Matargashti Mohit Chauhan, A.R. Rahman",
+    "storagePath": "in-matargashti-tamasha.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Tamasha-Hindi-2015-500x500.webp"
+},
+{
+    "id": "in-safarnama-tamasha",
+    "title": "Safarnama",
+    "artist": "Lucky Ali, A.R. Rahman",
+    "album": "Tamasha",
+    "duration": "4:11",
+    "category": "bollywood",
+    "ytId": "eTq3qOQhS4w",
+    "ytSearchQuery": "Safarnama Lucky Ali, A.R. Rahman",
+    "storagePath": "in-safarnama-tamasha.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Tamasha-Hindi-2015-500x500.webp"
+},
+{
+    "id": "in-wat-wat-wat-tamasha",
+    "title": "Wat Wat Wat",
+    "artist": "Arijit Singh, Shashwat Singh",
+    "album": "Tamasha",
+    "duration": "3:58",
+    "category": "bollywood",
+    "ytId": "yW6z1eGgqXw",
+    "ytSearchQuery": "Wat Wat Wat Arijit Singh, Shashwat Singh",
+    "storagePath": "in-wat-wat-wat-tamasha.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Tamasha-Hindi-2015-500x500.webp"
+},
+{
+    "id": "in-tu-koi-aur-hai-tamasha",
+    "title": "Tu Koi Aur Hai",
+    "artist": "A.R. Rahman, Alma Ferovic",
+    "album": "Tamasha",
+    "duration": "7:13",
+    "category": "bollywood",
+    "ytId": "m8c5e6H0G00",
+    "ytSearchQuery": "Tu Koi Aur Hai A.R. Rahman, Alma Ferovic",
+    "storagePath": "in-tu-koi-aur-hai-tamasha.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Tamasha-Hindi-2015-500x500.webp"
+},
+{
+    "id": "in-heer-toh-badi-sad-hai-tamasha",
+    "title": "Heer Toh Badi Sad Hai",
+    "artist": "Mika Singh, Nakash Aziz",
+    "album": "Tamasha",
+    "duration": "3:22",
+    "category": "bollywood",
+    "ytId": "f9fN_bE2cCY",
+    "ytSearchQuery": "Heer Toh Badi Sad Hai Mika Singh, Nakash Aziz",
+    "storagePath": "in-heer-toh-badi-sad-hai-tamasha.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Tamasha-Hindi-2015-500x500.webp"
+},
+{
+    "id": "in-gerua-dilwale",
+    "title": "Gerua",
+    "artist": "Arijit Singh, Antara Mitra",
+    "album": "Dilwale",
+    "duration": "5:45",
+    "category": "bollywood",
+    "ytId": "AEIVhF-dHuk",
+    "ytSearchQuery": "Gerua Arijit Singh, Antara Mitra",
+    "storagePath": "in-gerua-dilwale.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Dilwale-Hindi-2015-500x500.webp"
+},
+{
+    "id": "in-janam-janam-dilwale",
+    "title": "Janam Janam",
+    "artist": "Arijit Singh, Antara Mitra",
+    "album": "Dilwale",
+    "duration": "3:58",
+    "category": "bollywood",
+    "ytId": "Z9b09h9GzZ8",
+    "ytSearchQuery": "Janam Janam Arijit Singh, Antara Mitra",
+    "storagePath": "in-janam-janam-dilwale.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Dilwale-Hindi-2015-500x500.webp"
+},
+{
+    "id": "in-manma-emotion-jaage-dilwale",
+    "title": "Manma Emotion Jaage",
+    "artist": "Amit Mishra, Anushka Manchanda",
+    "album": "Dilwale",
+    "duration": "3:29",
+    "category": "bollywood",
+    "ytId": "kKp_XjGg4vQ",
+    "ytSearchQuery": "Manma Emotion Jaage Amit Mishra, Anushka Manchanda",
+    "storagePath": "in-manma-emotion-jaage-dilwale.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Dilwale-Hindi-2015-500x500.webp"
+},
+{
+    "id": "in-zaalima-raees",
+    "title": "Zaalima",
+    "artist": "Arijit Singh, Harshdeep Kaur",
+    "album": "Raees",
+    "duration": "4:59",
+    "category": "bollywood",
+    "ytId": "hhdSyERhHcw",
+    "ytSearchQuery": "Zaalima Arijit Singh, Harshdeep Kaur",
+    "storagePath": "in-zaalima-raees.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/334/Raees-Hindi-2016-20200430093124-500x500.webp"
+},
+{
+    "id": "in-laila-main-laila-raees",
+    "title": "Laila Main Laila",
+    "artist": "Pawni Pandey",
+    "album": "Raees",
+    "duration": "5:06",
+    "category": "bollywood",
+    "ytId": "95I5VaR7GeU",
+    "ytSearchQuery": "Laila Main Laila Pawni Pandey",
+    "storagePath": "in-laila-main-laila-raees.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/334/Raees-Hindi-2016-20200430093124-500x500.webp"
+},
+{
+    "id": "in-saanson-ke-raees",
+    "title": "Saanson Ke",
+    "artist": "KK",
+    "album": "Raees",
+    "duration": "4:03",
+    "category": "bollywood",
+    "ytId": "hXhG0d8hF9M",
+    "ytSearchQuery": "Saanson Ke KK",
+    "storagePath": "in-saanson-ke-raees.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/334/Raees-Hindi-2016-20200430093124-500x500.webp"
+},
+{
+    "id": "in-en-humsafar-badrinath",
+    "title": "Humsafar",
+    "artist": "Akhil Sachdeva, Mansheel Gujral",
+    "album": "Badrinath Ki Dulhania",
+    "duration": "4:28",
+    "category": "bollywood",
+    "ytId": "8v-TWxPwi0I",
+    "ytSearchQuery": "Humsafar Akhil Sachdeva, Mansheel Gujral",
+    "storagePath": "in-en-humsafar-badrinath.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/670/Badrinath-Ki-Dulhania-Hindi-2017-500x500.webp"
+},
+{
+    "id": "in-rokeya-na-ruke-naina-badrinath",
+    "title": "Roke Na Ruke Naina",
+    "artist": "Arijit Singh",
+    "album": "Badrinath Ki Dulhania",
+    "duration": "4:38",
+    "category": "bollywood",
+    "ytId": "e7s5kR_b_Lg",
+    "ytSearchQuery": "Roke Na Ruke Naina Arijit Singh",
+    "storagePath": "in-rokeya-na-ruke-naina-badrinath.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/670/Badrinath-Ki-Dulhania-Hindi-2017-500x500.webp"
+},
+{
+    "id": "in-tamma-tamma-again-badrinath",
+    "title": "Tamma Tamma Again",
+    "artist": "Badshah, Bappi Lahiri, Anuradha Paudwal",
+    "album": "Badrinath Ki Dulhania",
+    "duration": "3:19",
+    "category": "bollywood",
+    "ytId": "EEX_XM6SxmY",
+    "ytSearchQuery": "Tamma Tamma Again Badshah, Bappi Lahiri, Anuradha Paudwal",
+    "storagePath": "in-tamma-tamma-again-badrinath.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/670/Badrinath-Ki-Dulhania-Hindi-2017-500x500.webp"
+},
+{
+    "id": "in-badri-ki-dulhania-title",
+    "title": "Badri Ki Dulhania",
+    "artist": "Dev Negi, Neha Kakkar, Monali Thakur, Ikka",
+    "album": "Badrinath Ki Dulhania",
+    "duration": "3:26",
+    "category": "bollywood",
+    "ytId": "1YBl3Zbt80A",
+    "ytSearchQuery": "Badri Ki Dulhania Dev Negi, Neha Kakkar, Monali Thakur, Ikka",
+    "storagePath": "in-badri-ki-dulhania-title.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/670/Badrinath-Ki-Dulhania-Hindi-2017-500x500.webp"
+},
+{
+    "id": "in-channa-ve-bhoot",
+    "title": "Channa Ve",
+    "artist": "Akhil Sachdeva, Mansheel Gujral",
+    "album": "Bhoot - Part One",
+    "duration": "3:40",
+    "category": "bollywood",
+    "ytId": "Q3WcK7O5LzM",
+    "ytSearchQuery": "Channa Ve Akhil Sachdeva, Mansheel Gujral",
+    "storagePath": "in-channa-ve-bhoot.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/214/Bhoot-Part-One-The-Haunted-Ship-Hindi-2020-20200212130718-500x500.webp"
+},
+{
+    "id": "in-ghungroo-war",
+    "title": "Ghungroo",
+    "artist": "Arijit Singh, Shilpa Rao, Vishal-Shekhar",
+    "album": "War",
+    "duration": "5:02",
+    "category": "bollywood",
+    "ytId": "qFkNATtc3mc",
+    "ytSearchQuery": "Ghungroo Arijit Singh, Shilpa Rao, Vishal-Shekhar",
+    "storagePath": "in-ghungroo-war.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/624/War-Hindi-2019-20190927161514-500x500.webp"
+},
+{
+    "id": "in-jai-jai-shivshankar-war",
+    "title": "Jai Jai Shivshankar",
+    "artist": "Vishal Dadlani, Benny Dayal",
+    "album": "War",
+    "duration": "3:50",
+    "category": "bollywood",
+    "ytId": "0w_h4m_E0vM",
+    "ytSearchQuery": "Jai Jai Shivshankar Vishal Dadlani, Benny Dayal",
+    "storagePath": "in-jai-jai-shivshankar-war.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/624/War-Hindi-2019-20190927161514-500x500.webp"
+},
+{
+    "id": "in-nashe-si-chadh-gayi-befikre",
+    "title": "Nashe Si Chadh Gayi",
+    "artist": "Arijit Singh, Vishal-Shekhar",
+    "album": "Befikre",
+    "duration": "3:57",
+    "category": "bollywood",
+    "ytId": "Wd2B8OAotU8",
+    "ytSearchQuery": "Nashe Si Chadh Gayi Arijit Singh, Vishal-Shekhar",
+    "storagePath": "in-nashe-si-chadh-gayi-befikre.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/393/Befikre-Hindi-2016-500x500.webp"
+},
+{
+    "id": "in-labon-ka-karobaar-befikre",
+    "title": "Labon Ka Karobaar",
+    "artist": "Papon",
+    "album": "Befikre",
+    "duration": "3:55",
+    "category": "bollywood",
+    "ytId": "4e4HjK3E9xY",
+    "ytSearchQuery": "Labon Ka Karobaar Papon",
+    "storagePath": "in-labon-ka-karobaar-befikre.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/393/Befikre-Hindi-2016-500x500.webp"
+},
+{
+    "id": "in-udey-dil-befikre",
+    "title": "Ude Dil Befikre",
+    "artist": "Benny Dayal",
+    "album": "Befikre",
+    "duration": "3:34",
+    "category": "bollywood",
+    "ytId": "l8_zT9kQ-4Q",
+    "ytSearchQuery": "Ude Dil Befikre Benny Dayal",
+    "storagePath": "in-udey-dil-befikre.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/393/Befikre-Hindi-2016-500x500.webp"
+},
+{
+    "id": "in-you-and-me-befikre",
+    "title": "You and Me",
+    "artist": "Nikhil D'Souza, Rachel Varghese",
+    "album": "Befikre",
+    "duration": "3:17",
+    "category": "bollywood",
+    "ytId": "H1pM6xLz2rQ",
+    "ytSearchQuery": "You and Me Nikhil D'Souza, Rachel Varghese",
+    "storagePath": "in-you-and-me-befikre.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/393/Befikre-Hindi-2016-500x500.webp"
+},
+{
+    "id": "in-jeene-laga-hoon-ramaiya",
+    "title": "Jeene Laga Hoon",
+    "artist": "Atif Aslam, Shreya Ghoshal",
+    "album": "Ramaiya Vastavaiya",
+    "duration": "3:56",
+    "category": "bollywood",
+    "ytId": "f6vYZh_Y_B8",
+    "ytSearchQuery": "Jeene Laga Hoon Atif Aslam, Shreya Ghoshal",
+    "storagePath": "in-jeene-laga-hoon-ramaiya.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/830/Ramaiya-Vastavaiya-Hindi-2013-500x500.webp"
+},
+{
+    "id": "in-rang-jo-lagyo-ramaiya",
+    "title": "Rang Jo Lagyo",
+    "artist": "Atif Aslam, Shreya Ghoshal",
+    "album": "Ramaiya Vastavaiya",
+    "duration": "4:56",
+    "category": "bollywood",
+    "ytId": "e7p8M8O2p0A",
+    "ytSearchQuery": "Rang Jo Lagyo Atif Aslam, Shreya Ghoshal",
+    "storagePath": "in-rang-jo-lagyo-ramaiya.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/830/Ramaiya-Vastavaiya-Hindi-2013-500x500.webp"
+},
+{
+    "id": "in-be-intehaan-race2",
+    "title": "Be Intehaan",
+    "artist": "Atif Aslam, Sunidhi Chauhan",
+    "album": "Race 2",
+    "duration": "4:51",
+    "category": "bollywood",
+    "ytId": "m8c5e6H0G00",
+    "ytSearchQuery": "Be Intehaan Atif Aslam, Sunidhi Chauhan",
+    "storagePath": "in-be-intehaan-race2.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/657/Race-2-Hindi-2012-500x500.webp"
+},
+{
+    "id": "in-pehli-nazar-mein-race",
+    "title": "Pehli Nazar Mein",
+    "artist": "Atif Aslam",
+    "album": "Race",
+    "duration": "5:14",
+    "category": "bollywood",
+    "ytId": "BadB1z-V_qU",
+    "ytSearchQuery": "Pehli Nazar Mein Atif Aslam",
+    "storagePath": "in-pehli-nazar-mein-race.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Race-Hindi-2008-500x500.webp"
+},
+{
+    "id": "in-tu-jaane-na-ajab-prem",
+    "title": "Tu Jaane Na",
+    "artist": "Atif Aslam, Pritam",
+    "album": "Ajab Prem Ki Ghazab Kahani",
+    "duration": "5:41",
+    "category": "bollywood",
+    "ytId": "P8PWN1OmZnM",
+    "ytSearchQuery": "Tu Jaane Na Atif Aslam, Pritam",
+    "storagePath": "in-tu-jaane-na-ajab-prem.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/568/Ajab-Prem-Ki-Ghazab-Kahani-Hindi-2009-500x500.webp"
+},
+{
+    "id": "in-tera-hone-laga-hoon-ajab-prem",
+    "title": "Tera Hone Laga Hoon",
+    "artist": "Atif Aslam, Alisha Chinai",
+    "album": "Ajab Prem Ki Ghazab Kahani",
+    "duration": "4:59",
+    "category": "bollywood",
+    "ytId": "rTuxUAuJRyY",
+    "ytSearchQuery": "Tera Hone Laga Hoon Atif Aslam, Alisha Chinai",
+    "storagePath": "in-tera-hone-laga-hoon-ajab-prem.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/568/Ajab-Prem-Ki-Ghazab-Kahani-Hindi-2009-500x500.webp"
+},
+{
+    "id": "in-main-rang-sharbaton-ka-phata-poster",
+    "title": "Main Rang Sharbaton Ka",
+    "artist": "Atif Aslam, Chinmayi Sripaada",
+    "album": "Phata Poster Nikhla Hero",
+    "duration": "4:23",
+    "category": "bollywood",
+    "ytId": "g_w5qBv0a9s",
+    "ytSearchQuery": "Main Rang Sharbaton Ka Atif Aslam, Chinmayi Sripaada",
+    "storagePath": "in-main-rang-sharbaton-ka-phata-poster.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/445/Phata-Poster-Nikhla-Hero-Hindi-2013-500x500.webp"
+},
+{
+    "id": "in-dil-diyan-gallan-tiger-zinda-hai",
+    "title": "Dil Diyan Gallan",
+    "artist": "Atif Aslam, Vishal-Shekhar",
+    "album": "Tiger Zinda Hai",
+    "duration": "4:20",
+    "category": "bollywood",
+    "ytId": "SAcpESN_Fk4",
+    "ytSearchQuery": "Dil Diyan Gallan Atif Aslam, Vishal-Shekhar",
+    "storagePath": "in-dil-diyan-gallan-tiger-zinda-hai.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Tiger-Zinda-Hai-Hindi-2017-20171212-500x500.webp"
+},
+{
+    "id": "in-swag-se-swagat-tiger-zinda-hai",
+    "title": "Swag Se Swagat",
+    "artist": "Vishal Dadlani, Neha Bhasin",
+    "album": "Tiger Zinda Hai",
+    "duration": "3:56",
+    "category": "bollywood",
+    "ytId": "xmU0s2QtaEY",
+    "ytSearchQuery": "Swag Se Swagat Vishal Dadlani, Neha Bhasin",
+    "storagePath": "in-swag-se-swagat-tiger-zinda-hai.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Tiger-Zinda-Hai-Hindi-2017-20171212-500x500.webp"
+},
+{
+    "id": "in-tere-sang-yaara-rustom",
+    "title": "Tere Sang Yaara",
+    "artist": "Atif Aslam, Arko",
+    "album": "Rustom",
+    "duration": "4:50",
+    "category": "bollywood",
+    "ytId": "f5O1v9GqE5M",
+    "ytSearchQuery": "Tere Sang Yaara Atif Aslam, Arko",
+    "storagePath": "in-tere-sang-yaara-rustom.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/645/Rustom-Hindi-2016-500x500.webp"
+},
+{
+    "id": "in-dekh-lena-tum-bin-2",
+    "title": "Dekh Lena",
+    "artist": "Arijit Singh, Tulsi Kumar",
+    "album": "Tum Bin 2",
+    "duration": "4:41",
+    "category": "bollywood",
+    "ytId": "aN44xpHjNxE",
+    "ytSearchQuery": "Dekh Lena Arijit Singh, Tulsi Kumar",
+    "storagePath": "in-dekh-lena-tum-bin-2.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Tum-Bin-2-Hindi-2016-500x500.webp"
+},
+{
+    "id": "in-ishq-mubarak-tum-bin-2",
+    "title": "Ishq Mubarak",
+    "artist": "Arijit Singh",
+    "album": "Tum Bin 2",
+    "duration": "4:56",
+    "category": "bollywood",
+    "ytId": "d3p1W8R2v8k",
+    "ytSearchQuery": "Ishq Mubarak Arijit Singh",
+    "storagePath": "in-ishq-mubarak-tum-bin-2.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Tum-Bin-2-Hindi-2016-500x500.webp"
+},
+{
+    "id": "in-teri-fariyad-tum-bin-2",
+    "title": "Teri Fariyad",
+    "artist": "Jagjit Singh, Rekha Bhardwaj",
+    "album": "Tum Bin 2",
+    "duration": "10:35",
+    "category": "bollywood",
+    "ytId": "bM5f6n8k9lM",
+    "ytSearchQuery": "Teri Fariyad Jagjit Singh, Rekha Bhardwaj",
+    "storagePath": "in-teri-fariyad-tum-bin-2.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Tum-Bin-2-Hindi-2016-500x500.webp"
+},
+{
+    "id": "in-suno-na-sangemarmar-youngistaan",
+    "title": "Suno Na Sangemarmar",
+    "artist": "Arijit Singh",
+    "album": "Youngistaan",
+    "duration": "3:22",
+    "category": "bollywood",
+    "ytId": "1hF3H6kQ7mY",
+    "ytSearchQuery": "Suno Na Sangemarmar Arijit Singh",
+    "storagePath": "in-suno-na-sangemarmar-youngistaan.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/720/Youngistaan-Hindi-2014-500x500.webp"
+},
+{
+    "id": "in-mast-magan-2-states",
+    "title": "Mast Magan",
+    "artist": "Arijit Singh, Chinmayi Sripaada",
+    "album": "2 States",
+    "duration": "4:41",
+    "category": "bollywood",
+    "ytId": "xitd9mMYgz4",
+    "ytSearchQuery": "Mast Magan Arijit Singh, Chinmayi Sripaada",
+    "storagePath": "in-mast-magan-2-states.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/2-States-Hindi-2014-500x500.webp"
+},
+{
+    "id": "in-chaandaniya-2-states",
+    "title": "Chaandaniya",
+    "artist": "K Mohan, Yashita Sharma",
+    "album": "2 States",
+    "duration": "4:07",
+    "category": "bollywood",
+    "ytId": "q5e4p6K1m3Y",
+    "ytSearchQuery": "Chaandaniya K Mohan, Yashita Sharma",
+    "storagePath": "in-chaandaniya-2-states.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/2-States-Hindi-2014-500x500.webp"
+},
+{
+    "id": "in-offo-2-states",
+    "title": "Offo",
+    "artist": "Aditi Singh Sharma, Amitabh Bhattacharya",
+    "album": "2 States",
+    "duration": "3:34",
+    "category": "bollywood",
+    "ytId": "z2W3P5q1r6M",
+    "ytSearchQuery": "Offo Aditi Singh Sharma, Amitabh Bhattacharya",
+    "storagePath": "in-offo-2-states.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/2-States-Hindi-2014-500x500.webp"
+},
+{
+    "id": "in-locha-e-ulfat-2-states",
+    "title": "Locha-E-Ulfat",
+    "artist": "Benny Dayal",
+    "album": "2 States",
+    "duration": "4:48",
+    "category": "bollywood",
+    "ytId": "5g8h4k9m1Lw",
+    "ytSearchQuery": "Locha-E-Ulfat Benny Dayal",
+    "storagePath": "in-locha-e-ulfat-2-states.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/2-States-Hindi-2014-500x500.webp"
+},
+{
+    "id": "in-hulla-re-2-states",
+    "title": "Hulla Re",
+    "artist": "Shankar Mahadevan, Siddharth Mahadevan, Rasika Shekhar",
+    "album": "2 States",
+    "duration": "3:41",
+    "category": "bollywood",
+    "ytId": "k1-TrAvP_38",
+    "ytSearchQuery": "Hulla Re Shankar Mahadevan, Siddharth Mahadevan, Rasika Shekhar",
+    "storagePath": "in-hulla-re-2-states.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/2-States-Hindi-2014-500x500.webp"
+},
+{
+    "id": "pj-wavy-karan-aujla-hit",
+    "title": "Wavy",
+    "artist": "Karan Aujla",
+    "album": "Street Dreams",
+    "duration": "3:10",
+    "category": "punjabi",
+    "ytId": "lWA2pjMjpBs",
+    "ytSearchQuery": "Wavy Karan Aujla",
+    "storagePath": "pj-wavy-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/Street-Dreams-Punjabi-2024-20240216111003-500x500.webp"
+},
+{
+    "id": "pj-softly-karan-aujla-hit",
+    "title": "Softly",
+    "artist": "Karan Aujla, Ikky",
+    "album": "Making Memories",
+    "duration": "2:36",
+    "category": "punjabi",
+    "ytId": "cW8VLC9U85o",
+    "ytSearchQuery": "Softly Karan Aujla, Ikky",
+    "storagePath": "pj-softly-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Making-Memories-Punjabi-2023-20230818063004-500x500.webp"
+},
+{
+    "id": "pj-52-bars-karan-aujla-hit",
+    "title": "52 Bars",
+    "artist": "Karan Aujla, Ikky",
+    "album": "Four You",
+    "duration": "3:24",
+    "category": "punjabi",
+    "ytId": "b3n9W2V6k1Y",
+    "ytSearchQuery": "52 Bars Karan Aujla, Ikky",
+    "storagePath": "pj-52-bars-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Four-You-Punjabi-2023-20230204063004-500x500.webp"
+},
+{
+    "id": "pj-admiring-you-karan-aujla-hit",
+    "title": "Admiring You",
+    "artist": "Karan Aujla, Preston Pablo, Ikky",
+    "album": "Making Memories",
+    "duration": "3:34",
+    "category": "punjabi",
+    "ytId": "MwpMEbgC7DA",
+    "ytSearchQuery": "Admiring You Karan Aujla, Preston Pablo, Ikky",
+    "storagePath": "pj-admiring-you-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Making-Memories-Punjabi-2023-20230818063004-500x500.webp"
+},
+{
+    "id": "pj-winning-speech-karan-aujla-hit",
+    "title": "Winning Speech",
+    "artist": "Karan Aujla, Mxrci",
+    "album": "Winning Speech",
+    "duration": "3:31",
+    "category": "punjabi",
+    "ytId": "kIDWgqDBNXA",
+    "ytSearchQuery": "Winning Speech Karan Aujla, Mxrci",
+    "storagePath": "pj-winning-speech-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Winning-Speech-Punjabi-2024-20240112101003-500x500.webp"
+},
+{
+    "id": "pj-tauba-tauba-bad-newz",
+    "title": "Tauba Tauba",
+    "artist": "Karan Aujla",
+    "album": "Bad Newz",
+    "duration": "3:27",
+    "category": "punjabi",
+    "ytId": "LK7-_dgAVQE",
+    "ytSearchQuery": "Tauba Tauba Karan Aujla",
+    "storagePath": "pj-tauba-tauba-bad-newz.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Bad-Newz-Hindi-2024-20240702111004-500x500.webp"
+},
+{
+    "id": "pj-antidote-karan-aujla-hit",
+    "title": "Antidote",
+    "artist": "Karan Aujla, Ikky",
+    "album": "Making Memories",
+    "duration": "3:07",
+    "category": "punjabi",
+    "ytId": "95I5VaR7GeU",
+    "ytSearchQuery": "Antidote Karan Aujla, Ikky",
+    "storagePath": "pj-antidote-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Making-Memories-Punjabi-2023-20230818063004-500x500.webp"
+},
+{
+    "id": "pj-bachke-bachke-karan-aujla-hit",
+    "title": "Bachke Bachke",
+    "artist": "Karan Aujla, Yarah, Ikky",
+    "album": "Making Memories",
+    "duration": "3:36",
+    "category": "punjabi",
+    "ytId": "JF8BRvqGCNs",
+    "ytSearchQuery": "Bachke Bachke Karan Aujla, Yarah, Ikky",
+    "storagePath": "pj-bachke-bachke-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Making-Memories-Punjabi-2023-20230818063004-500x500.webp"
+},
+{
+    "id": "pj-chithiyaan-karan-aujla-hit",
+    "title": "Chithiyaan",
+    "artist": "Karan Aujla, Desi Crew",
+    "album": "Chithiyaan",
+    "duration": "4:15",
+    "category": "punjabi",
+    "ytId": "aJOTlE1K90k",
+    "ytSearchQuery": "Chithiyaan Karan Aujla, Desi Crew",
+    "storagePath": "pj-chithiyaan-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Chithiyaan-Punjabi-2020-20201110063004-500x500.webp"
+},
+{
+    "id": "pj-dont-look-karan-aujla-hit",
+    "title": "Don't Look",
+    "artist": "Karan Aujla, Jay Trak",
+    "album": "Don't Look",
+    "duration": "3:25",
+    "category": "punjabi",
+    "ytId": "fVe_KVzBFOo",
+    "ytSearchQuery": "Don't Look Karan Aujla, Jay Trak",
+    "storagePath": "pj-dont-look-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/657/Don-t-Look-Punjabi-2019-20190823063004-500x500.webp"
+},
+{
+    "id": "pj-dont-worry-karan-aujla-hit",
+    "title": "Don't Worry",
+    "artist": "Karan Aujla, Gurlez Akhtar, Deep Jandu",
+    "album": "Don't Worry",
+    "duration": "3:20",
+    "category": "punjabi",
+    "ytId": "hXhG0d8hF9M",
+    "ytSearchQuery": "Don't Worry Karan Aujla, Gurlez Akhtar, Deep Jandu",
+    "storagePath": "pj-dont-worry-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Don-t-Worry-Punjabi-2018-20181015063004-500x500.webp"
+},
+{
+    "id": "pj-hukam-karan-aujla-hit",
+    "title": "Hukam",
+    "artist": "Karan Aujla, Proof",
+    "album": "Hukam",
+    "duration": "3:15",
+    "category": "punjabi",
+    "ytId": "SlPhMPnQ58k",
+    "ytSearchQuery": "Hukam Karan Aujla, Proof",
+    "storagePath": "pj-hukam-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/568/Hukam-Punjabi-2021-20210214063004-500x500.webp"
+},
+{
+    "id": "pj-mexico-karan-aujla-hit",
+    "title": "Mexico",
+    "artist": "Karan Aujla, Yeah Proof",
+    "album": "Mexico",
+    "duration": "3:30",
+    "category": "punjabi",
+    "ytId": "w5tWYmIOWGk",
+    "ytSearchQuery": "Mexico Karan Aujla, Yeah Proof",
+    "storagePath": "pj-mexico-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/830/Mexico-Punjabi-2020-20201217063004-500x500.webp"
+},
+{
+    "id": "pj-on-top-karan-aujla-hit",
+    "title": "On Top",
+    "artist": "Karan Aujla, Yeah Proof",
+    "album": "On Top",
+    "duration": "2:55",
+    "category": "punjabi",
+    "ytId": "KRaWnd3LJfs",
+    "ytSearchQuery": "On Top Karan Aujla, Yeah Proof",
+    "storagePath": "pj-on-top-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/720/On-Top-Punjabi-2022-20221125063004-500x500.webp"
+},
+{
+    "id": "pj-white-brown-black-aujla",
+    "title": "White Brown Black",
+    "artist": "Karan Aujla, Avvy Sra, Jaani",
+    "album": "White Brown Black",
+    "duration": "3:12",
+    "category": "punjabi",
+    "ytId": "yW6z1eGgqXw",
+    "ytSearchQuery": "White Brown Black Karan Aujla, Avvy Sra, Jaani",
+    "storagePath": "pj-white-brown-black-aujla.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/White-Brown-Black-Punjabi-2022-20221209063004-500x500.webp"
+},
+{
+    "id": "pj-wytb-karan-aujla-hit",
+    "title": "WYTB",
+    "artist": "Karan Aujla, Gurlez Akhtar, Ikky",
+    "album": "Four You",
+    "duration": "3:02",
+    "category": "punjabi",
+    "ytId": "qpgTC9MDx1o",
+    "ytSearchQuery": "WYTB Karan Aujla, Gurlez Akhtar, Ikky",
+    "storagePath": "pj-wytb-karan-aujla-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Four-You-Punjabi-2023-20230204063004-500x500.webp"
+},
+{
+    "id": "pj-players-karan-badshah",
+    "title": "Players",
+    "artist": "Badshah, Karan Aujla, Devenderpal Singh",
+    "album": "3:00 AM Sessions",
+    "duration": "2:51",
+    "category": "punjabi",
+    "ytId": "cyXZS_2bZfE",
+    "ytSearchQuery": "Players Badshah, Karan Aujla, Devenderpal Singh",
+    "storagePath": "pj-players-karan-badshah.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/3-00-AM-Sessions-Hindi-2022-20221220111003-500x500.webp"
+},
+{
+    "id": "pj-cheques-shubh-hit",
+    "title": "Cheques",
+    "artist": "Shubh",
+    "album": "Still Rollin",
+    "duration": "3:03",
+    "category": "punjabi",
+    "ytId": "4TYv2PhG89A",
+    "ytSearchQuery": "Cheques Shubh",
+    "storagePath": "pj-cheques-shubh-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Still-Rollin-Punjabi-2023-20230519063004-500x500.webp"
+},
+{
+    "id": "pj-no-love-shubh-hit",
+    "title": "No Love",
+    "artist": "Shubh",
+    "album": "No Love",
+    "duration": "2:50",
+    "category": "punjabi",
+    "ytId": "VNs_cCtdbPc",
+    "ytSearchQuery": "No Love Shubh",
+    "storagePath": "pj-no-love-shubh-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/972/NO-LOVE-Punjabi-2022-20220621214632-500x500.webp"
+},
+{
+    "id": "pj-we-rollin-shubh-hit",
+    "title": "We Rollin",
+    "artist": "Shubh",
+    "album": "We Rollin",
+    "duration": "3:19",
+    "category": "punjabi",
+    "ytId": "hV8EGTjzD2s",
+    "ytSearchQuery": "We Rollin Shubh",
+    "storagePath": "pj-we-rollin-shubh-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/WE-ROLLIN-Punjabi-2021-20220621214629-500x500.webp"
+},
+{
+    "id": "pj-elevated-shubh",
+    "title": "Elevated",
+    "artist": "Shubh",
+    "album": "Elevated",
+    "duration": "3:21",
+    "category": "punjabi",
+    "ytId": "2mWaqanuXiE",
+    "ytSearchQuery": "Elevated Shubh",
+    "storagePath": "pj-elevated-shubh.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/209/Elevated-Punjabi-2021-20211022063004-500x500.webp"
+},
+{
+    "id": "pj-one-love-shubh-hit",
+    "title": "One Love",
+    "artist": "Shubh",
+    "album": "One Love",
+    "duration": "2:41",
+    "category": "punjabi",
+    "ytId": "z-f93n_T298",
+    "ytSearchQuery": "One Love Shubh",
+    "storagePath": "pj-one-love-shubh-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/334/One-Love-Punjabi-2023-20230818063004-500x500.webp"
+},
+{
+    "id": "pj-bandana-shubh-hit",
+    "title": "Bandana",
+    "artist": "Shubh",
+    "album": "Still Rollin",
+    "duration": "2:49",
+    "category": "punjabi",
+    "ytId": "mt9xg0mmt28",
+    "ytSearchQuery": "Bandana Shubh",
+    "storagePath": "pj-bandana-shubh-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Still-Rollin-Punjabi-2023-20230519063004-500x500.webp"
+},
+{
+    "id": "pj-safety-off-shubh",
+    "title": "Safety Off",
+    "artist": "Shubh",
+    "album": "Still Rollin",
+    "duration": "2:23",
+    "category": "punjabi",
+    "ytId": "z9b09h9GzZ8",
+    "ytSearchQuery": "Safety Off Shubh",
+    "storagePath": "pj-safety-off-shubh.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Still-Rollin-Punjabi-2023-20230519063004-500x500.webp"
+},
+{
+    "id": "pj-ice-shubh",
+    "title": "Ice",
+    "artist": "Shubh",
+    "album": "Still Rollin",
+    "duration": "2:54",
+    "category": "punjabi",
+    "ytId": "eTq3qOQhS4w",
+    "ytSearchQuery": "Ice Shubh",
+    "storagePath": "pj-ice-shubh.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Still-Rollin-Punjabi-2023-20230519063004-500x500.webp"
+},
+{
+    "id": "pj-dior-shubh",
+    "title": "Dior",
+    "artist": "Shubh",
+    "album": "Still Rollin",
+    "duration": "2:31",
+    "category": "punjabi",
+    "ytId": "k1-TrAvP_38",
+    "ytSearchQuery": "Dior Shubh",
+    "storagePath": "pj-dior-shubh.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Still-Rollin-Punjabi-2023-20230519063004-500x500.webp"
+},
+{
+    "id": "pj-the-flow-shubh",
+    "title": "The Flow",
+    "artist": "Shubh",
+    "album": "Still Rollin",
+    "duration": "2:45",
+    "category": "punjabi",
+    "ytId": "fdubeMFqc34",
+    "ytSearchQuery": "The Flow Shubh",
+    "storagePath": "pj-the-flow-shubh.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Still-Rollin-Punjabi-2023-20230519063004-500x500.webp"
+},
+{
+    "id": "pj-og-shubh",
+    "title": "OG",
+    "artist": "Shubh",
+    "album": "Still Rollin",
+    "duration": "3:17",
+    "category": "punjabi",
+    "ytId": "AEIVhF-dHuk",
+    "ytSearchQuery": "OG Shubh",
+    "storagePath": "pj-og-shubh.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Still-Rollin-Punjabi-2023-20230519063004-500x500.webp"
+},
+{
+    "id": "kn-leela-leela-kantara",
+    "title": "Leelavathi",
+    "artist": "B. Ajaneesh Loknath",
+    "album": "Kantara",
+    "duration": "3:30",
+    "category": "kannada",
+    "ytId": "Q3WcK7O5LzM",
+    "ytSearchQuery": "Leelavathi B. Ajaneesh Loknath",
+    "storagePath": "kn-leela-leela-kantara.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Kantara-Kannada-2022-20220924151003-500x500.webp"
+},
+{
+    "id": "kn-karma-song-u-turn",
+    "title": "The Karma Theme",
+    "artist": "Anirudh Ravichander",
+    "album": "U Turn",
+    "duration": "3:46",
+    "category": "kannada",
+    "ytId": "e7s5kR_b_Lg",
+    "ytSearchQuery": "The Karma Theme Anirudh Ravichander",
+    "storagePath": "kn-karma-song-u-turn.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/U-Turn-Kannada-2016-500x500.webp"
+},
+{
+    "id": "kn-belageddu-kirik-party-hit",
+    "title": "Belageddu",
+    "artist": "Vijay Prakash, B. Ajaneesh Loknath",
+    "album": "Kirik Party",
+    "duration": "3:34",
+    "category": "kannada",
+    "ytId": "5Wiio4KoGe8",
+    "ytSearchQuery": "Belageddu Vijay Prakash, B. Ajaneesh Loknath",
+    "storagePath": "kn-belageddu-kirik-party-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Kirik-Party-Kannada-2016-500x500.webp"
+},
+{
+    "id": "kn-hey-who-are-you-kirik-party",
+    "title": "Hey Who Are You",
+    "artist": "B. Ajaneesh Loknath, Bharath B J",
+    "album": "Kirik Party",
+    "duration": "3:16",
+    "category": "kannada",
+    "ytId": "b3n9W2V6k1Y",
+    "ytSearchQuery": "Hey Who Are You B. Ajaneesh Loknath, Bharath B J",
+    "storagePath": "kn-hey-who-are-you-kirik-party.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Kirik-Party-Kannada-2016-500x500.webp"
+},
+{
+    "id": "kn-katheyonda-helide-kirik-party",
+    "title": "Katheyonda Helide",
+    "artist": "Hariharan",
+    "album": "Kirik Party",
+    "duration": "4:30",
+    "category": "kannada",
+    "ytId": "lWA2pjMjpBs",
+    "ytSearchQuery": "Katheyonda Helide Hariharan",
+    "storagePath": "kn-katheyonda-helide-kirik-party.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Kirik-Party-Kannada-2016-500x500.webp"
+},
+{
+    "id": "kn-neenire-saniha-kirik-party",
+    "title": "Neenire Saniha",
+    "artist": "Shreya Ghoshal",
+    "album": "Kirik Party",
+    "duration": "3:46",
+    "category": "kannada",
+    "ytId": "JF8BRvqGCNs",
+    "ytSearchQuery": "Neenire Saniha Shreya Ghoshal",
+    "storagePath": "kn-neenire-saniha-kirik-party.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Kirik-Party-Kannada-2016-500x500.webp"
+},
+{
+    "id": "kn-soojidara-mouna",
+    "title": "Soojidara",
+    "artist": "Sanjith Hegde",
+    "album": "Mouna",
+    "duration": "3:40",
+    "category": "kannada",
+    "ytId": "z-f93n_T298",
+    "ytSearchQuery": "Soojidara Sanjith Hegde",
+    "storagePath": "kn-soojidara-mouna.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Mouna-Kannada-2020-500x500.webp"
+},
+{
+    "id": "kn-kush-kush-chamak",
+    "title": "Kush Kush",
+    "artist": "Sanjith Hegde, Priyadarshini",
+    "album": "Chamak",
+    "duration": "3:48",
+    "category": "kannada",
+    "ytId": "fdubeMFqc34",
+    "ytSearchQuery": "Kush Kush Sanjith Hegde, Priyadarshini",
+    "storagePath": "kn-kush-kush-chamak.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/209/Chamak-Kannada-2017-500x500.webp"
+},
+{
+    "id": "kn-marali-manasaagide-gentleman",
+    "title": "Marali Manasaagide",
+    "artist": "Sanjith Hegde, C.R. Bobby",
+    "album": "Gentleman",
+    "duration": "4:12",
+    "category": "kannada",
+    "ytId": "k1-TrAvP_38",
+    "ytSearchQuery": "Marali Manasaagide Sanjith Hegde, C.R. Bobby",
+    "storagePath": "kn-marali-manasaagide-gentleman.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/334/Gentleman-Kannada-2020-500x500.webp"
+},
+{
+    "id": "kn-soul-of-dia-hit",
+    "title": "Soul of Dia",
+    "artist": "Sanjith Hegde, Chinmayi",
+    "album": "Dia",
+    "duration": "4:02",
+    "category": "kannada",
+    "ytId": "cyXZS_2bZfE",
+    "ytSearchQuery": "Soul of Dia Sanjith Hegde, Chinmayi",
+    "storagePath": "kn-soul-of-dia-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Dia-Kannada-2020-500x500.webp"
+},
+{
+    "id": "kn-kannu-kannu-dia-hit",
+    "title": "Kannu Kannu",
+    "artist": "Sanjith Hegde",
+    "album": "Dia",
+    "duration": "3:30",
+    "category": "kannada",
+    "ytId": "mt9xg0mmt28",
+    "ytSearchQuery": "Kannu Kannu Sanjith Hegde",
+    "storagePath": "kn-kannu-kannu-dia-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Dia-Kannada-2020-500x500.webp"
+},
+{
+    "id": "kn-yava-janmada-maithri-kaatera",
+    "title": "Yava Janmada Maithri",
+    "artist": "Sonu Nigam",
+    "album": "Kaatera",
+    "duration": "4:15",
+    "category": "kannada",
+    "ytId": "Z9b09h9GzZ8",
+    "ytSearchQuery": "Yava Janmada Maithri Sonu Nigam",
+    "storagePath": "kn-yava-janmada-maithri-kaatera.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Kaatera-Kannada-2023-20231218151003-500x500.webp"
+},
+{
+    "id": "te-pushpa-pushpa-pushpa2",
+    "title": "Pushpa Pushpa",
+    "artist": "Nakash Aziz, Devi Sri Prasad",
+    "album": "Pushpa 2 The Rule",
+    "duration": "4:16",
+    "category": "telugu",
+    "ytId": "cW8VLC9U85o",
+    "ytSearchQuery": "Pushpa Pushpa Nakash Aziz, Devi Sri Prasad",
+    "storagePath": "te-pushpa-pushpa-pushpa2.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Pushpa-2-The-Rule-Telugu-2024-20240501111003-500x500.webp"
+},
+{
+    "id": "te-sooseki-pushpa2",
+    "title": "Sooseki (The Couple Song)",
+    "artist": "Shreya Ghoshal, Devi Sri Prasad",
+    "album": "Pushpa 2 The Rule",
+    "duration": "4:20",
+    "category": "telugu",
+    "ytId": "b3n9W2V6k1Y",
+    "ytSearchQuery": "Sooseki (The Couple Song) Shreya Ghoshal, Devi Sri Prasad",
+    "storagePath": "te-sooseki-pushpa2.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Pushpa-2-The-Rule-Telugu-2024-20240501111003-500x500.webp"
+},
+{
+    "id": "te-kurchi-madathapetti-guntur-kaaram",
+    "title": "Kurchi Madathapetti",
+    "artist": "Thaman S, Sahithi Chaganti, Sri Krishna",
+    "album": "Guntur Kaaram",
+    "duration": "3:36",
+    "category": "telugu",
+    "ytId": "aJOTlE1K90k",
+    "ytSearchQuery": "Kurchi Madathapetti Thaman S, Sahithi Chaganti, Sri Krishna",
+    "storagePath": "te-kurchi-madathapetti-guntur-kaaram.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Guntur-Kaaram-Telugu-2024-20240112111003-500x500.webp"
+},
+{
+    "id": "te-dum-masala-guntur-kaaram",
+    "title": "Dum Masala",
+    "artist": "S. Thaman, Sanjith Hegde, Thaman S",
+    "album": "Guntur Kaaram",
+    "duration": "3:27",
+    "category": "telugu",
+    "ytId": "fVe_KVzBFOo",
+    "ytSearchQuery": "Dum Masala S. Thaman, Sanjith Hegde, Thaman S",
+    "storagePath": "te-dum-masala-guntur-kaaram.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Guntur-Kaaram-Telugu-2024-20240112111003-500x500.webp"
+},
+{
+    "id": "te-oh-my-baby-guntur-kaaram",
+    "title": "Oh My Baby",
+    "artist": "Shilpa Rao, Thaman S",
+    "album": "Guntur Kaaram",
+    "duration": "3:10",
+    "category": "telugu",
+    "ytId": "SlPhMPnQ58k",
+    "ytSearchQuery": "Oh My Baby Shilpa Rao, Thaman S",
+    "storagePath": "te-oh-my-baby-guntur-kaaram.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Guntur-Kaaram-Telugu-2024-20240112111003-500x500.webp"
+},
+{
+    "id": "te-mawaa-enthaina-guntur-kaaram",
+    "title": "Mawaa Enthaina",
+    "artist": "Ram Miriyala, Thaman S",
+    "album": "Guntur Kaaram",
+    "duration": "3:02",
+    "category": "telugu",
+    "ytId": "w5tWYmIOWGk",
+    "ytSearchQuery": "Mawaa Enthaina Ram Miriyala, Thaman S",
+    "storagePath": "te-mawaa-enthaina-guntur-kaaram.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Guntur-Kaaram-Telugu-2024-20240112111003-500x500.webp"
+},
+{
+    "id": "te-ramana-aei-guntur-kaaram",
+    "title": "Ramana Aei",
+    "artist": "Guntur Kaaram Cast, Thaman S",
+    "album": "Guntur Kaaram",
+    "duration": "3:15",
+    "category": "telugu",
+    "ytId": "KRaWnd3LJfs",
+    "ytSearchQuery": "Ramana Aei Guntur Kaaram Cast, Thaman S",
+    "storagePath": "te-ramana-aei-guntur-kaaram.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Guntur-Kaaram-Telugu-2024-20240112111003-500x500.webp"
+},
+{
+    "id": "te-naatu-naatu-rrr-hit",
+    "title": "Naatu Naatu",
+    "artist": "Rahul Sipligunj, Kaala Bhairava, M.M. Keeravani",
+    "album": "RRR",
+    "duration": "3:34",
+    "category": "telugu",
+    "ytId": "OsU0CGZoV8E",
+    "ytSearchQuery": "Naatu Naatu Rahul Sipligunj, Kaala Bhairava, M.M. Keeravani",
+    "storagePath": "te-naatu-naatu-rrr-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/RRR-Telugu-2021-20211227111003-500x500.webp"
+},
+{
+    "id": "te-dosti-rrr",
+    "title": "Dosti",
+    "artist": "Hemachandra, M.M. Keeravani",
+    "album": "RRR",
+    "duration": "5:41",
+    "category": "telugu",
+    "ytId": "cyXZS_2bZfE",
+    "ytSearchQuery": "Dosti Hemachandra, M.M. Keeravani",
+    "storagePath": "te-dosti-rrr.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/RRR-Telugu-2021-20211227111003-500x500.webp"
+},
+{
+    "id": "te-komuram-bheemudo-rrr-hit",
+    "title": "Komuram Bheemudo",
+    "artist": "Kaala Bhairava, M.M. Keeravani",
+    "album": "RRR",
+    "duration": "4:15",
+    "category": "telugu",
+    "ytId": "4TYv2PhG89A",
+    "ytSearchQuery": "Komuram Bheemudo Kaala Bhairava, M.M. Keeravani",
+    "storagePath": "te-komuram-bheemudo-rrr-hit.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/RRR-Telugu-2021-20211227111003-500x500.webp"
+},
+{
+    "id": "te-janani-rrr",
+    "title": "Janani",
+    "artist": "M.M. Keeravani",
+    "album": "RRR",
+    "duration": "3:07",
+    "category": "telugu",
+    "ytId": "VNs_cCtdbPc",
+    "ytSearchQuery": "Janani M.M. Keeravani",
+    "storagePath": "te-janani-rrr.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/RRR-Telugu-2021-20211227111003-500x500.webp"
+},
+{
+    "id": "te-etthara-jenda-rrr",
+    "title": "Etthara Jenda",
+    "artist": "Vishal Mishra, Prudhvi Chandra, M.M. Keeravani",
+    "album": "RRR",
+    "duration": "4:21",
+    "category": "telugu",
+    "ytId": "hV8EGTjzD2s",
+    "ytSearchQuery": "Etthara Jenda Vishal Mishra, Prudhvi Chandra, M.M. Keeravani",
+    "storagePath": "te-etthara-jenda-rrr.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/RRR-Telugu-2021-20211227111003-500x500.webp"
+},
+{
+    "id": "es-despacito-luis-fonsi",
+    "title": "Despacito",
+    "artist": "Luis Fonsi, Daddy Yankee",
+    "album": "VIDA",
+    "duration": "3:48",
+    "category": "spanish",
+    "ytId": "kJQP7kiw5Fk",
+    "ytSearchQuery": "Despacito Luis Fonsi, Daddy Yankee",
+    "storagePath": "es-despacito-luis-fonsi.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/VIDA-Spanish-2019-500x500.webp"
+},
+{
+    "id": "es-echame-la-culpa-luis-fonsi",
+    "title": "\u00c9chame La Culpa",
+    "artist": "Luis Fonsi, Demi Lovato",
+    "album": "VIDA",
+    "duration": "2:53",
+    "category": "spanish",
+    "ytId": "TyHvyGUsyao",
+    "ytSearchQuery": "\u00c9chame La Culpa Luis Fonsi, Demi Lovato",
+    "storagePath": "es-echame-la-culpa-luis-fonsi.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/VIDA-Spanish-2019-500x500.webp"
+},
+{
+    "id": "es-bailando-enrique-iglesias",
+    "title": "Bailando",
+    "artist": "Enrique Iglesias, Descemer Bueno, Gente De Zona",
+    "album": "SEX AND LOVE",
+    "duration": "4:03",
+    "category": "spanish",
+    "ytId": "NUsoVlDFqZg",
+    "ytSearchQuery": "Bailando Enrique Iglesias, Descemer Bueno, Gente De Zona",
+    "storagePath": "es-bailando-enrique-iglesias.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/SEX-AND-LOVE-Spanish-2014-500x500.webp"
+},
+{
+    "id": "es-subeme-la-radio-enrique",
+    "title": "S\u00fabeme La Radio",
+    "artist": "Enrique Iglesias, Descemer Bueno, Zion & Lennox",
+    "album": "S\u00fabeme La Radio",
+    "duration": "3:28",
+    "category": "spanish",
+    "ytId": "9sg-A-eS6Ig",
+    "ytSearchQuery": "S\u00fabeme La Radio Enrique Iglesias, Descemer Bueno, Zion & Lennox",
+    "storagePath": "es-subeme-la-radio-enrique.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/657/Subeme-La-Radio-Spanish-2017-500x500.webp"
+},
+{
+    "id": "es-duele-el-corazon-enrique",
+    "title": "Duele El Coraz\u00f3n",
+    "artist": "Enrique Iglesias, Wisin",
+    "album": "Duele El Coraz\u00f3n",
+    "duration": "3:20",
+    "category": "spanish",
+    "ytId": "v2H4l9RpkwM",
+    "ytSearchQuery": "Duele El Coraz\u00f3n Enrique Iglesias, Wisin",
+    "storagePath": "es-duele-el-corazon-enrique.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Duele-El-Corazon-Spanish-2016-500x500.webp"
+},
+{
+    "id": "es-el-perdon-nicky-jam",
+    "title": "El Perd\u00f3n",
+    "artist": "Nicky Jam, Enrique Iglesias",
+    "album": "F\u00e9nix",
+    "duration": "3:27",
+    "category": "spanish",
+    "ytId": "hXI8RQYC36Q",
+    "ytSearchQuery": "El Perd\u00f3n Nicky Jam, Enrique Iglesias",
+    "storagePath": "es-el-perdon-nicky-jam.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Fenix-Spanish-2017-500x500.webp"
+},
+{
+    "id": "es-hasta-el-amanecer-nicky-jam",
+    "title": "Hasta el Amanecer",
+    "artist": "Nicky Jam",
+    "album": "F\u00e9nix",
+    "duration": "3:18",
+    "category": "spanish",
+    "ytId": "kkx-7fsiWgg",
+    "ytSearchQuery": "Hasta el Amanecer Nicky Jam",
+    "storagePath": "es-hasta-el-amanecer-nicky-jam.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Fenix-Spanish-2017-500x500.webp"
+},
+{
+    "id": "es-x-equis-nicky-jam-j-balvin",
+    "title": "X (EQUIS)",
+    "artist": "Nicky Jam, J Balvin",
+    "album": "\u00cdntimo",
+    "duration": "2:53",
+    "category": "spanish",
+    "ytId": "_I_D_8Z4sJE",
+    "ytSearchQuery": "X (EQUIS) Nicky Jam, J Balvin",
+    "storagePath": "es-x-equis-nicky-jam-j-balvin.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Intimo-Spanish-2019-500x500.webp"
+},
+{
+    "id": "es-mi-gente-j-balvin-willy-william",
+    "title": "Mi Gente",
+    "artist": "J Balvin, Willy William",
+    "album": "Vibras",
+    "duration": "3:05",
+    "category": "spanish",
+    "ytId": "wnJ6LuUFpMo",
+    "ytSearchQuery": "Mi Gente J Balvin, Willy William",
+    "storagePath": "es-mi-gente-j-balvin-willy-william.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/Vibras-Spanish-2018-500x500.webp"
+},
+{
+    "id": "es-ay-vamos-j-balvin",
+    "title": "Ay Vamos",
+    "artist": "J Balvin",
+    "album": "La Familia B Sides",
+    "duration": "3:46",
+    "category": "spanish",
+    "ytId": "TapXs54Ah3E",
+    "ytSearchQuery": "Ay Vamos J Balvin",
+    "storagePath": "es-ay-vamos-j-balvin.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/209/La-Familia-Spanish-2014-500x500.webp"
+},
+{
+    "id": "es-ginza-j-balvin",
+    "title": "Ginza",
+    "artist": "J Balvin",
+    "album": "Energ\u00eda",
+    "duration": "2:51",
+    "category": "spanish",
+    "ytId": "zNzZcompress",
+    "ytSearchQuery": "Ginza J Balvin",
+    "storagePath": "es-ginza-j-balvin.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/334/Energia-Spanish-2016-500x500.webp"
+},
+{
+    "id": "es-dantza-kuduro-don-omar",
+    "title": "Danza Kuduro",
+    "artist": "Don Omar, Lucenzo",
+    "album": "Meet The Orphans",
+    "duration": "3:19",
+    "category": "spanish",
+    "ytId": "7zp1TbLFPp8",
+    "ytSearchQuery": "Danza Kuduro Don Omar, Lucenzo",
+    "storagePath": "es-dantza-kuduro-don-omar.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/568/Meet-The-Orphans-Spanish-2010-500x500.webp"
+},
+{
+    "id": "es-gasolina-daddy-yankee",
+    "title": "Gasolina",
+    "artist": "Daddy Yankee",
+    "album": "Barrio Fino",
+    "duration": "3:12",
+    "category": "spanish",
+    "ytId": "CCF1_jI8Prk",
+    "ytSearchQuery": "Gasolina Daddy Yankee",
+    "storagePath": "es-gasolina-daddy-yankee.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Barrio-Fino-Spanish-2004-500x500.webp"
+},
+{
+    "id": "es-con-calma-daddy-yankee",
+    "title": "Con Calma",
+    "artist": "Daddy Yankee, Snow",
+    "album": "Con Calma",
+    "duration": "3:13",
+    "category": "spanish",
+    "ytId": "DiItGE3eAyQ",
+    "ytSearchQuery": "Con Calma Daddy Yankee, Snow",
+    "storagePath": "es-con-calma-daddy-yankee.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/720/Con-Calma-Spanish-2019-500x500.webp"
+},
+{
+    "id": "es-dura-daddy-yankee",
+    "title": "Dura",
+    "artist": "Daddy Yankee",
+    "album": "Dura",
+    "duration": "3:20",
+    "category": "spanish",
+    "ytId": "sGIm0-52928",
+    "ytSearchQuery": "Dura Daddy Yankee",
+    "storagePath": "es-dura-daddy-yankee.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/830/Dura-Spanish-2018-500x500.webp"
+},
+{
+    "id": "es-pepas-farruko",
+    "title": "Pepas",
+    "artist": "Farruko",
+    "album": "La 167",
+    "duration": "4:47",
+    "category": "spanish",
+    "ytId": "y8trd3gk2zA",
+    "ytSearchQuery": "Pepas Farruko",
+    "storagePath": "es-pepas-farruko.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/La-167-Spanish-2021-500x500.webp"
+},
+{
+    "id": "es-calma-remix-pedro-capo",
+    "title": "Calma (Remix)",
+    "artist": "Pedro Cap\u00f3, Farruko",
+    "album": "Gangalee",
+    "duration": "3:58",
+    "category": "spanish",
+    "ytId": "1_w7244c77o",
+    "ytSearchQuery": "Calma (Remix) Pedro Cap\u00f3, Farruko",
+    "storagePath": "es-calma-remix-pedro-capo.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/Gangalee-Spanish-2019-500x500.webp"
+},
+{
+    "id": "es-tusa-karol-g-nicki-minaj",
+    "title": "Tusa",
+    "artist": "KAROL G, Nicki Minaj",
+    "album": "KG0516",
+    "duration": "3:20",
+    "category": "spanish",
+    "ytId": "tbneQDc2H3I",
+    "ytSearchQuery": "Tusa KAROL G, Nicki Minaj",
+    "storagePath": "es-tusa-karol-g-nicki-minaj.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/KG0516-Spanish-2021-500x500.webp"
+},
+{
+    "id": "es-provenza-karol-g",
+    "title": "PROVENZA",
+    "artist": "KAROL G",
+    "album": "MA\u00d1ANA SER\u00c1 BONITO",
+    "duration": "3:30",
+    "category": "spanish",
+    "ytId": "ca48o350U8U",
+    "ytSearchQuery": "PROVENZA KAROL G",
+    "storagePath": "es-provenza-karol-g.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/MANANA-SERA-BONITO-Spanish-2023-500x500.webp"
+},
+{
+    "id": "es-tgq-karol-g-shakira",
+    "title": "TQG",
+    "artist": "KAROL G, Shakira",
+    "album": "MA\u00d1ANA SER\u00c1 BONITO",
+    "duration": "3:19",
+    "category": "spanish",
+    "ytId": "j5bW0_vG4vQ",
+    "ytSearchQuery": "TQG KAROL G, Shakira",
+    "storagePath": "es-tgq-karol-g-shakira.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/MANANA-SERA-BONITO-Spanish-2023-500x500.webp"
+},
+{
+    "id": "es-monotonia-shakira-ozuna",
+    "title": "Monoton\u00eda",
+    "artist": "Shakira, Ozuna",
+    "album": "Las Mujeres Ya No Lloran",
+    "duration": "2:38",
+    "category": "spanish",
+    "ytId": "j5-Xw1k2-5s",
+    "ytSearchQuery": "Monoton\u00eda Shakira, Ozuna",
+    "storagePath": "es-monotonia-shakira-ozuna.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/657/Las-Mujeres-Ya-No-Lloran-Spanish-2024-500x500.webp"
+},
+{
+    "id": "es-te-felicito-shakira-rauw",
+    "title": "Te Felicito",
+    "artist": "Shakira, Rauw Alejandro",
+    "album": "Las Mujeres Ya No Lloran",
+    "duration": "2:52",
+    "category": "spanish",
+    "ytId": "4I25nP58718",
+    "ytSearchQuery": "Te Felicito Shakira, Rauw Alejandro",
+    "storagePath": "es-te-felicito-shakira-rauw.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/657/Las-Mujeres-Ya-No-Lloran-Spanish-2024-500x500.webp"
+},
+{
+    "id": "es-bzrp-music-sessions-53-shakira",
+    "title": "Shakira: Bzrp Music Sessions, Vol. 53",
+    "artist": "Bizarrap, Shakira",
+    "album": "Bzrp Music Sessions 53",
+    "duration": "3:37",
+    "category": "spanish",
+    "ytId": "CocEMWJ79Qw",
+    "ytSearchQuery": "Shakira: Bzrp Music Sessions, Vol. 53 Bizarrap, Shakira",
+    "storagePath": "es-bzrp-music-sessions-53-shakira.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/Bzrp-Music-Sessions-53-Spanish-2023-500x500.webp"
+},
+{
+    "id": "es-dakiti-bad-bunny-jhayco",
+    "title": "D\u00c1KITI",
+    "artist": "Bad Bunny, Jhayco",
+    "album": "EL \u00daLTIMO TOUR DEL MUNDO",
+    "duration": "3:25",
+    "category": "spanish",
+    "ytId": "TmKh7lAwnBI",
+    "ytSearchQuery": "D\u00c1KITI Bad Bunny, Jhayco",
+    "storagePath": "es-dakiti-bad-bunny-jhayco.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/EL-ULTIMO-TOUR-DEL-MUNDO-Spanish-2020-500x500.webp"
+},
+{
+    "id": "es-me-porto-bonito-bad-bunny",
+    "title": "Me Porto Bonito",
+    "artist": "Bad Bunny, Chencho Corleone",
+    "album": "Un Verano Sin Ti",
+    "duration": "2:58",
+    "category": "spanish",
+    "ytId": "saGYMhApaH8",
+    "ytSearchQuery": "Me Porto Bonito Bad Bunny, Chencho Corleone",
+    "storagePath": "es-me-porto-bonito-bad-bunny.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Un-Verano-Sin-Ti-Spanish-2022-500x500.webp"
+},
+{
+    "id": "es-titi-me-pregunto-bad-bunny",
+    "title": "Tit\u00ed Me Pregunt\u00f3",
+    "artist": "Bad Bunny",
+    "album": "Un Verano Sin Ti",
+    "duration": "4:03",
+    "category": "spanish",
+    "ytId": "Cr8K844_lwM",
+    "ytSearchQuery": "Tit\u00ed Me Pregunt\u00f3 Bad Bunny",
+    "storagePath": "es-titi-me-pregunto-bad-bunny.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Un-Verano-Sin-Ti-Spanish-2022-500x500.webp"
+},
+{
+    "id": "es-ojitos-lindos-bad-bunny-bomba",
+    "title": "Ojitos Lindos",
+    "artist": "Bad Bunny, Bomba Est\u00e9reo",
+    "album": "Un Verano Sin Ti",
+    "duration": "4:18",
+    "category": "spanish",
+    "ytId": "10ex_Z-4S8E",
+    "ytSearchQuery": "Ojitos Lindos Bad Bunny, Bomba Est\u00e9reo",
+    "storagePath": "es-ojitos-lindos-bad-bunny-bomba.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Un-Verano-Sin-Ti-Spanish-2022-500x500.webp"
+},
+{
+    "id": "es-efecto-bad-bunny",
+    "title": "Efecto",
+    "artist": "Bad Bunny",
+    "album": "Un Verano Sin Ti",
+    "duration": "3:33",
+    "category": "spanish",
+    "ytId": "XqU1v28rP_Q",
+    "ytSearchQuery": "Efecto Bad Bunny",
+    "storagePath": "es-efecto-bad-bunny.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Un-Verano-Sin-Ti-Spanish-2022-500x500.webp"
+},
+{
+    "id": "es-monaco-bad-bunny",
+    "title": "MONACO",
+    "artist": "Bad Bunny",
+    "album": "nadie sabe lo que va a pasar ma\u00f1ana",
+    "duration": "4:27",
+    "category": "spanish",
+    "ytId": "3aK5_n41-uU",
+    "ytSearchQuery": "MONACO Bad Bunny",
+    "storagePath": "es-monaco-bad-bunny.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/830/nadie-sabe-lo-que-va-a-pasar-manana-Spanish-2023-500x500.webp"
+},
+{
+    "id": "es-perro-negro-bad-bunny-feid",
+    "title": "PERRO NEGRO",
+    "artist": "Bad Bunny, Feid",
+    "album": "nadie sabe lo que va a pasar ma\u00f1ana",
+    "duration": "2:42",
+    "category": "spanish",
+    "ytId": "L7X_hF9n8k0",
+    "ytSearchQuery": "PERRO NEGRO Bad Bunny, Feid",
+    "storagePath": "es-perro-negro-bad-bunny-feid.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/830/nadie-sabe-lo-que-va-a-pasar-manana-Spanish-2023-500x500.webp"
+},
+{
+    "id": "fr-alors-on-danse-stromae",
+    "title": "Alors on danse",
+    "artist": "Stromae",
+    "album": "Cheese",
+    "duration": "3:26",
+    "category": "french",
+    "ytId": "VHoT4N43jK8",
+    "ytSearchQuery": "Alors on danse Stromae",
+    "storagePath": "fr-alors-on-danse-stromae.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Cheese-French-2010-500x500.webp"
+},
+{
+    "id": "fr-papaoutai-stromae",
+    "title": "Papaoutai",
+    "artist": "Stromae",
+    "album": "Racine Carr\u00e9e",
+    "duration": "3:52",
+    "category": "french",
+    "ytId": "oiKj0Z_Xnjc",
+    "ytSearchQuery": "Papaoutai Stromae",
+    "storagePath": "fr-papaoutai-stromae.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Racine-Carree-French-2013-500x500.webp"
+},
+{
+    "id": "fr-tous-les-memes-stromae",
+    "title": "Tous les m\u00eames",
+    "artist": "Stromae",
+    "album": "Racine Carr\u00e9e",
+    "duration": "3:33",
+    "category": "french",
+    "ytId": "CAMWdvo71ls",
+    "ytSearchQuery": "Tous les m\u00eames Stromae",
+    "storagePath": "fr-tous-les-memes-stromae.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Racine-Carree-French-2013-500x500.webp"
+},
+{
+    "id": "fr-formidable-stromae",
+    "title": "Formidable",
+    "artist": "Stromae",
+    "album": "Racine Carr\u00e9e",
+    "duration": "3:33",
+    "category": "french",
+    "ytId": "S_xH7noaqTA",
+    "ytSearchQuery": "Formidable Stromae",
+    "storagePath": "fr-formidable-stromae.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Racine-Carree-French-2013-500x500.webp"
+},
+{
+    "id": "fr-ta-fete-stromae",
+    "title": "Ta f\u00eate",
+    "artist": "Stromae",
+    "album": "Racine Carr\u00e9e",
+    "duration": "2:56",
+    "category": "french",
+    "ytId": "ublchJFsakE",
+    "ytSearchQuery": "Ta f\u00eate Stromae",
+    "storagePath": "fr-ta-fete-stromae.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/584/Racine-Carree-French-2013-500x500.webp"
+},
+{
+    "id": "fr-sante-stromae",
+    "title": "Sant\u00e9",
+    "artist": "Stromae",
+    "album": "Multitude",
+    "duration": "3:10",
+    "category": "french",
+    "ytId": "P3QS83ysi5U",
+    "ytSearchQuery": "Sant\u00e9 Stromae",
+    "storagePath": "fr-sante-stromae.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Multitude-French-2022-500x500.webp"
+},
+{
+    "id": "fr-lenfer-stromae",
+    "title": "L'enfer",
+    "artist": "Stromae",
+    "album": "Multitude",
+    "duration": "3:09",
+    "category": "french",
+    "ytId": "DO8NSL5Wyeg",
+    "ytSearchQuery": "L'enfer Stromae",
+    "storagePath": "fr-lenfer-stromae.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/712/Multitude-French-2022-500x500.webp"
+},
+{
+    "id": "fr-derniere-danse-indila",
+    "title": "Derni\u00e8re Danse",
+    "artist": "Indila",
+    "album": "Mini World",
+    "duration": "3:43",
+    "category": "french",
+    "ytId": "K5KAc5CoCuk",
+    "ytSearchQuery": "Derni\u00e8re Danse Indila",
+    "storagePath": "fr-derniere-danse-indila.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Mini-World-French-2014-500x500.webp"
+},
+{
+    "id": "fr-tourner-dans-le-vide-indila",
+    "title": "Tourner Dans Le Vide",
+    "artist": "Indila",
+    "album": "Mini World",
+    "duration": "4:06",
+    "category": "french",
+    "ytId": "v2XF_g7Z6V8",
+    "ytSearchQuery": "Tourner Dans Le Vide Indila",
+    "storagePath": "fr-tourner-dans-le-vide-indila.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Mini-World-French-2014-500x500.webp"
+},
+{
+    "id": "fr-love-story-indila",
+    "title": "Love Story",
+    "artist": "Indila",
+    "album": "Mini World",
+    "duration": "5:16",
+    "category": "french",
+    "ytId": "DF3XjEhJ40Y",
+    "ytSearchQuery": "Love Story Indila",
+    "storagePath": "fr-love-story-indila.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Mini-World-French-2014-500x500.webp"
+},
+{
+    "id": "fr-s-o-s-indila",
+    "title": "S.O.S",
+    "artist": "Indila",
+    "album": "Mini World",
+    "duration": "4:32",
+    "category": "french",
+    "ytId": "m65jhMewgzo",
+    "ytSearchQuery": "S.O.S Indila",
+    "storagePath": "fr-s-o-s-indila.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/642/Mini-World-French-2014-500x500.webp"
+},
+{
+    "id": "fr-ego-willy-william",
+    "title": "Ego",
+    "artist": "Willy William",
+    "album": "Une seule vie",
+    "duration": "3:27",
+    "category": "french",
+    "ytId": "iPrnduGtg20",
+    "ytSearchQuery": "Ego Willy William",
+    "storagePath": "fr-ego-willy-william.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/286/Une-seule-vie-French-2016-500x500.webp"
+},
+{
+    "id": "fr-djadja-aya-nakamura",
+    "title": "Djadja",
+    "artist": "Aya Nakamura",
+    "album": "NAKAMURA",
+    "duration": "2:50",
+    "category": "french",
+    "ytId": "iPGgnBIzypg",
+    "ytSearchQuery": "Djadja Aya Nakamura",
+    "storagePath": "fr-djadja-aya-nakamura.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/NAKAMURA-French-2018-500x500.webp"
+},
+{
+    "id": "fr-pookie-aya-nakamura",
+    "title": "Pookie",
+    "artist": "Aya Nakamura",
+    "album": "NAKAMURA",
+    "duration": "3:00",
+    "category": "french",
+    "ytId": "qCq_Fj3W9jQ",
+    "ytSearchQuery": "Pookie Aya Nakamura",
+    "storagePath": "fr-pookie-aya-nakamura.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/NAKAMURA-French-2018-500x500.webp"
+},
+{
+    "id": "fr-copines-aya-nakamura",
+    "title": "Copines",
+    "artist": "Aya Nakamura",
+    "album": "NAKAMURA",
+    "duration": "2:51",
+    "category": "french",
+    "ytId": "_I_D_8Z4sJE",
+    "ytSearchQuery": "Copines Aya Nakamura",
+    "storagePath": "fr-copines-aya-nakamura.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/834/NAKAMURA-French-2018-500x500.webp"
+},
+{
+    "id": "fr-la-meme-maitre-gims-vianney",
+    "title": "La M\u00eame",
+    "artist": "GIMS, Vianney",
+    "album": "Ceinture Noire",
+    "duration": "3:20",
+    "category": "french",
+    "ytId": "ty31QY5ZGHo",
+    "ytSearchQuery": "La M\u00eame GIMS, Vianney",
+    "storagePath": "fr-la-meme-maitre-gims-vianney.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/209/Ceinture-Noire-French-2018-500x500.webp"
+},
+{
+    "id": "fr-bella-gims",
+    "title": "Bella",
+    "artist": "GIMS",
+    "album": "Subliminal",
+    "duration": "3:46",
+    "category": "french",
+    "ytId": "rMltoD1jCGI",
+    "ytSearchQuery": "Bella GIMS",
+    "storagePath": "fr-bella-gims.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/334/Subliminal-French-2013-500x500.webp"
+},
+{
+    "id": "fr-sap_s-comme-jamais-gims",
+    "title": "Sap\u00e9s comme jamais",
+    "artist": "GIMS, Niska",
+    "album": "Mon c\u0153ur avait raison",
+    "duration": "3:26",
+    "category": "french",
+    "ytId": "v2XF_g7Z6V8",
+    "ytSearchQuery": "Sap\u00e9s comme jamais GIMS, Niska",
+    "storagePath": "fr-sap_s-comme-jamais-gims.mp4",
+    "source": "Pulse Universal Music Vault",
+    "cover": "https://c.saavncdn.com/495/Mon-coeur-avait-raison-French-2015-500x500.webp"
+}
 ].map(normalizeTrack);
+
 
   // Initialize Global Tracks Registry
   window.TRACKS_REGISTRY = window.TRACKS_REGISTRY || {};
@@ -27268,28 +29284,30 @@
         }
       };
 
-      // 1. Direct explicit streamUrl (skip iTunes/mzstatic 30-second previews)
+      // 1. Direct explicit high-bitrate streamUrl
       if (track.streamUrl && (track.streamUrl.startsWith('http://') || track.streamUrl.startsWith('https://') || track.streamUrl.startsWith('blob:')) && !track.streamUrl.includes('itunes.apple.com') && !track.streamUrl.includes('mzstatic.com') && !track.streamUrl.includes('preview')) {
-        add(track.streamUrl, 'direct-stream');
+        add(track.streamUrl, 'direct-master-stream');
       }
 
-      // 2. Direct explicit audioUrl (skip iTunes/mzstatic 30-second previews)
+      // 2. Direct explicit audioUrl
       if (track.audioUrl && (track.audioUrl.startsWith('http://') || track.audioUrl.startsWith('https://') || track.audioUrl.startsWith('blob:')) && !track.audioUrl.includes('YOUR_SUPABASE_PROJECT_URL') && !track.audioUrl.includes('itunes.apple.com') && !track.audioUrl.includes('mzstatic.com') && !track.audioUrl.includes('preview')) {
         add(track.audioUrl, 'direct-audio');
       }
 
-      // 3. Local storage audio files in storage/music/
+      // 3. Local storage audio files in storage/music/ & docs/storage/music/
       const cleanId = String(track.id || '');
       const storagePath = String(track.storagePath || '').replace(/^\/+/, '');
       if (storagePath) {
         add(`./storage/music/${storagePath}`, 'local-storage');
         add(`/storage/music/${storagePath}`, 'local-storage-abs');
+        add(`./docs/storage/music/${storagePath}`, 'docs-storage');
       }
       if (cleanId) {
-        const cleanBase = cleanId.replace(/^in-|^en-|^te-|^kn-|^pj-|^gu-|^mr-|^hr-|^es-|^fr-|^dev-/, '');
+        const cleanBase = cleanId.replace(/^in-|^en-|^te-|^kn-|^pj-|^gu-|^mr-|^hr-|^es-|^fr-|^dev-|^ta-|^kp-/, '');
         ['.mp4', '.m4a', '.mp3', '.webm', '.aac'].forEach(ext => {
           add(`./storage/music/${cleanId}${ext}`, `local-${ext}`);
           add(`/storage/music/${cleanId}${ext}`, `local-abs-${ext}`);
+          add(`./docs/storage/music/${cleanId}${ext}`, `docs-${ext}`);
           if (cleanBase && cleanBase !== cleanId) {
             add(`./storage/music/${cleanBase}${ext}`, `local-base-${ext}`);
           }
@@ -27300,33 +29318,43 @@
       const rawArtist = (track.artist || '').split(',')[0].split('&')[0].trim();
       const query = `${rawTitle} ${rawArtist}`.trim() || `${track.title || ''} ${track.artist || ''}`.trim();
 
-      // 4. JioSaavn 320k/160k authentic full-length master stream CDN
+      // 4. JioSaavn 320k/160k authentic full-length master stream CDN with multi-proxy fallback
       if (query || rawTitle) {
         const searchQueries = [query, rawTitle].filter(Boolean);
         for (const sq of searchQueries) {
           try {
-            const cleanQuery = sq.replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
+            const cleanQuery = sq.replace(/[()\\[\\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
             const saavnRawUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=5&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
             
             let data = null;
-            // Try local backend proxy first
+            // 4a. Local backend proxy
             try {
-              const bRes = await fetch(`/api/saavn-search?q=${encodeURIComponent(cleanQuery)}`, { signal: AbortSignal.timeout(2500) });
+              const bRes = await fetch(`/api/saavn-search?q=${encodeURIComponent(cleanQuery)}`, { signal: AbortSignal.timeout(2000) });
               if (bRes.ok) data = await bRes.json();
             } catch (e) {}
 
-            // Try fast CORS proxy
-            if (!data || !data.results) {
+            // 4b. Multi-CORS proxies
+            const proxies = [
+              `https://corsproxy.io/?url=${encodeURIComponent(saavnRawUrl)}`,
+              `https://api.allorigins.win/raw?url=${encodeURIComponent(saavnRawUrl)}`,
+              `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(saavnRawUrl)}`
+            ];
+
+            for (const pUrl of proxies) {
+              if (data && data.results) break;
               try {
-                const cRes = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(saavnRawUrl)}`, { signal: AbortSignal.timeout(3500) });
-                if (cRes.ok) data = await cRes.json();
+                const cRes = await fetch(pUrl, { signal: AbortSignal.timeout(2500) });
+                if (cRes.ok) {
+                  const parsed = await cRes.json();
+                  if (parsed && parsed.results) data = parsed;
+                }
               } catch (e) {}
             }
 
-            // Try direct fetch
+            // 4c. Direct fetch
             if (!data || !data.results) {
               try {
-                const dRes = await fetch(saavnRawUrl, { cache: 'no-store', signal: AbortSignal.timeout(2500) });
+                const dRes = await fetch(saavnRawUrl, { cache: 'no-store', signal: AbortSignal.timeout(2000) });
                 if (dRes.ok) data = await dRes.json();
               } catch (e) {}
             }
@@ -27336,46 +29364,43 @@
                 if (r.encrypted_media_url) {
                   const dec = decryptSaavnUrl(r.encrypted_media_url);
                   if (dec) {
-                    if (dec['320']) add(dec['320'], 'saavn-320');
-                    if (dec['160']) add(dec['160'], 'saavn-160');
-                    if (dec['96']) add(dec['96'], 'saavn-96');
+                    if (dec['320']) add(dec['320'], 'saavn-320k-lossless');
+                    if (dec['160']) add(dec['160'], 'saavn-160k-hq');
+                    if (dec['96']) add(dec['96'], 'saavn-96k');
                   }
                 }
                 if (r.image && (!track.cover || track.cover.includes('pulse-logo'))) {
                   const hdImg = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
                   track.cover = hdImg;
                 }
-                if (candidates.length > 2) break; // Found high quality streams
+                if (candidates.length > 2) break;
               }
             }
           } catch (e) {}
           if (candidates.some(c => c.label && c.label.startsWith('saavn'))) break;
         }
 
-        // 5. Apple iTunes — audio preview fallback (so sound is ALWAYS audible)
+        // 5. Apple iTunes audio stream preview fallback
         if (track.previewUrl) {
           add(track.previewUrl, 'itunes-preview');
         } else {
           try {
             const itUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=1`;
-            const itRes = await fetch(itUrl, { cache: 'no-store', signal: AbortSignal.timeout(3000) });
+            const itRes = await fetch(itUrl, { cache: 'no-store', signal: AbortSignal.timeout(2000) });
             if (itRes.ok) {
               const itData = await itRes.json();
               if (itData && itData.results && itData.results.length > 0) {
-                const itItem = itData.results[0];
-                if (itItem.artworkUrl100 && (!track.cover || track.cover.includes('pulse-logo'))) {
-                  track.cover = itItem.artworkUrl100.replace('100x100bb', '600x600bb');
+                const itTrack = itData.results[0];
+                if (itTrack.previewUrl) {
+                  add(itTrack.previewUrl, 'itunes-aac-stream');
                 }
-                if (itItem.previewUrl) {
-                  add(itItem.previewUrl, 'itunes-preview');
+                if (itTrack.artworkUrl100 && (!track.cover || track.cover.includes('pulse-logo'))) {
+                  track.cover = itTrack.artworkUrl100.replace('100x100bb', '600x600bb');
                 }
               }
             }
           } catch (e) {}
         }
-
-        // 6. Backend stream endpoint (only full-length master audio)
-        add(`/api/stream?id=${encodeURIComponent(track.id || '')}&q=${encodeURIComponent(query)}`, 'backend-stream');
       }
 
       return candidates;
