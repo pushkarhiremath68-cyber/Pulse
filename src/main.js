@@ -5794,7 +5794,7 @@
       try { storedUsers = JSON.parse(localStorage.getItem('pulse_local_users') || '{}'); } catch(err) {}
       const local = storedUsers[email.toLowerCase()];
       const userName = local ? local.name : (email.split('@')[0] || 'Listener');
-      const userAvatar = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`;
+      const userAvatar = resolveEmailAvatarUrl(email, userName);
       
       try {
         localStorage.setItem('pulse_auth_token', 'local_' + Date.now());
@@ -5829,7 +5829,9 @@
         return;
       }
 
-      const user = data.user || { name: email.split('@')[0], email: email, avatar: './pulse-logo.png' };
+      const userName = (data.user && data.user.name) ? data.user.name : email.split('@')[0];
+      const userAvatar = (data.user && data.user.avatar && !data.user.avatar.includes('bottts')) ? data.user.avatar : resolveEmailAvatarUrl(email, userName);
+      const user = { name: userName, email: email, avatar: userAvatar };
       window.showAuthSuccess(data.message || `Welcome back, ${user.name}!`);
       
       if (data.token) {
@@ -5846,7 +5848,9 @@
       }, 400);
 
     } catch (networkErr) {
-      const user = { name: email.split('@')[0] || 'Listener', email: email, avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}` };
+      const userName = email.split('@')[0] || 'Listener';
+      const userAvatar = resolveEmailAvatarUrl(email, userName);
+      const user = { name: userName, email: email, avatar: userAvatar };
       window.showAuthSuccess(`Welcome, ${user.name}!`);
       setTimeout(() => {
         window.loginUser(user.name, user.email, 'email', user.avatar);
@@ -5911,7 +5915,7 @@
     if (isStaticHost) {
       let storedUsers = {};
       try { storedUsers = JSON.parse(localStorage.getItem('pulse_local_users') || '{}'); } catch(err) {}
-      const userAvatar = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`;
+      const userAvatar = resolveEmailAvatarUrl(email, name);
       storedUsers[email.toLowerCase()] = { name, email, avatar: userAvatar };
       try {
         localStorage.setItem('pulse_local_users', JSON.stringify(storedUsers));
@@ -5947,7 +5951,8 @@
         return;
       }
 
-      const user = data.user || { name, email, avatar: './pulse-logo.png' };
+      const userAvatar = (data.user && data.user.avatar && !data.user.avatar.includes('bottts')) ? data.user.avatar : resolveEmailAvatarUrl(email, name);
+      const user = { name, email, avatar: userAvatar };
       window.showAuthSuccess(data.message || `Account created successfully!`);
       
       if (data.token) {
@@ -5964,7 +5969,8 @@
       }, 400);
 
     } catch (networkErr) {
-      const user = { name, email, avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}` };
+      const userAvatar = resolveEmailAvatarUrl(email, name);
+      const user = { name, email, avatar: userAvatar };
       window.showAuthSuccess(`Account created! Welcome, ${user.name}!`);
       setTimeout(() => {
         window.loginUser(user.name, user.email, 'email', user.avatar);
