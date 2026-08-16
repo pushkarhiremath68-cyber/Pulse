@@ -4889,6 +4889,7 @@
     if (detected.os === 'android') packageFile = 'Pulse-Music-v2.4.0.apk';
     else if (detected.os === 'mac') packageFile = 'Pulse-Music-v2.4.0.dmg';
     else if (detected.os === 'linux') packageFile = 'Pulse-Music-v2.4.0.AppImage';
+    else if (detected.os === 'ios') packageFile = 'Pulse-Music-v2.4.0.ipa';
 
     if (badgeText) badgeText.textContent = `Detected: ${detected.name}`;
     if (heading) heading.textContent = `Pulse Music for ${detected.name.split(' ')[0]}`;
@@ -4903,13 +4904,17 @@
             window.deferredPrompt.prompt();
           } catch(err) {}
         }
-        showToast(`Downloading ${packageFile}... Check your browser downloads!`, 'success', 4500);
+        if (detected.os === 'ios') {
+          showToast('To Install on iOS: Tap Share (⎋) in Safari -> Tap "Add to Home Screen" 📲', 'info', 7000);
+        } else {
+          showToast(`Downloading ${packageFile}... Check your browser downloads!`, 'success', 4500);
+        }
       };
     }
     if (dlLabel) dlLabel.textContent = `Download for ${detected.name.split(' ')[0]}`;
 
     const sizeEl = document.getElementById('primary-file-size');
-    if (sizeEl) sizeEl.textContent = 'Native Package';
+    if (sizeEl) sizeEl.textContent = detected.os === 'android' ? '1.9 MB (APK)' : detected.os === 'windows' ? '1.2 MB (EXE)' : '1.1 MB (Native)';
   };
 
   window.copyPrimaryChecksum = function() {
@@ -4942,9 +4947,10 @@
     // 2. Trigger direct package file download
     let fileName = '';
     if (os === 'android' || (os === 'auto' && isAndroid)) fileName = 'Pulse-Music-v2.4.0.apk';
-    else if (os === 'windows' || (os === 'auto' && !isMobile)) fileName = 'Pulse-Music-Windows-Setup.exe';
-    else if (os === 'mac') fileName = 'Pulse-Music-v2.4.0.dmg';
-    else if (os === 'linux') fileName = 'Pulse-Music-v2.4.0.AppImage';
+    else if (os === 'windows' || (os === 'auto' && !isMobile && !/Mac/i.test(navigator.userAgent) && !/Linux/i.test(navigator.userAgent))) fileName = 'Pulse-Music-Windows-Setup.exe';
+    else if (os === 'mac' || (os === 'auto' && /Mac/i.test(navigator.userAgent) && !isMobile)) fileName = 'Pulse-Music-v2.4.0.dmg';
+    else if (os === 'linux' || (os === 'auto' && /Linux/i.test(navigator.userAgent) && !isAndroid)) fileName = 'Pulse-Music-v2.4.0.AppImage';
+    else if (os === 'ios' || (os === 'auto' && isIOS)) fileName = 'Pulse-Music-v2.4.0.ipa';
 
     if (fileName) {
       const a = document.createElement('a');
@@ -4956,7 +4962,7 @@
       showToast(`Downloading ${fileName}... Check your downloads folder!`, 'success', 4500);
     }
 
-    if (isIOS) {
+    if (isIOS || os === 'ios') {
       showToast('To Install on iOS: Tap Share (⎋) in Safari -> Tap "Add to Home Screen" 📲', 'info', 7000);
     }
   };

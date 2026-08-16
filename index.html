@@ -1285,7 +1285,7 @@
             </div>
             <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
               <span>Installer: <strong>.exe (Signed)</strong></span>
-              <span id="meta-win-size">0.5 MB</span>
+              <span id="meta-win-size">1.2 MB</span>
             </div>
             <a href="./downloads/Pulse-Music-Windows-Setup.exe" download="Pulse-Music-Windows-Setup.exe" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(168,85,247,0.15); border: 1px solid var(--accent-primary); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
               <i class="fa-solid fa-download"></i> Download .EXE
@@ -1303,7 +1303,7 @@
             </div>
             <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
               <span>Package: <strong>.dmg Universal</strong></span>
-              <span id="meta-mac-size">0.5 MB</span>
+              <span id="meta-mac-size">1.1 MB</span>
             </div>
             <a href="./downloads/Pulse-Music-v2.4.0.dmg" download="Pulse-Music-v2.4.0.dmg" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
               <i class="fa-solid fa-download"></i> Download .DMG
@@ -1321,7 +1321,7 @@
             </div>
             <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
               <span>Release: <strong>.apk Signed</strong></span>
-              <span id="meta-android-size">1.6 MB</span>
+              <span id="meta-android-size">1.9 MB</span>
             </div>
             <a href="./downloads/Pulse-Music-v2.4.0.apk" download="Pulse-Music-v2.4.0.apk" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.4); color: #4ade80; text-align: center; text-decoration: none; font-weight: 600;">
               <i class="fa-solid fa-download"></i> Download APK
@@ -1334,12 +1334,12 @@
               <i class="fa-brands fa-linux text-warning" style="font-size: 1.4rem; color: #fbbf24;"></i>
               <div>
                 <h5 style="margin: 0; font-size: 0.95rem;">Linux Desktop</h5>
-                <small style="color: var(--text-muted); font-size: 0.72rem;">AppImage & Debian (.deb)</small>
+                <small style="color: var(--text-muted); font-size: 0.72rem;">AppImage & Standalone</small>
               </div>
             </div>
             <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
               <span>Package: <strong>.AppImage</strong></span>
-              <span id="meta-linux-size">0.5 MB</span>
+              <span id="meta-linux-size">1.1 MB</span>
             </div>
             <a href="./downloads/Pulse-Music-v2.4.0.AppImage" download="Pulse-Music-v2.4.0.AppImage" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
               <i class="fa-solid fa-download"></i> Download AppImage
@@ -1352,16 +1352,21 @@
               <i class="fa-brands fa-apple text-accent" style="font-size: 1.4rem;"></i>
               <div>
                 <h5 style="margin: 0; font-size: 0.95rem;">iPhone / iPad</h5>
-                <small style="color: var(--text-muted); font-size: 0.72rem;">iOS 14.0+ / Safari PWA</small>
+                <small style="color: var(--text-muted); font-size: 0.72rem;">iOS 14.0+ Package & PWA</small>
               </div>
             </div>
             <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
-              <span>Package: <strong>.ipa / PWA</strong></span>
-              <span id="meta-ios-size">0.5 MB</span>
+              <span>Package: <strong>.ipa / Web App</strong></span>
+              <span id="meta-ios-size">1.1 MB</span>
             </div>
-            <a href="#" onclick="window.downloadPlatformApp('ios'); return false;" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(168,85,247,0.15); border: 1px solid var(--accent-primary); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
-              <i class="fa-solid fa-cloud-arrow-down"></i> Install Web App
-            </a>
+            <div style="display: flex; gap: 0.4rem; margin-top: auto;">
+              <a href="./downloads/Pulse-Music-v2.4.0.ipa" download="Pulse-Music-v2.4.0.ipa" class="btn-platform-download" style="flex: 1; padding: 0.5rem; font-size: 0.8rem; border-radius: 8px; background: rgba(168,85,247,0.15); border: 1px solid var(--accent-primary); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
+                <i class="fa-solid fa-download"></i> .IPA
+              </a>
+              <a href="#" onclick="window.downloadPlatformApp('ios'); return false;" class="btn-platform-download" style="flex: 1; padding: 0.5rem; font-size: 0.8rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600;">
+                <i class="fa-solid fa-cloud-arrow-down"></i> Install PWA
+              </a>
+            </div>
           </div>
 
         </div>

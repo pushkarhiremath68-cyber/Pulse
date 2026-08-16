@@ -1227,8 +1227,19 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                     elif platform_req in ['appimage', 'deb', 'rpm']:
                         pkg_info = packages.get('linux')
 
-            if pkg_info and os.path.exists(pkg_info.get('path', '')):
-                target_file = pkg_info['path']
+            target_file = None
+            if pkg_info:
+                cand_paths = [
+                    pkg_info.get('path', ''),
+                    os.path.join(ROOT_DIR, 'storage', 'downloads', pkg_info.get('filename', '')),
+                    os.path.join(ROOT_DIR, 'downloads', pkg_info.get('filename', ''))
+                ]
+                for cp in cand_paths:
+                    if cp and os.path.exists(cp):
+                        target_file = cp
+                        break
+
+            if target_file:
                 filename = pkg_info.get('filename', os.path.basename(target_file))
                 mime_type = pkg_info.get('mime_type', 'application/octet-stream')
                 sha256_hash = pkg_info.get('sha256', '')
