@@ -206,20 +206,24 @@
     if (!query) return null;
     const cleanQ = query.toLowerCase().trim();
 
-    // 1. Check pre-indexed catalog
+    // 1. Strict match in pre-indexed catalog (prevent partial single-word false matches)
     if (typeof DEMO_CATALOG !== 'undefined') {
       const match = DEMO_CATALOG.find(t => {
         if (!t.ytId) return false;
-        const titleMatch = (t.title || '').toLowerCase();
-        const artistMatch = (t.artist || '').toLowerCase();
-        return cleanQ.includes(titleMatch) || (titleMatch && cleanQ.includes(titleMatch.split(' ')[0]));
+        const tTitle = (t.title || '').toLowerCase().trim();
+        const tArtist = (t.artist || '').toLowerCase().trim();
+        if (cleanQ === tTitle || cleanQ === `${tTitle} ${tArtist}` || (tTitle.length >= 4 && cleanQ.startsWith(tTitle))) {
+          return true;
+        }
+        return false;
       });
       if (match && match.ytId) return match.ytId;
     }
 
     if (typeof YOUTUBE_TRACKS_MAP !== 'undefined') {
       for (const [k, v] of Object.entries(YOUTUBE_TRACKS_MAP)) {
-        if (cleanQ.includes(k.replace('in-', '').replace('en-', '').replace(/-/g, ' '))) {
+        const cleanK = k.replace('in-', '').replace('en-', '').replace('te-', '').replace('kn-', '').replace('pj-', '').replace(/-/g, ' ');
+        if (cleanQ === cleanK || (cleanK.length >= 5 && cleanQ.includes(cleanK))) {
           return v;
         }
       }
@@ -245,25 +249,6 @@
           if (Array.isArray(iData) && iData.length > 0 && iData[0].videoId) {
             return iData[0].videoId;
           }
-        }
-      } catch (e) {}
-    }
-
-    // 4. Fast CORS proxy search
-    const proxies = [
-      `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent('https://www.youtube.com/results?search_query=' + encodeURIComponent(query))}`,
-      `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.youtube.com/results?search_query=' + encodeURIComponent(query))}`
-    ];
-
-    for (const proxyUrl of proxies) {
-      try {
-        const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(2000) });
-        if (!res.ok) continue;
-        const text = await res.text();
-        const matches = text.match(/"videoId":"([a-zA-Z0-9_-]{11})"/g);
-        if (matches && matches.length > 0) {
-          const firstId = matches[0].replace(/"videoId":"|"/g, '');
-          if (firstId && firstId.length === 11) return firstId;
         }
       } catch (e) {}
     }
@@ -4155,10 +4140,11 @@
     console.log(`[Pulse Audio #${sessionId}] Starting instant playback for:`, title, 'by', artist, 'target:', playbackTarget);
 
     try {
-      // 1. Check if direct valid audio stream is present
-      if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('localhost') && !track.streamUrl.includes('/api/stream')) {
+      // 1. Check if direct valid audio stream is present (JioSaavn CDN, Apple CDN, MP3/M4A)
+      const directAudioUrl = track.streamUrl || track.audioUrl || track.previewUrl;
+      if (directAudioUrl && directAudioUrl.startsWith('http') && !directAudioUrl.includes('localhost') && !directAudioUrl.includes('/api/stream') && !directAudioUrl.includes('YOUR_SUPABASE')) {
         state.playbackSource = 'html5';
-        fallbackAudio.src = track.streamUrl;
+        fallbackAudio.src = directAudioUrl;
         fallbackAudio.volume = state.volume !== undefined ? state.volume : 1;
         fallbackAudio.muted = false;
         if (seekTarget > 0) fallbackAudio.currentTime = seekTarget;
@@ -4177,12 +4163,13 @@
           if (canvasVisualizer) canvasVisualizer.start();
           return;
         } catch(e) {
-          console.warn(`[Pulse Audio #${sessionId}] HTML5 stream error, activating YouTube engine`);
+          console.warn(`[Pulse Audio #${sessionId}] Direct audio stream error, activating YouTube engine`);
         }
       }
 
-      // 2. Direct high-speed YouTube Streaming Engine
-      playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
+      // 2. Direct high-speed YouTube Streaming Engine with Exact Track Query
+      const exactTarget = track.ytId || getYouTubeIdForTrack(track) || `${title} ${artist}`;
+      playTrackOnYouTubePlayer(exactTarget, true, sessionId);
       updateMediaSession(track);
       requestAudioWakeLock();
       enableBackgroundKeepAlive();
@@ -4227,7 +4214,7 @@
 
     const fallbackContainer = document.getElementById('youtube-fallback-container');
 
-    // PRIMARY: Control via YouTube IFrame API if ready
+    // PRIMARY: Control via YouTube IFrame API if exact 11-character video ID is resolved
     if (targetId && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
       if (fallbackContainer) fallbackContainer.innerHTML = '';
       try {
@@ -4258,25 +4245,34 @@
       } catch (e) {
         console.warn('[Pulse YouTube] Direct player load error:', e);
       }
-    } else if (targetId && fallbackContainer) {
-      // Fallback iframe with verified 11-character video ID
-      const embedSrc = `https://www.youtube.com/embed/${targetId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0`;
+    } else {
+      // Dynamic Search-To-Play Embed Player — Guarantees exact song matches without playing stale video
+      if (ytPlayer && typeof ytPlayer.stopVideo === 'function') {
+        try { ytPlayer.stopVideo(); } catch(e) {}
+      }
 
-      fallbackContainer.innerHTML = `
-        <iframe id="bg-audio-iframe" width="100%" height="100%"
-          src="${embedSrc}"
-          frameborder="0"
-          allow="autoplay; encrypted-media; fullscreen; picture-in-picture; accelerometer; gyroscope"
-          allowfullscreen
-          style="width: 100%; height: 100%; border: none;">
-        </iframe>
-      `;
+      let embedSrc = '';
+      if (targetId) {
+        embedSrc = `https://www.youtube.com/embed/${targetId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0`;
+      } else {
+        const queryClean = encodeURIComponent(String(videoIdOrQuery).replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim());
+        embedSrc = `https://www.youtube.com/embed?listType=search&list=${queryClean}&autoplay=1&playsinline=1&enablejsapi=1&rel=0`;
+      }
+
+      if (fallbackContainer) {
+        fallbackContainer.innerHTML = `
+          <iframe id="bg-audio-iframe" width="100%" height="100%"
+            src="${embedSrc}"
+            frameborder="0"
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture; accelerometer; gyroscope"
+            allowfullscreen
+            style="width: 100%; height: 100%; border: none;">
+          </iframe>
+        `;
+      }
       state.isPlaying = true;
       updatePlayPauseUI();
       showBuffering(false);
-    } else {
-      showBuffering(false);
-      console.warn('[Pulse Audio] Could not resolve video ID for YouTube playback:', videoIdOrQuery);
     }
 
     if (progressInterval) clearInterval(progressInterval);

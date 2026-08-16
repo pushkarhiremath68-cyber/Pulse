@@ -27016,7 +27016,8 @@
                     duration: durationStr,
                     category: 'trending',
                     storagePath: `${trackId}.m4a`,
-                    audioUrl: `/api/stream?q=${encodeURIComponent(item.trackName + ' ' + item.artistName)}`,
+                    audioUrl: item.previewUrl || null,
+                    streamUrl: item.previewUrl || null,
                     previewUrl: item.previewUrl || null,
                     ytSearchQuery: `${item.trackName} ${item.artistName} official audio`,
                     source: 'Worldwide Music Catalog'
