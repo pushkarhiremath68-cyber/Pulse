@@ -26722,54 +26722,123 @@
 
   const musicService = {
     /**
-     * Resolves the best direct full-length playable audio URL for a track.
-     * Uses JioSaavn master stream, local storage cache, or fallback URL.
+     * Resolves an ordered list of high-quality stream candidates for a track.
+     * Tiers:
+     * 1. Direct explicit HTTP streamUrl/audioUrl
+     * 2. Local storage audio files (storage/music/)
+     * 3. JioSaavn 320k/160k direct master stream CDN
+     * 4. Apple iTunes 256k AAC CDN audio stream
+     * 5. Backend proxy stream endpoint (/api/stream)
      */
-    async resolveTrackAudioStream(track) {
-      if (!track) return null;
+    async getAudioCandidates(track) {
+      if (!track) return [];
+      const candidates = [];
+      const seen = new Set();
+      const add = (url, label) => {
+        if (url && typeof url === 'string' && url.trim() !== '' && !seen.has(url)) {
+          seen.add(url);
+          candidates.push({ url: url.trim(), label });
+        }
+      };
 
-      // 1. If audioUrl already has a valid direct HTTP URL (not a dummy storage path)
-      if (track.audioUrl && (track.audioUrl.startsWith('http://') || track.audioUrl.startsWith('https://')) && !track.audioUrl.includes('YOUR_SUPABASE_PROJECT_URL')) {
-        return track.audioUrl;
+      // 1. Direct explicit streamUrl (skip iTunes/mzstatic 30-second previews)
+      if (track.streamUrl && (track.streamUrl.startsWith('http://') || track.streamUrl.startsWith('https://') || track.streamUrl.startsWith('blob:')) && !track.streamUrl.includes('itunes.apple.com') && !track.streamUrl.includes('mzstatic.com') && !track.streamUrl.includes('preview')) {
+        add(track.streamUrl, 'direct-stream');
       }
 
-      // 2. If direct 320k/160k stream URL in track
-      if (track.streamUrl) {
-        return track.streamUrl;
+      // 2. Direct explicit audioUrl (skip iTunes/mzstatic 30-second previews)
+      if (track.audioUrl && (track.audioUrl.startsWith('http://') || track.audioUrl.startsWith('https://') || track.audioUrl.startsWith('blob:')) && !track.audioUrl.includes('YOUR_SUPABASE_PROJECT_URL') && !track.audioUrl.includes('itunes.apple.com') && !track.audioUrl.includes('mzstatic.com') && !track.audioUrl.includes('preview')) {
+        add(track.audioUrl, 'direct-audio');
       }
 
-      const query = `${track.title || ''} ${track.artist || ''}`.trim();
-      if (!query) return null;
+      // 3. Local storage audio files in storage/music/
+      const cleanId = String(track.id || '');
+      const storagePath = String(track.storagePath || '').replace(/^\/+/, '');
+      if (storagePath) {
+        add(`./storage/music/${storagePath}`, 'local-storage');
+        add(`/storage/music/${storagePath}`, 'local-storage-abs');
+      }
+      if (cleanId) {
+        const cleanBase = cleanId.replace(/^in-|^en-|^te-|^kn-|^pj-|^gu-|^mr-|^hr-|^es-|^fr-|^dev-/, '');
+        ['.mp4', '.m4a', '.mp3', '.webm', '.aac'].forEach(ext => {
+          add(`./storage/music/${cleanId}${ext}`, `local-${ext}`);
+          add(`/storage/music/${cleanId}${ext}`, `local-abs-${ext}`);
+          if (cleanBase && cleanBase !== cleanId) {
+            add(`./storage/music/${cleanBase}${ext}`, `local-base-${ext}`);
+          }
+        });
+      }
 
-      // 3. Query JioSaavn Live Search & Decrypt 320k/160k authentic master stream
-      try {
-        const cleanQuery = query.replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
-        const searchUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=3&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
-        const res = await fetch(searchUrl, { cache: 'no-store', signal: AbortSignal.timeout(3000) });
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.results && data.results.length > 0) {
-            const r = data.results[0];
-            const enc = r.encrypted_media_url;
-            if (enc) {
-              const urls = decryptSaavnUrl(enc);
-              if (urls && (urls['160'] || urls['320'])) {
-                const stream = urls['160'] || urls['320'];
-                track.audioUrl = stream;
-                track.streamUrl = stream;
-                if (r.image) {
-                  const hdImg = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
-                  track.cover = hdImg;
+      const rawTitle = (track.title || track.name || '').replace(/\s*\([^)]*\)/g, '').replace(/\s*\[[^\]]*\]/g, '').trim();
+      const rawArtist = (track.artist || '').split(',')[0].split('&')[0].trim();
+      const query = `${rawTitle} ${rawArtist}`.trim() || `${track.title || ''} ${track.artist || ''}`.trim();
+
+      // 4. JioSaavn 320k/160k authentic full-length master stream CDN
+      if (query || rawTitle) {
+        const searchQueries = [query, rawTitle].filter(Boolean);
+        for (const sq of searchQueries) {
+          try {
+            const cleanQuery = sq.replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
+            const searchUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=5&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
+            const res = await fetch(searchUrl, { cache: 'no-store', signal: AbortSignal.timeout(3500) });
+            if (res.ok) {
+              const data = await res.json();
+              if (data && data.results && data.results.length > 0) {
+                for (const r of data.results) {
+                  if (r.encrypted_media_url) {
+                    const dec = decryptSaavnUrl(r.encrypted_media_url);
+                    if (dec) {
+                      if (dec['320']) add(dec['320'], 'saavn-320');
+                      if (dec['160']) add(dec['160'], 'saavn-160');
+                      if (dec['96']) add(dec['96'], 'saavn-96');
+                    }
+                  }
+                  if (r.image && (!track.cover || track.cover.includes('pulse-logo'))) {
+                    const hdImg = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
+                    track.cover = hdImg;
+                  }
+                  if (candidates.length > 2) break; // Found high quality streams
                 }
-                return stream;
+              }
+            }
+          } catch (e) {}
+          if (candidates.some(c => c.label && c.label.startsWith('saavn'))) break;
+        }
+
+        // 5. Apple iTunes — artwork only (previewUrl is 30-second clip, NEVER used as audio)
+        try {
+          const itUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=1`;
+          const itRes = await fetch(itUrl, { cache: 'no-store', signal: AbortSignal.timeout(3500) });
+          if (itRes.ok) {
+            const itData = await itRes.json();
+            if (itData && itData.results && itData.results.length > 0) {
+              if (itData.results[0].artworkUrl100 && (!track.cover || track.cover.includes('pulse-logo'))) {
+                track.cover = itData.results[0].artworkUrl100.replace('100x100bb', '600x600bb');
               }
             }
           }
-        }
-      } catch (e) {}
+        } catch (e) {}
 
-      // 4. Try backend stream endpoint if server is running
-      return `/api/stream?id=${encodeURIComponent(track.id)}&q=${encodeURIComponent(query)}`;
+        // 6. Backend stream endpoint (only full-length master audio)
+        add(`/api/stream?id=${encodeURIComponent(track.id || '')}&q=${encodeURIComponent(query)}`, 'backend-stream');
+      }
+
+      return candidates;
+    },
+
+    /**
+     * Resolves the best direct full-length playable audio URL for a track.
+     */
+    async resolveTrackAudioStream(track) {
+      if (!track) return null;
+      const candidates = await this.getAudioCandidates(track);
+      if (candidates.length > 0) {
+        const best = candidates[0].url;
+        track.audioUrl = best;
+        track.streamUrl = best;
+        return best;
+      }
+      return null;
     },
 
     /**
@@ -27016,8 +27085,8 @@
                     duration: durationStr,
                     category: 'trending',
                     storagePath: `${trackId}.m4a`,
-                    audioUrl: item.previewUrl || null,
-                    streamUrl: item.previewUrl || null,
+                    audioUrl: null,
+                    streamUrl: null,
                     previewUrl: item.previewUrl || null,
                     ytSearchQuery: `${item.trackName} ${item.artistName} official audio`,
                     source: 'Worldwide Music Catalog'

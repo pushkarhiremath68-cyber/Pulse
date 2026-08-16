@@ -631,6 +631,11 @@
         if (fallbackAudio.error && fallbackAudio.error.code === 1) {
           return;
         }
+        if (_activeCandidateIndex < _activeAudioCandidates.length && typeof _tryNextCandidateRef === 'function') {
+          console.warn('[Pulse Audio] Stream error encountered. Trying next audio source...');
+          _tryNextCandidateRef();
+          return;
+        }
         // Only set playing=false if no candidate failover is in progress
         if (_activeCandidateIndex >= _activeAudioCandidates.length && state.playbackSource !== 'youtube') {
           showBuffering(false);
@@ -4102,10 +4107,11 @@
 
   let _activeAudioCandidates = [];
   let _activeCandidateIndex = 0;
+  let _tryNextCandidateRef = null;
 
   /**
    * Primary Full-Length Audio Playback Engine
-   * Seamless multi-tier streaming powered by JioSaavn Master 320k/160k CDN, Local Storage Cache, Apple iTunes & YouTube Engine
+   * Seamless multi-tier streaming powered by JioSaavn Master 320k/160k CDN, Local Storage Cache & YouTube Engine
    */
   async function startPlayback(track, initialSeekTime = null) {
     if (!track) return;
@@ -4213,13 +4219,7 @@
       return false;
     }
 
-    fallbackAudio.onerror = (e) => {
-      if (sessionId !== _currentPlaybackSessionId) return;
-      if (fallbackAudio.error && fallbackAudio.error.code === 1) return; // Ignore aborted requests
-      console.warn(`[Pulse Audio #${sessionId}] HTML5 Audio stream error, trying next candidate`);
-      tryNextCandidate();
-    };
-
+    _tryNextCandidateRef = tryNextCandidate;
     await tryNextCandidate();
   }
 
@@ -4339,7 +4339,10 @@
       } catch (e) {}
     } else if (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0) {
       state.currentTime = fallbackAudio.currentTime;
-      state.duration = fallbackAudio.duration;
+      // Only overwrite total estimated duration if audio stream is full length (> 45s) or estimated duration is missing
+      if (fallbackAudio.duration > 45 || isNaN(state.duration) || state.duration <= 0) {
+        state.duration = fallbackAudio.duration;
+      }
       if (el.playerTimeTotal) el.playerTimeTotal.textContent = formatTime(state.duration);
       if (el.fsTimeTotal) el.fsTimeTotal.textContent = formatTime(state.duration);
     } else {
@@ -4471,6 +4474,17 @@
   }
 
   function handleTrackEnded() {
+    const played = state.currentTime || (fallbackAudio ? fallbackAudio.currentTime : 0) || 0;
+    const expected = (state.currentTrack && parseDurationSeconds(state.currentTrack.duration)) || state.duration || 180;
+
+    // Premature ending detector: If stream ended under 45s when full song is expected (>60s),
+    // automatically failover to the next full-length candidate rather than cutting off the song!
+    if (played < 45 && expected > 60 && typeof _tryNextCandidateRef === 'function') {
+      console.warn(`[Pulse Audio] Incomplete stream detected (${Math.round(played)}s / ${Math.round(expected)}s expected). Seamlessly switching to full-length master source.`);
+      _tryNextCandidateRef();
+      return;
+    }
+
     if (state.isRepeat && state.currentTrack) {
       setTrack(state.currentTrack, true);
     } else {
@@ -4852,23 +4866,9 @@
   }
 
   function getPlatformDownloadUrl(os = 'auto') {
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    let fileName = 'Pulse-Music-Windows-Setup.exe';
-    if (os === 'android' || (os === 'auto' && isAndroid)) fileName = 'Pulse-Music-v2.4.0.apk';
-    else if (os === 'windows' || (os === 'auto' && !isMobile && !/Mac/i.test(navigator.userAgent) && !/Linux/i.test(navigator.userAgent))) fileName = 'Pulse-Music-Windows-Setup.exe';
-    else if (os === 'mac' || (os === 'auto' && /Mac/i.test(navigator.userAgent) && !isMobile)) fileName = 'Pulse-Music-v2.4.0.dmg';
-    else if (os === 'linux' || (os === 'auto' && /Linux/i.test(navigator.userAgent) && !isAndroid)) fileName = 'Pulse-Music-v2.4.0.AppImage';
-    else if (os === 'ios' || (os === 'auto' && isIOS)) fileName = 'Pulse-Music-v2.4.0.ipa';
-
-    let pathname = window.location.pathname || '/';
-    if (!pathname.endsWith('/')) {
-      const lastSlash = pathname.lastIndexOf('/');
-      pathname = lastSlash >= 0 ? pathname.substring(0, lastSlash + 1) : '/';
-    }
-    return `${window.location.origin}${pathname}downloads/${fileName}`;
+    const detected = detectClientOperatingSystem();
+    const targetOs = (os && os !== 'auto') ? os.toLowerCase() : detected.os;
+    return `/api/download/${targetOs}`;
   }
   window.getPlatformDownloadUrl = getPlatformDownloadUrl;
 
@@ -4882,10 +4882,10 @@
     const dlBtn = document.getElementById('primary-os-download-btn');
     const dlLabel = document.getElementById('primary-download-label');
 
-    let packageFile = 'Pulse-Music-Windows-Setup.exe';
+    let packageFile = 'Pulse-Music-Setup-2.4.0.exe';
     if (detected.os === 'android') packageFile = 'Pulse-Music-v2.4.0.apk';
-    else if (detected.os === 'mac') packageFile = 'Pulse-Music-v2.4.0.dmg';
-    else if (detected.os === 'linux') packageFile = 'Pulse-Music-v2.4.0.AppImage';
+    else if (detected.os === 'mac') packageFile = 'Pulse-Music-2.4.0.dmg';
+    else if (detected.os === 'linux') packageFile = 'Pulse-Music-2.4.0.AppImage';
     else if (detected.os === 'ios') packageFile = 'Pulse-Music-v2.4.0.ipa';
 
     if (badgeText) badgeText.textContent = `Detected: ${detected.name}`;
@@ -4913,26 +4913,21 @@
 
   window.downloadPlatformApp = function(os = 'auto') {
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const detected = detectClientOperatingSystem();
+    const targetOs = (os && os !== 'auto') ? os.toLowerCase() : detected.os;
+    const dlUrl = getPlatformDownloadUrl(targetOs);
 
-    // 1. If native PWA prompt is available, trigger it
-    if (window.deferredPrompt) {
-      try {
-        window.deferredPrompt.prompt();
-        window.deferredPrompt.userChoice.then((choice) => {
-          if (choice.outcome === 'accepted') {
-            showToast('Pulse App installed successfully to your home screen!', 'success', 5000);
-            if (el.downloadAppModal) el.downloadAppModal.classList.add('hidden');
-          }
-          window.deferredPrompt = null;
-        });
-      } catch(e) {}
-    }
+    const extMap = {
+      windows: 'Setup-2.4.0.exe',
+      mac: '2.4.0.dmg',
+      android: 'v2.4.0.apk',
+      linux: '2.4.0.AppImage',
+      ios: 'v2.4.0.ipa'
+    };
+    const fileName = `Pulse-Music-${extMap[targetOs] || 'package'}`;
+    showToast(`Starting ${fileName} download... Check your downloads folder!`, 'success', 5000);
 
-    // 2. Direct synchronous unblocked download trigger
-    const dlUrl = getPlatformDownloadUrl(os);
-    const fileName = dlUrl.substring(dlUrl.lastIndexOf('/') + 1);
-    showToast(`Downloading ${fileName}... Check your notifications/downloads!`, 'success', 5000);
-
+    // Trigger direct binary download
     const a = document.createElement('a');
     a.href = dlUrl;
     a.download = fileName;
@@ -4940,9 +4935,9 @@
     a.rel = 'noopener';
     document.body.appendChild(a);
     a.click();
-    setTimeout(() => a.remove(), 250);
+    setTimeout(() => a.remove(), 400);
 
-    if (isIOS || os === 'ios') {
+    if (isIOS || targetOs === 'ios') {
       showToast('To Install on iOS: Tap Share (⎋) in Safari -> Tap "Add to Home Screen" 📲', 'info', 7000);
     }
   };

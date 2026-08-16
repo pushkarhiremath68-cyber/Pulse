@@ -26741,13 +26741,13 @@
         }
       };
 
-      // 1. Direct explicit streamUrl (skip iTunes 30-second previews)
-      if (track.streamUrl && (track.streamUrl.startsWith('http://') || track.streamUrl.startsWith('https://') || track.streamUrl.startsWith('blob:')) && !track.streamUrl.includes('audio.itunes.apple.com') && !track.streamUrl.includes('is1-ssl.mzstatic.com') && !track.streamUrl.includes('is2-ssl.mzstatic.com') && !track.streamUrl.includes('is3-ssl.mzstatic.com') && !track.streamUrl.includes('is4-ssl.mzstatic.com') && !track.streamUrl.includes('is5-ssl.mzstatic.com')) {
+      // 1. Direct explicit streamUrl (skip iTunes/mzstatic 30-second previews)
+      if (track.streamUrl && (track.streamUrl.startsWith('http://') || track.streamUrl.startsWith('https://') || track.streamUrl.startsWith('blob:')) && !track.streamUrl.includes('itunes.apple.com') && !track.streamUrl.includes('mzstatic.com') && !track.streamUrl.includes('preview')) {
         add(track.streamUrl, 'direct-stream');
       }
 
-      // 2. Direct explicit audioUrl (skip iTunes 30-second previews)
-      if (track.audioUrl && (track.audioUrl.startsWith('http://') || track.audioUrl.startsWith('https://') || track.audioUrl.startsWith('blob:')) && !track.audioUrl.includes('YOUR_SUPABASE_PROJECT_URL') && !track.audioUrl.includes('audio.itunes.apple.com') && !track.audioUrl.includes('is1-ssl.mzstatic.com') && !track.audioUrl.includes('is2-ssl.mzstatic.com') && !track.audioUrl.includes('is3-ssl.mzstatic.com') && !track.audioUrl.includes('is4-ssl.mzstatic.com') && !track.audioUrl.includes('is5-ssl.mzstatic.com')) {
+      // 2. Direct explicit audioUrl (skip iTunes/mzstatic 30-second previews)
+      if (track.audioUrl && (track.audioUrl.startsWith('http://') || track.audioUrl.startsWith('https://') || track.audioUrl.startsWith('blob:')) && !track.audioUrl.includes('YOUR_SUPABASE_PROJECT_URL') && !track.audioUrl.includes('itunes.apple.com') && !track.audioUrl.includes('mzstatic.com') && !track.audioUrl.includes('preview')) {
         add(track.audioUrl, 'direct-audio');
       }
 
@@ -26769,42 +26769,49 @@
         });
       }
 
-      const query = `${track.title || ''} ${track.artist || ''}`.trim();
+      const rawTitle = (track.title || track.name || '').replace(/\s*\([^)]*\)/g, '').replace(/\s*\[[^\]]*\]/g, '').trim();
+      const rawArtist = (track.artist || '').split(',')[0].split('&')[0].trim();
+      const query = `${rawTitle} ${rawArtist}`.trim() || `${track.title || ''} ${track.artist || ''}`.trim();
 
-      // 4. JioSaavn 320k/160k authentic master stream CDN
-      if (query) {
-        try {
-          const cleanQuery = query.replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
-          const searchUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=3&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
-          const res = await fetch(searchUrl, { cache: 'no-store', signal: AbortSignal.timeout(3500) });
-          if (res.ok) {
-            const data = await res.json();
-            if (data && data.results && data.results.length > 0) {
-              const r = data.results[0];
-              if (r.encrypted_media_url) {
-                const dec = decryptSaavnUrl(r.encrypted_media_url);
-                if (dec) {
-                  if (dec['320']) add(dec['320'], 'saavn-320');
-                  if (dec['160']) add(dec['160'], 'saavn-160');
-                  if (dec['96']) add(dec['96'], 'saavn-96');
+      // 4. JioSaavn 320k/160k authentic full-length master stream CDN
+      if (query || rawTitle) {
+        const searchQueries = [query, rawTitle].filter(Boolean);
+        for (const sq of searchQueries) {
+          try {
+            const cleanQuery = sq.replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
+            const searchUrl = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=5&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQuery)}`;
+            const res = await fetch(searchUrl, { cache: 'no-store', signal: AbortSignal.timeout(3500) });
+            if (res.ok) {
+              const data = await res.json();
+              if (data && data.results && data.results.length > 0) {
+                for (const r of data.results) {
+                  if (r.encrypted_media_url) {
+                    const dec = decryptSaavnUrl(r.encrypted_media_url);
+                    if (dec) {
+                      if (dec['320']) add(dec['320'], 'saavn-320');
+                      if (dec['160']) add(dec['160'], 'saavn-160');
+                      if (dec['96']) add(dec['96'], 'saavn-96');
+                    }
+                  }
+                  if (r.image && (!track.cover || track.cover.includes('pulse-logo'))) {
+                    const hdImg = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
+                    track.cover = hdImg;
+                  }
+                  if (candidates.length > 2) break; // Found high quality streams
                 }
               }
-              if (r.image) {
-                const hdImg = r.image.replace('150x150', '500x500').replace('50x50', '500x500');
-                track.cover = hdImg;
-              }
             }
-          }
-        } catch (e) {}
+          } catch (e) {}
+          if (candidates.some(c => c.label && c.label.startsWith('saavn'))) break;
+        }
 
-        // 5. Apple iTunes — artwork only (previewUrl is 30-second clip, NOT full song)
+        // 5. Apple iTunes — artwork only (previewUrl is 30-second clip, NEVER used as audio)
         try {
           const itUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=1`;
           const itRes = await fetch(itUrl, { cache: 'no-store', signal: AbortSignal.timeout(3500) });
           if (itRes.ok) {
             const itData = await itRes.json();
             if (itData && itData.results && itData.results.length > 0) {
-              // NOTE: Do NOT add previewUrl as audio candidate — it is a 30-second preview, not full song
               if (itData.results[0].artworkUrl100 && (!track.cover || track.cover.includes('pulse-logo'))) {
                 track.cover = itData.results[0].artworkUrl100.replace('100x100bb', '600x600bb');
               }
@@ -26812,7 +26819,7 @@
           }
         } catch (e) {}
 
-        // 6. Backend stream endpoint
+        // 6. Backend stream endpoint (only full-length master audio)
         add(`/api/stream?id=${encodeURIComponent(track.id || '')}&q=${encodeURIComponent(query)}`, 'backend-stream');
       }
 

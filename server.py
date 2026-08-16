@@ -561,40 +561,12 @@ def fetch_saavn_master_audio(query, track_id):
         print(f"[Pulse Saavn Engine Notice] {query}: {e}")
     return None
 
-def fetch_itunes_master_audio(query, track_id):
-    """Fetches high-quality official master audio with authentic vocals from iTunes/Apple Music CDN"""
-    if not query:
-        return None
-    try:
-        clean_q = clean_query_string(query)
-        url = f"https://itunes.apple.com/search?term={urllib.parse.quote(clean_q)}&entity=song&limit=1"
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
-        with urllib.request.urlopen(req, timeout=4) as resp:
-            data = json.loads(resp.read().decode('utf-8'))
-            results = data.get('results', [])
-            if results:
-                preview_url = results[0].get('previewUrl')
-                if preview_url:
-                    dest = os.path.join(MUSIC_DIR, f"{track_id}.m4a")
-                    req_audio = urllib.request.Request(preview_url, headers={'User-Agent': 'Mozilla/5.0'})
-                    with urllib.request.urlopen(req_audio, timeout=6) as a_resp:
-                        with open(dest, 'wb') as f:
-                            f.write(a_resp.read())
-                    if os.path.exists(dest) and os.path.getsize(dest) > 50000:
-                        print(f"[Pulse Master Audio] Saved '{track_id}' from iTunes: {results[0].get('trackName')} by {results[0].get('artistName')}")
-                        return dest
-    except Exception as e:
-        print(f"[Pulse Master Audio Notice] {query}: {e}")
-    return None
-
 def ensure_audio_file(yt_id=None, query=None, track_id=None, preview_url=None):
     """
-    Ensures a full-length audio file exists in storage/music/.
-    1. Checks local cache (>1.5MB for full length)
+    Ensures a full-length master audio file exists in storage/music/.
+    1. Checks local cache (>1MB for full length)
     2. Fetches full-length master audio via Saavn High-Bitrate CDN (3-5 minutes)
-    3. Downloads direct preview_url if provided
-    4. Fetches iTunes master audio fallback
-    5. Downloads via yt_dlp if available
+    3. Downloads via yt_dlp if available
     """
     if yt_id in ('', 'null', 'undefined', 'None'):
         yt_id = None
@@ -602,8 +574,6 @@ def ensure_audio_file(yt_id=None, query=None, track_id=None, preview_url=None):
         query = None
     if track_id in ('', 'null', 'undefined', 'None'):
         track_id = None
-    if preview_url in ('', 'null', 'undefined', 'None'):
-        preview_url = None
 
     if not track_id:
         if yt_id:
@@ -616,13 +586,13 @@ def ensure_audio_file(yt_id=None, query=None, track_id=None, preview_url=None):
 
     # Fast check local storage
     existing = find_local_audio_file(track_id)
-    if existing and os.path.getsize(existing) > 1500000:
+    if existing and os.path.getsize(existing) > 1000000:
         return existing
 
     lock = get_track_lock(track_id)
     with lock:
         existing = find_local_audio_file(track_id)
-        if existing and os.path.getsize(existing) > 1500000:
+        if existing and os.path.getsize(existing) > 1000000:
             return existing
 
         search_target = query or track_id.replace('in-', '').replace('en-', '').replace('te-', '').replace('kn-', '').replace('pj-', '').replace('gu-', '').replace('mr-', '').replace('hr-', '').replace('es-', '').replace('fr-', '').replace('dev-', '').replace('-', ' ')
@@ -632,25 +602,7 @@ def ensure_audio_file(yt_id=None, query=None, track_id=None, preview_url=None):
         if saavn_audio:
             return saavn_audio
 
-        # Secondary Tier: If preview_url is supplied directly
-        if preview_url and preview_url.startswith('http'):
-            try:
-                dest = os.path.join(MUSIC_DIR, f"{track_id}.m4a")
-                req_audio = urllib.request.Request(preview_url, headers={'User-Agent': 'Mozilla/5.0'})
-                with urllib.request.urlopen(req_audio, timeout=6) as a_resp:
-                    with open(dest, 'wb') as f:
-                        f.write(a_resp.read())
-                if os.path.exists(dest) and os.path.getsize(dest) > 50000:
-                    return dest
-            except Exception:
-                pass
-
-        # Tertiary Tier: Fetch official master audio via iTunes search
-        master_audio = fetch_itunes_master_audio(search_target, track_id)
-        if master_audio:
-            return master_audio
-
-        # Tier 3: Attempt yt_dlp if configured
+        # Secondary Tier: Attempt yt_dlp if configured
         if yt_dlp:
             target = None
             if yt_id and len(yt_id) == 11 and ' ' not in yt_id:
@@ -680,19 +632,10 @@ def ensure_audio_file(yt_id=None, query=None, track_id=None, preview_url=None):
                         ydl.download([target])
                     f = find_local_audio_file(track_id)
                     if f:
-                        print(f"[Pulse Audio Engine] Downloaded '{track_id}' in {time.time()-t0:.2f}s -> {os.path.basename(f)}")
+                        print(f"[Pulse Audio Engine] Downloaded full track '{track_id}' in {time.time()-t0:.2f}s -> {os.path.basename(f)}")
                         return f
                 except Exception as e:
                     print(f"[Pulse Download Notice] '{target}' notice: {e}")
-
-        # Final attempt: secondary query variations on iTunes
-        if query:
-            words = query.split()
-            if len(words) > 1:
-                short_q = " ".join(words[:2])
-                m_audio = fetch_itunes_master_audio(short_q, track_id)
-                if m_audio:
-                    return m_audio
 
         return None
 
@@ -1158,20 +1101,13 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             yt_id = params.get('ytId', [None])[0]
             query = params.get('q', [None])[0]
             track_id = params.get('id', [None])[0]
-            preview_url = params.get('previewUrl', [None])[0]
 
-            audio_file = ensure_audio_file(yt_id=yt_id, query=query, track_id=track_id, preview_url=preview_url)
-            if audio_file and os.path.exists(audio_file):
+            audio_file = ensure_audio_file(yt_id=yt_id, query=query, track_id=track_id)
+            if audio_file and os.path.exists(audio_file) and os.path.getsize(audio_file) > 1000000:
                 serve_local_audio(self, audio_file)
                 return
-            elif preview_url and preview_url.startswith('http'):
-                self.send_response(302)
-                self.send_header('Location', preview_url)
-                self.send_header('Access-Control-Allow-Origin', '*')
-                self.end_headers()
-                return
             elif query:
-                # Fast direct stream 302 redirect via JioSaavn
+                # Fast direct stream 302 redirect via JioSaavn full-length 320k/160k CDN
                 try:
                     clean_q = clean_query_string(query)
                     s_url = "https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=3&p=1&_marker=0&ctx=android&q=" + urllib.parse.quote(clean_q)
@@ -1188,22 +1124,6 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                                 self.send_header('Access-Control-Allow-Origin', '*')
                                 self.end_headers()
                                 return
-                except Exception:
-                    pass
-
-                # Fast direct stream 302 redirect via iTunes
-                try:
-                    it_url = f"https://itunes.apple.com/search?term={urllib.parse.quote(query)}&entity=song&limit=1"
-                    it_req = urllib.request.Request(it_url, headers={'User-Agent': 'Mozilla/5.0'})
-                    with urllib.request.urlopen(it_req, timeout=3) as it_resp:
-                        it_data = json.loads(it_resp.read().decode('utf-8'))
-                        if it_data.get('results') and it_data['results'][0].get('previewUrl'):
-                            direct_url = it_data['results'][0]['previewUrl']
-                            self.send_response(302)
-                            self.send_header('Location', direct_url)
-                            self.send_header('Access-Control-Allow-Origin', '*')
-                            self.end_headers()
-                            return
                 except Exception:
                     pass
 
@@ -1279,15 +1199,15 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                     packages = manifest_data.get('packages', {})
                     if platform_req in packages:
                         pkg_info = packages[platform_req]
-                    elif platform_req in ['win', 'exe']:
+                    elif platform_req in ['win', 'exe', 'pc', 'setup', 'win64', 'windows-setup']:
                         pkg_info = packages.get('windows')
-                    elif platform_req in ['osx', 'darwin', 'dmg']:
+                    elif platform_req in ['osx', 'darwin', 'dmg', 'apple', 'macos']:
                         pkg_info = packages.get('mac')
-                    elif platform_req in ['apk', 'aab']:
+                    elif platform_req in ['apk', 'aab', 'phone']:
                         pkg_info = packages.get('android')
-                    elif platform_req in ['ipa', 'app']:
+                    elif platform_req in ['ipa', 'app', 'iphone', 'ipad']:
                         pkg_info = packages.get('ios')
-                    elif platform_req in ['appimage', 'deb', 'rpm']:
+                    elif platform_req in ['appimage', 'deb', 'rpm', 'ubuntu']:
                         pkg_info = packages.get('linux')
 
             target_file = None
@@ -1331,6 +1251,49 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                     'error': f"Release package for '{platform_req}' is not available yet.",
                     'code': 'PACKAGE_NOT_FOUND'
                 })
+                return
+
+        # Direct /downloads/ and /storage/downloads/ binary files with proper attachment header
+        if path.startswith('/downloads/') or path.startswith('/storage/downloads/'):
+            local_rel = path.lstrip('/')
+            local_abs = os.path.join(ROOT_DIR, local_rel)
+            
+            # Check fallback in storage/downloads if in /downloads/ or vice-versa
+            if not os.path.exists(local_abs):
+                fname = os.path.basename(local_rel)
+                alt1 = os.path.join(ROOT_DIR, 'storage', 'downloads', fname)
+                alt2 = os.path.join(ROOT_DIR, 'downloads', fname)
+                if os.path.exists(alt1):
+                    local_abs = alt1
+                elif os.path.exists(alt2):
+                    local_abs = alt2
+
+            if os.path.exists(local_abs) and os.path.isfile(local_abs):
+                filename = os.path.basename(local_abs)
+                file_size = os.path.getsize(local_abs)
+                ext = os.path.splitext(filename)[1].lower()
+                mime_map = {
+                    '.exe': 'application/vnd.microsoft.portable-executable',
+                    '.dmg': 'application/x-apple-diskimage',
+                    '.apk': 'application/vnd.android.package-archive',
+                    '.appimage': 'application/x-executable',
+                    '.ipa': 'application/octet-stream',
+                    '.json': 'application/json'
+                }
+                mime_type = mime_map.get(ext, 'application/octet-stream')
+
+                self.send_response(200)
+                self.send_header('Content-Type', mime_type)
+                self.send_header('Content-Disposition', f'attachment; filename="{filename}"')
+                self.send_header('Content-Length', str(file_size))
+                self.send_header('Cache-Control', 'public, max-age=3600')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+
+                with open(local_abs, 'rb') as f:
+                    while chunk := f.read(65536):
+                        self.wfile.write(chunk)
+                print(f"[Pulse Download] Served direct binary: {filename} ({file_size} bytes)")
                 return
 
         # Direct storage/music/ files with range support
