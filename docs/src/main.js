@@ -5263,10 +5263,31 @@
 
   window.downloadPlatformApp = function(os = 'auto') {
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
     const detected = detectClientOperatingSystem();
     const targetOs = (os && os !== 'auto') ? os.toLowerCase() : detected.os;
-    const dlUrl = getPlatformDownloadUrl(targetOs);
 
+    // 1. If clicking auto/primary install and official browser PWA prompt is ready, trigger it (Zero warnings, instant verified native app)
+    if (os === 'auto' || os === 'pwa') {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        deferredInstallPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            showToast('Pulse Music installed successfully! Launching app...', 'success', 5000);
+            window.closeDownloadModal();
+          }
+          deferredInstallPrompt = null;
+        });
+        return;
+      }
+    }
+
+    if (isIOS || targetOs === 'ios') {
+      showToast('To Install on iOS: Tap Share (⎋) in Safari -> Tap "Add to Home Screen" 📲 (100% Free & Safe)', 'info', 8000);
+      return;
+    }
+
+    const dlUrl = getPlatformDownloadUrl(targetOs);
     const extMap = {
       windows: 'Setup-2.4.0.exe',
       mac: '2.4.0.dmg',
@@ -5275,7 +5296,8 @@
       ios: 'v2.4.0.ipa'
     };
     const fileName = `Pulse-Music-${extMap[targetOs] || 'package'}`;
-    showToast(`Starting ${fileName} download... Check your downloads folder!`, 'success', 5000);
+    
+    showToast(`Downloading ${fileName}... If prompted by your browser, tap "Keep" or "Download anyway" to install.`, 'info', 7000);
 
     // Trigger direct binary download
     const a = document.createElement('a');
@@ -5286,10 +5308,6 @@
     document.body.appendChild(a);
     a.click();
     setTimeout(() => a.remove(), 400);
-
-    if (isIOS || targetOs === 'ios') {
-      showToast('To Install on iOS: Tap Share (⎋) in Safari -> Tap "Add to Home Screen" 📲', 'info', 7000);
-    }
   };
 
   /* ==========================================================================
