@@ -26720,6 +26720,7 @@
   window.TRACKS_REGISTRY = window.TRACKS_REGISTRY || {};
   DEMO_CATALOG.forEach(t => { window.TRACKS_REGISTRY[t.id] = t; });
 
+  const musicService = {
     /**
      * Resolves the best direct full-length playable audio URL for a track.
      * Uses JioSaavn master stream, local storage cache, or fallback URL.

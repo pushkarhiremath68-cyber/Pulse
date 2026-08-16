@@ -5393,11 +5393,11 @@
     if (savedContainer && savedList) {
       if (Array.isArray(savedAccounts) && savedAccounts.length > 0) {
         savedContainer.classList.remove('hidden');
-        savedList.innerHTML = savedAccounts.map(acc => `
-          <div class="google-saved-account-item" onclick="window.handleGoogleSelectSavedAccount('${(acc.email||'').replace(/'/g, "\\'")}', '${(acc.name||'').replace(/'/g, "\\'")}', '${(acc.avatar||'').replace(/'/g, "\\"')}')">
+        savedList.innerHTML = savedAccounts.map((acc, idx) => `
+          <div class="google-saved-account-item" onclick="window.handleGoogleSelectSavedAccountByIndex(${idx})">
             <img src="${acc.avatar || deriveGoogleAvatar(acc.name, acc.email)}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
             <div style="min-width: 0; flex: 1;">
-              <div style="font-weight: 500; font-size: 0.9rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${acc.name}</div>
+              <div style="font-weight: 500; font-size: 0.9rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${acc.name || 'Google User'}</div>
               <div style="font-size: 0.78rem; color: #9aa0a6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${acc.email}</div>
             </div>
             <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: #9aa0a6;"></i>
@@ -5517,6 +5517,16 @@
       passInput.value = '';
       setTimeout(() => passInput.focus(), 150);
     }
+  };
+
+  window.handleGoogleSelectSavedAccountByIndex = function(idx) {
+    try {
+      const saved = JSON.parse(localStorage.getItem('pulse_saved_google_accounts') || '[]');
+      if (Array.isArray(saved) && saved[idx]) {
+        const acc = saved[idx];
+        window.handleGoogleSelectSavedAccount(acc.email, acc.name, acc.avatar);
+      }
+    } catch (e) {}
   };
 
   window.toggleGooglePasswordVisibility = function(forcedState = null) {
