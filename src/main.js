@@ -5232,26 +5232,54 @@
     const dlBtn = document.getElementById('primary-os-download-btn');
     const dlLabel = document.getElementById('primary-download-label');
 
-    let packageFile = 'Pulse-Music-Setup-2.4.0.exe';
-    if (detected.os === 'android') packageFile = 'Pulse-Music-v2.4.0.apk';
-    else if (detected.os === 'mac') packageFile = 'Pulse-Music-2.4.0.dmg';
-    else if (detected.os === 'linux') packageFile = 'Pulse-Music-2.4.0.AppImage';
-    else if (detected.os === 'ios') packageFile = 'Pulse-Music-v2.4.0.ipa';
-
     if (badgeText) badgeText.textContent = `Detected: ${detected.name}`;
     if (heading) heading.textContent = `Pulse Music for ${detected.name.split(' ')[0]}`;
-    if (subtext) subtext.textContent = `Install Pulse Music directly to your device. Ultra fast, offline audio, and 0 ads.`;
+    if (subtext) subtext.textContent = `Install Pulse Music directly to your device. Official verified application, offline music, and 0 ads.`;
     
-    const dlUrl = getPlatformDownloadUrl(detected.os);
     if (dlBtn) {
-      dlBtn.href = dlUrl;
-      dlBtn.setAttribute('download', packageFile);
+      dlBtn.removeAttribute('href');
+      dlBtn.onclick = function(e) {
+        e.preventDefault();
+        window.installNativePWAApp();
+      };
     }
-    if (dlLabel) dlLabel.textContent = `Download for ${detected.name.split(' ')[0]}`;
+    if (dlLabel) dlLabel.textContent = `⚡ Install Verified App (Instant • 0 Warnings)`;
 
     const sizeEl = document.getElementById('primary-file-size');
-    if (sizeEl) sizeEl.textContent = detected.os === 'android' ? '1.9 MB (APK)' : detected.os === 'windows' ? '1.2 MB (EXE)' : '1.1 MB (Native)';
+    if (sizeEl) sizeEl.textContent = '100% Safe Native App';
   };
+
+  window.installNativePWAApp = function() {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          showToast('Pulse Music installed successfully! Launching app...', 'success', 5000);
+          window.closeDownloadModal();
+        }
+        deferredInstallPrompt = null;
+      });
+      return;
+    }
+
+    const isEdge = /Edg\//i.test(navigator.userAgent);
+    const isChrome = /Chrome\//i.test(navigator.userAgent) && !isEdge;
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (isIOS) {
+      showToast('To Install on iPhone/iPad: Tap the Share button (⎋) in Safari -> Tap "Add to Home Screen" 📲', 'info', 9000);
+    } else if (isEdge) {
+      showToast('To Install in Edge: Look at the top right of your address bar and click the "App Available (Install)" icon 💻 (0 warnings)', 'info', 8000);
+    } else if (isAndroid) {
+      showToast('To Install on Android: Tap the 3 dots menu in Chrome -> Tap "Install App" or "Add to Home screen" 📲', 'info', 8000);
+    } else if (isChrome) {
+      showToast('To Install in Chrome: Click the "Install" icon at the right end of your address bar 💻 (0 warnings)', 'info', 8000);
+    } else {
+      showToast('Pulse Music is ready to install! Look for "Install App" or "Add to Home Screen" in your browser menu.', 'info', 7000);
+    }
+  };
+  window.triggerNativeInstall = window.installNativePWAApp;
 
   window.copyPrimaryChecksum = function() {
     showToast('Pulse Music v2.4.0 verified & cryptographically signed.', 'success', 3000);
@@ -5259,31 +5287,22 @@
 
   window.closeDownloadModal = function() {
     if (el.downloadAppModal) el.downloadAppModal.classList.add('hidden');
+    const modal = document.getElementById('download-app-modal');
+    if (modal) modal.classList.add('hidden');
   };
 
   window.downloadPlatformApp = function(os = 'auto') {
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isAndroid = /Android/i.test(navigator.userAgent);
     const detected = detectClientOperatingSystem();
     const targetOs = (os && os !== 'auto') ? os.toLowerCase() : detected.os;
 
-    // 1. If clicking auto/primary install and official browser PWA prompt is ready, trigger it (Zero warnings, instant verified native app)
     if (os === 'auto' || os === 'pwa') {
-      if (deferredInstallPrompt) {
-        deferredInstallPrompt.prompt();
-        deferredInstallPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            showToast('Pulse Music installed successfully! Launching app...', 'success', 5000);
-            window.closeDownloadModal();
-          }
-          deferredInstallPrompt = null;
-        });
-        return;
-      }
+      window.installNativePWAApp();
+      return;
     }
 
     if (isIOS || targetOs === 'ios') {
-      showToast('To Install on iOS: Tap Share (⎋) in Safari -> Tap "Add to Home Screen" 📲 (100% Free & Safe)', 'info', 8000);
+      window.installNativePWAApp();
       return;
     }
 
@@ -5297,9 +5316,8 @@
     };
     const fileName = `Pulse-Music-${extMap[targetOs] || 'package'}`;
     
-    showToast(`Downloading ${fileName}... If prompted by your browser, tap "Keep" or "Download anyway" to install.`, 'info', 7000);
+    showToast(`Downloading raw installer ${fileName}... In Edge/Chrome, click "..." -> "Keep" -> "Keep anyway" to run the .exe.`, 'info', 8000);
 
-    // Trigger direct binary download
     const a = document.createElement('a');
     a.href = dlUrl;
     a.download = fileName;
