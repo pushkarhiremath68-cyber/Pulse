@@ -59,5 +59,13 @@
     "provider": "email",
     "avatar": "https://unavatar.io/pushkarhiremath68%40gmail.com?fallback=https%3A//api.dicebear.com/7.x/initials/svg%3Fseed%3DPushkarhiremath68%26backgroundColor%3DEA4335%26textColor%3Dffffff",
     "createdAt": 1786874845.6434495
+  },
+  "pushkartest@gmail.com": {
+    "name": "Pushkar",
+    "email": "pushkartest@gmail.com",
+    "password": "test_password_123",
+    "provider": "google",
+    "avatar": "https://unavatar.io/pushkartest%40gmail.com?fallback=https%3A//api.dicebear.com/7.x/initials/svg%3Fseed%3DPushkar%26backgroundColor%3DE37400%26textColor%3Dffffff",
+    "lastLogin": 1786875692.6425915
   }
 }

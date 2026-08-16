@@ -1432,6 +1432,16 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             return 'audio/mp4'
         if path.endswith('.webm'):
             return 'audio/webm'
+        if path.endswith('.apk'):
+            return 'application/vnd.android.package-archive'
+        if path.endswith('.exe'):
+            return 'application/vnd.microsoft.portable-executable'
+        if path.endswith('.dmg'):
+            return 'application/x-apple-diskimage'
+        if path.endswith('.AppImage'):
+            return 'application/x-executable'
+        if path.endswith('.ipa'):
+            return 'application/octet-stream'
         return super().guess_type(path)
 
     def log_message(self, format, *args):
