@@ -4808,7 +4808,28 @@
     return { os: 'windows', name: 'Windows PC (64-bit)', ext: '.exe', directUrl: '/api/download/windows' };
   }
 
-  window.initDownloadCenter = async function() {
+  function getPlatformDownloadUrl(os = 'auto') {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    let fileName = 'Pulse-Music-Windows-Setup.exe';
+    if (os === 'android' || (os === 'auto' && isAndroid)) fileName = 'Pulse-Music-v2.4.0.apk';
+    else if (os === 'windows' || (os === 'auto' && !isMobile && !/Mac/i.test(navigator.userAgent) && !/Linux/i.test(navigator.userAgent))) fileName = 'Pulse-Music-Windows-Setup.exe';
+    else if (os === 'mac' || (os === 'auto' && /Mac/i.test(navigator.userAgent) && !isMobile)) fileName = 'Pulse-Music-v2.4.0.dmg';
+    else if (os === 'linux' || (os === 'auto' && /Linux/i.test(navigator.userAgent) && !isAndroid)) fileName = 'Pulse-Music-v2.4.0.AppImage';
+    else if (os === 'ios' || (os === 'auto' && isIOS)) fileName = 'Pulse-Music-v2.4.0.ipa';
+
+    let pathname = window.location.pathname || '/';
+    if (!pathname.endsWith('/')) {
+      const lastSlash = pathname.lastIndexOf('/');
+      pathname = lastSlash >= 0 ? pathname.substring(0, lastSlash + 1) : '/';
+    }
+    return `${window.location.origin}${pathname}downloads/${fileName}`;
+  }
+  window.getPlatformDownloadUrl = getPlatformDownloadUrl;
+
+  window.initDownloadCenter = function() {
     const detected = detectClientOperatingSystem();
     
     // Update Hero Card with detected OS
@@ -4828,21 +4849,10 @@
     if (heading) heading.textContent = `Pulse Music for ${detected.name.split(' ')[0]}`;
     if (subtext) subtext.textContent = `Install Pulse Music directly to your device. Ultra fast, offline audio, and 0 ads.`;
     
+    const dlUrl = getPlatformDownloadUrl(detected.os);
     if (dlBtn) {
-      dlBtn.href = `./downloads/${packageFile}`;
+      dlBtn.href = dlUrl;
       dlBtn.setAttribute('download', packageFile);
-      dlBtn.onclick = function(e) {
-        if (window.deferredPrompt) {
-          try {
-            window.deferredPrompt.prompt();
-          } catch(err) {}
-        }
-        if (detected.os === 'ios') {
-          showToast('To Install on iOS: Tap Share (⎋) in Safari -> Tap "Add to Home Screen" 📲', 'info', 7000);
-        } else {
-          showToast(`Downloading ${packageFile}... Check your browser downloads!`, 'success', 4500);
-        }
-      };
     }
     if (dlLabel) dlLabel.textContent = `Download for ${detected.name.split(' ')[0]}`;
 
@@ -4858,9 +4868,7 @@
     if (el.downloadAppModal) el.downloadAppModal.classList.add('hidden');
   };
 
-  window.downloadPlatformApp = async function(os = 'auto') {
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isAndroid = /Android/i.test(navigator.userAgent);
+  window.downloadPlatformApp = function(os = 'auto') {
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     // 1. If native PWA prompt is available, trigger it
@@ -4877,70 +4885,19 @@
       } catch(e) {}
     }
 
-    // 2. Resolve package filename
-    let fileName = '';
-    if (os === 'android' || (os === 'auto' && isAndroid)) fileName = 'Pulse-Music-v2.4.0.apk';
-    else if (os === 'windows' || (os === 'auto' && !isMobile && !/Mac/i.test(navigator.userAgent) && !/Linux/i.test(navigator.userAgent))) fileName = 'Pulse-Music-Windows-Setup.exe';
-    else if (os === 'mac' || (os === 'auto' && /Mac/i.test(navigator.userAgent) && !isMobile)) fileName = 'Pulse-Music-v2.4.0.dmg';
-    else if (os === 'linux' || (os === 'auto' && /Linux/i.test(navigator.userAgent) && !isAndroid)) fileName = 'Pulse-Music-v2.4.0.AppImage';
-    else if (os === 'ios' || (os === 'auto' && isIOS)) fileName = 'Pulse-Music-v2.4.0.ipa';
+    // 2. Direct synchronous unblocked download trigger
+    const dlUrl = getPlatformDownloadUrl(os);
+    const fileName = dlUrl.substring(dlUrl.lastIndexOf('/') + 1);
+    showToast(`Downloading ${fileName}... Check your notifications/downloads!`, 'success', 5000);
 
-    if (fileName) {
-      showToast(`Downloading ${fileName}... Check your downloads folder!`, 'success', 5000);
-
-      // Build primary and fallback URLs
-      const origin = window.location.origin;
-      let pathname = window.location.pathname;
-      if (!pathname.endsWith('/')) {
-        const lastSlash = pathname.lastIndexOf('/');
-        pathname = lastSlash >= 0 ? pathname.substring(0, lastSlash + 1) : '/';
-      }
-      const primaryUrl = `${origin}${pathname}downloads/${fileName}`;
-      const directRelUrl = `./downloads/${fileName}`;
-      const githubRawUrl = `https://raw.githubusercontent.com/pushkarhiremath68-cyber/Pulse/main/docs/downloads/${fileName}`;
-
-      // Try fetching as binary Blob first to guarantee zero 404 HTML download failures
-      let downloadedViaBlob = false;
-      try {
-        const fetchUrls = [primaryUrl, directRelUrl, githubRawUrl];
-        for (const u of fetchUrls) {
-          try {
-            const resp = await fetch(u, { cache: 'no-cache' });
-            if (resp.ok) {
-              const ct = resp.headers.get('content-type') || '';
-              // If not a 404 HTML error page
-              if (!ct.includes('text/html')) {
-                const blob = await resp.blob();
-                if (blob.size > 10000) { // Actual binary package (>10 KB)
-                  const blobUrl = URL.createObjectURL(blob);
-                  const a = document.createElement('a');
-                  a.href = blobUrl;
-                  a.download = fileName;
-                  document.body.appendChild(a);
-                  a.click();
-                  setTimeout(() => {
-                    a.remove();
-                    URL.revokeObjectURL(blobUrl);
-                  }, 1000);
-                  downloadedViaBlob = true;
-                  break;
-                }
-              }
-            }
-          } catch(e) {}
-        }
-      } catch(e) {}
-
-      // Fallback to standard anchor click if blob method was blocked
-      if (!downloadedViaBlob) {
-        const a = document.createElement('a');
-        a.href = primaryUrl;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => a.remove(), 500);
-      }
-    }
+    const a = document.createElement('a');
+    a.href = dlUrl;
+    a.download = fileName;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => a.remove(), 250);
 
     if (isIOS || os === 'ios') {
       showToast('To Install on iOS: Tap Share (⎋) in Safari -> Tap "Add to Home Screen" 📲', 'info', 7000);
