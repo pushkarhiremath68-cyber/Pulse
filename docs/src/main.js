@@ -4152,63 +4152,16 @@
     }
 
     showBuffering(true);
-    console.log(`[Pulse Audio #${sessionId}] Starting instant playback for:`, title, 'by', artist);
+    console.log(`[Pulse Audio #${sessionId}] Starting instant playback for:`, title, 'by', artist, 'target:', playbackTarget);
 
     try {
-      // 1. Check if stream is already synchronously available on track object
-      let audioResult = null;
-      if (track.streamUrl && track.streamUrl.startsWith('http')) {
-        audioResult = { url: track.streamUrl, type: 'audio/mp4' };
-      } else if (track.audioUrl && track.audioUrl.startsWith('http') && !track.audioUrl.includes('YOUR_SUPABASE_PROJECT_URL')) {
-        audioResult = { url: track.audioUrl, type: 'audio/mp4' };
-      }
-
-      // If not synchronously present, resolve via getFullAudioUrl / musicService
-      if (!audioResult || !audioResult.url) {
-        try {
-          audioResult = await getFullAudioUrl(track);
-        } catch(e) {}
-      }
-
-      if (sessionId !== _currentPlaybackSessionId) return; // Discard stale click
-
-      if (!audioResult || !audioResult.url) {
-        if (window.musicService && typeof window.musicService.resolveTrackAudioStream === 'function') {
-          try {
-            const resolvedUrl = await window.musicService.resolveTrackAudioStream(track);
-            if (resolvedUrl && (resolvedUrl.startsWith('http') || resolvedUrl.startsWith('/api/stream'))) {
-              audioResult = { url: resolvedUrl, type: 'audio/mp4' };
-            }
-          } catch(e) {}
-        }
-      }
-
-      if (sessionId !== _currentPlaybackSessionId) return; // Discard stale click
-
-      // Check direct backend stream
-      if (!audioResult || !audioResult.url) {
-        const streamUrl = `/api/stream?id=${encodeURIComponent(track.id)}&q=${encodeURIComponent(title + ' ' + artist)}`;
-        audioResult = { url: streamUrl, type: 'audio/mp4' };
-      }
-
-      if (audioResult && audioResult.url) {
+      // 1. Check if direct valid audio stream is present
+      if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('localhost') && !track.streamUrl.includes('/api/stream')) {
         state.playbackSource = 'html5';
-        let hasFallenBack = false;
-
-        fallbackAudio.onerror = (e) => {
-          if (sessionId !== _currentPlaybackSessionId || hasFallenBack) return;
-          hasFallenBack = true;
-          console.warn(`[Pulse Audio #${sessionId}] HTML5 stream notice for:`, title, '- Auto-resolving YouTube Stream Fallback');
-          playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
-        };
-
-        fallbackAudio.src = audioResult.url;
+        fallbackAudio.src = track.streamUrl;
         fallbackAudio.volume = state.volume !== undefined ? state.volume : 1;
-        fallbackAudio.muted = !!state.isMuted;
-        if (seekTarget > 0) {
-          fallbackAudio.currentTime = seekTarget;
-        }
-
+        fallbackAudio.muted = false;
+        if (seekTarget > 0) fallbackAudio.currentTime = seekTarget;
         try {
           await fallbackAudio.play();
           if (sessionId !== _currentPlaybackSessionId) {
@@ -4222,38 +4175,22 @@
           requestAudioWakeLock();
           enableBackgroundKeepAlive();
           if (canvasVisualizer) canvasVisualizer.start();
-        } catch (playErr) {
-          if (sessionId !== _currentPlaybackSessionId) return;
-          if (playErr.name === 'NotAllowedError') {
-            showBuffering(false);
-            state.isPlaying = false;
-            updatePlayPauseUI();
-            showToast('Click Play to start listening', 'info', 3000);
-          } else {
-            console.warn(`[Pulse Audio #${sessionId}] Direct playback notice, activating YouTube engine:`, playErr);
-            playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
-            updateMediaSession(track);
-            requestAudioWakeLock();
-            enableBackgroundKeepAlive();
-          }
+          return;
+        } catch(e) {
+          console.warn(`[Pulse Audio #${sessionId}] HTML5 stream error, activating YouTube engine`);
         }
-      } else {
-        // Fallback to YouTube Player
-        playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
-        updateMediaSession(track);
-        requestAudioWakeLock();
-        enableBackgroundKeepAlive();
       }
+
+      // 2. Direct high-speed YouTube Streaming Engine
+      playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
+      updateMediaSession(track);
+      requestAudioWakeLock();
+      enableBackgroundKeepAlive();
     } catch (err) {
       if (sessionId !== _currentPlaybackSessionId) return;
       showBuffering(false);
       console.warn(`[Pulse Audio #${sessionId}] Playback handler error:`, err);
-      playTrackOnYouTubePlayer(playbackTarget, true, sessionId);
-      updateMediaSession(track);
     }
-
-    if (progressInterval) clearInterval(progressInterval);
-    progressInterval = setInterval(updateProgressTimeline, 400);
   }
 
   /* ==========================================================================
@@ -6923,6 +6860,16 @@
   window.closeAuthModal = function() {
     const modal = document.getElementById('auth-modal');
     if (modal) modal.classList.add('hidden');
+  };
+
+  window.openDownloadModal = function() {
+    const modal = document.getElementById('download-app-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      if (typeof window.initDownloadCenter === 'function') {
+        window.initDownloadCenter();
+      }
+    }
   };
 
   window.logout = function() {
