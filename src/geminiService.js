@@ -14,7 +14,7 @@
   'use strict';
 
   const STORAGE_KEY_GEMINI_KEY = 'pulse_gemini_api_key';
-  const DEFAULT_GEMINI_MODEL = 'gemini-1.5-flash';
+  const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
 
   // Get active Gemini API Key (User custom key or environment default)
   function getGeminiApiKey() {
@@ -44,38 +44,40 @@
 
     // 1. Try direct Google Gemini API if API key is present
     if (apiKey) {
-      try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${DEFAULT_GEMINI_MODEL}:generateContent?key=${apiKey}`;
-        const body = {
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.7,
-            topK: 40,
-            topP: 0.95,
-            maxOutputTokens: 1500,
-            responseMimeType: jsonMode ? "application/json" : "text/plain"
-          }
-        };
-
-        if (systemInstruction) {
-          body.systemInstruction = {
-            parts: [{ text: systemInstruction }]
+      for (const model of GEMINI_MODELS) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+          const body = {
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: {
+              temperature: 0.7,
+              topK: 40,
+              topP: 0.95,
+              maxOutputTokens: 1500,
+              responseMimeType: jsonMode ? "application/json" : "text/plain"
+            }
           };
-        }
 
-        const res = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
+          if (systemInstruction) {
+            body.systemInstruction = {
+              parts: [{ text: systemInstruction }]
+            };
+          }
 
-        if (res.ok) {
-          const data = await res.json();
-          const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-          return jsonMode ? JSON.parse(rawText) : rawText;
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+            return jsonMode ? JSON.parse(rawText) : rawText;
+          }
+        } catch (e) {
+          console.warn(`[Gemini ${model} Notice]:`, e);
         }
-      } catch (e) {
-        console.warn('[Gemini Direct API Notice]:', e);
       }
     }
 
