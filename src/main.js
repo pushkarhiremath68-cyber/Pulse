@@ -4656,31 +4656,44 @@
     }
 
     if (!state.isPlaying) {
-      // PLAY / RESUME PLAYBACK INSTANTLY FROM EXACT PAUSED TIMESTAMP
+      // RESUME PLAYBACK INSTANTLY AT EXACT PAUSED TIMESTAMP
       state.isPlaying = true;
       updatePlayPauseUI();
 
-      if (state.playbackSource === 'youtube' && ytPlayer && typeof ytPlayer.playVideo === 'function') {
-        try {
-          if (state.currentTime > 0 && typeof ytPlayer.seekTo === 'function') {
-            ytPlayer.seekTo(state.currentTime, true);
-          }
-          ytPlayer.playVideo();
-        } catch (e) {}
-      } else if (state.playbackSource === 'html5' && fallbackAudio && fallbackAudio.src) {
-        // Direct HTML5 resume without resetting the audio buffer
-        if (state.currentTime > 0 && (!fallbackAudio.currentTime || Math.abs(fallbackAudio.currentTime - state.currentTime) > 1)) {
-          try { fallbackAudio.currentTime = state.currentTime; } catch (e) {}
+      if (state.playbackSource === 'youtube') {
+        if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+          try {
+            ytPlayer.unMute?.();
+            ytPlayer.playVideo();
+          } catch(e) {}
         }
-        fallbackAudio.play().then(() => {
+        const iframe = document.getElementById('bg-audio-iframe');
+        if (iframe && iframe.contentWindow) {
+          try {
+            iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+          } catch(e) {}
+        }
+        if (progressInterval) clearInterval(progressInterval);
+        progressInterval = setInterval(updateProgressTimeline, 400);
+      } else if (fallbackAudio && fallbackAudio.src && !fallbackAudio.src.endsWith('/') && fallbackAudio.src !== window.location.href) {
+        // Direct HTML5 resume from paused position
+        const p = fallbackAudio.play();
+        if (p && typeof p.then === 'function') {
+          p.then(() => {
+            if (canvasVisualizer) canvasVisualizer.start();
+            if (progressInterval) clearInterval(progressInterval);
+            progressInterval = setInterval(updateProgressTimeline, 400);
+          }).catch(err => {
+            console.warn('[Pulse Audio] Resume error, re-resolving stream:', err);
+            startPlayback(state.currentTrack, state.currentTime || 0);
+          });
+        } else {
           if (canvasVisualizer) canvasVisualizer.start();
           if (progressInterval) clearInterval(progressInterval);
           progressInterval = setInterval(updateProgressTimeline, 400);
-        }).catch(() => {
-          startPlayback(state.currentTrack, state.currentTime || fallbackAudio.currentTime || 0);
-        });
+        }
       } else {
-        startPlayback(state.currentTrack, state.currentTime || (fallbackAudio ? fallbackAudio.currentTime : 0) || 0);
+        startPlayback(state.currentTrack, state.currentTime || 0);
       }
       requestAudioWakeLock();
     } else {
@@ -4701,15 +4714,11 @@
         if (canvasVisualizer) canvasVisualizer.stop();
       }
 
-      if (state.playbackSource === 'youtube' && ytPlayer) {
+      if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
         try {
-          if (typeof ytPlayer.getCurrentTime === 'function') {
-            const ytCur = ytPlayer.getCurrentTime();
-            if (ytCur > 0) state.currentTime = ytCur;
-          }
-          if (typeof ytPlayer.pauseVideo === 'function') {
-            ytPlayer.pauseVideo();
-          }
+          const ytCur = ytPlayer.getCurrentTime?.();
+          if (ytCur > 0) state.currentTime = ytCur;
+          ytPlayer.pauseVideo();
         } catch (e) {}
       }
 
@@ -6241,32 +6250,34 @@
     const banner = document.getElementById('auth-status-banner');
     if (banner) banner.classList.add('hidden');
 
-    // 1. Supabase Official OAuth 2.0 Flow (if configured)
-    if (window.supabaseClient && typeof window.supabaseClient.auth?.signInWithOAuth === 'function') {
+    // 1. Official Firebase Google Auth Popup (Google Cloud Project pulse-music-app-68)
+    if (window.pulseFirebaseClient && typeof window.pulseFirebaseClient.signInWithGoogle === 'function') {
       try {
-        const redirectUrl = window.location.origin + window.location.pathname;
-        const { data, error } = await window.supabaseClient.auth.signInWithOAuth({
-          provider: 'google',
-          options: { redirectTo: redirectUrl }
-        });
-        if (!error && data?.url) {
-          window.location.href = data.url;
+        const res = await window.pulseFirebaseClient.signInWithGoogle();
+        if (res && res.success && res.user) {
+          if (typeof window.loginUser === 'function') {
+            window.loginUser(res.user.name || res.user.email.split('@')[0], res.user.email, 'google', res.user.avatar);
+          }
+          if (typeof window.closeAuthModal === 'function') window.closeAuthModal();
+          if (typeof showToast === 'function') showToast(`Welcome back, ${res.user.name || 'User'}!`, 'success');
           return;
         }
       } catch (err) {
-        console.warn('[Pulse Supabase OAuth]', err);
+        console.warn('[Pulse Firebase Google Auth Notice]', err);
       }
     }
 
-    // 2. Google Identity Services (GIS) One-Tap / Prompt Flow
+    // 2. Google Identity Services (GIS) One-Tap Flow
     if (window.google?.accounts?.id) {
       try {
         window.google.accounts.id.prompt();
       } catch (e) {}
     }
 
-    // 3. Open Official Google OAuth Account Picker & Consent Flow
-    window.openGooglePickerModal();
+    // 3. Open Official Google OAuth Account Picker Modal (Zero 400 errors)
+    if (typeof window.openGooglePickerModal === 'function') {
+      window.openGooglePickerModal();
+    }
   };
   window.openGoogleAuthModal = window.handleGoogleOAuthLogin;
 
