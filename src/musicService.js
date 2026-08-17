@@ -221,6 +221,31 @@
     return `${m}:${rem < 10 ? '0' : ''}${rem}`;
   }
 
+  const AUTHENTIC_ARTIST_COVERS = {
+    'arijit singh': 'https://c.saavncdn.com/191/Kesariya-From-Brahmastra-Hindi-2022-20220717092820-500x500.jpg',
+    'karan aujla': 'https://c.saavncdn.com/978/Tauba-Tauba-From-Bad-Newz-Hindi-2024-20240702111004-500x500.jpg',
+    'diljit dosanjh': 'https://c.saavncdn.com/973/MoonChild-Era-Punjabi-2021-20210822180844-500x500.jpg',
+    'ap dhillon': 'https://c.saavncdn.com/624/With-You-Punjabi-2023-20230811053424-500x500.jpg',
+    'shreya ghoshal': 'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814114324-500x500.jpg',
+    'ed sheeran': 'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ba/66/1b/ba661b17-3dd3-29dd-7fb4-0d9c15ff9209/190295851286.jpg/600x600bb.jpg',
+    'the weeknd': 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/7d/51/a47d519b-640a-ca1d-ff14-c1ab415f33f6/16UMGIM60655.rgb.jpg/600x600bb.jpg',
+    'taylor swift': 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/f5/ec/4bf5ecf8-7f99-ef2e-736f-e3c6a4d7d3d7/19UMGIM68357.rgb.jpg/600x600bb.jpg',
+    'anirudh': 'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814114324-500x500.jpg',
+    'sid sriram': 'https://c.saavncdn.com/513/Pushpa-The-Rise-Telugu-2021-20211217064846-500x500.jpg',
+    'vijay prakash': 'https://c.saavncdn.com/129/Kantara-Kannada-2022-20221010165736-500x500.jpg',
+    'hariharan': 'https://c.saavncdn.com/007/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-500x500.jpg',
+    'shankar mahadevan': 'https://c.saavncdn.com/423/Shiv-Tandav-Stotram-Hindi-2020-20200706173934-500x500.jpg',
+    'sonu nigam': 'https://c.saavncdn.com/264/Aashiqui-2-Hindi-2013-500x500.jpg',
+    'atif aslam': 'https://c.saavncdn.com/040/Love-Aaj-Kal-Hindi-2020-20200214140417-500x500.jpg',
+    'kk': 'https://c.saavncdn.com/264/Aashiqui-2-Hindi-2013-500x500.jpg',
+    'pritam': 'https://c.saavncdn.com/191/Kesariya-From-Brahmastra-Hindi-2022-20220717092820-500x500.jpg',
+    'vishal mishra': 'https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191410-500x500.jpg',
+    'jubin nautiyal': 'https://c.saavncdn.com/238/Shershaah-Original-Motion-Picture-Soundtrack--Hindi-2021-20210815181610-500x500.jpg',
+    'badshah': 'https://c.saavncdn.com/978/Tauba-Tauba-From-Bad-Newz-Hindi-2024-20240702111004-500x500.jpg',
+    'shubh': 'https://c.saavncdn.com/139/Still-Rollin-Punjabi-2023-20230519060416-500x500.jpg',
+    'sidhu moose wala': 'https://c.saavncdn.com/973/MoonChild-Era-Punjabi-2021-20210822180844-500x500.jpg'
+  };
+
   function normalizeTrack(raw) {
     if (!raw) return null;
     const cleanId = String(raw.id || raw.trackId || `track-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`);
@@ -229,8 +254,25 @@
     const cleanAlbum = unescapeHtml(String(raw.album || raw.collectionName || 'Single').trim());
 
     let cleanCover = raw.cover || raw.artworkUrl100 || raw.image || null;
+    if (cleanCover && (cleanCover.includes('50x50') || cleanCover.includes('150x150'))) {
+      cleanCover = cleanCover.replace('150x150', '500x500').replace('50x50', '500x500');
+    }
+    if (cleanCover && cleanCover.includes('100x100bb.jpg')) {
+      cleanCover = cleanCover.replace('100x100bb.jpg', '600x600bb.jpg');
+    }
+
+    // Match authentic artist cover if cover is missing or generic
     if (!cleanCover || cleanCover === './pulse-logo.png' || cleanCover.includes('unsplash.com') || cleanCover.trim() === '') {
-      cleanCover = generateTrackCover(cleanTitle, cleanArtist, raw.category);
+      const lowerArtist = cleanArtist.toLowerCase();
+      for (const [artKey, artCover] of Object.entries(AUTHENTIC_ARTIST_COVERS)) {
+        if (lowerArtist.includes(artKey)) {
+          cleanCover = artCover;
+          break;
+        }
+      }
+      if (!cleanCover) {
+        cleanCover = generateTrackCover(cleanTitle, cleanArtist, raw.category);
+      }
     }
 
     let cleanDuration = raw.duration || '3:30';
