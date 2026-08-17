@@ -3,13 +3,16 @@
    Designed by Pushkar Hiremath
    ========================================================================== */
 
-const CACHE_NAME = 'pulse-music-cache-v10';
+const CACHE_NAME = 'pulse-music-cache-v11';
 const STATIC_ASSETS = [
   './',
   './index.html',
   './src/style.css',
   './src/main.js',
   './src/musicService.js',
+  './src/audioEngine.js',
+  './src/geminiService.js',
+  './src/firebaseClient.js',
   './src/visualizer.js',
   './src/supabaseClient.js',
   './pulse-logo.png',
