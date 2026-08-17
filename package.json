@@ -14,6 +14,10 @@
     "build:certs": "python scripts/generate_certificates.py",
     "build:packages": "python scripts/build_release_packages.py",
     "build:all": "npm run build:icons && npm run build:certs && npm run build:packages",
+    "dist:win": "npm run build && python scripts/build_release_packages.py",
+    "dist:mac": "npm run build && python scripts/build_release_packages.py",
+    "dist:linux": "npm run build && python scripts/build_release_packages.py",
+    "dist:android": "npm run build && python scripts/build_valid_android_apk.py",
     "test:auth": "python scripts/test_auth_api.py",
     "test:download": "python scripts/test_download_api.py"
   },

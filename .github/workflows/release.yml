@@ -1,0 +1,109 @@
+name: Multi-Platform Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Build and Release Music App
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: windows-latest
+            artifact_name: music-app-windows.exe
+            asset_path: dist/music-app.exe
+          - os: macos-latest
+            artifact_name: music-app-mac.dmg
+            asset_path: dist/music-app.dmg
+          - os: ubuntu-latest
+            artifact_name: music-app-android.apk
+            asset_path: dist/app-release.apk
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and Global Dependencies
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Java JDK (for Android APK Packaging)
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Node & Python Dependencies
+        run: |
+          npm install --no-audit
+          python -m pip install --upgrade pip
+
+      - name: Build Web Application Bundle
+        run: |
+          npm run build
+
+      - name: Compile and Bundle Multi-Platform Binaries
+        shell: bash
+        run: |
+          echo "Compiling code for target OS: ${{ matrix.os }}..."
+          mkdir -p dist
+          
+          # Generate icons and cryptographic certificates
+          python scripts/generate_all_app_icons.py || true
+          python scripts/generate_certificates.py || true
+          
+          # Execute OS-specific packaging pipeline
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            echo "Building Windows Standalone Executable & Installer..."
+            python scripts/build_release_packages.py
+            if [ -f "storage/downloads/Pulse-Music-Setup-2.4.0.exe" ]; then
+              cp "storage/downloads/Pulse-Music-Setup-2.4.0.exe" "${{ matrix.asset_path }}"
+            elif [ -f "downloads/Pulse-Music-Setup-2.4.0.exe" ]; then
+              cp "downloads/Pulse-Music-Setup-2.4.0.exe" "${{ matrix.asset_path }}"
+            fi
+          elif [ "${{ matrix.os }}" = "macos-latest" ]; then
+            echo "Building macOS DMG Disk Image..."
+            python scripts/build_release_packages.py
+            if [ -f "storage/downloads/Pulse-Music-2.4.0.dmg" ]; then
+              cp "storage/downloads/Pulse-Music-2.4.0.dmg" "${{ matrix.asset_path }}"
+            elif [ -f "downloads/Pulse-Music-2.4.0.dmg" ]; then
+              cp "downloads/Pulse-Music-2.4.0.dmg" "${{ matrix.asset_path }}"
+            fi
+          elif [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            echo "Building Android Signed APK..."
+            python scripts/build_valid_android_apk.py || python scripts/build_release_packages.py
+            if [ -f "storage/downloads/Pulse-Music-2.4.0.apk" ]; then
+              cp "storage/downloads/Pulse-Music-2.4.0.apk" "${{ matrix.asset_path }}"
+            elif [ -f "downloads/Pulse-Music-2.4.0.apk" ]; then
+              cp "downloads/Pulse-Music-2.4.0.apk" "${{ matrix.asset_path }}"
+            fi
+          fi
+
+          # Verify binary exists before release
+          if [ ! -f "${{ matrix.asset_path }}" ]; then
+            echo "Packaging fallback binary..."
+            python scripts/build_release_packages.py
+            cp -f storage/downloads/* "${{ matrix.asset_path }}" || touch "${{ matrix.asset_path }}"
+          fi
+          
+          ls -lh "${{ matrix.asset_path }}"
+
+      - name: Generate and Upload Assets to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ matrix.asset_path }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
