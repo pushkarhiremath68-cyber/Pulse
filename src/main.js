@@ -7645,9 +7645,36 @@
       }
     } catch (e) { console.warn('initCatalog notice:', e); }
     try { initGoogleIdentityServices(); } catch (e) {}
-    try { initYouTubePlayer(); } catch (e) {}
-    try { loadUserPlaylists(); } catch (e) {}
-    try { loadLikedTracks(); } catch (e) {}
+    try {
+      // Infinite Scroll Auto-Discovery on Home View
+      const mainContainer = document.querySelector('.main-content') || window;
+      let isScrollFetching = false;
+      const handleInfiniteScroll = () => {
+        const scrollY = mainContainer === window ? window.scrollY : mainContainer.scrollTop;
+        const scrollHeight = mainContainer === window ? document.documentElement.scrollHeight : mainContainer.scrollHeight;
+        const clientHeight = mainContainer === window ? window.innerHeight : mainContainer.clientHeight;
+        
+        if (scrollY + clientHeight >= scrollHeight - 350 && !isScrollFetching) {
+          isScrollFetching = true;
+          if (state.activeView === 'home') {
+            if (typeof window.loadMoreFromDatabase === 'function') {
+              window.loadMoreFromDatabase().finally(() => {
+                setTimeout(() => { isScrollFetching = false; }, 1200);
+              });
+            } else {
+              isScrollFetching = false;
+            }
+          } else {
+            isScrollFetching = false;
+          }
+        }
+      };
+
+      if (mainContainer !== window) {
+        mainContainer.addEventListener('scroll', handleInfiniteScroll, { passive: true });
+      }
+      window.addEventListener('scroll', handleInfiniteScroll, { passive: true });
+    } catch(e) {}
     try { renderAllHomeGrids(); } catch (e) { console.error('renderAllHomeGrids notice:', e); }
     try { attachEventListeners(); } catch (e) { console.error('attachEventListeners notice:', e); }
     

@@ -390,6 +390,27 @@
         }
       }
 
+      // 3. Background Pre-fetch Live Worldwide Charts & Top Hit Playlists
+      const starterQueries = [
+        'Top Bollywood Hits 2026',
+        'Top Punjabi Hits Karan Aujla',
+        'Arijit Singh Top Songs',
+        'Global Pop Hits Taylor Swift The Weeknd',
+        'Sacred Devotional Bhakti Aartis',
+        'Top Kannada Hits Vijay Prakash',
+        'Top Telugu Hits Sid Sriram',
+        'Top Tamil Hits Anirudh'
+      ];
+      starterQueries.forEach(q => {
+        this.searchTracks(q, 25).then(res => {
+          if (res && Array.isArray(res) && res.length > 0) {
+            if (typeof window.renderAllHomeGrids === 'function') {
+              window.renderAllHomeGrids();
+            }
+          }
+        }).catch(() => {});
+      });
+
       console.log(`[Pulse Catalog Engine] Successfully connected database: ${Object.keys(window.TRACKS_REGISTRY).length} songs live in-app.`);
       if (typeof window.renderAllHomeGrids === 'function') {
         window.renderAllHomeGrids();
