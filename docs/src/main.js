@@ -629,9 +629,11 @@
       });
 
       fallbackAudio.addEventListener('pause', () => {
-        state.isPlaying = false;
-        updatePlayPauseUI();
-        if (canvasVisualizer) canvasVisualizer.stop();
+        if (state.playbackSource === 'html5' && !fallbackAudio.seeking && fallbackAudio.readyState > 1) {
+          state.isPlaying = false;
+          updatePlayPauseUI();
+          if (canvasVisualizer) canvasVisualizer.stop();
+        }
       });
 
       fallbackAudio.addEventListener('ended', () => {
@@ -6848,8 +6850,8 @@
         document.body.classList.add('fullscreen-player-open');
         const bottomBar = document.querySelector('.bottom-player-bar');
         const mobileNav = document.getElementById('mobile-bottom-nav');
-        if (bottomBar) bottomBar.style.display = 'none';
-        if (mobileNav) mobileNav.style.display = 'none';
+        if (bottomBar) bottomBar.style.setProperty('display', 'none', 'important');
+        if (mobileNav) mobileNav.style.setProperty('display', 'none', 'important');
       }
     };
 
@@ -6860,8 +6862,8 @@
         document.body.classList.remove('fullscreen-player-open');
         const bottomBar = document.querySelector('.bottom-player-bar');
         const mobileNav = document.getElementById('mobile-bottom-nav');
-        if (bottomBar) bottomBar.style.display = '';
-        if (mobileNav) mobileNav.style.display = '';
+        if (bottomBar) bottomBar.style.removeProperty('display');
+        if (mobileNav) mobileNav.style.removeProperty('display');
       }
     };
 
