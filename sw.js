@@ -3,7 +3,7 @@
    Designed by Pushkar Hiremath
    ========================================================================== */
 
-const CACHE_NAME = 'pulse-music-cache-v11';
+const CACHE_NAME = 'pulse-music-cache-v30-clean';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -37,13 +37,13 @@ self.addEventListener('activate', (event) => {
       Promise.all(
         keys.map((key) => {
           if (key !== CACHE_NAME) {
+            console.log('[Pulse SW] Deleting stale cache:', key);
             return caches.delete(key);
           }
         })
       )
-    )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {

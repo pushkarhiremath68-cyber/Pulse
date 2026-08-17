@@ -10,14 +10,39 @@
   <meta name="description" content="Listen to millions of free songs in English, Hindi, Spanish, Punjabi & more on Pulse by Pushkar Hiremath. Premium web music experience with live search, video player, visualizers & lyrics.">
   
   <script>
-    // Automatically purge old stale cache on version update
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(regs) {
-        for (var r of regs) {
-          r.update();
+    // Force purge old PWA caches and localStorage demo tracks immediately
+    (function() {
+      try {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for (var i = 0; i < registrations.length; i++) {
+              registrations[i].update();
+            }
+          });
         }
-      });
-    }
+        if ('caches' in window) {
+          caches.keys().then(function(names) {
+            names.forEach(function(name) {
+              if (!name.includes('v30-clean')) {
+                caches.delete(name);
+              }
+            });
+          });
+        }
+        var keysToPurge = [
+          'pulse_history',
+          'pulse_liked_tracks',
+          'pulse_playback_state_v2',
+          'pulse_playback_state',
+          'pulse_custom_admin_tracks',
+          'pulse_user_playlists'
+        ];
+        if (!localStorage.getItem('pulse_v3_clean_purge_done')) {
+          keysToPurge.forEach(function(k) { localStorage.removeItem(k); });
+          localStorage.setItem('pulse_v3_clean_purge_done', 'true');
+        }
+      } catch (e) {}
+    })();
   </script>
   
   <!-- PWA & Mobile Meta -->
@@ -1711,8 +1736,8 @@
       });
     }
   </script>
-  <script type="module" src="./src/musicService.js?v=2.5.0"></script>
-  <script type="module" src="./src/visualizer.js?v=2.5.0"></script>
-  <script type="module" src="./src/main.js?v=2.5.0"></script>
+  <script type="module" src="./src/musicService.js?v=3.0.0-clean"></script>
+  <script type="module" src="./src/visualizer.js?v=3.0.0-clean"></script>
+  <script type="module" src="./src/main.js?v=3.0.0-clean"></script>
 </body>
 </html>
