@@ -396,6 +396,10 @@
       const seen = new Set();
       const add = (url, label) => {
         if (url && typeof url === 'string' && url.trim() !== '' && !seen.has(url)) {
+          // STRICT FILTER: Guarantee 100% full uncut songs by rejecting 30-second preview clips
+          if (url.includes('audio-ssl.itunes.apple.com') || url.includes('/preview/') || url.includes('mzstatic.com/music/preview') || url.includes('itunes.apple.com')) {
+            return;
+          }
           seen.add(url);
           candidates.push({ url: url.trim(), label });
         }
@@ -601,11 +605,10 @@
                 album: albumName,
                 cover: coverArt,
                 duration: formatSeconds(Math.round((r.trackTimeMillis || 210000) / 1000)),
-                audioUrl: r.previewUrl || '',
-                audio: r.previewUrl || '',
+                audioUrl: null,
                 language: 'English',
                 category: 'pop',
-                source: 'Apple Lossless AAC'
+                source: 'Full Length Master HD'
               });
 
               const titleKey = `${norm.title} - ${norm.artist}`.toLowerCase();

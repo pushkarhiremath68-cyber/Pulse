@@ -1,8 +1,8 @@
 /**
  * Audio Stream Resolution Test Script
  */
-const https = require('https');
-const http = require('http');
+import https from 'https';
+import http from 'http';
 
 const sampleQueries = [
   'Kesariya Arijit Singh',

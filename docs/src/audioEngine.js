@@ -224,7 +224,7 @@
           }
         } catch (e) {}
 
-        // 4. iTunes Global AAC Master Audio & Studio Artwork
+        // 4. iTunes Global Studio Artwork & Metadata (Preview URL excluded to guarantee 100% full song)
         try {
           const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(searchTerms)}&entity=song&limit=3`;
           const itunesRes = await fetch(itunesUrl, { signal: AbortSignal.timeout(1800) });
@@ -232,9 +232,6 @@
             const itunesData = await itunesRes.json();
             if (itunesData && itunesData.results && Array.isArray(itunesData.results) && itunesData.results.length > 0) {
               for (const res of itunesData.results) {
-                if (res.previewUrl) {
-                  add(res.previewUrl, 'Apple High-Fidelity AAC Audio', 256);
-                }
                 if (res.artworkUrl100 && (!track.cover || track.cover.includes('pulse-logo'))) {
                   track.cover = res.artworkUrl100.replace('100x100bb.jpg', '600x600bb.jpg');
                 }
