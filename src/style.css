@@ -90,19 +90,10 @@ button {
 }
 
 /* ==========================================================================
-   NATIVE TITLEBAR STYLES (Electron / Standalone Desktop Apps)
+   NATIVE TITLEBAR STYLES (Hidden on web/mobile for clean interface)
    ========================================================================== */
 .app-titlebar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 36px;
-  background: #08080c;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 0 0.75rem;
-  z-index: 9999;
-  -webkit-app-region: drag;
-  user-select: none;
+  display: none !important;
 }
 
 .titlebar-drag-region {
@@ -1064,16 +1055,16 @@ html, body {
 
 .music-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(138px, 1fr));
-  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+  gap: 0.7rem;
 }
 
 /* MUSIC CARD */
 .music-card {
   background: var(--bg-glass-card);
   border: 1px solid var(--border-glass);
-  border-radius: 10px;
-  padding: 0.55rem;
+  border-radius: 8px;
+  padding: 0.45rem;
   transition: transform var(--transition-normal), background var(--transition-normal), box-shadow var(--transition-normal);
   position: relative;
   cursor: pointer;
@@ -1084,7 +1075,7 @@ html, body {
 
 .music-card:hover {
   background: var(--bg-surface-elevated);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: var(--border-glow);
 }
@@ -1093,9 +1084,9 @@ html, body {
   position: relative;
   width: 100%;
   aspect-ratio: 1/1;
-  border-radius: 7px;
+  border-radius: 6px;
   overflow: hidden;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
   box-shadow: var(--shadow-sm);
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
@@ -1112,7 +1103,7 @@ html, body {
 }
 
 .music-card:hover .card-image-wrapper img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .card-play-overlay {
@@ -1131,17 +1122,17 @@ html, body {
 }
 
 .btn-card-play {
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--accent-gradient);
   color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.95rem;
+  font-size: 0.82rem;
   box-shadow: var(--shadow-glow);
-  transform: translateY(6px);
+  transform: translateY(4px);
   transition: transform var(--transition-bounce), background var(--transition-fast);
 }
 
@@ -1150,7 +1141,7 @@ html, body {
 }
 
 .btn-card-play:hover {
-  transform: scale(1.1) !important;
+  transform: scale(1.08) !important;
 }
 
 .card-info {
@@ -1595,6 +1586,14 @@ html, body {
   font-weight: 600;
   color: var(--text-muted);
   transition: all var(--transition-fast);
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+}
+
+.lyrics-line:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .lyrics-line.active {
@@ -1602,11 +1601,70 @@ html, body {
   font-size: 1.35rem;
   font-weight: 800;
   text-shadow: var(--shadow-glow);
+  background: rgba(168, 85, 247, 0.1);
 }
 
-.lyrics-placeholder {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+.btn-lyrics-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  color: #c084fc;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-lyrics-pill:hover {
+  background: var(--accent-primary);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+}
+
+.card-lyrics-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  margin-top: 0.35rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card-lyrics-btn:hover {
+  background: rgba(168, 85, 247, 0.25);
+  color: #fff;
+}
+
+.lyrics-modal-box {
+  max-width: 580px;
+  width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(15, 18, 28, 0.95);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(168, 85, 247, 0.2);
+}
+
+.lyrics-modal-body {
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem;
+  flex: 1;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -1615,19 +1673,32 @@ html, body {
 .fullscreen-player {
   position: fixed;
   inset: 0;
-  z-index: 8000;
+  z-index: 12000;
   background: #050608;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fullscreen-player.active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
+}
+
+/* Hide duplicate bottom player bar and mobile navigation when extended player is active */
+body.fullscreen-player-open .bottom-player-bar,
+body.fullscreen-player-open .mobile-bottom-nav,
+.fullscreen-player.active ~ .bottom-player-bar,
+.fullscreen-player.active ~ .mobile-bottom-nav {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .fs-bg-blur {
@@ -4649,26 +4720,20 @@ body.is-installed-app-mode .share-link-box {
    ========================================================================== */
 .app-titlebar {
   display: none !important;
-  justify-content: flex-start;
-  align-items: center;
-  height: 42px;
-  background: rgba(5, 5, 8, 0.98);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 0 1rem;
-  z-index: 9999;
-  user-select: none;
-  position: relative;
 }
 
 @media (max-width: 768px) {
   .app-titlebar {
-    display: flex !important;
+    display: none !important;
   }
 }
 
 .titlebar-window-controls {
+  display: none !important;
+}
+
+body.fullscreen-player .app-titlebar,
+body.fullscreen-player .bottom-player-bar {
   display: none !important;
 }
 
@@ -5304,3 +5369,273 @@ body.is-standalone-app .btn-install-sidebar {
 .google-picker-footer a:hover {
   text-decoration: underline;
 }
+
+/* ==========================================================================
+   PULSE UNIVERSAL LYRICS BUTTONS & SYNCHRONIZED PREVIEW MODAL
+   ========================================================================== */
+.card-lyrics-btn {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  color: #c084fc;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.28rem 0.65rem;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(4px);
+}
+
+.card-lyrics-btn:hover {
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+}
+
+.btn-lyrics-pill {
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #c084fc;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.btn-lyrics-pill:hover {
+  background: #a855f7;
+  color: #ffffff;
+  border-color: #a855f7;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(168, 85, 247, 0.35);
+}
+
+.lyrics-modal-box {
+  background: rgba(15, 18, 28, 0.92) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1px solid rgba(168, 85, 247, 0.3) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(168, 85, 247, 0.25) !important;
+  width: 92%;
+  max-width: 580px;
+  max-height: 85vh;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1.25rem;
+  animation: modalPopIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lyrics-modal-body {
+  overflow-y: auto;
+  margin-top: 1rem;
+  padding-right: 0.5rem;
+  max-height: 60vh;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(168, 85, 247, 0.4) transparent;
+}
+
+.lyrics-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lyrics-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.4);
+  border-radius: 10px;
+}
+
+.lyrics-line {
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.35rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.lyrics-line:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+  padding-left: 1.1rem;
+}
+
+.lyrics-line.active {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.25), rgba(99, 102, 241, 0.1));
+  border-left: 3px solid #a855f7;
+  color: #ffffff;
+  font-size: 1.18rem;
+  font-weight: 800;
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+  padding-left: 1.1rem;
+  transform: scale(1.02);
+}
+
+/* ==========================================================================
+   PULSE AUDIO ENGINE & BITRATE BADGES
+   ========================================================================== */
+.bitrate-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 0.2rem 0.55rem;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.bitrate-master {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(59, 130, 246, 0.25));
+  border: 1px solid rgba(168, 85, 247, 0.5);
+  color: #d8b4fe;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+}
+
+.bitrate-high {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+}
+
+.bitrate-std {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   PULSE GEMINI AI DJ STUDIO & MUSIC INTELLIGENCE STYLES
+   ========================================================================== */
+.badge-ai-pill {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 900;
+  padding: 0.15rem 0.45rem;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  margin-left: auto;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+  animation: pulseAIGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseAIGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(168, 85, 247, 0.4); }
+  50% { box-shadow: 0 0 16px rgba(236, 72, 153, 0.8); }
+}
+
+.gemini-orb-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.25rem;
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+  flex-shrink: 0;
+  animation: floatOrb 4s ease-in-out infinite;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(6deg); }
+}
+
+.gemini-glow-orbit {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(236, 72, 153, 0.1) 50%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gemini-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.gemini-chip:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+}
+
+.gemini-track-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.gemini-track-item:hover {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: rgba(168, 85, 247, 0.3);
+  transform: translateX(3px);
+}
+
+.gemini-insight-box {
+  animation: fadeInDown 0.3s ease;
+}
+
+.gemini-insight-text h3 {
+  color: #f3e8ff;
+  font-size: 1rem;
+  margin: 0.6rem 0 0.3rem 0;
+  font-weight: 800;
+}
+
+.gemini-insight-text p {
+  margin: 0.3rem 0;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.gemini-insight-text ul {
+  padding-left: 1.2rem;
+  margin: 0.4rem 0;
+}
+
+.gemini-insight-text hr {
+  border: none;
+  border-top: 1px solid rgba(168, 85, 247, 0.2);
+  margin: 0.75rem 0;
+}
+

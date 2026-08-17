@@ -41,8 +41,42 @@
 
   <!-- Supabase JS Client Library -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Google Cloud & Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
   <script>
+    window.PULSE_FIREBASE_CONFIG = {
+      apiKey: "AIzaSyAWQx9wqglmoO0OPY7pmXy7we_qC6Btt4M",
+      authDomain: "pulse-music-app-68.firebaseapp.com",
+      projectId: "pulse-music-app-68",
+      storageBucket: "pulse-music-app-68.firebasestorage.app",
+      messagingSenderId: "845940809877",
+      appId: "1:845940809877:web:23602883153d95133abb9c"
+    };
+
+    if (typeof firebase !== 'undefined') {
+      try {
+        if (!firebase.apps.length) {
+          window.pulseFirebaseApp = firebase.initializeApp(window.PULSE_FIREBASE_CONFIG);
+          window.pulseFirebaseAuth = firebase.auth();
+          window.pulseFirestore = firebase.firestore();
+          console.log('[Pulse Google Cloud] Firebase connected for pulse-music-app-68');
+        }
+      } catch (err) {
+        console.warn('[Pulse Firebase Init Notice]:', err);
+      }
+    }
+
+    window.PULSE_SUPABASE_URL = 'https://iukyohqoftmrueeucaoo.supabase.co';
+    window.PULSE_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1a3lvaHFvZnRtcnVlZXVjYW9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY4OTE4NDAsImV4cCI6MjEwMjQ2Nzg0MH0.pc1Ew3rI47KAx7Zj103J2CcQ5G-jOKgenlUhsnVq_wI';
     window.PULSE_STORAGE_BUCKET = 'music';
+
+    if (window.supabase && typeof window.supabase.createClient === 'function') {
+      window.supabaseClient = window.supabase.createClient(window.PULSE_SUPABASE_URL, window.PULSE_SUPABASE_ANON_KEY);
+    }
+
     window.getAudioStorageUrl = function(storagePath) {
       if (!storagePath) return null;
       if (storagePath.startsWith('http://') || storagePath.startsWith('https://') || storagePath.startsWith('blob:')) {
@@ -51,7 +85,7 @@
       var url = window.PULSE_SUPABASE_URL;
       var bucket = window.PULSE_STORAGE_BUCKET || 'music';
       var cleanPath = storagePath.replace(/^\/+/, '');
-      if (url && url !== 'YOUR_SUPABASE_PROJECT_URL' && url.indexOf('.') !== -1) {
+      if (url && url.indexOf('.') !== -1) {
         var cleanBase = url.replace(/\/+$/, '');
         return cleanBase + '/storage/v1/object/public/' + bucket + '/' + cleanPath;
       }
@@ -72,6 +106,9 @@
     .titlebar-icon { width: 18px !important; height: 18px !important; }
   </style>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <!-- Pulse High-Fidelity Audio Engine & Gemini AI Music Suite -->
+  <script type="module" src="./src/audioEngine.js"></script>
+  <script type="module" src="./src/geminiService.js"></script>
 </head>
 <body>
 <!-- Splash Screen Disabled Temporarily for Direct Interactive Load -->
@@ -84,26 +121,6 @@
     </div>
   </div>
   -->
-
-
-
-  <!-- MOBILE APP HEADER (Clean Mobile Branding) -->
-  <header id="app-titlebar" class="app-titlebar">
-    <div class="titlebar-drag-region">
-      <div class="titlebar-brand" style="display: flex; align-items: center; gap: 0.6rem;">
-        <img src="./public/icons/icon-32.png" alt="Pulse Logo" class="titlebar-icon" style="width: 24px; height: 24px; border-radius: 6px;">
-        <div style="display: flex; flex-direction: column; justify-content: center; line-height: 1.15;">
-          <span class="titlebar-title" style="font-size: 0.92rem; font-weight: 800; color: #fff; letter-spacing: 0.3px;">Pulse</span>
-          <span class="titlebar-author" style="font-size: 0.65rem; color: #a1a1aa; font-weight: 500; letter-spacing: 0.2px;">By Pushkar Hiremath</span>
-        </div>
-      </div>
-    </div>
-    <div class="titlebar-controls" style="display: flex; align-items: center; -webkit-app-region: no-drag;">
-      <button id="titlebar-btn-min" class="titlebar-btn" onclick="window.minimizeWindow()" title="Minimize"><i class="fa-solid fa-minus"></i></button>
-      <button id="titlebar-btn-max" class="titlebar-btn" onclick="window.toggleMaximizeWindow()" title="Maximize"><i class="fa-regular fa-square"></i></button>
-      <button id="titlebar-btn-close" class="titlebar-btn btn-close" onclick="window.closeWindow()" title="Close"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-  </header>
 
   <!-- MAIN APP CONTAINER -->
   <div id="app" class="app-container">
@@ -128,6 +145,11 @@
         <a href="#" class="nav-item" data-view="search-view">
           <i class="fa-solid fa-magnifying-glass"></i>
           <span>Search Songs</span>
+        </a>
+        <a href="#" class="nav-item nav-item-gemini" id="nav-gemini-dj" onclick="window.openGeminiDjModal(); return false;">
+          <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
+          <span>Gemini AI DJ</span>
+          <span class="badge-ai-pill">AI</span>
         </a>
         <a href="#" class="nav-item" data-view="liked">
           <i class="fa-solid fa-heart"></i>
@@ -222,18 +244,16 @@
 
       <!-- GENRE / QUICK FILTER PILLS -->
       <div class="filter-pills-bar">
-        <button class="pill-btn active" data-filter="all">All Songs</button>
-        <button class="pill-btn" data-filter="Devotional">🕉️ Devotional / Bhakti</button>
-        <button class="pill-btn" data-filter="English Hits">English Hits</button>
+        <button class="pill-btn active" data-filter="all">All (120,000 Songs)</button>
         <button class="pill-btn" data-filter="Bollywood Hindi Hits">Bollywood / Hindi</button>
+        <button class="pill-btn" data-filter="English Hits">English Hits</button>
         <button class="pill-btn" data-filter="Punjabi Hits">Punjabi Hits</button>
-        <button class="pill-btn" data-filter="Kannada Hits">Kannada Hits</button>
         <button class="pill-btn" data-filter="Telugu Hits">Telugu / Tollywood</button>
-        <button class="pill-btn" data-filter="Haryanvi Hits">Haryanvi / Desi</button>
-        <button class="pill-btn" data-filter="Gujarati Hits">Gujarati / Garba</button>
-        <button class="pill-btn" data-filter="Marathi Hits">Marathi Hits</button>
+        <button class="pill-btn" data-filter="Kannada Hits">Kannada Hits</button>
+        <button class="pill-btn" data-filter="Tamil Hits">Tamil Melodies</button>
+        <button class="pill-btn" data-filter="Devotional">🕉️ Devotional / Bhakti</button>
+        <button class="pill-btn" data-filter="Malayalam Hits">Malayalam Hits</button>
         <button class="pill-btn" data-filter="Spanish Latin Hits">Spanish / Latin</button>
-        <button class="pill-btn" data-filter="French Hits">French Melodies</button>
         <button class="pill-btn" data-filter="Lo-Fi Chill">Lo-Fi Chill</button>
       </div>
 
@@ -730,6 +750,16 @@
 
       <!-- TAB 2: LYRICS -->
       <div id="tab-content-lyrics" class="drawer-content">
+        <div class="lyrics-gemini-bar" style="padding: 0.5rem 0; margin-bottom: 0.8rem; border-bottom: 1px solid var(--border-glass);">
+          <button type="button" class="btn-gemini-pill" onclick="window.explainCurrentSongWithGemini()" style="width: 100%; padding: 0.55rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2)); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; color: #f3e8ff; font-weight: 700; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.2s;">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
+            <span>✨ Gemini Song Story & Meaning</span>
+          </button>
+        </div>
+        <div id="gemini-song-insight-box" class="gemini-insight-box hidden" style="background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 14px; padding: 1rem; margin-bottom: 1rem; font-size: 0.85rem; line-height: 1.6; color: #e9d5ff;">
+          <div id="gemini-insight-loading" class="hidden" style="text-align: center; padding: 1rem;"><i class="fa-solid fa-circle-notch fa-spin" style="color: #c084fc;"></i> Analyzing song poetry & vocals with Gemini...</div>
+          <div id="gemini-insight-content" class="gemini-insight-text"></div>
+        </div>
         <div id="lyrics-container" class="lyrics-wrapper">
           <p class="lyrics-placeholder">Play a song to load real-time synchronized lyrics!</p>
         </div>
@@ -741,14 +771,22 @@
   <div id="fullscreen-player" class="fullscreen-player">
     <div class="fs-bg-blur" id="fs-bg-blur"></div>
     <div class="fs-header">
-      <button id="close-fs-btn" class="btn-circle-nav"><i class="fa-solid fa-chevron-down"></i></button>
+      <button id="close-fs-btn" class="btn-circle-nav" title="Minimize Fullscreen"><i class="fa-solid fa-chevron-down"></i></button>
       <div class="fs-title-branding">
         <span>PLAYING FROM PULSE</span>
         <small>By Pushkar Hiremath</small>
       </div>
-      <button id="toggle-video-modal-btn" class="btn-circle-nav" title="Watch Video">
-        <i class="fa-solid fa-video"></i>
-      </button>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <button id="fs-btn-gemini" class="btn-circle-nav" title="Gemini Song Insights" onclick="window.explainCurrentSongWithGemini()" style="color: #c084fc;">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </button>
+        <button id="fs-btn-lyrics" class="btn-circle-nav" title="View Synchronized Lyrics" onclick="window.openLyricsForTrack()">
+          <i class="fa-solid fa-microphone-lines"></i>
+        </button>
+        <button id="toggle-video-modal-btn" class="btn-circle-nav" title="Watch Video">
+          <i class="fa-solid fa-video"></i>
+        </button>
+      </div>
     </div>
 
     <div class="fs-body">
@@ -791,19 +829,96 @@
     </div>
   </div>
 
-  <!-- YOUTUBE VIDEO STREAM MODAL -->
-  <div id="youtube-video-modal" class="modal-overlay hidden">
-    <div class="modal-content video-modal-content">
-      <div class="modal-header">
-        <h3><i class="fa-brands fa-youtube text-danger"></i> YouTube Video Stream</h3>
-        <button id="close-video-modal-btn" class="btn-icon-small"><i class="fa-solid fa-xmark"></i></button>
+  <!-- DEDICATED FULL LYRICS PREVIEW MODAL -->
+  <div id="lyrics-preview-modal" class="modal-overlay hidden">
+    <div class="modal-content lyrics-modal-box">
+      <div class="modal-header" style="border-bottom: 1px solid var(--border-glass); padding-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.85rem;">
+          <img id="lyrics-modal-cover" src="./pulse-logo.png" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div>
+            <h3 id="lyrics-modal-title" style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #fff;">Song Title</h3>
+            <p id="lyrics-modal-artist" style="margin: 0; font-size: 0.82rem; color: var(--accent-primary); font-weight: 600;">Artist Name</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button id="lyrics-modal-play-btn" class="btn-primary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; border-radius: 16px; display: inline-flex; align-items: center; gap: 0.4rem;" onclick="window.playLyricsModalTrack()">
+            <i class="fa-solid fa-play"></i> Play Song
+          </button>
+          <button id="close-lyrics-modal-btn" class="btn-icon-small" onclick="window.closeLyricsModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
       </div>
-      <div id="youtube-video-container" class="video-wrapper">
-        <!-- Interactive Video iframe inserted dynamically -->
+      <div id="lyrics-modal-body" class="lyrics-modal-body">
+        <div id="lyrics-modal-lines" class="lyrics-wrapper">
+          <!-- Populated dynamically via loadTrackLyrics -->
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- GEMINI AI DJ STUDIO MODAL -->
+  <div id="gemini-dj-modal" class="modal-overlay hidden">
+    <div class="modal-content gemini-dj-box" style="max-width: 680px; border-radius: 24px; background: rgba(15, 17, 26, 0.95); backdrop-filter: blur(30px); border: 1px solid rgba(168, 85, 247, 0.35); box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(168, 85, 247, 0.25); padding: 1.8rem; overflow: hidden; position: relative;">
+      <div class="gemini-glow-orbit"></div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 2; margin-bottom: 1.2rem;">
+        <div style="display: flex; align-items: center; gap: 0.9rem;">
+          <div class="gemini-orb-avatar">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <h2 style="margin: 0; font-size: 1.45rem; font-weight: 800; color: #fff; letter-spacing: -0.5px;">Pulse Gemini AI DJ</h2>
+              <span style="background: linear-gradient(135deg, #a855f7, #ec4899); font-size: 0.68rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: 20px; color: #fff; text-transform: uppercase;">v2.0 Flash</span>
+            </div>
+            <p style="margin: 0.2rem 0 0 0; font-size: 0.84rem; color: var(--text-secondary);">Ask Gemini to create custom mixes tailored to any mood, tempo, or activity</p>
+          </div>
+        </div>
+        <button class="pulse-auth-close" onclick="window.closeGeminiDjModal()" style="position: static;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Prompt Input Form -->
+      <form id="gemini-dj-form" onsubmit="window.handleGenerateGeminiPlaylist(event); return false;" style="position: relative; z-index: 2;">
+        <div class="gemini-input-wrapper" style="display: flex; gap: 0.5rem; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 18px; padding: 0.35rem 0.4rem 0.35rem 1rem; align-items: center;">
+          <i class="fa-solid fa-wand-magic-sparkles gemini-input-icon" style="color: #c084fc;"></i>
+          <input type="text" id="gemini-dj-prompt" placeholder="Describe your vibe (e.g. 'Late night rainy drive Hindi soulful songs', 'High energy workout')..." autocomplete="off" required style="flex: 1; background: transparent; border: none; outline: none; color: #fff; font-size: 0.95rem; font-family: inherit;">
+          <button type="submit" id="btn-gemini-submit" class="btn-gemini-generate" style="background: linear-gradient(135deg, #a855f7, #ec4899); border: none; border-radius: 14px; padding: 0.65rem 1.2rem; color: #fff; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);">
+            <i class="fa-solid fa-bolt"></i> <span>Mix Now</span>
+          </button>
+        </div>
+
+        <!-- Preset Quick Prompt Chips -->
+        <div class="gemini-prompt-chips" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem;">
+          <span style="font-size: 0.76rem; color: var(--text-muted); align-self: center; font-weight: 600;">Presets:</span>
+          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('🌧️ Late night rainy drive with soulful Arijit and indie melodies')">🌧️ Rainy Drive</button>
+          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('🔥 Unstoppable high-energy Punjabi and Bollywood gym workout')">🔥 Workout Power</button>
+          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('🧘 Deep focus lo-fi study chill beats and acoustic guitar')">🧘 Lo-Fi Focus</button>
+          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('💖 Heartfelt romantic Bollywood 2000s nostalgic love songs')">💖 2000s Romance</button>
+          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('🎉 Upbeat dance party club hits with heavy bass')">🎉 Party Club Mix</button>
+        </div>
+      </form>
+
+      <!-- Gemini Output Playlist Card -->
+      <div id="gemini-playlist-result" class="gemini-result-card hidden" style="position: relative; z-index: 2; margin-top: 1.2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 16px; padding: 1.2rem;">
+        <div class="gemini-result-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0.75rem;">
+          <div>
+            <h3 id="gemini-res-title" style="margin: 0; font-size: 1.15rem; color: #fff; font-weight: 700;">Generated Playlist</h3>
+            <p id="gemini-res-vibe" style="margin: 0.2rem 0 0 0; font-size: 0.82rem; color: #d8b4fe;">Vibe Summary</p>
+          </div>
+          <button type="button" id="btn-gemini-play-mix" class="btn-primary" style="padding: 0.5rem 1.1rem; font-size: 0.85rem; border-radius: 20px; display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, #a855f7, #3b82f6); box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);" onclick="window.playGeminiGeneratedMix()">
+            <i class="fa-solid fa-play"></i> Play AI Mix
+          </button>
+        </div>
+        <div id="gemini-res-tracks" class="gemini-tracks-list" style="max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.45rem;">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="gemini-dj-loading" class="gemini-loading-box hidden" style="text-align: center; padding: 2.5rem 1rem; position: relative; z-index: 2;">
+        <div class="gemini-spinner-orb" style="width: 48px; height: 48px; border: 3px solid rgba(168, 85, 247, 0.2); border-top-color: #c084fc; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto;"></div>
+        <p style="margin-top: 1rem; font-size: 0.95rem; color: #e9d5ff; font-weight: 600;">Gemini AI is analyzing millions of songs & curating your mix...</p>
+      </div>
+    </div>
+  </div>
   
   <!-- AUTHENTIC GOOGLE OAUTH ACCOUNT PICKER & CONSENT MODAL -->
   <div id="google-oauth-picker-modal" class="modal-overlay hidden">
@@ -1524,6 +1639,9 @@
 
     <!-- RIGHT: EXTRA CONTROLS -->
     <div class="player-right">
+      <!-- High-Fidelity Bitrate Quality Badge -->
+      <span id="player-bitrate-badge" class="bitrate-badge bitrate-master" title="Lossless High-Bitrate Master Stream">320kbps HD</span>
+
       <!-- MINI VISUALIZER PREVIEW BAR -->
       <div id="mini-visualizer" class="mini-eq" title="Audio Visualizer Active">
         <span></span><span></span><span></span><span></span>
@@ -1541,6 +1659,7 @@
       </div>
       
       <button id="btn-expand-fs" class="btn-player-icon" title="Fullscreen Player"><i class="fa-solid fa-expand"></i></button>
+    </div>
   </footer>
 
   <!-- NATIVE MOBILE BOTTOM NAVIGATION BAR (Breakpoints 320px - 768px) -->
@@ -1552,6 +1671,10 @@
     <button class="mobile-nav-item" data-view="search-view" onclick="window.switchView('search-view')">
       <i class="fa-solid fa-magnifying-glass"></i>
       <span>Search</span>
+    </button>
+    <button class="mobile-nav-item" id="mobile-nav-gemini" onclick="window.openGeminiDjModal()">
+      <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
+      <span>Gemini DJ</span>
     </button>
     <button class="mobile-nav-item" data-view="liked" onclick="window.switchView('liked')">
       <i class="fa-solid fa-heart"></i>

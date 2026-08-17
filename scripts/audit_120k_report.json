@@ -1,0 +1,31 @@
+{
+  "total_audited": 120001,
+  "valid_metadata": 120001,
+  "valid_mp4_storage_path": 120001,
+  "categories_distribution": {
+    "bollywood": 26501,
+    "pop": 18000,
+    "punjabi": 21500,
+    "kannada": 14000,
+    "telugu": 14000,
+    "tamil": 11500,
+    "malayalam": 4500,
+    "devotional": 5200,
+    "lofi": 4800
+  },
+  "languages_distribution": {
+    "Hindi": 26501,
+    "English": 22602,
+    "Punjabi": 21500,
+    "Kannada": 14000,
+    "Telugu": 14000,
+    "Tamil": 11500,
+    "Malayalam": 4500,
+    "Devotional": 5200,
+    "Spanish": 198
+  },
+  "unique_artists_count": 218,
+  "missing_fields": 0,
+  "sample_verified_streams": 0,
+  "start_time": 1786955341.5537283
+}

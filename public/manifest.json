@@ -1,14 +1,14 @@
 {
-  "name": "Pulse Music",
-  "short_name": "Pulse",
-  "description": "Pulse Music - Listen to your music in English, Hindi, Spanish, Punjabi & more",
+  "name": "Pulse Music - by Pushkar Hiremath",
+  "short_name": "Pulse Music",
+  "description": "Pulse Music - Free 120,000+ Songs Streaming with Synchronized Karaoke Lyrics by Pushkar Hiremath",
   "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui", "window-controls-overlay"],
-  "orientation": "any",
-  "background_color": "#0b0712",
-  "theme_color": "#a855f7",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0d14",
+  "theme_color": "#8b5cf6",
   "prefer_related_applications": false,
   "icons": [
     {
@@ -26,9 +26,9 @@
   ],
   "shortcuts": [
     {
-      "name": "Search Songs",
+      "name": "Search 120k Songs",
       "short_name": "Search",
-      "description": "Search global songs on Pulse",
+      "description": "Search 120,000+ songs on Pulse",
       "url": "./index.html?view=search",
       "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
     },
