@@ -224,7 +224,7 @@ export async function fetchSongByIdFromSupabase(id) {
  */
 export async function fetchTotalSongCountFromSupabase() {
   const { url, key } = getSupabaseConfig();
-  if (!url || !key) return 120000;
+  if (!url || !key) return 0;
 
   try {
     const endpoint = `${url.replace(/\/+$/, '')}/rest/v1/songs?select=id`;
@@ -239,11 +239,11 @@ export async function fetchTotalSongCountFromSupabase() {
     });
     const cr = resp.headers.get('Content-Range');
     if (cr && cr.includes('/')) {
-      return parseInt(cr.split('/')[1], 10) || 120000;
+      return parseInt(cr.split('/')[1], 10) || 0;
     }
-    return 120000;
+    return 0;
   } catch (e) {
-    return 120000;
+    return 0;
   }
 }
 

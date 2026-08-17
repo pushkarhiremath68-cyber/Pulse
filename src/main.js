@@ -1564,8 +1564,20 @@
 
     // Update live database counter tag
     const dbCountEl = document.getElementById('total-db-count');
-    if (dbCountEl && allTracks.length > 0) {
-      dbCountEl.textContent = `${allTracks.length}+`;
+    if (dbCountEl) {
+      if (typeof window.fetchTotalSongCountFromSupabase === 'function') {
+        window.fetchTotalSongCountFromSupabase().then(cnt => {
+          if (cnt > 0) {
+            dbCountEl.textContent = `${cnt.toLocaleString()}+`;
+          } else if (allTracks.length > 0) {
+            dbCountEl.textContent = `${allTracks.length}+`;
+          }
+        }).catch(() => {
+          if (allTracks.length > 0) dbCountEl.textContent = `${allTracks.length}+`;
+        });
+      } else if (allTracks.length > 0) {
+        dbCountEl.textContent = `${allTracks.length}+`;
+      }
     }
   }
 

@@ -1,7 +1,7 @@
 {
   "name": "Pulse Music - by Pushkar Hiremath",
   "short_name": "Pulse Music",
-  "description": "Pulse Music - Free 120,000+ Songs Streaming with Synchronized Karaoke Lyrics by Pushkar Hiremath",
+  "description": "Pulse Music - Lossless Global Music Streaming with Synchronized Karaoke Lyrics by Pushkar Hiremath",
   "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",
@@ -26,9 +26,9 @@
   ],
   "shortcuts": [
     {
-      "name": "Search 120k Songs",
+      "name": "Search Music",
       "short_name": "Search",
-      "description": "Search 120,000+ songs on Pulse",
+      "description": "Search global music catalog on Pulse",
       "url": "./index.html?view=search",
       "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
     },
