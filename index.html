@@ -47,35 +47,11 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
   <script>
-    window.PULSE_FIREBASE_CONFIG = {
-      apiKey: "AIzaSyAWQx9wqglmoO0OPY7pmXy7we_qC6Btt4M",
-      authDomain: "pulse-music-app-68.firebaseapp.com",
-      projectId: "pulse-music-app-68",
-      storageBucket: "pulse-music-app-68.firebasestorage.app",
-      messagingSenderId: "845940809877",
-      appId: "1:845940809877:web:23602883153d95133abb9c"
-    };
-
-    if (typeof firebase !== 'undefined') {
-      try {
-        if (!firebase.apps.length) {
-          window.pulseFirebaseApp = firebase.initializeApp(window.PULSE_FIREBASE_CONFIG);
-          window.pulseFirebaseAuth = firebase.auth();
-          window.pulseFirestore = firebase.firestore();
-          console.log('[Pulse Google Cloud] Firebase connected for pulse-music-app-68');
-        }
-      } catch (err) {
-        console.warn('[Pulse Firebase Init Notice]:', err);
-      }
-    }
-
-    window.PULSE_SUPABASE_URL = 'https://fswnnnmicaakeuhwyyai.supabase.co';
-    window.PULSE_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzd25ubm1pY2Fha2V1aHd5eWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5ODc3NzQsImV4cCI6MjEwMjU2Mzc3NH0.lptcHWEtEv-dEOLK_y7AfwHTbedCg1DCIKviOiuO7KQ';
-    window.PULSE_STORAGE_BUCKET = 'music';
-
-    if (window.supabase && typeof window.supabase.createClient === 'function') {
-      window.supabaseClient = window.supabase.createClient(window.PULSE_SUPABASE_URL, window.PULSE_SUPABASE_ANON_KEY);
-    }
+    window.PULSE_FIREBASE_CONFIG = null;
+    window.PULSE_SUPABASE_URL = '';
+    window.PULSE_SUPABASE_ANON_KEY = '';
+    window.PULSE_STORAGE_BUCKET = '';
+    window.supabaseClient = null;
 
     window.getAudioStorageUrl = function(storagePath) {
       if (!storagePath) return null;

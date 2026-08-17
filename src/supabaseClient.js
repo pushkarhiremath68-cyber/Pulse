@@ -7,9 +7,9 @@
 export const PULSE_STORAGE_BUCKET = 'music';
 
 export const getSupabaseConfig = () => {
-  let url = 'https://fswnnnmicaakeuhwyyai.supabase.co';
-  let key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzd25ubm1pY2Fha2V1aHd5eWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5ODc3NzQsImV4cCI6MjEwMjU2Mzc3NH0.lptcHWEtEv-dEOLK_y7AfwHTbedCg1DCIKviOiuO7KQ';
-  let bucket = PULSE_STORAGE_BUCKET;
+  let url = '';
+  let key = '';
+  let bucket = '';
 
   try {
     if (typeof import.meta !== 'undefined' && import.meta.env) {
