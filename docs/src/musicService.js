@@ -315,103 +315,16 @@
      * Initializes the Supabase 120,000 songs catalog on startup
      */
     async initCatalog() {
-      // 1. Initial Curated High-Fidelity Catalog Seed (Guarantees all home categories are rich on launch)
-      const defaultCatalog = [
-        // Bollywood / Hindi Hits
-        { id: 'in-kesariya', title: 'Kesariya', artist: 'Arijit Singh, Pritam', album: 'Brahmastra', duration: '4:28', category: 'bollywood', language: 'Hindi', cover: 'https://c.saavncdn.com/191/Kesariya-From-Brahmastra-Hindi-2022-20220717092820-500x500.jpg' },
-        { id: 'in-chaleya', title: 'Chaleya', artist: 'Arijit Singh, Shilpa Rao, Anirudh', album: 'Jawan', duration: '3:20', category: 'bollywood', language: 'Hindi', cover: 'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814114324-500x500.jpg' },
-        { id: 'in-apna-bana-le', title: 'Apna Bana Le', artist: 'Arijit Singh, Sachin-Jigar', album: 'Bhediya', duration: '4:21', category: 'romantic', language: 'Hindi', cover: 'https://c.saavncdn.com/815/Bhediya-Hindi-2022-20221124110332-500x500.jpg' },
-        { id: 'in-tum-hi-ho', title: 'Tum Hi Ho', artist: 'Arijit Singh, Mithoon', album: 'Aashiqui 2', duration: '4:22', category: 'romantic', language: 'Hindi', cover: 'https://c.saavncdn.com/264/Aashiqui-2-Hindi-2013-500x500.jpg' },
-        { id: 'in-pehle-bhi-main', title: 'Pehle Bhi Main', artist: 'Vishal Mishra, Raj Shekhar', album: 'Animal', duration: '4:10', category: 'bollywood', language: 'Hindi', cover: 'https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191410-500x500.jpg' },
-        { id: 'in-shayad', title: 'Shayad', artist: 'Arijit Singh, Pritam', album: 'Love Aaj Kal', duration: '4:07', category: 'romantic', language: 'Hindi', cover: 'https://c.saavncdn.com/040/Love-Aaj-Kal-Hindi-2020-20200214140417-500x500.jpg' },
-        { id: 'in-raataan-lambiyan', title: 'Raataan Lambiyan', artist: 'Jubin Nautiyal, Asees Kaur', album: 'Shershaah', duration: '3:50', category: 'romantic', language: 'Hindi', cover: 'https://c.saavncdn.com/238/Shershaah-Original-Motion-Picture-Soundtrack--Hindi-2021-20210815181610-500x500.jpg' },
-        { id: 'in-jawan-title', title: 'Jawan Title Track', artist: 'Anirudh Ravichander', album: 'Jawan', duration: '3:08', category: 'party', language: 'Hindi', cover: 'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814114324-500x500.jpg' },
-        { id: 'in-heeriye', title: 'Heeriye', artist: 'Jasleen Royal, Arijit Singh', album: 'Heeriye', duration: '3:15', category: 'romantic', language: 'Hindi', cover: 'https://c.saavncdn.com/022/Heeriye-feat-Arijit-Singh-Hindi-2023-20230928050405-500x500.jpg' },
-
-        // Punjabi Hits
-        { id: 'pj-tauba-tauba', title: 'Tauba Tauba', artist: 'Karan Aujla', album: 'Bad Newz', duration: '3:27', category: 'punjabi', language: 'Punjabi', cover: 'https://c.saavncdn.com/978/Tauba-Tauba-From-Bad-Newz-Hindi-2024-20240702111004-500x500.jpg' },
-        { id: 'pj-softly', title: 'Softly', artist: 'Karan Aujla, Ikky', album: 'Making Memories', duration: '2:35', category: 'punjabi', language: 'Punjabi', cover: 'https://c.saavncdn.com/949/Making-Memories-Punjabi-2023-20230818053240-500x500.jpg' },
-        { id: 'pj-wavy', title: 'Winning Speech / Wavy', artist: 'Karan Aujla', album: 'Street Dreams', duration: '3:04', category: 'punjabi', language: 'Punjabi', cover: 'https://c.saavncdn.com/949/Making-Memories-Punjabi-2023-20230818053240-500x500.jpg' },
-        { id: 'pj-lover', title: 'Lover', artist: 'Diljit Dosanjh', album: 'MoonChild Era', duration: '3:10', category: 'punjabi', language: 'Punjabi', cover: 'https://c.saavncdn.com/973/MoonChild-Era-Punjabi-2021-20210822180844-500x500.jpg' },
-        { id: 'pj-with-you', title: 'With You', artist: 'AP Dhillon', album: 'With You', duration: '2:34', category: 'punjabi', language: 'Punjabi', cover: 'https://c.saavncdn.com/624/With-You-Punjabi-2023-20230811053424-500x500.jpg' },
-        { id: 'pj-cheques', title: 'Cheques', artist: 'Shubh', album: 'Still Rollin', duration: '3:03', category: 'punjabi', language: 'Punjabi', cover: 'https://c.saavncdn.com/139/Still-Rollin-Punjabi-2023-20230519060416-500x500.jpg' },
-
-        // Devotional / Bhakti
-        { id: 'dev-hanuman-chalisa', title: 'Shree Hanuman Chalisa', artist: 'Hariharan, Gulshan Kumar', album: 'Shree Hanuman Chalisa', duration: '9:48', category: 'devotional', language: 'Devotional', cover: 'https://c.saavncdn.com/007/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-500x500.jpg' },
-        { id: 'dev-achyutam-keshavam', title: 'Achyutam Keshavam', artist: 'Vikram Hazra', album: 'Krishna Bhajans', duration: '5:12', category: 'devotional', language: 'Devotional', cover: 'https://c.saavncdn.com/495/Krishna-Bhajans-Hindi-2018-20180829-500x500.jpg' },
-        { id: 'dev-shiv-tandav', title: 'Shiv Tandav Stotram', artist: 'Shankar Mahadevan', album: 'Shiv Stotram', duration: '9:14', category: 'devotional', language: 'Devotional', cover: 'https://c.saavncdn.com/423/Shiv-Tandav-Stotram-Hindi-2020-20200706173934-500x500.jpg' },
-        { id: 'dev-ram-siya-ram', title: 'Ram Siya Ram', artist: 'Sachet Tandon, Parampara Tandon', album: 'Adipurush', duration: '3:50', category: 'devotional', language: 'Devotional', cover: 'https://c.saavncdn.com/445/Ram-Siya-Ram-From-Adipurush-Hindi-2023-20230529124403-500x500.jpg' },
-
-        // Global Pop & English Hits
-        { id: 'en-shape-of-you', title: 'Shape of You', artist: 'Ed Sheeran', album: '÷ (Divide)', duration: '3:53', category: 'pop', language: 'English', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ba/66/1b/ba661b17-3dd3-29dd-7fb4-0d9c15ff9209/190295851286.jpg/600x600bb.jpg' },
-        { id: 'en-starboy', title: 'Starboy', artist: 'The Weeknd, Daft Punk', album: 'Starboy', duration: '3:50', category: 'pop', language: 'English', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/7d/51/a47d519b-640a-ca1d-ff14-c1ab415f33f6/16UMGIM60655.rgb.jpg/600x600bb.jpg' },
-        { id: 'en-blinding-lights', title: 'Blinding Lights', artist: 'The Weeknd', album: 'After Hours', duration: '3:20', category: 'pop', language: 'English', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b9/8b/6e/b98b6e3b-9e48-8df0-109d-0c58a5e840d5/20UMGIM10243.rgb.jpg/600x600bb.jpg' },
-        { id: 'en-cruel-summer', title: 'Cruel Summer', artist: 'Taylor Swift', album: 'Lover', duration: '2:58', category: 'pop', language: 'English', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/f5/ec/4bf5ecf8-7f99-ef2e-736f-e3c6a4d7d3d7/19UMGIM68357.rgb.jpg/600x600bb.jpg' },
-        { id: 'en-as-it-was', title: 'As It Was', artist: 'Harry Styles', album: "Harry's House", duration: '2:47', category: 'pop', language: 'English', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/0a/6d/8d/0a6d8d85-455b-4395-5bb6-1c706d0a7a0b/886449987823.jpg/600x600bb.jpg' },
-
-        // Regional (South Indian / Kannada / Telugu / Tamil)
-        { id: 'kn-singara-siriye', title: 'Singara Siriye', artist: 'Vijay Prakash, Ananya Bhat', album: 'Kantara', duration: '4:42', category: 'kannada', language: 'Kannada', cover: 'https://c.saavncdn.com/129/Kantara-Kannada-2022-20221010165736-500x500.jpg' },
-        { id: 'te-srivalli', title: 'Srivalli', artist: 'Sid Sriram, Devi Sri Prasad', album: 'Pushpa: The Rise', duration: '3:44', category: 'telugu', language: 'Telugu', cover: 'https://c.saavncdn.com/513/Pushpa-The-Rise-Telugu-2021-20211217064846-500x500.jpg' },
-        { id: 'tm-arabic-kuthu', title: 'Arabic Kuthu - Halamithi Habibo', artist: 'Anirudh Ravichander, Jonita Gandhi', album: 'Beast', duration: '4:37', category: 'tamil', language: 'Tamil', cover: 'https://c.saavncdn.com/712/Beast-Tamil-2022-20220412124507-500x500.jpg' },
-        { id: 'tm-kaavaalaa', title: 'Kaavaalaa', artist: 'Anirudh Ravichander, Shilpa Rao', album: 'Jailer', duration: '3:10', category: 'tamil', language: 'Tamil', cover: 'https://c.saavncdn.com/001/Kaavaalaa-From-Jailer-Tamil-2023-20230706073105-500x500.jpg' }
-      ];
+      // Clean 0 songs catalog initialization (app starts completely fresh with 0 tracks)
+      window.TRACKS_REGISTRY = {};
+      const defaultCatalog = [];
 
       defaultCatalog.forEach(t => {
         const norm = normalizeTrack(t);
         window.TRACKS_REGISTRY[norm.id] = norm;
       });
 
-      // 2. Fetch extensive multi-language batch from Supabase 120,000 database
-      if (typeof window.fetchSongsFromSupabase === 'function') {
-        try {
-          const directSupabaseBatch = await window.fetchSongsFromSupabase({ limit: 120 });
-          if (directSupabaseBatch && Array.isArray(directSupabaseBatch) && directSupabaseBatch.length > 0) {
-            directSupabaseBatch.forEach(t => {
-              const norm = normalizeTrack(t);
-              window.TRACKS_REGISTRY[norm.id] = norm;
-            });
-          }
-        } catch (e) {
-          console.warn('[Pulse Supabase Batch Notice]:', e);
-        }
-      }
-
-      if (typeof window.fetchInitialCatalogSeed === 'function') {
-        try {
-          const seed = await window.fetchInitialCatalogSeed(30);
-          if (seed && Array.isArray(seed) && seed.length > 0) {
-            seed.forEach(t => {
-              const norm = normalizeTrack(t);
-              window.TRACKS_REGISTRY[norm.id] = norm;
-            });
-          }
-        } catch (e) {
-          console.warn('[Pulse Supabase Seed Exception]:', e);
-        }
-      }
-
-      // 3. Background Pre-fetch Live Worldwide Charts & Top Hit Playlists
-      const starterQueries = [
-        'Top Bollywood Hits 2026',
-        'Top Punjabi Hits Karan Aujla',
-        'Arijit Singh Top Songs',
-        'Global Pop Hits Taylor Swift The Weeknd',
-        'Sacred Devotional Bhakti Aartis',
-        'Top Kannada Hits Vijay Prakash',
-        'Top Telugu Hits Sid Sriram',
-        'Top Tamil Hits Anirudh'
-      ];
-      starterQueries.forEach(q => {
-        this.searchTracks(q, 25).then(res => {
-          if (res && Array.isArray(res) && res.length > 0) {
-            if (typeof window.renderAllHomeGrids === 'function') {
-              window.renderAllHomeGrids();
-            }
-          }
-        }).catch(() => {});
-      });
-
-      console.log(`[Pulse Catalog Engine] Successfully connected database: ${Object.keys(window.TRACKS_REGISTRY).length} songs live in-app.`);
+      console.log(`[Pulse Catalog Engine] Initialized clean state with ${Object.keys(window.TRACKS_REGISTRY).length} songs.`);
       if (typeof window.renderAllHomeGrids === 'function') {
         window.renderAllHomeGrids();
       }
