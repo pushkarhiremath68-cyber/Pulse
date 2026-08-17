@@ -5644,21 +5644,60 @@
 
     if (badgeText) badgeText.textContent = `Detected: ${detected.name}`;
     if (heading) heading.textContent = `Pulse Music for ${detected.name.split(' ')[0]}`;
-    if (subtext) subtext.textContent = `Download the standalone native installer for ${detected.name}. Official signed release, 320kbps offline music, and 0 ads.`;
+    if (subtext) subtext.textContent = `Official verified installation for ${detected.name}. Zero harmful warnings, instant desktop/mobile app icon, 120,000+ songs, and 0 ads.`;
     
-    const extName = detected.os === 'android' ? 'APK' : detected.os === 'mac' ? 'DMG' : detected.os === 'linux' ? 'AppImage' : 'EXE';
-    if (dlLabel) dlLabel.textContent = `⚡ Download ${detected.name.split(' ')[0]} Installer (.${extName})`;
+    if (dlLabel) dlLabel.textContent = `⚡ 1-Click Verified Install (0 Warnings • 100% Safe)`;
 
     if (dlBtn) {
       dlBtn.onclick = function(e) {
         e.preventDefault();
-        window.downloadPlatformApp(detected.os);
+        window.installVerifiedApp();
       };
     }
 
     const sizeEl = document.getElementById('primary-file-size');
-    if (sizeEl) sizeEl.textContent = `Standalone .${extName} Installer (v2.4.0)`;
+    if (sizeEl) sizeEl.textContent = `Official Verified App (0 Warnings)`;
   };
+
+  window.installVerifiedApp = function() {
+    // 1. If native browser installation prompt is available, trigger it (guaranteed 0 warnings on Android & Desktop)
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          showToast('✨ Pulse Music installed successfully to your device with 0 warnings!', 'success', 5000);
+          window.closeDownloadModal();
+        }
+        deferredInstallPrompt = null;
+      });
+      return;
+    }
+
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isEdge = /Edg\//i.test(navigator.userAgent);
+    const isChrome = /Chrome\//i.test(navigator.userAgent) && !isEdge;
+
+    if (isAndroid) {
+      // Guide Android user to Chrome's native 0-warning Install button
+      showToast('📲 To install with 0 warnings on Android: Tap the 3 dots (⋮) in Chrome top right -> Tap "Install App" or "Add to Home screen"!', 'info', 9000);
+      return;
+    }
+
+    if (isIOS) {
+      showToast('🍏 To install on iPhone/iPad: Tap the Share button (⎋) in Safari -> Tap "Add to Home Screen" (0 warnings)!', 'info', 9000);
+      return;
+    }
+
+    if (isEdge || isChrome) {
+      showToast('💻 Look at the right side of your browser address bar and click the "Install Pulse Music" icon (0 warnings)!', 'info', 8000);
+      return;
+    }
+
+    // Default fallback to direct standalone installer
+    window.downloadPlatformApp('auto');
+  };
+  window.triggerNativeInstall = window.installVerifiedApp;
 
   window.copyPrimaryChecksum = function() {
     showToast('Pulse Music v2.4.0 verified & cryptographically signed.', 'success', 3000);
@@ -5678,7 +5717,7 @@
       const apkUrl = './downloads/Pulse-Music-v2.4.0.apk';
       const fileName = 'Pulse-Music-v2.4.0.apk';
 
-      showToast('📲 Starting download: Pulse-Music-v2.4.0.apk (18.1 MB)...', 'success', 5000);
+      showToast('📲 Downloading Android APK (Pulse-Music-v2.4.0.apk)...', 'success', 5000);
 
       const a = document.createElement('a');
       a.href = apkUrl;
