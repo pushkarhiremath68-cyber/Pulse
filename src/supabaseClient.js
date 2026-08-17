@@ -7,8 +7,8 @@
 export const PULSE_STORAGE_BUCKET = 'music';
 
 export const getSupabaseConfig = () => {
-  let url = 'https://iukyohqoftmrueeucaoo.supabase.co';
-  let key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1a3lvaHFvZnRtcnVlZXVjYW9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY4OTE4NDAsImV4cCI6MjEwMjQ2Nzg0MH0.pc1Ew3rI47KAx7Zj103J2CcQ5G-jOKgenlUhsnVq_wI';
+  let url = 'https://fswnnnmicaakeuhwyyai.supabase.co';
+  let key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzd25ubm1pY2Fha2V1aHd5eWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY4OTE4NDAsImV4cCI6MjEwMjQ2Nzg0MH0.sample_key';
   let bucket = PULSE_STORAGE_BUCKET;
 
   try {
