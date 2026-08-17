@@ -243,15 +243,15 @@
           <div class="hero-content">
             <div class="hero-badge"><i class="fa-solid fa-fire"></i> MULTI-LINGUAL MUSIC ENGINE</div>
             <h2 id="hero-title" class="hero-title">Unlimited Free Music Worldwide</h2>
-            <p id="hero-subtitle" class="hero-subtitle">Listen to any song in English, Hindi, Spanish, Punjabi, and global music catalog, completely free.</p>
+            <p id="hero-subtitle" class="hero-subtitle">Search, discover, and stream millions of songs in high-fidelity audio with Gemini AI DJ, synchronized lyrics, and personalized playlists.</p>
             <div class="hero-actions">
-              <button id="hero-play-btn" class="btn-primary-play">
-                <i class="fa-solid fa-play"></i> Play Now
+              <button id="hero-play-btn" class="btn-primary-play" onclick="window.switchView('search-view')">
+                <i class="fa-solid fa-magnifying-glass"></i> Search Songs
               </button>
-              <button id="hero-like-btn" class="btn-secondary-outline">
-                <i class="fa-regular fa-heart"></i> Save to Favorites
+              <button id="hero-like-btn" class="btn-secondary-outline" onclick="window.openGeminiDjModal()">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Gemini AI DJ
               </button>
-              <button id="hero-download-app-btn" class="btn-secondary-install">
+              <button id="hero-download-app-btn" class="btn-secondary-install" onclick="window.openDownloadModal()">
                 <i class="fa-solid fa-download"></i> Download App
               </button>
             </div>
@@ -261,143 +261,67 @@
           </div>
         </section>
 
-        <!-- EXPLORE POPULAR ARTISTS & SINGERS (HOME SHOWCASE) -->
-        <section class="music-section" id="section-home-artists" style="margin-bottom: 2rem;">
+        <!-- QUICK LAUNCH & FEATURE HUB -->
+        <section class="home-feature-hub" style="margin-bottom: 2.5rem;">
           <div class="section-header">
-            <h3><i class="fa-solid fa-microphone-lines text-accent"></i> Top Popular Artists & Singers</h3>
+            <h3><i class="fa-solid fa-compass text-accent"></i> Quick Discovery Hub</h3>
           </div>
-          <div class="artists-pills-scroll" style="display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 0.5rem;">
-            <button class="pill-btn" onclick="window.executeSearch('Devotional Bhakti')">🕉️ Devotional Songs</button>
-            <button class="pill-btn" onclick="window.executeSearch('Hanuman Chalisa')">🚩 Hanuman Chalisa</button>
-            <button class="pill-btn" onclick="window.executeSearch('Shiv Tandav')">🔱 Shiv Tandav</button>
-            <button class="pill-btn" onclick="window.executeSearch('Krishna Bhajan')">🪈 Krishna Bhajans</button>
-            <button class="pill-btn" onclick="window.executeSearch('Arijit Singh')">🔥 Arijit Singh</button>
-            <button class="pill-btn" onclick="window.executeSearch('Taylor Swift')">👑 Taylor Swift</button>
-            <button class="pill-btn" onclick="window.executeSearch('Diljit Dosanjh')">⚡ Diljit Dosanjh</button>
-            <button class="pill-btn" onclick="window.executeSearch('Karan Aujla')">🔥 Karan Aujla</button>
-            <button class="pill-btn" onclick="window.executeSearch('The Weeknd')">✨ The Weeknd</button>
-            <button class="pill-btn" onclick="window.executeSearch('Shreya Ghoshal')">💖 Shreya Ghoshal</button>
-            <button class="pill-btn" onclick="window.executeSearch('Atif Aslam')">🎤 Atif Aslam</button>
-            <button class="pill-btn" onclick="window.executeSearch('Ed Sheeran')">🎸 Ed Sheeran</button>
-            <button class="pill-btn" onclick="window.executeSearch('Sonu Nigam')">🎶 Sonu Nigam</button>
-            <button class="pill-btn" onclick="window.executeSearch('Sid Sriram Telugu')">🐅 Sid Sriram</button>
-            <button class="pill-btn" onclick="window.executeSearch('AP Dhillon')">⚡ AP Dhillon</button>
-            <button class="pill-btn" onclick="window.executeSearch('Sidhu Moose Wala')">🦅 Sidhu Moose Wala</button>
-            <button class="pill-btn" onclick="window.executeSearch('Renuka Panwar')">🚜 Renuka Panwar</button>
-            <button class="pill-btn" onclick="window.executeSearch('Aditya Gadhvi Gujarati')">🪘 Aditya Gadhvi</button>
-            <button class="pill-btn" onclick="window.executeSearch('Ajay Atul Marathi')">🥁 Ajay-Atul</button>
-            <button class="pill-btn" onclick="window.executeSearch('Indila French')">🌹 Indila</button>
-            <button class="pill-btn" onclick="window.executeSearch('Daddy Yankee Spanish')">🌴 Daddy Yankee</button>
-            <button class="pill-btn" onclick="window.executeSearch('Billie Eilish')">🌟 Billie Eilish</button>
-            <button class="pill-btn" onclick="window.executeSearch('Justin Bieber')">🔥 Justin Bieber</button>
-            <button class="pill-btn" onclick="window.executeSearch('KK')">🎙️ KK</button>
+          <div class="feature-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+            
+            <div class="feature-action-card" onclick="window.switchView('search-view')" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.85rem;" onmouseover="this.style.borderColor='rgba(168,85,247,0.4)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.borderColor='var(--border-glass)'; this.style.transform='none';">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); display: flex; align-items: center; justify-content: center; color: #c084fc; font-size: 1.3rem;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Instant Music Search</h4>
+                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">Search any song, album, or track worldwide with real-time multi-source streaming.</p>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #c084fc; display: flex; align-items: center; gap: 0.4rem; margin-top: auto;">Explore Search <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
+            <div class="feature-action-card" onclick="window.openGeminiDjModal()" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.85rem;" onmouseover="this.style.borderColor='rgba(168,85,247,0.4)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.borderColor='var(--border-glass)'; this.style.transform='none';">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); display: flex; align-items: center; justify-content: center; color: #e879f9; font-size: 1.3rem;">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Gemini AI DJ Studio</h4>
+                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">Tell AI your mood or vibe and get custom intelligent playlists curated in seconds.</p>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #e879f9; display: flex; align-items: center; gap: 0.4rem; margin-top: auto;">Launch AI DJ <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
+            <div class="feature-action-card" onclick="window.switchView('liked')" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.85rem;" onmouseover="this.style.borderColor='rgba(168,85,247,0.4)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.borderColor='var(--border-glass)'; this.style.transform='none';">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); display: flex; align-items: center; justify-content: center; color: #f87171; font-size: 1.3rem;">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Your Music Library</h4>
+                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">Access your saved liked tracks, personalized playlists, and offline favorites.</p>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #f87171; display: flex; align-items: center; gap: 0.4rem; margin-top: auto;">View Library <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
+            <div class="feature-action-card" onclick="window.switchView('search-view')" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.85rem;" onmouseover="this.style.borderColor='rgba(168,85,247,0.4)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.borderColor='var(--border-glass)'; this.style.transform='none';">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); display: flex; align-items: center; justify-content: center; color: #60a5fa; font-size: 1.3rem;">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">High-Fidelity Audio</h4>
+                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">320kbps full-length playback, synchronized karaoke lyrics, and canvas visualizer.</p>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #60a5fa; display: flex; align-items: center; gap: 0.4rem; margin-top: auto;">Start Listening <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
           </div>
         </section>
 
-        <!-- MUSIC SECTIONS (DYNAMIC HOME CATEGORIES) -->
-
-        <!-- SECTION 1: RECENTLY PLAYED -->
+        <!-- DYNAMIC RECENTLY PLAYED SECTION -->
         <section class="music-section hidden" id="section-recently-played">
           <div class="section-header">
             <h3><i class="fa-solid fa-clock-rotate-left text-accent"></i> Recently Played</h3>
             <button class="see-all-link" onclick="window.switchView('history')">View History</button>
           </div>
           <div id="grid-recently-played" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION 2: POPULAR HINDI SONGS -->
-        <section class="music-section" id="section-popular-hindi">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-fire text-accent"></i> Popular Hindi Songs</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Popular Hindi Hits Arijit Singh')">See All</button>
-          </div>
-          <div id="grid-popular-hindi" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION DEVOTIONAL: SACRED BHAKTI & AARTIS -->
-        <section class="music-section" id="section-devotional">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-om text-warning" style="color: #f59e0b;"></i> Sacred Devotional, Bhajans & Aartis</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Devotional Bhakti')">See All (100+)</button>
-          </div>
-          <div id="grid-devotional" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION 3: HINDI HITS -->
-        <section class="music-section" id="section-hindi-hits">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-bolt text-accent"></i> Hindi Hits & Trending Chartbusters</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Hindi Hits 2026')">See All</button>
-          </div>
-          <div id="grid-hindi-hits" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION 4: BOLLYWOOD -->
-        <section class="music-section" id="section-bollywood">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-film text-accent"></i> Bollywood Golden Melodies</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Bollywood Classics Kishore Kumar')">See All</button>
-          </div>
-          <div id="grid-bollywood" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION 5: ROMANTIC -->
-        <section class="music-section" id="section-romantic">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-heart text-danger"></i> Romantic Love Anthems</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Romantic Love Songs')">See All</button>
-          </div>
-          <div id="grid-romantic" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION 6: PARTY -->
-        <section class="music-section" id="section-party">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-champagne-glasses text-accent"></i> Party & Dance Explosions</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Bollywood Party Dance Hits')">See All</button>
-          </div>
-          <div id="grid-party" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION 7: TRENDING -->
-        <section class="music-section" id="section-trending">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-globe text-accent"></i> Trending Worldwide Hits</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Top Global English Hits')">See All</button>
-          </div>
-          <div id="grid-trending" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION 8: NEW RELEASES -->
-        <section class="music-section" id="section-new-releases">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-sparkles text-accent"></i> New Releases & Fresh Vibes</h3>
-            <button class="see-all-link" onclick="window.executeSearch('New Hindi Releases 2026')">See All</button>
-          </div>
-          <div id="grid-new-releases" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION 9: RECOMMENDED -->
-        <section class="music-section" id="section-recommended">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-mug-hot text-accent"></i> Recommended & Lo-Fi Chill</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Lofi Chill Beats Anuv Jain')">See All</button>
-          </div>
-          <div id="grid-recommended" class="music-cards-grid"></div>
-        </section>
-
-        <!-- SECTION 10: EXPLORE DATABASE MEGA CATALOG -->
-        <section class="feed-section db-mega-section" id="section-database-catalog" style="margin-top: 2rem;">
-          <div class="section-header">
-            <div>
-              <h3><i class="fa-solid fa-database text-accent"></i> Live Connected Database Catalog (<span id="total-db-count">All</span> Songs)</h3>
-              <p class="section-sub" style="font-size: 0.8rem; color: var(--text-muted); margin: 2px 0 0 0;">Streaming directly from Supabase PostgreSQL & Multi-Source Cloud CDN</p>
-            </div>
-            <button id="btn-load-more-db" class="btn-primary" onclick="window.loadMoreFromDatabase()" style="background: var(--accent-gradient); border: none; color: #fff; padding: 0.45rem 0.95rem; border-radius: 20px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem;">
-              <i class="fa-solid fa-cloud-arrow-down"></i> Load More From Database
-            </button>
-          </div>
-          <div id="grid-database-catalog" class="music-cards-grid" style="margin-top: 1rem;"></div>
         </section>
       </div>
 
@@ -415,50 +339,6 @@
 
         <div id="search-results-container" class="tracks-list-container">
           <!-- Dynamic track list elements -->
-        </div>
-
-        <div class="artists-explore-section" style="margin-bottom: 2rem;">
-          <h3 style="margin-bottom: 1rem; font-size: 1.25rem;"><i class="fa-solid fa-microphone-lines text-accent"></i> Explore Popular Artists Worldwide</h3>
-          <div class="artists-pills-scroll" style="display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 0.5rem;">
-            <button class="pill-btn" onclick="window.executeSearch('Arijit Singh')">🔥 Arijit Singh</button>
-            <button class="pill-btn" onclick="window.executeSearch('Taylor Swift')">👑 Taylor Swift</button>
-            <button class="pill-btn" onclick="window.executeSearch('Diljit Dosanjh')">⚡ Diljit Dosanjh</button>
-            <button class="pill-btn" onclick="window.executeSearch('The Weeknd')">✨ The Weeknd</button>
-            <button class="pill-btn" onclick="window.executeSearch('BTS')">🇰🇷 BTS</button>
-            <button class="pill-btn" onclick="window.executeSearch('Shreya Ghoshal')">💖 Shreya Ghoshal</button>
-            <button class="pill-btn" onclick="window.executeSearch('Karan Aujla')">🔥 Karan Aujla</button>
-            <button class="pill-btn" onclick="window.executeSearch('Ed Sheeran')">🎸 Ed Sheeran</button>
-            <button class="pill-btn" onclick="window.executeSearch('Atif Aslam')">🎤 Atif Aslam</button>
-            <button class="pill-btn" onclick="window.executeSearch('Drake')">🎧 Drake</button>
-            <button class="pill-btn" onclick="window.executeSearch('Billie Eilish')">🌟 Billie Eilish</button>
-            <button class="pill-btn" onclick="window.executeSearch('Bruno Mars')">🕺 Bruno Mars</button>
-            <button class="pill-btn" onclick="window.executeSearch('Dua Lipa')">💃 Dua Lipa</button>
-            <button class="pill-btn" onclick="window.executeSearch('Post Malone')">🌻 Post Malone</button>
-            <button class="pill-btn" onclick="window.executeSearch('Justin Bieber')">🔥 Justin Bieber</button>
-            <button class="pill-btn" onclick="window.executeSearch('BLACKPINK')">🖤 BLACKPINK</button>
-            <button class="pill-btn" onclick="window.executeSearch('Coldplay')">🪐 Coldplay</button>
-            <button class="pill-btn" onclick="window.executeSearch('Imagine Dragons')">⚡ Imagine Dragons</button>
-            <button class="pill-btn" onclick="window.executeSearch('Eminem')">🎙️ Eminem</button>
-            <button class="pill-btn" onclick="window.executeSearch('Kishore Kumar')">📻 Kishore Kumar</button>
-            <button class="pill-btn" onclick="window.executeSearch('Sonu Nigam')">🎶 Sonu Nigam</button>
-            <button class="pill-btn" onclick="window.executeSearch('KK')">🎙️ KK</button>
-            <button class="pill-btn" onclick="window.executeSearch('Mohit Chauhan')">🎸 Mohit Chauhan</button>
-            <button class="pill-btn" onclick="window.executeSearch('Sabrina Carpenter')">☕ Sabrina Carpenter</button>
-            <button class="pill-btn" onclick="window.executeSearch('Olivia Rodrigo')">💜 Olivia Rodrigo</button>
-            <button class="pill-btn" onclick="window.executeSearch('Travis Scott')">🌵 Travis Scott</button>
-            <button class="pill-btn" onclick="window.executeSearch('Linkin Park')">⚡ Linkin Park</button>
-            <button class="pill-btn" onclick="window.executeSearch('Queen')">👑 Queen</button>
-            <button class="pill-btn" onclick="window.executeSearch('NewJeans')">🐰 NewJeans</button>
-            <button class="pill-btn" onclick="window.executeSearch('Lata Mangeshkar')">🕊️ Lata Mangeshkar</button>
-            <button class="pill-btn" onclick="window.executeSearch('Sid Sriram')">🐅 Sid Sriram (Telugu)</button>
-            <button class="pill-btn" onclick="window.executeSearch('Aditya Gadhvi')">🪘 Aditya Gadhvi (Gujarati)</button>
-            <button class="pill-btn" onclick="window.executeSearch('Ajay-Atul')">🥁 Ajay-Atul (Marathi)</button>
-            <button class="pill-btn" onclick="window.executeSearch('Indila')">🌹 Indila (French)</button>
-            <button class="pill-btn" onclick="window.executeSearch('Daddy Yankee')">🌴 Daddy Yankee (Spanish)</button>
-            <button class="pill-btn" onclick="window.executeSearch('Kendrick Lamar')">🔥 Kendrick Lamar</button>
-            <button class="pill-btn" onclick="window.executeSearch('AP Dhillon')">⚡ AP Dhillon</button>
-            <button class="pill-btn" onclick="window.executeSearch('Sidhu Moose Wala')">🦅 Sidhu Moose Wala</button>
-          </div>
         </div>
 
         <div class="genres-explore-section">
@@ -612,18 +492,18 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
                   <div>
                     <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Song Title *</label>
-                    <input type="text" id="admin-track-title" class="pulse-text-input" placeholder="e.g. Kesariya (Studio Master)">
+                    <input type="text" id="admin-track-title" class="pulse-text-input" placeholder="e.g. Song Title">
                   </div>
                   <div>
                     <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Artist Name(s) *</label>
-                    <input type="text" id="admin-track-artist" class="pulse-text-input" placeholder="e.g. Arijit Singh, Pritam">
+                    <input type="text" id="admin-track-artist" class="pulse-text-input" placeholder="e.g. Artist / Band Name">
                   </div>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
                   <div>
                     <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Album Name</label>
-                    <input type="text" id="admin-track-album" class="pulse-text-input" placeholder="e.g. Brahmastra">
+                    <input type="text" id="admin-track-album" class="pulse-text-input" placeholder="e.g. Album Name">
                   </div>
                   <div>
                     <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Language</label>
@@ -661,9 +541,9 @@
 
                 <!-- Associate / Replace dropdown -->
                 <div>
-                  <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Target Catalog Entry (Optional Link)</label>
+                  <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Target Song Entry (Optional Link)</label>
                   <select id="admin-target-catalog-select" class="pulse-select-input" onchange="window.handleAdminCatalogSelectionChange(this.value)">
-                    <option value="NEW_TRACK">+ Publish as New Catalog Song</option>
+                    <option value="NEW_TRACK">+ Publish as New Song</option>
                   </select>
                 </div>
 
@@ -686,11 +566,11 @@
             </div>
           </div>
 
-          <!-- ADMIN CATALOG TABLE -->
+          <!-- ADMIN TRACKS TABLE -->
           <div class="admin-card-glass" style="margin-top: 1.5rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
               <h3 style="font-size: 1.15rem; font-weight: 700;">
-                <i class="fa-solid fa-database text-accent"></i> Active Catalog Tracks (<span id="admin-catalog-total-count">0</span>)
+                <i class="fa-solid fa-database text-accent"></i> Published Songs (<span id="admin-catalog-total-count">0</span>)
               </h3>
               <input type="text" id="admin-catalog-search" class="pulse-text-input" placeholder="Filter songs..." style="max-width: 240px; padding: 0.4rem 0.8rem; font-size: 0.82rem;" oninput="window.filterAdminCatalogTable(this.value)">
             </div>
@@ -1597,12 +1477,12 @@
     <!-- LEFT: CURRENT TRACK -->
     <div class="player-left">
       <div class="player-thumb-wrapper" id="btn-open-fullscreen">
-        <img id="player-thumb" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=120&auto=format&fit=crop&q=80" alt="Current Track">
+        <img id="player-thumb" src="./pulse-logo.png" alt="Current Track">
         <div class="thumb-hover-overlay"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div>
       </div>
       <div class="player-track-info" id="btn-open-fullscreen-text">
-        <h4 id="player-title">Welcome to Pulse</h4>
-        <p id="player-artist">By Pushkar Hiremath</p>
+        <h4 id="player-title">Select a song to play</h4>
+        <p id="player-artist">Pulse Music Engine</p>
       </div>
       <button id="player-like-btn" class="btn-player-icon" title="Save to Favorites">
         <i class="fa-regular fa-heart"></i>

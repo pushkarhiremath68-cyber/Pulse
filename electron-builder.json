@@ -11,7 +11,6 @@
     "src/**/*",
     "public/**/*",
     "storage/music/**/*",
-    "catalog_resolved.json",
     "manifest.json",
     "pulse-logo.png",
     "electron/**/*"

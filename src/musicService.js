@@ -221,31 +221,6 @@
     return `${m}:${rem < 10 ? '0' : ''}${rem}`;
   }
 
-  const AUTHENTIC_ARTIST_COVERS = {
-    'arijit singh': 'https://c.saavncdn.com/191/Kesariya-From-Brahmastra-Hindi-2022-20220717092820-500x500.jpg',
-    'karan aujla': 'https://c.saavncdn.com/978/Tauba-Tauba-From-Bad-Newz-Hindi-2024-20240702111004-500x500.jpg',
-    'diljit dosanjh': 'https://c.saavncdn.com/973/MoonChild-Era-Punjabi-2021-20210822180844-500x500.jpg',
-    'ap dhillon': 'https://c.saavncdn.com/624/With-You-Punjabi-2023-20230811053424-500x500.jpg',
-    'shreya ghoshal': 'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814114324-500x500.jpg',
-    'ed sheeran': 'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ba/66/1b/ba661b17-3dd3-29dd-7fb4-0d9c15ff9209/190295851286.jpg/600x600bb.jpg',
-    'the weeknd': 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/7d/51/a47d519b-640a-ca1d-ff14-c1ab415f33f6/16UMGIM60655.rgb.jpg/600x600bb.jpg',
-    'taylor swift': 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/f5/ec/4bf5ecf8-7f99-ef2e-736f-e3c6a4d7d3d7/19UMGIM68357.rgb.jpg/600x600bb.jpg',
-    'anirudh': 'https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814114324-500x500.jpg',
-    'sid sriram': 'https://c.saavncdn.com/513/Pushpa-The-Rise-Telugu-2021-20211217064846-500x500.jpg',
-    'vijay prakash': 'https://c.saavncdn.com/129/Kantara-Kannada-2022-20221010165736-500x500.jpg',
-    'hariharan': 'https://c.saavncdn.com/007/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-500x500.jpg',
-    'shankar mahadevan': 'https://c.saavncdn.com/423/Shiv-Tandav-Stotram-Hindi-2020-20200706173934-500x500.jpg',
-    'sonu nigam': 'https://c.saavncdn.com/264/Aashiqui-2-Hindi-2013-500x500.jpg',
-    'atif aslam': 'https://c.saavncdn.com/040/Love-Aaj-Kal-Hindi-2020-20200214140417-500x500.jpg',
-    'kk': 'https://c.saavncdn.com/264/Aashiqui-2-Hindi-2013-500x500.jpg',
-    'pritam': 'https://c.saavncdn.com/191/Kesariya-From-Brahmastra-Hindi-2022-20220717092820-500x500.jpg',
-    'vishal mishra': 'https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191410-500x500.jpg',
-    'jubin nautiyal': 'https://c.saavncdn.com/238/Shershaah-Original-Motion-Picture-Soundtrack--Hindi-2021-20210815181610-500x500.jpg',
-    'badshah': 'https://c.saavncdn.com/978/Tauba-Tauba-From-Bad-Newz-Hindi-2024-20240702111004-500x500.jpg',
-    'shubh': 'https://c.saavncdn.com/139/Still-Rollin-Punjabi-2023-20230519060416-500x500.jpg',
-    'sidhu moose wala': 'https://c.saavncdn.com/973/MoonChild-Era-Punjabi-2021-20210822180844-500x500.jpg'
-  };
-
   function normalizeTrack(raw) {
     if (!raw) return null;
     const cleanId = String(raw.id || raw.trackId || `track-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`);
@@ -261,18 +236,9 @@
       cleanCover = cleanCover.replace('100x100bb.jpg', '600x600bb.jpg');
     }
 
-    // Match authentic artist cover if cover is missing or generic
+    // Generate sleek dynamic cover if cover is missing or generic
     if (!cleanCover || cleanCover === './pulse-logo.png' || cleanCover.includes('unsplash.com') || cleanCover.trim() === '') {
-      const lowerArtist = cleanArtist.toLowerCase();
-      for (const [artKey, artCover] of Object.entries(AUTHENTIC_ARTIST_COVERS)) {
-        if (lowerArtist.includes(artKey)) {
-          cleanCover = artCover;
-          break;
-        }
-      }
-      if (!cleanCover) {
-        cleanCover = generateTrackCover(cleanTitle, cleanArtist, raw.category);
-      }
+      cleanCover = generateTrackCover(cleanTitle, cleanArtist, raw.category);
     }
 
     let cleanDuration = raw.duration || '3:30';
@@ -665,49 +631,31 @@
 
       // Language mappings
       if (catLower.includes('devotional') || catLower.includes('bhakti')) {
-        const res = allRegistered.filter(t => t.category === 'devotional' || (t.language && t.language.toLowerCase() === 'devotional') || (t.id && t.id.includes('dev-')));
-        if (res.length < 8) this.fetchMoreForCategory('devotional', 'Devotional');
-        return res;
+        return allRegistered.filter(t => t.category === 'devotional' || (t.language && t.language.toLowerCase() === 'devotional') || (t.id && t.id.includes('dev-')));
       }
       if (catLower.includes('kannada')) {
-        const res = allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'kannada') || t.category === 'kannada');
-        if (res.length < 8) this.fetchMoreForCategory('kannada', 'Kannada');
-        return res;
+        return allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'kannada') || t.category === 'kannada');
       }
       if (catLower.includes('telugu') || catLower.includes('tollywood')) {
-        const res = allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'telugu') || t.category === 'telugu');
-        if (res.length < 8) this.fetchMoreForCategory('telugu', 'Telugu');
-        return res;
+        return allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'telugu') || t.category === 'telugu');
       }
       if (catLower.includes('tamil')) {
-        const res = allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'tamil') || t.category === 'tamil');
-        if (res.length < 8) this.fetchMoreForCategory('tamil', 'Tamil');
-        return res;
+        return allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'tamil') || t.category === 'tamil');
       }
       if (catLower.includes('punjabi')) {
-        const res = allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'punjabi') || t.category === 'punjabi');
-        if (res.length < 8) this.fetchMoreForCategory('punjabi', 'Punjabi');
-        return res;
+        return allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'punjabi') || t.category === 'punjabi');
       }
       if (catLower.includes('malayalam')) {
-        const res = allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'malayalam') || t.category === 'malayalam');
-        if (res.length < 8) this.fetchMoreForCategory('malayalam', 'Malayalam');
-        return res;
+        return allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'malayalam') || t.category === 'malayalam');
       }
       if (catLower.includes('spanish') || catLower.includes('latin')) {
-        const res = allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'spanish') || t.category === 'spanish');
-        if (res.length < 8) this.fetchMoreForCategory('spanish', 'Spanish');
-        return res;
+        return allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'spanish') || t.category === 'spanish');
       }
       if (catLower.includes('english') || catLower === 'pop') {
-        const res = allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'english') || t.category === 'pop');
-        if (res.length < 8) this.fetchMoreForCategory('pop', 'English');
-        return res;
+        return allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'english') || t.category === 'pop');
       }
       if (catLower.includes('hindi') || catLower.includes('bollywood')) {
-        const res = allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'hindi') || t.category === 'bollywood');
-        if (res.length < 8) this.fetchMoreForCategory('bollywood', 'Hindi');
-        return res;
+        return allRegistered.filter(t => (t.language && t.language.toLowerCase() === 'hindi') || t.category === 'bollywood');
       }
       if (catLower.includes('lofi') || catLower.includes('chill')) {
         return allRegistered.filter(t => t.category === 'lofi' || (t.title && t.title.toLowerCase().includes('chill')));
@@ -720,26 +668,14 @@
       }
 
       const matched = allRegistered.filter(t => t.category === category || (t.language && t.language.toLowerCase() === catLower));
-      return matched.length > 0 ? matched : allRegistered.slice(0, 30);
+      return matched;
     },
 
     /**
-     * Background query to fetch more tracks for a specific category/language from Supabase
+     * Background query placeholder (clean 0-catalog mode)
      */
     async fetchMoreForCategory(category, language, limit = 40) {
-      if (typeof window.fetchSongsFromSupabase !== 'function') return;
-      try {
-        const songs = await window.fetchSongsFromSupabase({ category, language, limit });
-        if (songs && Array.isArray(songs)) {
-          songs.forEach(s => {
-            const norm = normalizeTrack(s);
-            window.TRACKS_REGISTRY[norm.id] = norm;
-          });
-          if (typeof window.renderAllHomeGrids === 'function') {
-            window.renderAllHomeGrids();
-          }
-        }
-      } catch (e) {}
+      return [];
     },
 
     /**
@@ -784,20 +720,6 @@
         const key = userEmail ? `${STORAGE_KEYS.USER_PLAYLISTS}_${userEmail.toLowerCase()}` : STORAGE_KEYS.USER_PLAYLISTS;
         const stored = localStorage.getItem(key);
         if (stored) return JSON.parse(stored);
-        
-        if (userEmail) {
-          const sample = Object.values(window.TRACKS_REGISTRY).slice(0, 4);
-          const defaultPl = [
-            {
-              id: `pl-${Date.now()}`,
-              name: 'My Pulse Mix',
-              createdAt: Date.now(),
-              tracks: sample
-            }
-          ];
-          localStorage.setItem(key, JSON.stringify(defaultPl));
-          return defaultPl;
-        }
         return [];
       } catch (e) {
         return [];

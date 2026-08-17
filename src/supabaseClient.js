@@ -248,28 +248,10 @@ export async function fetchTotalSongCountFromSupabase() {
 }
 
 /**
- * Pre-fetches an initial curated seed across all languages for instant UI rendering on startup.
+ * Clean 0-catalog startup mode (no automatic seed injection).
  */
 export async function fetchInitialCatalogSeed(perLanguageLimit = 30) {
-  const languages = ['Hindi', 'Punjabi', 'English', 'Telugu', 'Kannada', 'Tamil', 'Devotional', 'Malayalam', 'Spanish'];
-  const results = [];
-
-  const promises = languages.map(lang =>
-    fetchSongsFromSupabase({ language: lang, limit: perLanguageLimit })
-  );
-
-  try {
-    const settled = await Promise.allSettled(promises);
-    for (const res of settled) {
-      if (res.status === 'fulfilled' && Array.isArray(res.value)) {
-        results.push(...res.value);
-      }
-    }
-  } catch (e) {
-    console.warn('[Supabase Initial Seed Notice]:', e);
-  }
-
-  return results;
+  return [];
 }
 
 // Bind globally to window for browser context

@@ -135,48 +135,17 @@ Respond ONLY with a valid JSON object matching this schema:
         return aiResponse;
       }
 
-      // High-Quality Fallback Curation
-      const promptLower = userPrompt.toLowerCase();
-      if (promptLower.includes('rain') || promptLower.includes('chill') || promptLower.includes('relax') || promptLower.includes('night')) {
-        return {
-          playlistName: "Midnight Monsoon Vibes 🌧️",
-          vibe: "Soulful acoustic melodies and soothing late-night vocals.",
-          tracks: [
-            { title: "Baarishein", artist: "Anuv Jain", genre: "Indie Pop", reason: "Soft acoustic rain anthem" },
-            { title: "Apna Bana Le", artist: "Arijit Singh", genre: "Bollywood", reason: "Warm emotional vocals" },
-            { title: "Kesariya", artist: "Arijit Singh, Pritam", genre: "Bollywood", reason: "Heartwarming melody" },
-            { title: "Choo Lo", artist: "The Local Train", genre: "Hindi Rock", reason: "Nostalgic rainy evening vibe" },
-            { title: "Sajni", artist: "Arijit Singh", genre: "Indie Pop", reason: "Peaceful acoustic groove" },
-            { title: "Husn", artist: "Anuv Jain", genre: "Indie Pop", reason: "Gentle late-night poetry" },
-            { title: "Heeriye", artist: "Jasleen Royal, Arijit Singh", genre: "Pop", reason: "Dreamy melodic duet" },
-            { title: "Iktara", artist: "Kavita Seth, Amit Trivedi", genre: "Sufi Pop", reason: "Timeless soulful classic" }
-          ]
-        };
-      } else if (promptLower.includes('gym') || promptLower.includes('workout') || promptLower.includes('party') || promptLower.includes('energy')) {
-        return {
-          playlistName: "High-Octane Power Mix 🔥",
-          vibe: "Heavy bass, driving rhythms, and unstoppable workout energy.",
-          tracks: [
-            { title: "Tauba Tauba", artist: "Karan Aujla", genre: "Punjabi Hits", reason: "Unmatched infectious groove" },
-            { title: "Aaj Ki Raat", artist: "Madhubanti Bagchi, Sachin-Jigar", genre: "Bollywood Dance", reason: "Electrifying dance beats" },
-            { title: "Dhoom Again", artist: "Vishal Dadlani", genre: "Dance", reason: "Pure cardio hype anthem" },
-            { title: "Chaleya", artist: "Arijit Singh, Shilpa Rao", genre: "Bollywood", reason: "Fast-paced dynamic beat" },
-            { title: "Mauja Hi Mauja", artist: "Mika Singh", genre: "Bhangra Pop", reason: "Peak celebration energy" },
-            { title: "Starboy", artist: "The Weeknd, Daft Punk", genre: "Synthwave", reason: "Driving electronic pulse" },
-            { title: "Shape of You", artist: "Ed Sheeran", genre: "Pop", reason: "Upbeat rhythm keeper" }
-          ]
-        };
-      }
-
+      // Dynamic Fallback Curation based on user prompt
+      const words = userPrompt.trim().split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
       return {
-        playlistName: `Gemini AI: ${userPrompt.substring(0, 24)} ✨`,
-        vibe: "Tailored multi-genre selection inspired by your prompt.",
+        playlistName: `Gemini Mix: ${words.substring(0, 24)} ✨`,
+        vibe: `Custom vibe curated for "${userPrompt.trim()}".`,
         tracks: [
-          { title: "Kesariya", artist: "Arijit Singh", genre: "Bollywood", reason: "Top charted vocal hit" },
-          { title: "Blinding Lights", artist: "The Weeknd", genre: "Pop", reason: "Global rhythm anthem" },
-          { title: "Apna Bana Le", artist: "Arijit Singh", genre: "Bollywood", reason: "Heartfelt acoustic" },
-          { title: "Tauba Tauba", artist: "Karan Aujla", genre: "Punjabi", reason: "Trending high energy" },
-          { title: "Sajni", artist: "Arijit Singh", genre: "Bollywood", reason: "Smooth melody" }
+          { title: `${words} Vibes`, artist: "Pulse AI Studio", genre: "Mix", reason: "Dynamic opening vibe" },
+          { title: "Harmonic Waves", artist: "Pulse AI Studio", genre: "Atmospheric", reason: "Smooth melodic groove" },
+          { title: "Rhythm Sequence", artist: "Pulse AI Studio", genre: "Electronic", reason: "Driving energetic tempo" },
+          { title: "Midnight Flow", artist: "Pulse AI Studio", genre: "Lo-Fi", reason: "Relaxing late-night tone" },
+          { title: "Sunrise Horizon", artist: "Pulse AI Studio", genre: "Pop", reason: "Uplifting finale track" }
         ]
       };
     },
