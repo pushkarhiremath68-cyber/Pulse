@@ -625,6 +625,24 @@
         }
       });
 
+      // 5. AUTO-INDEX DISCOVERED TRACKS TO SUPABASE DATABASE IN BACKGROUND
+      if (results.length > 0 && typeof window.supabaseClient !== 'undefined' && window.supabaseClient && window.supabaseClient.from) {
+        try {
+          const recordsToUpsert = results.slice(0, 20).map(r => ({
+            id: r.id,
+            title: r.title,
+            artist: r.artist,
+            album: r.album || 'Single',
+            cover: r.cover,
+            duration: r.duration,
+            language: r.language || 'Hindi',
+            category: r.category || 'bollywood',
+            source: r.source || 'Pulse Cloud Master'
+          }));
+          window.supabaseClient.from('songs').upsert(recordsToUpsert, { onConflict: 'id', ignoreDuplicates: true }).then(() => {}).catch(() => {});
+        } catch(e) {}
+      }
+
       // Save into LRU cache
       if (searchCache.size >= MAX_CACHE_SIZE) {
         const firstKey = searchCache.keys().next().value;
