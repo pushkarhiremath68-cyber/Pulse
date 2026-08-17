@@ -280,7 +280,7 @@
       cleanDuration = formatSeconds(cleanDuration);
     }
 
-    const cleanStoragePath = raw.storagePath || raw.storage_path || `${cleanId}.mp4`;
+    const cleanStoragePath = raw.storagePath || raw.storage_path || `${cleanId}.mp3`;
     let cleanAudioUrl = raw.audioUrl || raw.audio_url || raw.streamUrl || raw.audio || null;
     if (!cleanAudioUrl && typeof window !== 'undefined' && typeof window.getAudioStorageUrl === 'function') {
       cleanAudioUrl = window.getAudioStorageUrl(cleanStoragePath);
@@ -301,7 +301,7 @@
       language: raw.language || 'Hindi',
       year: raw.year || 2026,
       ytId: raw.ytId || raw.yt_id || null,
-      source: raw.source || 'Pulse Cloud CDN (320kbps MP4)',
+      source: raw.source || 'Pulse Studio Master MP3 (320kbps)',
       playCount: raw.playCount || raw.play_count || 0
     };
   }

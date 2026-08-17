@@ -78,7 +78,7 @@ export const supabase = getSupabaseClient();
  */
 export function formatSupabaseTrack(r) {
   if (!r) return null;
-  const storagePath = r.storage_path || `${r.id || 'track'}.mp4`;
+  const storagePath = r.storage_path || `${r.id || 'track'}.mp3`;
   return {
     id: r.id,
     title: r.title || 'Unknown Title',
@@ -92,7 +92,7 @@ export function formatSupabaseTrack(r) {
     audioUrl: r.audio_url || getAudioStorageUrl(storagePath),
     storagePath: storagePath,
     ytId: r.yt_id || '',
-    source: r.source || 'Pulse Cloud CDN (320kbps MP4)',
+    source: r.source || 'Pulse Studio Master MP3 (320kbps)',
     playCount: r.play_count || 0
   };
 }

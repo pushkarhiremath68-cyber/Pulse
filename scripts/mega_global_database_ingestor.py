@@ -92,11 +92,11 @@ def search_saavn(term):
                         "cover": cover,
                         "duration": duration,
                         "audio_url": media_url,
-                        "storage_path": f"{song_id}.mp4",
+                        "storage_path": f"{song_id}.mp3",
                         "language": lang,
                         "category": "bollywood" if lang == "Hindi" else lang.lower(),
                         "year": int(r.get("year", 2026)),
-                        "source": "Pulse Cloud Global Master (320kbps MP4)"
+                        "source": "Pulse Studio Master MP3 (320kbps)"
                     })
     except Exception as e:
         pass
@@ -129,11 +129,11 @@ def search_itunes(term):
                         "cover": cover,
                         "duration": duration,
                         "audio_url": None, # Resolved dynamically to full master stream
-                        "storage_path": f"{track_id}.mp4",
+                        "storage_path": f"{track_id}.mp3",
                         "language": "English",
                         "category": genre.lower(),
                         "year": int((r.get("releaseDate", "2026"))[:4]),
-                        "source": "Apple Lossless Master Catalog"
+                        "source": "Pulse Studio Master MP3 (320kbps)"
                     })
     except Exception as e:
         pass
