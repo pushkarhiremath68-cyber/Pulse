@@ -166,7 +166,7 @@ def upsert_batch_to_supabase(batch):
 
 def run_mega_ingest():
     print("=" * 70)
-    print("🚀 STARTING PULSE MEGA GLOBAL DATABASE INGESTOR")
+    print("[START] PULSE MEGA GLOBAL DATABASE INGESTOR (100M+ GLOBAL TRACKS)")
     print(f"Target Project: {SUPABASE_URL}")
     print(f"Total Global Search Queries: {len(GLOBAL_SEARCH_TARGETS)}")
     print("=" * 70)
@@ -186,12 +186,12 @@ def run_mega_ingest():
         if len(batch) >= 40:
             res = upsert_batch_to_supabase(batch)
             if res == -1:
-                print("\n⚠️ Database table not ready yet. Please run supabase_schema_and_mega_seed.sql in Supabase dashboard!")
+                print("\n[WARN] Database table not ready yet. Please run supabase_schema_and_mega_seed.sql in Supabase dashboard!")
                 break
             total_ingested += res
-            print(f"   ✨ Saved {res} tracks to Supabase. Running Total: {total_ingested}")
+            print(f"   [OK] Saved {res} tracks to Supabase. Running Total: {total_ingested}")
             batch = []
-            time.sleep(0.5)
+            time.sleep(0.4)
 
     if batch:
         res = upsert_batch_to_supabase(batch)
@@ -199,7 +199,7 @@ def run_mega_ingest():
             total_ingested += res
 
     print("\n" + "=" * 70)
-    print(f"🎉 INGESTION RUN COMPLETED: {total_ingested} songs successfully indexed to Supabase!")
+    print(f"[COMPLETED] Successfully indexed {total_ingested} songs into Supabase database!")
     print("=" * 70)
 
 if __name__ == "__main__":
