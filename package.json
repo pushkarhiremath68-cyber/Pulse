@@ -4,6 +4,7 @@
   "version": "2.4.0",
   "description": "Pulse Music - High-Fidelity Cross-Platform Music Streaming App by Pushkar Hiremath",
   "main": "electron/main.cjs",
+  "type": "module",
   "author": "Pushkar Hiremath",
   "license": "MIT",
   "scripts": {
