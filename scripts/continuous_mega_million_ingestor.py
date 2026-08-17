@@ -19,22 +19,32 @@ CORE_WORDS = [
     # Top Hindi / Bollywood Roots
     "dil", "ishq", "pyar", "tere", "mera", "jaan", "zindagi", "raat", "mohabbat", "khuda", "sanam", "deewana",
     "tu hi", "humko", "tumko", "tum hi", "pehli", "kabhi", "saath", "duniya", "chale", "aashiqui", "yaara",
+    "Arijit Singh", "Atif Aslam", "Shreya Ghoshal", "Pritam", "Sonu Nigam", "KK", "Mohit Chauhan", "Sunidhi Chauhan",
+    "Kishore Kumar", "Lata Mangeshkar", "Mohammed Rafi", "Mukesh", "R.D. Burman", "A.R. Rahman", "Jubin Nautiyal",
+    "Vishal Mishra", "Sachin Jigar", "Ankit Tiwari", "Badshah", "Yo Yo Honey Singh", "Neha Kakkar", "Armaan Malik",
     # Top English / Global Roots
     "love", "you", "me", "night", "day", "forever", "heart", "dream", "baby", "time", "world", "light",
     "dark", "fire", "rain", "dance", "stay", "eyes", "away", "feel", "life", "star", "home", "good",
+    "Taylor Swift", "The Weeknd", "Ed Sheeran", "Drake", "Billie Eilish", "Justin Bieber", "Dua Lipa",
+    "Bruno Mars", "Post Malone", "Ariana Grande", "Eminem", "Coldplay", "Imagine Dragons", "Adele", "Rihanna",
+    "Maroon 5", "Michael Jackson", "Queen", "Lady Gaga", "Katy Perry", "Harry Styles", "Sam Smith", "Sia",
     # Top Punjabi Roots
     "jatt", "pyaar", "akhiyan", "yaari", "mittran", "gedi", "nachna", "suit", "soorma", "vibe", "gabru",
+    "Karan Aujla", "Diljit Dosanjh", "AP Dhillon", "Shubh", "Sidhu Moose Wala", "B Praak", "Jaani", "Ammy Virk",
     # Top Devotional Roots
     "shree", "ram", "krishna", "shiva", "hanuman", "ganesh", "om", "mantra", "bhajan", "aarti", "chalisa",
+    "Hanuman Chalisa Hariharan", "Shiv Tandav Shankar Mahadevan", "Achyutam Keshavam", "Gayatri Mantra",
     # Top South Indian Roots
-    "prema", "kadhal", "anbe", "kanmani", "nanna", "neenu", "kantara", "pushpa", "srivalli", "singara"
+    "prema", "kadhal", "anbe", "kanmani", "nanna", "neenu", "kantara", "pushpa", "srivalli", "singara",
+    "Sid Sriram", "Vijay Prakash", "Anirudh Ravichander", "S.P. Balasubrahmanyam", "Devi Sri Prasad", "Thaman S"
 ]
 
-# Add all 2-letter alphabet combinations ('aa' to 'zz') + Years (1960 to 2026)
+# Add all 2-letter alphabet combinations ('aa' to 'zz') + Years (1960 to 2026) + Common Prefixes
 ALPHABET_COMBOS = [''.join(p) for p in itertools.product(string.ascii_lowercase, repeat=2)]
+THREE_LETTER_COMBOS = [f"{a}{b}{c}" for a in 'abcdef' for b in 'aeiou' for c in 'rstlne']
 YEARS = [str(y) for y in range(1960, 2027)]
 
-ALL_SEARCH_TERMS = CORE_WORDS + YEARS + ALPHABET_COMBOS
+ALL_SEARCH_TERMS = list(dict.fromkeys(CORE_WORDS + YEARS + THREE_LETTER_COMBOS + ALPHABET_COMBOS))
 
 def fetch_saavn_songs(term):
     results = []
