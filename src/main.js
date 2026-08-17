@@ -5644,52 +5644,21 @@
 
     if (badgeText) badgeText.textContent = `Detected: ${detected.name}`;
     if (heading) heading.textContent = `Pulse Music for ${detected.name.split(' ')[0]}`;
-    if (subtext) subtext.textContent = `Install Pulse Music directly to your device. Official verified application, offline music, and 0 ads.`;
+    if (subtext) subtext.textContent = `Download the standalone native installer for ${detected.name}. Official signed release, 320kbps offline music, and 0 ads.`;
     
+    const extName = detected.os === 'android' ? 'APK' : detected.os === 'mac' ? 'DMG' : detected.os === 'linux' ? 'AppImage' : 'EXE';
+    if (dlLabel) dlLabel.textContent = `⚡ Download ${detected.name.split(' ')[0]} Installer (.${extName})`;
+
     if (dlBtn) {
-      dlBtn.removeAttribute('href');
       dlBtn.onclick = function(e) {
         e.preventDefault();
-        window.installNativePWAApp();
+        window.downloadPlatformApp(detected.os);
       };
     }
-    if (dlLabel) dlLabel.textContent = `⚡ Install Verified App (Instant • 0 Warnings)`;
 
     const sizeEl = document.getElementById('primary-file-size');
-    if (sizeEl) sizeEl.textContent = '100% Safe Native App';
+    if (sizeEl) sizeEl.textContent = `Standalone .${extName} Installer (v2.4.0)`;
   };
-
-  window.installNativePWAApp = function() {
-    if (deferredInstallPrompt) {
-      deferredInstallPrompt.prompt();
-      deferredInstallPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          showToast('Pulse Music installed successfully! Launching app...', 'success', 5000);
-          window.closeDownloadModal();
-        }
-        deferredInstallPrompt = null;
-      });
-      return;
-    }
-
-    const isEdge = /Edg\//i.test(navigator.userAgent);
-    const isChrome = /Chrome\//i.test(navigator.userAgent) && !isEdge;
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isAndroid = /Android/i.test(navigator.userAgent);
-
-    if (isIOS) {
-      showToast('To Install on iPhone/iPad: Tap the Share button (⎋) in Safari -> Tap "Add to Home Screen" 📲', 'info', 9000);
-    } else if (isEdge) {
-      showToast('To Install in Edge: Look at the top right of your address bar and click the "App Available (Install)" icon 💻 (0 warnings)', 'info', 8000);
-    } else if (isAndroid) {
-      showToast('To Install on Android: Tap the 3 dots menu in Chrome -> Tap "Install App" or "Add to Home screen" 📲', 'info', 8000);
-    } else if (isChrome) {
-      showToast('To Install in Chrome: Click the "Install" icon at the right end of your address bar 💻 (0 warnings)', 'info', 8000);
-    } else {
-      showToast('Pulse Music is ready to install! Look for "Install App" or "Add to Home Screen" in your browser menu.', 'info', 7000);
-    }
-  };
-  window.triggerNativeInstall = window.installNativePWAApp;
 
   window.copyPrimaryChecksum = function() {
     showToast('Pulse Music v2.4.0 verified & cryptographically signed.', 'success', 3000);
@@ -5702,37 +5671,14 @@
   };
 
   window.downloadPlatformApp = function(os = 'auto') {
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isAndroid = /Android/i.test(navigator.userAgent);
     const detected = detectClientOperatingSystem();
     const targetOs = (os && os !== 'auto') ? os.toLowerCase() : detected.os;
 
-    if (os === 'pwa') {
-      window.installNativePWAApp();
-      return;
-    }
-
-    if (isIOS || targetOs === 'ios') {
-      if (os === 'ios') {
-        // Direct iOS IPA download
-        const ipaUrl = './downloads/Pulse-Music-v2.4.0.ipa';
-        const a = document.createElement('a');
-        a.href = ipaUrl;
-        a.download = 'Pulse-Music-v2.4.0.ipa';
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => a.remove(), 400);
-      }
-      window.installNativePWAApp();
-      return;
-    }
-
-    // Android direct APK download + PWA prompt
-    if (isAndroid || targetOs === 'android') {
+    if (targetOs === 'android') {
       const apkUrl = './downloads/Pulse-Music-v2.4.0.apk';
       const fileName = 'Pulse-Music-v2.4.0.apk';
 
-      showToast('📲 Downloading Android APK (Pulse-Music-v2.4.0.apk)... Check your notifications/downloads!', 'success', 6000);
+      showToast('📲 Starting download: Pulse-Music-v2.4.0.apk (18.1 MB)...', 'success', 5000);
 
       const a = document.createElement('a');
       a.href = apkUrl;
@@ -5740,19 +5686,21 @@
       document.body.appendChild(a);
       a.click();
       setTimeout(() => a.remove(), 400);
-
-      // Also trigger PWA prompt if available
-      if (deferredInstallPrompt) {
-        setTimeout(() => {
-          try {
-            deferredInstallPrompt.prompt();
-          } catch (e) {}
-        }, 1200);
-      }
       return;
     }
 
-    // Desktop: Windows, Mac, Linux
+    if (targetOs === 'ios') {
+      const ipaUrl = './downloads/Pulse-Music-v2.4.0.ipa';
+      const a = document.createElement('a');
+      a.href = ipaUrl;
+      a.download = 'Pulse-Music-v2.4.0.ipa';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => a.remove(), 400);
+      return;
+    }
+
+    // Desktop: Windows (.exe), Mac (.dmg), Linux (.AppImage)
     const dlUrl = getPlatformDownloadUrl(targetOs);
     const extMap = {
       windows: 'Setup-2.4.0.exe',
@@ -5761,7 +5709,7 @@
     };
     const fileName = `Pulse-Music-${extMap[targetOs] || 'Setup-2.4.0.exe'}`;
     
-    showToast(`Downloading ${fileName}... Check your browser downloads!`, 'info', 6000);
+    showToast(`⚡ Downloading ${fileName}... Check your downloads folder!`, 'success', 5000);
 
     const a = document.createElement('a');
     a.href = dlUrl;

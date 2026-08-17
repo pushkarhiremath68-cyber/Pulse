@@ -1360,10 +1360,10 @@
 
           <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
             <a id="primary-os-download-btn" href="#" onclick="window.downloadPlatformApp('auto'); return false;" class="btn-primary-play" style="padding: 0.85rem 1.8rem; font-size: 1rem; border-radius: 12px; display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; font-weight: 700; box-shadow: 0 4px 20px rgba(168,85,247,0.4);">
-              <i class="fa-solid fa-bolt"></i> <span id="primary-download-label">Install App (0 Warnings • Instant)</span>
+              <i class="fa-solid fa-cloud-arrow-down"></i> <span id="primary-download-label">Download Installer Package (.EXE)</span>
             </a>
             <div id="primary-file-meta" style="font-size: 0.8rem; color: var(--text-muted);">
-              Format: <strong id="primary-file-size" style="color: #fff;">100% Safe PWA / Native</strong> • Release: <strong style="color: #fff;">v2.4.0 (Stable)</strong>
+              Format: <strong id="primary-file-size" style="color: #fff;">Standalone Binary</strong> • Release: <strong style="color: #fff;">v2.4.0 (Stable)</strong>
             </div>
           </div>
 
@@ -1381,7 +1381,12 @@
           <div style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.82rem; color: #93c5fd; line-height: 1.45;">
             <i class="fa-solid fa-shield-halved" style="font-size: 1.05rem; margin-top: 2px; color: #60a5fa; flex-shrink: 0;"></i>
             <div>
-              <strong>Why browsers show standard file checks:</strong> Browsers (Chrome / Edge / Android) show a generic <em>"File might be harmful"</em> prompt whenever downloading direct <code>.apk</code> or <code>.exe</code> binaries. Click <strong>"Keep"</strong> or <strong>"Download anyway"</strong> to install the signed package, or tap <strong>"Install App"</strong> above for instant 1-click verified installation with 0 warnings!
+              <strong>Quick Installation Guide:</strong>
+              <div style="margin-top: 0.35rem; color: #cbd5e1; font-size: 0.78rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                <div>🪟 <strong>Windows:</strong> If SmartScreen appears, click <em>"More info"</em> &rarr; <em>"Run anyway"</em>.</div>
+                <div>🤖 <strong>Android:</strong> If prompted <em>"File might be harmful"</em>, tap <em>"Download anyway"</em> &rarr; <em>"Open"</em> &rarr; <em>"Install"</em>.</div>
+                <div>🍏 <strong>macOS:</strong> Open DMG &rarr; Drag to Applications folder.</div>
+              </div>
             </div>
           </div>
         </div>
