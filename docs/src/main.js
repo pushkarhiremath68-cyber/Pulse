@@ -1532,32 +1532,78 @@
     }
 
     // 2. Popular Hindi
-    renderGridContent(el.gridPopularHindi, window.musicService.getPopularTracks('popular-hindi'));
+    renderGridContent(el.gridPopularHindi || document.getElementById('grid-popular-hindi'), window.musicService.getPopularTracks('popular-hindi'));
 
     // 2.1 Devotional / Bhakti
-    renderGridContent(el.gridDevotional, window.musicService.getPopularTracks('devotional'));
+    renderGridContent(el.gridDevotional || document.getElementById('grid-devotional'), window.musicService.getPopularTracks('devotional'));
 
     // 3. Hindi Hits
-    renderGridContent(el.gridHindiHits, window.musicService.getPopularTracks('hindi-hits'));
+    renderGridContent(el.gridHindiHits || document.getElementById('grid-hindi-hits'), window.musicService.getPopularTracks('hindi-hits'));
 
     // 4. Bollywood
-    renderGridContent(el.gridBollywood, window.musicService.getPopularTracks('bollywood'));
+    renderGridContent(el.gridBollywood || document.getElementById('grid-bollywood'), window.musicService.getPopularTracks('bollywood'));
 
     // 5. Romantic
-    renderGridContent(el.gridRomantic, window.musicService.getPopularTracks('romantic'));
+    renderGridContent(el.gridRomantic || document.getElementById('grid-romantic'), window.musicService.getPopularTracks('romantic'));
 
     // 6. Party
-    renderGridContent(el.gridParty, window.musicService.getPopularTracks('party'));
+    renderGridContent(el.gridParty || document.getElementById('grid-party'), window.musicService.getPopularTracks('party'));
 
     // 7. Trending
-    renderGridContent(el.gridTrending, window.musicService.getPopularTracks('trending'));
+    renderGridContent(el.gridTrending || document.getElementById('grid-trending'), window.musicService.getPopularTracks('trending'));
 
     // 8. New Releases
-    renderGridContent(el.gridNewReleases, window.musicService.getPopularTracks('bollywood').slice(0, 8));
+    renderGridContent(el.gridNewReleases || document.getElementById('grid-new-releases'), window.musicService.getPopularTracks('bollywood'));
 
     // 9. Recommended & Lo-Fi
-    renderGridContent(el.gridRecommended, window.musicService.getPopularTracks('recommended'));
+    renderGridContent(el.gridRecommended || document.getElementById('grid-recommended'), window.musicService.getPopularTracks('recommended'));
+
+    // 10. Connected Database Catalog
+    const allTracks = Object.values(window.TRACKS_REGISTRY || {});
+    renderGridContent(el.gridDatabaseCatalog || document.getElementById('grid-database-catalog'), allTracks);
+
+    // Update live database counter tag
+    const dbCountEl = document.getElementById('total-db-count');
+    if (dbCountEl && allTracks.length > 0) {
+      dbCountEl.textContent = `${allTracks.length}+`;
+    }
   }
+
+  window.loadMoreFromDatabase = async function() {
+    const btn = document.getElementById('btn-load-more-db');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Loading Songs...';
+    }
+
+    try {
+      if (typeof window.fetchSongsFromSupabase === 'function') {
+        const currentCount = Object.keys(window.TRACKS_REGISTRY || {}).length;
+        const songs = await window.fetchSongsFromSupabase({ limit: 60, offset: currentCount });
+        if (songs && Array.isArray(songs) && songs.length > 0) {
+          songs.forEach(s => {
+            const norm = window.normalizeTrack(s);
+            window.TRACKS_REGISTRY[norm.id] = norm;
+          });
+          renderAllHomeGrids();
+          if (typeof window.showToast === 'function') {
+            window.showToast(`Loaded ${songs.length} new songs from database! Total: ${Object.keys(window.TRACKS_REGISTRY).length}`, 'success', 3500);
+          }
+        } else {
+          if (typeof window.showToast === 'function') {
+            window.showToast(`All available database songs are loaded!`, 'info', 3000);
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('[Load More Database Notice]:', err);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-down"></i> Load More From Database';
+      }
+    }
+  };
 
   /* ==========================================================================
      5. DYNAMIC MUSIC SEARCH ENGINE (Immediate on Clicks & Debounced on Typing)

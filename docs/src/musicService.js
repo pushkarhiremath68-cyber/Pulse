@@ -361,20 +361,38 @@
         window.TRACKS_REGISTRY[norm.id] = norm;
       });
 
-      // 2. Fetch additional seed from 120,000 Supabase database
+      // 2. Fetch extensive multi-language batch from Supabase 120,000 database
+      if (typeof window.fetchSongsFromSupabase === 'function') {
+        try {
+          const directSupabaseBatch = await window.fetchSongsFromSupabase({ limit: 120 });
+          if (directSupabaseBatch && Array.isArray(directSupabaseBatch) && directSupabaseBatch.length > 0) {
+            directSupabaseBatch.forEach(t => {
+              const norm = normalizeTrack(t);
+              window.TRACKS_REGISTRY[norm.id] = norm;
+            });
+          }
+        } catch (e) {
+          console.warn('[Pulse Supabase Batch Notice]:', e);
+        }
+      }
+
       if (typeof window.fetchInitialCatalogSeed === 'function') {
         try {
-          const seed = await window.fetchInitialCatalogSeed(40);
+          const seed = await window.fetchInitialCatalogSeed(30);
           if (seed && Array.isArray(seed) && seed.length > 0) {
             seed.forEach(t => {
               const norm = normalizeTrack(t);
               window.TRACKS_REGISTRY[norm.id] = norm;
             });
-            console.log(`[Pulse Catalog Engine] Initialized ${Object.keys(window.TRACKS_REGISTRY).length} tracks into in-memory catalog.`);
           }
         } catch (e) {
           console.warn('[Pulse Supabase Seed Exception]:', e);
         }
+      }
+
+      console.log(`[Pulse Catalog Engine] Successfully connected database: ${Object.keys(window.TRACKS_REGISTRY).length} songs live in-app.`);
+      if (typeof window.renderAllHomeGrids === 'function') {
+        window.renderAllHomeGrids();
       }
     },
 

@@ -409,6 +409,20 @@
           </div>
           <div id="grid-recommended" class="music-cards-grid"></div>
         </section>
+
+        <!-- SECTION 10: EXPLORE DATABASE MEGA CATALOG (120,000+ SONGS) -->
+        <section class="music-section" id="section-database-catalog" style="margin-top: 2rem;">
+          <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h3><i class="fa-solid fa-database text-accent"></i> Live Connected Database Catalog (<span id="total-db-count">120,000+</span> Songs)</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin: 2px 0 0 0;">Streaming directly from Supabase PostgreSQL & Multi-Source Cloud CDN</p>
+            </div>
+            <button id="btn-load-more-db" class="btn-primary" onclick="window.loadMoreFromDatabase()" style="background: var(--accent-gradient); border: none; color: #fff; padding: 0.45rem 0.95rem; border-radius: 20px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem;">
+              <i class="fa-solid fa-cloud-arrow-down"></i> Load More From Database
+            </button>
+          </div>
+          <div id="grid-database-catalog" class="music-cards-grid" style="margin-top: 1rem;"></div>
+        </section>
       </div>
 
       <!-- VIEW 2: SEARCH / RESULTS VIEW -->
