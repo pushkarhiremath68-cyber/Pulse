@@ -255,6 +255,33 @@ Respond ONLY with a JSON object:
 }`;
       const res = await callGeminiApi(prompt, 'You are an accurate music metadata identifier.', true);
       return res;
+    },
+
+    /**
+     * Gemini AI Synchronized Lyrics Generator
+     * Generates real, accurate synchronized lyrics with timestamps for any song in any language
+     */
+    async generateLyrics(title, artist, language = 'Hindi', durationSecs = 210) {
+      if (!title) return null;
+      const prompt = `Generate real, accurate synchronized lyrics with line timestamps for the song:
+Title: "${title}"
+Artist: "${artist || 'Unknown'}"
+Language: "${language || 'Hindi'}"
+Duration: ${durationSecs} seconds
+
+Respond ONLY with a JSON array of objects with "time" (integer seconds) and "text" (lyric line):
+[
+  {"time": 0, "text": "🎵 [Instrumental Intro]"},
+  {"time": 12, "text": "First line of the authentic lyrics..."},
+  {"time": 25, "text": "Second line..."}
+]`;
+
+      const systemInstruction = 'You are an accurate, real-world music lyrics database. Provide accurate lyrics for the requested song with sensible timestamp progressions.';
+      const res = await callGeminiApi(prompt, systemInstruction, true);
+      if (Array.isArray(res) && res.length > 0) {
+        return res;
+      }
+      return null;
     }
   };
 

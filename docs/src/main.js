@@ -5127,7 +5127,18 @@
       return;
     }
 
-    // 1. Fetch from LRCLIB open lyrics database
+    // 1. Direct track object lyrics (if pre-stored in database)
+    if (track.lyrics) {
+      const parsed = typeof track.lyrics === 'string' ? parseLrcString(track.lyrics) : track.lyrics;
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        currentLyrics = parsed;
+        lyricsCache.set(cacheKey, parsed);
+        renderLyricsDrawer();
+        return;
+      }
+    }
+
+    // 2. Fetch from LRCLIB open synchronized lyrics database
     try {
       const cleanTitle = title.replace(/\s*\([^)]*\)/g, '').replace(/\s*\[[^\]]*\]/g, '').trim();
       const url = `https://lrclib.net/api/get?artist_name=${encodeURIComponent(artist)}&track_name=${encodeURIComponent(cleanTitle)}&duration=${durSecs}`;
@@ -5157,7 +5168,7 @@
         }
       }
 
-      // 2. Try LRCLIB search query fallback
+      // 3. Try LRCLIB search query fallback
       const searchRes = await fetch(`https://lrclib.net/api/search?q=${encodeURIComponent(cleanTitle + ' ' + artist)}`, { signal: AbortSignal.timeout(2500) });
       if (searchRes.ok) {
         const searchList = await searchRes.json();
@@ -5185,7 +5196,20 @@
       }
     } catch (e) {}
 
-    // 3. Fallback: Provide Smart Synchronized Karaoke Lyrics Preview for 100% catalog coverage
+    // 4. Try Google Gemini AI Synchronized Lyrics Generator
+    if (window.PulseGemini && typeof window.PulseGemini.generateLyrics === 'function') {
+      try {
+        const aiLyrics = await window.PulseGemini.generateLyrics(title, artist, track.language || 'Hindi', durSecs);
+        if (aiLyrics && Array.isArray(aiLyrics) && aiLyrics.length > 0) {
+          currentLyrics = aiLyrics;
+          lyricsCache.set(cacheKey, aiLyrics);
+          renderLyricsDrawer();
+          return;
+        }
+      } catch(e) {}
+    }
+
+    // 5. Fallback: Provide Smart Synchronized Karaoke Lyrics Preview for 100% catalog coverage
     const previewLyrics = generateThemedLyricsPreview(track, durSecs);
     currentLyrics = previewLyrics;
     lyricsCache.set(cacheKey, previewLyrics);
