@@ -1,44 +1,34 @@
 /* ==========================================================================
-   PULSE MUSIC - SPOTIFY THEME & CLEAN DESIGN SYSTEM
+   PULSE MUSIC - CLEAN SPOTIFY MINIMALIST THEME
+   Inspired by Spotify Web & Desktop Player
    ========================================================================== */
 
 :root {
   --bg-base: #121212;
   --bg-surface: #181818;
-  --bg-surface-elevated: #282828;
+  --bg-surface-elevated: #242424;
   --bg-sidebar: #000000;
-  --bg-glass: rgba(18, 18, 18, 0.95);
-  --bg-glass-card: #181818;
-  --bg-glass-hover: #282828;
+  --bg-player: #000000;
+  --bg-header: rgba(18, 18, 18, 0.85);
 
   --accent-primary: #1ed760;
-  --accent-secondary: #b3b3b3;
-  --accent-purple: #1ed760;
-  --accent-magenta: #1db954;
+  --accent-secondary: #1db954;
+  --accent-hover: #1fdf64;
   --accent-spotify: #1ed760;
-  --accent-gradient: linear-gradient(135deg, #1ed760 0%, #1db954 100%);
-  --accent-gradient-fire: linear-gradient(135deg, #1ed760 0%, #10b981 100%);
-  --accent-gradient-glow: linear-gradient(135deg, rgba(30, 215, 96, 0.4) 0%, rgba(29, 185, 84, 0.4) 100%);
 
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
   --text-muted: #6a6a6a;
 
-  --border-glass: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(30, 215, 96, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-divider: #282828;
 
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.7);
-  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.85);
-  --shadow-glow: 0 0 25px rgba(30, 215, 96, 0.35);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-play-btn: 0 8px 16px rgba(0, 0, 0, 0.4);
 
-  --radius-sm: 6px;
+  --radius-sm: 4px;
   --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-full: 500px;
-
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-pill: 500px;
 }
 
 * {
@@ -49,13 +39,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
-  touch-action: manipulation;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  overscroll-behavior-y: none;
-}
-
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background-color: var(--bg-base);
@@ -63,25 +46,132 @@ body {
   height: 100vh;
   overflow: hidden;
   line-height: 1.5;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Spotify Card Styling */
+/* Sidebar Clean Minimalist Styling */
+.sidebar {
+  background-color: var(--bg-sidebar) !important;
+  width: 240px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 1.25rem 0.85rem !important;
+  border-right: 1px solid var(--border-divider) !important;
+}
+
+.brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding: 0.5rem 0.75rem 1.5rem 0.75rem !important;
+}
+
+.brand-name {
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px !important;
+  color: #ffffff !important;
+}
+
+.brand-creator {
+  font-size: 0.65rem !important;
+  color: #1ed760 !important;
+  font-weight: 700 !important;
+}
+
+.nav-section-title {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  color: #b3b3b3 !important;
+  padding: 0.75rem 0.75rem 0.35rem 0.75rem !important;
+}
+
+.nav-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  padding: 0.65rem 0.85rem !important;
+  border-radius: 6px !important;
+  color: #b3b3b3 !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease, background-color 0.2s ease !important;
+}
+
+.nav-item:hover {
+  color: #ffffff !important;
+}
+
+.nav-item.active {
+  color: #ffffff !important;
+  background-color: #242424 !important;
+}
+
+.nav-item.active i {
+  color: #1ed760 !important;
+}
+
+/* Header Clean Minimalist Styling */
+.top-header {
+  background: var(--bg-header) !important;
+  backdrop-filter: blur(12px) !important;
+  padding: 0.85rem 2rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid var(--border-divider) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+}
+
+.search-box-container {
+  background: #242424 !important;
+  border-radius: 500px !important;
+  padding: 8px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  max-width: 420px !important;
+  width: 100% !important;
+  border: 1px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.search-box-container:focus-within {
+  background: #2a2a2a !important;
+  border-color: #ffffff !important;
+}
+
+.search-box-container input {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: #ffffff !important;
+  font-size: 0.88rem !important;
+  width: 100% !important;
+}
+
+.search-box-container input::placeholder {
+  color: #757575 !important;
+}
+
+/* Music Cards Clean Spotify Grid */
 .music-card {
   background-color: #181818 !important;
   padding: 14px !important;
   border-radius: 8px !important;
-  border: 1px solid transparent !important;
+  border: none !important;
   box-shadow: none !important;
-  transition: background-color 0.3s ease, transform 0.3s ease !important;
-  position: relative !important;
+  transition: background-color 0.3s ease !important;
   cursor: pointer !important;
+  position: relative !important;
 }
 
 .music-card:hover {
   background-color: #282828 !important;
-  transform: translateY(-4px) !important;
 }
 
 .card-image-wrapper {
@@ -91,17 +181,15 @@ body {
   border-radius: 6px !important;
   overflow: hidden !important;
   box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 10px !important;
 }
 
 .card-image {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  transition: transform 0.3s ease !important;
 }
 
-/* Floating Spotify Green Play Button */
 .btn-card-play {
   background: #1ed760 !important;
   color: #000000 !important;
@@ -117,8 +205,8 @@ body {
   transform: translateY(8px) !important;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: absolute !important;
-  bottom: 10px !important;
-  right: 10px !important;
+  bottom: 8px !important;
+  right: 8px !important;
 }
 
 .music-card:hover .btn-card-play {
@@ -132,35 +220,34 @@ body {
 }
 
 .card-title {
-  font-size: 0.95rem !important;
+  font-size: 0.92rem !important;
   font-weight: 700 !important;
   color: #ffffff !important;
+  margin-bottom: 3px !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
-  margin-bottom: 4px !important;
 }
 
 .card-artist {
-  font-size: 0.82rem !important;
+  font-size: 0.8rem !important;
   color: #b3b3b3 !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
 
-/* Spotify Chip Filter Bar */
+/* Category Filter Chips */
 .chip-filter {
   background: #2a2a2a !important;
   color: #ffffff !important;
-  font-size: 0.85rem !important;
+  font-size: 0.84rem !important;
   font-weight: 700 !important;
   padding: 7px 16px !important;
   border-radius: 500px !important;
   border: none !important;
   transition: all 0.2s ease !important;
   cursor: pointer !important;
-  white-space: nowrap !important;
 }
 
 .chip-filter:hover {
@@ -172,27 +259,15 @@ body {
   color: #000000 !important;
 }
 
-/* Spotify Header & Search Input */
-.search-input-wrapper {
-  background: #242424 !important;
-  border-radius: 500px !important;
-  border: 1px solid transparent !important;
-  transition: all 0.2s ease !important;
-}
-
-.search-input-wrapper:focus-within {
-  border-color: #ffffff !important;
-  background: #2a2a2a !important;
-}
-
-/* Spotify Persistent Player Bar */
-.player-bar {
-  background-color: #000000 !important;
-  border-top: 1px solid #282828 !important;
+/* Bottom Player Bar Clean Minimalist */
+.player-bar, #persistent-player-bar, .pulse-player-bar {
+  background-color: var(--bg-player) !important;
+  border-top: 1px solid var(--border-divider) !important;
+  padding: 0 1.5rem !important;
   height: 88px !important;
 }
 
-.btn-play-pause {
+.btn-player-main, #btn-play-pause {
   background: #ffffff !important;
   color: #000000 !important;
   width: 36px !important;
@@ -201,41 +276,43 @@ body {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transition: transform 0.2s ease, background 0.2s ease !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: transform 0.15s ease !important;
 }
 
-.btn-play-pause:hover {
-  transform: scale(1.08) !important;
+.btn-player-main:hover, #btn-play-pause:hover {
+  transform: scale(1.06) !important;
   background: #ffffff !important;
 }
 
-.progress-fill {
-  background: #ffffff !important;
-  transition: background 0.2s ease !important;
-}
-
-.progress-bar-container:hover .progress-fill {
-  background: #1ed760 !important;
-}
-
-/* Sidebar Styling */
-.app-sidebar {
-  background-color: #000000 !important;
-}
-
-.nav-link {
+.btn-player-icon {
   color: #b3b3b3 !important;
-  font-weight: 700 !important;
-  font-size: 0.9rem !important;
-  transition: color 0.2s ease !important;
+  transition: color 0.15s ease !important;
 }
 
-.nav-link:hover, .nav-link.active {
+.btn-player-icon:hover {
   color: #ffffff !important;
 }
 
-.nav-link.active i {
-  color: #1ed760 !important;
+.progress-bar-fill, #player-progress-fill {
+  background: #ffffff !important;
+  border-radius: 500px !important;
+  transition: background 0.2s ease !important;
+}
+
+.progress-bar-wrapper:hover .progress-bar-fill,
+.progress-bar-wrapper:hover #player-progress-fill {
+  background: #1ed760 !important;
+}
+
+/* Hide all download modal and button styles */
+#header-download-btn,
+#hero-download-app-btn,
+.app-download-card,
+.sidebar-footer,
+#download-app-modal {
+  display: none !important;
 }
 
 /* ==========================================================================

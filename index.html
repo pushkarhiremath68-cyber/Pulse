@@ -117,19 +117,7 @@
       </nav>
 
       <!-- SIDEBAR FOOTER -->
-      <div class="sidebar-footer">
-        <div class="app-download-card">
-          <div class="download-card-icon">
-            <i class="fa-solid fa-download"></i>
-          </div>
-          <div class="download-card-text">
-            <strong>Pulse Cross-Platform</strong>
-            <p>Download free desktop & mobile app.</p>
-          </div>
-          <button class="btn-download-app" onclick="window.openDownloadModal()">Install App</button>
-        </div>
-      </div>
-    </aside>
+      </aside>
 
     <!-- MAIN CONTENT AREA -->
     <main class="main-content">
@@ -147,9 +135,7 @@
         </div>
 
         <div class="header-actions">
-          <button id="header-download-btn" class="btn-download-header" onclick="window.openDownloadModal()">
-            <i class="fa-solid fa-download"></i> <span>Download App</span>
-          </button>
+          
 
           <!-- AUTHENTICATION GROUP -->
           <div id="auth-buttons-group" class="auth-header-group">
@@ -183,9 +169,7 @@
               <button class="btn-secondary-install" onclick="window.openGeminiDJModal()" style="background: rgba(168,85,247,0.25); border: 1px solid rgba(168,85,247,0.5); color: #fff;">
                 <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i> Ask Gemini DJ
               </button>
-              <button id="hero-download-app-btn" class="btn-secondary-install" onclick="window.openDownloadModal()">
-                <i class="fa-solid fa-download"></i> App
-              </button>
+              
             </div>
           </div>
           <div class="hero-image-wrapper">
@@ -2216,39 +2200,7 @@
     </div>
   </div>
 
-  <!-- DOWNLOAD MODAL -->
-  <div id="download-app-modal" class="modal-overlay hidden">
-    <div class="modal-content download-modal-box" style="max-width: 540px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff;">Download Pulse Music</h3>
-        <button class="btn-icon-small" onclick="window.closeDownloadModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Experience high-fidelity audio, keyboard shortcuts, and instant access on your device.</p>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-        <button onclick="window.downloadPlatformApp('windows')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-brands fa-windows" style="font-size: 1.8rem; color: #60a5fa;"></i>
-          <strong>Windows</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Desktop PWA</span>
-        </button>
-        <button onclick="window.downloadPlatformApp('android')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-brands fa-android" style="font-size: 1.8rem; color: #34d399;"></i>
-          <strong>Android</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">APK / Web App</span>
-        </button>
-        <button onclick="window.downloadPlatformApp('macos')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-brands fa-apple" style="font-size: 1.8rem; color: #e2e8f0;"></i>
-          <strong>macOS</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Desktop App</span>
-        </button>
-        <button onclick="window.downloadPlatformApp('ios')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-solid fa-mobile-screen" style="font-size: 1.8rem; color: #c084fc;"></i>
-          <strong>iOS / iPadOS</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Home Screen</span>
-        </button>
-      </div>
-    </div>
-  </div>
+  
 
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
