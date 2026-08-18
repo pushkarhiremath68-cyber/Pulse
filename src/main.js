@@ -1,3 +1,10 @@
+import './lyricsService.js';
+import './catalogService.js';
+import './musicService.js';
+import './audioEngine.js';
+import './playbarController.js';
+import './visualizer.js';
+
 (function() {
   'use strict';
 
@@ -1247,7 +1254,166 @@
   activeLyricIndex = -1;
   let isFullscreenLyricsActive = false;
 
-  
+  // Fetch original album artwork from iTunes
+  async function fetchOriginalArtwork(track) {
+    if (!track) return;
+    const title = (track.title || '').replace(/\s*\([^)]*\)/g, '').trim();
+    const artist = (track.artist || '').split(',')[0].trim();
+    if (!title && !artist) return;
+    try {
+      const q = encodeURIComponent(`${title} ${artist}`);
+      const res = await fetch(`https://itunes.apple.com/search?term=${q}&entity=song&limit=3`, { signal: AbortSignal.timeout(3000) });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.results && data.results.length > 0) {
+          const art = data.results[0].artworkUrl100;
+          if (art) {
+            const hdArt = art.replace('100x100bb', '600x600bb');
+            track.cover = hdArt;
+            // Update all UI elements with the HD artwork
+            const pThumb = document.getElementById('player-thumb');
+            const fsArt = document.getElementById('fs-album-art');
+            const fsBg = document.getElementById('fs-bg-blur');
+            if (pThumb) pThumb.src = hdArt;
+            if (fsArt) fsArt.src = hdArt;
+            if (fsBg) fsBg.style.backgroundImage = `url('${hdArt}')`;
+            if (window.TRACKS_REGISTRY && track.id) {
+              window.TRACKS_REGISTRY[track.id] = track;
+            }
+          }
+        }
+      }
+    } catch (e) {}
+  }
+
+  // Load lyrics for a track using lyricsService
+  async function loadTrackLyrics(track) {
+    if (!track) { updateLyricsUIEmpty(); return; }
+
+    currentLyricsData = null;
+    activeLyricIndex = -1;
+
+    const container = document.getElementById('lyrics-container');
+    const fsScroller = document.getElementById('fs-lyrics-scroller');
+    const modalLines = document.getElementById('lyrics-modal-lines');
+
+    if (container) container.innerHTML = '<p class="lyrics-placeholder" style="color: var(--text-muted); text-align: center; padding: 2rem;">Loading lyrics...</p>';
+
+    if (!window.lyricsService || typeof window.lyricsService.getLyrics !== 'function') {
+      if (container) container.innerHTML = '<p class="lyrics-placeholder" style="color: var(--text-muted); text-align: center; padding: 2rem;">Lyrics engine loading...</p>';
+      return;
+    }
+
+    try {
+      const result = await window.lyricsService.getLyrics(track.title, track.artist);
+      currentLyricsData = result;
+
+      if (result && !result.notFound && result.lines && result.lines.length > 0) {
+        const linesHtml = result.lines.map((line, idx) =>
+          `<p class="lyric-line${result.isSynced ? ' synced-line' : ''}" data-line-idx="${idx}" data-time="${line.time || 0}" style="padding: 0.5rem 0; margin: 0; font-size: 1.1rem; color: var(--text-muted); transition: all 0.3s ease; cursor: pointer; line-height: 1.6;">${line.text || '♪'}</p>`
+        ).join('');
+
+        if (container) container.innerHTML = linesHtml;
+        if (fsScroller) fsScroller.innerHTML = linesHtml;
+        if (modalLines) modalLines.innerHTML = linesHtml;
+
+        // Show mini lyrics snippet
+        const miniSnippet = document.getElementById('mini-playbar-lyrics-snippet');
+        if (miniSnippet) miniSnippet.classList.remove('hidden');
+      } else {
+        const noLyricsHtml = `<div style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);">
+          <i class="fa-solid fa-music" style="font-size: 2rem; margin-bottom: 0.75rem; display: block; opacity: 0.5;"></i>
+          <p style="font-weight: 600; color: #fff; margin-bottom: 0.3rem;">Lyrics Not Available</p>
+          <p style="font-size: 0.82rem;">Lyrics for "${track.title}" by ${track.artist} are not yet in the LRCLIB database.</p>
+        </div>`;
+        if (container) container.innerHTML = noLyricsHtml;
+        if (fsScroller) fsScroller.innerHTML = noLyricsHtml;
+        if (modalLines) modalLines.innerHTML = noLyricsHtml;
+      }
+    } catch (err) {
+      console.warn('[Pulse Lyrics] Error loading lyrics:', err);
+      if (container) container.innerHTML = '<p class="lyrics-placeholder" style="color: var(--text-muted); text-align: center; padding: 2rem;">Could not load lyrics.</p>';
+    }
+  }
+  window.loadTrackLyrics = loadTrackLyrics;
+
+  function updateLyricsUIEmpty() {
+    const container = document.getElementById('lyrics-container');
+    const fsScroller = document.getElementById('fs-lyrics-scroller');
+    if (container) container.innerHTML = '<p class="lyrics-placeholder" style="color: var(--text-muted); text-align: center; padding: 2rem;">Play a song to load real-time synchronized lyrics!</p>';
+    if (fsScroller) fsScroller.innerHTML = '<div class="lyrics-placeholder-empty"><i class="fa-solid fa-music" style="font-size: 2rem; margin-bottom: 0.5rem; display: block; color: var(--accent-primary); opacity: 0.4;"></i><p>Loading synchronized lyrics from LRCLIB...</p></div>';
+  }
+
+  // Sync lyrics highlight with current playback time
+  window.syncLiveLyrics = function(currentTime) {
+    if (!currentLyricsData || !currentLyricsData.isSynced || !currentLyricsData.lines) return;
+    const lines = currentLyricsData.lines;
+    const newIdx = window.lyricsService ? window.lyricsService.getActiveLineIndex(lines, currentTime) : -1;
+    if (newIdx === activeLyricIndex) return;
+    activeLyricIndex = newIdx;
+
+    // Update drawer lyrics
+    const container = document.getElementById('lyrics-container');
+    if (container) {
+      const allLines = container.querySelectorAll('.lyric-line');
+      allLines.forEach((el, idx) => {
+        if (idx === newIdx) {
+          el.style.color = '#fff';
+          el.style.fontWeight = '700';
+          el.style.fontSize = '1.2rem';
+          el.style.transform = 'scale(1.02)';
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          el.style.color = 'var(--text-muted)';
+          el.style.fontWeight = '400';
+          el.style.fontSize = '1.1rem';
+          el.style.transform = 'scale(1)';
+        }
+      });
+    }
+
+    // Update mini lyrics snippet
+    if (newIdx >= 0 && lines[newIdx]) {
+      const currentEl = document.getElementById('mini-lyric-current');
+      const nextEl = document.getElementById('mini-lyric-next');
+      if (currentEl) currentEl.textContent = lines[newIdx].text || '';
+      if (nextEl && lines[newIdx + 1]) nextEl.textContent = lines[newIdx + 1].text || '';
+    }
+  };
+
+  // Open lyrics for current track (called from fullscreen player button and lyrics pills)
+  window.openLyricsForCurrentTrack = function() {
+    const track = state.currentTrack;
+    if (!track) {
+      showToast('Play a song first to see lyrics!', 'info', 3000);
+      return;
+    }
+    const modal = document.getElementById('lyrics-preview-modal');
+    if (modal) {
+      const titleEl = document.getElementById('lyrics-modal-title');
+      const artistEl = document.getElementById('lyrics-modal-artist');
+      const coverEl = document.getElementById('lyrics-modal-cover');
+      if (titleEl) titleEl.textContent = track.title;
+      if (artistEl) artistEl.textContent = track.artist;
+      if (coverEl) coverEl.src = track.cover || './pulse-logo.png';
+      modal.classList.remove('hidden');
+      loadTrackLyrics(track);
+    }
+  };
+
+  window.closeLyricsModal = function() {
+    const modal = document.getElementById('lyrics-preview-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+
+  window.openFullscreenPlayerWithLyrics = function() {
+    const fsPlayer = document.getElementById('fullscreen-player');
+    if (fsPlayer) fsPlayer.classList.add('active');
+    const lyricsView = document.getElementById('fs-lyrics-view');
+    if (lyricsView) lyricsView.classList.add('active');
+    if (state.currentTrack) loadTrackLyrics(state.currentTrack);
+  };
+
   function renderLyricsDrawer() {
     const track = state.currentTrack || (window.playbarController && typeof window.playbarController.getState === 'function' && window.playbarController.getState().currentTrack);
     if (track) {

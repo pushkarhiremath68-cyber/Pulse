@@ -144,7 +144,6 @@
   </style>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <!-- Pulse High-Fidelity Audio Engine & Gemini AI Music Suite -->
-  <script type="module" src="./src/audioEngine.js"></script>
   </head>
 <body>
 <!-- Splash Screen Disabled Temporarily for Direct Interactive Load -->
@@ -250,8 +249,8 @@
 
         <div class="search-box-container">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          <input type="text" id="global-search-input" placeholder="Search any song (English, Hindi, Spanish, Punjabi, K-Pop)..." autocomplete="off">
-          <button id="clear-search-btn" class="clear-search hidden"><i class="fa-solid fa-xmark"></i></button>
+          <input type="text" id="global-search-input" placeholder="Search any song (English, Hindi, Spanish, Punjabi, K-Pop)..." autocomplete="off" oninput="window.executeSearch(this.value, true)">
+          <button id="clear-search-btn" class="clear-search hidden" onclick="const i=document.getElementById('global-search-input'); if(i) i.value=''; window.executeSearch('', false);"><i class="fa-solid fa-xmark"></i></button><i class="fa-solid fa-xmark"></i></button>
         </div>
 
         <div class="header-actions">
@@ -2374,7 +2373,7 @@
       </div>
 
       <button id="btn-download-song" class="btn-player-icon" title="Download Song (Offline)" onclick="window.downloadSong()"><i class="fa-solid fa-arrow-down-to-line"></i></button>
-      <button id="btn-toggle-lyrics" class="btn-player-icon" title="Lyrics"><i class="fa-solid fa-quote-right"></i></button>
+      <button id="btn-toggle-lyrics" class="btn-player-icon" title="View Lyrics" onclick="window.openLyricsForCurrentTrack()"><i class="fa-solid fa-quote-right"></i></button><i class="fa-solid fa-quote-right"></i></button>
       <button id="btn-toggle-queue" class="btn-player-icon" title="Play Queue"><i class="fa-solid fa-list-ul"></i></button>
       
       <div class="volume-container">
@@ -2558,11 +2557,6 @@
       });
     }
   </script>
-  <script type="module" src="./src/lyricsService.js?v=3.0.0-clean"></script>
-  <script type="module" src="./src/catalogService.js?v=3.0.0-clean"></script>
-  <script type="module" src="./src/musicService.js?v=3.0.0-clean"></script>
-  <script type="module" src="./src/playbarController.js?v=3.0.0-clean"></script>
-  <script type="module" src="./src/visualizer.js?v=3.0.0-clean"></script>
-  <script type="module" src="./src/main.js?v=3.0.0-clean"></script>
+    <script type="module" src="./src/main.js"></script>
 </body>
 </html>
