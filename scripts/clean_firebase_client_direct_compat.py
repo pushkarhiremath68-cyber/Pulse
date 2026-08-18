@@ -1,4 +1,6 @@
-/**
+import re
+
+firebase_clean = """/**
  * Pulse Music - Google Cloud & Firebase Engine
  * Project: pulse-music-app-68 (845940809877)
  * Uses window.firebase compat SDK loaded synchronously in <head>
@@ -143,3 +145,9 @@ if (typeof window !== 'undefined') {
     onAuthStateChanged: onAuthStateChangedListener
   };
 }
+"""
+
+with open('src/firebaseClient.js', 'w', encoding='utf-8') as f:
+    f.write(firebase_clean)
+
+print("[OK] Rewrote src/firebaseClient.js with clean direct compat SDK")
