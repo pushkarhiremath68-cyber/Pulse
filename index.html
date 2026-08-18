@@ -521,6 +521,7 @@
 
       <!-- Right: Action Buttons -->
       <div class="player-right">
+        <button class="btn-player-icon" id="btn-player-lyrics" onclick="window.toggleLyricsDrawer()" title="Show Lyrics" style="color: #c084fc;"><i class="fa-solid fa-microphone-lines"></i></button>
         <button class="btn-player-icon" onclick="window.PulsePlaybar.toggleFullscreen(true)" title="Fullscreen Mode"><i class="fa-solid fa-expand"></i></button>
         <button class="btn-player-icon" onclick="window.openDownloadModal()" title="Install App"><i class="fa-solid fa-download"></i></button>
       </div>
@@ -701,6 +702,27 @@
       </div>
 
       <div id="gemini-dj-output"></div>
+    </div>
+  </div>
+
+  
+  <!-- FLOATING LYRICS DRAWER MODAL -->
+  <div id="lyrics-drawer-modal" class="modal-overlay hidden">
+    <div class="modal-content lyrics-modal-box" style="max-width: 580px; width: 100%; max-height: 85vh; background: #0c0e17; border: 1px solid rgba(168,85,247,0.35); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; box-shadow: 0 24px 60px rgba(0,0,0,0.85); backdrop-filter: blur(20px);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-glass);">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(168,85,247,0.2); display: flex; align-items: center; justify-content: center; color: #c084fc; font-size: 1.2rem;">
+            <i class="fa-solid fa-microphone-lines"></i>
+          </div>
+          <div>
+            <h3 id="lyrics-drawer-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">Live Lyrics</h3>
+            <p id="lyrics-drawer-artist" style="font-size: 0.8rem; color: #c084fc; margin: 0;">Pulse Karaoke</p>
+          </div>
+        </div>
+        <button class="btn-icon-small" onclick="window.closeLyricsDrawer()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div id="lyrics-drawer-content" style="flex: 1; overflow-y: auto; padding: 0.5rem 1rem; max-height: calc(85vh - 120px);"></div>
     </div>
   </div>
 
