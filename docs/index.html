@@ -328,6 +328,34 @@
           </div>
         </section>
 
+        <!-- TOP CATALOG GENRE FILTER BAR (CHIP SELECTOR) -->
+        <div class="catalog-filter-chip-bar" id="catalog-chip-bar">
+          <button class="chip-btn active" data-category="all" onclick="window.selectCatalogCategory('all', this)">
+            <i class="fa-solid fa-sparkles"></i> All Genres
+          </button>
+          <button class="chip-btn" data-category="trending" onclick="window.selectCatalogCategory('trending', this)">
+            <i class="fa-solid fa-fire" style="color:#f97316;"></i> Trending
+          </button>
+          <button class="chip-btn" data-category="hindi" onclick="window.selectCatalogCategory('hindi', this)">
+            <i class="fa-solid fa-compact-disc" style="color:#ec4899;"></i> Hindi & Desi
+          </button>
+          <button class="chip-btn" data-category="pop" onclick="window.selectCatalogCategory('pop', this)">
+            <i class="fa-solid fa-earth-americas" style="color:#3b82f6;"></i> English Pop
+          </button>
+          <button class="chip-btn" data-category="electronic" onclick="window.selectCatalogCategory('electronic', this)">
+            <i class="fa-solid fa-bolt-lightning" style="color:#a855f7;"></i> EDM & Dance
+          </button>
+          <button class="chip-btn" data-category="lofi" onclick="window.selectCatalogCategory('lofi', this)">
+            <i class="fa-solid fa-headphones-simple" style="color:#10b981;"></i> Lo-Fi Chill
+          </button>
+          <button class="chip-btn" data-category="rock" onclick="window.selectCatalogCategory('rock', this)">
+            <i class="fa-solid fa-guitar" style="color:#ef4444;"></i> Rock & Indie
+          </button>
+          <button class="chip-btn" data-category="ambient" onclick="window.selectCatalogCategory('ambient', this)">
+            <i class="fa-solid fa-film" style="color:#06b6d4;"></i> Ambient & Score
+          </button>
+        </div>
+
         <!-- DYNAMIC RECENTLY PLAYED SECTION -->
         <section class="music-section hidden" id="section-recently-played">
           <div class="section-header">
@@ -337,60 +365,10 @@
           <div id="grid-recently-played" class="music-cards-grid"></div>
         </section>
 
-        <!-- SECTION 1: TRENDING WORLDWIDE (JAMENDO & GLOBAL CHARTBUSTERS) -->
-        <section class="music-section" id="section-trending">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-fire text-accent"></i> Trending Worldwide</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Trending Hits')">Explore More</button>
-          </div>
-          <div id="grid-trending" class="music-cards-grid">
-            <!-- Populated dynamically via JS -->
-          </div>
-        </section>
-
-        <!-- SECTION 2: BOLLYWOOD & HINDI HITS -->
-        <section class="music-section" id="section-hindi-hits">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-compact-disc text-accent"></i> Bollywood & Hindi Hits</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Arijit Singh Hindi')">Explore Hindi</button>
-          </div>
-          <div id="grid-hindi-hits" class="music-cards-grid">
-            <!-- Populated dynamically via JS -->
-          </div>
-        </section>
-
-        <!-- SECTION 3: LO-FI, ELECTRONIC & CHILLOUT (AUDIUS & JAMENDO) -->
-        <section class="music-section" id="section-electronic">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-headphones text-accent"></i> Lo-Fi Chill & Electronic</h3>
-            <button class="see-all-link" onclick="window.executeSearch('lofi chillout')">Explore Chill</button>
-          </div>
-          <div id="grid-electronic" class="music-cards-grid">
-            <!-- Populated dynamically via JS -->
-          </div>
-        </section>
-
-        <!-- SECTION 4: PUNJABI TOP CHARTBUSTERS -->
-        <section class="music-section" id="section-punjabi">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-guitar text-accent"></i> Punjabi Chartbusters</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Diljit Dosanjh Punjabi')">Explore Punjabi</button>
-          </div>
-          <div id="grid-punjabi" class="music-cards-grid">
-            <!-- Populated dynamically via JS -->
-          </div>
-        </section>
-
-        <!-- SECTION 5: GLOBAL POP & ROCK -->
-        <section class="music-section" id="section-global-pop">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-globe text-accent"></i> Global Pop & Indie Hits</h3>
-            <button class="see-all-link" onclick="window.executeSearch('Global Pop Hits')">Explore Pop</button>
-          </div>
-          <div id="grid-global-pop" class="music-cards-grid">
-            <!-- Populated dynamically via JS -->
-          </div>
-        </section>
+        <!-- DYNAMIC MULTI-CATEGORY CATALOG CONTAINER (HORIZONTAL ROWS WITH SEE ALL) -->
+        <div id="catalog-categories-container">
+          <!-- Dynamically populated by catalogService & main.js -->
+        </div>
       </div>
 
       <!-- VIEW 2: SEARCH / RESULTS VIEW -->
@@ -473,7 +451,82 @@
         </div>
       </div>
 
-      <!-- VIEW 6: ADMIN UPLOAD & CATALOG STUDIO (RESTRICTED ADMIN ACCESS) -->
+      <!-- VIEW 6: DEDICATED GENRE / CATEGORY GRID VIEW -->
+      <div id="view-genre-grid" class="app-view">
+        <div class="genre-grid-header-banner">
+          <button type="button" class="btn-back-link" onclick="window.switchView('home')">
+            <i class="fa-solid fa-arrow-left"></i> Back to Discovery
+          </button>
+          <div class="genre-header-info">
+            <div class="genre-header-badge" id="genre-view-icon-wrap">
+              <i id="genre-view-icon" class="fa-solid fa-compact-disc"></i>
+            </div>
+            <div>
+              <div class="genre-tag-pill" id="genre-view-tag">GENRE DISCOVERY</div>
+              <h1 id="genre-view-title" class="genre-title">Genre Category</h1>
+              <p id="genre-view-subtitle" class="genre-subtitle">Explore top tracks in this category</p>
+            </div>
+          </div>
+          <div class="genre-actions-row">
+            <button class="btn-primary-play" onclick="window.playGenreTracks(false)">
+              <i class="fa-solid fa-play"></i> Play All
+            </button>
+            <button class="btn-secondary-action" onclick="window.playGenreTracks(true)">
+              <i class="fa-solid fa-shuffle"></i> Shuffle
+            </button>
+            <span id="genre-view-count" class="genre-count-badge">0 songs</span>
+          </div>
+        </div>
+
+        <div id="genre-grid-tracks-container" class="music-cards-grid" style="margin-top: 1.5rem;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- VIEW 7: ARTIST PROFILE & DISCOGRAPHY -->
+      <div id="view-artist-profile" class="app-view">
+        <div class="artist-profile-hero" id="artist-profile-hero">
+          <button type="button" class="btn-back-link-glass" onclick="window.goBackOrHome()">
+            <i class="fa-solid fa-arrow-left"></i> Back
+          </button>
+          <div class="artist-hero-content">
+            <div class="artist-avatar-wrapper">
+              <img id="artist-profile-avatar" src="./pulse-logo.png" alt="Artist Avatar" class="artist-hero-avatar">
+              <div class="artist-verified-badge" title="Verified Artist"><i class="fa-solid fa-circle-check"></i></div>
+            </div>
+            <div class="artist-hero-details">
+              <span class="artist-tag-pill"><i class="fa-solid fa-microphone-lines"></i> Verified Artist</span>
+              <h1 id="artist-profile-name" class="artist-hero-name">Artist Name</h1>
+              <div class="artist-stats-row">
+                <span id="artist-profile-genres" class="artist-stat-badge">Bollywood, Indie</span>
+                <span class="artist-stat-sep">•</span>
+                <span id="artist-profile-track-count" class="artist-stat-text">12 Songs</span>
+                <span class="artist-stat-sep">•</span>
+                <span id="artist-profile-plays" class="artist-stat-text">1.2M Total Listens</span>
+              </div>
+              <div class="artist-action-buttons">
+                <button class="btn-primary-play" onclick="window.playCurrentArtistTracks(false)">
+                  <i class="fa-solid fa-play"></i> Play All
+                </button>
+                <button class="btn-secondary-action" onclick="window.playCurrentArtistTracks(true)">
+                  <i class="fa-solid fa-shuffle"></i> Shuffle
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="artist-discography-section" style="margin-top: 2rem;">
+          <div class="section-header">
+            <h3><i class="fa-solid fa-fire text-accent"></i> Popular Tracks & Discography</h3>
+          </div>
+          <div id="artist-popular-tracks-list" class="tracks-list-container">
+            <!-- Popular tracks rows -->
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 8: ADMIN UPLOAD & CATALOG STUDIO (RESTRICTED ADMIN ACCESS) -->
       <div id="view-admin-upload" class="app-view">
         
         <!-- ADMIN AUTHENTICATION GATE (Shown if not yet unlocked) -->
@@ -1764,6 +1817,7 @@
       });
     }
   </script>
+  <script type="module" src="./src/catalogService.js?v=3.0.0-clean"></script>
   <script type="module" src="./src/musicService.js?v=3.0.0-clean"></script>
   <script type="module" src="./src/playbarController.js?v=3.0.0-clean"></script>
   <script type="module" src="./src/visualizer.js?v=3.0.0-clean"></script>

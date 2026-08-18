@@ -1246,7 +1246,7 @@
     }
 
     const title = track.title || track.name || 'Unknown Track';
-    const cover = track.cover || track.coverArt || './pulse-logo.png';
+    const cover = track.cover || track.coverUrl || track.coverArt || (window.generateTrackCover ? window.generateTrackCover(title, track.artist) : './pulse-logo.png');
     const artist = track.artist || 'Unknown Artist';
 
     const isCurrent = state.currentTrack && state.currentTrack.id === track.id;
@@ -1263,6 +1263,7 @@
 
     const safeTitleEsc = (title || 'Track').replace(/'/g, "\\'");
     const safeArtistEsc = (artist || 'Artist').replace(/'/g, "\\'");
+    const isPreviewing = window.catalogService && window.catalogService.getActivePreviewTrackId() === track.id;
 
     return `
       <div class="music-card ${isPlayingThis ? 'playing' : ''}" data-id="${track.id}" onclick="window.playSpecificTrack('${track.id}')">
@@ -1282,10 +1283,13 @@
         </div>
         <div class="card-info">
           <span class="card-title" title="${title}">${title}</span>
-          <span class="card-artist" title="Explore songs by ${artist}" onclick="event.stopPropagation(); window.executeSearch('${safeArtistEsc}')" style="cursor: pointer;">${artist}</span>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem;">
-            <button class="card-lyrics-btn" title="View Synchronized Lyrics Preview" onclick="event.stopPropagation(); window.openLyricsForTrack('${track.id}')">
-              <i class="fa-solid fa-microphone-lines"></i> Lyrics Preview
+          <span class="card-artist artist-clickable-link" title="View Artist Profile: ${artist}" onclick="event.stopPropagation(); window.openArtistProfile('${safeArtistEsc}')">${artist}</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; gap: 0.4rem;">
+            <button class="btn-snippet-preview ${isPreviewing ? 'previewing' : ''}" title="30s Audio Preview" onclick="event.stopPropagation(); window.previewTrackSnippet('${track.id}')">
+              <i class="fa-solid fa-headphones"></i> 30s
+            </button>
+            <button class="card-lyrics-btn" title="Lyrics Preview" onclick="event.stopPropagation(); window.openLyricsForTrack('${track.id}')" style="margin-left: auto;">
+              <i class="fa-solid fa-microphone-lines"></i>
             </button>
             <span class="card-duration" style="position: static; font-size: 0.72rem; color: var(--text-muted);">${durationStr || '3:30'}</span>
           </div>
@@ -1381,7 +1385,7 @@
     const isLiked = state.likedTracks.some(t => t.id === track.id);
 
     const title = track.title || track.name || 'Unknown Track';
-    const cover = track.cover || track.coverArt || (window.generateTrackCover ? window.generateTrackCover(title, track.artist) : './pulse-logo.png');
+    const cover = track.cover || track.coverUrl || track.coverArt || (window.generateTrackCover ? window.generateTrackCover(title, track.artist) : './pulse-logo.png');
     const artist = track.artist || 'Unknown Artist';
     const safeTitleEsc = (title || 'Track').replace(/'/g, "\\'");
     const safeArtistEsc = (artist || 'Artist').replace(/'/g, "\\'");
@@ -1400,10 +1404,15 @@
           <img src="${cover}" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;" onerror="if(window.generateTrackCover){this.src=window.generateTrackCover('${safeTitleEsc}','${safeArtistEsc}');}">
           <div style="min-width: 0;">
             <div style="font-weight: 700; color: #fff; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${title}</div>
-            <div style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${artist} • ${track.album || 'Single'}</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+              <span class="artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('${safeArtistEsc}')">${artist}</span> • ${track.album || 'Single'}
+            </div>
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 0.85rem;">
+          <button class="btn-snippet-preview" title="30s Audio Preview" onclick="event.stopPropagation(); window.previewTrackSnippet('${track.id}')">
+            <i class="fa-solid fa-headphones"></i> 30s
+          </button>
           <span style="font-size: 0.8rem; color: var(--text-muted);">${durationStr || '3:30'}</span>
           <button class="btn-lyrics-pill" title="Lyrics Preview" onclick="event.stopPropagation(); window.openLyricsForTrack('${track.id}')">
             <i class="fa-solid fa-microphone-lines"></i> Lyrics
@@ -1438,44 +1447,21 @@
     }
   }
 
-  const FEATURED_HINDI_HITS = [
-    { id: 'hindi-1', title: 'Kesariya', artist: 'Arijit Singh, Pritam', album: 'Brahmastra', duration: '4:28', category: 'bollywood', language: 'Hindi' },
-    { id: 'hindi-2', title: 'Apna Bana Le', artist: 'Arijit Singh, Sachin-Jigar', album: 'Bhediya', duration: '4:21', category: 'bollywood', language: 'Hindi' },
-    { id: 'hindi-3', title: 'Tum Se Hi', artist: 'Mohit Chauhan, Pritam', album: 'Jab We Met', duration: '5:21', category: 'bollywood', language: 'Hindi' },
-    { id: 'hindi-4', title: 'Chaleya', artist: 'Arijit Singh, Shilpa Rao, Anirudh', album: 'Jawan', duration: '3:20', category: 'bollywood', language: 'Hindi' },
-    { id: 'hindi-5', title: 'Raataan Lambiyan', artist: 'Jubin Nautiyal, Asees Kaur', album: 'Shershaah', duration: '3:50', category: 'bollywood', language: 'Hindi' },
-    { id: 'hindi-6', title: 'Tum Hi Ho', artist: 'Arijit Singh, Mithoon', album: 'Aashiqui 2', duration: '4:22', category: 'bollywood', language: 'Hindi' },
-    { id: 'hindi-7', title: 'Heeriye', artist: 'Jasleen Royal, Arijit Singh', album: 'Heeriye', duration: '3:15', category: 'bollywood', language: 'Hindi' },
-    { id: 'hindi-8', title: 'Shayad', artist: 'Arijit Singh, Pritam', album: 'Love Aaj Kal', duration: '4:07', category: 'bollywood', language: 'Hindi' }
-  ];
-
-  const FEATURED_PUNJABI_HITS = [
-    { id: 'punjabi-1', title: 'Lover', artist: 'Diljit Dosanjh', album: 'MoonChild Era', duration: '3:12', category: 'punjabi', language: 'Punjabi' },
-    { id: 'punjabi-2', title: 'Softly', artist: 'Karan Aujla, Ikky', album: 'Making Memories', duration: '2:35', category: 'punjabi', language: 'Punjabi' },
-    { id: 'punjabi-3', title: 'Excuses', artist: 'AP Dhillon, Gurinder Gill', album: 'Excuses', duration: '2:56', category: 'punjabi', language: 'Punjabi' },
-    { id: 'punjabi-4', title: 'Brown Munde', artist: 'AP Dhillon, Gurinder Gill, Shinda Kahlon', album: 'Brown Munde', duration: '4:27', category: 'punjabi', language: 'Punjabi' },
-    { id: 'punjabi-5', title: '295', artist: 'Sidhu Moose Wala', album: 'Moosetape', duration: '4:30', category: 'punjabi', language: 'Punjabi' },
-    { id: 'punjabi-6', title: 'Born to Shine', artist: 'Diljit Dosanjh', album: 'G.O.A.T.', duration: '3:33', category: 'punjabi', language: 'Punjabi' },
-    { id: 'punjabi-7', title: 'White Brown Black', artist: 'Karan Aujla, Avvy Sra', album: 'White Brown Black', duration: '3:00', category: 'punjabi', language: 'Punjabi' },
-    { id: 'punjabi-8', title: 'Mi Amor', artist: 'Sharn, 40k, The Paul', album: 'Mi Amor', duration: '3:24', category: 'punjabi', language: 'Punjabi' }
-  ];
-
-  const FEATURED_GLOBAL_HITS = [
-    { id: 'global-1', title: 'Blinding Lights', artist: 'The Weeknd', album: 'After Hours', duration: '3:20', category: 'pop', language: 'English' },
-    { id: 'global-2', title: 'Starboy', artist: 'The Weeknd, Daft Punk', album: 'Starboy', duration: '3:50', category: 'pop', language: 'English' },
-    { id: 'global-3', title: 'Shape of You', artist: 'Ed Sheeran', album: '÷ (Divide)', duration: '3:53', category: 'pop', language: 'English' },
-    { id: 'global-4', title: 'Levitating', artist: 'Dua Lipa', album: 'Future Nostalgia', duration: '3:23', category: 'pop', language: 'English' },
-    { id: 'global-5', title: 'Faded', artist: 'Alan Walker', album: 'Different World', duration: '3:32', category: 'pop', language: 'English' },
-    { id: 'global-6', title: 'As It Was', artist: 'Harry Styles', album: "Harry's House", duration: '2:47', category: 'pop', language: 'English' },
-    { id: 'global-7', title: 'Cruel Summer', artist: 'Taylor Swift', album: 'Lover', duration: '2:58', category: 'pop', language: 'English' },
-    { id: 'global-8', title: 'Believer', artist: 'Imagine Dragons', album: 'Evolve', duration: '3:24', category: 'rock', language: 'English' }
-  ];
+  // =========================================================================
+  // MULTI-CATEGORY CATALOG & ARTIST PROFILE ENGINE
+  // =========================================================================
+  let currentActiveGenreCategory = 'all';
+  let currentViewingArtist = null;
+  let currentGenreTracks = [];
 
   function renderAllHomeGrids() {
-    if (!window.musicService) return;
+    renderCatalogUI();
+  }
+  window.renderAllHomeGrids = renderAllHomeGrids;
 
+  function renderCatalogUI() {
     // 1. Recently Played
-    const history = window.musicService.getRecentlyPlayed();
+    const history = window.musicService ? window.musicService.getRecentlyPlayed() : [];
     const sectionRecentlyPlayed = document.getElementById('section-recently-played');
     const gridRecentlyPlayed = document.getElementById('grid-recently-played');
     if (sectionRecentlyPlayed && gridRecentlyPlayed) {
@@ -1487,44 +1473,6 @@
       }
     }
 
-    // 2. Trending Worldwide (Jamendo + Audius discovery tracks)
-    const gridTrending = document.getElementById('grid-trending');
-    if (gridTrending) {
-      const registryTracks = Object.values(window.TRACKS_REGISTRY || {});
-      const trendingTracks = registryTracks.length > 0 ? registryTracks.slice(0, 12) : FEATURED_GLOBAL_HITS;
-      renderGridContent(gridTrending, trendingTracks);
-    }
-
-    // 3. Bollywood & Hindi Hits
-    const gridHindiHits = document.getElementById('grid-hindi-hits');
-    if (gridHindiHits) {
-      renderGridContent(gridHindiHits, FEATURED_HINDI_HITS);
-    }
-
-    // 4. Lo-Fi & Electronic (Jamendo & Audius electronic/chillout tracks)
-    const gridElectronic = document.getElementById('grid-electronic');
-    if (gridElectronic) {
-      const registryTracks = Object.values(window.TRACKS_REGISTRY || {});
-      const chillTracks = registryTracks.filter(t => (t.category || '').includes('lofi') || (t.category || '').includes('chill') || (t.category || '').includes('electronic') || (t.category || '').includes('ambient'));
-      const displayChill = chillTracks.length >= 4 ? chillTracks.slice(0, 8) : registryTracks.slice(6, 14);
-      renderGridContent(gridElectronic, displayChill.length > 0 ? displayChill : FEATURED_GLOBAL_HITS);
-    }
-
-    // 5. Punjabi Chartbusters
-    const gridPunjabi = document.getElementById('grid-punjabi');
-    if (gridPunjabi) {
-      renderGridContent(gridPunjabi, FEATURED_PUNJABI_HITS);
-    }
-
-    // 6. Global Pop Hits
-    const gridGlobalPop = document.getElementById('grid-global-pop');
-    if (gridGlobalPop) {
-      renderGridContent(gridGlobalPop, FEATURED_GLOBAL_HITS);
-    }
-  }
-
-  window.loadMoreFromDatabase = async function() {
-    return;
   };
 
   /* ==========================================================================
@@ -5641,7 +5589,9 @@
     try { bindElements(); } catch (e) { console.warn('bindElements notice:', e); }
     try { supabaseClient = getSupabaseClient(); } catch (e) {}
     try {
-      if (window.musicService && typeof window.musicService.initCatalog === 'function') {
+      if (window.catalogService && typeof window.catalogService.initCatalog === 'function') {
+        await window.catalogService.initCatalog();
+      } else if (window.musicService && typeof window.musicService.initCatalog === 'function') {
         await window.musicService.initCatalog();
       }
     } catch (e) { console.warn('initCatalog notice:', e); }
