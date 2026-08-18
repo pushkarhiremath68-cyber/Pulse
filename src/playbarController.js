@@ -804,6 +804,7 @@
   };
 
   window.PulsePlaybar = PulsePlaybar;
+  window.playbarController = PulsePlaybar;
 
   // Auto-init on DOMContentLoaded or immediate if DOM is already ready
   if (document.readyState === 'loading') {
