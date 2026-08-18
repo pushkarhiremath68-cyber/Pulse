@@ -281,12 +281,126 @@ export async function fetchTrendingTracks(limit = 50) {
   return results;
 }
 
+/**
+ * CRITICAL: Resolves the best full-length audio stream at PLAY TIME.
+ * Called by playbarController before playing any track.
+ * Searches Audius & Jamendo live for the actual song to avoid 30s previews and wrong audio.
+ */
+export async function resolveExactTrackStream(track) {
+  if (!track) return '';
+
+  const currentStream = track.streamUrl || '';
+
+  // If it's already an Audius or Jamendo full stream, validate it quickly
+  if (currentStream.includes('audius.co') || currentStream.includes('jamendo.com')) {
+    try {
+      const check = await fetch(currentStream, { method: 'HEAD', signal: AbortSignal.timeout(2000) });
+      if (check.ok) return currentStream;
+    } catch (e) {}
+  }
+
+  const title = (track.title || '').split('(')[0].split('-')[0].trim();
+  const artist = (track.artist || '').split(',')[0].split('&')[0].trim();
+  const searchQ = `${title} ${artist}`.trim();
+
+  if (!searchQ || searchQ.length < 2) return currentStream;
+
+  const encodedQ = encodeURIComponent(searchQ);
+  const titleLower = title.toLowerCase();
+  const artistLower = artist.toLowerCase();
+
+  // 1. Try Audius - FULL LENGTH decentralized streams (no 30s limit)
+  try {
+    const node = getActiveAudiusNode();
+    const url = `${node}/v1/tracks/search?query=${encodedQ}&app_name=${AUDIUS_APP_NAME}&limit=10`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.data && Array.isArray(json.data) && json.data.length > 0) {
+        // Score each result by title/artist match quality and duration
+        let bestMatch = null;
+        let bestScore = -1;
+
+        for (const t of json.data) {
+          const tTitle = (t.title || '').toLowerCase();
+          const tArtist = (t.user?.name || '').toLowerCase();
+          const dur = t.duration || 0;
+          let score = 0;
+
+          // Title match scoring
+          if (tTitle.includes(titleLower) || titleLower.includes(tTitle)) score += 50;
+          if (tTitle === titleLower) score += 30;
+
+          // Artist match scoring
+          if (tArtist.includes(artistLower) || artistLower.includes(tArtist)) score += 40;
+
+          // Prefer tracks > 60 seconds (full songs, not clips)
+          if (dur > 60) score += 20;
+          if (dur > 120) score += 10;
+          if (dur > 180) score += 5;
+
+          // Penalize very short tracks (likely samples/clips)
+          if (dur < 30) score -= 50;
+
+          // Penalize tracks with "remix", "cover", "mashup" etc. if original is wanted
+          const lower = tTitle.toLowerCase();
+          if (lower.includes('remix') || lower.includes('cover') || lower.includes('mashup') || lower.includes('slowed') || lower.includes('reverb') || lower.includes('lofi')) {
+            score -= 15;
+          }
+
+          if (score > bestScore) {
+            bestScore = score;
+            bestMatch = t;
+          }
+        }
+
+        if (bestMatch && bestScore >= 30) {
+          const streamUrl = `${node}/v1/tracks/${bestMatch.id}/stream?app_name=${AUDIUS_APP_NAME}`;
+          console.log(`[Pulse Resolve] "${title}" -> Audius FULL: "${bestMatch.title}" by ${bestMatch.user?.name} (${bestMatch.duration}s, score=${bestScore})`);
+          return streamUrl;
+        }
+      }
+    }
+  } catch (e) {
+    rotateAudiusNode();
+  }
+
+  // 2. Try Jamendo - FULL LENGTH 320kbps MP3
+  try {
+    const url = `${JAMENDO_API_BASE}/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=jsonpretty&limit=5&namesearch=${encodedQ}&audioformat=mp32`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.results && Array.isArray(json.results) && json.results.length > 0) {
+        // Find best match
+        for (const t of json.results) {
+          const audio = t.audio || t.audiodownload;
+          const dur = parseInt(t.duration, 10) || 0;
+          if (audio && dur > 60) {
+            console.log(`[Pulse Resolve] "${title}" -> Jamendo FULL: "${t.name}" by ${t.artist_name} (${dur}s)`);
+            return audio;
+          }
+        }
+        // Even short Jamendo is better than 30s iTunes preview
+        const first = json.results[0];
+        const audio = first.audio || first.audiodownload;
+        if (audio) return audio;
+      }
+    }
+  } catch (e) {}
+
+  // 3. Last resort: return whatever stream URL we already have
+  console.log(`[Pulse Resolve] "${title}" -> using existing stream (no full match found)`);
+  return currentStream;
+}
+
 const musicService = {
   searchTracks,
   fetchTrendingTracks,
   normalizeTrack,
   getActiveAudiusNode,
-  rotateAudiusNode
+  rotateAudiusNode,
+  resolveExactTrackStream
 };
 
 if (typeof window !== 'undefined') {
