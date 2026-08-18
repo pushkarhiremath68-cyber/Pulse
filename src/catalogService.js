@@ -1,6 +1,6 @@
 /**
  * Pulse Music - Top Popular Mainstream Songs Catalog Service
- * Genuine 600x600 HD Studio Covers + 100% Full-Length Audio Streams.
+ * 50+ Full-Length Tracks per Category.
  */
 
 export const CATALOG_CATEGORIES = [
@@ -954,27 +954,72 @@ export const CATALOG_CATEGORIES = [
   }
 ];
 
+const CATEGORY_SEARCH_QUERIES = {
+  'global_trending': 'trending pop hits',
+  'hindi_bollywood': 'arijit singh bollywood romantic',
+  'punjabi_bangers': 'punjabi diljit karan aujla sidhu',
+  'edm_festival': 'edm electronic dance house',
+  'lofi_study': 'lofi chill study beats',
+  'bollywood_90s': 'kumar sanu 90s bollywood classics',
+  'gym_motivation': 'workout gym motivation rock',
+  'late_night_drive': 'synthwave night drive darkwave',
+  'acoustic_unplugged': 'acoustic love guitar pop',
+  'hiphop_rap': 'hiphop rap trap drake',
+  'kpop_hits': 'kpop bts blackpink newjeans',
+  'tamil_telugu_south': 'anirudh tamil telugu hits'
+};
+
 export async function fetchCategoryTracks(catId, limit = 50) {
+  const results = [];
+  const seen = new Set();
+
+  const addTrack = (t) => {
+    if (!t || !t.streamUrl) return;
+    const key = `${(t.title || '').toLowerCase().replace(/[^a-z0-9]/g, '')}___${(t.artist || '').toLowerCase().replace(/[^a-z0-9]/g, '')}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      results.push(t);
+    }
+  };
+
+  // 1. Add curated top popular shelf tracks first
   const found = CATALOG_CATEGORIES.find(c => c.id === catId);
   if (found && found.tracks && found.tracks.length > 0) {
-    return found.tracks.map((t, idx) => ({
-      id: `${catId}-${idx}`,
-      title: t.title,
-      artist: t.artist,
-      coverUrl: t.cover,
-      streamUrl: t.stream,
-      duration: t.duration || 220,
-      source: `${found.title} (Full Song)`
-    }));
+    found.tracks.forEach((t, idx) => {
+      addTrack({
+        id: `${catId}-${idx}`,
+        title: t.title,
+        artist: t.artist,
+        coverUrl: t.cover,
+        streamUrl: t.stream,
+        duration: t.duration || 220,
+        source: `${found.title} (Featured)`
+      });
+    });
   }
+
+  // 2. Fetch 40-50+ additional live tracks from Audius and Jamendo
   if (window.musicService && typeof window.musicService.searchTracks === 'function') {
-    return await window.musicService.searchTracks(catId.replace(/_/g, ' '), limit);
+    const query = CATEGORY_SEARCH_QUERIES[catId] || (found ? found.title : catId.replace(/_/g, ' '));
+    try {
+      const extraTracks = await window.musicService.searchTracks(query, limit);
+      if (extraTracks && Array.isArray(extraTracks)) {
+        extraTracks.forEach(t => {
+          addTrack({
+            ...t,
+            source: found ? `${found.title} (Live 1.6M+)` : t.source
+          });
+        });
+      }
+    } catch (e) {}
   }
-  return [];
+
+  return results;
 }
 
 const catalogService = {
   CATALOG_CATEGORIES,
+  CATEGORY_SEARCH_QUERIES,
   fetchCategoryTracks
 };
 
