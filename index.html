@@ -59,12 +59,12 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="brand">
-        <div class="brand-logo" style="width: 42px; height: 42px; min-width: 42px; max-width: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3);">
-          <img src="./pulse-logo.png" alt="Pulse Logo" class="brand-logo-img" style="width: 36px; height: 36px; max-width: 36px; max-height: 36px; object-fit: contain;">
+        <div class="brand-logo" style="width: 40px; height: 40px; min-width: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: rgba(255,0,122,0.1); border: 1px solid rgba(255,0,122,0.3);">
+          <img src="./pulse-logo.png" alt="Pulse Logo" class="brand-logo-img" style="width: 32px; height: 32px; object-fit: contain;">
         </div>
-        <div class="brand-text">
-          <span class="brand-name" style="font-size: 1.4rem; font-weight: 900; letter-spacing: 1px; color: #fff; line-height: 1;">PULSE</span>
-          <span class="brand-creator" style="font-size: 0.68rem; font-weight: 700; color: #c084fc; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 3px;">By Pushkar Hiremath</span>
+        <div class="brand-text" style="display: flex; flex-direction: column;">
+          <span class="brand-name" style="font-size: 1.35rem; font-weight: 800; color: #ffffff; letter-spacing: -0.5px; line-height: 1.1;">Pulse</span>
+          <span class="brand-creator" style="font-size: 0.72rem; font-weight: 600; color: #ff007a; letter-spacing: 0.2px; text-transform: none !important; margin-top: 3px; display: block;">By Pushkar Hiremath</span>
         </div>
       </div>
 
@@ -123,6 +123,14 @@
     <main class="main-content">
       <!-- HEADER BAR -->
       <header class="top-header">
+        <!-- MOBILE BRAND HEADER (Visible on phones) -->
+        <div class="mobile-brand-display">
+          <img src="./pulse-logo.png" alt="Pulse Logo" class="mobile-brand-logo">
+          <div class="mobile-brand-text">
+            <span class="mobile-app-name">Pulse</span>
+            <span class="mobile-app-by">By Pushkar Hiremath</span>
+          </div>
+        </div>
         <div class="header-nav-btns">
           <button id="btn-back" class="btn-circle-nav" onclick="window.history.back()"><i class="fa-solid fa-chevron-left"></i></button>
           <button id="btn-forward" class="btn-circle-nav" onclick="window.history.forward()"><i class="fa-solid fa-chevron-right"></i></button>
@@ -2285,6 +2293,27 @@
   </div>
 
   
+
+  
+  <!-- MOBILE BOTTOM NAVIGATION (Phones & Small Tablets) -->
+  <nav class="mobile-bottom-nav">
+    <a href="javascript:void(0)" class="mobile-nav-link active" data-view="home" onclick="window.switchView('home')">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+    <a href="javascript:void(0)" class="mobile-nav-link" data-view="search-view" onclick="window.switchView('search-view')">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Search</span>
+    </a>
+    <a href="javascript:void(0)" class="mobile-nav-link" onclick="window.openGeminiDJModal()" style="color: #ff007a;">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+      <span>Gemini DJ</span>
+    </a>
+    <a href="javascript:void(0)" class="mobile-nav-link" data-view="library" onclick="window.switchView('library')">
+      <i class="fa-solid fa-bookmark"></i>
+      <span>Library</span>
+    </a>
+  </nav>
 
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
