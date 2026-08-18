@@ -6347,3 +6347,185 @@ textarea,
 a {
   pointer-events: auto !important;
 }
+
+/* ==========================================================================
+   STATE-OF-THE-ART DESIGN & EQUALIZER ACCENTS
+   ========================================================================== */
+
+/* Cyber Accent Glows & Glassmorphism */
+:root {
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #06b6d4;
+  --accent-pink: #ec4899;
+  --accent-gradient: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+  --bg-base: #07080e;
+  --bg-surface: rgba(18, 20, 32, 0.85);
+  --bg-glass-card: rgba(255, 255, 255, 0.035);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --shadow-glow: 0 8px 32px rgba(139, 92, 246, 0.25);
+}
+
+/* Card Hover Micro-Interactions */
+.music-card {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 18px;
+  padding: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.music-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 85, 247, 0.25);
+}
+
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  background: #121420;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.music-card:hover .card-image {
+  transform: scale(1.08);
+}
+
+/* Card Play Overlay with Glow */
+.card-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.music-card:hover .card-play-overlay {
+  opacity: 1;
+}
+
+.btn-card-play {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
+  transform: translateY(8px);
+  transition: transform 0.25s ease;
+}
+
+.music-card:hover .btn-card-play {
+  transform: translateY(0);
+}
+
+/* Live Equalizer Animation */
+.equalizer-badge {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  margin-left: 6px;
+}
+
+.eq-bar {
+  width: 3px;
+  background: var(--accent-primary);
+  border-radius: 2px;
+  animation: eqBounce 1s ease-in-out infinite alternate;
+}
+.eq-bar:nth-child(1) { height: 40%; animation-delay: 0s; }
+.eq-bar:nth-child(2) { height: 100%; animation-delay: 0.2s; }
+.eq-bar:nth-child(3) { height: 70%; animation-delay: 0.4s; }
+.eq-bar:nth-child(4) { height: 90%; animation-delay: 0.1s; }
+
+@keyframes eqBounce {
+  0% { height: 20%; }
+  100% { height: 100%; }
+}
+
+/* Category Filter Chips */
+.chip-filter {
+  padding: 0.55rem 1.1rem;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.chip-filter:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.chip-filter.active {
+  background: var(--accent-gradient);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.4);
+}
+
+/* Floating Bottom Player Bar */
+.bottom-player-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: rgba(11, 13, 20, 0.94);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 1000;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.mini-top-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
+  transition: width 0.1s linear;
+}
+
+/* Rotating Vinyl Record on Player */
+.player-thumb.spinning {
+  animation: vinylSpin 15s linear infinite;
+}
+
+@keyframes vinylSpin {
+  100% { transform: rotate(360deg); }
+}
