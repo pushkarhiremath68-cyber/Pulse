@@ -1,7 +1,7 @@
 /**
- * Pulse Music - 100% Full-Length Audio Service
- * Powered by Audius 1.6M+ Network and Jamendo 600k+ Full MP3 Streams.
- * Zero 30-second preview limits - every track plays full duration from start to finish.
+ * Pulse Music - 1.6M+ Universal Audius & Jamendo Live Music Engine
+ * Powered by Audius Decentralized Network (1.6M+ songs) and Jamendo API (600,000+ songs).
+ * Delivers full-length, streamable music across every search and shelf.
  */
 
 const JAMENDO_CLIENT_ID = '23b33f2a';
@@ -25,8 +25,38 @@ export function rotateAudiusNode() {
   return getActiveAudiusNode();
 }
 
+export function normalizeTrack(raw, source = 'Pulse') {
+  if (!raw) return null;
+  const safeId = raw.id || `track-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+  const safeTitle = raw.title || raw.name || raw.trackName || 'Untitled Track';
+  const safeArtist = raw.artist || raw.artist_name || raw.artistName || (raw.user && raw.user.name) || 'Pulse Artist';
+  const safeAlbum = raw.album || raw.album_name || raw.collectionName || 'Full Release';
+  
+  let cover = raw.coverUrl || raw.cover || raw.image || raw.album_image;
+  if (!cover && raw.artwork) {
+    cover = raw.artwork['480x480'] || raw.artwork['1000x1000'] || raw.artwork['150x150'];
+  }
+  if (!cover) cover = './pulse-logo.png';
+
+  const stream = raw.streamUrl || raw.audio || raw.audiodownload || '';
+  const duration = typeof raw.duration === 'number' ? raw.duration : (parseInt(raw.duration, 10) || 210);
+
+  return {
+    id: safeId,
+    title: safeTitle,
+    artist: safeArtist,
+    album: safeAlbum,
+    coverUrl: cover,
+    duration: duration,
+    streamUrl: stream,
+    previewUrl: stream,
+    genre: raw.genre || raw.primaryGenreName || 'Music',
+    source: source
+  };
+}
+
 /**
- * Searches across 1.6M+ Audius and Jamendo Full Tracks
+ * Searches across 1.6M+ Audius and Jamendo Tracks
  */
 export async function searchTracks(query, limit = 50) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
@@ -46,7 +76,7 @@ export async function searchTracks(query, limit = 50) {
     }
   };
 
-  // 1. Audius 1.6M+ Decentralized Full-Length Network
+  // 1. Audius 1.6M+ Search
   try {
     const node = getActiveAudiusNode();
     const url = `${node}/v1/tracks/search?query=${encodedQ}&app_name=${AUDIUS_APP_NAME}&limit=${Math.min(limit, 30)}`;
@@ -56,18 +86,15 @@ export async function searchTracks(query, limit = 50) {
       if (json.data && Array.isArray(json.data)) {
         json.data.forEach(t => {
           const cover = t.artwork ? (t.artwork['480x480'] || t.artwork['150x150']) : './pulse-logo.png';
-          addUnique({
+          addUnique(normalizeTrack({
             id: `audius-${t.id}`,
             title: t.title,
-            artist: t.user?.name || 'Audius Artist',
-            album: 'Audius Full Stream',
-            coverUrl: cover,
+            artist: t.user?.name,
+            artwork: t.artwork,
             duration: t.duration || 210,
             streamUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
-            previewUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
-            genre: t.genre || 'Full Stream',
-            source: 'Audius 1.6M+ (Full Song)'
-          });
+            genre: t.genre || 'Stream'
+          }, 'Audius (Full Song)'));
         });
       }
     }
@@ -75,7 +102,7 @@ export async function searchTracks(query, limit = 50) {
     rotateAudiusNode();
   }
 
-  // 2. Jamendo 600k+ Full MP3 Library
+  // 2. Jamendo Name Search
   try {
     const url = `${JAMENDO_API_BASE}/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=jsonpretty&limit=25&namesearch=${encodedQ}&audioformat=mp32`;
     const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
@@ -85,18 +112,42 @@ export async function searchTracks(query, limit = 50) {
         json.results.forEach(t => {
           const audio = t.audio || t.audiodownload;
           if (audio) {
-            addUnique({
+            addUnique(normalizeTrack({
               id: `jamendo-${t.id}`,
               title: t.name,
-              artist: t.artist_name || 'Jamendo Artist',
-              album: t.album_name || 'Full Release',
-              coverUrl: t.image || t.album_image || './pulse-logo.png',
-              duration: parseInt(t.duration, 10) || 220,
-              streamUrl: audio,
-              previewUrl: audio,
-              genre: t.musicinfo?.tags?.genres?.[0] || 'Music',
-              source: 'Jamendo (Full Song)'
-            });
+              artist: t.artist_name,
+              album: t.album_name,
+              image: t.image || t.album_image,
+              duration: parseInt(t.duration, 10) || 210,
+              audio: audio,
+              genre: t.musicinfo?.tags?.genres?.[0]
+            }, 'Jamendo (Full Song)'));
+          }
+        });
+      }
+    }
+  } catch (e) {}
+
+  // 3. Jamendo Tag / Genre Search
+  try {
+    const url = `${JAMENDO_API_BASE}/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=jsonpretty&limit=20&tags=${encodedQ}&audioformat=mp32`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.results && Array.isArray(json.results)) {
+        json.results.forEach(t => {
+          const audio = t.audio || t.audiodownload;
+          if (audio) {
+            addUnique(normalizeTrack({
+              id: `jamendo-${t.id}`,
+              title: t.name,
+              artist: t.artist_name,
+              album: t.album_name,
+              image: t.image || t.album_image,
+              duration: parseInt(t.duration, 10) || 210,
+              audio: audio,
+              genre: t.musicinfo?.tags?.genres?.[0]
+            }, 'Jamendo (Full Song)'));
           }
         });
       }
@@ -107,7 +158,7 @@ export async function searchTracks(query, limit = 50) {
 }
 
 /**
- * Fetches 100% Full-Length Trending Tracks
+ * Fetches Trending Tracks from Audius & Jamendo
  */
 export async function fetchTrendingTracks(limit = 40) {
   const results = [];
@@ -122,7 +173,7 @@ export async function fetchTrendingTracks(limit = 40) {
     }
   };
 
-  // 1. Audius Trending Full Tracks
+  // 1. Audius Trending
   try {
     const node = getActiveAudiusNode();
     const url = `${node}/v1/tracks/trending?app_name=${AUDIUS_APP_NAME}&limit=25`;
@@ -132,18 +183,15 @@ export async function fetchTrendingTracks(limit = 40) {
       if (json.data && Array.isArray(json.data)) {
         json.data.forEach(t => {
           const cover = t.artwork ? (t.artwork['480x480'] || t.artwork['150x150']) : './pulse-logo.png';
-          addUnique({
+          addUnique(normalizeTrack({
             id: `audius-${t.id}`,
             title: t.title,
-            artist: t.user?.name || 'Audius Artist',
-            album: 'Audius Trending',
-            coverUrl: cover,
+            artist: t.user?.name,
+            artwork: t.artwork,
             duration: t.duration || 210,
             streamUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
-            previewUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
-            genre: t.genre || 'Trending',
-            source: 'Audius 1.6M+ (Full Song)'
-          });
+            genre: t.genre
+          }, 'Audius Trending (Full Song)'));
         });
       }
     }
@@ -151,7 +199,7 @@ export async function fetchTrendingTracks(limit = 40) {
     rotateAudiusNode();
   }
 
-  // 2. Jamendo Top Full Tracks
+  // 2. Jamendo Popular
   try {
     const url = `${JAMENDO_API_BASE}/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=jsonpretty&limit=25&order=popularity_total&audioformat=mp32`;
     const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
@@ -161,18 +209,16 @@ export async function fetchTrendingTracks(limit = 40) {
         json.results.forEach(t => {
           const audio = t.audio || t.audiodownload;
           if (audio) {
-            addUnique({
+            addUnique(normalizeTrack({
               id: `jamendo-${t.id}`,
               title: t.name,
               artist: t.artist_name,
-              album: t.album_name || 'Top Release',
-              coverUrl: t.image || t.album_image || './pulse-logo.png',
-              duration: parseInt(t.duration, 10) || 220,
-              streamUrl: audio,
-              previewUrl: audio,
-              genre: t.musicinfo?.tags?.genres?.[0] || 'Popular',
-              source: 'Jamendo (Full Song)'
-            });
+              album: t.album_name,
+              image: t.image,
+              duration: parseInt(t.duration, 10) || 210,
+              audio: audio,
+              genre: t.musicinfo?.tags?.genres?.[0]
+            }, 'Jamendo Top (Full Song)'));
           }
         });
       }
@@ -185,6 +231,7 @@ export async function fetchTrendingTracks(limit = 40) {
 const musicService = {
   searchTracks,
   fetchTrendingTracks,
+  normalizeTrack,
   getActiveAudiusNode,
   rotateAudiusNode
 };
