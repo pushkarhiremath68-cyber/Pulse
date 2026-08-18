@@ -1,14 +1,14 @@
 /**
- * Pulse Music - Spotify Top Charts & 1.6M+ Audius + Jamendo Full Songs Service
+ * Pulse Music - 100% Full Audio Songs Catalog Service
  */
 
 export const CATALOG_CATEGORIES = [
   {
     "id": "spotify_global_top50",
-    "title": "Spotify Global Top 50 Hits",
-    "subtitle": "The most streamed songs in the world right now on Spotify Charts",
-    "icon": "fa-chart-line",
-    "color": "#1db954",
+    "title": "Trending Worldwide Top Hits",
+    "subtitle": "The biggest global chart-toppers dominating Spotify & Billboard right now",
+    "icon": "fa-fire-flame-curved",
+    "color": "#1ed760",
     "tracks": [
       {
         "title": "Starboy (feat. Daft Punk)",
@@ -84,9 +84,9 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_india_top50",
-    "title": "Spotify India Top 50 & Bollywood",
+    "title": "Hindi & Bollywood Chartbusters",
     "subtitle": "India's biggest daily chartbusters, romantic melodies & viral hits",
-    "icon": "fa-fire-flame-curved",
+    "icon": "fa-compact-disc",
     "color": "#ec4899",
     "tracks": [
       {
@@ -163,7 +163,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_punjabi_100",
-    "title": "Spotify Punjabi 100 Hits",
+    "title": "Punjabi & Desi Heat",
     "subtitle": "Daily top Punjabi bangers from Diljit, Karan Aujla, AP Dhillon & Sidhu",
     "icon": "fa-drum",
     "color": "#f59e0b",
@@ -242,7 +242,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_edm_dance",
-    "title": "Spotify Dance & EDM Anthems",
+    "title": "EDM & Festival Dance",
     "subtitle": "Massive festival house, electro drops & club anthems",
     "icon": "fa-bolt-lightning",
     "color": "#a855f7",
@@ -321,7 +321,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_south_superhits",
-    "title": "Spotify South Cinema Superhits",
+    "title": "South Cinema Superhits",
     "subtitle": "Electrifying Tamil, Telugu & South Indian blockbusters",
     "icon": "fa-fire",
     "color": "#f97316",
@@ -400,7 +400,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_kpop_on",
-    "title": "Spotify K-Pop ON! Global",
+    "title": "K-Pop Global Explosion",
     "subtitle": "Global K-Pop sensations from BTS, BLACKPINK, NewJeans & Jungkook",
     "icon": "fa-star",
     "color": "#d946ef",
@@ -479,7 +479,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_90s_nostalgia",
-    "title": "Spotify 90s Bollywood Evergreen",
+    "title": "90s Bollywood Evergreen",
     "subtitle": "Golden era timeless hits from Kumar Sanu, Alka Yagnik & Udit Narayan",
     "icon": "fa-music",
     "color": "#eab308",
@@ -558,7 +558,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_gym_beast",
-    "title": "Spotify Beast Mode Workout",
+    "title": "Gym & Workout Motivation",
     "subtitle": "High-octane gym motivation, heavy bass & adrenaline power",
     "icon": "fa-dumbbell",
     "color": "#ef4444",
@@ -637,7 +637,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_night_pop",
-    "title": "Spotify Late Night Vibes",
+    "title": "Late Night Neon Drive",
     "subtitle": "Moody synthpop, dark R&B and atmospheric midnight driving beats",
     "icon": "fa-moon",
     "color": "#8b5cf6",
@@ -716,7 +716,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_acoustic_chill",
-    "title": "Spotify Acoustic & Warm Melodies",
+    "title": "Acoustic & Unplugged Love",
     "subtitle": "Gentle acoustic guitar, heartfelt serenades & warm coffeehouse vibes",
     "icon": "fa-guitar",
     "color": "#f97316",
@@ -795,7 +795,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_rap_caviar",
-    "title": "Spotify RapCaviar Urban Heavyweights",
+    "title": "Hip-Hop & Urban Rap",
     "subtitle": "Top charting rap anthems from Drake, Travis, Eminem & Kendrick",
     "icon": "fa-microphone",
     "color": "#6366f1",
@@ -874,7 +874,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     "id": "spotify_lofi_beats",
-    "title": "Spotify Lo-Fi Study & Chill",
+    "title": "Lo-Fi Study & Chill",
     "subtitle": "Soothing vinyl crackle, cozy piano melodies and peaceful focus sounds",
     "icon": "fa-headphones-simple",
     "color": "#10b981",
@@ -981,7 +981,6 @@ export async function fetchCategoryTracks(catId, limit = 50) {
     }
   };
 
-  // 1. Add curated Spotify top shelf tracks
   const found = CATALOG_CATEGORIES.find(c => c.id === catId);
   if (found && found.tracks && found.tracks.length > 0) {
     found.tracks.forEach((t, idx) => {
@@ -992,12 +991,11 @@ export async function fetchCategoryTracks(catId, limit = 50) {
         coverUrl: t.cover,
         streamUrl: t.stream,
         duration: t.duration || 220,
-        source: `${found.title} (Spotify Featured)`
+        source: `${found.title} (Full Master)`
       });
     });
   }
 
-  // 2. Fetch 40-50+ live tracks from Audius and Jamendo
   if (window.musicService && typeof window.musicService.searchTracks === 'function') {
     const query = CATEGORY_SEARCH_QUERIES[catId] || (found ? found.title : catId.replace(/_/g, ' '));
     try {

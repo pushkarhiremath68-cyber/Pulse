@@ -7063,3 +7063,174 @@ a {
   gap: 1rem !important;
   flex: 1 !important;
 }
+
+
+/* SLIM COMPACT SPOTIFY-GRADE PLAYBAR */
+.player-bar, #persistent-player-bar, .pulse-player-bar, .app-player-footer {
+  background-color: #000000 !important;
+  border-top: 1px solid #242424 !important;
+  height: 70px !important;
+  min-height: 70px !important;
+  max-height: 70px !important;
+  padding: 0 1.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+}
+
+.player-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.player-thumb, #player-thumb {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  max-width: 44px !important;
+  border-radius: 6px !important;
+  object-fit: cover !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+}
+
+.player-info {
+  min-width: 0 !important;
+}
+
+.player-title, #player-title {
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.2 !important;
+}
+
+.player-artist, #player-artist {
+  font-size: 0.75rem !important;
+  color: #b3b3b3 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.2 !important;
+}
+
+.player-center {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 2 !important;
+  max-width: 520px !important;
+  width: 100% !important;
+}
+
+.player-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  margin-bottom: 0.2rem !important;
+}
+
+.btn-player-main, #btn-play-pause {
+  background: #ffffff !important;
+  color: #000000 !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.85rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: transform 0.15s ease !important;
+}
+
+.btn-player-main:hover, #btn-play-pause:hover {
+  transform: scale(1.08) !important;
+}
+
+.btn-player-icon {
+  color: #b3b3b3 !important;
+  font-size: 0.95rem !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: color 0.15s ease !important;
+}
+
+.btn-player-icon:hover {
+  color: #ffffff !important;
+}
+
+.timeline-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+}
+
+#player-time-current, #player-time-total {
+  font-size: 0.7rem !important;
+  color: #a7a7a7 !important;
+  font-variant-numeric: tabular-nums !important;
+  min-width: 28px !important;
+}
+
+.progress-bar-wrapper {
+  position: relative !important;
+  flex: 1 !important;
+  height: 4px !important;
+  background: rgba(255,255,255,0.15) !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: height 0.15s ease !important;
+}
+
+.progress-bar-wrapper:hover {
+  height: 6px !important;
+}
+
+.progress-bar-fill, #player-progress-fill {
+  background: #ffffff !important;
+  height: 100% !important;
+  border-radius: 4px !important;
+  transition: background 0.15s ease !important;
+}
+
+.progress-bar-wrapper:hover .progress-bar-fill,
+.progress-bar-wrapper:hover #player-progress-fill {
+  background: #1ed760 !important;
+}
+
+.player-right {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 0.75rem !important;
+  flex: 1 !important;
+}
+
+.volume-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+
+#volume-slider {
+  width: 70px !important;
+  height: 3px !important;
+  accent-color: #1ed760 !important;
+  cursor: pointer !important;
+}
