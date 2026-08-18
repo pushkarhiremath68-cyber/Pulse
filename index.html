@@ -384,13 +384,347 @@
             <span style="font-size: 0.8rem; color: var(--text-muted);">Explore discographies & popular tracks</span>
           </div>
           <div id="artists-spotlight-container" class="artists-scroll-row">
-            <!-- Dynamically populated with circle artist cards -->
+            <div class="artist-circle-card" onclick="window.openArtistProfile('Arijit Singh')" title="Explore Arijit Singh">
+              <div class="artist-circle-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" alt="Arijit Singh" class="artist-circle-avatar">
+                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+              </div>
+              <div class="artist-circle-name">Arijit Singh</div>
+              <div class="artist-circle-genre">Bollywood & Romantic</div>
+              <div class="artist-circle-listens">4.8M Listens</div>
+            </div>
+            <div class="artist-circle-card" onclick="window.openArtistProfile('The Weeknd')" title="Explore The Weeknd">
+              <div class="artist-circle-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&auto=format&fit=crop&q=80" alt="The Weeknd" class="artist-circle-avatar">
+                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+              </div>
+              <div class="artist-circle-name">The Weeknd</div>
+              <div class="artist-circle-genre">Pop & R&B</div>
+              <div class="artist-circle-listens">5.2M Listens</div>
+            </div>
+            <div class="artist-circle-card" onclick="window.openArtistProfile('Diljit Dosanjh')" title="Explore Diljit Dosanjh">
+              <div class="artist-circle-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" alt="Diljit Dosanjh" class="artist-circle-avatar">
+                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+              </div>
+              <div class="artist-circle-name">Diljit Dosanjh</div>
+              <div class="artist-circle-genre">Punjabi & Pop</div>
+              <div class="artist-circle-listens">3.9M Listens</div>
+            </div>
+            <div class="artist-circle-card" onclick="window.openArtistProfile('Taylor Swift')" title="Explore Taylor Swift">
+              <div class="artist-circle-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&auto=format&fit=crop&q=80" alt="Taylor Swift" class="artist-circle-avatar">
+                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+              </div>
+              <div class="artist-circle-name">Taylor Swift</div>
+              <div class="artist-circle-genre">Pop & Country</div>
+              <div class="artist-circle-listens">6.1M Listens</div>
+            </div>
+            <div class="artist-circle-card" onclick="window.openArtistProfile('Ed Sheeran')" title="Explore Ed Sheeran">
+              <div class="artist-circle-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&auto=format&fit=crop&q=80" alt="Ed Sheeran" class="artist-circle-avatar">
+                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+              </div>
+              <div class="artist-circle-name">Ed Sheeran</div>
+              <div class="artist-circle-genre">Acoustic & Pop</div>
+              <div class="artist-circle-listens">4.4M Listens</div>
+            </div>
+            <div class="artist-circle-card" onclick="window.openArtistProfile('Karan Aujla')" title="Explore Karan Aujla">
+              <div class="artist-circle-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" alt="Karan Aujla" class="artist-circle-avatar">
+                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+              </div>
+              <div class="artist-circle-name">Karan Aujla</div>
+              <div class="artist-circle-genre">Punjabi & Hip-Hop</div>
+              <div class="artist-circle-listens">2.8M Listens</div>
+            </div>
+            <div class="artist-circle-card" onclick="window.openArtistProfile('Alan Walker')" title="Explore Alan Walker">
+              <div class="artist-circle-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&auto=format&fit=crop&q=80" alt="Alan Walker" class="artist-circle-avatar">
+                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+              </div>
+              <div class="artist-circle-name">Alan Walker</div>
+              <div class="artist-circle-genre">EDM & Electro</div>
+              <div class="artist-circle-listens">3.5M Listens</div>
+            </div>
           </div>
         </section>
 
         <!-- DYNAMIC MULTI-CATEGORY CATALOG CONTAINER (HORIZONTAL ROWS WITH SEE ALL) -->
         <div id="catalog-categories-container">
-          <!-- Dynamically populated by catalogService & main.js -->
+          
+          <!-- ROW 1: RECOMMENDED / FOR YOU -->
+          <section class="category-horizontal-row" id="category-row-recommended">
+            <div class="category-row-header">
+              <div class="category-row-title">
+                <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(232,121,249,0.15); border: 1px solid rgba(232,121,249,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #e879f9;">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                  <h3>Songs You Will Love</h3>
+                  <p>Curated picks tailored to your musical taste & mood</p>
+                </div>
+              </div>
+              <button class="see-all-link" onclick="window.openGenreGridView('recommended')">
+                <span>See All</span> <i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i>
+              </button>
+            </div>
+            <div class="category-row-scroll-wrap">
+              <div class="music-card" onclick="window.playSpecificTrack('rec-1')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&auto=format&fit=crop&q=80" alt="Starboy" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Starboy"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Starboy</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('The Weeknd')">The Weeknd, Daft Punk</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('rec-2')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&auto=format&fit=crop&q=80" alt="Kesariya" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Kesariya"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Kesariya</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Arijit Singh')">Arijit Singh, Pritam</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('rec-3')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&auto=format&fit=crop&q=80" alt="Lover" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Lover"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Lover</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Diljit Dosanjh')">Diljit Dosanjh</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('rec-4')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&auto=format&fit=crop&q=80" alt="Cruel Summer" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Cruel Summer"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Cruel Summer</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Taylor Swift')">Taylor Swift</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ROW 2: TOP 90S GOLDEN HITS -->
+          <section class="category-horizontal-row" id="category-row-nineties">
+            <div class="category-row-header">
+              <div class="category-row-title">
+                <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #f59e0b;">
+                  <i class="fa-solid fa-record-vinyl"></i>
+                </div>
+                <div>
+                  <h3>Top 90s Golden Hits & Nostalgia</h3>
+                  <p>Timeless 90s Bollywood classics & iconic international anthems</p>
+                </div>
+              </div>
+              <button class="see-all-link" onclick="window.openGenreGridView('nineties')">
+                <span>See All</span> <i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i>
+              </button>
+            </div>
+            <div class="category-row-scroll-wrap">
+              <div class="music-card" onclick="window.playSpecificTrack('90s-1')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&auto=format&fit=crop&q=80" alt="Tujhe Dekha Toh" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Tujhe Dekha Toh"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Tujhe Dekha Toh</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Kumar Sanu')">Kumar Sanu, Lata Mangeshkar</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('90s-2')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=400&auto=format&fit=crop&q=80" alt="Smells Like Teen Spirit" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Smells Like Teen Spirit"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Smells Like Teen Spirit</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Nirvana')">Nirvana</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('90s-3')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&auto=format&fit=crop&q=80" alt="Chaiyya Chaiyya" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Chaiyya Chaiyya"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Chaiyya Chaiyya</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('A.R. Rahman')">Sukhwinder Singh, A.R. Rahman</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('90s-4')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&auto=format&fit=crop&q=80" alt="I Want It That Way" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play I Want It That Way"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">I Want It That Way</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Backstreet Boys')">Backstreet Boys</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ROW 3: TOP HOLLYWOOD BLOCKBUSTER HITS -->
+          <section class="category-horizontal-row" id="category-row-hollywood">
+            <div class="category-row-header">
+              <div class="category-row-title">
+                <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #38bdf8;">
+                  <i class="fa-solid fa-clapperboard"></i>
+                </div>
+                <div>
+                  <h3>Top Hollywood Blockbuster Hits</h3>
+                  <p>Legendary movie soundtracks, Billboard #1s & global pop anthems</p>
+                </div>
+              </div>
+              <button class="see-all-link" onclick="window.openGenreGridView('hollywood')">
+                <span>See All</span> <i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i>
+              </button>
+            </div>
+            <div class="category-row-scroll-wrap">
+              <div class="music-card" onclick="window.playSpecificTrack('hwd-1')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&auto=format&fit=crop&q=80" alt="See You Again" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play See You Again"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">See You Again</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Wiz Khalifa')">Wiz Khalifa, Charlie Puth</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('hwd-2')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&auto=format&fit=crop&q=80" alt="Sunflower" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Sunflower"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Sunflower</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Post Malone')">Post Malone, Swae Lee</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('hwd-3')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&auto=format&fit=crop&q=80" alt="Skyfall" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Skyfall"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Skyfall</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Adele')">Adele</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('hwd-4')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&auto=format&fit=crop&q=80" alt="Shallow" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Shallow"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Shallow</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Lady Gaga')">Lady Gaga, Bradley Cooper</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ROW 4: BOLLYWOOD EVERGREEN HITS -->
+          <section class="category-horizontal-row" id="category-row-bollywood_evergreen">
+            <div class="category-row-header">
+              <div class="category-row-title">
+                <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #ec4899;">
+                  <i class="fa-solid fa-compact-disc"></i>
+                </div>
+                <div>
+                  <h3>Bollywood Evergreen & Modern Hits</h3>
+                  <p>Soulful melodies, romantic chartbusters & cinematic blockbusters</p>
+                </div>
+              </div>
+              <button class="see-all-link" onclick="window.openGenreGridView('bollywood_evergreen')">
+                <span>See All</span> <i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i>
+              </button>
+            </div>
+            <div class="category-row-scroll-wrap">
+              <div class="music-card" onclick="window.playSpecificTrack('bolly-1')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&auto=format&fit=crop&q=80" alt="Kesariya" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Kesariya"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Kesariya</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Arijit Singh')">Arijit Singh, Pritam</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('bolly-2')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&auto=format&fit=crop&q=80" alt="Apna Bana Le" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Apna Bana Le"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Apna Bana Le</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Arijit Singh')">Arijit Singh, Sachin-Jigar</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('bolly-5')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&auto=format&fit=crop&q=80" alt="Kal Ho Naa Ho" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Kal Ho Naa Ho"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Kal Ho Naa Ho</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Sonu Nigam')">Sonu Nigam</span>
+                </div>
+              </div>
+              <div class="music-card" onclick="window.playSpecificTrack('bolly-6')">
+                <div class="card-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&auto=format&fit=crop&q=80" alt="Tum Hi Ho" loading="lazy">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Tum Hi Ho"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+                <div class="card-info">
+                  <span class="card-title">Tum Hi Ho</span>
+                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Arijit Singh')">Arijit Singh, Mithoon</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
         </div>
       </div>
 

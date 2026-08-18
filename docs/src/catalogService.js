@@ -347,6 +347,17 @@
     }
   }
 
+  // Pre-seed all starter tracks immediately into categoryTracksCache and window.TRACKS_REGISTRY
+  STARTER_TRACKS.forEach(t => {
+    const norm = normalizeCatalogTrack(t);
+    if (!categoryTracksCache[norm.category]) {
+      categoryTracksCache[norm.category] = [];
+    }
+    if (!categoryTracksCache[norm.category].some(x => x.id === norm.id)) {
+      categoryTracksCache[norm.category].push(norm);
+    }
+  });
+
   // =========================================================================
   // 5. MULTI-CATEGORY API FETCHER (Audius & Jamendo)
   // =========================================================================
@@ -493,9 +504,19 @@
             if (!allTracks.some(x => x.id === t.id)) allTracks.push(t);
           });
         });
+        if (allTracks.length === 0) {
+          STARTER_TRACKS.forEach(t => {
+            const norm = normalizeCatalogTrack(t);
+            if (!allTracks.some(x => x.id === norm.id)) allTracks.push(norm);
+          });
+        }
         return allTracks;
       }
-      return categoryTracksCache[categoryId] || [];
+      const list = categoryTracksCache[categoryId] || [];
+      if (list.length === 0) {
+        return STARTER_TRACKS.filter(t => t.category === categoryId).map(normalizeCatalogTrack);
+      }
+      return list;
     },
 
     getAllCategories() {
