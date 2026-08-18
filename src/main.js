@@ -1,3 +1,12 @@
+// Pulse Core Module Imports
+import './firebaseClient.js';
+import './audioEngine.js';
+import './lyricsService.js';
+import './catalogService.js';
+import './musicService.js';
+import './playbarController.js';
+import './visualizer.js';
+
 (function() {
   'use strict';
 
