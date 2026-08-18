@@ -361,19 +361,129 @@
     };
   }
 
+  function getJamendoClientId() {
+    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_JAMENDO_CLIENT_ID) {
+      const val = String(import.meta.env.VITE_JAMENDO_CLIENT_ID).trim();
+      if (val && !val.includes('your_copied') && !val.includes('your_jamendo')) return val;
+    }
+    if (typeof window !== 'undefined') {
+      if (window.JAMENDO_CLIENT_ID && typeof window.JAMENDO_CLIENT_ID === 'string') {
+        const val = window.JAMENDO_CLIENT_ID.trim();
+        if (val) return val;
+      }
+      try {
+        const stored = window.localStorage.getItem('pulse_jamendo_client_id');
+        if (stored && stored.trim()) return stored.trim();
+      } catch (e) {}
+    }
+    return '23b33f2a';
+  }
+
+  // Runtime helper to set Jamendo Client ID dynamically without restart
+  if (typeof window !== 'undefined') {
+    window.getJamendoClientId = getJamendoClientId;
+    window.setJamendoClientId = function(clientId) {
+      if (clientId && typeof clientId === 'string') {
+        const clean = clientId.trim();
+        window.JAMENDO_CLIENT_ID = clean;
+        try { window.localStorage.setItem('pulse_jamendo_client_id', clean); } catch(e) {}
+        console.log(`[Jamendo] Client ID configured: ${clean}`);
+        if (window.musicService && typeof window.musicService.initCatalog === 'function') {
+          window.musicService.initCatalog();
+        }
+      }
+    };
+  }
+
+  const STARTER_HITS = [
+    // Bollywood & Hindi
+    { id: 'hindi-1', title: 'Kesariya', artist: 'Arijit Singh, Pritam', album: 'Brahmastra', duration: '4:28', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-2', title: 'Apna Bana Le', artist: 'Arijit Singh, Sachin-Jigar', album: 'Bhediya', duration: '4:21', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-3', title: 'Tum Se Hi', artist: 'Mohit Chauhan, Pritam', album: 'Jab We Met', duration: '5:21', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-4', title: 'Chaleya', artist: 'Arijit Singh, Shilpa Rao, Anirudh', album: 'Jawan', duration: '3:20', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-5', title: 'Raataan Lambiyan', artist: 'Jubin Nautiyal, Asees Kaur', album: 'Shershaah', duration: '3:50', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-6', title: 'Tum Hi Ho', artist: 'Arijit Singh, Mithoon', album: 'Aashiqui 2', duration: '4:22', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-7', title: 'Heeriye', artist: 'Jasleen Royal, Arijit Singh', album: 'Heeriye', duration: '3:15', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-8', title: 'Shayad', artist: 'Arijit Singh, Pritam', album: 'Love Aaj Kal', duration: '4:07', category: 'bollywood', language: 'Hindi' },
+    // Punjabi
+    { id: 'punjabi-1', title: 'Lover', artist: 'Diljit Dosanjh', album: 'MoonChild Era', duration: '3:12', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-2', title: 'Softly', artist: 'Karan Aujla, Ikky', album: 'Making Memories', duration: '2:35', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-3', title: 'Excuses', artist: 'AP Dhillon, Gurinder Gill', album: 'Excuses', duration: '2:56', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-4', title: 'Brown Munde', artist: 'AP Dhillon, Gurinder Gill, Shinda Kahlon', album: 'Brown Munde', duration: '4:27', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-5', title: '295', artist: 'Sidhu Moose Wala', album: 'Moosetape', duration: '4:30', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-6', title: 'Born to Shine', artist: 'Diljit Dosanjh', album: 'G.O.A.T.', duration: '3:33', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-7', title: 'White Brown Black', artist: 'Karan Aujla, Avvy Sra', album: 'White Brown Black', duration: '3:00', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-8', title: 'Mi Amor', artist: 'Sharn, 40k, The Paul', album: 'Mi Amor', duration: '3:24', category: 'punjabi', language: 'Punjabi' },
+    // Global Pop
+    { id: 'global-1', title: 'Blinding Lights', artist: 'The Weeknd', album: 'After Hours', duration: '3:20', category: 'pop', language: 'English' },
+    { id: 'global-2', title: 'Starboy', artist: 'The Weeknd, Daft Punk', album: 'Starboy', duration: '3:50', category: 'pop', language: 'English' },
+    { id: 'global-3', title: 'Shape of You', artist: 'Ed Sheeran', album: '÷ (Divide)', duration: '3:53', category: 'pop', language: 'English' },
+    { id: 'global-4', title: 'Levitating', artist: 'Dua Lipa', album: 'Future Nostalgia', duration: '3:23', category: 'pop', language: 'English' },
+    { id: 'global-5', title: 'Faded', artist: 'Alan Walker', album: 'Different World', duration: '3:32', category: 'pop', language: 'English' },
+    { id: 'global-6', title: 'As It Was', artist: 'Harry Styles', album: "Harry's House", duration: '2:47', category: 'pop', language: 'English' },
+    { id: 'global-7', title: 'Cruel Summer', artist: 'Taylor Swift', album: 'Lover', duration: '2:58', category: 'pop', language: 'English' },
+    { id: 'global-8', title: 'Believer', artist: 'Imagine Dragons', album: 'Evolve', duration: '3:24', category: 'rock', language: 'English' }
+  ];
+
+  /**
+   * Dynamically resolves an active Audius Discovery Node endpoint.
+   */
+  let cachedAudiusNode = null;
+  let audiusNodeExpiry = 0;
+
+  async function getAudiusDiscoveryNode() {
+    if (cachedAudiusNode && Date.now() < audiusNodeExpiry) {
+      return cachedAudiusNode;
+    }
+    const fallbackNodes = [
+      'https://discoveryprovider.audius.co',
+      'https://discoveryprovider2.audius.co',
+      'https://discoveryprovider3.audius.co',
+      'https://audius-discovery-1.cultur3stake.com',
+      'https://audius-dp.singapore.creatorseed.com'
+    ];
+
+    try {
+      const res = await fetch('https://api.audius.co', { signal: AbortSignal.timeout(2500) });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data && Array.isArray(json.data) && json.data.length > 0) {
+          const selected = json.data[Math.floor(Math.random() * json.data.length)];
+          cachedAudiusNode = selected.replace(/\/+$/, '');
+          audiusNodeExpiry = Date.now() + 30 * 60 * 1000;
+          return cachedAudiusNode;
+        }
+      }
+    } catch (e) {}
+
+    cachedAudiusNode = fallbackNodes[Math.floor(Math.random() * fallbackNodes.length)];
+    audiusNodeExpiry = Date.now() + 5 * 60 * 1000;
+    return cachedAudiusNode;
+  }
+
   // =========================================================================
   // CORE MUSIC SERVICE OBJECT
   // =========================================================================
   const musicService = {
 
     /**
-     * Initializes the Supabase 120,000 songs catalog on startup
+     * Initializes the catalog immediately with starter tracks & background live streams
      */
     async initCatalog() {
-      // Clean catalog initialization — populate with trending tracks from Audius & Jamendo
-      window.TRACKS_REGISTRY = {};
+      if (!window.TRACKS_REGISTRY) window.TRACKS_REGISTRY = {};
 
-      // Fetch trending tracks from Audius & Jamendo in parallel (non-blocking)
+      // 1. Immediately register starter hits synchronously so UI never shows empty
+      STARTER_HITS.forEach(t => {
+        const norm = normalizeTrack(t);
+        window.TRACKS_REGISTRY[norm.id] = norm;
+      });
+
+      // Render grids immediately with starter tracks
+      if (typeof window.renderAllHomeGrids === 'function') {
+        window.renderAllHomeGrids();
+      }
+
+      // 2. Fetch trending tracks from Audius & Jamendo in parallel (non-blocking)
       const trendingPromises = [];
 
       // --- AUDIUS TRENDING ---
@@ -451,10 +561,10 @@
         console.log('[Jamendo] No VITE_JAMENDO_CLIENT_ID configured. Jamendo tracks will activate once client ID is set in .env or via window.setJamendoClientId()');
       }
 
-      // Wait for both to settle (don't block app startup if one fails)
+      // Wait for network fetches to settle, then re-render with new tracks
       await Promise.allSettled(trendingPromises);
 
-      console.log(`[Pulse Catalog Engine] Initialized with ${Object.keys(window.TRACKS_REGISTRY).length} songs from Audius + Jamendo.`);
+      console.log(`[Pulse Catalog Engine] Initialized with ${Object.keys(window.TRACKS_REGISTRY).length} songs.`);
       if (typeof window.renderAllHomeGrids === 'function') {
         window.renderAllHomeGrids();
       }
