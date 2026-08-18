@@ -23,6 +23,7 @@
     "test:download": "python scripts/test_download_api.py"
   },
   "devDependencies": {
+    "jsdom": "^27.0.1",
     "vite": "^5.0.0"
   },
   "dependencies": {

@@ -3629,6 +3629,151 @@
     if (window.electronAPI && typeof window.electronAPI.close === 'function') window.electronAPI.close();
   };
 
+  async // =========================================================================
+  // APP VIEW SWITCHER & MULTI-VIEW NAVIGATION CONTROLLER
+  // =========================================================================
+  function switchView(viewName) {
+    if (!viewName) return;
+    state.activeView = viewName;
+    const targetId = viewName.startsWith('view-') ? viewName : `view-${viewName}`;
+
+    document.querySelectorAll('.app-view').forEach(v => {
+      if (v.id === targetId || v.id === viewName) {
+        v.classList.add('active-view');
+        v.style.display = 'block';
+      } else {
+        v.classList.remove('active-view');
+        v.style.display = 'none';
+      }
+    });
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+      const raw = item.dataset.view;
+      if (raw === viewName || `view-${raw}` === targetId) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+
+    document.querySelectorAll('.mobile-nav-item').forEach(item => {
+      const raw = item.dataset.view;
+      if (raw === viewName || `view-${raw}` === targetId) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+
+    if (viewName === 'home') {
+      const input = document.getElementById('global-search-input');
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (input && input.value) input.value = '';
+      if (clearBtn) clearBtn.classList.add('hidden');
+    }
+  }
+  window.switchView = switchView;
+
+  // =========================================================================
+  // ZERO-LATENCY REAL-TIME SEARCH ENGINE
+  // =========================================================================
+  window.executeSearch = function(query, isDebounced = true) {
+    if (searchDebounceTimer) {
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = null;
+    }
+
+    const rawQ = query === null || query === undefined ? '' : String(query);
+    const trimmed = rawQ.trim();
+
+    const clearBtn = document.getElementById('clear-search-btn');
+    if (!trimmed && !rawQ.trim()) {
+      if (clearBtn) clearBtn.classList.add('hidden');
+      if (state.activeView === 'search-view' || state.activeView === 'view-search-view') {
+        switchView('home');
+      }
+      return;
+    }
+
+    if (clearBtn) clearBtn.classList.remove('hidden');
+
+    const performSearch = async () => {
+      if (state.activeView !== 'search-view' && state.activeView !== 'view-search-view') {
+        switchView('search-view');
+      }
+
+      const searchLabel = document.getElementById('search-query-label');
+      const searchCountEl = document.getElementById('search-count');
+      const loadingEl = document.getElementById('search-loading');
+      const container = document.getElementById('search-results-container');
+
+      if (searchLabel) searchLabel.textContent = trimmed || rawQ;
+      if (loadingEl) loadingEl.classList.remove('hidden');
+      if (searchCountEl) searchCountEl.textContent = 'Searching catalog...';
+
+      try {
+        let results = [];
+        if (window.catalogService && typeof window.catalogService.searchCatalog === 'function') {
+          results = await window.catalogService.searchCatalog(trimmed || rawQ, 35);
+        } else {
+          const qLower = (trimmed || rawQ).toLowerCase();
+          results = Object.values(window.TRACKS_REGISTRY || {}).filter(t => 
+            (t.title && t.title.toLowerCase().includes(qLower)) ||
+            (t.artist && t.artist.toLowerCase().includes(qLower)) ||
+            (t.album && t.album.toLowerCase().includes(qLower)) ||
+            (t.category && t.category.toLowerCase().includes(qLower))
+          );
+        }
+
+        if (loadingEl) loadingEl.classList.add('hidden');
+
+        if (searchCountEl) {
+          searchCountEl.textContent = `${results.length} track${results.length === 1 ? '' : 's'} found`;
+        }
+
+        if (container) {
+          if (results.length > 0) {
+            container.innerHTML = `
+              <div class="music-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
+                ${results.map(t => `
+                  <div class="music-card" onclick="window.playSpecificTrack('${t.id}')">
+                    <div class="card-image-wrapper">
+                      <img src="${t.cover || './pulse-logo.png'}" alt="${t.title}" loading="lazy">
+                      <div class="card-play-overlay">
+                        <button class="btn-card-play" title="Play ${t.title}"><i class="fa-solid fa-play"></i></button>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <span class="card-title">${t.title}</span>
+                      <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('${t.artist}')">${t.artist}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            `;
+          } else {
+            container.innerHTML = `
+              <div style="text-align: center; padding: 3.5rem 1rem; color: var(--text-muted);">
+                <i class="fa-solid fa-compact-disc" style="font-size: 2.5rem; margin-bottom: 0.85rem; display: block; color: var(--accent-primary); opacity: 0.6;"></i>
+                <h3 style="color: #fff; font-weight: 700; margin-bottom: 0.35rem;">No songs found for "${trimmed || rawQ}"</h3>
+                <p style="font-size: 0.85rem;">Try searching for artist names like Arijit Singh, The Weeknd, Diljit, or song titles.</p>
+              </div>
+            `;
+          }
+        }
+      } catch (err) {
+        console.error('[Pulse Search Error]:', err);
+        if (loadingEl) loadingEl.classList.add('hidden');
+      }
+    };
+
+    if (isDebounced) {
+      searchDebounceTimer = setTimeout(performSearch, 150);
+    } else {
+      performSearch();
+    }
+  };
+
   async function initApp() {
     // Purge legacy demo cache if transitioning to clean catalog-free architecture
     try {
