@@ -328,3 +328,12 @@ if (typeof window !== 'undefined') {
 }
 
 export default playbarController;
+
+window.toggleFSLyrics = function() {
+  const lyricsSec = document.getElementById('fs-lyrics-section');
+  const btn = document.getElementById('fs-lyrics-toggle-btn');
+  if (lyricsSec) {
+    lyricsSec.classList.toggle('hidden');
+    if (btn) btn.classList.toggle('active', !lyricsSec.classList.contains('hidden'));
+  }
+};

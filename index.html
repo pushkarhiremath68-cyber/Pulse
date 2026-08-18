@@ -2041,37 +2041,121 @@
   <!-- FULLSCREEN EXPAND PLAYER MODAL -->
   <div id="fullscreen-player" class="fullscreen-player">
     <div id="fs-bg-blur" class="fs-bg-blur"></div>
-    <div class="fs-header">
-      <button class="btn-icon-small" onclick="window.PulsePlaybar.toggleFullscreen(false)"><i class="fa-solid fa-chevron-down"></i></button>
-      <div class="fs-title-branding">
-        <span>NOW PLAYING</span>
-        <strong>Pulse Studio Master</strong>
-      </div>
-      <button class="btn-icon-small" onclick="window.openDownloadModal()"><i class="fa-solid fa-ellipsis"></i></button>
-    </div>
-
-    <div class="fs-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; margin: 2rem 0;">
-      <img id="fs-album-art" src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg" style="width: 280px; height: 280px; border-radius: 20px; box-shadow: 0 16px 40px rgba(0,0,0,0.6); object-fit: cover;">
-      <div style="text-align: center; margin-top: 1.5rem;">
-        <h2 id="fs-track-title" style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.35rem;">Starboy</h2>
-        <p id="fs-track-artist" style="font-size: 1rem; color: #c084fc;">The Weeknd</p>
-      </div>
-    </div>
-
-    <div class="fs-controls-container" style="max-width: 500px; margin: 0 auto; width: 100%;">
-      <div class="timeline-container">
-        <span id="fs-time-current">0:00</span>
-        <div class="progress-bar-wrapper">
-          <div id="fs-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
-          <input type="range" id="fs-seek-slider" class="timeline-range-input" min="0" max="100" value="0">
+    <div class="fs-ambient-glow"></div>
+    
+    <div class="fs-container">
+      <!-- Top Bar -->
+      <div class="fs-header">
+        <button class="fs-btn-circle" onclick="window.PulsePlaybar.toggleFullscreen(false)" title="Minimize">
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="fs-title-branding">
+          <span class="fs-badge-now-playing">NOW PLAYING</span>
+          <strong id="fs-source-badge" class="fs-source-title">Pulse Master Stream</strong>
         </div>
-        <span id="fs-time-total">3:50</span>
+        <div class="fs-header-actions">
+          <button class="fs-btn-circle" id="fs-lyrics-toggle-btn" onclick="window.toggleFSLyrics()" title="Live Lyrics">
+            <i class="fa-solid fa-microphone-lines"></i>
+          </button>
+          <button class="fs-btn-circle" id="fs-btn-like" onclick="this.classList.toggle('liked'); window.showToast(this.classList.contains('liked') ? 'Added to Liked Songs' : 'Removed from Liked Songs', 'info', 1500);" title="Like Song">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="player-controls" style="display: flex; justify-content: center; align-items: center; gap: 1.5rem; margin-top: 1.5rem;">
-        <button class="btn-player-icon" onclick="window.PulsePlaybar.playPrev()" style="font-size: 1.4rem;"><i class="fa-solid fa-backward-step"></i></button>
-        <button id="fs-btn-play" class="btn-player-main" onclick="window.PulsePlaybar.togglePlayPause()" style="width: 56px; height: 56px; font-size: 1.3rem;"><i class="fa-solid fa-play"></i></button>
-        <button class="btn-player-icon" onclick="window.PulsePlaybar.playNext()" style="font-size: 1.4rem;"><i class="fa-solid fa-forward-step"></i></button>
+      <!-- Main Body Showcase -->
+      <div class="fs-body">
+        <!-- Left / Center: Album Artwork & Metadata -->
+        <div class="fs-art-showcase" id="fs-art-showcase">
+          <div class="fs-art-wrapper">
+            <img id="fs-album-art" src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg" alt="Now Playing Art" class="fs-album-art">
+            <div class="fs-art-reflection"></div>
+          </div>
+
+          <div class="fs-meta-box">
+            <div class="fs-track-info-row">
+              <div class="fs-text-group">
+                <h2 id="fs-track-title" class="fs-track-title">Starboy</h2>
+                <p id="fs-track-artist" class="fs-track-artist"><i class="fa-solid fa-circle-check fs-verified-icon"></i> The Weeknd</p>
+              </div>
+            </div>
+
+            <!-- Animated Equalizer Spectrum Waveform -->
+            <div class="fs-soundwave-bars" id="fs-soundwave">
+              <span class="bar bar-1"></span>
+              <span class="bar bar-2"></span>
+              <span class="bar bar-3"></span>
+              <span class="bar bar-4"></span>
+              <span class="bar bar-5"></span>
+              <span class="bar bar-6"></span>
+              <span class="bar bar-7"></span>
+              <span class="bar bar-8"></span>
+              <span class="bar bar-9"></span>
+              <span class="bar bar-10"></span>
+              <span class="bar bar-11"></span>
+              <span class="bar bar-12"></span>
+              <span class="bar bar-13"></span>
+              <span class="bar bar-14"></span>
+              <span class="bar bar-15"></span>
+              <span class="bar bar-16"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integrated Lyrics Section (Side-by-Side on Desktop / Overlay on Mobile) -->
+        <div class="fs-lyrics-container hidden" id="fs-lyrics-section">
+          <div class="fs-lyrics-header">
+            <h4><i class="fa-solid fa-microphone-lines"></i> Synced Karaoke Lyrics</h4>
+            <span class="fs-lyrics-sub">Synced live with high-precision timestamping</span>
+          </div>
+          <div class="fs-lyrics-scroll-box" id="fs-lyrics-scroll-box">
+            <p class="fs-lyric-line fs-lyric-active">♪ Play a track to view synchronized live lyrics...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Audio Controls Suite -->
+      <div class="fs-controls-container">
+        <!-- Progress Bar & Time -->
+        <div class="fs-timeline-container">
+          <span id="fs-time-current" class="fs-time-str">0:00</span>
+          <div class="fs-progress-bar-wrapper">
+            <div id="fs-progress-fill" class="fs-progress-bar-fill"></div>
+            <input type="range" id="fs-seek-slider" class="fs-timeline-range" min="0" max="100" value="0">
+          </div>
+          <span id="fs-time-total" class="fs-time-str">3:50</span>
+        </div>
+
+        <!-- Action Controls -->
+        <div class="fs-buttons-row">
+          <button id="fs-btn-shuffle" class="fs-ctrl-icon-btn" onclick="window.PulsePlaybar.toggleShuffle()" title="Shuffle">
+            <i class="fa-solid fa-shuffle"></i>
+          </button>
+          
+          <button class="fs-ctrl-icon-btn fs-step-btn" onclick="window.PulsePlaybar.playPrev()" title="Previous Track">
+            <i class="fa-solid fa-backward-step"></i>
+          </button>
+          
+          <button id="fs-btn-play" class="fs-hero-play-btn" onclick="window.PulsePlaybar.togglePlayPause()" title="Play / Pause">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          
+          <button class="fs-ctrl-icon-btn fs-step-btn" onclick="window.PulsePlaybar.playNext()" title="Next Track">
+            <i class="fa-solid fa-forward-step"></i>
+          </button>
+          
+          <button id="fs-btn-repeat" class="fs-ctrl-icon-btn" onclick="window.PulsePlaybar.toggleRepeat()" title="Repeat">
+            <i class="fa-solid fa-repeat"></i>
+          </button>
+        </div>
+
+        <!-- Volume Bar in Fullscreen -->
+        <div class="fs-volume-row">
+          <button onclick="window.PulsePlaybar.toggleMute()" class="fs-vol-icon-btn">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <input type="range" id="fs-volume-slider" min="0" max="100" value="80" oninput="window.PulsePlaybar.setVolume(this.value / 100)" class="fs-volume-range">
+        </div>
       </div>
     </div>
   </div>

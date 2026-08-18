@@ -1,3 +1,485 @@
+
+/* ==========================================================================
+   ADVANCED FULLSCREEN NOW-PLAYING PLAYER - IMMERSIVE MODERN THEME
+   ========================================================================== */
+
+.fullscreen-player {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background-color: #0b0b0f !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(100%) scale(0.96) !important;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease !important;
+  overflow: hidden !important;
+}
+
+.fullscreen-player.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Dynamic Ambient Blur Aura */
+.fs-bg-blur {
+  position: absolute !important;
+  inset: -20px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  filter: blur(85px) saturate(220%) brightness(0.28) !important;
+  transform: scale(1.15) !important;
+  z-index: 1 !important;
+  opacity: 0.85 !important;
+  transition: background-image 0.6s ease !important;
+}
+
+.fs-ambient-glow {
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at 50% 30%, rgba(30, 215, 96, 0.15) 0%, transparent 60%),
+              radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 65%),
+              linear-gradient(180deg, rgba(11, 11, 15, 0.6) 0%, rgba(11, 11, 15, 0.95) 100%) !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+
+.fs-container {
+  position: relative !important;
+  z-index: 10 !important;
+  width: 100% !important;
+  max-width: 1100px !important;
+  height: 100% !important;
+  margin: 0 auto !important;
+  padding: 1.5rem 2rem 2rem 2rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+}
+
+/* Header */
+.fs-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.fs-btn-circle {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.1rem !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(16px) !important;
+  transition: all 0.2s ease !important;
+}
+
+.fs-btn-circle:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  transform: scale(1.08) !important;
+  color: #1ed760 !important;
+}
+
+.fs-btn-circle.liked {
+  color: #1ed760 !important;
+}
+
+.fs-btn-circle.active {
+  background: #1ed760 !important;
+  color: #000000 !important;
+}
+
+.fs-title-branding {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.fs-badge-now-playing {
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  color: #b3b3b3 !important;
+  text-transform: uppercase !important;
+}
+
+.fs-source-title {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin-top: 2px !important;
+}
+
+.fs-header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+}
+
+/* Body Showcase */
+.fs-body {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3rem !important;
+  flex: 1 !important;
+  margin: 1rem 0 !important;
+  min-height: 0 !important;
+}
+
+.fs-art-showcase {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.fs-art-wrapper {
+  position: relative !important;
+  width: 320px !important;
+  height: 320px !important;
+  max-width: 70vw !important;
+  max-height: 40vh !important;
+  aspect-ratio: 1/1 !important;
+  border-radius: 22px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(30, 215, 96, 0.25) !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease !important;
+}
+
+.fs-art-wrapper:hover {
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 50px rgba(30, 215, 96, 0.35) !important;
+}
+
+.fs-album-art {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 22px !important;
+  object-fit: cover !important;
+}
+
+.fs-meta-box {
+  margin-top: 1.5rem !important;
+  width: 100% !important;
+  max-width: 480px !important;
+}
+
+.fs-track-title {
+  font-size: 1.85rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.5px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.fs-track-artist {
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  color: #1ed760 !important;
+  margin-top: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+}
+
+.fs-verified-icon {
+  font-size: 0.85rem !important;
+}
+
+/* Animated Soundwave Equalizer Bars */
+.fs-soundwave-bars {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  height: 24px !important;
+  margin-top: 1rem !important;
+}
+
+.fs-soundwave-bars .bar {
+  width: 3px !important;
+  height: 6px !important;
+  background: linear-gradient(180deg, #1ed760, #10b981) !important;
+  border-radius: 4px !important;
+  animation: pulseEqualizer 1.2s ease-in-out infinite alternate !important;
+}
+
+.fullscreen-player:not(.playing) .fs-soundwave-bars .bar {
+  animation-play-state: paused !important;
+  height: 4px !important;
+  opacity: 0.5 !important;
+}
+
+.fs-soundwave-bars .bar-1 { animation-delay: 0.1s; }
+.fs-soundwave-bars .bar-2 { animation-delay: 0.4s; }
+.fs-soundwave-bars .bar-3 { animation-delay: 0.2s; }
+.fs-soundwave-bars .bar-4 { animation-delay: 0.6s; }
+.fs-soundwave-bars .bar-5 { animation-delay: 0.3s; }
+.fs-soundwave-bars .bar-6 { animation-delay: 0.5s; }
+.fs-soundwave-bars .bar-7 { animation-delay: 0.15s; }
+.fs-soundwave-bars .bar-8 { animation-delay: 0.7s; }
+.fs-soundwave-bars .bar-9 { animation-delay: 0.25s; }
+.fs-soundwave-bars .bar-10 { animation-delay: 0.45s; }
+.fs-soundwave-bars .bar-11 { animation-delay: 0.35s; }
+.fs-soundwave-bars .bar-12 { animation-delay: 0.55s; }
+.fs-soundwave-bars .bar-13 { animation-delay: 0.18s; }
+.fs-soundwave-bars .bar-14 { animation-delay: 0.65s; }
+.fs-soundwave-bars .bar-15 { animation-delay: 0.28s; }
+.fs-soundwave-bars .bar-16 { animation-delay: 0.48s; }
+
+@keyframes pulseEqualizer {
+  0% { height: 4px; }
+  50% { height: 22px; }
+  100% { height: 8px; }
+}
+
+/* Integrated Lyrics Container */
+.fs-lyrics-container {
+  flex: 1 !important;
+  max-width: 500px !important;
+  height: 100% !important;
+  max-height: 420px !important;
+  background: rgba(18, 18, 24, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.fs-lyrics-header h4 {
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  color: #1ed760 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.fs-lyrics-sub {
+  font-size: 0.75rem !important;
+  color: #888888 !important;
+  margin-top: 2px !important;
+  display: block !important;
+}
+
+.fs-lyrics-scroll-box {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  margin-top: 1rem !important;
+  padding-right: 0.5rem !important;
+}
+
+.fs-lyric-line {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  margin-bottom: 1.25rem !important;
+  line-height: 1.4 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.fs-lyric-line:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.fs-lyric-line.fs-lyric-active {
+  color: #ffffff !important;
+  font-size: 1.35rem !important;
+  text-shadow: 0 0 16px rgba(30, 215, 96, 0.6) !important;
+  transform: scale(1.02) origin-left !important;
+}
+
+/* Controls Container */
+.fs-controls-container {
+  width: 100% !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
+}
+
+.fs-timeline-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  width: 100% !important;
+}
+
+.fs-time-str {
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: #a1a1aa !important;
+  font-variant-numeric: tabular-nums !important;
+  min-width: 38px !important;
+}
+
+.fs-progress-bar-wrapper {
+  position: relative !important;
+  flex: 1 !important;
+  height: 6px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 500px !important;
+  cursor: pointer !important;
+  transition: height 0.15s ease !important;
+}
+
+.fs-progress-bar-wrapper:hover {
+  height: 8px !important;
+}
+
+.fs-progress-bar-fill {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  height: 100% !important;
+  width: 0% !important;
+  border-radius: 500px !important;
+  background: #1ed760 !important;
+  box-shadow: 0 0 10px rgba(30, 215, 96, 0.5) !important;
+}
+
+.fs-timeline-range {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+  cursor: pointer !important;
+}
+
+/* Action Buttons */
+.fs-buttons-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2rem !important;
+  margin-top: 1.25rem !important;
+}
+
+.fs-ctrl-icon-btn {
+  background: none !important;
+  border: none !important;
+  color: #b3b3b3 !important;
+  font-size: 1.25rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.fs-ctrl-icon-btn:hover {
+  color: #ffffff !important;
+  transform: scale(1.12) !important;
+}
+
+.fs-step-btn {
+  font-size: 1.6rem !important;
+  color: #ffffff !important;
+}
+
+.fs-hero-play-btn {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50% !important;
+  background: #1ed760 !important;
+  color: #000000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.5rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 24px rgba(30, 215, 96, 0.45) !important;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease, background 0.2s ease !important;
+}
+
+.fs-hero-play-btn:hover {
+  transform: scale(1.08) !important;
+  background: #1fdf64 !important;
+  box-shadow: 0 10px 30px rgba(30, 215, 96, 0.6) !important;
+}
+
+.fs-volume-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  margin-top: 1.25rem !important;
+}
+
+.fs-vol-icon-btn {
+  background: none !important;
+  border: none !important;
+  color: #b3b3b3 !important;
+  font-size: 0.95rem !important;
+  cursor: pointer !important;
+}
+
+.fs-volume-range {
+  width: 120px !important;
+  height: 4px !important;
+  accent-color: #1ed760 !important;
+  cursor: pointer !important;
+}
+
+@media (max-width: 768px) {
+  .fs-container {
+    padding: 1.25rem 1.25rem 1.75rem 1.25rem !important;
+  }
+  .fs-art-wrapper {
+    width: 240px !important;
+    height: 240px !important;
+  }
+  .fs-track-title {
+    font-size: 1.4rem !important;
+  }
+  .fs-track-artist {
+    font-size: 0.95rem !important;
+  }
+  .fs-buttons-row {
+    gap: 1.25rem !important;
+  }
+  .fs-hero-play-btn {
+    width: 56px !important;
+    height: 56px !important;
+    font-size: 1.3rem !important;
+  }
+  .fs-body {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  .fs-lyrics-container {
+    display: none !important;
+  }
+}
+
+
 /* ==========================================================================
    PULSE MUSIC - CLEAN SPOTIFY MINIMALIST THEME
    Inspired by Spotify Web & Desktop Player
