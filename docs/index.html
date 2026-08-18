@@ -3,8 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Pulse - Free Music Streaming</title>
   <meta name="description" content="Listen to millions of free streamable songs worldwide on Pulse with instant search and high-fidelity audio playback.">
+  
+  <script>
+    // Force unregister old Service Workers and purge old CacheStorage
+    (function() {
+      try {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function(regs) {
+            for (var i = 0; i < regs.length; i++) {
+              regs[i].unregister();
+            }
+          });
+        }
+        if ('caches' in window) {
+          caches.keys().then(function(keys) {
+            keys.forEach(function(k) { caches.delete(k); });
+          });
+        }
+      } catch (e) {}
+    })();
+  </script>
   
   <!-- PWA & Mobile Meta -->
   <link rel="manifest" href="./assets/manifest.json">
