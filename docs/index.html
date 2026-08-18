@@ -90,11 +90,11 @@
 
         <div class="nav-section">
           <span class="nav-section-title">GENRES & MOODS</span>
-          <a href="javascript:void(0)" class="nav-item" onclick="window.executeSearch('Bollywood Hindi')">
+          <a href="javascript:void(0)" class="nav-item" onclick="window.openCategoryView('hindi', 'Hindi & Desi Beats')">
             <i class="fa-solid fa-compact-disc text-accent"></i>
             <span>Hindi & Desi</span>
           </a>
-          <a href="javascript:void(0)" class="nav-item" onclick="window.executeSearch('Pop Hits')">
+          <a href="javascript:void(0)" class="nav-item" onclick="window.openCategoryView('pop', 'English & Global Pop')">
             <i class="fa-solid fa-earth-americas" style="color: #3b82f6;"></i>
             <span>Global Pop</span>
           </a>
@@ -189,9 +189,9 @@
         <!-- TOP CHIP FILTER SELECTOR -->
         <div class="category-chip-bar" style="display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 1rem; margin-bottom: 1.5rem;">
           <button class="chip-filter active" onclick="window.executeSearch('Top Hits')">All Hits</button>
-          <button class="chip-filter" onclick="window.executeSearch('Bollywood Hindi')">Hindi & Desi</button>
-          <button class="chip-filter" onclick="window.executeSearch('Pop Hits')">English Pop</button>
-          <button class="chip-filter" onclick="window.executeSearch('EDM Electronic')">EDM Heat</button>
+          <button class="chip-filter" onclick="window.openCategoryView('hindi', 'Hindi & Desi Beats')">Hindi & Desi</button>
+          <button class="chip-filter" onclick="window.openCategoryView('pop', 'English & Global Pop')">English Pop</button>
+          <button class="chip-filter" onclick="window.openCategoryView('electronic', 'EDM & Electronic Heat')">EDM Heat</button>
           <button class="chip-filter" onclick="window.executeSearch('Lo-Fi Chill')">Lo-Fi Study</button>
           <button class="chip-filter" onclick="window.executeSearch('Rock Alternative')">Rock</button>
         </div>
@@ -203,7 +203,7 @@
               <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-earth-americas text-accent"></i> English & Global Pop</h3>
               <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary);">Billboard hits, catchy hooks & chart-topping pop anthems</p>
             </div>
-            <button class="btn-see-all" onclick="window.executeSearch('Pop Hits')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn-see-all" onclick="window.openCategoryView('pop', 'English & Global Pop')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
           </div>
           <div class="shelf-carousel" id="cat-grid-pop" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem;">
             
@@ -295,7 +295,7 @@
               <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-compact-disc" style="color: #ec4899;"></i> Hindi & Desi Beats</h3>
               <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary);">Soulful melodies, romantic chartbusters & cinematic blockbusters</p>
             </div>
-            <button class="btn-see-all" onclick="window.executeSearch('Bollywood Hindi')" style="color: #ec4899; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn-see-all" onclick="window.openCategoryView('hindi', 'Hindi & Desi Beats')" style="color: #ec4899; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
           </div>
           <div class="shelf-carousel" id="cat-grid-hindi" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem;">
             
@@ -387,7 +387,7 @@
               <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-bolt-lightning" style="color: #a855f7;"></i> EDM & Electronic Heat</h3>
               <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary);">High-energy club bangers, house, synthwave & dance</p>
             </div>
-            <button class="btn-see-all" onclick="window.executeSearch('EDM Electronic')" style="color: #a855f7; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn-see-all" onclick="window.openCategoryView('electronic', 'EDM & Electronic Heat')" style="color: #a855f7; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
           </div>
           <div class="shelf-carousel" id="cat-grid-electronic" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem;">
             

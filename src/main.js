@@ -39,6 +39,25 @@ import './geminiService.js';
     }, duration);
   };
 
+  
+  // Dedicated Category & 'See All' Grid Viewer
+  window.openCategoryView = async function(catId, catTitle) {
+    window.switchView('search-view');
+    const label = document.getElementById('search-query-label');
+    const count = document.getElementById('search-count');
+    if (label) label.textContent = catTitle || catId;
+    if (count) count.textContent = 'Curating category tracks...';
+
+    const container = document.getElementById('search-results-container');
+    if (container) {
+      container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #c084fc;"><i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem;"></i><p style="margin-top: 0.5rem;">Loading ' + catTitle + '...</p></div>';
+    }
+
+    const results = await window.catalogService.fetchCategoryTracks(catId, 24);
+    if (count) count.textContent = results.length + ' tracks available';
+    renderSearchResults(results);
+  };
+
   // 1. Navigation & Views Router
   window.switchView = function(viewId) {
     document.querySelectorAll('.app-view').forEach(el => el.classList.remove('active-view'));
