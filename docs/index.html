@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Pulse - Free Music Streaming by Pushkar Hiremath</title>
-  <meta name="description" content="Stream over 1.6 Million free songs on Pulse by Pushkar Hiremath powered by Audius, Jamendo, LRCLIB synchronized lyrics, and persistent audio playback.">
+  <meta name="description" content="Stream over 1.6 Million free full-length songs on Pulse by Pushkar Hiremath powered by Audius, Jamendo, LRCLIB synchronized lyrics, and Gemini 3.6 Flash AI DJ.">
   
   <script>
     if ('serviceWorker' in navigator) {
@@ -90,19 +90,23 @@
 
         <div class="nav-section">
           <span class="nav-section-title">GENRES & MOODS</span>
-          <a href="javascript:void(0)" class="nav-item" onclick="window.openCategoryView('hindi', 'Hindi & Desi Beats')">
+          <a href="javascript:void(0)" class="nav-item" onclick="window.openCategoryView('hindi_bollywood', 'Hindi & Bollywood Hits')">
             <i class="fa-solid fa-compact-disc text-accent"></i>
             <span>Hindi & Desi</span>
           </a>
-          <a href="javascript:void(0)" class="nav-item" onclick="window.openCategoryView('pop', 'English & Global Pop')">
+          <a href="javascript:void(0)" class="nav-item" onclick="window.openCategoryView('punjabi_bangers', 'Punjabi & Desi Heat')">
+            <i class="fa-solid fa-drum" style="color: #f59e0b;"></i>
+            <span>Punjabi Heat</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" onclick="window.openCategoryView('global_trending', 'Trending Worldwide')">
             <i class="fa-solid fa-earth-americas" style="color: #3b82f6;"></i>
             <span>Global Pop</span>
           </a>
-          <a href="javascript:void(0)" class="nav-item" onclick="window.executeSearch('EDM Electronic Dance')">
+          <a href="javascript:void(0)" class="nav-item" onclick="window.openCategoryView('edm_dance', 'EDM & Festival Dance')">
             <i class="fa-solid fa-bolt-lightning" style="color: #a855f7;"></i>
             <span>EDM & Dance</span>
           </a>
-          <a href="javascript:void(0)" class="nav-item" onclick="window.executeSearch('Lo-Fi Chill Study')">
+          <a href="javascript:void(0)" class="nav-item" onclick="window.openCategoryView('lofi_study', 'Lo-Fi Study & Chill Beats')">
             <i class="fa-solid fa-headphones-simple" style="color: #10b981;"></i>
             <span>Lo-Fi Chill</span>
           </a>
@@ -166,9 +170,9 @@
         <section class="hero-banner" id="hero-banner">
           <div class="hero-bg-overlay"></div>
           <div class="hero-content">
-            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> DUAL AUDIUS & JAMENDO ENGINE</div>
-            <h2 id="hero-title" class="hero-title">1.6 Million+ Free Streamable Tracks</h2>
-            <p id="hero-subtitle" class="hero-subtitle">High-fidelity streaming, LRCLIB synchronized lyrics, and cross-platform native audio playback.</p>
+            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> DUAL AUDIUS & JAMENDO 1.6M+ ENGINE</div>
+            <h2 id="hero-title" class="hero-title">Over 1.6 Million+ Full-Length Songs</h2>
+            <p id="hero-subtitle" class="hero-subtitle">High-fidelity master streaming, LRCLIB synchronized lyrics, 30+ dynamic catalogues, and Gemini 3.6 Flash AI DJ.</p>
             <div class="hero-actions">
               <button id="hero-play-btn" class="btn-primary-play" onclick="window.switchView('search-view')">
                 <i class="fa-solid fa-magnifying-glass"></i> Explore 1.6M+ Songs
@@ -187,279 +191,1106 @@
         </section>
 
         <!-- TOP CHIP FILTER SELECTOR -->
-        <div class="category-chip-bar" style="display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 1rem; margin-bottom: 1.5rem;">
-          <button class="chip-filter active" onclick="window.executeSearch('Top Hits')">All Hits</button>
-          <button class="chip-filter" onclick="window.openCategoryView('hindi', 'Hindi & Desi Beats')">Hindi & Desi</button>
-          <button class="chip-filter" onclick="window.openCategoryView('pop', 'English & Global Pop')">English Pop</button>
-          <button class="chip-filter" onclick="window.openCategoryView('electronic', 'EDM & Electronic Heat')">EDM Heat</button>
-          <button class="chip-filter" onclick="window.executeSearch('Lo-Fi Chill')">Lo-Fi Study</button>
-          <button class="chip-filter" onclick="window.executeSearch('Rock Alternative')">Rock</button>
+        <div class="category-chip-bar" style="display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 1rem; margin-bottom: 2rem;">
+          <button class="chip-filter active" onclick="window.executeSearch('Top Hits')">🔥 All Hits</button>
+          <button class="chip-filter" onclick="window.openCategoryView('hindi_bollywood', 'Hindi & Bollywood Hits')">💖 Hindi & Desi</button>
+          <button class="chip-filter" onclick="window.openCategoryView('punjabi_bangers', 'Punjabi & Desi Heat')">🥁 Punjabi Heat</button>
+          <button class="chip-filter" onclick="window.openCategoryView('global_trending', 'Trending Worldwide')">🌍 Global Pop</button>
+          <button class="chip-filter" onclick="window.openCategoryView('edm_dance', 'EDM & Festival Dance')">⚡ EDM & Dance</button>
+          <button class="chip-filter" onclick="window.openCategoryView('lofi_study', 'Lo-Fi Study & Chill Beats')">🎧 Lo-Fi Study</button>
+          <button class="chip-filter" onclick="window.openCategoryView('bollywood_90s', '90s Golden Bollywood Nostalgia')">📻 90s Classics</button>
+          <button class="chip-filter" onclick="window.openCategoryView('gym_workout', 'Gym & Workout Motivation')">💪 Gym Power</button>
+          <button class="chip-filter" onclick="window.openCategoryView('late_night_drive', 'Late Night Neon Drive')">🌙 Late Night</button>
         </div>
 
-        <!-- CATEGORY ROW: POP -->
-        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
-          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        
+        <!-- CATEGORY ROW: Trending Worldwide (Top 50) -->
+        <section class="music-shelf-section" style="margin-bottom: 2.8rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem;">
             <div>
-              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-earth-americas text-accent"></i> English & Global Pop</h3>
-              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary);">Billboard hits, catchy hooks & chart-topping pop anthems</p>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-fire-flame-curved" style="color: #ef4444; margin-right: 6px;"></i> Trending Worldwide (Top 50)</h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px;">The hottest chart-topping anthems dominating global streaming charts right now</p>
             </div>
-            <button class="btn-see-all" onclick="window.openCategoryView('pop', 'English & Global Pop')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn-see-all" onclick="window.openCategoryView('global_trending', 'Trending Worldwide (Top 50)')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;">See All (50+) <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i></button>
           </div>
-          <div class="shelf-carousel" id="cat-grid-pop" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem;">
+          <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1.2rem;">
             
-            <div class="music-card" onclick="window.playSpecificTrack('Starboy The Weeknd')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Starboy&quot;, &quot;artist&quot;: &quot;The Weeknd, Daft Punk&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1885250&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg" alt="Starboy" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg" alt="Starboy" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Starboy</span>
-                <span class="card-artist">The Weeknd</span>
+                <span class="card-title" title="Starboy">Starboy</span>
+                <span class="card-artist" title="The Weeknd, Daft Punk">The Weeknd, Daft Punk</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Cruel Summer Taylor Swift')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Cruel Summer&quot;, &quot;artist&quot;: &quot;Taylor Swift&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1874284&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg" alt="Cruel Summer" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg" alt="Cruel Summer" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Cruel Summer</span>
-                <span class="card-artist">Taylor Swift</span>
+                <span class="card-title" title="Cruel Summer">Cruel Summer</span>
+                <span class="card-artist" title="Taylor Swift">Taylor Swift</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Blinding Lights The Weeknd')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Blinding Lights&quot;, &quot;artist&quot;: &quot;The Weeknd&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/37/e6/78/37e6783d-3bf4-2194-4d89-63a1fefc39bf/20UMGIM08221.rgb.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1794717&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/37/e6/78/37e6783d-3bf4-2194-4d89-63a1fefc39bf/20UMGIM08221.rgb.jpg/600x600bb.jpg" alt="Blinding Lights" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/37/e6/78/37e6783d-3bf4-2194-4d89-63a1fefc39bf/20UMGIM08221.rgb.jpg/600x600bb.jpg" alt="Blinding Lights" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Blinding Lights</span>
-                <span class="card-artist">The Weeknd</span>
+                <span class="card-title" title="Blinding Lights">Blinding Lights</span>
+                <span class="card-artist" title="The Weeknd">The Weeknd</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Levitating Dua Lipa')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Levitating&quot;, &quot;artist&quot;: &quot;Dua Lipa&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/78/c6/f1/78c6f140-5a3d-3a3a-32c0-7cf12a321cf7/190295240216.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1823902&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/78/c6/f1/78c6f140-5a3d-3a3a-32c0-7cf12a321cf7/190295240216.jpg/600x600bb.jpg" alt="Levitating" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/78/c6/f1/78c6f140-5a3d-3a3a-32c0-7cf12a321cf7/190295240216.jpg/600x600bb.jpg" alt="Levitating" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Levitating</span>
-                <span class="card-artist">Dua Lipa</span>
+                <span class="card-title" title="Levitating">Levitating</span>
+                <span class="card-artist" title="Dua Lipa">Dua Lipa</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Believer Imagine Dragons')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Believer&quot;, &quot;artist&quot;: &quot;Imagine Dragons&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1756291&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg" alt="Believer" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg" alt="Believer" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Believer</span>
-                <span class="card-artist">Imagine Dragons</span>
+                <span class="card-title" title="Believer">Believer</span>
+                <span class="card-artist" title="Imagine Dragons">Imagine Dragons</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Shape of You Ed Sheeran')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Shape of You&quot;, &quot;artist&quot;: &quot;Ed Sheeran&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e7/d2/59/e7d259c4-c274-b52b-4560-eb25c7e09968/0190295851286.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1682490&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e7/d2/59/e7d259c4-c274-b52b-4560-eb25c7e09968/0190295851286.jpg/600x600bb.jpg" alt="Shape of You" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e7/d2/59/e7d259c4-c274-b52b-4560-eb25c7e09968/0190295851286.jpg/600x600bb.jpg" alt="Shape of You" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Shape of You</span>
-                <span class="card-artist">Ed Sheeran</span>
+                <span class="card-title" title="Shape of You">Shape of You</span>
+                <span class="card-artist" title="Ed Sheeran">Ed Sheeran</span>
               </div>
             </div>
-
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Faded&quot;, &quot;artist&quot;: &quot;Alan Walker&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/44/e9/8f/44e98f06-d0ea-e6c1-a87f-1d8f5cb58d20/886445592801.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1859341&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/44/e9/8f/44e98f06-d0ea-e6c1-a87f-1d8f5cb58d20/886445592801.jpg/600x600bb.jpg" alt="Faded" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Faded">Faded</span>
+                <span class="card-artist" title="Alan Walker">Alan Walker</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Wake Me Up&quot;, &quot;artist&quot;: &quot;Avicii&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/69/cf/a869cf13-a9d0-1288-fa03-9bbdf02cb859/13UMGIM22368.rgb.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1794218&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/69/cf/a869cf13-a9d0-1288-fa03-9bbdf02cb859/13UMGIM22368.rgb.jpg/600x600bb.jpg" alt="Wake Me Up" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Wake Me Up">Wake Me Up</span>
+                <span class="card-artist" title="Avicii">Avicii</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Closer&quot;, &quot;artist&quot;: &quot;The Chainsmokers&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/2d/72/cb2d7211-137b-ce19-a1b7-aebaa4f0c43e/886446059952.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1812940&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/2d/72/cb2d7211-137b-ce19-a1b7-aebaa4f0c43e/886446059952.jpg/600x600bb.jpg" alt="Closer" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Closer">Closer</span>
+                <span class="card-artist" title="The Chainsmokers">The Chainsmokers</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Titanium&quot;, &quot;artist&quot;: &quot;David Guetta, Sia&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/4b/f1/dc4bf1f5-19e0-be6c-dca3-96b6e41b9e59/5099908422452.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1839210&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Trending Worldwide (Top 50)&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/4b/f1/dc4bf1f5-19e0-be6c-dca3-96b6e41b9e59/5099908422452.jpg/600x600bb.jpg" alt="Titanium" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Titanium">Titanium</span>
+                <span class="card-artist" title="David Guetta, Sia">David Guetta, Sia</span>
+              </div>
+            </div>
           </div>
         </section>
 
-        <!-- CATEGORY ROW: HINDI -->
-        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
-          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <!-- CATEGORY ROW: Hindi & Bollywood Hits -->
+        <section class="music-shelf-section" style="margin-bottom: 2.8rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem;">
             <div>
-              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-compact-disc" style="color: #ec4899;"></i> Hindi & Desi Beats</h3>
-              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary);">Soulful melodies, romantic chartbusters & cinematic blockbusters</p>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-compact-disc" style="color: #ec4899; margin-right: 6px;"></i> Hindi & Bollywood Hits</h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px;">Soulful melodies, romantic chartbusters & Bollywood blockbusters</p>
             </div>
-            <button class="btn-see-all" onclick="window.openCategoryView('hindi', 'Hindi & Desi Beats')" style="color: #ec4899; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn-see-all" onclick="window.openCategoryView('hindi_bollywood', 'Hindi & Bollywood Hits')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;">See All (50+) <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i></button>
           </div>
-          <div class="shelf-carousel" id="cat-grid-hindi" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem;">
+          <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1.2rem;">
             
-            <div class="music-card" onclick="window.playSpecificTrack('Kesariya Arijit Singh')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Kesariya&quot;, &quot;artist&quot;: &quot;Arijit Singh, Pritam&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1910243&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg" alt="Kesariya" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg" alt="Kesariya" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Kesariya</span>
-                <span class="card-artist">Arijit Singh</span>
+                <span class="card-title" title="Kesariya">Kesariya</span>
+                <span class="card-artist" title="Arijit Singh, Pritam">Arijit Singh, Pritam</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Lover Diljit Dosanjh')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Apna Bana Le&quot;, &quot;artist&quot;: &quot;Arijit Singh, Sachin-Jigar&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/91/33/c4/9133c415-dc46-24e5-94be-45ea0f242d54/190296181464.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1894210&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg" alt="Lover" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/91/33/c4/9133c415-dc46-24e5-94be-45ea0f242d54/190296181464.jpg/600x600bb.jpg" alt="Apna Bana Le" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Lover</span>
-                <span class="card-artist">Diljit Dosanjh</span>
+                <span class="card-title" title="Apna Bana Le">Apna Bana Le</span>
+                <span class="card-artist" title="Arijit Singh, Sachin-Jigar">Arijit Singh, Sachin-Jigar</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Apna Bana Le Arijit Singh')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Chaleya&quot;, &quot;artist&quot;: &quot;Arijit Singh, Shilpa Rao&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/10/72/7b/10727be1-2092-26bb-d374-1294246fe18b/8902894362146_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1912401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/91/33/c4/9133c415-dc46-24e5-94be-45ea0f242d54/190296181464.jpg/600x600bb.jpg" alt="Apna Bana Le" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/10/72/7b/10727be1-2092-26bb-d374-1294246fe18b/8902894362146_cover.jpg/600x600bb.jpg" alt="Chaleya" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Apna Bana Le</span>
-                <span class="card-artist">Arijit Singh</span>
+                <span class="card-title" title="Chaleya">Chaleya</span>
+                <span class="card-artist" title="Arijit Singh, Shilpa Rao">Arijit Singh, Shilpa Rao</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Tujhe Dekha Toh Kumar Sanu')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Raataan Lambiyan&quot;, &quot;artist&quot;: &quot;Jubin Nautiyal, Asees Kaur&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ff/8d/68/ff8d6896-083b-31ca-711e-250a256dfeb9/8902894358828_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1871290&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/46/58/97/465897ed-fe10-e218-4cac-02c69ca36ad0/191773207717.jpg/600x600bb.jpg" alt="Tujhe Dekha Toh" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ff/8d/68/ff8d6896-083b-31ca-711e-250a256dfeb9/8902894358828_cover.jpg/600x600bb.jpg" alt="Raataan Lambiyan" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Tujhe Dekha Toh</span>
-                <span class="card-artist">Kumar Sanu</span>
+                <span class="card-title" title="Raataan Lambiyan">Raataan Lambiyan</span>
+                <span class="card-artist" title="Jubin Nautiyal, Asees Kaur">Jubin Nautiyal, Asees Kaur</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Softly Karan Aujla')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Tum Hi Ho&quot;, &quot;artist&quot;: &quot;Arijit Singh, Mithoon&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music/v4/71/84/c8/7184c8a2-23c2-d3ec-efc8-522676757b49/8902894351331_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1849102&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/58/b1/7b/58b17b6a-9a99-b1d5-bc44-59e843fa7a34/cover.jpg/600x600bb.jpg" alt="Softly" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/v4/71/84/c8/7184c8a2-23c2-d3ec-efc8-522676757b49/8902894351331_cover.jpg/600x600bb.jpg" alt="Tum Hi Ho" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Softly</span>
-                <span class="card-artist">Karan Aujla</span>
+                <span class="card-title" title="Tum Hi Ho">Tum Hi Ho</span>
+                <span class="card-artist" title="Arijit Singh, Mithoon">Arijit Singh, Mithoon</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Chaiyya Chaiyya Sukhwinder')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Shayad&quot;, &quot;artist&quot;: &quot;Arijit Singh, Pritam&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/6b/64/45/6b6445f1-34fb-5ca2-e0f3-a178bb098197/8902894356497_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1829481&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/f8/85/8ef88544-a6c7-018b-0a75-dc3b6b024fa0/cover.jpg/600x600bb.jpg" alt="Chaiyya Chaiyya" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/6b/64/45/6b6445f1-34fb-5ca2-e0f3-a178bb098197/8902894356497_cover.jpg/600x600bb.jpg" alt="Shayad" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Chaiyya Chaiyya</span>
-                <span class="card-artist">Sukhwinder Singh</span>
+                <span class="card-title" title="Shayad">Shayad</span>
+                <span class="card-artist" title="Arijit Singh, Pritam">Arijit Singh, Pritam</span>
               </div>
             </div>
-
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Kabira&quot;, &quot;artist&quot;: &quot;Tochi Raina, Rekha Bhardwaj&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/44/72/7b/44727b18-bfae-49b0-bb82-fae0a29486c4/8902894351393_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1810249&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/44/72/7b/44727b18-bfae-49b0-bb82-fae0a29486c4/8902894351393_cover.jpg/600x600bb.jpg" alt="Kabira" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Kabira">Kabira</span>
+                <span class="card-artist" title="Tochi Raina, Rekha Bhardwaj">Tochi Raina, Rekha Bhardwaj</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Agar Tum Saath Ho&quot;, &quot;artist&quot;: &quot;Arijit Singh, Alka Yagnik&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/0d/16/e0/0d16e001-c852-5a02-55ce-7848cba47eb6/8902894353458_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1798402&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/0d/16/e0/0d16e001-c852-5a02-55ce-7848cba47eb6/8902894353458_cover.jpg/600x600bb.jpg" alt="Agar Tum Saath Ho" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Agar Tum Saath Ho">Agar Tum Saath Ho</span>
+                <span class="card-artist" title="Arijit Singh, Alka Yagnik">Arijit Singh, Alka Yagnik</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Ae Dil Hai Mushkil&quot;, &quot;artist&quot;: &quot;Arijit Singh, Pritam&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/80/7e/6b/807e6bdf-a4aa-c990-fa1d-55ec843f5509/8902894354226_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1789401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/80/7e/6b/807e6bdf-a4aa-c990-fa1d-55ec843f5509/8902894354226_cover.jpg/600x600bb.jpg" alt="Ae Dil Hai Mushkil" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Ae Dil Hai Mushkil">Ae Dil Hai Mushkil</span>
+                <span class="card-artist" title="Arijit Singh, Pritam">Arijit Singh, Pritam</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Ghungroo&quot;, &quot;artist&quot;: &quot;Arijit Singh, Shilpa Rao&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/91/36/f6/9136f6d0-a0f5-4700-1c39-38c4b92b67f1/8902894356077_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1768401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Hindi & Bollywood Hits&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/91/36/f6/9136f6d0-a0f5-4700-1c39-38c4b92b67f1/8902894356077_cover.jpg/600x600bb.jpg" alt="Ghungroo" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Ghungroo">Ghungroo</span>
+                <span class="card-artist" title="Arijit Singh, Shilpa Rao">Arijit Singh, Shilpa Rao</span>
+              </div>
+            </div>
           </div>
         </section>
 
-        <!-- CATEGORY ROW: EDM -->
-        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
-          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <!-- CATEGORY ROW: Punjabi & Desi Heat -->
+        <section class="music-shelf-section" style="margin-bottom: 2.8rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem;">
             <div>
-              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-bolt-lightning" style="color: #a855f7;"></i> EDM & Electronic Heat</h3>
-              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary);">High-energy club bangers, house, synthwave & dance</p>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-drum" style="color: #f59e0b; margin-right: 6px;"></i> Punjabi & Desi Heat</h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px;">High-octane Punjabi pop, desi trap, and chartbusters</p>
             </div>
-            <button class="btn-see-all" onclick="window.openCategoryView('electronic', 'EDM & Electronic Heat')" style="color: #a855f7; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn-see-all" onclick="window.openCategoryView('punjabi_bangers', 'Punjabi & Desi Heat')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;">See All (50+) <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i></button>
           </div>
-          <div class="shelf-carousel" id="cat-grid-electronic" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem;">
+          <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1.2rem;">
             
-            <div class="music-card" onclick="window.playSpecificTrack('Faded Alan Walker')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Lover&quot;, &quot;artist&quot;: &quot;Diljit Dosanjh&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1903421&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/44/e9/8f/44e98f06-d0ea-e6c1-a87f-1d8f5cb58d20/886445592801.jpg/600x600bb.jpg" alt="Faded" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg" alt="Lover" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Faded</span>
-                <span class="card-artist">Alan Walker</span>
+                <span class="card-title" title="Lover">Lover</span>
+                <span class="card-artist" title="Diljit Dosanjh">Diljit Dosanjh</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Wake Me Up Avicii')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Softly&quot;, &quot;artist&quot;: &quot;Karan Aujla, Ikky&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/58/b1/7b/58b17b6a-9a99-b1d5-bc44-59e843fa7a34/cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1914285&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/69/cf/a869cf13-a9d0-1288-fa03-9bbdf02cb859/13UMGIM22368.rgb.jpg/600x600bb.jpg" alt="Wake Me Up" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/58/b1/7b/58b17b6a-9a99-b1d5-bc44-59e843fa7a34/cover.jpg/600x600bb.jpg" alt="Softly" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Wake Me Up</span>
-                <span class="card-artist">Avicii</span>
+                <span class="card-title" title="Softly">Softly</span>
+                <span class="card-artist" title="Karan Aujla, Ikky">Karan Aujla, Ikky</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Closer The Chainsmokers')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Brown Munde&quot;, &quot;artist&quot;: &quot;AP Dhillon, Gurinder Gill&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/ea/91/9f/ea919f35-430c-7b0b-99d6-574f26b5e022/195448375836.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1864902&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/2d/72/cb2d7211-137b-ce19-a1b7-aebaa4f0c43e/886446059952.jpg/600x600bb.jpg" alt="Closer" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/ea/91/9f/ea919f35-430c-7b0b-99d6-574f26b5e022/195448375836.jpg/600x600bb.jpg" alt="Brown Munde" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Closer</span>
-                <span class="card-artist">The Chainsmokers</span>
+                <span class="card-title" title="Brown Munde">Brown Munde</span>
+                <span class="card-artist" title="AP Dhillon, Gurinder Gill">AP Dhillon, Gurinder Gill</span>
               </div>
             </div>
-
-            <div class="music-card" onclick="window.playSpecificTrack('Titanium David Guetta')">
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Excuses&quot;, &quot;artist&quot;: &quot;AP Dhillon, Gurinder Gill&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/37/10/72/37107297-c8ae-c3ad-4e56-1cb770857945/195448375843.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1849182&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
               <div class="card-image-wrapper">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/4b/f1/dc4bf1f5-19e0-be6c-dca3-96b6e41b9e59/5099908422452.jpg/600x600bb.jpg" alt="Titanium" class="card-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/37/10/72/37107297-c8ae-c3ad-4e56-1cb770857945/195448375843.jpg/600x600bb.jpg" alt="Excuses" class="card-image" loading="lazy">
                 <div class="card-play-overlay">
                   <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
                 </div>
               </div>
               <div class="card-meta">
-                <span class="card-title">Titanium</span>
-                <span class="card-artist">David Guetta</span>
+                <span class="card-title" title="Excuses">Excuses</span>
+                <span class="card-artist" title="AP Dhillon, Gurinder Gill">AP Dhillon, Gurinder Gill</span>
               </div>
             </div>
-
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Insane&quot;, &quot;artist&quot;: &quot;AP Dhillon, Shinda Kahlon&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6c/0e/e4/6c0ee478-f716-e417-6ff4-e866a4bcfa37/195448375850.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1829101&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6c/0e/e4/6c0ee478-f716-e417-6ff4-e866a4bcfa37/195448375850.jpg/600x600bb.jpg" alt="Insane" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Insane">Insane</span>
+                <span class="card-artist" title="AP Dhillon, Shinda Kahlon">AP Dhillon, Shinda Kahlon</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;295&quot;, &quot;artist&quot;: &quot;Sidhu Moose Wala&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/2a/3b/912a3b90-1c39-2e0f-2fa1-f8a42f567302/cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1812903&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/2a/3b/912a3b90-1c39-2e0f-2fa1-f8a42f567302/cover.jpg/600x600bb.jpg" alt="295" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="295">295</span>
+                <span class="card-artist" title="Sidhu Moose Wala">Sidhu Moose Wala</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Levels&quot;, &quot;artist&quot;: &quot;Sidhu Moose Wala, Sunny Malton&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/c2/f7/33c2f7e0-47b2-6c2e-4361-9c3f15cb6fa3/cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1794201&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/c2/f7/33c2f7e0-47b2-6c2e-4361-9c3f15cb6fa3/cover.jpg/600x600bb.jpg" alt="Levels" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Levels">Levels</span>
+                <span class="card-artist" title="Sidhu Moose Wala, Sunny Malton">Sidhu Moose Wala, Sunny Malton</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;G.O.A.T.&quot;, &quot;artist&quot;: &quot;Diljit Dosanjh&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/44/28/aa/4428aa30-e374-bb18-a6d1-447551fa05c5/859740927937_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1782901&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/44/28/aa/4428aa30-e374-bb18-a6d1-447551fa05c5/859740927937_cover.jpg/600x600bb.jpg" alt="G.O.A.T." class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="G.O.A.T.">G.O.A.T.</span>
+                <span class="card-artist" title="Diljit Dosanjh">Diljit Dosanjh</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Born to Shine&quot;, &quot;artist&quot;: &quot;Diljit Dosanjh&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/44/28/aa/4428aa30-e374-bb18-a6d1-447551fa05c5/859740927937_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1764201&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/44/28/aa/4428aa30-e374-bb18-a6d1-447551fa05c5/859740927937_cover.jpg/600x600bb.jpg" alt="Born to Shine" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Born to Shine">Born to Shine</span>
+                <span class="card-artist" title="Diljit Dosanjh">Diljit Dosanjh</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;White Brown Black&quot;, &quot;artist&quot;: &quot;Karan Aujla, Avvy Sra&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/f4/3e/2d/f43e2d17-91a0-5b5c-42e1-45fe42e47e33/8902894361545_cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1752401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Punjabi & Desi Heat&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/f4/3e/2d/f43e2d17-91a0-5b5c-42e1-45fe42e47e33/8902894361545_cover.jpg/600x600bb.jpg" alt="White Brown Black" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="White Brown Black">White Brown Black</span>
+                <span class="card-artist" title="Karan Aujla, Avvy Sra">Karan Aujla, Avvy Sra</span>
+              </div>
+            </div>
           </div>
         </section>
+
+        <!-- CATEGORY ROW: EDM & Festival Dance -->
+        <section class="music-shelf-section" style="margin-bottom: 2.8rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-bolt-lightning" style="color: #a855f7; margin-right: 6px;"></i> EDM & Festival Dance</h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px;">High-energy house, synthwave, festival anthems and bass drops</p>
+            </div>
+            <button class="btn-see-all" onclick="window.openCategoryView('edm_dance', 'EDM & Festival Dance')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;">See All (50+) <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i></button>
+          </div>
+          <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1.2rem;">
+            
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Faded&quot;, &quot;artist&quot;: &quot;Alan Walker&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/44/e9/8f/44e98f06-d0ea-e6c1-a87f-1d8f5cb58d20/886445592801.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1859341&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/44/e9/8f/44e98f06-d0ea-e6c1-a87f-1d8f5cb58d20/886445592801.jpg/600x600bb.jpg" alt="Faded" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Faded">Faded</span>
+                <span class="card-artist" title="Alan Walker">Alan Walker</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Wake Me Up&quot;, &quot;artist&quot;: &quot;Avicii&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/69/cf/a869cf13-a9d0-1288-fa03-9bbdf02cb859/13UMGIM22368.rgb.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1794218&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/69/cf/a869cf13-a9d0-1288-fa03-9bbdf02cb859/13UMGIM22368.rgb.jpg/600x600bb.jpg" alt="Wake Me Up" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Wake Me Up">Wake Me Up</span>
+                <span class="card-artist" title="Avicii">Avicii</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Closer&quot;, &quot;artist&quot;: &quot;The Chainsmokers&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/2d/72/cb2d7211-137b-ce19-a1b7-aebaa4f0c43e/886446059952.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1812940&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/2d/72/cb2d7211-137b-ce19-a1b7-aebaa4f0c43e/886446059952.jpg/600x600bb.jpg" alt="Closer" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Closer">Closer</span>
+                <span class="card-artist" title="The Chainsmokers">The Chainsmokers</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Titanium&quot;, &quot;artist&quot;: &quot;David Guetta, Sia&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/4b/f1/dc4bf1f5-19e0-be6c-dca3-96b6e41b9e59/5099908422452.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1839210&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/4b/f1/dc4bf1f5-19e0-be6c-dca3-96b6e41b9e59/5099908422452.jpg/600x600bb.jpg" alt="Titanium" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Titanium">Titanium</span>
+                <span class="card-artist" title="David Guetta, Sia">David Guetta, Sia</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Animals&quot;, &quot;artist&quot;: &quot;Martin Garrix&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1819201&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80" alt="Animals" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Animals">Animals</span>
+                <span class="card-artist" title="Martin Garrix">Martin Garrix</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Don't You Worry Child&quot;, &quot;artist&quot;: &quot;Swedish House Mafia&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1798401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=80" alt="Don't You Worry Child" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Don't You Worry Child">Don't You Worry Child</span>
+                <span class="card-artist" title="Swedish House Mafia">Swedish House Mafia</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Midnight City&quot;, &quot;artist&quot;: &quot;M83&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1789102&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=80" alt="Midnight City" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Midnight City">Midnight City</span>
+                <span class="card-artist" title="M83">M83</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Alone&quot;, &quot;artist&quot;: &quot;Marshmello&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1769401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80" alt="Alone" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Alone">Alone</span>
+                <span class="card-artist" title="Marshmello">Marshmello</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Lean On&quot;, &quot;artist&quot;: &quot;Major Lazer, DJ Snake&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1758401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&auto=format&fit=crop&q=80" alt="Lean On" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Lean On">Lean On</span>
+                <span class="card-artist" title="Major Lazer, DJ Snake">Major Lazer, DJ Snake</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Summer&quot;, &quot;artist&quot;: &quot;Calvin Harris&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1749201&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;EDM & Festival Dance&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&auto=format&fit=crop&q=80" alt="Summer" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Summer">Summer</span>
+                <span class="card-artist" title="Calvin Harris">Calvin Harris</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CATEGORY ROW: Lo-Fi Study & Chill Beats -->
+        <section class="music-shelf-section" style="margin-bottom: 2.8rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-headphones-simple" style="color: #10b981; margin-right: 6px;"></i> Lo-Fi Study & Chill Beats</h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px;">Soothing vinyl crackle, cozy piano melodies and peaceful focus sounds</p>
+            </div>
+            <button class="btn-see-all" onclick="window.openCategoryView('lofi_study', 'Lo-Fi Study & Chill Beats')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;">See All (50+) <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i></button>
+          </div>
+          <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1.2rem;">
+            
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Rainy Coffee Shop&quot;, &quot;artist&quot;: &quot;Chillhop Music&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1849102&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&auto=format&fit=crop&q=80" alt="Rainy Coffee Shop" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Rainy Coffee Shop">Rainy Coffee Shop</span>
+                <span class="card-artist" title="Chillhop Music">Chillhop Music</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Midnight Comfy Beats&quot;, &quot;artist&quot;: &quot;Rob Knox&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1829401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80" alt="Midnight Comfy Beats" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Midnight Comfy Beats">Midnight Comfy Beats</span>
+                <span class="card-artist" title="Rob Knox">Rob Knox</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Study Session&quot;, &quot;artist&quot;: &quot;Lofi Girl&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1810249&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80" alt="Study Session" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Study Session">Study Session</span>
+                <span class="card-artist" title="Lofi Girl">Lofi Girl</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Quiet Night&quot;, &quot;artist&quot;: &quot;Ambient Lofi&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1798402&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Quiet Night" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Quiet Night">Quiet Night</span>
+                <span class="card-artist" title="Ambient Lofi">Ambient Lofi</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Warm Sunset&quot;, &quot;artist&quot;: &quot;Lofi Chill&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1789401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=80" alt="Warm Sunset" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Warm Sunset">Warm Sunset</span>
+                <span class="card-artist" title="Lofi Chill">Lofi Chill</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Tokyo Dream&quot;, &quot;artist&quot;: &quot;Synth Lofi&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1768401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80" alt="Tokyo Dream" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Tokyo Dream">Tokyo Dream</span>
+                <span class="card-artist" title="Synth Lofi">Synth Lofi</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Autumn Leaves&quot;, &quot;artist&quot;: &quot;Acoustic Chill&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1752401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&auto=format&fit=crop&q=80" alt="Autumn Leaves" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Autumn Leaves">Autumn Leaves</span>
+                <span class="card-artist" title="Acoustic Chill">Acoustic Chill</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Coffee Break&quot;, &quot;artist&quot;: &quot;Jazz Hop&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1742401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&auto=format&fit=crop&q=80" alt="Coffee Break" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Coffee Break">Coffee Break</span>
+                <span class="card-artist" title="Jazz Hop">Jazz Hop</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Moonlit Bedroom&quot;, &quot;artist&quot;: &quot;Dreamy Lofi&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1731401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=600&auto=format&fit=crop&q=80" alt="Moonlit Bedroom" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Moonlit Bedroom">Moonlit Bedroom</span>
+                <span class="card-artist" title="Dreamy Lofi">Dreamy Lofi</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Peaceful Horizon&quot;, &quot;artist&quot;: &quot;Calm Waves&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1720401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Lo-Fi Study & Chill Beats&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=80" alt="Peaceful Horizon" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Peaceful Horizon">Peaceful Horizon</span>
+                <span class="card-artist" title="Calm Waves">Calm Waves</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CATEGORY ROW: 90s Golden Bollywood Nostalgia -->
+        <section class="music-shelf-section" style="margin-bottom: 2.8rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-music" style="color: #eab308; margin-right: 6px;"></i> 90s Golden Bollywood Nostalgia</h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px;">Timeless classics by Kumar Sanu, Alka Yagnik, Udit Narayan & Lata Mangeshkar</p>
+            </div>
+            <button class="btn-see-all" onclick="window.openCategoryView('bollywood_90s', '90s Golden Bollywood Nostalgia')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;">See All (50+) <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i></button>
+          </div>
+          <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1.2rem;">
+            
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Tujhe Dekha Toh&quot;, &quot;artist&quot;: &quot;Kumar Sanu, Lata Mangeshkar&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/46/58/97/465897ed-fe10-e218-4cac-02c69ca36ad0/191773207717.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1782901&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/46/58/97/465897ed-fe10-e218-4cac-02c69ca36ad0/191773207717.jpg/600x600bb.jpg" alt="Tujhe Dekha Toh" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Tujhe Dekha Toh">Tujhe Dekha Toh</span>
+                <span class="card-artist" title="Kumar Sanu, Lata Mangeshkar">Kumar Sanu, Lata Mangeshkar</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Chaiyya Chaiyya&quot;, &quot;artist&quot;: &quot;Sukhwinder Singh, Sapna Awasthi&quot;, &quot;coverUrl&quot;: &quot;https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/f8/85/8ef88544-a6c7-018b-0a75-dc3b6b024fa0/cover.jpg/600x600bb.jpg&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1849201&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/f8/85/8ef88544-a6c7-018b-0a75-dc3b6b024fa0/cover.jpg/600x600bb.jpg" alt="Chaiyya Chaiyya" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Chaiyya Chaiyya">Chaiyya Chaiyya</span>
+                <span class="card-artist" title="Sukhwinder Singh, Sapna Awasthi">Sukhwinder Singh, Sapna Awasthi</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Dil To Pagal Hai&quot;, &quot;artist&quot;: &quot;Lata Mangeshkar, Udit Narayan&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1829101&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80" alt="Dil To Pagal Hai" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Dil To Pagal Hai">Dil To Pagal Hai</span>
+                <span class="card-artist" title="Lata Mangeshkar, Udit Narayan">Lata Mangeshkar, Udit Narayan</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Pehla Nasha&quot;, &quot;artist&quot;: &quot;Udit Narayan, Sadhana Sargam&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1812903&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80" alt="Pehla Nasha" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Pehla Nasha">Pehla Nasha</span>
+                <span class="card-artist" title="Udit Narayan, Sadhana Sargam">Udit Narayan, Sadhana Sargam</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Kuch Kuch Hota Hai&quot;, &quot;artist&quot;: &quot;Udit Narayan, Alka Yagnik&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1794201&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Kuch Kuch Hota Hai" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Kuch Kuch Hota Hai">Kuch Kuch Hota Hai</span>
+                <span class="card-artist" title="Udit Narayan, Alka Yagnik">Udit Narayan, Alka Yagnik</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Tip Tip Barsa Paani&quot;, &quot;artist&quot;: &quot;Alka Yagnik, Udit Narayan&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1782901&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=80" alt="Tip Tip Barsa Paani" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Tip Tip Barsa Paani">Tip Tip Barsa Paani</span>
+                <span class="card-artist" title="Alka Yagnik, Udit Narayan">Alka Yagnik, Udit Narayan</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Suraj Hua Maddham&quot;, &quot;artist&quot;: &quot;Sonu Nigam, Alka Yagnik&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1764201&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80" alt="Suraj Hua Maddham" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Suraj Hua Maddham">Suraj Hua Maddham</span>
+                <span class="card-artist" title="Sonu Nigam, Alka Yagnik">Sonu Nigam, Alka Yagnik</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Mera Dil Bhi Kitna Pagal Hai&quot;, &quot;artist&quot;: &quot;Kumar Sanu, Alka Yagnik&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1752401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&auto=format&fit=crop&q=80" alt="Mera Dil Bhi Kitna Pagal Hai" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Mera Dil Bhi Kitna Pagal Hai">Mera Dil Bhi Kitna Pagal Hai</span>
+                <span class="card-artist" title="Kumar Sanu, Alka Yagnik">Kumar Sanu, Alka Yagnik</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Chura Ke Dil Mera&quot;, &quot;artist&quot;: &quot;Kumar Sanu, Alka Yagnik&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1742401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&auto=format&fit=crop&q=80" alt="Chura Ke Dil Mera" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Chura Ke Dil Mera">Chura Ke Dil Mera</span>
+                <span class="card-artist" title="Kumar Sanu, Alka Yagnik">Kumar Sanu, Alka Yagnik</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Do Dil Mil Rahe Hain&quot;, &quot;artist&quot;: &quot;Kumar Sanu&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1731401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;90s Golden Bollywood Nostalgia&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=600&auto=format&fit=crop&q=80" alt="Do Dil Mil Rahe Hain" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Do Dil Mil Rahe Hain">Do Dil Mil Rahe Hain</span>
+                <span class="card-artist" title="Kumar Sanu">Kumar Sanu</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CATEGORY ROW: Gym & Workout Motivation -->
+        <section class="music-shelf-section" style="margin-bottom: 2.8rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-dumbbell" style="color: #ef4444; margin-right: 6px;"></i> Gym & Workout Motivation</h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px;">High BPM adrenaline pumps, heavy bass drops, and unstoppable power anthems</p>
+            </div>
+            <button class="btn-see-all" onclick="window.openCategoryView('gym_workout', 'Gym & Workout Motivation')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;">See All (50+) <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i></button>
+          </div>
+          <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1.2rem;">
+            
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Till I Collapse&quot;, &quot;artist&quot;: &quot;Eminem, Nate Dogg&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1849102&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80" alt="Till I Collapse" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Till I Collapse">Till I Collapse</span>
+                <span class="card-artist" title="Eminem, Nate Dogg">Eminem, Nate Dogg</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Can't Hold Us&quot;, &quot;artist&quot;: &quot;Macklemore & Ryan Lewis&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1829401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80" alt="Can't Hold Us" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Can't Hold Us">Can't Hold Us</span>
+                <span class="card-artist" title="Macklemore & Ryan Lewis">Macklemore & Ryan Lewis</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Stronger&quot;, &quot;artist&quot;: &quot;Kanye West&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1810249&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=80" alt="Stronger" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Stronger">Stronger</span>
+                <span class="card-artist" title="Kanye West">Kanye West</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Remember the Name&quot;, &quot;artist&quot;: &quot;Fort Minor&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1798402&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&auto=format&fit=crop&q=80" alt="Remember the Name" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Remember the Name">Remember the Name</span>
+                <span class="card-artist" title="Fort Minor">Fort Minor</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Lose Yourself&quot;, &quot;artist&quot;: &quot;Eminem&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1789401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&auto=format&fit=crop&q=80" alt="Lose Yourself" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Lose Yourself">Lose Yourself</span>
+                <span class="card-artist" title="Eminem">Eminem</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Centuries&quot;, &quot;artist&quot;: &quot;Fall Out Boy&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1768401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&auto=format&fit=crop&q=80" alt="Centuries" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Centuries">Centuries</span>
+                <span class="card-artist" title="Fall Out Boy">Fall Out Boy</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Hall of Fame&quot;, &quot;artist&quot;: &quot;The Script, will.i.am&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1752401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&auto=format&fit=crop&q=80" alt="Hall of Fame" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Hall of Fame">Hall of Fame</span>
+                <span class="card-artist" title="The Script, will.i.am">The Script, will.i.am</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Radioactive&quot;, &quot;artist&quot;: &quot;Imagine Dragons&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1742401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&auto=format&fit=crop&q=80" alt="Radioactive" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Radioactive">Radioactive</span>
+                <span class="card-artist" title="Imagine Dragons">Imagine Dragons</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Warriors&quot;, &quot;artist&quot;: &quot;Imagine Dragons&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1731401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?w=600&auto=format&fit=crop&q=80" alt="Warriors" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Warriors">Warriors</span>
+                <span class="card-artist" title="Imagine Dragons">Imagine Dragons</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Unstoppable&quot;, &quot;artist&quot;: &quot;Sia&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1720401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Gym & Workout Motivation&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop&q=80" alt="Unstoppable" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Unstoppable">Unstoppable</span>
+                <span class="card-artist" title="Sia">Sia</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CATEGORY ROW: Late Night Neon Drive -->
+        <section class="music-shelf-section" style="margin-bottom: 2.8rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-moon" style="color: #8b5cf6; margin-right: 6px;"></i> Late Night Neon Drive</h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px;">Atmospheric darkwave, moody synthpop, and hypnotic midnight basslines</p>
+            </div>
+            <button class="btn-see-all" onclick="window.openCategoryView('late_night_drive', 'Late Night Neon Drive')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;">See All (50+) <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i></button>
+          </div>
+          <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1.2rem;">
+            
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;After Dark&quot;, &quot;artist&quot;: &quot;Mr.Kitty&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1849102&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=80" alt="After Dark" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="After Dark">After Dark</span>
+                <span class="card-artist" title="Mr.Kitty">Mr.Kitty</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Nightcall&quot;, &quot;artist&quot;: &quot;Kavinsky&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1829401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&auto=format&fit=crop&q=80" alt="Nightcall" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Nightcall">Nightcall</span>
+                <span class="card-artist" title="Kavinsky">Kavinsky</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Resonance&quot;, &quot;artist&quot;: &quot;HOME&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1810249&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80" alt="Resonance" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Resonance">Resonance</span>
+                <span class="card-artist" title="HOME">HOME</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;The Hills&quot;, &quot;artist&quot;: &quot;The Weeknd&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1798402&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&auto=format&fit=crop&q=80" alt="The Hills" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="The Hills">The Hills</span>
+                <span class="card-artist" title="The Weeknd">The Weeknd</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Sweater Weather&quot;, &quot;artist&quot;: &quot;The Neighbourhood&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1789401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&auto=format&fit=crop&q=80" alt="Sweater Weather" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Sweater Weather">Sweater Weather</span>
+                <span class="card-artist" title="The Neighbourhood">The Neighbourhood</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Call Out My Name&quot;, &quot;artist&quot;: &quot;The Weeknd&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1768401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80" alt="Call Out My Name" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Call Out My Name">Call Out My Name</span>
+                <span class="card-artist" title="The Weeknd">The Weeknd</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Die For You&quot;, &quot;artist&quot;: &quot;The Weeknd&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1752401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80" alt="Die For You" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Die For You">Die For You</span>
+                <span class="card-artist" title="The Weeknd">The Weeknd</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Little Dark Age&quot;, &quot;artist&quot;: &quot;MGMT&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1742401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=80" alt="Little Dark Age" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Little Dark Age">Little Dark Age</span>
+                <span class="card-artist" title="MGMT">MGMT</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Reflections&quot;, &quot;artist&quot;: &quot;The Neighbourhood&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1731401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80" alt="Reflections" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Reflections">Reflections</span>
+                <span class="card-artist" title="The Neighbourhood">The Neighbourhood</span>
+              </div>
+            </div>
+            <div class="music-card" onclick="window.playTrackDirect({&quot;title&quot;: &quot;Sunset Lover&quot;, &quot;artist&quot;: &quot;Petit Biscuit&quot;, &quot;coverUrl&quot;: &quot;https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80&quot;, &quot;streamUrl&quot;: &quot;https://prod-1.storage.jamendo.com/?trackid=1720401&format=mp32&from=app&quot;, &quot;duration&quot;: 220, &quot;source&quot;: &quot;Late Night Neon Drive&quot;})">
+              <div class="card-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Sunset Lover" class="card-image" loading="lazy">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title" title="Sunset Lover">Sunset Lover</span>
+                <span class="card-artist" title="Petit Biscuit">Petit Biscuit</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
 
       <!-- VIEW 2: SEARCH -->
       <div id="view-search-view" class="app-view">
         <div class="search-view-header" style="margin-bottom: 2rem;">
-          <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Live Search Discovery</h2>
-          <p style="color: var(--text-secondary);">Access over 1.6 Million free streamable tracks from Audius and Jamendo</p>
+          <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Live Search & Category Discovery</h2>
+          <p style="color: var(--text-secondary);">Access over 1.6 Million free full-length streamable tracks from Audius and Jamendo</p>
           <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-glass);">
             <h3 style="font-size: 1.1rem; color: #fff;">Results for "<span id="search-query-label" style="color: var(--accent-primary);">Everything</span>"</h3>
-            <span id="search-count" style="font-size: 0.85rem; color: var(--text-muted);">Ready to search</span>
+            <span id="search-count" style="font-size: 0.85rem; color: var(--text-muted);">Ready to stream</span>
           </div>
         </div>
 
         <div id="search-results-container" class="search-results-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem;">
-          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
             <i class="fa-solid fa-magnifying-glass" style="font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.5;"></i>
             <p>Type any song name, artist, or album in the top search bar to stream live tracks.</p>
           </div>
@@ -629,40 +1460,6 @@
     </div>
   </div>
 
-  <!-- DOWNLOAD MODAL -->
-  <div id="download-app-modal" class="modal-overlay hidden">
-    <div class="modal-content download-modal-box" style="max-width: 540px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff;">Download Pulse Music</h3>
-        <button class="btn-icon-small" onclick="window.closeDownloadModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Experience high-fidelity audio, keyboard shortcuts, and instant access on your device.</p>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-        <button onclick="window.downloadPlatformApp('windows')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-brands fa-windows" style="font-size: 1.8rem; color: #60a5fa;"></i>
-          <strong>Windows</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Desktop PWA</span>
-        </button>
-        <button onclick="window.downloadPlatformApp('android')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-brands fa-android" style="font-size: 1.8rem; color: #34d399;"></i>
-          <strong>Android</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">APK / Web App</span>
-        </button>
-        <button onclick="window.downloadPlatformApp('macos')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-brands fa-apple" style="font-size: 1.8rem; color: #e2e8f0;"></i>
-          <strong>macOS</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Desktop App</span>
-        </button>
-        <button onclick="window.downloadPlatformApp('ios')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-solid fa-mobile-screen" style="font-size: 1.8rem; color: #c084fc;"></i>
-          <strong>iOS / iPadOS</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Home Screen</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- GEMINI AI DJ MODAL -->
   <div id="gemini-dj-modal" class="modal-overlay hidden">
     <div class="modal-content gemini-dj-modal-box" style="max-width: 520px; background: #0f111a; border: 1px solid rgba(168,85,247,0.3); border-radius: 24px; padding: 2rem; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
@@ -706,7 +1503,6 @@
     </div>
   </div>
 
-  
   <!-- FLOATING LYRICS DRAWER MODAL -->
   <div id="lyrics-drawer-modal" class="modal-overlay hidden">
     <div class="modal-content lyrics-modal-box" style="max-width: 580px; width: 100%; max-height: 85vh; background: #0c0e17; border: 1px solid rgba(168,85,247,0.35); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; box-shadow: 0 24px 60px rgba(0,0,0,0.85); backdrop-filter: blur(20px);">
@@ -724,6 +1520,40 @@
       </div>
 
       <div id="lyrics-drawer-content" style="flex: 1; overflow-y: auto; padding: 0.5rem 1rem; max-height: calc(85vh - 120px);"></div>
+    </div>
+  </div>
+
+  <!-- DOWNLOAD MODAL -->
+  <div id="download-app-modal" class="modal-overlay hidden">
+    <div class="modal-content download-modal-box" style="max-width: 540px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff;">Download Pulse Music</h3>
+        <button class="btn-icon-small" onclick="window.closeDownloadModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Experience high-fidelity audio, keyboard shortcuts, and instant access on your device.</p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <button onclick="window.downloadPlatformApp('windows')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <i class="fa-brands fa-windows" style="font-size: 1.8rem; color: #60a5fa;"></i>
+          <strong>Windows</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Desktop PWA</span>
+        </button>
+        <button onclick="window.downloadPlatformApp('android')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <i class="fa-brands fa-android" style="font-size: 1.8rem; color: #34d399;"></i>
+          <strong>Android</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">APK / Web App</span>
+        </button>
+        <button onclick="window.downloadPlatformApp('macos')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <i class="fa-brands fa-apple" style="font-size: 1.8rem; color: #e2e8f0;"></i>
+          <strong>macOS</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Desktop App</span>
+        </button>
+        <button onclick="window.downloadPlatformApp('ios')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-mobile-screen" style="font-size: 1.8rem; color: #c084fc;"></i>
+          <strong>iOS / iPadOS</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Home Screen</span>
+        </button>
+      </div>
     </div>
   </div>
 
