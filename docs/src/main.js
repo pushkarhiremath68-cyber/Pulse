@@ -107,16 +107,6 @@ window.closeDownloadModal = function() {
   if (modal) modal.classList.add('hidden');
 };
 
-window.openGeminiDjModal = function() {
-  const modal = document.getElementById('gemini-dj-modal');
-  if (modal) modal.classList.remove('hidden');
-};
-
-window.closeGeminiDjModal = function() {
-  const modal = document.getElementById('gemini-dj-modal');
-  if (modal) modal.classList.add('hidden');
-};
-
 // 3. Auth Handlers (Instant Local Storage Session)
 window.handleRealLogin = function(e) {
   if (e) e.preventDefault();

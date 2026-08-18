@@ -232,9 +232,7 @@
               <button id="hero-play-btn" class="btn-primary-play" onclick="window.switchView('search-view')">
                 <i class="fa-solid fa-magnifying-glass"></i> Search Songs
               </button>
-              <button id="hero-like-btn" class="btn-secondary-outline" onclick="window.openGeminiDjModal()">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Gemini AI DJ
-              </button>
+              
               <button id="hero-download-app-btn" class="btn-secondary-install" onclick="window.openDownloadModal()">
                 <i class="fa-solid fa-download"></i> Download App
               </button>
@@ -263,40 +261,7 @@
               <span style="font-size: 0.8rem; font-weight: 700; color: #c084fc; display: flex; align-items: center; gap: 0.4rem; margin-top: auto;">Explore Search <i class="fa-solid fa-arrow-right"></i></span>
             </div>
 
-            <div class="feature-action-card" onclick="window.openGeminiDjModal()" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.85rem;" onmouseover="this.style.borderColor='rgba(168,85,247,0.4)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.borderColor='var(--border-glass)'; this.style.transform='none';">
-              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); display: flex; align-items: center; justify-content: center; color: #e879f9; font-size: 1.3rem;">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-              </div>
-              <div>
-                <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Gemini AI DJ Studio</h4>
-                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">Tell AI your mood or vibe and get custom intelligent playlists curated in seconds.</p>
-              </div>
-              <span style="font-size: 0.8rem; font-weight: 700; color: #e879f9; display: flex; align-items: center; gap: 0.4rem; margin-top: auto;">Launch AI DJ <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-
-            <div class="feature-action-card" onclick="window.switchView('liked')" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.85rem;" onmouseover="this.style.borderColor='rgba(168,85,247,0.4)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.borderColor='var(--border-glass)'; this.style.transform='none';">
-              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); display: flex; align-items: center; justify-content: center; color: #f87171; font-size: 1.3rem;">
-                <i class="fa-solid fa-heart"></i>
-              </div>
-              <div>
-                <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Your Music Library</h4>
-                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">Access your saved liked tracks, personalized playlists, and offline favorites.</p>
-              </div>
-              <span style="font-size: 0.8rem; font-weight: 700; color: #f87171; display: flex; align-items: center; gap: 0.4rem; margin-top: auto;">View Library <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-
-            <div class="feature-action-card" onclick="window.switchView('search-view')" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.85rem;" onmouseover="this.style.borderColor='rgba(168,85,247,0.4)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.borderColor='var(--border-glass)'; this.style.transform='none';">
-              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); display: flex; align-items: center; justify-content: center; color: #60a5fa; font-size: 1.3rem;">
-                <i class="fa-solid fa-bolt"></i>
-              </div>
-              <div>
-                <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">High-Fidelity Audio</h4>
-                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">320kbps full-length playback, synchronized karaoke lyrics, and canvas visualizer.</p>
-              </div>
-              <span style="font-size: 0.8rem; font-weight: 700; color: #60a5fa; display: flex; align-items: center; gap: 0.4rem; margin-top: auto;">Start Listening <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-
-          </div>
+            
         </section>
 
         <!-- TOP CATALOG GENRE FILTER BAR (CHIP SELECTOR) -->
@@ -1246,69 +1211,7 @@
   </div>
 
   <!-- GEMINI AI DJ STUDIO MODAL -->
-  <div id="gemini-dj-modal" class="modal-overlay hidden">
-    <div class="modal-content gemini-dj-box" style="max-width: 680px; border-radius: 24px; background: rgba(15, 17, 26, 0.95); backdrop-filter: blur(30px); border: 1px solid rgba(168, 85, 247, 0.35); box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(168, 85, 247, 0.25); padding: 1.8rem; overflow: hidden; position: relative;">
-      <div class="gemini-glow-orbit"></div>
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 2; margin-bottom: 1.2rem;">
-        <div style="display: flex; align-items: center; gap: 0.9rem;">
-          <div class="gemini-orb-avatar">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-          </div>
-          <div>
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <h2 style="margin: 0; font-size: 1.45rem; font-weight: 800; color: #fff; letter-spacing: -0.5px;">Pulse Gemini AI DJ</h2>
-              <span style="background: linear-gradient(135deg, #a855f7, #ec4899); font-size: 0.68rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: 20px; color: #fff; text-transform: uppercase;">v2.0 Flash</span>
-            </div>
-            <p style="margin: 0.2rem 0 0 0; font-size: 0.84rem; color: var(--text-secondary);">Ask Gemini to create custom mixes tailored to any mood, tempo, or activity</p>
-          </div>
-        </div>
-        <button class="pulse-auth-close" onclick="window.closeGeminiDjModal()" style="position: static;"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-
-      <!-- Prompt Input Form -->
-      <form id="gemini-dj-form" onsubmit="window.handleGenerateGeminiPlaylist(event); return false;" style="position: relative; z-index: 2;">
-        <div class="gemini-input-wrapper" style="display: flex; gap: 0.5rem; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 18px; padding: 0.35rem 0.4rem 0.35rem 1rem; align-items: center;">
-          <i class="fa-solid fa-wand-magic-sparkles gemini-input-icon" style="color: #c084fc;"></i>
-          <input type="text" id="gemini-dj-prompt" placeholder="Describe your vibe (e.g. 'Late night rainy drive Hindi soulful songs', 'High energy workout')..." autocomplete="off" required style="flex: 1; background: transparent; border: none; outline: none; color: #fff; font-size: 0.95rem; font-family: inherit;">
-          <button type="submit" id="btn-gemini-submit" class="btn-gemini-generate" style="background: linear-gradient(135deg, #a855f7, #ec4899); border: none; border-radius: 14px; padding: 0.65rem 1.2rem; color: #fff; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);">
-            <i class="fa-solid fa-bolt"></i> <span>Mix Now</span>
-          </button>
-        </div>
-
-        <!-- Preset Quick Prompt Chips -->
-        <div class="gemini-prompt-chips" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem;">
-          <span style="font-size: 0.76rem; color: var(--text-muted); align-self: center; font-weight: 600;">Presets:</span>
-          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('🌧️ Late night acoustic rainy drive and soulful indie chill melodies')">🌧️ Rainy Drive</button>
-          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('🔥 Unstoppable high-energy power workout motivation')">🔥 Workout Power</button>
-          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('🧘 Deep focus lo-fi study chill beats and acoustic guitar')">🧘 Lo-Fi Focus</button>
-          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('💖 Heartfelt melodic acoustic love and mellow romantic vibes')">💖 Acoustic Chill</button>
-          <button type="button" class="gemini-chip" onclick="window.setGeminiPrompt('🎉 Upbeat electronic dance party club hits with heavy bass')">🎉 Party Club Mix</button>
-        </div>
-      </form>
-
-      <!-- Gemini Output Playlist Card -->
-      <div id="gemini-playlist-result" class="gemini-result-card hidden" style="position: relative; z-index: 2; margin-top: 1.2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 16px; padding: 1.2rem;">
-        <div class="gemini-result-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0.75rem;">
-          <div>
-            <h3 id="gemini-res-title" style="margin: 0; font-size: 1.15rem; color: #fff; font-weight: 700;">Generated Playlist</h3>
-            <p id="gemini-res-vibe" style="margin: 0.2rem 0 0 0; font-size: 0.82rem; color: #d8b4fe;">Vibe Summary</p>
-          </div>
-          <button type="button" id="btn-gemini-play-mix" class="btn-primary" style="padding: 0.5rem 1.1rem; font-size: 0.85rem; border-radius: 20px; display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, #a855f7, #3b82f6); box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);" onclick="window.playGeminiGeneratedMix()">
-            <i class="fa-solid fa-play"></i> Play AI Mix
-          </button>
-        </div>
-        <div id="gemini-res-tracks" class="gemini-tracks-list" style="max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.45rem;">
-          <!-- Populated dynamically -->
-        </div>
-      </div>
-
-      <!-- Loading State -->
-      <div id="gemini-dj-loading" class="gemini-loading-box hidden" style="text-align: center; padding: 2.5rem 1rem; position: relative; z-index: 2;">
-        <div class="gemini-spinner-orb" style="width: 48px; height: 48px; border: 3px solid rgba(168, 85, 247, 0.2); border-top-color: #c084fc; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto;"></div>
-        <p style="margin-top: 1rem; font-size: 0.95rem; color: #e9d5ff; font-weight: 600;">Gemini AI is analyzing millions of songs & curating your mix...</p>
-      </div>
-    </div>
-  </div>
+  
   
   <!-- AUTHENTIC GOOGLE OAUTH ACCOUNT PICKER & CONSENT MODAL -->
   <div id="google-oauth-picker-modal" class="modal-overlay hidden">
@@ -1515,33 +1418,7 @@
   </div>
 
   <!-- ARTIST DETAIL & LIVE EVENTS MODAL -->
-  <div id="artist-detail-modal" class="modal-overlay hidden">
-    <div class="modal-content artist-detail-card" style="max-width: 760px; max-height: 88vh; overflow-y: auto; border-radius: 20px; background: var(--bg-surface); border: 1px solid var(--border-glow); padding: 0;">
-      <!-- Hero Banner with Artist Image and Follow Button -->
-      <div class="artist-hero-banner" id="artist-hero-banner" style="position: relative; height: 260px; background: linear-gradient(180deg, rgba(168,85,247,0.3) 0%, rgba(11,13,20,0.95) 100%), url('./assets/pulse-logo.png') center/cover; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
-        <button class="pulse-auth-close" onclick="window.closeArtistModal()" title="Close" style="top: 14px; right: 14px; z-index: 10;">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <span class="artist-verified-badge" style="background: rgba(168,85,247,0.25); border: 1px solid var(--accent-primary); color: #d8b4fe; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem;">
-            <i class="fa-solid fa-circle-check text-accent"></i> Verified Artist
-          </span>
-        </div>
-        <div style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-          <div>
-            <h1 id="artist-modal-name" style="font-size: 2.2rem; font-weight: 900; color: #fff; margin: 0; text-shadow: 0 4px 12px rgba(0,0,0,0.8);">Artist Name</h1>
-            <p id="artist-modal-listeners" style="color: var(--text-secondary); font-size: 0.9rem; margin: 0.25rem 0 0 0;">3,500,000+ monthly listeners</p>
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <button type="button" id="btn-follow-artist" class="btn-primary-play" style="padding: 0.6rem 1.4rem; font-size: 0.9rem;" onclick="window.toggleFollowCurrentArtist()">
-              <i class="fa-solid fa-heart"></i> <span id="artist-follow-text">Follow</span>
-            </button>
-            <button type="button" class="btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: 20px;" onclick="window.playArtistTopTracks()">
-              <i class="fa-solid fa-play"></i> Play Top Songs
-            </button>
-          </div>
-        </div>
-      </div>
+  
 
       <!-- Artist Body: Bio, Top Tracks, Albums, Live Events -->
       <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
@@ -2078,10 +1955,7 @@
       <i class="fa-solid fa-magnifying-glass"></i>
       <span>Search</span>
     </button>
-    <button class="mobile-nav-item" id="mobile-nav-gemini" onclick="window.openGeminiDjModal()">
-      <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
-      <span>Gemini DJ</span>
-    </button>
+    
     <button class="mobile-nav-item" data-view="liked" onclick="window.switchView('liked')">
       <i class="fa-solid fa-heart"></i>
       <span>Liked</span>
