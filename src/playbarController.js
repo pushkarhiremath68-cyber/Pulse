@@ -550,6 +550,11 @@
     fills.forEach(fill => {
       if (fill) fill.style.width = `${percent}%`;
     });
+
+    // Synchronize Live Lyrics Karaoke and Mini Playbar Snippet
+    if (typeof window.syncLiveLyrics === 'function') {
+      window.syncLiveLyrics(curr);
+    }
   }
 
   function updateDurationUI(duration) {

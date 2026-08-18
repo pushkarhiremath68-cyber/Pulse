@@ -879,6 +879,29 @@ function getOfficialCover(title, artist) {
       const seenIds = new Set();
       const seenTitles = new Set();
 
+      // 0. MULTI-PARAMETER SEARCH OVER REGISTERED CATALOG TRACKS (Instant Zero-Latency Match)
+      const qLower = cleanQ.toLowerCase();
+      const localCandidates = Object.values(window.TRACKS_REGISTRY || {}).concat(STARTER_HITS || []);
+      for (const t of localCandidates) {
+        if (!t || !t.title) continue;
+        const matchTitle = (t.title || '').toLowerCase().includes(qLower);
+        const matchArtist = (t.artist || '').toLowerCase().includes(qLower);
+        const matchAlbum = (t.album || '').toLowerCase().includes(qLower);
+        const matchLang = (t.language || '').toLowerCase().includes(qLower);
+        const matchGenre = (t.genre || '').toLowerCase().includes(qLower);
+        const matchCategory = (t.category || '').toLowerCase().includes(qLower);
+
+        if (matchTitle || matchArtist || matchAlbum || matchLang || matchGenre || matchCategory) {
+          const norm = normalizeTrack(t);
+          const titleKey = `${norm.title} - ${norm.artist}`.toLowerCase();
+          if (!seenTitles.has(titleKey) && !seenIds.has(norm.id)) {
+            seenTitles.add(titleKey);
+            seenIds.add(norm.id);
+            results.push(norm);
+          }
+        }
+      }
+
       // 1. LIVE JIOSAAVN API (Bollywood, Punjabi, Telugu, Tamil, Kannada, Hindi Hits)
       try {
         const saavnLocal = `/api/saavn-search?q=${encodeURIComponent(cleanQ)}`;

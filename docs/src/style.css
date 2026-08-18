@@ -6105,3 +6105,180 @@ body.is-standalone-app .btn-install-sidebar {
 }
 
 
+
+
+/* ==========================================================================
+   PULSE LRCLIB LIVE SYNCHRONIZED LYRICS ENGINE
+   ========================================================================== */
+
+/* Mini Bottom Playbar 2-Line Live Lyrics Preview Widget */
+.mini-lyrics-snippet {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 17, 26, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 14px;
+  padding: 0.45rem 1.1rem;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 85, 247, 0.2);
+  cursor: pointer;
+  z-index: 99;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+.mini-lyrics-snippet:hover {
+  border-color: rgba(168, 85, 247, 0.7);
+  box-shadow: 0 12px 30px rgba(168, 85, 247, 0.35);
+  transform: translateX(-50%) translateY(-2px);
+}
+.mini-lyric-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.25s ease;
+}
+.mini-lyric-current {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+  letter-spacing: -0.01em;
+}
+.mini-lyric-next {
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.15rem;
+}
+
+/* Fullscreen Player Dual Mode: Visualizer / Karaoke Lyrics Sheet */
+.fs-lyrics-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 2rem 1.5rem;
+  z-index: 5;
+  background: rgba(11, 13, 20, 0.75);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: scale(0.96);
+}
+.fs-lyrics-view.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+.fs-lyrics-scroller {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40vh 1rem 45vh 1rem;
+  gap: 1.4rem;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, transparent 100%);
+}
+.fs-lyric-line {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.32);
+  text-align: center;
+  cursor: pointer;
+  padding: 0.4rem 1.2rem;
+  border-radius: 12px;
+  max-width: 680px;
+  line-height: 1.4;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+.fs-lyric-line:hover {
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+}
+.fs-lyric-line.active {
+  color: #ffffff;
+  font-size: 1.95rem;
+  font-weight: 900;
+  text-shadow: 0 0 24px rgba(168, 85, 247, 0.85), 0 0 40px rgba(236, 72, 153, 0.5);
+  transform: scale(1.06);
+  opacity: 1;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+/* Lyrics Modal and Drawer Styles */
+.lyrics-modal-box {
+  max-width: 620px;
+  width: 92%;
+  background: rgba(15, 17, 26, 0.95);
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(168, 85, 247, 0.25);
+  padding: 1.5rem;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+.lyrics-modal-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 1.5rem 0.5rem;
+  scroll-behavior: smooth;
+}
+.lyrics-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.lyrics-line {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  line-height: 1.5;
+}
+.lyrics-line:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+.lyrics-line.active {
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #e879f9;
+  text-shadow: 0 0 16px rgba(232, 121, 249, 0.6);
+  background: rgba(168, 85, 247, 0.15);
+  border-left: 3px solid var(--accent-primary);
+}
+.lyrics-placeholder-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}

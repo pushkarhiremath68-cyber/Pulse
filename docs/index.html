@@ -1203,6 +1203,16 @@
 
     <div class="fs-body">
       <div class="fs-visual-container">
+                <!-- INTERACTIVE SYNCHRONIZED KARAOKE LYRICS SHEET -->
+        <div id="fs-lyrics-view" class="fs-lyrics-view">
+          <div id="fs-lyrics-scroller" class="fs-lyrics-scroller">
+            <div class="lyrics-placeholder-empty">
+              <i class="fa-solid fa-microphone-lines" style="font-size: 2rem; margin-bottom: 0.75rem; color: #c084fc; display: block;"></i>
+              <p>Loading synchronized lyrics from LRCLIB...</p>
+            </div>
+          </div>
+        </div>
+
         <!-- CANVAS VISUALIZER -->
         <canvas id="fs-canvas-visualizer" width="600" height="400"></canvas>
         <div class="fs-album-art-wrapper">
@@ -2021,6 +2031,12 @@
       <div id="mini-top-progress-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6); transition: width 0.15s linear;"></div>
     </div>
 
+        <!-- 2-Line Live Lyrics Preview Snippet -->
+    <div id="mini-playbar-lyrics-snippet" class="mini-lyrics-snippet hidden" onclick="window.openFullscreenPlayerWithLyrics()" title="Click to expand Karaoke Lyrics View">
+      <div class="mini-lyric-line mini-lyric-current" id="mini-lyric-current">♪ Pulse Live Lyrics Sync</div>
+      <div class="mini-lyric-line mini-lyric-next" id="mini-lyric-next"></div>
+    </div>
+
     <!-- LEFT: CURRENT TRACK -->
     <div class="player-left">
       <div class="player-thumb-wrapper" id="btn-open-fullscreen">
@@ -2258,6 +2274,7 @@
       });
     }
   </script>
+  <script type="module" src="./src/lyricsService.js?v=3.0.0-clean"></script>
   <script type="module" src="./src/catalogService.js?v=3.0.0-clean"></script>
   <script type="module" src="./src/musicService.js?v=3.0.0-clean"></script>
   <script type="module" src="./src/playbarController.js?v=3.0.0-clean"></script>
