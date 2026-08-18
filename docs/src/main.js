@@ -1246,7 +1246,7 @@
     }
 
     const title = track.title || track.name || 'Unknown Track';
-    const cover = track.cover || track.coverUrl || track.coverArt || (window.generateTrackCover ? window.generateTrackCover(title, track.artist) : './pulse-logo.png');
+    const cover = (window.getOfficialCover && window.getOfficialCover(title, track.artist)) || track.cover || track.coverUrl || track.coverArt || (window.generateTrackCover ? window.generateTrackCover(title, track.artist) : './pulse-logo.png');
     const artist = track.artist || 'Unknown Artist';
 
     const isCurrent = state.currentTrack && state.currentTrack.id === track.id;
@@ -1385,7 +1385,7 @@
     const isLiked = state.likedTracks.some(t => t.id === track.id);
 
     const title = track.title || track.name || 'Unknown Track';
-    const cover = track.cover || track.coverUrl || track.coverArt || (window.generateTrackCover ? window.generateTrackCover(title, track.artist) : './pulse-logo.png');
+    const cover = (window.getOfficialCover && window.getOfficialCover(title, track.artist)) || track.cover || track.coverUrl || track.coverArt || (window.generateTrackCover ? window.generateTrackCover(title, track.artist) : './pulse-logo.png');
     const artist = track.artist || 'Unknown Artist';
     const safeTitleEsc = (title || 'Track').replace(/'/g, "\\'");
     const safeArtistEsc = (artist || 'Artist').replace(/'/g, "\\'");
