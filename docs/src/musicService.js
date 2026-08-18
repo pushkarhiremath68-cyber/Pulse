@@ -1,6 +1,6 @@
 /**
  * Pulse Music - Multi-Source Global Music Engine
- * Powered by Audius Decentralized Network (1.6M+ Full Songs), Jamendo Masters, and Studio Search.
+ * Powered by Studio Master Search (100% Authentic Original Artists), Audius (1.6M+), and Jamendo.
  */
 
 import { disambiguateQuery } from './geminiService.js';
@@ -29,7 +29,7 @@ export function rotateAudiusNode() {
 /**
  * Normalizes raw track objects into standard Pulse format
  */
-export function normalizeTrack(raw, source = 'Pulse Universal') {
+export function normalizeTrack(raw, source = 'Studio Master (Exact Song)') {
   if (!raw) return null;
   const safeId = raw.id || `pulse-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
   const safeTitle = raw.title || raw.name || raw.trackName || 'Untitled Song';
@@ -93,7 +93,9 @@ async function expandQuery(query) {
 }
 
 /**
- * Searches across Audius (1.6M+ Full Songs), Jamendo, and Studio Masters concurrently
+ * High-Precision Search Engine:
+ * 1. PRIORITIZES 100% Authentic Studio Masters (Real Artist Vocals) FIRST
+ * 2. Augments with verified Audius & Jamendo tracks
  */
 export async function searchTracks(query, limit = 60) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
@@ -113,98 +115,105 @@ export async function searchTracks(query, limit = 60) {
     }
   };
 
+  // STEP 1: Always execute Studio Master search FIRST for 100% authentic artist audio & HD art
   for (const term of terms) {
     const encodedQ = encodeURIComponent(term);
-    const promises = [];
-
-    // 1. Audius 1.6M+ Global Network (Full Length Streams from 0:00 to end)
-    promises.push((async () => {
-      try {
-        const node = getActiveAudiusNode();
-        const url = `${node}/v1/tracks/search?query=${encodedQ}&app_name=${AUDIUS_APP_NAME}&limit=${Math.min(limit, 30)}`;
-        const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
-        if (res.ok) {
-          const json = await res.json();
-          if (json.data && Array.isArray(json.data)) {
-            json.data.forEach(t => {
-              const cover = t.artwork ? (t.artwork['480x480'] || t.artwork['150x150']) : './pulse-logo.png';
+    try {
+      const itunesUrl = `https://itunes.apple.com/search?term=${encodedQ}&entity=song&limit=${Math.min(limit, 30)}`;
+      const res = await fetch(itunesUrl, { signal: AbortSignal.timeout(3500) });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.results && Array.isArray(json.results)) {
+          json.results.forEach(r => {
+            if (r.previewUrl) {
               const norm = normalizeTrack({
-                id: `audius-${t.id}`,
-                title: t.title,
-                artist: t.user?.name,
-                artwork: t.artwork,
-                duration: t.duration || 220,
-                streamUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
-                genre: t.genre || 'Top Hit'
-              }, 'Audius (1.6M+ Full Song)');
+                id: `studio-${r.trackId}`,
+                title: r.trackName,
+                artist: r.artistName,
+                album: r.collectionName,
+                artworkUrl100: r.artworkUrl100,
+                duration: Math.round((r.trackTimeMillis || 220000) / 1000),
+                streamUrl: r.previewUrl,
+                genre: r.primaryGenreName
+              }, 'Studio Master (Authentic Artist)');
               if (norm) addUnique(norm);
-            });
-          }
+            }
+          });
         }
-      } catch (e) {
-        rotateAudiusNode();
       }
-    })());
+    } catch (e) {}
 
-    // 2. Studio Master Index (Exact Song & Official Vocal)
-    promises.push((async () => {
-      try {
-        const itunesUrl = `https://itunes.apple.com/search?term=${encodedQ}&entity=song&limit=${Math.min(limit, 20)}`;
-        const res = await fetch(itunesUrl, { signal: AbortSignal.timeout(3500) });
-        if (res.ok) {
-          const json = await res.json();
-          if (json.results && Array.isArray(json.results)) {
-            json.results.forEach(r => {
-              if (r.previewUrl) {
-                const norm = normalizeTrack({
-                  id: `studio-${r.trackId}`,
-                  title: r.trackName,
-                  artist: r.artistName,
-                  album: r.collectionName,
-                  artworkUrl100: r.artworkUrl100,
-                  duration: Math.round((r.trackTimeMillis || 220000) / 1000),
-                  streamUrl: r.previewUrl,
-                  genre: r.primaryGenreName
-                }, 'Studio Master (Exact Song)');
-                if (norm) addUnique(norm);
-              }
-            });
+    if (results.length >= 25) break;
+  }
+
+  // STEP 2: Augment with Audius & Jamendo for extended discovery
+  if (results.length < limit) {
+    for (const term of terms.slice(0, 2)) {
+      const encodedQ = encodeURIComponent(term);
+      const promises = [];
+
+      // Audius
+      promises.push((async () => {
+        try {
+          const node = getActiveAudiusNode();
+          const url = `${node}/v1/tracks/search?query=${encodedQ}&app_name=${AUDIUS_APP_NAME}&limit=15`;
+          const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+          if (res.ok) {
+            const json = await res.json();
+            if (json.data && Array.isArray(json.data)) {
+              json.data.forEach(t => {
+                if (t.duration && t.duration > 45) {
+                  const norm = normalizeTrack({
+                    id: `audius-${t.id}`,
+                    title: t.title,
+                    artist: t.user?.name,
+                    artwork: t.artwork,
+                    duration: t.duration || 220,
+                    streamUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
+                    genre: t.genre || 'Trending'
+                  }, 'Audius (1.6M+ Full Song)');
+                  if (norm) addUnique(norm);
+                }
+              });
+            }
           }
+        } catch (e) {
+          rotateAudiusNode();
         }
-      } catch (e) {}
-    })());
+      })());
 
-    // 3. Jamendo Library (320kbps MP3s)
-    promises.push((async () => {
-      try {
-        const url = `${JAMENDO_API_BASE}/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=jsonpretty&limit=20&namesearch=${encodedQ}&audioformat=mp32`;
-        const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
-        if (res.ok) {
-          const json = await res.json();
-          if (json.results && Array.isArray(json.results)) {
-            json.results.forEach(t => {
-              const audio = t.audio || t.audiodownload;
-              if (audio) {
-                const norm = normalizeTrack({
-                  id: `jamendo-${t.id}`,
-                  title: t.name,
-                  artist: t.artist_name,
-                  album: t.album_name,
-                  image: t.image || t.album_image,
-                  duration: parseInt(t.duration, 10) || 220,
-                  streamUrl: audio,
-                  genre: t.musicinfo?.tags?.genres?.[0]
-                }, 'Jamendo (Full Audio)');
-                if (norm) addUnique(norm);
-              }
-            });
+      // Jamendo
+      promises.push((async () => {
+        try {
+          const url = `${JAMENDO_API_BASE}/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=jsonpretty&limit=15&namesearch=${encodedQ}&audioformat=mp32`;
+          const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+          if (res.ok) {
+            const json = await res.json();
+            if (json.results && Array.isArray(json.results)) {
+              json.results.forEach(t => {
+                const audio = t.audio || t.audiodownload;
+                if (audio && (parseInt(t.duration, 10) || 0) > 45) {
+                  const norm = normalizeTrack({
+                    id: `jamendo-${t.id}`,
+                    title: t.name,
+                    artist: t.artist_name,
+                    album: t.album_name,
+                    image: t.image || t.album_image,
+                    duration: parseInt(t.duration, 10) || 220,
+                    streamUrl: audio,
+                    genre: t.musicinfo?.tags?.genres?.[0]
+                  }, 'Jamendo (Full Audio)');
+                  if (norm) addUnique(norm);
+                }
+              });
+            }
           }
-        }
-      } catch (e) {}
-    })());
+        } catch (e) {}
+      })());
 
-    await Promise.allSettled(promises);
-    if (results.length >= 35) break;
+      await Promise.allSettled(promises);
+      if (results.length >= limit) break;
+    }
   }
 
   return results;
@@ -282,42 +291,15 @@ export async function fetchTrendingTracks(limit = 50) {
 }
 
 /**
- * CRITICAL: Resolves the best full-length audio stream at PLAY TIME.
- * Called by playbarController before playing any track.
- * Searches Audius & Jamendo live for the actual song to avoid 30s previews and wrong audio.
- */
-/**
  * Resolves exact authentic audio stream.
  * Preserves genuine verified artist audio without overwriting with random samples.
  */
 export async function resolveExactTrackStream(track) {
   if (!track) return '';
-
   const currentStream = track.streamUrl || '';
-
-  // If a stream already exists and is valid, use it directly (Guarantees EXACT singer vocals)
   if (currentStream && currentStream.startsWith('http')) {
     return currentStream;
   }
-
-  const title = (track.title || '').split('(')[0].split('-')[0].trim();
-  const artist = (track.artist || '').split(',')[0].split('&')[0].trim();
-  const searchQ = `${title} ${artist}`.trim();
-
-  if (!searchQ || searchQ.length < 2) return currentStream;
-
-  // Search exact studio master
-  try {
-    const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(searchQ)}&entity=song&limit=1`;
-    const res = await fetch(itunesUrl, { signal: AbortSignal.timeout(3000) });
-    if (res.ok) {
-      const json = await res.json();
-      if (json.results && json.results.length > 0 && json.results[0].previewUrl) {
-        return json.results[0].previewUrl;
-      }
-    }
-  } catch (e) {}
-
   return currentStream;
 }
 
