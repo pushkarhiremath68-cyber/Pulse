@@ -13,7 +13,58 @@
   // =========================================================================
   // 1. DYNAMIC CATEGORY & GENRE CONFIGURATION
   // =========================================================================
+  // 1. DYNAMIC CATEGORY & GENRE CONFIGURATION
+  // =========================================================================
   const CATEGORIES = {
+    'recommended': {
+      id: 'recommended',
+      title: 'Songs You Will Love',
+      subtitle: 'Curated picks tailored to your musical taste & mood',
+      icon: 'fa-wand-magic-sparkles',
+      color: '#e879f9',
+      jamendoTags: 'pop',
+      audiusTrending: true
+    },
+    'nineties': {
+      id: 'nineties',
+      title: 'Top 90s Golden Hits & Nostalgia',
+      subtitle: 'Timeless 90s Bollywood classics & iconic international anthems',
+      icon: 'fa-record-vinyl',
+      color: '#f59e0b',
+      jamendoTags: 'retro',
+      audiusQuery: '90s hits',
+      saavnQuery: '90s Bollywood'
+    },
+    'hollywood': {
+      id: 'hollywood',
+      title: 'Top Hollywood Blockbuster Hits',
+      subtitle: 'Legendary movie soundtracks, Billboard #1s & global pop anthems',
+      icon: 'fa-clapperboard',
+      color: '#38bdf8',
+      jamendoTags: 'soundtrack',
+      audiusQuery: 'movie soundtrack',
+      itunesQuery: 'Hollywood Movie Hits'
+    },
+    'bollywood_evergreen': {
+      id: 'bollywood_evergreen',
+      title: 'Bollywood Evergreen & Modern Hits',
+      subtitle: 'Soulful melodies, romantic chartbusters & cinematic blockbusters',
+      icon: 'fa-compact-disc',
+      color: '#ec4899',
+      jamendoTags: 'indian',
+      audiusQuery: 'Arijit Singh',
+      saavnQuery: 'Bollywood Hits'
+    },
+    'punjabi_chartbusters': {
+      id: 'punjabi_chartbusters',
+      title: 'Punjabi Chartbusters & Desi Swag',
+      subtitle: 'High-voltage Punjabi bangers, hip-hop & modern folk',
+      icon: 'fa-guitar',
+      color: '#eab308',
+      jamendoTags: 'indian',
+      audiusQuery: 'Diljit Dosanjh',
+      saavnQuery: 'Punjabi Top Hits'
+    },
     'trending': {
       id: 'trending',
       title: 'Trending Worldwide',
@@ -24,16 +75,6 @@
       jamendoTags: null,
       audiusGenre: null,
       audiusTrending: true
-    },
-    'hindi': {
-      id: 'hindi',
-      title: 'Hindi & Desi Beats',
-      subtitle: 'Bollywood blockbusters, Indian indie & romantic melodies',
-      icon: 'fa-compact-disc',
-      color: '#ec4899',
-      jamendoTags: 'indian',
-      audiusQuery: 'Hindi',
-      saavnQuery: 'Hindi Hits'
     },
     'pop': {
       id: 'pop',
@@ -87,15 +128,52 @@
   // 2. STARTER TRACKS (Synchronous Instant Display on Boot)
   // =========================================================================
   const STARTER_TRACKS = [
-    // Hindi & Bollywood
-    { id: 'hindi-1', title: 'Kesariya', artist: 'Arijit Singh, Pritam', album: 'Brahmastra', duration: '4:28', category: 'hindi', genre: 'Bollywood', language: 'Hindi', playCount: 854000 },
-    { id: 'hindi-2', title: 'Apna Bana Le', artist: 'Arijit Singh, Sachin-Jigar', album: 'Bhediya', duration: '4:21', category: 'hindi', genre: 'Bollywood', language: 'Hindi', playCount: 742000 },
-    { id: 'hindi-3', title: 'Tum Se Hi', artist: 'Mohit Chauhan, Pritam', album: 'Jab We Met', duration: '5:21', category: 'hindi', genre: 'Bollywood', language: 'Hindi', playCount: 680000 },
-    { id: 'hindi-4', title: 'Chaleya', artist: 'Arijit Singh, Shilpa Rao, Anirudh', album: 'Jawan', duration: '3:20', category: 'hindi', genre: 'Bollywood', language: 'Hindi', playCount: 920000 },
-    { id: 'hindi-5', title: 'Raataan Lambiyan', artist: 'Jubin Nautiyal, Asees Kaur', album: 'Shershaah', duration: '3:50', category: 'hindi', genre: 'Bollywood', language: 'Hindi', playCount: 610000 },
-    { id: 'hindi-6', title: 'Tum Hi Ho', artist: 'Arijit Singh, Mithoon', album: 'Aashiqui 2', duration: '4:22', category: 'hindi', genre: 'Bollywood', language: 'Hindi', playCount: 1200000 },
-    { id: 'hindi-7', title: 'Heeriye', artist: 'Jasleen Royal, Arijit Singh', album: 'Heeriye', duration: '3:15', category: 'hindi', genre: 'Bollywood', language: 'Hindi', playCount: 540000 },
-    { id: 'hindi-8', title: 'Shayad', artist: 'Arijit Singh, Pritam', album: 'Love Aaj Kal', duration: '4:07', category: 'hindi', genre: 'Bollywood', language: 'Hindi', playCount: 490000 },
+    // Recommended / Songs You'll Like
+    { id: 'rec-1', title: 'Starboy', artist: 'The Weeknd, Daft Punk', album: 'Starboy', duration: '3:50', category: 'recommended', genre: 'Pop', language: 'English', playCount: 1420000 },
+    { id: 'rec-2', title: 'Kesariya', artist: 'Arijit Singh, Pritam', album: 'Brahmastra', duration: '4:28', category: 'recommended', genre: 'Bollywood', language: 'Hindi', playCount: 854000 },
+    { id: 'rec-3', title: 'Lover', artist: 'Diljit Dosanjh', album: 'MoonChild Era', duration: '3:12', category: 'recommended', genre: 'Punjabi', language: 'Punjabi', playCount: 650000 },
+    { id: 'rec-4', title: 'Cruel Summer', artist: 'Taylor Swift', album: 'Lover', duration: '2:58', category: 'recommended', genre: 'Pop', language: 'English', playCount: 1350000 },
+    { id: 'rec-5', title: 'Midnight City Lights', artist: 'Chillhop Beats', album: 'Nightfall Session', duration: '2:45', category: 'recommended', genre: 'Lo-Fi', language: 'Instrumental', playCount: 320000 },
+    { id: 'rec-6', title: 'Believer', artist: 'Imagine Dragons', album: 'Evolve', duration: '3:24', category: 'recommended', genre: 'Rock', language: 'English', playCount: 1700000 },
+
+    // Top 90s Golden Hits
+    { id: '90s-1', title: 'Tujhe Dekha Toh', artist: 'Kumar Sanu, Lata Mangeshkar', album: 'Dilwale Dulhania Le Jayenge', duration: '5:02', category: 'nineties', genre: '90s Bollywood', language: 'Hindi', playCount: 1540000 },
+    { id: '90s-2', title: 'Smells Like Teen Spirit', artist: 'Nirvana', album: 'Nevermind', duration: '5:01', category: 'nineties', genre: '90s Grunge', language: 'English', playCount: 1890000 },
+    { id: '90s-3', title: 'Chaiyya Chaiyya', artist: 'Sukhwinder Singh, Sapna Awasthi, A.R. Rahman', album: 'Dil Se', duration: '6:54', category: 'nineties', genre: '90s Bollywood', language: 'Hindi', playCount: 1250000 },
+    { id: '90s-4', title: 'I Want It That Way', artist: 'Backstreet Boys', album: 'Millennium', duration: '3:33', category: 'nineties', genre: '90s Pop', language: 'English', playCount: 1650000 },
+    { id: '90s-5', title: 'Pehla Nasha', artist: 'Udit Narayan, Sadhana Sargam', album: 'Jo Jeeta Wohi Sikandar', duration: '4:51', category: 'nineties', genre: '90s Bollywood', language: 'Hindi', playCount: 980000 },
+    { id: '90s-6', title: 'Wonderwall', artist: 'Oasis', album: '(What\'s the Story) Morning Glory?', duration: '4:18', category: 'nineties', genre: '90s Britpop', language: 'English', playCount: 1420000 },
+    { id: '90s-7', title: 'Chura Ke Dil Mera', artist: 'Kumar Sanu, Alka Yagnik', album: 'Main Khiladi Tu Anari', duration: '5:12', category: 'nineties', genre: '90s Bollywood', language: 'Hindi', playCount: 890000 },
+    { id: '90s-8', title: 'My Heart Will Go On', artist: 'Celine Dion', album: 'Titanic Soundtrack', duration: '4:40', category: 'nineties', genre: '90s Pop', language: 'English', playCount: 1750000 },
+
+    // Top Hollywood Blockbuster Hits
+    { id: 'hwd-1', title: 'See You Again', artist: 'Wiz Khalifa, Charlie Puth', album: 'Furious 7 Soundtrack', duration: '3:49', category: 'hollywood', genre: 'Soundtrack', language: 'English', playCount: 2100000 },
+    { id: 'hwd-2', title: 'Sunflower', artist: 'Post Malone, Swae Lee', album: 'Spider-Man: Into the Spider-Verse', duration: '2:38', category: 'hollywood', genre: 'Soundtrack', language: 'English', playCount: 1950000 },
+    { id: 'hwd-3', title: 'Skyfall', artist: 'Adele', album: '007 Skyfall Soundtrack', duration: '4:46', category: 'hollywood', genre: 'Soundtrack', language: 'English', playCount: 1680000 },
+    { id: 'hwd-4', title: 'Shallow', artist: 'Lady Gaga, Bradley Cooper', album: 'A Star Is Born', duration: '3:35', category: 'hollywood', genre: 'Soundtrack', language: 'English', playCount: 1520000 },
+    { id: 'hwd-5', title: 'Lose Yourself', artist: 'Eminem', album: '8 Mile Soundtrack', duration: '5:26', category: 'hollywood', genre: 'Soundtrack', language: 'English', playCount: 1890000 },
+    { id: 'hwd-6', title: 'Let It Go', artist: 'Idina Menzel', album: 'Frozen Soundtrack', duration: '3:44', category: 'hollywood', genre: 'Soundtrack', language: 'English', playCount: 1450000 },
+    { id: 'hwd-7', title: 'Eye of the Tiger', artist: 'Survivor', album: 'Rocky III Soundtrack', duration: '4:04', category: 'hollywood', genre: 'Classic Rock', language: 'English', playCount: 1320000 },
+
+    // Bollywood Evergreen & Modern Hits
+    { id: 'bolly-1', title: 'Kesariya', artist: 'Arijit Singh, Pritam', album: 'Brahmastra', duration: '4:28', category: 'bollywood_evergreen', genre: 'Bollywood', language: 'Hindi', playCount: 854000 },
+    { id: 'bolly-2', title: 'Apna Bana Le', artist: 'Arijit Singh, Sachin-Jigar', album: 'Bhediya', duration: '4:21', category: 'bollywood_evergreen', genre: 'Bollywood', language: 'Hindi', playCount: 742000 },
+    { id: 'bolly-3', title: 'Tum Se Hi', artist: 'Mohit Chauhan, Pritam', album: 'Jab We Met', duration: '5:21', category: 'bollywood_evergreen', genre: 'Bollywood', language: 'Hindi', playCount: 680000 },
+    { id: 'bolly-4', title: 'Chaleya', artist: 'Arijit Singh, Shilpa Rao, Anirudh', album: 'Jawan', duration: '3:20', category: 'bollywood_evergreen', genre: 'Bollywood', language: 'Hindi', playCount: 920000 },
+    { id: 'bolly-5', title: 'Kal Ho Naa Ho', artist: 'Sonu Nigam, Shankar-Ehsaan-Loy', album: 'Kal Ho Naa Ho', duration: '5:21', category: 'bollywood_evergreen', genre: 'Bollywood', language: 'Hindi', playCount: 1100000 },
+    { id: 'bolly-6', title: 'Tum Hi Ho', artist: 'Arijit Singh, Mithoon', album: 'Aashiqui 2', duration: '4:22', category: 'bollywood_evergreen', genre: 'Bollywood', language: 'Hindi', playCount: 1200000 },
+    { id: 'bolly-7', title: 'Kabira', artist: 'Arijit Singh, Harshdeep Kaur, Pritam', album: 'Yeh Jawaani Hai Deewani', duration: '4:11', category: 'bollywood_evergreen', genre: 'Bollywood', language: 'Hindi', playCount: 890000 },
+    { id: 'bolly-8', title: 'Kun Faya Kun', artist: 'A.R. Rahman, Mohit Chauhan, Javed Ali', album: 'Rockstar', duration: '7:53', category: 'bollywood_evergreen', genre: 'Sufi / Bollywood', language: 'Hindi', playCount: 990000 },
+
+    // Punjabi Chartbusters
+    { id: 'pb-1', title: 'Lover', artist: 'Diljit Dosanjh', album: 'MoonChild Era', duration: '3:12', category: 'punjabi_chartbusters', genre: 'Punjabi Pop', language: 'Punjabi', playCount: 750000 },
+    { id: 'pb-2', title: 'Softly', artist: 'Karan Aujla, Ikky', album: 'Making Memories', duration: '2:35', category: 'punjabi_chartbusters', genre: 'Punjabi', language: 'Punjabi', playCount: 840000 },
+    { id: 'pb-3', title: 'Excuses', artist: 'AP Dhillon, Gurinder Gill', album: 'Excuses', duration: '2:56', category: 'punjabi_chartbusters', genre: 'Punjabi', language: 'Punjabi', playCount: 920000 },
+    { id: 'pb-4', title: 'Brown Munde', artist: 'AP Dhillon, Gurinder Gill, Shinda Kahlon', album: 'Brown Munde', duration: '4:27', category: 'punjabi_chartbusters', genre: 'Punjabi Hip-Hop', language: 'Punjabi', playCount: 1450000 },
+    { id: 'pb-5', title: '295', artist: 'Sidhu Moose Wala', album: 'Moosetape', duration: '4:30', category: 'punjabi_chartbusters', genre: 'Punjabi Rap', language: 'Punjabi', playCount: 1600000 },
+    { id: 'pb-6', title: 'Born to Shine', artist: 'Diljit Dosanjh', album: 'G.O.A.T.', duration: '3:33', category: 'punjabi_chartbusters', genre: 'Punjabi Pop', language: 'Punjabi', playCount: 880000 },
+    { id: 'pb-7', title: 'White Brown Black', artist: 'Karan Aujla, Avvy Sra', album: 'White Brown Black', duration: '3:00', category: 'punjabi_chartbusters', genre: 'Punjabi', language: 'Punjabi', playCount: 720000 },
+    { id: 'pb-8', title: 'Mi Amor', artist: 'Sharn, 40k, The Paul', album: 'Mi Amor', duration: '3:24', category: 'punjabi_chartbusters', genre: 'Punjabi', language: 'Punjabi', playCount: 680000 },
 
     // English & International Pop
     { id: 'pop-1', title: 'Blinding Lights', artist: 'The Weeknd', album: 'After Hours', duration: '3:20', category: 'pop', genre: 'Pop', language: 'English', playCount: 1950000 },
@@ -462,6 +540,22 @@
         totalPlays: profile.totalPlays,
         popularTracks: sortedTracks
       };
+    },
+
+    getFeaturedArtists() {
+      return [
+        { name: 'Arijit Singh', genre: 'Bollywood & Romantic', avatar: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80', listens: '4.8M' },
+        { name: 'The Weeknd', genre: 'Pop & R&B', avatar: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&auto=format&fit=crop&q=80', listens: '5.2M' },
+        { name: 'Diljit Dosanjh', genre: 'Punjabi & Pop', avatar: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80', listens: '3.9M' },
+        { name: 'Taylor Swift', genre: 'Pop & Country', avatar: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&auto=format&fit=crop&q=80', listens: '6.1M' },
+        { name: 'Ed Sheeran', genre: 'Acoustic & Pop', avatar: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&auto=format&fit=crop&q=80', listens: '4.4M' },
+        { name: 'Karan Aujla', genre: 'Punjabi & Hip-Hop', avatar: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80', listens: '2.8M' },
+        { name: 'Dua Lipa', genre: 'Dance Pop & Disco', avatar: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=300&auto=format&fit=crop&q=80', listens: '3.7M' },
+        { name: 'Alan Walker', genre: 'EDM & Electro', avatar: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&auto=format&fit=crop&q=80', listens: '3.5M' },
+        { name: 'Imagine Dragons', genre: 'Alternative Rock', avatar: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=300&auto=format&fit=crop&q=80', listens: '4.1M' },
+        { name: 'Sidhu Moose Wala', genre: 'Punjabi Rap', avatar: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80', listens: '4.6M' },
+        { name: 'A.R. Rahman', genre: 'Film Score & World', avatar: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80', listens: '5.0M' }
+      ];
     },
 
     getAllArtists() {

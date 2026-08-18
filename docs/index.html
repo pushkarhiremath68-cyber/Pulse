@@ -331,13 +331,25 @@
         <!-- TOP CATALOG GENRE FILTER BAR (CHIP SELECTOR) -->
         <div class="catalog-filter-chip-bar" id="catalog-chip-bar">
           <button class="chip-btn active" data-category="all" onclick="window.selectCatalogCategory('all', this)">
-            <i class="fa-solid fa-sparkles"></i> All Genres
+            <i class="fa-solid fa-sparkles"></i> All
+          </button>
+          <button class="chip-btn" data-category="recommended" onclick="window.selectCatalogCategory('recommended', this)">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color:#e879f9;"></i> For You
+          </button>
+          <button class="chip-btn" data-category="nineties" onclick="window.selectCatalogCategory('nineties', this)">
+            <i class="fa-solid fa-record-vinyl" style="color:#f59e0b;"></i> 90s Golden Hits
+          </button>
+          <button class="chip-btn" data-category="hollywood" onclick="window.selectCatalogCategory('hollywood', this)">
+            <i class="fa-solid fa-clapperboard" style="color:#38bdf8;"></i> Hollywood Hits
+          </button>
+          <button class="chip-btn" data-category="bollywood_evergreen" onclick="window.selectCatalogCategory('bollywood_evergreen', this)">
+            <i class="fa-solid fa-compact-disc" style="color:#ec4899;"></i> Bollywood Hits
+          </button>
+          <button class="chip-btn" data-category="punjabi_chartbusters" onclick="window.selectCatalogCategory('punjabi_chartbusters', this)">
+            <i class="fa-solid fa-guitar" style="color:#eab308;"></i> Punjabi Beats
           </button>
           <button class="chip-btn" data-category="trending" onclick="window.selectCatalogCategory('trending', this)">
             <i class="fa-solid fa-fire" style="color:#f97316;"></i> Trending
-          </button>
-          <button class="chip-btn" data-category="hindi" onclick="window.selectCatalogCategory('hindi', this)">
-            <i class="fa-solid fa-compact-disc" style="color:#ec4899;"></i> Hindi & Desi
           </button>
           <button class="chip-btn" data-category="pop" onclick="window.selectCatalogCategory('pop', this)">
             <i class="fa-solid fa-earth-americas" style="color:#3b82f6;"></i> English Pop
@@ -363,6 +375,17 @@
             <button class="see-all-link" onclick="window.switchView('history')">View History</button>
           </div>
           <div id="grid-recently-played" class="music-cards-grid"></div>
+        </section>
+
+        <!-- TOP ARTISTS SPOTLIGHT ROW -->
+        <section class="artists-spotlight-section" id="artists-spotlight-section" style="margin-bottom: 2.25rem;">
+          <div class="section-header">
+            <h3><i class="fa-solid fa-users-line text-accent"></i> Top Artists Spotlight</h3>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Explore discographies & popular tracks</span>
+          </div>
+          <div id="artists-spotlight-container" class="artists-scroll-row">
+            <!-- Dynamically populated with circle artist cards -->
+          </div>
         </section>
 
         <!-- DYNAMIC MULTI-CATEGORY CATALOG CONTAINER (HORIZONTAL ROWS WITH SEE ALL) -->

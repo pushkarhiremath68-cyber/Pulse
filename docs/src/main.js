@@ -1473,7 +1473,65 @@
       }
     }
 
-  };
+    // 2. Top Artists Spotlight Section
+    const artistsSpotlightContainer = document.getElementById('artists-spotlight-container');
+    if (artistsSpotlightContainer && window.catalogService && typeof window.catalogService.getFeaturedArtists === 'function') {
+      const artists = window.catalogService.getFeaturedArtists();
+      artistsSpotlightContainer.innerHTML = artists.map(a => {
+        const safeArtist = (a.name || 'Artist').replace(/'/g, "\\'");
+        return `
+          <div class="artist-circle-card" onclick="window.openArtistProfile('${safeArtist}')" title="Explore ${a.name}">
+            <div class="artist-circle-avatar-wrap">
+              <img src="${a.avatar}" alt="${a.name}" class="artist-circle-avatar" onerror="if(window.generateTrackCover){this.src=window.generateTrackCover('${safeArtist}','Artist');}">
+              <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+            </div>
+            <div class="artist-circle-name">${a.name}</div>
+            <div class="artist-circle-genre">${a.genre}</div>
+            <div class="artist-circle-listens">${a.listens} Listens</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 3. Multi-Category Horizontal Rows Container
+    const container = document.getElementById('catalog-categories-container');
+    if (!container) return;
+
+    const categories = window.catalogService ? window.catalogService.getAllCategories() : [];
+    if (categories.length === 0) return;
+
+    let html = '';
+
+    categories.forEach(cat => {
+      const tracks = window.catalogService.getCategoryTracks(cat.id);
+      if (!tracks || tracks.length === 0) return;
+
+      html += `
+        <section class="category-horizontal-row" id="category-row-${cat.id}">
+          <div class="category-row-header">
+            <div class="category-row-title">
+              <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: ${cat.color || 'var(--accent-primary)'};">
+                <i class="fa-solid ${cat.icon || 'fa-compact-disc'}"></i>
+              </div>
+              <div>
+                <h3>${cat.title}</h3>
+                <p>${cat.subtitle || 'Top tracks and discoveries'}</p>
+              </div>
+            </div>
+            <button class="see-all-link" onclick="window.openGenreGridView('${cat.id}')">
+              <span>See All</span> <i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i>
+            </button>
+          </div>
+          <div class="category-row-scroll-wrap">
+            ${tracks.slice(0, 16).map(createMusicCardHTML).join('')}
+          </div>
+        </section>
+      `;
+    });
+
+    container.innerHTML = html;
+  }
+  window.renderCatalogUI = renderCatalogUI;
 
   /* ==========================================================================
      5. DYNAMIC MUSIC SEARCH ENGINE (Immediate on Clicks & Debounced on Typing)

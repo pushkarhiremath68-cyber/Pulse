@@ -17,13 +17,17 @@ JAMENDO_CLIENT_ID = '23b33f2a'
 JAMENDO_BASE = 'https://api.jamendo.com/v3.0'
 
 CATEGORIES_TEST = {
+    'recommended': {'jamendoTags': 'pop'},
+    'nineties': {'jamendoTags': 'retro'},
+    'hollywood': {'jamendoTags': 'soundtrack'},
+    'bollywood_evergreen': {'jamendoTags': 'indian'},
+    'punjabi_chartbusters': {'jamendoTags': 'indian'},
     'trending': {'jamendoTags': None, 'jamendoOrder': 'popularity_total'},
-    'hindi': {'jamendoTags': 'indian,hindi,bollywood'},
-    'pop': {'jamendoTags': 'pop,english'},
-    'electronic': {'jamendoTags': 'edm,electronic'},
-    'lofi': {'jamendoTags': 'lofi,chillout'},
-    'rock': {'jamendoTags': 'rock,indie'},
-    'ambient': {'jamendoTags': 'filmscore,ambient'}
+    'pop': {'jamendoTags': 'pop'},
+    'electronic': {'jamendoTags': 'edm'},
+    'lofi': {'jamendoTags': 'lofi'},
+    'rock': {'jamendoTags': 'indie'},
+    'ambient': {'jamendoTags': 'filmscore'}
 }
 
 def test_jamendo_categories():
