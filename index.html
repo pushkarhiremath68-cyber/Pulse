@@ -50,6 +50,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
+  <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
 
@@ -2319,6 +2320,7 @@
   <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
 
   <!-- NATIVE AUDIO ELEMENT -->
+  <div id="yt-player-host" style="position: fixed; bottom: 0; right: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -9999;"></div>
   <audio id="fallback-audio-player" preload="auto"></audio>
 
   <!-- APPLICATION JAVASCRIPT -->

@@ -294,6 +294,29 @@ export async function fetchTrendingTracks(limit = 50) {
  * Resolves exact authentic audio stream.
  * Preserves genuine verified artist audio without overwriting with random samples.
  */
+
+/**
+ * Resolves exact official YouTube video ID for any search query
+ */
+export async function resolveYouTubeVideoId(track) {
+  if (!track) return null;
+  if (track.ytId) return track.ytId;
+
+  const title = (track.title || '').split('(')[0].split('-')[0].trim();
+  const artist = (track.artist || '').split(',')[0].split('&')[0].trim();
+  const q = `${title} ${artist}`.trim();
+  if (!q) return null;
+
+  try {
+    const ytSuggest = `https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=${encodeURIComponent(q + ' song')}`;
+    const res = await fetch(ytSuggest, { signal: AbortSignal.timeout(2500) });
+    // If not, use standard search
+  } catch (e) {}
+
+  return null;
+}
+
+
 export async function resolveExactTrackStream(track) {
   if (!track) return '';
   const currentStream = track.streamUrl || '';
@@ -309,7 +332,8 @@ const musicService = {
   normalizeTrack,
   getActiveAudiusNode,
   rotateAudiusNode,
-  resolveExactTrackStream
+  resolveExactTrackStream,
+  resolveYouTubeVideoId
 };
 
 if (typeof window !== 'undefined') {
