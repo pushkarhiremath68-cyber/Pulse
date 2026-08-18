@@ -92,12 +92,26 @@
 
   /**
    * Fetches lyrics for a track from LRCLIB with fallbacks and caching.
+   * Supports both getLyrics(trackObject) and getLyrics(titleString, artistString).
    */
-  async function getLyrics(track) {
-    if (!track) return null;
+  async function getLyrics(trackOrTitle, optArtist = '') {
+    if (!trackOrTitle) return null;
 
-    const rawTitle = track.title || track.name || '';
-    const rawArtist = track.artist || '';
+    let rawTitle = '';
+    let rawArtist = '';
+    let albumName = '';
+    let durationStr = '';
+
+    if (typeof trackOrTitle === 'string') {
+      rawTitle = trackOrTitle;
+      rawArtist = typeof optArtist === 'string' ? optArtist : '';
+    } else if (typeof trackOrTitle === 'object') {
+      rawTitle = trackOrTitle.title || trackOrTitle.name || '';
+      rawArtist = trackOrTitle.artist || '';
+      albumName = trackOrTitle.album || '';
+      durationStr = trackOrTitle.duration || '';
+    }
+
     const cleanTitle = cleanSearchTerm(rawTitle);
     const cleanArtist = cleanArtistName(rawArtist);
 
