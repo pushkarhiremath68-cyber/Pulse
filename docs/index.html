@@ -77,6 +77,11 @@
             <i class="fa-solid fa-magnifying-glass"></i>
             <span>Search 1.6M+</span>
           </a>
+          <a href="javascript:void(0)" class="nav-item" onclick="window.openGeminiDJModal()" style="color: #c084fc;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Gemini AI DJ</span>
+            <span style="font-size: 0.65rem; background: rgba(168,85,247,0.25); color: #c084fc; padding: 2px 6px; border-radius: 6px; font-weight: 700; margin-left: auto;">AI</span>
+          </a>
           <a href="javascript:void(0)" class="nav-item" data-view="library" onclick="window.switchView('library')">
             <i class="fa-solid fa-bookmark"></i>
             <span>Your Library</span>
@@ -168,8 +173,11 @@
               <button id="hero-play-btn" class="btn-primary-play" onclick="window.switchView('search-view')">
                 <i class="fa-solid fa-magnifying-glass"></i> Explore 1.6M+ Songs
               </button>
+              <button class="btn-secondary-install" onclick="window.openGeminiDJModal()" style="background: rgba(168,85,247,0.25); border: 1px solid rgba(168,85,247,0.5); color: #fff;">
+                <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i> Ask Gemini DJ
+              </button>
               <button id="hero-download-app-btn" class="btn-secondary-install" onclick="window.openDownloadModal()">
-                <i class="fa-solid fa-download"></i> Download App
+                <i class="fa-solid fa-download"></i> App
               </button>
             </div>
           </div>
@@ -651,6 +659,49 @@
           <span style="font-size: 0.75rem; color: var(--text-muted);">Home Screen</span>
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- GEMINI AI DJ MODAL -->
+  <div id="gemini-dj-modal" class="modal-overlay hidden">
+    <div class="modal-content gemini-dj-modal-box" style="max-width: 520px; background: #0f111a; border: 1px solid rgba(168,85,247,0.3); border-radius: 24px; padding: 2rem; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(168,85,247,0.2); display: flex; align-items: center; justify-content: center; color: #c084fc;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">Gemini 3.6 Flash DJ</h3>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Smart AI Music Curator & Playlist Creator</p>
+          </div>
+        </div>
+        <button class="btn-icon-small" onclick="window.closeGeminiDJModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">Describe your current mood, activity, or favorite vibe, and Gemini will craft an instant sonic queue.</p>
+
+      <!-- Quick Mood Chips -->
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem;">
+        <button onclick="window.handleAskGeminiDJ('Late Night Drive')" style="padding: 6px 12px; border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: #c084fc; font-size: 0.78rem; font-weight: 600; cursor: pointer;">🌙 Late Night Drive</button>
+        <button onclick="window.handleAskGeminiDJ('High Energy Gym Workout')" style="padding: 6px 12px; border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: #f87171; font-size: 0.78rem; font-weight: 600; cursor: pointer;">⚡ Gym Energy</button>
+        <button onclick="window.handleAskGeminiDJ('Soulful Bollywood Romantic')" style="padding: 6px 12px; border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: #ec4899; font-size: 0.78rem; font-weight: 600; cursor: pointer;">💖 Hindi Romance</button>
+        <button onclick="window.handleAskGeminiDJ('Coding and Deep Focus Lo-Fi')" style="padding: 6px 12px; border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: #34d399; font-size: 0.78rem; font-weight: 600; cursor: pointer;">🎧 Deep Focus</button>
+      </div>
+
+      <!-- Input Box -->
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+        <input type="text" id="gemini-prompt-input" placeholder="e.g. Melodic acoustic songs for a rainy Sunday..." style="flex: 1; padding: 0.8rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; font-size: 0.9rem;"
+          onkeydown="if(event.key === 'Enter') window.handleAskGeminiDJ()">
+        <button onclick="window.handleAskGeminiDJ()" class="btn-primary-play" style="padding: 0.8rem 1.25rem; font-size: 0.9rem;">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Curate
+        </button>
+      </div>
+
+      <div id="gemini-loading-spinner" class="hidden" style="text-align: center; padding: 1rem;">
+        <i class="fa-solid fa-spinner fa-spin" style="font-size: 1.8rem; color: var(--accent-primary);"></i>
+      </div>
+
+      <div id="gemini-dj-output"></div>
     </div>
   </div>
 

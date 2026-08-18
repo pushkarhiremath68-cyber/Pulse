@@ -1,6 +1,6 @@
 /**
  * Pulse Music - Main Application Coordinator
- * Connects Audius & Jamendo Live Music Service, Persistent Playbar, LRCLIB Lyrics, Catalog, and Auth.
+ * Connects Audius & Jamendo Live Music Service, Persistent Playbar, LRCLIB Lyrics, Catalog, Firebase Auth, and Gemini AI DJ.
  */
 
 import './musicService.js';
@@ -8,6 +8,7 @@ import './playbarController.js';
 import './lyricsService.js';
 import './catalogService.js';
 import './firebaseAuthService.js';
+import './geminiService.js';
 
 (function() {
   'use strict';
@@ -103,8 +104,6 @@ import './firebaseAuthService.js';
     }
 
     container.innerHTML = tracks.map(t => {
-      const safeTitle = (t.title || 'Track').replace(/'/g, "\\'");
-      const safeArtist = (t.artist || 'Artist').replace(/'/g, "\\'");
       return `
         <div class="track-search-row" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 12px; transition: all 0.2s ease; cursor: pointer;"
           onclick="window.playTrackDirect(${JSON.stringify(t).replace(/"/g, '&quot;')})">
@@ -156,7 +155,6 @@ import './firebaseAuthService.js';
     const lyrics = await window.lyricsService.getLyrics(track);
     window.pulseState.currentLyrics = lyrics;
 
-    // Mini 2-line preview
     const curLine = document.getElementById('mini-lyric-current');
     const nextLine = document.getElementById('mini-lyric-next');
     if (lyrics && lyrics.isSynced && lyrics.lines.length > 0) {
@@ -183,7 +181,56 @@ import './firebaseAuthService.js';
     }
   };
 
-  // 6. Authentication UI Bindings
+  // 6. Gemini AI DJ Handlers
+  window.openGeminiDJModal = () => document.getElementById('gemini-dj-modal')?.classList.remove('hidden');
+  window.closeGeminiDJModal = () => document.getElementById('gemini-dj-modal')?.classList.add('hidden');
+
+  window.handleAskGeminiDJ = async function(promptOverride = null) {
+    const input = document.getElementById('gemini-prompt-input');
+    const prompt = promptOverride || (input ? input.value : '');
+    if (!prompt) {
+      window.showToast('Please type a mood or vibe for Gemini DJ', 'warning', 2500);
+      return;
+    }
+
+    const outputBox = document.getElementById('gemini-dj-output');
+    const spinner = document.getElementById('gemini-loading-spinner');
+    if (spinner) spinner.classList.remove('hidden');
+    if (outputBox) outputBox.innerHTML = '<p style="color: #c084fc; text-align: center;">✨ Gemini 3.6 Flash is curating your personalized sonic journey...</p>';
+
+    try {
+      const result = await window.geminiService.askGeminiDJ(prompt);
+      if (spinner) spinner.classList.add('hidden');
+      if (outputBox) {
+        outputBox.innerHTML = `
+          <div style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); border-radius: 16px; padding: 1.25rem; margin-top: 1rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+              <h4 style="font-size: 1.2rem; font-weight: 800; color: #fff; margin: 0;">${result.djTitle}</h4>
+              <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 20px; background: rgba(168,85,247,0.25); color: #c084fc; font-weight: 700;">GEMINI 3.6 FLASH</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">${result.vibe}</p>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              ${result.tracks.map(t => `
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.8rem; background: rgba(255,255,255,0.04); border-radius: 10px; cursor: pointer;"
+                  onclick="window.playSpecificTrack('${t.title} ${t.artist}'); window.closeGeminiDJModal();">
+                  <div>
+                    <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">${t.title}</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">${t.artist} • <em style="color: #a855f7;">${t.reason}</em></div>
+                  </div>
+                  <button class="btn-circle-play" style="width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: #fff; font-size: 0.8rem;"><i class="fa-solid fa-play"></i></button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+    } catch (e) {
+      if (spinner) spinner.classList.add('hidden');
+      if (outputBox) outputBox.innerHTML = `<p style="color: #f87171; text-align: center;">Error: ${e.message}</p>`;
+    }
+  };
+
+  // 7. Authentication UI Bindings
   window.openLoginModal = () => { document.getElementById('auth-modal')?.classList.remove('hidden'); window.switchAuthTab('login'); };
   window.openSignupModal = () => { document.getElementById('auth-modal')?.classList.remove('hidden'); window.switchAuthTab('signup'); };
   window.closeAuthModal = () => { document.getElementById('auth-modal')?.classList.add('hidden'); };
@@ -264,7 +311,7 @@ import './firebaseAuthService.js';
     }
   }
 
-  // 7. Modals (Downloads)
+  // 8. Modals (Downloads)
   window.openDownloadModal = () => document.getElementById('download-app-modal')?.classList.remove('hidden');
   window.closeDownloadModal = () => document.getElementById('download-app-modal')?.classList.add('hidden');
 
@@ -275,7 +322,6 @@ import './firebaseAuthService.js';
   // App Initialization
   function initApp() {
     updateAuthUI();
-    loadHomeFeed();
 
     // Playbar Button bindings
     const playBtn = document.getElementById('btn-play-pause');
