@@ -105,6 +105,41 @@
     }
     .brand-logo-img { width: 42px !important; height: 42px !important; object-fit: contain; }
     .titlebar-icon { width: 18px !important; height: 18px !important; }
+  /* ==========================================================================
+   STRICT MODAL OVERLAYS & ZERO-BLOCK CLICK ENFORCEMENT
+   ========================================================================== */
+.hidden, [hidden], .modal-overlay.hidden, .modal.hidden, #auth-modal.hidden, #artist-detail-modal.hidden, #lyrics-preview-modal.hidden, #song-credits-modal.hidden, #create-playlist-modal.hidden, #add-to-playlist-modal.hidden, #download-app-modal.hidden, #upload-audio-modal.hidden, #google-auth-modal.hidden, #google-oauth-picker-modal.hidden, #youtube-video-modal.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  z-index: -99999 !important;
+}
+
+.modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+  padding: 1rem !important;
+  pointer-events: auto !important;
+}
+
+#app, .main-content, .home-content, #catalog-categories-container, .category-horizontal-row, .category-row-scroll-wrap, .music-card {
+  pointer-events: auto !important;
+}
+
+.music-card, .btn-card-play, .music-card-play-btn, .chip-btn, .pill-btn, .nav-item, button, a {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
   </style>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <!-- Pulse High-Fidelity Audio Engine & Gemini AI Music Suite -->

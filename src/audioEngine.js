@@ -150,7 +150,6 @@
         activeAudio = document.getElementById('fallback-audio-player') || new Audio();
         activeAudio.id = 'fallback-audio-player';
         activeAudio.preload = 'auto';
-        activeAudio.crossOrigin = 'anonymous';
         window.globalAudioPlayer = activeAudio;
       }
       return activeAudio;

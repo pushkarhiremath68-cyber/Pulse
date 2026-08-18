@@ -3878,7 +3878,6 @@
       audio = new Audio();
       audio.id = 'fallback-audio-player';
       audio.preload = 'auto';
-      audio.crossOrigin = 'anonymous';
       document.body.appendChild(audio);
       window.globalAudioPlayer = audio;
     }
