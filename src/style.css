@@ -1,45 +1,44 @@
 /* ==========================================================================
-   PULSE MUSIC APP DESIGN SYSTEM & STYLES
-   Designed by Pushkar Hiremath
+   PULSE MUSIC - SPOTIFY THEME & CLEAN DESIGN SYSTEM
    ========================================================================== */
 
 :root {
-  --bg-base: #050508;
-  --bg-surface: #121216;
-  --bg-surface-elevated: #1c1c24;
-  --bg-glass: rgba(18, 18, 22, 0.85);
-  --bg-glass-card: rgba(255, 255, 255, 0.04);
-  --bg-glass-hover: rgba(255, 255, 255, 0.08);
+  --bg-base: #121212;
+  --bg-surface: #181818;
+  --bg-surface-elevated: #282828;
+  --bg-sidebar: #000000;
+  --bg-glass: rgba(18, 18, 18, 0.95);
+  --bg-glass-card: #181818;
+  --bg-glass-hover: #282828;
 
-  --accent-primary: #a855f7;
+  --accent-primary: #1ed760;
   --accent-secondary: #b3b3b3;
-  --accent-purple: #a855f7;
-  --accent-magenta: #e879f9;
-  --accent-spotify: #a855f7;
-  --accent-gradient: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #7c3aed 100%);
-  --accent-gradient-fire: linear-gradient(135deg, #e879f9 0%, #a855f7 50%, #6366f1 100%);
-  --accent-gradient-glow: linear-gradient(135deg, rgba(192, 132, 252, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%);
+  --accent-purple: #1ed760;
+  --accent-magenta: #1db954;
+  --accent-spotify: #1ed760;
+  --accent-gradient: linear-gradient(135deg, #1ed760 0%, #1db954 100%);
+  --accent-gradient-fire: linear-gradient(135deg, #1ed760 0%, #10b981 100%);
+  --accent-gradient-glow: linear-gradient(135deg, rgba(30, 215, 96, 0.4) 0%, rgba(29, 185, 84, 0.4) 100%);
 
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
-  --text-muted: #71717a;
+  --text-muted: #6a6a6a;
 
   --border-glass: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(168, 85, 247, 0.4);
+  --border-glow: rgba(30, 215, 96, 0.4);
 
-  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.6);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.8);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.95);
-  --shadow-glow: 0 0 35px rgba(168, 85, 247, 0.35);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.85);
+  --shadow-glow: 0 0 25px rgba(30, 215, 96, 0.35);
 
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-full: 9999px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 500px;
 
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -58,7 +57,7 @@ html, body {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background-color: var(--bg-base);
   color: var(--text-primary);
   height: 100vh;
@@ -66,27 +65,177 @@ body {
   line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  transform: translateZ(0);
 }
 
-/* 90Hz / 120Hz Hardware Acceleration & Lag-Free Rendering */
-.main-content, .tracks-list-container, .playlists-list, .drawer-content, .music-cards-grid, .fullscreen-player {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+/* Spotify Card Styling */
+.music-card {
+  background-color: #181818 !important;
+  padding: 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  transition: background-color 0.3s ease, transform 0.3s ease !important;
+  position: relative !important;
+  cursor: pointer !important;
 }
 
-h1, h2, h3, h4, h5, h6, .brand-name, .splash-title {
-  font-family: 'Outfit', sans-serif;
+.music-card:hover {
+  background-color: #282828 !important;
+  transform: translateY(-4px) !important;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-  color: inherit;
-  touch-action: manipulation;
+.card-image-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 1/1 !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+  margin-bottom: 12px !important;
+}
+
+.card-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
+}
+
+/* Floating Spotify Green Play Button */
+.btn-card-play {
+  background: #1ed760 !important;
+  color: #000000 !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.15rem !important;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4) !important;
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: absolute !important;
+  bottom: 10px !important;
+  right: 10px !important;
+}
+
+.music-card:hover .btn-card-play {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.btn-card-play:hover {
+  transform: scale(1.08) !important;
+  background: #1fdf64 !important;
+}
+
+.card-title {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  margin-bottom: 4px !important;
+}
+
+.card-artist {
+  font-size: 0.82rem !important;
+  color: #b3b3b3 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Spotify Chip Filter Bar */
+.chip-filter {
+  background: #2a2a2a !important;
+  color: #ffffff !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  padding: 7px 16px !important;
+  border-radius: 500px !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+}
+
+.chip-filter:hover {
+  background: #383838 !important;
+}
+
+.chip-filter.active {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Spotify Header & Search Input */
+.search-input-wrapper {
+  background: #242424 !important;
+  border-radius: 500px !important;
+  border: 1px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.search-input-wrapper:focus-within {
+  border-color: #ffffff !important;
+  background: #2a2a2a !important;
+}
+
+/* Spotify Persistent Player Bar */
+.player-bar {
+  background-color: #000000 !important;
+  border-top: 1px solid #282828 !important;
+  height: 88px !important;
+}
+
+.btn-play-pause {
+  background: #ffffff !important;
+  color: #000000 !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.2s ease, background 0.2s ease !important;
+}
+
+.btn-play-pause:hover {
+  transform: scale(1.08) !important;
+  background: #ffffff !important;
+}
+
+.progress-fill {
+  background: #ffffff !important;
+  transition: background 0.2s ease !important;
+}
+
+.progress-bar-container:hover .progress-fill {
+  background: #1ed760 !important;
+}
+
+/* Sidebar Styling */
+.app-sidebar {
+  background-color: #000000 !important;
+}
+
+.nav-link {
+  color: #b3b3b3 !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  transition: color 0.2s ease !important;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #ffffff !important;
+}
+
+.nav-link.active i {
+  color: #1ed760 !important;
 }
 
 /* ==========================================================================
