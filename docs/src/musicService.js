@@ -1,7 +1,7 @@
 /**
- * Pulse Music - AI-Supercharged Universal 1.6M+ Music Engine
- * Powered by Gemini AI Disambiguation, Studio Masters, Audius 1.6M+, and Jamendo.
- * Ensures 100% accurate audio tracks, lyrics support, and full-length streaming.
+ * Pulse Music - YouTube Intelligence + Audius (1.6M+) & Jamendo Streaming Engine
+ * Uses YouTube Search Intelligence to discover all regional/global songs (e.g. Uden Jab Jab Zulfen Teri)
+ * and streams via Audius (1.6M+ songs), Jamendo (600k+ songs), and Studio Masters.
  */
 
 import { disambiguateQuery } from './geminiService.js';
@@ -27,12 +27,15 @@ export function rotateAudiusNode() {
   return getActiveAudiusNode();
 }
 
+/**
+ * Normalizes raw track objects into standard Pulse format
+ */
 export function normalizeTrack(raw, source = 'Pulse Universal') {
   if (!raw) return null;
   const safeId = raw.id || `pulse-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
   const safeTitle = raw.title || raw.name || raw.trackName || 'Untitled Song';
   const safeArtist = raw.artist || raw.artist_name || raw.artistName || (raw.user && raw.user.name) || 'Pulse Artist';
-  const safeAlbum = raw.album || raw.album_name || raw.collectionName || 'Full Album Release';
+  const safeAlbum = raw.album || raw.album_name || raw.collectionName || 'Single / Full Album';
   
   let cover = raw.coverUrl || raw.cover || raw.image || raw.album_image;
   if (!cover && raw.artwork) {
@@ -61,14 +64,45 @@ export function normalizeTrack(raw, source = 'Pulse Universal') {
 }
 
 /**
- * Searches across Studio Masters, Audius 1.6M+, and Jamendo using Gemini AI Query Expansion
+ * Expands user query using YouTube search intelligence and phonetic matching
+ */
+async function expandWithYouTube(query) {
+  const expanded = [query];
+  try {
+    const ytUrl = `https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=${encodeURIComponent(query)}`;
+    const res = await fetch(ytUrl, { signal: AbortSignal.timeout(2500) });
+    if (res.ok) {
+      const text = await res.text();
+      const matches = text.match(/\["(.*?)"/g);
+      if (matches) {
+        matches.slice(0, 4).forEach(m => {
+          const clean = m.replace(/^\["/, '').replace(/"$/, '').trim();
+          if (clean && !expanded.includes(clean)) {
+            expanded.push(clean);
+          }
+        });
+      }
+    }
+  } catch (e) {}
+
+  // Merge with Gemini disambiguated queries
+  const geminiQueries = disambiguateQuery(query);
+  geminiQueries.forEach(g => {
+    if (!expanded.includes(g)) expanded.push(g);
+  });
+
+  return expanded;
+}
+
+/**
+ * Searches across YouTube-expanded queries on Studio Masters, Audius 1.6M+, and Jamendo
  */
 export async function searchTracks(query, limit = 60) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
     return await fetchTrendingTracks(limit);
   }
 
-  const searchQueries = disambiguateQuery(query);
+  const terms = await expandWithYouTube(query.trim());
   const results = [];
   const seen = new Set();
 
@@ -81,8 +115,8 @@ export async function searchTracks(query, limit = 60) {
     }
   };
 
-  for (const qStr of searchQueries) {
-    const encodedQ = encodeURIComponent(qStr);
+  for (const term of terms) {
+    const encodedQ = encodeURIComponent(term);
     const promises = [];
 
     // 1. Studio Master Search (Ensures EXACT song, artist vocals & 600x600 HD artwork)
@@ -169,7 +203,7 @@ export async function searchTracks(query, limit = 60) {
     })());
 
     await Promise.allSettled(promises);
-    if (results.length >= 25) break;
+    if (results.length >= 30) break;
   }
 
   return results;
