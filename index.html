@@ -335,6 +335,61 @@
           </div>
           <div id="grid-recently-played" class="music-cards-grid"></div>
         </section>
+
+        <!-- SECTION 1: TRENDING WORLDWIDE (JAMENDO & GLOBAL CHARTBUSTERS) -->
+        <section class="music-section" id="section-trending">
+          <div class="section-header">
+            <h3><i class="fa-solid fa-fire text-accent"></i> Trending Worldwide</h3>
+            <button class="see-all-link" onclick="window.executeSearch('Trending Hits')">Explore More</button>
+          </div>
+          <div id="grid-trending" class="music-cards-grid">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </section>
+
+        <!-- SECTION 2: BOLLYWOOD & HINDI HITS -->
+        <section class="music-section" id="section-hindi-hits">
+          <div class="section-header">
+            <h3><i class="fa-solid fa-compact-disc text-accent"></i> Bollywood & Hindi Hits</h3>
+            <button class="see-all-link" onclick="window.executeSearch('Arijit Singh Hindi')">Explore Hindi</button>
+          </div>
+          <div id="grid-hindi-hits" class="music-cards-grid">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </section>
+
+        <!-- SECTION 3: LO-FI, ELECTRONIC & CHILLOUT (AUDIUS & JAMENDO) -->
+        <section class="music-section" id="section-electronic">
+          <div class="section-header">
+            <h3><i class="fa-solid fa-headphones text-accent"></i> Lo-Fi Chill & Electronic</h3>
+            <button class="see-all-link" onclick="window.executeSearch('lofi chillout')">Explore Chill</button>
+          </div>
+          <div id="grid-electronic" class="music-cards-grid">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </section>
+
+        <!-- SECTION 4: PUNJABI TOP CHARTBUSTERS -->
+        <section class="music-section" id="section-punjabi">
+          <div class="section-header">
+            <h3><i class="fa-solid fa-guitar text-accent"></i> Punjabi Chartbusters</h3>
+            <button class="see-all-link" onclick="window.executeSearch('Diljit Dosanjh Punjabi')">Explore Punjabi</button>
+          </div>
+          <div id="grid-punjabi" class="music-cards-grid">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </section>
+
+        <!-- SECTION 5: GLOBAL POP & ROCK -->
+        <section class="music-section" id="section-global-pop">
+          <div class="section-header">
+            <h3><i class="fa-solid fa-globe text-accent"></i> Global Pop & Indie Hits</h3>
+            <button class="see-all-link" onclick="window.executeSearch('Global Pop Hits')">Explore Pop</button>
+          </div>
+          <div id="grid-global-pop" class="music-cards-grid">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </section>
       </div>
 
       <!-- VIEW 2: SEARCH / RESULTS VIEW -->
@@ -1465,7 +1520,12 @@
   </div>
 
   <!-- PERSISTENT BOTTOM PLAYER BAR -->
-  <footer class="bottom-player-bar">
+  <footer class="bottom-player-bar" id="pulse-bottom-playbar">
+    <!-- Thin top playback progress line at top edge of playbar -->
+    <div class="mini-top-progress-bar" style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: rgba(255, 255, 255, 0.08); z-index: 10; pointer-events: none;">
+      <div id="mini-top-progress-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6); transition: width 0.15s linear;"></div>
+    </div>
+
     <!-- LEFT: CURRENT TRACK -->
     <div class="player-left">
       <div class="player-thumb-wrapper" id="btn-open-fullscreen">
@@ -1704,6 +1764,7 @@
     }
   </script>
   <script type="module" src="./src/musicService.js?v=3.0.0-clean"></script>
+  <script type="module" src="./src/playbarController.js?v=3.0.0-clean"></script>
   <script type="module" src="./src/visualizer.js?v=3.0.0-clean"></script>
   <script type="module" src="./src/main.js?v=3.0.0-clean"></script>
 </body>

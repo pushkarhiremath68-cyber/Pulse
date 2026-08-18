@@ -173,10 +173,44 @@
 
       // 1. Direct explicit streamUrl or audioUrl
       if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('api.pulsemusic.app')) {
-        add(track.streamUrl, 'Direct 320k Master Stream', 320);
+        add(track.streamUrl, 'Direct Master Stream', 320);
       }
       if (track.audioUrl && track.audioUrl.startsWith('http') && !track.audioUrl.includes('api.pulsemusic.app')) {
         add(track.audioUrl, 'High-Fidelity Audio URL', 320);
+      }
+      if (track.audio && typeof track.audio === 'string' && track.audio.startsWith('http')) {
+        add(track.audio, 'Direct Audio Source', 320);
+      }
+
+      // 1b. Jamendo Tracks Specific Streaming Resolution
+      const trackIdStr = String(track.id || '');
+      if (trackIdStr.startsWith('jamendo-') || (track.source && track.source.includes('Jamendo'))) {
+        const rawJamendoId = trackIdStr.replace('jamendo-', '');
+        const jClientId = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_JAMENDO_CLIENT_ID) ||
+                          (typeof window !== 'undefined' && (window.JAMENDO_CLIENT_ID || (window.localStorage && window.localStorage.getItem('pulse_jamendo_client_id')))) ||
+                          '';
+
+        if (track.audio && typeof track.audio === 'string' && track.audio.startsWith('http')) {
+          add(track.audio, 'Jamendo Master MP3 Direct', 320);
+          add(`https://corsproxy.io/?url=${encodeURIComponent(track.audio)}`, 'Jamendo Fast CORS Proxy', 320);
+          add(`https://api.allorigins.win/raw?url=${encodeURIComponent(track.audio)}`, 'Jamendo AllOrigins Proxy', 320);
+        }
+        if (track.audiodownload && typeof track.audiodownload === 'string' && track.audiodownload.startsWith('http')) {
+          add(track.audiodownload, 'Jamendo High-Quality Stream', 320);
+        }
+        if (rawJamendoId && jClientId) {
+          add(`https://api.jamendo.com/v3.0/tracks/file/?client_id=${jClientId}&id=${rawJamendoId}&audioformat=mp32`, 'Jamendo Direct File HD (320k)', 320);
+          add(`https://api.jamendo.com/v3.0/tracks/file/?client_id=${jClientId}&id=${rawJamendoId}&audioformat=mp31`, 'Jamendo Direct File (128k)', 128);
+        }
+      }
+
+      // 1c. Audius Tracks Specific Streaming Resolution
+      if (trackIdStr.startsWith('audius-')) {
+        const rawAudiusId = trackIdStr.replace('audius-', '');
+        const audiusNodes = ['https://discoveryprovider.audius.co', 'https://audius-discovery-1.cultur3stake.com', 'https://dn2.monophonic.digital'];
+        for (const node of audiusNodes) {
+          add(`${node}/v1/tracks/${rawAudiusId}/stream?app_name=PULSE_APP`, 'Audius Stream (320kbps)', 320);
+        }
       }
 
       // 2. Supabase Storage Object URL

@@ -47,6 +47,21 @@ def find_local_audio_file(track_id):
             return p
     return None
 
+def get_env_jamendo_client_id():
+    env_file = os.path.join(ROOT_DIR, '.env')
+    if os.path.exists(env_file):
+        try:
+            with open(env_file, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith('VITE_JAMENDO_CLIENT_ID='):
+                        val = line.split('=', 1)[1].strip()
+                        if val and not val.startswith('#') and 'your_' not in val:
+                            return val
+        except Exception:
+            pass
+    return os.environ.get('VITE_JAMENDO_CLIENT_ID', '')
+
 def clean_query_string(q):
     if not q:
         return ''
@@ -860,10 +875,65 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             self._send_json(400, {'error': 'Missing query parameter', 'results': []})
             return
 
+        # API: Live Jamendo Search Proxy (/api/jamendo-search)
+        if path == '/api/jamendo-search':
+            query = params.get('q', [None])[0]
+            client_id = params.get('client_id', [None])[0] or get_env_jamendo_client_id()
+            if query and client_id:
+                try:
+                    j_url = f"https://api.jamendo.com/v3.0/tracks/?client_id={client_id}&format=json&limit=30&namesearch={urllib.parse.quote(query)}&include=musicinfo+licenses"
+                    j_req = urllib.request.Request(j_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+                    with urllib.request.urlopen(j_req, timeout=5) as j_resp:
+                        raw_data = j_resp.read()
+                        self.send_response(200)
+                        self.send_header('Content-Type', 'application/json; charset=utf-8')
+                        self.send_header('Access-Control-Allow-Origin', '*')
+                        self.end_headers()
+                        self.wfile.write(raw_data)
+                        return
+                except Exception as e:
+                    self._send_json(500, {'error': str(e), 'results': []})
+                    return
+            self._send_json(400, {'error': 'Missing query or client_id', 'results': []})
+            return
+
+        # API: Live Jamendo Trending Proxy (/api/jamendo-trending)
+        if path == '/api/jamendo-trending':
+            client_id = params.get('client_id', [None])[0] or get_env_jamendo_client_id()
+            if client_id:
+                try:
+                    j_url = f"https://api.jamendo.com/v3.0/tracks/?client_id={client_id}&format=json&limit=50&order=popularity_month&include=musicinfo+licenses"
+                    j_req = urllib.request.Request(j_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+                    with urllib.request.urlopen(j_req, timeout=5) as j_resp:
+                        raw_data = j_resp.read()
+                        self.send_response(200)
+                        self.send_header('Content-Type', 'application/json; charset=utf-8')
+                        self.send_header('Access-Control-Allow-Origin', '*')
+                        self.end_headers()
+                        self.wfile.write(raw_data)
+                        return
+                except Exception as e:
+                    self._send_json(500, {'error': str(e), 'results': []})
+                    return
+            self._send_json(400, {'error': 'Missing client_id', 'results': []})
+            return
+
         if path == '/api/stream':
             yt_id = params.get('ytId', [None])[0]
             query = params.get('q', [None])[0]
             track_id = params.get('id', [None])[0]
+
+            # 1. Jamendo Direct Stream Redirect
+            if track_id and track_id.startswith('jamendo-'):
+                raw_jamendo_id = track_id.replace('jamendo-', '')
+                client_id = params.get('client_id', [None])[0] or get_env_jamendo_client_id()
+                if client_id and raw_jamendo_id:
+                    direct_url = f"https://api.jamendo.com/v3.0/tracks/file/?client_id={client_id}&id={raw_jamendo_id}&audioformat=mp32"
+                    self.send_response(302)
+                    self.send_header('Location', direct_url)
+                    self.send_header('Access-Control-Allow-Origin', '*')
+                    self.end_headers()
+                    return
 
             audio_file = ensure_audio_file(yt_id=yt_id, query=query, track_id=track_id)
             if audio_file and os.path.exists(audio_file) and os.path.getsize(audio_file) > 500000:

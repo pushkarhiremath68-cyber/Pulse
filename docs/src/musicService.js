@@ -15,6 +15,91 @@
   window.TRACKS_REGISTRY = window.TRACKS_REGISTRY || {};
   const CATEGORY_CACHE = new Map();
 
+  // =========================================================================
+  // AUDIUS & JAMENDO API CONFIGURATION
+  // Audius: Decentralized music platform (~600k+ free, streamable tracks)
+  // Jamendo: Creative Commons licensed music (~1M+ free, streamable tracks)
+  // =========================================================================
+  const AUDIUS_APP_NAME = 'PULSE_APP';
+  const AUDIUS_GATEWAY_URL = 'https://api.audius.co';
+  let _audiusDiscoveryNode = null; // Cached after first resolution
+  let _audiusNodeResolving = null; // Prevents duplicate resolution requests
+
+  // Jamendo: 1,000,000+ Creative Commons tracks via https://devportal.jamendo.com/
+  const JAMENDO_API_BASE = 'https://api.jamendo.com/v3.0';
+
+  /**
+   * Dynamically retrieves the Jamendo API Client ID from environment, window, or localStorage
+   * @returns {string} Jamendo Client ID
+   */
+  function getJamendoClientId() {
+    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_JAMENDO_CLIENT_ID) {
+      const val = String(import.meta.env.VITE_JAMENDO_CLIENT_ID).trim();
+      if (val && !val.includes('your_copied') && !val.includes('your_jamendo')) return val;
+    }
+    if (typeof window !== 'undefined') {
+      if (window.JAMENDO_CLIENT_ID && typeof window.JAMENDO_CLIENT_ID === 'string') {
+        const val = window.JAMENDO_CLIENT_ID.trim();
+        if (val) return val;
+      }
+      try {
+        const stored = window.localStorage.getItem('pulse_jamendo_client_id');
+        if (stored && stored.trim()) return stored.trim();
+      } catch (e) {}
+    }
+    return '';
+  }
+
+  // Runtime helper to set Jamendo Client ID dynamically without restart
+  if (typeof window !== 'undefined') {
+    window.getJamendoClientId = getJamendoClientId;
+    window.setJamendoClientId = function(clientId) {
+      if (clientId && typeof clientId === 'string') {
+        const clean = clientId.trim();
+        window.JAMENDO_CLIENT_ID = clean;
+        try { window.localStorage.setItem('pulse_jamendo_client_id', clean); } catch(e) {}
+        console.log(`[Jamendo] Client ID configured: ${clean}`);
+        if (window.musicService && typeof window.musicService.initCatalog === 'function') {
+          window.musicService.initCatalog();
+        }
+      }
+    };
+  }
+
+  /**
+   * Dynamically resolves an active Audius Discovery Node endpoint.
+   * Fetches from the gateway once, then caches for session lifetime.
+   * @returns {Promise<string>} Active discovery node base URL
+   */
+  async function getAudiusDiscoveryNode() {
+    if (_audiusDiscoveryNode) return _audiusDiscoveryNode;
+    if (_audiusNodeResolving) return _audiusNodeResolving;
+
+    _audiusNodeResolving = (async () => {
+      try {
+        const res = await fetch(AUDIUS_GATEWAY_URL, { signal: AbortSignal.timeout(4000) });
+        if (res.ok) {
+          const json = await res.json();
+          if (json.data && Array.isArray(json.data) && json.data.length > 0) {
+            // Pick a random healthy node from the list
+            const nodes = json.data;
+            _audiusDiscoveryNode = nodes[Math.floor(Math.random() * nodes.length)];
+            console.log(`[Audius] Resolved discovery node: ${_audiusDiscoveryNode}`);
+            return _audiusDiscoveryNode;
+          }
+        }
+      } catch (e) {
+        console.warn('[Audius] Gateway resolution notice:', e.message);
+      }
+      // Fallback to well-known discovery provider
+      _audiusDiscoveryNode = 'https://discoveryprovider.audius.co';
+      console.log(`[Audius] Using fallback discovery node: ${_audiusDiscoveryNode}`);
+      return _audiusDiscoveryNode;
+    })();
+
+    return _audiusNodeResolving;
+  }
+
   // Local Storage Cache Keys
   const STORAGE_KEYS = {
     RECENTLY_PLAYED: 'pulse_recently_played_v2',
@@ -268,7 +353,11 @@
       year: raw.year || 2026,
       ytId: raw.ytId || raw.yt_id || null,
       source: raw.source || 'Pulse Studio Master MP3 (320kbps)',
-      playCount: raw.playCount || raw.play_count || 0
+      playCount: raw.playCount || raw.play_count || 0,
+      audio: raw.audio || null, // Preserved for Jamendo direct MP3 stream URLs
+      audiodownload: raw.audiodownload || null, // Preserved for Jamendo high-quality audio download
+      jamendoId: raw.jamendoId || (cleanId.startsWith('jamendo-') ? cleanId.replace('jamendo-', '') : null),
+      license: raw.license || null
     };
   }
 
@@ -281,16 +370,91 @@
      * Initializes the Supabase 120,000 songs catalog on startup
      */
     async initCatalog() {
-      // Clean 0 songs catalog initialization (app starts completely fresh with 0 tracks)
+      // Clean catalog initialization — populate with trending tracks from Audius & Jamendo
       window.TRACKS_REGISTRY = {};
-      const defaultCatalog = [];
 
-      defaultCatalog.forEach(t => {
-        const norm = normalizeTrack(t);
-        window.TRACKS_REGISTRY[norm.id] = norm;
-      });
+      // Fetch trending tracks from Audius & Jamendo in parallel (non-blocking)
+      const trendingPromises = [];
 
-      console.log(`[Pulse Catalog Engine] Initialized clean state with ${Object.keys(window.TRACKS_REGISTRY).length} songs.`);
+      // --- AUDIUS TRENDING ---
+      trendingPromises.push((async () => {
+        try {
+          const node = await getAudiusDiscoveryNode();
+          const url = `${node}/v1/tracks/trending?app_name=${AUDIUS_APP_NAME}&limit=30`;
+          const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+          if (res.ok) {
+            const json = await res.json();
+            if (json.data && Array.isArray(json.data)) {
+              json.data.forEach(t => {
+                const artwork = t.artwork ? (t.artwork['1000x1000'] || t.artwork['480x480'] || t.artwork['150x150'] || '') : '';
+                const norm = normalizeTrack({
+                  id: `audius-${t.id}`,
+                  title: t.title || 'Untitled',
+                  artist: (t.user && t.user.name) ? t.user.name : 'Audius Artist',
+                  album: t.release_date ? `Release ${t.release_date}` : 'Audius',
+                  cover: artwork || null,
+                  duration: t.duration ? Math.round(t.duration) : 210,
+                  streamUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
+                  language: t.genre || 'English',
+                  category: (t.genre || 'electronic').toLowerCase(),
+                  source: 'Audius Streaming (320kbps)',
+                  playCount: t.play_count || 0
+                });
+                window.TRACKS_REGISTRY[norm.id] = norm;
+              });
+              console.log(`[Audius] Loaded ${json.data.length} trending tracks`);
+            }
+          }
+        } catch (e) {
+          console.warn('[Audius] Trending fetch notice:', e.message);
+        }
+      })());
+
+      // --- JAMENDO TRENDING & TOP DISCOVERY ---
+      const jamendoClientId = getJamendoClientId();
+      if (jamendoClientId) {
+        trendingPromises.push((async () => {
+          try {
+            const url = `${JAMENDO_API_BASE}/tracks/?client_id=${jamendoClientId}&format=json&limit=50&order=popularity_total&include=musicinfo+licenses`;
+            const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+            if (res.ok) {
+              const json = await res.json();
+              if (json.results && Array.isArray(json.results)) {
+                json.results.forEach(t => {
+                  const norm = normalizeTrack({
+                    id: `jamendo-${t.id}`,
+                    title: t.name || 'Untitled',
+                    artist: t.artist_name || 'Jamendo Artist',
+                    album: t.album_name || 'Jamendo Single',
+                    cover: t.album_image || t.image || null,
+                    duration: t.duration ? parseInt(t.duration, 10) : 210,
+                    streamUrl: t.audio || t.audiodownload || null,
+                    audioUrl: t.audio || t.audiodownload || null,
+                    audio: t.audio || null,
+                    audiodownload: t.audiodownload || null,
+                    language: (t.musicinfo && t.musicinfo.tags && t.musicinfo.tags.genres) ? t.musicinfo.tags.genres[0] || 'English' : 'English',
+                    category: (t.musicinfo && t.musicinfo.tags && t.musicinfo.tags.genres) ? (t.musicinfo.tags.genres[0] || 'pop').toLowerCase() : 'pop',
+                    source: 'Jamendo Music (Creative Commons)',
+                    license: t.license_ccurl || 'Creative Commons',
+                    playCount: 0
+                  });
+                  window.TRACKS_REGISTRY[norm.id] = norm;
+                });
+                console.log(`[Jamendo] Loaded ${json.results.length} trending tracks`);
+              }
+            }
+          } catch (e) {
+            console.warn('[Jamendo] Trending fetch notice:', e.message);
+          }
+        })());
+      } else {
+        console.log('[Jamendo] No VITE_JAMENDO_CLIENT_ID configured. Jamendo tracks will activate once client ID is set in .env or via window.setJamendoClientId()');
+      }
+
+      // Wait for both to settle (don't block app startup if one fails)
+      await Promise.allSettled(trendingPromises);
+
+      console.log(`[Pulse Catalog Engine] Initialized with ${Object.keys(window.TRACKS_REGISTRY).length} songs from Audius + Jamendo.`);
       if (typeof window.renderAllHomeGrids === 'function') {
         window.renderAllHomeGrids();
       }
@@ -329,6 +493,38 @@
       }
       if (track.audioUrl && typeof track.audioUrl === 'string' && track.audioUrl.startsWith('http') && !track.audioUrl.includes('api.pulsemusic.app')) {
         add(track.audioUrl, 'direct-audio-url');
+      }
+      if (track.audio && typeof track.audio === 'string' && track.audio.startsWith('http')) {
+        add(track.audio, 'direct-audio-mp3');
+      }
+
+      // 1b. AUDIUS direct stream URL (for tracks sourced from Audius)
+      if (track.id && String(track.id).startsWith('audius-')) {
+        try {
+          const node = await getAudiusDiscoveryNode();
+          const audiusTrackId = String(track.id).replace('audius-', '');
+          add(`${node}/v1/tracks/${audiusTrackId}/stream?app_name=${AUDIUS_APP_NAME}`, 'audius-stream-320k');
+        } catch (e) {}
+      }
+
+      // 1c. JAMENDO direct MP3 URL & file resolution with CORS proxy fallbacks
+      const trackIdStr = String(track.id || '');
+      if (trackIdStr.startsWith('jamendo-') || (track.source && track.source.includes('Jamendo'))) {
+        const rawJamendoId = trackIdStr.replace('jamendo-', '');
+        const jCid = getJamendoClientId();
+
+        if (track.audio && typeof track.audio === 'string' && track.audio.startsWith('http')) {
+          add(track.audio, 'jamendo-mp3-direct');
+          add(`https://corsproxy.io/?url=${encodeURIComponent(track.audio)}`, 'jamendo-cors-proxy');
+          add(`https://api.allorigins.win/raw?url=${encodeURIComponent(track.audio)}`, 'jamendo-allorigins-proxy');
+        }
+        if (track.audiodownload && typeof track.audiodownload === 'string' && track.audiodownload.startsWith('http')) {
+          add(track.audiodownload, 'jamendo-download-stream');
+        }
+        if (rawJamendoId && jCid) {
+          add(`https://api.jamendo.com/v3.0/tracks/file/?client_id=${jCid}&id=${rawJamendoId}&audioformat=mp32`, 'jamendo-file-redirect-320k');
+          add(`https://api.jamendo.com/v3.0/tracks/file/?client_id=${jCid}&id=${rawJamendoId}&audioformat=mp31`, 'jamendo-file-redirect-128k');
+        }
       }
 
       // 2. Supabase Storage MP4 public object URL
@@ -543,7 +739,99 @@
         console.warn('[Apple iTunes Search Notice]:', e);
       }
 
-      // 3. QUERY SUPABASE 120,000 DATABASE
+      // 3. LIVE AUDIUS SEARCH API (Electronic, Hip-Hop, Indie, Global Independent Artists)
+      try {
+        const audiusNode = await getAudiusDiscoveryNode();
+        const audiusSearchUrl = `${audiusNode}/v1/tracks/search?query=${encodeURIComponent(cleanQ)}&app_name=${AUDIUS_APP_NAME}&limit=30`;
+        const audiusRes = await fetch(audiusSearchUrl, { signal: AbortSignal.timeout(4000) });
+        if (audiusRes.ok) {
+          const audiusData = await audiusRes.json();
+          if (audiusData && audiusData.data && Array.isArray(audiusData.data)) {
+            audiusData.data.forEach(t => {
+              const songTitle = t.title || '';
+              const artistName = (t.user && t.user.name) ? t.user.name : 'Audius Artist';
+              if (!songTitle) return;
+
+              const artwork = t.artwork ? (t.artwork['1000x1000'] || t.artwork['480x480'] || t.artwork['150x150'] || '') : '';
+              const norm = normalizeTrack({
+                id: `audius-${t.id}`,
+                title: songTitle,
+                artist: artistName,
+                album: t.release_date ? `Release ${t.release_date}` : 'Audius',
+                cover: artwork || null,
+                duration: t.duration ? Math.round(t.duration) : 210,
+                streamUrl: `${audiusNode}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
+                language: t.genre || 'English',
+                category: (t.genre || 'electronic').toLowerCase(),
+                source: 'Audius Streaming (320kbps)',
+                playCount: t.play_count || 0
+              });
+
+              const titleKey = `${norm.title} - ${norm.artist}`.toLowerCase();
+              if (!seenTitles.has(titleKey) && !seenIds.has(norm.id)) {
+                seenTitles.add(titleKey);
+                seenIds.add(norm.id);
+                results.push(norm);
+                window.TRACKS_REGISTRY[norm.id] = norm;
+              }
+            });
+            console.log(`[Audius] Search returned ${audiusData.data.length} results for "${cleanQ}"`);
+          }
+        }
+      } catch(e) {
+        console.warn('[Audius Search Notice]:', e);
+      }
+
+      // 4. LIVE JAMENDO SEARCH API (Creative Commons, Indie, Ambient, World, Lo-Fi)
+      const jamendoSearchCid = getJamendoClientId();
+      if (jamendoSearchCid) {
+        try {
+          const jamendoSearchUrl = `${JAMENDO_API_BASE}/tracks/?client_id=${jamendoSearchCid}&format=json&limit=30&namesearch=${encodeURIComponent(cleanQ)}&include=musicinfo+licenses`;
+          const jamendoRes = await fetch(jamendoSearchUrl, { signal: AbortSignal.timeout(4000) });
+          if (jamendoRes.ok) {
+            const jamendoData = await jamendoRes.json();
+            if (jamendoData && jamendoData.results && Array.isArray(jamendoData.results)) {
+              jamendoData.results.forEach(t => {
+                const songTitle = t.name || '';
+                const artistName = t.artist_name || 'Jamendo Artist';
+                if (!songTitle) return;
+
+                const norm = normalizeTrack({
+                  id: `jamendo-${t.id}`,
+                  title: songTitle,
+                  artist: artistName,
+                  album: t.album_name || 'Jamendo Single',
+                  cover: t.album_image || t.image || null,
+                  duration: t.duration ? parseInt(t.duration, 10) : 210,
+                  streamUrl: t.audio || t.audiodownload || null,
+                  audioUrl: t.audio || t.audiodownload || null,
+                  audio: t.audio || null,
+                  audiodownload: t.audiodownload || null,
+                  jamendoId: t.id,
+                  license: t.license_ccurl || 'Creative Commons',
+                  language: (t.musicinfo && t.musicinfo.tags && t.musicinfo.tags.genres) ? t.musicinfo.tags.genres[0] || 'English' : 'English',
+                  category: (t.musicinfo && t.musicinfo.tags && t.musicinfo.tags.genres) ? (t.musicinfo.tags.genres[0] || 'pop').toLowerCase() : 'pop',
+                  source: 'Jamendo Music (Creative Commons)',
+                  playCount: 0
+                });
+
+                const titleKey = `${norm.title} - ${norm.artist}`.toLowerCase();
+                if (!seenTitles.has(titleKey) && !seenIds.has(norm.id)) {
+                  seenTitles.add(titleKey);
+                  seenIds.add(norm.id);
+                  results.push(norm);
+                  window.TRACKS_REGISTRY[norm.id] = norm;
+                }
+              });
+              console.log(`[Jamendo] Search returned ${jamendoData.results.length} results for "${cleanQ}"`);
+            }
+          }
+        } catch(e) {
+          console.warn('[Jamendo Search Notice]:', e);
+        }
+      }
+
+      // 5. QUERY SUPABASE 120,000 DATABASE
       if (typeof window.fetchSongsFromSupabase === 'function') {
         try {
           const sbSongs = await window.fetchSongsFromSupabase({ query: cleanQ, limit: Math.max(limit, 50) });

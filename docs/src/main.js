@@ -1438,18 +1438,88 @@
     }
   }
 
+  const FEATURED_HINDI_HITS = [
+    { id: 'hindi-1', title: 'Kesariya', artist: 'Arijit Singh, Pritam', album: 'Brahmastra', duration: '4:28', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-2', title: 'Apna Bana Le', artist: 'Arijit Singh, Sachin-Jigar', album: 'Bhediya', duration: '4:21', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-3', title: 'Tum Se Hi', artist: 'Mohit Chauhan, Pritam', album: 'Jab We Met', duration: '5:21', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-4', title: 'Chaleya', artist: 'Arijit Singh, Shilpa Rao, Anirudh', album: 'Jawan', duration: '3:20', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-5', title: 'Raataan Lambiyan', artist: 'Jubin Nautiyal, Asees Kaur', album: 'Shershaah', duration: '3:50', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-6', title: 'Tum Hi Ho', artist: 'Arijit Singh, Mithoon', album: 'Aashiqui 2', duration: '4:22', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-7', title: 'Heeriye', artist: 'Jasleen Royal, Arijit Singh', album: 'Heeriye', duration: '3:15', category: 'bollywood', language: 'Hindi' },
+    { id: 'hindi-8', title: 'Shayad', artist: 'Arijit Singh, Pritam', album: 'Love Aaj Kal', duration: '4:07', category: 'bollywood', language: 'Hindi' }
+  ];
+
+  const FEATURED_PUNJABI_HITS = [
+    { id: 'punjabi-1', title: 'Lover', artist: 'Diljit Dosanjh', album: 'MoonChild Era', duration: '3:12', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-2', title: 'Softly', artist: 'Karan Aujla, Ikky', album: 'Making Memories', duration: '2:35', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-3', title: 'Excuses', artist: 'AP Dhillon, Gurinder Gill', album: 'Excuses', duration: '2:56', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-4', title: 'Brown Munde', artist: 'AP Dhillon, Gurinder Gill, Shinda Kahlon', album: 'Brown Munde', duration: '4:27', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-5', title: '295', artist: 'Sidhu Moose Wala', album: 'Moosetape', duration: '4:30', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-6', title: 'Born to Shine', artist: 'Diljit Dosanjh', album: 'G.O.A.T.', duration: '3:33', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-7', title: 'White Brown Black', artist: 'Karan Aujla, Avvy Sra', album: 'White Brown Black', duration: '3:00', category: 'punjabi', language: 'Punjabi' },
+    { id: 'punjabi-8', title: 'Mi Amor', artist: 'Sharn, 40k, The Paul', album: 'Mi Amor', duration: '3:24', category: 'punjabi', language: 'Punjabi' }
+  ];
+
+  const FEATURED_GLOBAL_HITS = [
+    { id: 'global-1', title: 'Blinding Lights', artist: 'The Weeknd', album: 'After Hours', duration: '3:20', category: 'pop', language: 'English' },
+    { id: 'global-2', title: 'Starboy', artist: 'The Weeknd, Daft Punk', album: 'Starboy', duration: '3:50', category: 'pop', language: 'English' },
+    { id: 'global-3', title: 'Shape of You', artist: 'Ed Sheeran', album: '÷ (Divide)', duration: '3:53', category: 'pop', language: 'English' },
+    { id: 'global-4', title: 'Levitating', artist: 'Dua Lipa', album: 'Future Nostalgia', duration: '3:23', category: 'pop', language: 'English' },
+    { id: 'global-5', title: 'Faded', artist: 'Alan Walker', album: 'Different World', duration: '3:32', category: 'pop', language: 'English' },
+    { id: 'global-6', title: 'As It Was', artist: 'Harry Styles', album: "Harry's House", duration: '2:47', category: 'pop', language: 'English' },
+    { id: 'global-7', title: 'Cruel Summer', artist: 'Taylor Swift', album: 'Lover', duration: '2:58', category: 'pop', language: 'English' },
+    { id: 'global-8', title: 'Believer', artist: 'Imagine Dragons', album: 'Evolve', duration: '3:24', category: 'rock', language: 'English' }
+  ];
+
   function renderAllHomeGrids() {
     if (!window.musicService) return;
 
-    // Recently Played (dynamic based on user activity)
+    // 1. Recently Played
     const history = window.musicService.getRecentlyPlayed();
-    if (el.sectionRecentlyPlayed && el.gridRecentlyPlayed) {
+    const sectionRecentlyPlayed = document.getElementById('section-recently-played');
+    const gridRecentlyPlayed = document.getElementById('grid-recently-played');
+    if (sectionRecentlyPlayed && gridRecentlyPlayed) {
       if (history.length > 0) {
-        el.sectionRecentlyPlayed.classList.remove('hidden');
-        el.gridRecentlyPlayed.innerHTML = history.slice(0, 8).map(createMusicCardHTML).join('');
+        sectionRecentlyPlayed.classList.remove('hidden');
+        gridRecentlyPlayed.innerHTML = history.slice(0, 8).map(createMusicCardHTML).join('');
       } else {
-        el.sectionRecentlyPlayed.classList.add('hidden');
+        sectionRecentlyPlayed.classList.add('hidden');
       }
+    }
+
+    // 2. Trending Worldwide (Jamendo + Audius discovery tracks)
+    const gridTrending = document.getElementById('grid-trending');
+    if (gridTrending) {
+      const registryTracks = Object.values(window.TRACKS_REGISTRY || {});
+      const trendingTracks = registryTracks.length > 0 ? registryTracks.slice(0, 12) : FEATURED_GLOBAL_HITS;
+      renderGridContent(gridTrending, trendingTracks);
+    }
+
+    // 3. Bollywood & Hindi Hits
+    const gridHindiHits = document.getElementById('grid-hindi-hits');
+    if (gridHindiHits) {
+      renderGridContent(gridHindiHits, FEATURED_HINDI_HITS);
+    }
+
+    // 4. Lo-Fi & Electronic (Jamendo & Audius electronic/chillout tracks)
+    const gridElectronic = document.getElementById('grid-electronic');
+    if (gridElectronic) {
+      const registryTracks = Object.values(window.TRACKS_REGISTRY || {});
+      const chillTracks = registryTracks.filter(t => (t.category || '').includes('lofi') || (t.category || '').includes('chill') || (t.category || '').includes('electronic') || (t.category || '').includes('ambient'));
+      const displayChill = chillTracks.length >= 4 ? chillTracks.slice(0, 8) : registryTracks.slice(6, 14);
+      renderGridContent(gridElectronic, displayChill.length > 0 ? displayChill : FEATURED_GLOBAL_HITS);
+    }
+
+    // 5. Punjabi Chartbusters
+    const gridPunjabi = document.getElementById('grid-punjabi');
+    if (gridPunjabi) {
+      renderGridContent(gridPunjabi, FEATURED_PUNJABI_HITS);
+    }
+
+    // 6. Global Pop Hits
+    const gridGlobalPop = document.getElementById('grid-global-pop');
+    if (gridGlobalPop) {
+      renderGridContent(gridGlobalPop, FEATURED_GLOBAL_HITS);
     }
   }
 
@@ -1881,21 +1951,43 @@
   window.playSpecificTrack = async function(trackId) {
     if (!trackId) return;
 
-    // If clicking the track that is already active/loaded, toggle play/pause instead of restarting from 0!
-    if (state.currentTrack && state.currentTrack.id === trackId) {
+    // If clicking the EXACT same track, toggle play/pause without restarting
+    if (state.currentTrack && String(state.currentTrack.id) === String(trackId)) {
       togglePlayPause();
       return;
     }
 
     let track = window.musicService ? window.musicService.getTrack(trackId) : null;
     if (!track && window.TRACKS_REGISTRY) track = window.TRACKS_REGISTRY[trackId];
-    if (!track && state.searchResults) track = state.searchResults.find(t => t.id === trackId);
+    if (!track && state.searchResults) track = state.searchResults.find(t => String(t.id) === String(trackId));
+    if (!track && typeof FEATURED_HINDI_HITS !== 'undefined') track = FEATURED_HINDI_HITS.find(t => String(t.id) === String(trackId));
+    if (!track && typeof FEATURED_PUNJABI_HITS !== 'undefined') track = FEATURED_PUNJABI_HITS.find(t => String(t.id) === String(trackId));
+    if (!track && typeof FEATURED_GLOBAL_HITS !== 'undefined') track = FEATURED_GLOBAL_HITS.find(t => String(t.id) === String(trackId));
     if (!track && typeof window.fetchSongByIdFromSupabase === 'function') {
       track = await window.fetchSongByIdFromSupabase(trackId);
       if (track) window.TRACKS_REGISTRY[track.id] = track;
     }
+
     if (track) {
-      state.currentTime = 0; // Fresh start for new track
+      // 1. Immediately terminate old song playback completely
+      stopAllAudio();
+      state.currentTime = 0;
+
+      // 2. Synchronize queue with new track
+      if (!state.queue || state.queue.length === 0) {
+        state.queue = [track];
+        state.queueIndex = 0;
+      } else {
+        const existingIdx = state.queue.findIndex(t => String(t.id) === String(track.id));
+        if (existingIdx !== -1) {
+          state.queueIndex = existingIdx;
+        } else {
+          state.queue.splice(state.queueIndex + 1, 0, track);
+          state.queueIndex = state.queueIndex + 1;
+        }
+      }
+
+      // 3. Start fresh playback of selected song
       setTrack(track, true);
     }
   };
@@ -2468,10 +2560,15 @@
       return;
     }
 
+    if (window._isScrubbingProgress) return; // Prevent progress bar jumping while user is dragging scrubber
+
     const percent = Math.min(100, (state.currentTime / state.duration) * 100);
     if (el.playerProgressFill) el.playerProgressFill.style.width = `${percent}%`;
     if (el.playerSeekSlider) el.playerSeekSlider.value = percent;
     if (el.playerTimeCurrent) el.playerTimeCurrent.textContent = formatTime(state.currentTime);
+
+    const miniTopFill = document.getElementById('mini-top-progress-fill');
+    if (miniTopFill) miniTopFill.style.width = `${percent}%`;
 
     if (el.fsProgressFill) el.fsProgressFill.style.width = `${percent}%`;
     if (el.fsSeekSlider) el.fsSeekSlider.value = percent;
@@ -2568,57 +2665,102 @@
   }
 
   function seekTo(percent) {
-    if (!state.currentTrack || isNaN(state.duration) || state.duration <= 0) return;
-    const targetTime = (percent / 100) * state.duration;
+    if (!state.currentTrack) return;
+    const dur = (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0)
+      ? fallbackAudio.duration
+      : (state.duration || 0);
+    if (dur <= 0) return;
+
+    const targetTime = Math.max(0, Math.min(dur, (percent / 100) * dur));
     state.currentTime = targetTime;
-    
+
+    if (fallbackAudio) {
+      try {
+        fallbackAudio.currentTime = targetTime;
+      } catch (e) {
+        console.warn('[Seek Notice]:', e);
+      }
+    }
+
     if (state.playbackSource === 'youtube' && ytPlayer && typeof ytPlayer.seekTo === 'function') {
       try { ytPlayer.seekTo(targetTime, true); } catch (e) {}
-    } else if (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0) {
-      fallbackAudio.currentTime = targetTime;
     }
-    
+
     updateProgressTimeline();
   }
 
   function seekRelative(seconds) {
-    if (!state.currentTrack || isNaN(state.duration) || state.duration <= 0) return;
-    const targetTime = Math.max(0, Math.min(state.duration, state.currentTime + seconds));
+    if (!state.currentTrack) return;
+    const dur = (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0)
+      ? fallbackAudio.duration
+      : (state.duration || 210);
+    const curr = (fallbackAudio && !isNaN(fallbackAudio.currentTime) && fallbackAudio.currentTime > 0)
+      ? fallbackAudio.currentTime
+      : (state.currentTime || 0);
+
+    const targetTime = Math.max(0, Math.min(dur, curr + seconds));
     state.currentTime = targetTime;
-    
+
+    if (fallbackAudio) {
+      try {
+        fallbackAudio.currentTime = targetTime;
+      } catch (e) {
+        console.warn('[SeekRelative Notice]:', e);
+      }
+    }
+
     if (state.playbackSource === 'youtube' && ytPlayer && typeof ytPlayer.seekTo === 'function') {
       try { ytPlayer.seekTo(targetTime, true); } catch (e) {}
-    } else if (fallbackAudio && !isNaN(fallbackAudio.duration) && fallbackAudio.duration > 0) {
-      fallbackAudio.currentTime = targetTime;
     }
-    
+
     updateProgressTimeline();
   }
 
   function playNextTrack() {
-    if (!state.queue || state.queue.length === 0) return;
+    let queue = (state.queue && state.queue.length > 0) ? state.queue : Object.values(window.TRACKS_REGISTRY || {});
+    if (!queue || queue.length === 0) {
+      if (typeof FEATURED_HINDI_HITS !== 'undefined') queue = FEATURED_HINDI_HITS;
+    }
+    if (!queue || queue.length === 0) return;
 
     if (state.isShuffle) {
-      state.queueIndex = Math.floor(Math.random() * state.queue.length);
+      state.queueIndex = Math.floor(Math.random() * queue.length);
     } else {
-      state.queueIndex = (state.queueIndex + 1) % state.queue.length;
+      state.queueIndex = (state.queueIndex + 1) % queue.length;
     }
 
-    const next = state.queue[state.queueIndex];
-    if (next) setTrack(next, true);
+    const next = queue[state.queueIndex];
+    if (next) {
+      stopAllAudio();
+      setTrack(next, true);
+    }
   }
 
   function playPrevTrack() {
-    if (!state.queue || state.queue.length === 0) return;
-
-    if (state.isShuffle) {
-      state.queueIndex = Math.floor(Math.random() * state.queue.length);
-    } else {
-      state.queueIndex = (state.queueIndex - 1 + state.queue.length) % state.queue.length;
+    if (fallbackAudio && fallbackAudio.currentTime > 3) {
+      try { fallbackAudio.currentTime = 0; } catch (e) {}
+      state.currentTime = 0;
+      updateProgressTimeline();
+      return;
     }
 
-    const prev = state.queue[state.queueIndex];
-    if (prev) setTrack(prev, true);
+    let queue = (state.queue && state.queue.length > 0) ? state.queue : Object.values(window.TRACKS_REGISTRY || {});
+    if (!queue || queue.length === 0) {
+      if (typeof FEATURED_HINDI_HITS !== 'undefined') queue = FEATURED_HINDI_HITS;
+    }
+    if (!queue || queue.length === 0) return;
+
+    if (state.isShuffle) {
+      state.queueIndex = Math.floor(Math.random() * queue.length);
+    } else {
+      state.queueIndex = (state.queueIndex - 1 + queue.length) % queue.length;
+    }
+
+    const prev = queue[state.queueIndex];
+    if (prev) {
+      stopAllAudio();
+      setTrack(prev, true);
+    }
   }
 
   function handleTrackEnded() {
@@ -4645,12 +4787,68 @@
       });
     }
 
-    // Player Seek Slider
-    if (el.playerSeekSlider) {
-      el.playerSeekSlider.addEventListener('input', (e) => seekTo(parseFloat(e.target.value)));
+    // Robust Scrubber / Seek Bar Handling (Pause UI loop on drag, commit on release)
+    const onSeekStart = () => {
+      window._isScrubbingProgress = true;
+    };
+
+    const onSeekMove = (e) => {
+      const val = parseFloat(e.target.value);
+      if (state.duration > 0) {
+        const previewSecs = (val / 100) * state.duration;
+        if (el.playerTimeCurrent) el.playerTimeCurrent.textContent = formatTime(previewSecs);
+        if (el.fsTimeCurrent) el.fsTimeCurrent.textContent = formatTime(previewSecs);
+      }
+      if (el.playerProgressFill) el.playerProgressFill.style.width = `${val}%`;
+      if (el.fsProgressFill) el.fsProgressFill.style.width = `${val}%`;
+      const miniTopFill = document.getElementById('mini-top-progress-fill');
+      if (miniTopFill) miniTopFill.style.width = `${val}%`;
+    };
+
+    const onSeekEnd = (e) => {
+      window._isScrubbingProgress = false;
+      seekTo(parseFloat(e.target.value));
+    };
+
+    [el.playerSeekSlider, el.fsSeekSlider].forEach(slider => {
+      if (!slider) return;
+      slider.addEventListener('mousedown', onSeekStart);
+      slider.addEventListener('touchstart', onSeekStart, { passive: true });
+      slider.addEventListener('input', onSeekMove);
+      slider.addEventListener('mouseup', onSeekEnd);
+      slider.addEventListener('touchend', onSeekEnd);
+      slider.addEventListener('change', onSeekEnd);
+    });
+
+    const handleWrapperClick = (e, wrapperEl, sliderEl) => {
+      if (!wrapperEl) return;
+      const rect = wrapperEl.getBoundingClientRect();
+      if (rect.width <= 0) return;
+      const clickX = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
+      const pct = (clickX / rect.width) * 100;
+      if (sliderEl) sliderEl.value = pct;
+      if (el.playerProgressFill) el.playerProgressFill.style.width = `${pct}%`;
+      if (el.fsProgressFill) el.fsProgressFill.style.width = `${pct}%`;
+      const miniTopFill = document.getElementById('mini-top-progress-fill');
+      if (miniTopFill) miniTopFill.style.width = `${pct}%`;
+      seekTo(pct);
+    };
+
+    const playerBarWrap = document.getElementById('player-progress-bar');
+    if (playerBarWrap) {
+      playerBarWrap.addEventListener('click', (e) => {
+        if (e.target !== el.playerSeekSlider) {
+          handleWrapperClick(e, playerBarWrap, el.playerSeekSlider);
+        }
+      });
     }
-    if (el.fsSeekSlider) {
-      el.fsSeekSlider.addEventListener('input', (e) => seekTo(parseFloat(e.target.value)));
+    const fsBarWrap = document.getElementById('fs-progress-wrapper');
+    if (fsBarWrap) {
+      fsBarWrap.addEventListener('click', (e) => {
+        if (e.target !== el.fsSeekSlider) {
+          handleWrapperClick(e, fsBarWrap, el.fsSeekSlider);
+        }
+      });
     }
 
     // Volume

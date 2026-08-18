@@ -2049,6 +2049,7 @@ body:has(.fullscreen-player.active) .mobile-bottom-nav {
   background: var(--accent-gradient);
   border-radius: var(--radius-full);
   position: relative;
+  pointer-events: none;
 }
 
 .progress-handle {
@@ -2060,12 +2061,47 @@ body:has(.fullscreen-player.active) .mobile-bottom-nav {
   height: 12px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.8), var(--shadow-sm);
   opacity: 0;
+  pointer-events: none;
   transition: opacity var(--transition-fast);
 }
 
-.progress-bar-wrapper:hover .progress-handle { opacity: 1; }
+.progress-bar-wrapper:hover .progress-handle,
+.progress-bar-wrapper:active .progress-handle {
+  opacity: 1;
+}
+
+.timeline-range-input {
+  position: absolute;
+  inset: -10px 0;
+  width: 100%;
+  height: calc(100% + 20px);
+  opacity: 0;
+  cursor: pointer;
+  z-index: 20;
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+.timeline-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.timeline-range-input::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
 /* RIGHT */
 .player-right {
