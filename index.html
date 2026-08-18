@@ -219,8 +219,8 @@
 
         <div class="search-box-container">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          <input type="text" id="global-search-input" placeholder="Search any song (English, Hindi, Spanish, Punjabi, K-Pop)..." autocomplete="off">
-          <button id="clear-search-btn" class="clear-search hidden"><i class="fa-solid fa-xmark"></i></button>
+          <input type="text" id="global-search-input" placeholder="Search any song (English, Hindi, Spanish, Punjabi, K-Pop)..." autocomplete="off" oninput="window.executeSearch(this.value, true)">
+          <button id="clear-search-btn" class="clear-search hidden" onclick="const i=document.getElementById('global-search-input'); if(i) i.value=''; window.executeSearch('', false);"><i class="fa-solid fa-xmark"></i></button><i class="fa-solid fa-xmark"></i></button>
         </div>
 
         <div class="header-actions">

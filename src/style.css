@@ -6282,3 +6282,59 @@ body.is-standalone-app .btn-install-sidebar {
   font-size: 0.95rem;
   line-height: 1.6;
 }
+
+
+/* ==========================================================================
+   GLOBAL CLICKABILITY & MODAL OVERLAY ISOLATION ENFORCER
+   ========================================================================== */
+.modal-overlay.hidden,
+.modal.hidden,
+#splash-screen.hidden,
+#auth-modal.hidden,
+#artist-detail-modal.hidden,
+#gemini-dj-modal.hidden,
+#lyrics-preview-modal.hidden,
+#download-app-modal.hidden,
+#upload-audio-modal.hidden,
+#song-credits-modal.hidden,
+#create-playlist-modal.hidden,
+#add-to-playlist-modal.hidden,
+.hidden,
+[hidden] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -99999 !important;
+}
+
+#app,
+.app-container,
+.main-content,
+.sidebar,
+.top-header,
+.search-box-container,
+#global-search-input,
+.music-card,
+.card-image-wrapper,
+.card-play-overlay,
+.btn-card-play,
+.feature-action-card,
+.hero-actions button,
+.btn-primary-play,
+.btn-secondary-outline,
+.btn-secondary-install,
+.btn-header-login,
+.btn-header-signup,
+.bottom-player-bar,
+.player-controls,
+.timeline-container,
+.nav-item,
+.chip-filter,
+button,
+input,
+select,
+textarea,
+a {
+  pointer-events: auto !important;
+}
