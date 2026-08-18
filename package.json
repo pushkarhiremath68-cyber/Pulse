@@ -26,8 +26,5 @@
     "jsdom": "^27.0.1",
     "vite": "^5.0.0"
   },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.45.0",
-    "firebase": "^12.17.1"
-  }
+  "dependencies": {}
 }

@@ -65,35 +65,7 @@
   
 
   <!-- Supabase JS Client Library -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- Google Cloud & Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-  <script>
-    window.JAMENDO_CLIENT_ID = '23b33f2a';
-    window.PULSE_FIREBASE_CONFIG = null;
-    window.PULSE_SUPABASE_URL = '';
-    window.PULSE_SUPABASE_ANON_KEY = '';
-    window.PULSE_STORAGE_BUCKET = '';
-    window.supabaseClient = null;
-
-    window.getAudioStorageUrl = function(storagePath) {
-      if (!storagePath) return null;
-      if (storagePath.startsWith('http://') || storagePath.startsWith('https://') || storagePath.startsWith('blob:')) {
-        return storagePath;
-      }
-      var url = window.PULSE_SUPABASE_URL;
-      var bucket = window.PULSE_STORAGE_BUCKET || 'music';
-      var cleanPath = storagePath.replace(/^\/+/, '');
-      if (url && url.indexOf('.') !== -1) {
-        var cleanBase = url.replace(/\/+$/, '');
-        return cleanBase + '/storage/v1/object/public/' + bucket + '/' + cleanPath;
-      }
-      return './storage/music/' + cleanPath;
-    };
-  </script>
+  <!-- Google Cloud & Firebase SDKs -->
   <style>
     :root { color-scheme: dark; }
     html, body {
@@ -1697,7 +1669,7 @@
 
   <!-- CREATE / RENAME PLAYLIST MODAL -->
   <div id="create-playlist-modal" class="modal-overlay hidden">
-    <div class="modal-content spotify-auth-modal" style="max-width: 420px;">
+    <div class="modal-content pulse-auth-modal" style="max-width: 420px;">
       <div class="spotify-auth-header" style="justify-content: space-between;">
         <h3 id="playlist-modal-title"><i class="fa-solid fa-folder-plus text-accent"></i> Create New Playlist</h3>
         <button class="btn-icon-small" onclick="window.closeCreatePlaylistModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1718,7 +1690,7 @@
 
   <!-- ADD TRACK TO PLAYLIST MODAL -->
   <div id="add-to-playlist-modal" class="modal-overlay hidden">
-    <div class="modal-content spotify-auth-modal" style="max-width: 440px;">
+    <div class="modal-content pulse-auth-modal" style="max-width: 440px;">
       <div class="spotify-auth-header" style="justify-content: space-between;">
         <h3><i class="fa-solid fa-list-plus text-accent"></i> Add to Playlist</h3>
         <button class="btn-icon-small" onclick="window.closeAddToPlaylistModal()"><i class="fa-solid fa-xmark"></i></button>
