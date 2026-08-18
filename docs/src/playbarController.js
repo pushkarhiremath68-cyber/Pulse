@@ -119,15 +119,35 @@ export function togglePlayPause() {
 }
 
 export function playNext() {
-  if (playQueue.length > 0) {
+  if (playQueue.length > 1) {
     if (isShuffle) {
       queueIndex = Math.floor(Math.random() * playQueue.length);
     } else {
       queueIndex = (queueIndex + 1) % playQueue.length;
     }
     playTrack(playQueue[queueIndex]);
+  } else if (window.catalogService && Array.isArray(window.catalogService.CATALOG_CATEGORIES)) {
+    // Dynamically pick next trending hit from catalog
+    const allTracks = [];
+    window.catalogService.CATALOG_CATEGORIES.forEach(c => {
+      if (Array.isArray(c.tracks)) {
+        c.tracks.forEach(t => allTracks.push({
+          title: t.title,
+          artist: t.artist,
+          coverUrl: t.cover,
+          streamUrl: t.stream,
+          duration: t.duration || 220,
+          source: `${c.title} (Auto Queue)`
+        }));
+      }
+    });
+    if (allTracks.length > 0) {
+      const nextIdx = Math.floor(Math.random() * allTracks.length);
+      playTrack(allTracks[nextIdx], allTracks);
+    } else {
+      togglePlayPause();
+    }
   } else {
-    // If no queue, pick from master registry
     togglePlayPause();
   }
 }
@@ -147,14 +167,14 @@ export function playPrev() {
 export function toggleShuffle() {
   isShuffle = !isShuffle;
   const btn = document.getElementById('btn-shuffle');
-  if (btn) btn.style.color = isShuffle ? '#a855f7' : 'inherit';
+  if (btn) btn.style.color = isShuffle ? '#ff007a' : 'inherit';
   if (window.showToast) window.showToast(isShuffle ? 'Shuffle Enabled' : 'Shuffle Disabled', 'info', 1500);
 }
 
 export function toggleRepeat() {
   isRepeat = !isRepeat;
   const btn = document.getElementById('btn-repeat');
-  if (btn) btn.style.color = isRepeat ? '#a855f7' : 'inherit';
+  if (btn) btn.style.color = isRepeat ? '#ff007a' : 'inherit';
   if (window.showToast) window.showToast(isRepeat ? 'Repeat Track Enabled' : 'Repeat Disabled', 'info', 1500);
 }
 
