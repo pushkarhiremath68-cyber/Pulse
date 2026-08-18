@@ -261,6 +261,8 @@
    * SELECT & PLAY A NEW TRACK
    */
   async function playTrack(track, seekSeconds = 0) {
+    if (track && typeof window.loadTrackLyrics === "function") window.loadTrackLyrics(track);
+
     if (!track) return;
     if (typeof window.playSpecificTrack === 'function' && track.id) {
       return window.playSpecificTrack(track.id);
