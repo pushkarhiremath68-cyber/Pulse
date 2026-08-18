@@ -33,7 +33,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
     :root { color-scheme: dark; }
@@ -89,7 +89,7 @@
             <i class="fa-solid fa-compact-disc text-accent"></i>
             <span>Hindi & Desi</span>
           </a>
-          <a href="javascript:void(0)" class="nav-item" onclick="window.executeSearch('English Pop Hits')">
+          <a href="javascript:void(0)" class="nav-item" onclick="window.executeSearch('Pop Hits')">
             <i class="fa-solid fa-earth-americas" style="color: #3b82f6;"></i>
             <span>Global Pop</span>
           </a>
@@ -179,7 +179,7 @@
         </section>
 
         <!-- TOP CHIP FILTER SELECTOR -->
-        <div class="category-chip-bar" style="display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 1.25rem; margin-bottom: 1.5rem;">
+        <div class="category-chip-bar" style="display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 1rem; margin-bottom: 1.5rem;">
           <button class="chip-filter active" onclick="window.executeSearch('Top Hits')">All Hits</button>
           <button class="chip-filter" onclick="window.executeSearch('Bollywood Hindi')">Hindi & Desi</button>
           <button class="chip-filter" onclick="window.executeSearch('Pop Hits')">English Pop</button>
@@ -189,7 +189,7 @@
         </div>
 
         <!-- CATEGORY ROW: POP -->
-        <section class="music-shelf-section" style="margin-bottom: 2rem;">
+        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
           <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div>
               <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-earth-americas text-accent"></i> English & Global Pop</h3>
@@ -197,11 +197,91 @@
             </div>
             <button class="btn-see-all" onclick="window.executeSearch('Pop Hits')" style="color: #c084fc; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
           </div>
-          <div class="shelf-carousel" id="cat-grid-pop" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.2rem;"></div>
+          <div class="shelf-carousel" id="cat-grid-pop" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem;">
+            
+            <div class="music-card" onclick="window.playSpecificTrack('Starboy The Weeknd')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg" alt="Starboy" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Starboy</span>
+                <span class="card-artist">The Weeknd</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Cruel Summer Taylor Swift')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg" alt="Cruel Summer" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Cruel Summer</span>
+                <span class="card-artist">Taylor Swift</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Blinding Lights The Weeknd')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/37/e6/78/37e6783d-3bf4-2194-4d89-63a1fefc39bf/20UMGIM08221.rgb.jpg/600x600bb.jpg" alt="Blinding Lights" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Blinding Lights</span>
+                <span class="card-artist">The Weeknd</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Levitating Dua Lipa')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/78/c6/f1/78c6f140-5a3d-3a3a-32c0-7cf12a321cf7/190295240216.jpg/600x600bb.jpg" alt="Levitating" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Levitating</span>
+                <span class="card-artist">Dua Lipa</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Believer Imagine Dragons')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg" alt="Believer" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Believer</span>
+                <span class="card-artist">Imagine Dragons</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Shape of You Ed Sheeran')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e7/d2/59/e7d259c4-c274-b52b-4560-eb25c7e09968/0190295851286.jpg/600x600bb.jpg" alt="Shape of You" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Shape of You</span>
+                <span class="card-artist">Ed Sheeran</span>
+              </div>
+            </div>
+
+          </div>
         </section>
 
         <!-- CATEGORY ROW: HINDI -->
-        <section class="music-shelf-section" style="margin-bottom: 2rem;">
+        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
           <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div>
               <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-compact-disc" style="color: #ec4899;"></i> Hindi & Desi Beats</h3>
@@ -209,11 +289,91 @@
             </div>
             <button class="btn-see-all" onclick="window.executeSearch('Bollywood Hindi')" style="color: #ec4899; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
           </div>
-          <div class="shelf-carousel" id="cat-grid-hindi" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.2rem;"></div>
+          <div class="shelf-carousel" id="cat-grid-hindi" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem;">
+            
+            <div class="music-card" onclick="window.playSpecificTrack('Kesariya Arijit Singh')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg" alt="Kesariya" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Kesariya</span>
+                <span class="card-artist">Arijit Singh</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Lover Diljit Dosanjh')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg" alt="Lover" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Lover</span>
+                <span class="card-artist">Diljit Dosanjh</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Apna Bana Le Arijit Singh')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/91/33/c4/9133c415-dc46-24e5-94be-45ea0f242d54/190296181464.jpg/600x600bb.jpg" alt="Apna Bana Le" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Apna Bana Le</span>
+                <span class="card-artist">Arijit Singh</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Tujhe Dekha Toh Kumar Sanu')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/46/58/97/465897ed-fe10-e218-4cac-02c69ca36ad0/191773207717.jpg/600x600bb.jpg" alt="Tujhe Dekha Toh" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Tujhe Dekha Toh</span>
+                <span class="card-artist">Kumar Sanu</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Softly Karan Aujla')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/58/b1/7b/58b17b6a-9a99-b1d5-bc44-59e843fa7a34/cover.jpg/600x600bb.jpg" alt="Softly" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Softly</span>
+                <span class="card-artist">Karan Aujla</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Chaiyya Chaiyya Sukhwinder')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/f8/85/8ef88544-a6c7-018b-0a75-dc3b6b024fa0/cover.jpg/600x600bb.jpg" alt="Chaiyya Chaiyya" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Chaiyya Chaiyya</span>
+                <span class="card-artist">Sukhwinder Singh</span>
+              </div>
+            </div>
+
+          </div>
         </section>
 
         <!-- CATEGORY ROW: EDM -->
-        <section class="music-shelf-section" style="margin-bottom: 2rem;">
+        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
           <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div>
               <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid fa-bolt-lightning" style="color: #a855f7;"></i> EDM & Electronic Heat</h3>
@@ -221,7 +381,61 @@
             </div>
             <button class="btn-see-all" onclick="window.executeSearch('EDM Electronic')" style="color: #a855f7; font-size: 0.85rem; font-weight: 700; background: none; border: none; cursor: pointer;">See All <i class="fa-solid fa-chevron-right"></i></button>
           </div>
-          <div class="shelf-carousel" id="cat-grid-electronic" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.2rem;"></div>
+          <div class="shelf-carousel" id="cat-grid-electronic" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem;">
+            
+            <div class="music-card" onclick="window.playSpecificTrack('Faded Alan Walker')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/44/e9/8f/44e98f06-d0ea-e6c1-a87f-1d8f5cb58d20/886445592801.jpg/600x600bb.jpg" alt="Faded" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Faded</span>
+                <span class="card-artist">Alan Walker</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Wake Me Up Avicii')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/69/cf/a869cf13-a9d0-1288-fa03-9bbdf02cb859/13UMGIM22368.rgb.jpg/600x600bb.jpg" alt="Wake Me Up" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Wake Me Up</span>
+                <span class="card-artist">Avicii</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Closer The Chainsmokers')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/2d/72/cb2d7211-137b-ce19-a1b7-aebaa4f0c43e/886446059952.jpg/600x600bb.jpg" alt="Closer" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Closer</span>
+                <span class="card-artist">The Chainsmokers</span>
+              </div>
+            </div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('Titanium David Guetta')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/4b/f1/dc4bf1f5-19e0-be6c-dca3-96b6e41b9e59/5099908422452.jpg/600x600bb.jpg" alt="Titanium" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Titanium</span>
+                <span class="card-artist">David Guetta</span>
+              </div>
+            </div>
+
+          </div>
         </section>
       </div>
 
@@ -267,10 +481,10 @@
 
       <!-- Left: Cover & Info (Click opens Fullscreen) -->
       <div class="player-left" onclick="window.PulsePlaybar.toggleFullscreen(true)" style="cursor: pointer;">
-        <img id="player-thumb" src="./assets/pulse-logo.png" alt="Cover" class="player-thumb">
+        <img id="player-thumb" src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg" alt="Cover" class="player-thumb">
         <div class="player-info">
-          <span id="player-title" class="player-title">Select a Track</span>
-          <span id="player-artist" class="player-artist">Pulse Music</span>
+          <span id="player-title" class="player-title">Starboy</span>
+          <span id="player-artist" class="player-artist">The Weeknd</span>
         </div>
       </div>
 
@@ -288,7 +502,7 @@
             <div id="player-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
             <input type="range" id="player-seek-slider" class="timeline-range-input" min="0" max="100" value="0">
           </div>
-          <span id="player-time-total">3:30</span>
+          <span id="player-time-total">3:50</span>
         </div>
 
         <!-- 2-Line Mini Lyrics Snippet -->
@@ -320,10 +534,10 @@
     </div>
 
     <div class="fs-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; margin: 2rem 0;">
-      <img id="fs-album-art" src="./assets/pulse-logo.png" style="width: 280px; height: 280px; border-radius: 20px; box-shadow: 0 16px 40px rgba(0,0,0,0.6); object-fit: cover;">
+      <img id="fs-album-art" src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg" style="width: 280px; height: 280px; border-radius: 20px; box-shadow: 0 16px 40px rgba(0,0,0,0.6); object-fit: cover;">
       <div style="text-align: center; margin-top: 1.5rem;">
-        <h2 id="fs-track-title" style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.35rem;">Track Title</h2>
-        <p id="fs-track-artist" style="font-size: 1rem; color: #c084fc;">Artist Name</p>
+        <h2 id="fs-track-title" style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.35rem;">Starboy</h2>
+        <p id="fs-track-artist" style="font-size: 1rem; color: #c084fc;">The Weeknd</p>
       </div>
     </div>
 
@@ -334,7 +548,7 @@
           <div id="fs-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
           <input type="range" id="fs-seek-slider" class="timeline-range-input" min="0" max="100" value="0">
         </div>
-        <span id="fs-time-total">3:30</span>
+        <span id="fs-time-total">3:50</span>
       </div>
 
       <div class="player-controls" style="display: flex; justify-content: center; align-items: center; gap: 1.5rem; margin-top: 1.5rem;">
@@ -446,6 +660,6 @@
   <!-- NATIVE AUDIO ELEMENT -->
   <audio id="fallback-audio-player" preload="auto"></audio>
 
-  <!-- APPLICATION JAVASCRIPT -->
+  <!-- APPLICATION JAVASCRIPT -->
 </body>
 </html>
