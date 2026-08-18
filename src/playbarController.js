@@ -1,6 +1,6 @@
 /**
  * Pulse Music - Dual Engine Audio & YouTube Player Controller
- * Seamlessly plays 100% Full-Length Songs via YouTube IFrame API and HTML5 Audio.
+ * Seamlessly plays 100% Full-Length Songs (320kbps / 160kbps Master Audio).
  * Features exact master audio, LRCLIB live synced lyrics, 70px slim playbar, and centered fullscreen view.
  */
 
@@ -21,6 +21,7 @@ let queueIndex = 0;
 let isShuffle = false;
 let isRepeat = false;
 let ytInterval = null;
+let activePlaySessionId = 0;
 
 // Initialize Native HTML5 Audio
 function getAudio() {
@@ -28,6 +29,7 @@ function getAudio() {
     audio = document.getElementById('fallback-audio-player') || new Audio();
     audio.id = 'fallback-audio-player';
     audio.volume = currentVolume;
+    audio.preload = 'auto';
 
     audio.addEventListener('play', () => {
       if (currentEngine === 'audio') {
@@ -43,10 +45,20 @@ function getAudio() {
       }
     });
 
-    audio.addEventListener('timeupdate', () => {
-      if (currentEngine === 'audio' && !isSeeking && audio.duration) {
-        currentTime = audio.currentTime;
+    audio.addEventListener('loadedmetadata', () => {
+      if (audio.duration && !isNaN(audio.duration) && audio.duration > 45) {
         duration = audio.duration;
+        if (currentTrack) currentTrack.duration = duration;
+        updateTimeUI();
+      }
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (currentEngine === 'audio' && !isSeeking) {
+        currentTime = audio.currentTime;
+        if (audio.duration && !isNaN(audio.duration) && audio.duration > 45) {
+          duration = audio.duration;
+        }
         updateTimeUI();
         if (typeof window.syncLiveLyrics === 'function') {
           window.syncLiveLyrics(currentTime);
@@ -58,11 +70,15 @@ function getAudio() {
       if (currentEngine === 'audio') {
         if (isRepeat) {
           audio.currentTime = 0;
-          audio.play();
+          audio.play().catch(() => {});
         } else {
           playNext();
         }
       }
+    });
+
+    audio.addEventListener('error', (e) => {
+      console.warn('[Pulse Audio Engine] Stream playback notice:', e);
     });
   }
   return audio;
@@ -85,8 +101,8 @@ function createYTInstance() {
 
   try {
     ytPlayer = new window.YT.Player('yt-player-host', {
-      height: '1',
-      width: '1',
+      height: '200',
+      width: '200',
       playerVars: {
         autoplay: 1,
         controls: 0,
@@ -123,8 +139,8 @@ function createYTInstance() {
           }
         },
         onError: (err) => {
-          console.warn('[Pulse YT Engine] Video playback fallback, switching to stream:', err);
-          if (currentTrack && currentTrack.streamUrl) {
+          console.warn('[Pulse YT Engine] Video playback notice, switching to 320k audio stream:', err);
+          if (currentTrack) {
             fallbackToHtmlAudio(currentTrack);
           }
         }
@@ -160,20 +176,46 @@ function stopYtTracking() {
 
 function fallbackToHtmlAudio(track) {
   currentEngine = 'audio';
-  if (ytPlayer && ytPlayer.stopVideo) ytPlayer.stopVideo();
+  if (ytPlayer && ytPlayer.stopVideo) {
+    try { ytPlayer.stopVideo(); } catch (e) {}
+  }
   const a = getAudio();
-  if (track.streamUrl) {
+  if (track && track.streamUrl) {
     a.src = track.streamUrl;
     a.load();
-    a.play().catch(e => console.warn(e));
+    a.play().catch(e => console.warn('[Pulse Audio Notice]', e));
+  }
+}
+
+function setupMediaSession(track) {
+  if ('mediaSession' in navigator && track) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: track.title || 'Untitled Song',
+      artist: track.artist || 'Pulse Artist',
+      album: track.album || 'Pulse Music',
+      artwork: [
+        { src: track.coverUrl || './pulse-logo.png', sizes: '512x512', type: 'image/png' }
+      ]
+    });
+
+    navigator.mediaSession.setActionHandler('play', () => togglePlayPause());
+    navigator.mediaSession.setActionHandler('pause', () => togglePlayPause());
+    navigator.mediaSession.setActionHandler('previoustrack', () => playPrev());
+    navigator.mediaSession.setActionHandler('nexttrack', () => playNext());
+    navigator.mediaSession.setActionHandler('seekto', (details) => {
+      if (details.seekTime !== undefined) {
+        handleSeekEnd((details.seekTime / (duration || 220)) * 100);
+      }
+    });
   }
 }
 
 /**
- * Main PlayTrack function: Routes to YouTube (Full 100% Track) or HTML5 Audio
+ * Main PlayTrack function: Resolves 100% Full-Length Audio and plays seamlessly
  */
 export async function playTrack(track, newQueue = null) {
   if (!track) return;
+  const sessionId = ++activePlaySessionId;
 
   if (newQueue && Array.isArray(newQueue)) {
     playQueue = newQueue;
@@ -182,21 +224,80 @@ export async function playTrack(track, newQueue = null) {
   }
 
   currentTrack = track;
+  duration = track.duration && track.duration > 45 ? track.duration : 220;
+  currentTime = 0;
+
   if (window.pulseState) {
     window.pulseState.currentTrack = track;
     window.pulseState.isPlaying = true;
   }
 
   updateTrackMetadataUI(track);
+  updateTimeUI();
+  setupMediaSession(track);
 
-  // If track already has YouTube ID or can be resolved
-  let ytId = track.ytId;
-  if (!ytId && window.musicService && typeof window.musicService.resolveYouTubeVideoId === 'function') {
-    ytId = await window.musicService.resolveYouTubeVideoId(track);
-    if (ytId) track.ytId = ytId;
+  // Check if track stream needs full-length resolution (e.g. was iTunes 30s preview or missing)
+  const isPreview = !track.streamUrl || 
+                    track.streamUrl.includes('itunes.apple.com') || 
+                    track.streamUrl.includes('preview') || 
+                    (track.duration && track.duration <= 35);
+
+  let fullStreamUrl = isPreview ? '' : track.streamUrl;
+  if (isPreview) {
+    track.streamUrl = '';
   }
 
-  if (ytId && ytPlayer && isYtReady) {
+  if (isPreview && window.musicService && typeof window.musicService.resolveFullAudioStream === 'function') {
+    try {
+      const fullRes = await window.musicService.resolveFullAudioStream(track);
+      if (fullRes && fullRes.streamUrl && sessionId === activePlaySessionId) {
+        fullStreamUrl = fullRes.streamUrl;
+        track.streamUrl = fullRes.streamUrl;
+        if (fullRes.duration && fullRes.duration > 45) {
+          track.duration = fullRes.duration;
+          duration = fullRes.duration;
+        }
+        if (fullRes.source) track.source = fullRes.source;
+        if (fullRes.coverUrl && (!track.coverUrl || track.coverUrl.includes('pulse-logo.png'))) {
+          track.coverUrl = fullRes.coverUrl;
+          updateTrackMetadataUI(track);
+        }
+        updateTimeUI();
+      }
+    } catch (e) {
+      console.warn('[Pulse Stream Resolution Notice]', e);
+    }
+  }
+
+  if (sessionId !== activePlaySessionId) return;
+
+  // Attempt YouTube play if video ID exists and user engine prefers YT
+  let ytId = track.ytId;
+  if (!ytId && isPreview && window.musicService && typeof window.musicService.resolveYouTubeVideoId === 'function') {
+    try {
+      ytId = await window.musicService.resolveYouTubeVideoId(track);
+      if (ytId) track.ytId = ytId;
+    } catch (e) {}
+  }
+
+  if (sessionId !== activePlaySessionId) return;
+
+  // Play through native HTML5 audio with 320k master stream (Fastest & 100% full length)
+  if (fullStreamUrl && (!ytId || !isYtReady)) {
+    currentEngine = 'audio';
+    if (ytPlayer && ytPlayer.stopVideo) {
+      try { ytPlayer.stopVideo(); } catch (e) {}
+    }
+    const a = getAudio();
+    a.src = fullStreamUrl;
+    a.load();
+    a.play().then(() => {
+      isPlaying = true;
+      updatePlayPauseUI();
+    }).catch(err => {
+      console.warn('[Pulse HTML5 Audio Playback]', err);
+    });
+  } else if (ytId && ytPlayer && isYtReady) {
     currentEngine = 'yt';
     if (audio) audio.pause();
     try {
@@ -207,7 +308,7 @@ export async function playTrack(track, newQueue = null) {
     } catch (e) {
       fallbackToHtmlAudio(track);
     }
-  } else if (track.streamUrl) {
+  } else if (fullStreamUrl) {
     fallbackToHtmlAudio(track);
   }
 
@@ -246,7 +347,7 @@ export function playNext() {
     } else {
       queueIndex = (queueIndex + 1) % playQueue.length;
     }
-    playTrack(playQueue[queueIndex]);
+    playTrack(playQueue[queueIndex], playQueue);
   } else if (window.catalogService && Array.isArray(window.catalogService.CATALOG_CATEGORIES)) {
     const allTracks = [];
     window.catalogService.CATALOG_CATEGORIES.forEach(c => {
@@ -284,7 +385,7 @@ export function playPrev() {
   }
   if (playQueue.length > 0) {
     queueIndex = (queueIndex - 1 + playQueue.length) % playQueue.length;
-    playTrack(playQueue[queueIndex]);
+    playTrack(playQueue[queueIndex], playQueue);
   }
 }
 

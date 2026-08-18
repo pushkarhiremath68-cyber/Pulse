@@ -13,80 +13,80 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Starboy (feat. Daft Punk)",
         "artist": "The Weeknd",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/11/71/d6/1171d6ad-3c96-e027-2af6-58028426588c/mzaf_15137631797407745471.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
+        "stream": "https://aac.saavncdn.com/396/b4e570050007b056c662f2a98c9f28ec_320.mp4",
         "duration": 230,
         "ytId": "Rif-RTvmmss"
       },
       {
         "title": "Cruel Summer",
         "artist": "Taylor Swift",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/44/af/81/44af8168-9609-1b85-5048-ada08dceacf3/mzaf_1341699644335558812.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/243/The-Cruelest-Summer-English-2023-20231109123211-500x500.webp",
+        "stream": "https://aac.saavncdn.com/243/cf6b522de1390996fdbe109298873c72_320.mp4",
         "duration": 178,
         "ytId": "ic8j13piAhQ"
       },
       {
         "title": "Blinding Lights",
         "artist": "The Weeknd",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/17/b4/8f/17b48f9a-0b93-6bb8-fe1d-3a16623c2cfb/mzaf_9560252727299052414.plus.aac.p.m4a",
-        "duration": 202,
+        "cover": "https://c.saavncdn.com/077/After-Hours-English-2020-20260804045014-500x500.webp",
+        "stream": "https://aac.saavncdn.com/077/0b02a92687d1ae3369b6859f44872e52_320.mp4",
+        "duration": 200,
         "ytId": "fHI8X4OXluQ"
       },
       {
         "title": "Levitating",
         "artist": "Dua Lipa",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/59/dc/4d/59dc4dda-93ff-8f1c-c536-f005f6ea6af5/mzaf_3066686759813252385.plus.aac.p.m4a",
-        "duration": 204,
+        "cover": "https://c.saavncdn.com/665/Future-Nostalgia-English-2020-20260306223201-500x500.webp",
+        "stream": "https://aac.saavncdn.com/665/7790c3b9097592113008eaf1031d6e57_320.mp4",
+        "duration": 203,
         "ytId": "WHuBW3qKm9g"
       },
       {
         "title": "Believer",
         "artist": "Imagine Dragons",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c0/3f/36/c03f367a-b66b-fd0a-a54c-30f8250c4410/mzaf_12768434238801682952.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/248/Evolve-English-2018-20260605220036-500x500.webp",
+        "stream": "https://aac.saavncdn.com/248/46944eb7b4b31f5b0abf5eb2e1be2d2a_320.mp4",
         "duration": 204,
         "ytId": "IhP3J0j9JmY"
       },
       {
         "title": "Shape of You",
         "artist": "Ed Sheeran",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/44/c7/4f/44c74f0d-72dc-6143-d4d0-ba14d661ca0d/mzaf_9566898362556366703.plus.aac.p.m4a",
-        "duration": 234,
+        "cover": "https://c.saavncdn.com/286/WMG_190295851286-English-2017-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/286/2929d11a5d44a3592ced0383fa6f1977_320.mp4",
+        "duration": 233,
         "ytId": "_dK2tDK9grQ"
       },
       {
         "title": "Faded",
         "artist": "Alan Walker",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0d/a3/1a/0da31af7-d0ff-9bee-c427-1b6d0336f6fc/886446321981.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/f4/32/01/f43201b9-4bba-7654-2e43-d59e2d907e9f/mzaf_2440137894989713967.plus.aac.p.m4a",
-        "duration": 213,
+        "cover": "https://c.saavncdn.com/562/Different-World-English-2018-20181130144209-500x500.webp",
+        "stream": "https://aac.saavncdn.com/562/b331b68fc5e35ff7d7cd7ce0e25158d7_320.mp4",
+        "duration": 212,
         "ytId": "psn_rs_a5O0"
       },
       {
         "title": "Wake Me Up",
         "artist": "Avicii",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/5b/1e/185b1ef5-5d97-19d8-aebf-8e29e41874ef/13UAAIM59255.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/68/1e/60/681e601f-e1f2-4ebb-37de-adf00bdf57b6/mzaf_8266263075137964740.plus.aac.p.m4a",
-        "duration": 250,
+        "cover": "https://c.saavncdn.com/858/Pool-Party-Summmer-2026-Bambara-2026-20260409053720-500x500.webp",
+        "stream": "https://aac.saavncdn.com/858/e786ac761722d854d033638719fc5672_320.mp4",
+        "duration": 249,
         "ytId": "5y_KJAg8bHI"
       },
       {
         "title": "Closer (feat. Halsey)",
         "artist": "The Chainsmokers",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/41/f8/38/41f8380b-9b56-d5d4-31f7-a6411c0c9aaa/886446102054.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bd/f9/b9/bdf9b9b2-eaa4-4461-6079-aaacc6df7316/mzaf_17327312786932455493.plus.aac.p.m4a",
-        "duration": 246,
+        "cover": "https://c.saavncdn.com/054/Collage-EP-English-2016-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/054/00363f6aceae57b88fa39f686c5af82e_320.mp4",
+        "duration": 249,
         "ytId": "0zGcUoRlhmw"
       },
       {
         "title": "Titanium (feat. Sia)",
         "artist": "David Guetta",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/45/dd/8f/45dd8ffc-0164-1f70-c53d-bf91a1d80b1a/mzaf_3092057092144618662.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/550/Nothing-but-the-Beat-Ultimate-Edition-English-2012-20260302224433-500x500.webp",
+        "stream": "https://aac.saavncdn.com/550/d0726c0a7601c4b2c122aa37b1bc040f_320.mp4",
         "duration": 245,
         "ytId": "Rohq0D72X3Q"
       }
@@ -102,81 +102,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Kesariya (From \"Brahmastra\")",
         "artist": "Pritam, Arijit Singh & Amitabh Bhattacharya",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/38/4c/5c/384c5c8f-3ff8-e457-b2f7-3158ce108649/mzaf_12389299033886433185.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp",
+        "stream": "https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4",
         "duration": 268,
         "ytId": "BddP6PYo2gs"
       },
       {
         "title": "Apna Bana Le",
         "artist": "Sachin-Jigar, Arijit Singh & Amitabh Bhattacharya",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/de/45/00/de4500cf-b36a-7910-e453-8484e97f26a3/mzaf_10025253094174236434.plus.aac.p.m4a",
-        "duration": 262,
+        "cover": "https://c.saavncdn.com/120/Happy-Vibes-Hindi-2026-20260730190751-500x500.webp",
+        "stream": "https://aac.saavncdn.com/120/6425409a61434ace0f3333622609e288_320.mp4",
+        "duration": 261,
         "ytId": "u2NAuswnTKs"
       },
       {
         "title": "Chaleya (From \"Jawan\")",
         "artist": "Anirudh Ravichander, Arijit Singh, Shilpa Rao & Kumaar",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/87/61/a9/8761a939-8e1c-678e-b186-09401480b314/mzaf_2211340113577128300.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/047/Jawan-Hindi-2023-20230921190854-500x500.webp",
+        "stream": "https://aac.saavncdn.com/047/d1366530468931703ac909e82a3ee788_320.mp4",
         "duration": 200,
         "ytId": "VAdGW7QDJiU"
       },
       {
         "title": "Raataan Lambiyan",
         "artist": "Tanishk Bagchi, Jubin Nautiyal & Asees Kaur",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/61/65/ae/6165aee9-8bb9-0bd4-02b0-5d0f1e6257a3/886449510238.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/99/0c/38/990c381b-0530-8c0d-87a9-18b050b97f0a/mzaf_10418866714500530894.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/238/Shershaah-Original-Motion-Picture-Soundtrack--Hindi-2021-20210815181610-500x500.webp",
+        "stream": "https://aac.saavncdn.com/238/35726d4394604604e961bf5b846870d0_320.mp4",
         "duration": 230,
         "ytId": "orYf6VDtj_k"
       },
       {
         "title": "Tum Hi Ho",
         "artist": "Mithoon & Arijit Singh",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/38/de/b9/38deb942-d44a-f2bb-205c-ddf05be84693/mzaf_9747647124859107103.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/430/Aashiqui-2-Hindi-2013-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/430/5c5ea5cc00e3bff45616013226f376fe_320.mp4",
         "duration": 262,
         "ytId": "BjL7AuPsmEk"
       },
       {
         "title": "Shayad (From \"Love Aaj Kal\")",
         "artist": "Pritam & Arijit Singh",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4d/7c/9e/4d7c9e55-4ed7-ee60-83c8-49bc452227b3/886448257929.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/69/08/d6/6908d60e-563f-5d07-9bb5-737c9d90b59d/mzaf_9263362903198979589.plus.aac.p.m4a",
-        "duration": 248,
+        "cover": "https://c.saavncdn.com/862/Love-Aaj-Kal-Hindi-2020-20200214140423-500x500.webp",
+        "stream": "https://aac.saavncdn.com/862/e277c1b441b562640c6b264aa3335a83_320.mp4",
+        "duration": 247,
         "ytId": "9-LH8ABADdo"
       },
       {
         "title": "Kabira (Encore)",
         "artist": "Pritam, Harshdeep & Arijit Singh",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/21/58/5a/21585ab6-e922-7ecf-c5a7-485034d15ccd/mzaf_14190128101415650266.plus.aac.p.m4a",
-        "duration": 270,
+        "cover": "https://c.saavncdn.com/440/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/440/2f44d42c73fce59193a4ea0e75f5944e_320.mp4",
+        "duration": 271,
         "ytId": "lwLVJ0E8gN4"
       },
       {
         "title": "Agar Tum Saath Ho",
         "artist": "Alka Yagnik & Arijit Singh",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/ac/67/cbac673a-9213-7118-bb4e-2440273afb03/8902894357470_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/b1/ef/60/b1ef60e4-edb1-9c6c-831c-63156a648460/mzaf_1954453039481622269.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/994/Tamasha-Hindi-2015-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/994/2e6b47719cea3e7c9f971a3f1ddc9b0a_320.mp4",
         "duration": 341,
         "ytId": "sK7riqg2mr4"
       },
       {
         "title": "Ae Dil Hai Mushkil (Title Track)",
         "artist": "Pritam & Arijit Singh",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bc/6e/4d/bc6e4d0c-adec-b431-7b60-16f5689f9664/886446201597.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/11/4d/5f/114d5f2e-795e-67e0-0d33-b28045ef668a/mzaf_3719171959426225060.plus.aac.p.m4a",
-        "duration": 269,
+        "cover": "https://c.saavncdn.com/608/Ae-Dil-Hai-Mushkil-Deluxe-Edition-Hindi-2016-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/608/414dd7443dc32677964b64e5f37670f9_320.mp4",
+        "duration": 268,
         "ytId": "6FURuLYrR_Q"
       },
       {
         "title": "Ghungroo (From \"War\")",
         "artist": "Arijit Singh, Shilpa Rao & Vishal & Shekhar",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f4/0b/88/f40b88d5-75cb-27b8-6b00-bba98f0f2fd0/849486006911_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d1/90/95/d190958b-cb33-34b6-83d2-4d88b6ff1348/mzaf_8015651280578447253.plus.aac.p.m4a",
-        "duration": 303,
+        "cover": "https://c.saavncdn.com/881/War-Hindi-2019-20191001104931-500x500.webp",
+        "stream": "https://aac.saavncdn.com/881/604fb2ba41aac81b5db565fcbf4fca9b_320.mp4",
+        "duration": 302,
         "ytId": "caySD0OJJvk"
       }
     ]
@@ -191,80 +191,80 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Lover",
         "artist": "Diljit Dosanjh",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/f9/9b/37/f99b37bf-44ef-9237-72ba-15a32437c832/mzaf_15116792754153694687.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/209/MoonChild-Era-Punjabi-2021-20240715073449-500x500.webp",
+        "stream": "https://aac.saavncdn.com/209/88cd9a1cc0af8768d67272876bb09851_320.mp4",
         "duration": 190,
         "ytId": "aoIhamvZKdQ"
       },
       {
         "title": "Softly",
         "artist": "Karan Aujla & Ikky",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/08/bc/d308bc6a-20e1-6532-d933-35d1b429210e/5054197755538.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5f/6f/01/5f6f0130-6567-22d4-bc1a-5ccb359c3fac/mzaf_5497113703334703756.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/538/Making-Memories-English-2023-20230818075015-500x500.webp",
+        "stream": "https://aac.saavncdn.com/538/727114725cd7ec508b1df0a7e4515e5e_320.mp4",
         "duration": 155,
         "ytId": "cWMxCE2HTag"
       },
       {
         "title": "Brown Munde",
         "artist": "AP Dhillon, Gminxr, Gurinder Gill & Shinda Kahlon",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/97/74/69/977469be-a9d5-35a7-80ad-ebe12a799ccc/mzaf_804867738726203367.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/973/Brown-Munde-English-2020-20260520131422-500x500.webp",
+        "stream": "https://aac.saavncdn.com/973/76216adb3df5ef476f948891b40efb7a_320.mp4",
         "duration": 254,
         "ytId": "VNs_cCtdbPc"
       },
       {
         "title": "Excuses",
         "artist": "AP Dhillon, Gurinder Gill & Intense",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/47/ac/4747ac85-1658-64ae-bc82-220a4d6213d5/859747478890_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/1d/40/e3/1d40e37c-05cc-2dd5-070b-329417bbf9c3/mzaf_10303317287347489195.plus.aac.p.m4a",
-        "duration": 176,
+        "cover": "https://c.saavncdn.com/890/Excuses-English-2021-20210930112054-500x500.webp",
+        "stream": "https://aac.saavncdn.com/890/a18aabc4681dc6c334d5d29b67e84a0f_320.mp4",
+        "duration": 177,
         "ytId": "vX2cDW8LUWk"
       },
       {
         "title": "Insane",
         "artist": "AP Dhillon, Shinda Kahlon, Gurinder Gill & Gminxr",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/16/d6/94/16d6949f-6072-0b42-f88b-a61ffb129952/859747110851_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/23/7b/cd/237bcda8-0fcb-26b0-26ca-a4776084bd3d/mzaf_565158550124983353.plus.aac.p.m4a",
-        "duration": 206,
+        "cover": "https://c.saavncdn.com/851/Insane-Punjabi-2021-20240705060902-500x500.webp",
+        "stream": "https://aac.saavncdn.com/851/23ba415310e4b119a8452cba3cbbf509_320.mp4",
+        "duration": 207,
         "ytId": "cqP8I5aaud8"
       },
       {
         "title": "295",
         "artist": "Sidhu Moose Wala",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/69/58/976958ae-725e-bd41-6755-f0921c697840/810063889609_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7f/f3/6d/7ff36d63-b933-3993-cd2f-f3fd770c3763/mzaf_12675758250838366519.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/609/Moosetape-Punjabi-2021-20260626155141-500x500.webp",
+        "stream": "https://aac.saavncdn.com/609/852628435c98083dfe217c1cfa731bb5_320.mp4",
         "duration": 270,
         "ytId": "QYvfY4MtLAI"
       },
       {
         "title": "Levels",
         "artist": "Sidhu Moose Wala & Sunny Malton",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/46/cf/b4/46cfb402-6d5c-1e4a-9efd-5759553ec8b8/810105713220_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/bb/3f/95/bb3f95e3-e8c3-8e0a-5cf1-6a746eaed0b9/mzaf_14515648029493480786.plus.aac.p.m4a",
-        "duration": 229,
+        "cover": "https://c.saavncdn.com/220/Levels-Punjabi-2022-20260626154343-500x500.webp",
+        "stream": "https://aac.saavncdn.com/220/2386e255fd1a5235aad25d92ca7dc82c_320.mp4",
+        "duration": 228,
         "ytId": "tpFljbJxZiw"
       },
       {
         "title": "G.O.A.T.",
         "artist": "Diljit Dosanjh",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d2/89/ac/d289ac98-749e-3822-6b6e-b06aa4815715/859740651597_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/2e/33/31/2e333148-70fe-ea73-759f-f3af0a73eda1/mzaf_14222836181033911236.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/597/G-O-A-T-Punjabi-2020-20240708055140-500x500.webp",
+        "stream": "https://aac.saavncdn.com/597/ce842951d6cde3c4355046ca5e250809_320.mp4",
         "duration": 224,
         "ytId": "tAizFLCucdY"
       },
       {
         "title": "Born to Shine",
         "artist": "Diljit Dosanjh",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d2/89/ac/d289ac98-749e-3822-6b6e-b06aa4815715/859740651597_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/1f/df/6f/1fdf6fc1-b302-4acb-b172-e7b9fa2eb539/mzaf_17912626629598129978.plus.aac.p.m4a",
-        "duration": 213,
+        "cover": "https://c.saavncdn.com/597/G-O-A-T-Punjabi-2020-20240708055140-500x500.webp",
+        "stream": "https://aac.saavncdn.com/597/f1efd650819d3f427bd10e8b9addcd40_320.mp4",
+        "duration": 214,
         "ytId": "iLHEGrNVf5Y"
       },
       {
         "title": "White Brown Black",
         "artist": "Avvy Sra & Karan Aujla",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0b/c2/e6/0bc2e611-ef63-b23c-fbad-1d0523463da2/22UM1IM39836.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/41/3c/da/413cdaa8-f400-2ac5-793a-cd3ed4ca3318/mzaf_4237428111391278182.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/177/White-Brown-Black-Punjabi-2022-20251118151218-500x500.webp",
+        "stream": "https://aac.saavncdn.com/177/8a4e89ae82b74333f57ab3130b05d056_320.mp4",
         "duration": 176,
         "ytId": "BtQp2U6hJII"
       }
@@ -280,81 +280,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Animals",
         "artist": "Martin Garrix",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6e/1e/f0/6e1ef055-195a-bb73-d5a8-5926058366a5/8712944577525.png/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/a1/75/48/a1754841-d05c-0402-bdee-16d724ae47a2/mzaf_16624181595158272558.plus.aac.p.m4a",
-        "duration": 304,
+        "cover": "https://c.saavncdn.com/732/Now-That-s-What-I-Call-EDM-2014-2014-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/732/a9fc6515144f03571678033fe7b1fd2a_320.mp4",
+        "duration": 176,
         "ytId": "LvJdIYhC3Ck"
       },
       {
         "title": "Don't You Worry Child (feat. John Martin)",
         "artist": "Swedish House Mafia",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/6a/30/7d/6a307d9d-2d13-999a-3b9c-03221087f845/15UMGIM27846.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/df/b7/ba/dfb7bac3-cdad-da5c-1de5-54767c4c959e/mzaf_16325181629715680732.plus.aac.p.m4a",
-        "duration": 212,
+        "cover": "https://c.saavncdn.com/755/Don-t-You-Worry-Child-English-2012-20240618113309-500x500.webp",
+        "stream": "https://aac.saavncdn.com/755/c7d9d2c9786c700e15192bab0345a353_320.mp4",
+        "duration": 213,
         "ytId": "3mWbRB3Y4R8"
       },
       {
         "title": "Midnight City",
         "artist": "M83",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/7b/a9/cb7ba903-b5f1-cc21-90db-7a81b7aa0997/724596951057.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/71/5c/80/715c80fc-ebe4-e713-487c-5bdefee6c6f3/mzaf_3698387428135478316.plus.aac.p.m4a",
-        "duration": 241,
+        "cover": "https://c.saavncdn.com/435/Before-the-Dawn-Heals-Us-French-2005-20231007191910-500x500.webp",
+        "stream": "https://aac.saavncdn.com/435/fd6aec8c4809549aa1c98cbec4786217_320.mp4",
+        "duration": 243,
         "ytId": "dD6qXgKjKzU"
       },
       {
         "title": "Alone",
         "artist": "Marshmello",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7e/be/33/7ebe3370-959a-94f7-77e2-c9e7fea9a4ed/859716988917_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9d/48/a7/9d48a72f-98da-4bd6-961b-b4ce7d231bfe/mzaf_3256157696428180951.plus.aac.p.m4a",
-        "duration": 274,
+        "cover": "https://c.saavncdn.com/638/Alone-English-2016-20251029075556-500x500.webp",
+        "stream": "https://aac.saavncdn.com/638/3da914dee8e5b570dec4c7991ec781c8_320.mp4",
+        "duration": 273,
         "ytId": "ALZHF5UqnU4"
       },
       {
         "title": "Lean On (feat. DJ Snake & M\u00d8)",
         "artist": "Major Lazer",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/3a/9b/bd/3a9bbdba-5829-91c8-1349-cc04cdaf3423/653738030629_Cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/ee/fd/16/eefd1670-5a08-9ff9-363c-6fda16f227cd/mzaf_6454393582525042843.plus.aac.p.m4a",
-        "duration": 177,
+        "cover": "https://c.saavncdn.com/920/My-Passion-For-M-xico-2012-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/920/b483831a6f88c754ce7a77e25a1afb3e_320.mp4",
+        "duration": 188,
         "ytId": "rn9AQoI7mYU"
       },
       {
         "title": "The Spectre",
         "artist": "Alan Walker",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/10/ad/6f/10ad6f6f-e4df-ed32-4108-ea96f06f6e14/886446723532.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/20/2f/34/202f348d-f72a-2034-63ce-3d8e6bcccd1d/mzaf_9112786095946866809.plus.aac.p.m4a",
-        "duration": 194,
+        "cover": "https://c.saavncdn.com/532/The-Spectre-English-2017-20170831185520-500x500.webp",
+        "stream": "https://aac.saavncdn.com/532/b84681ac81c18c5f2ec5eb9a991dd688_320.mp4",
+        "duration": 193,
         "ytId": "wJnBTPUQS5A"
       },
       {
         "title": "Levels",
         "artist": "Avicii",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/67/38/43/67384338-9ed7-fc68-5927-93f1fcf4705d/11UMGIM36900.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/66/dc/bd/66dcbd68-b557-bdfd-f2c2-a05491758783/mzaf_13654489760720011690.plus.aac.p.m4a",
-        "duration": 339,
+        "cover": "https://c.saavncdn.com/236/Live-A-Life-You-Will-Remember-English-2021-20250417155954-500x500.webp",
+        "stream": "https://aac.saavncdn.com/236/b6655546ddc44b7f3f32620b8336dd22_320.mp4",
+        "duration": 201,
         "ytId": "wDuoOapZ9Z0"
       },
       {
         "title": "Scared to Be Lonely",
         "artist": "Martin Garrix & Dua Lipa",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/44/46/1f/44461f0c-a949-ce72-0164-704056469fc8/886446328331.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c8/68/c6/c868c64f-ac0a-02f5-3e3f-9973eb973e90/mzaf_2376876007302771550.plus.aac.p.m4a",
-        "duration": 221,
+        "cover": "https://c.saavncdn.com/331/Scared-To-Be-Lonely-English-2017-500x500.webp",
+        "stream": "https://aac.saavncdn.com/331/27ad5043fc1d3a3bc938bfdcb74b50cd_320.mp4",
+        "duration": 223,
         "ytId": "e2vBLd5Egnk"
       },
       {
         "title": "Summer",
         "artist": "Calvin Harris",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/da/50/cc/da50cc80-3515-a38d-369b-0d700ffd249d/886444820448.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/dd/84/bb/dd84bb40-8582-1688-99ee-e0e910d07e53/mzaf_13428644382929655820.plus.aac.p.m4a",
-        "duration": 223,
+        "cover": "https://c.saavncdn.com/352/Summer-2014-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/352/9f06684258f15ac7e3142582e0646260_320.mp4",
+        "duration": 221,
         "ytId": "McEoTIqoRKk"
       },
       {
         "title": "Turn Down for What",
         "artist": "DJ Snake & Lil Jon",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/54/4a/6d/544a6dc7-8d93-a8fe-74cc-530f4c078620/886444410779.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/45/7e/71/457e7160-a799-20b6-a5a6-71bf292ae5b1/mzaf_2090080094698921593.plus.aac.p.m4a",
-        "duration": 214,
+        "cover": "https://c.saavncdn.com/779/Turn-Down-For-What-2013-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/779/97dd5b8a3324c0346ba4869fa0832597_320.mp4",
+        "duration": 213,
         "ytId": "QFy0hQ3lY-w"
       }
     ]
@@ -369,81 +369,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Hukum - Thalaivar Alappara",
         "artist": "Anirudh Ravichander & Super Subu",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/8e/92/8d/8e928d01-421f-b5fd-e550-6f78f65c0946/mzaf_12861274908972800573.plus.aac.p.m4a",
-        "duration": 208,
+        "cover": "https://c.saavncdn.com/435/Jailer-Telugu-2023-20230810132954-500x500.webp",
+        "stream": "https://aac.saavncdn.com/435/4161a58e6cff0010c02431e6c21728d9_320.mp4",
+        "duration": 207,
         "ytId": "DsjRNPrvq6U"
       },
       {
         "title": "Naa Ready (From \"Leo\")",
         "artist": "Anirudh Ravichander, Vijay & Asal Kolaar",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b0/bf/d4/b0bfd46c-da95-2f95-1f7d-a75aa51c2465/196871252386.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/60/45/bc/6045bcf3-badc-db56-d044-adf6b14b0816/mzaf_7981634368973271980.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/415/Leo-Original-Motion-Picture-Soundtrack-English-2023-20231019170311-500x500.webp",
+        "stream": "https://aac.saavncdn.com/415/3789bee89b94522160f1e50b2266d2c4_320.mp4",
         "duration": 248,
         "ytId": "3wDiqlTNlfQ"
       },
       {
         "title": "Arabic Kuthu (From \"Beast\")",
         "artist": "Anirudh Ravichander & Jonita Gandhi",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/0b/83/a7/0b83a7a8-4911-221c-4fa1-ecd4ab7e7750/mzaf_4636221010938715732.plus.aac.p.m4a",
-        "duration": 280,
+        "cover": "https://c.saavncdn.com/510/Beast-Tamil-2022-20220504184736-500x500.webp",
+        "stream": "https://aac.saavncdn.com/510/9d96fc7ddd4ffadb745f25aed86f7a4e_320.mp4",
+        "duration": 279,
         "ytId": "RhVYrrzYJZM"
       },
       {
         "title": "Enjoy Enjaami",
         "artist": "Dhee, Arivu & Santhosh Narayanan",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cf/c5/9b/cfc59b20-dda2-e4a3-54db-e23ac7a55b80/cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/36/c9/7f/36c97f46-de99-501b-1864-11e7eb5ba83b/mzaf_3960437803139220575.plus.aac.p.m4a",
-        "duration": 280,
+        "cover": "https://c.saavncdn.com/940/Enjoy-Enjaami-Tamil-2021-20260227060111-500x500.webp",
+        "stream": "https://aac.saavncdn.com/940/d9265bc9d27d51d4296ef27de2547ba0_320.mp4",
+        "duration": 279,
         "ytId": "eYq7WapuDLU"
       },
       {
         "title": "Oo Antava Mawa",
         "artist": "Devi Sri Prasad",
-        "cover": "./pulse-logo.png",
-        "stream": "",
-        "duration": 220,
+        "cover": "https://c.saavncdn.com/866/Devi-Sri-Prasad-Tamil-Super-Hits-Tamil-2026-20260327184613-500x500.webp",
+        "stream": "https://aac.saavncdn.com/866/3c2292b6381bb3bf431ea718cc55914a_320.mp4",
+        "duration": 265,
         "ytId": "u_wB6byrl5k"
       },
       {
         "title": "Srivalli",
         "artist": "Sid Sriram",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ec/34/7b/ec347b9b-0add-c529-4746-799277a5e1c0/cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9b/4a/e3/9b4ae3a2-43ee-dd7b-0474-3b7e914513cf/mzaf_10743675123561433132.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/blob/056/Pushpa-The-Rise-Telugu-2021-20211216115409-500x500.webp",
+        "stream": "https://aac.saavncdn.com/000/05c5d77f6a8225d6667cf7a1fcaf37d8_320.mp4",
         "duration": 221,
         "ytId": "5IEbR79kBPY"
       },
       {
         "title": "Samajavaragamana (From \"Ala Vaikunthapurramuloo\")",
         "artist": "S.S. Thaman & Sid Sriram",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/53/98/c1/5398c1cf-7c16-24a6-bfa3-391dc6015376/cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/29/a7/55/29a75528-3808-d849-ad00-9e714bf12621/mzaf_2813549342968292058.plus.aac.p.m4a",
-        "duration": 220,
+        "cover": "https://c.saavncdn.com/517/Ala-Vaikunthapurramuloo-Telugu-2019-20200116144338-500x500.webp",
+        "stream": "https://aac.saavncdn.com/517/339d76dce4db4f43f4721eec2d8f03ef_320.mp4",
+        "duration": 219,
         "ytId": "Thf60JU8E98"
       },
       {
         "title": "Rowdy Baby",
         "artist": "Dhanush & Dhee",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/09/0b/4f/090b4ffb-f4eb-f975-ae79-ce5446eeabc8/718598836276.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/91/17/90/911790e5-27e3-6021-da30-bddf59576e3d/mzaf_3831305118076812899.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/276/Maari-2-Tamil-2018-20260203193952-500x500.webp",
+        "stream": "https://aac.saavncdn.com/276/64b835b4e1829992f8d35f54d6dad5f3_320.mp4",
         "duration": 281,
         "ytId": "wcpgNauEovM"
       },
       {
         "title": "Buttabomma",
         "artist": "Armaan Malik",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/46/14/df/4614df1c-3f61-6bf5-5c3e-ee304895cfca/cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3a/8c/55/3a8c550b-e703-bba3-f476-44d195e4a742/mzaf_17453075177753173991.plus.aac.p.m4a",
-        "duration": 199,
+        "cover": "https://c.saavncdn.com/517/Ala-Vaikunthapurramuloo-Telugu-2019-20200116144338-500x500.webp",
+        "stream": "https://aac.saavncdn.com/517/68cc88035f2fbcd5772e6551bf64c111_320.mp4",
+        "duration": 198,
         "ytId": "y9PvJG8BnqY"
       },
       {
         "title": "Why This Kolaveri Di ? (The Soup of Love)",
         "artist": "Anirudh Ravichander & Dhanush",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/07/86/83/07868369-2b62-343b-9993-4311f9d59dfa/886443435902.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/9c/b6/47/9cb647c8-7a88-e45a-3d96-26d60432fd9e/mzaf_18327520659217913330.plus.aac.p.m4a",
-        "duration": 260,
+        "cover": "https://c.saavncdn.com/932/3-Hindi-2012-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/932/7cf7f8a9d9c3faa2633d1605e97ba4a5_320.mp4",
+        "duration": 263,
         "ytId": "YR12Z8f1Dh8"
       }
     ]
@@ -458,81 +458,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Dynamite",
         "artist": "BTS",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/03/8d/0e/038d0e52-e96d-f386-b8eb-9f77fa013543/195497146918_Cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/3b/f2/5c/3bf25cc9-a395-6858-1ef8-5c29956afaf6/mzaf_6007556042949037280.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/533/Dynamite-NightTime-Version--English-2021-20211124055844-500x500.webp",
+        "stream": "https://aac.saavncdn.com/533/76656bf8e1bd837f7a8ff765e8fb870d_320.mp4",
         "duration": 199,
         "ytId": "OiMWFojB9Ok"
       },
       {
         "title": "Butter",
         "artist": "BTS",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/27/80/dc/2780dce3-3cdd-d8aa-ec8c-05bf8ad90f9d/196006771362_Cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/f4/80/70/f48070d2-3802-520b-c724-c367125ef2a5/mzaf_16052369757637658622.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/476/Butter-English-2021-20211124055843-500x500.webp",
+        "stream": "https://aac.saavncdn.com/476/1fcf75bd9db61a0b56d4de84f5bc1d4a_320.mp4",
         "duration": 164,
         "ytId": "X70Bq5XDZJk"
       },
       {
         "title": "How You Like That",
         "artist": "BLACKPINK",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/48/3b/39/483b3943-ffb2-3e78-0721-623dbdf737b9/20UMGIM50590.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/16/6f/31/166f31f0-255e-6ab4-a4bb-7b94116c238b/mzaf_10977079639410315979.plus.aac.p.m4a",
-        "duration": 181,
+        "cover": "https://c.saavncdn.com/756/How-You-Like-That-Japan-Version--Japanese-2021-20210726053501-500x500.webp",
+        "stream": "https://aac.saavncdn.com/756/337b2f38993184fb53da2be17a7897ae_320.mp4",
+        "duration": 180,
         "ytId": "VFo2Y_DqGTk"
       },
       {
         "title": "Pink Venom",
         "artist": "BLACKPINK",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/72/48/88/72488832-558c-fcba-4aa0-03d88dc79eb3/22UMGIM87808.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b5/17/54/b51754e6-8bd1-9d97-8934-e713b68f82a0/mzaf_605229577143140327.plus.aac.p.m4a",
-        "duration": 187,
+        "cover": "https://c.saavncdn.com/786/Pink-Venom-Korean-2022-20231121061633-500x500.webp",
+        "stream": "https://aac.saavncdn.com/786/45fcf2d2ae5f53cea9f898a5d9168270_320.mp4",
+        "duration": 186,
         "ytId": "3or3dp3qNQU"
       },
       {
         "title": "Super Shy",
         "artist": "NewJeans",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/63/e5/e2/63e5e2e4-829b-924d-a1dc-8058a1d69bd4/196922462702_Cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a0/0c/47/a00c4790-3bbe-c669-fc8b-d8779508b512/mzaf_4170831274187670095.plus.aac.p.m4a",
-        "duration": 155,
+        "cover": "https://c.saavncdn.com/726/NewJeans-2nd-EP-Get-Up-Korean-2023-20230721093259-500x500.webp",
+        "stream": "https://aac.saavncdn.com/726/76f83632268ea3b15b5353066c31eb52_320.mp4",
+        "duration": 154,
         "ytId": "n7ePZLn9_lQ"
       },
       {
         "title": "Cupid",
         "artist": "FIFTY FIFTY",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6b/2e/aa/6b2eaa77-af21-4b0d-5ae0-2062cbf44e55/196872355437.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0a/f5/94/0af59438-6bc6-25fa-e385-e36e9e63e6c8/mzaf_17311054933864537233.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/128/Cupid-Twin-Ver-Slowed-Down-Version-English-2024-20251106143612-500x500.webp",
+        "stream": "https://aac.saavncdn.com/128/6e5cf5680ef6dc2317ce737542abfbd8_320.mp4",
         "duration": 174,
         "ytId": "icB2j0cP2Z0"
       },
       {
         "title": "Seven",
         "artist": "Jung Kook & Latto",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a5/a6/56/a5a6561a-f570-2fb1-5a3a-95b150c18f18/196922550928_Cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e5/dd/c1/e5ddc11a-cca1-86eb-bc36-5cae9869dded/mzaf_2438982977131590749.plus.aac.p.m4a",
-        "duration": 185,
+        "cover": "https://c.saavncdn.com/427/Seven-Weekend-Ver-English-2023-20230721093630-500x500.webp",
+        "stream": "https://aac.saavncdn.com/427/729bbbe74527f4882024bac39e96942e_320.mp4",
+        "duration": 184,
         "ytId": "Vs64cZbeY88"
       },
       {
         "title": "Gangnam Style",
         "artist": "PSY",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7c/52/87/7c5287bc-818f-55ed-e607-08b052963632/12UMGIM50914.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3d/65/ae/3d65ae0a-7b2c-f14d-5680-cdafaa8cfb2d/mzaf_11206445915046452880.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/668/Electro-Recreo-English-2026-20260806053553-500x500.webp",
+        "stream": "https://aac.saavncdn.com/668/09aab528331269a59ffc9dd0e019a910_320.mp4",
         "duration": 219,
         "ytId": "CVxMTl6cUSE"
       },
       {
         "title": "The Feels",
         "artist": "TWICE",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/d5/e6/e0d5e67a-9723-4d72-7510-dbf82553ca68/738676858334_Cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/16/09/06/16090679-d33d-14e3-2d1f-338f459b8eec/mzaf_9506922916768796625.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/643/The-Feels-English-2022-20220826200202-500x500.webp",
+        "stream": "https://aac.saavncdn.com/643/51e532bbffdfb265d74ae8fcd8f1095d_320.mp4",
         "duration": 198,
         "ytId": "N388pPWJPxs"
       },
       {
         "title": "MANIAC",
         "artist": "Stray Kids",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/5f/6d/545f6deb-89de-9f08-4ad0-b8d4136a0911/192641947902_Cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/68/2b/8c/682b8cee-5d50-c9a8-7246-1970eb842cc8/mzaf_403092209817779548.plus.aac.p.m4a",
-        "duration": 183,
+        "cover": "https://c.saavncdn.com/594/ODDINARY-Korean-2022-20220318093022-500x500.webp",
+        "stream": "https://aac.saavncdn.com/594/1c7022efba140c66b044ebf2b9cda943_320.mp4",
+        "duration": 182,
         "ytId": "eQktbxFJvhM"
       }
     ]
@@ -547,81 +547,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Tujhe Dekha Toh (Magic Moments Music Studio Season 1)",
         "artist": "Kumar Sanu, Neha Karode, Abhijit Vaghani, Jatin-Lalit, Anand Bakshi & Bhrigu Parashar",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2a/46/e4/2a46e468-4ec5-983b-7dc1-6b4abe3b9ae6/198588733875.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/dd/88/af/dd88af5c-7d62-0a80-2046-e033fb928fde/mzaf_16859141387808849720.plus.aac.p.m4a",
-        "duration": 150,
+        "cover": "https://c.saavncdn.com/962/Tujhe-Dekha-Toh-Magic-Moments-Music-Studio-Season-1-Hindi-2024-20240905123925-500x500.webp",
+        "stream": "https://aac.saavncdn.com/962/bd588fb6a1066665344fa5b4134b5e75_320.mp4",
+        "duration": 149,
         "ytId": "tdx9M8yjqM8"
       },
       {
         "title": "Chaiyya Chaiyya",
         "artist": "Sukhwinder Singh & Sapna Awasthi",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/f8/85/8ef88544-a6c7-018b-0a75-dc3b6b024fa0/cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/81/6c/e7/816ce721-3a37-0e57-3aa7-c3e180c4b38c/mzaf_10595670915474775723.plus.aac.p.m4a",
-        "duration": 407,
+        "cover": "https://c.saavncdn.com/596/Best-of-Shahrukh-Khan-Hindi-2021-20260401031226-500x500.webp",
+        "stream": "https://aac.saavncdn.com/596/4638940380eca6bcbc1e1de0d8e63938_320.mp4",
+        "duration": 406,
         "ytId": "9MX-QejdVaQ"
       },
       {
         "title": "Dil To Pagal Hai",
         "artist": "Lata Mangeshkar & Udit Narayan",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/bd/76/33/bd76333b-c994-6bb7-f83e-201c1392f8c3/849486005907_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/73/88/b6/7388b690-f530-b639-6b10-757e27bacb90/mzaf_18169717483241928989.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/410/Dil-To-Pagal-Hai-Hindi-1997-20190329145756-500x500.webp",
+        "stream": "https://aac.saavncdn.com/410/b5be2bac8157611cc97d399cf27a5783_320.mp4",
         "duration": 336,
         "ytId": "ojCnlV1MA-k"
       },
       {
         "title": "Pehla Nasha",
         "artist": "Udit Narayan & Sadhana Sargam",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/96/c9/3a/96c93aa7-1872-8297-493a-2fc72d540af0/191773221072.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/3c/41/d6/3c41d678-54cd-bc22-bb66-928c4e584f54/mzaf_11991940136628253012.plus.aac.p.m4a",
-        "duration": 291,
+        "cover": "https://c.saavncdn.com/852/Jo-Jeeta-Wohi-Sikandar-Hindi-1992-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/852/9d335ee08b26f171a3d65e11f8819d52_sar_320.mp4",
+        "duration": 293,
         "ytId": "ODu7OyAqK-Q"
       },
       {
         "title": "Tip Tip Barsa Paani",
         "artist": "Alka Yagnik & Udit Narayan",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/6f/3c/65/6f3c65a3-dee7-9977-574f-8d5e604774aa/cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/ba/7f/4d/ba7f4d56-8496-6d9e-5477-7807a451a636/mzaf_12624400071241428077.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/041/Mohra-Hindi-1994-20210226141759-500x500.webp",
+        "stream": "https://aac.saavncdn.com/041/c9c7533375a46d285bc156a2212fdbb5_320.mp4",
         "duration": 363,
         "ytId": "BtlnpBb4O8E"
       },
       {
         "title": "Suraj Hua Maddham",
         "artist": "Sandesh Shandilya, Sonu Nigam & Alka Yagnik",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/86/d3/96/86d396fd-9230-aab9-115b-bada9149d8de/888880945778.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6f/2b/a6/6f2ba694-ce02-553f-43f4-38e5d8c89343/mzaf_7581777528418496325.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/778/Kabhi-Khushi-Kabhie-Gham-Hindi-2001-20190516150535-500x500.webp",
+        "stream": "https://aac.saavncdn.com/778/c9c52c1295f9053c008f2d49b0339a88_320.mp4",
         "duration": 428,
         "ytId": "keTa_Kz_btQ"
       },
       {
         "title": "Mera Dil Bhi Kitna Pagal Hai",
         "artist": "Kumar Sanu & Alka Yagnik",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/af/c9/3e/afc93e0c-08e1-cc81-f549-a5fed7b95dd0/cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/21/16/5f/21165f68-d4a1-189f-1e26-adf3325e3aa3/mzaf_5132537107584213644.plus.aac.p.m4a",
-        "duration": 325,
+        "cover": "https://c.saavncdn.com/blob/461/Saajan-Hindi-1991-20220616044407-500x500.webp",
+        "stream": "https://aac.saavncdn.com/461/e5ec72fde6980ef6fc434aae3c02fe3d_320.mp4",
+        "duration": 324,
         "ytId": "DIvHIjOYq3U"
       },
       {
         "title": "Chura Ke Dil Mera",
         "artist": "Kumar Sanu & Alka Yagnik",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/68/8e/23/688e230e-bb21-815e-0c41-8b8f21ef0205/cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/65/1b/6d/651b6d04-5181-8367-c187-914eb7266765/mzaf_14254664281737349492.plus.aac.p.m4a",
-        "duration": 469,
+        "cover": "https://c.saavncdn.com/274/Main-Khiladi-Tu-Anari-With-Jhankar-Beats-Hindi-2024-20240125184145-500x500.webp",
+        "stream": "https://aac.saavncdn.com/274/7fef90c6c49981cb50403835234722da_320.mp4",
+        "duration": 474,
         "ytId": "Yqj1_V90KJo"
       },
       {
         "title": "Do Dil Mil Rahe Hain (Lofi Mix)",
         "artist": "Kumar Sanu & Abhimanyu-Pragya",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/31/d2/ca/31d2ca51-a95c-b2fd-05d2-f1bebcda91c2/8901854073139.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/67/75/97/6775973c-7a07-260d-9d25-60027fe04408/mzaf_15978890868037098063.plus.aac.p.m4a",
-        "duration": 248,
+        "cover": "https://c.saavncdn.com/139/Do-Dil-Mil-Rahe-Hain-Lofi-Mix-Hindi-2022-20250115193316-500x500.webp",
+        "stream": "https://aac.saavncdn.com/139/f7d71b8ad660802bb35f681353ab8bc8_320.mp4",
+        "duration": 247,
         "ytId": "CML6-215LyE"
       },
       {
         "title": "Kuch Kuch Hota Hai",
         "artist": "Jatin-Lalit, Udit Narayan & Alka Yagnik",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/07/b7/a4/07b7a4a5-d21f-db81-1d51-1eb1846c7dcb/888880945907.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e9/54/53/e95453a2-98e8-3fd9-7b9d-8cd5e4046703/mzaf_13098122183603209993.plus.aac.p.m4a",
-        "duration": 298,
+        "cover": "https://c.saavncdn.com/907/Kuch-Kuch-Hota-Hai-Original-Motion-Picture-Soundtrack-Hindi-1998-20240711192101-500x500.webp",
+        "stream": "https://aac.saavncdn.com/907/ce17826775d66752dba879fc2e3d4eb3_320.mp4",
+        "duration": 297,
         "ytId": "bKZTnnFU9HA"
       }
     ]
@@ -636,81 +636,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Till I Collapse (Special Version)",
         "artist": "Sanks",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f1/c7/b5/f1c7b580-ce18-f173-944d-1c6e90f753b4/artwork.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e2/77/94/e2779472-8f7b-7b2c-4e34-c2235e15cb0b/mzaf_5612638863759763611.plus.aac.p.m4a",
-        "duration": 268,
+        "cover": "https://c.saavncdn.com/020/The-Eminem-Show-Unknown-2007-20250826100622-500x500.webp",
+        "stream": "https://aac.saavncdn.com/020/d0a7641689b4a3df14ffef4f19073b22_320.mp4",
+        "duration": 297,
         "ytId": "cK67URzG4sY"
       },
       {
         "title": "Can't Hold Us (feat. Ray Dalton)",
         "artist": "Macklemore & Ryan Lewis",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/91/c1/b5/91c1b5cc-d4f1-da61-d3dc-2dd93e6b0a7d/707541525299.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/83/4d/57/834d57bd-505a-2b6a-3a38-cc26f4d34171/mzaf_18284634626678368772.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/191/The-Heist-English-2012-20250307181125-500x500.webp",
+        "stream": "https://aac.saavncdn.com/191/c0d56a0acc373edd8582c5dbc16b6d3b_320.mp4",
         "duration": 258,
         "ytId": "VG3JsmOmDqw"
       },
       {
         "title": "Stronger",
         "artist": "Kanye West",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/39/25/2d/39252d65-2d50-b991-0962-f7a98a761271/00602517483507.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/96/f2/25/96f225f2-cd07-3639-4133-0910aa9725c0/mzaf_13857358519708863745.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/638/Stronger-English-2007-20200724142539-500x500.webp",
+        "stream": "https://aac.saavncdn.com/638/794ff78046887c032178791a3e77b70e_320.mp4",
         "duration": 312,
         "ytId": "3mwiO5st-us"
       },
       {
         "title": "Lose Yourself",
         "artist": "Eminem",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/62/0a/a5/620aa56f-189e-708a-80f0-cebdada3872e/mzaf_7131619873177773332.plus.aac.p.m4a",
-        "duration": 322,
+        "cover": "https://c.saavncdn.com/810/Just-Lose-It-English-2004-20190314081750-500x500.webp",
+        "stream": "https://aac.saavncdn.com/810/795bac8dd8d94f503be44ea3f6a519c1_320.mp4",
+        "duration": 326,
         "ytId": "tR1ECf4sEpw"
       },
       {
         "title": "Hall of Fame (feat. will.i.am)",
         "artist": "The Script",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/89/cd/bb89cdb5-4456-2b75-d1f9-e61009a4c8cc/886443609532.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7e/13/22/7e1322c7-980d-160f-8c68-dc9b9863a559/mzaf_1440735671923738990.plus.aac.p.m4a",
-        "duration": 203,
+        "cover": "https://c.saavncdn.com/765/Hall-of-Fame-English-2012-20180423191954-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/765/effcc61ea22b98c7093d1ea324c3b377_320.mp4",
+        "duration": 202,
         "ytId": "ds6o9in_y-o"
       },
       {
         "title": "Radioactive",
         "artist": "Imagine Dragons",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/1f/fa/09/1ffa092f-f52f-4a66-7d10-4cc5982dc747/12UMGIM46901.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/77/70/88/777088e9-60a1-c459-bfa5-6e66f2fd2695/mzaf_7685408661765681881.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/210/Night-Visions-2013-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/210/a6592cefb1b57cf146cf811a747223b4_320.mp4",
         "duration": 187,
         "ytId": "w3viBe2Q0P8"
       },
       {
         "title": "Warriors",
         "artist": "Imagine Dragons",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b3/a8/b0/b3a8b05f-7dfe-f557-6147-57e74dfdbebe/15UMGIM53209.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/bb/72/d8/bb72d87f-c6e5-b2c2-c2da-f09b1329a9d0/mzaf_14405083140077388552.plus.aac.p.m4a",
-        "duration": 171,
+        "cover": "https://c.saavncdn.com/233/Warriors-English-2014-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/233/a5f78e5651b9ef3cedf18e9ed6d1482f_320.mp4",
+        "duration": 170,
         "ytId": "wPQEeBAXou0"
       },
       {
         "title": "Unstoppable",
         "artist": "Sia",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bc/13/27/bc13275c-8b26-802d-771b-d15ae00fb530/mzm.hvpwjsvi.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bb/dd/6a/bbdd6a92-b322-1c35-8dc7-8eb7d84f72b8/mzaf_14355345747730153074.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/203/This-Is-Acting-English-2016-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/203/af8d67ab7f66ecc23e6588e080bf2df0_320.mp4",
         "duration": 218,
         "ytId": "cxjvTXo9WWM"
       },
       {
         "title": "Centuries",
         "artist": "Fall Out Boy",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ea/5f/87/ea5f87ea-4bc3-0e01-456c-37401a4268f2/14UMGIM60337.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/99/23/d3/9923d3ac-5cac-79d1-4a77-ec8fb7499b2b/mzaf_9922251089879156208.plus.aac.p.m4a",
-        "duration": 228,
+        "cover": "https://c.saavncdn.com/474/pre-match-hype-up-English-2025-20260128005108-500x500.webp",
+        "stream": "https://aac.saavncdn.com/474/def21e5ee43f72fe1d39eed947b91110_320.mp4",
+        "duration": 231,
         "ytId": "LBr7kECsjcQ"
       },
       {
         "title": "Eye of the Tiger",
         "artist": "Survivor",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f9/02/8f/f9028f63-7a55-235e-f789-1e8946430fa2/614223201122.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/fe/fa/9e/fefa9edd-c023-4d1c-1012-08bfb0ec69e6/mzaf_4651653238471209843.plus.aac.p.m4a",
-        "duration": 244,
+        "cover": "https://c.saavncdn.com/943/80-s-90-s-Hits-English-2015-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/943/f9a90ff5cf8cad007d7505f09820c0b4_320.mp4",
+        "duration": 227,
         "ytId": "XxxfQ7-aMrE"
       }
     ]
@@ -725,81 +725,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "After Dark",
         "artist": "Mr.Kitty",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ce/5d/c6/ce5dc65e-6dac-bb8a-daaf-72bf77d0ba75/616450974909.png/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/26/23/3c/26233cdf-ae9e-a40e-3e5c-8645bac1dd00/mzaf_4554903182036177858.plus.aac.p.m4a",
-        "duration": 259,
+        "cover": "https://c.saavncdn.com/227/After-Dark-Unknown-2024-20260521102212-500x500.webp",
+        "stream": "https://aac.saavncdn.com/227/e1db4a38f8fb6035711282064b7c63f1_320.mp4",
+        "duration": 257,
         "ytId": "sVx1mJDeUjY"
       },
       {
         "title": "Nightcall",
         "artist": "Kavinsky",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c1/2d/fe/c12dfe8f-cdf6-e179-d69a-8ec35f760266/00602537248681.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/0a/de/fd/0adefd5b-145a-1cc9-f3b5-be89fd0232b9/mzaf_4322553693875273982.plus.aac.p.m4a",
-        "duration": 258,
+        "cover": "https://c.saavncdn.com/288/Les-meilleures-bandes-son-Unknown-2026-20260402053556-500x500.webp",
+        "stream": "https://aac.saavncdn.com/288/08ca2f006d4d3a59ce0fa04a6da8805c_320.mp4",
+        "duration": 259,
         "ytId": "MV_3Dpw-BRY"
       },
       {
         "title": "Resonance",
         "artist": "Home",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4f/13/65/4f1365b0-e97c-c469-c438-2f7d8f204355/872133025584_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/55/8b/44/558b4446-ff08-f703-1662-582010e94160/mzaf_13101281476218282700.plus.aac.p.m4a",
-        "duration": 213,
+        "cover": "https://c.saavncdn.com/817/Resonance-Unknown-2024-20250731020014-500x500.webp",
+        "stream": "https://aac.saavncdn.com/817/9ad5fdc7e488731955d7af33e1371994_320.mp4",
+        "duration": 212,
         "ytId": "8GW6sLrK40k"
       },
       {
         "title": "The Hills",
         "artist": "The Weeknd",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/30/05/1e/30051e57-a63a-3acc-4b30-42568293f5f7/15UMGIM36514.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0b/70/c8/0b70c898-ec23-3131-5d17-aa7417045013/mzaf_3059117378996578649.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
+        "stream": "https://aac.saavncdn.com/396/8a6100060823f664014983c80e58f59f_320.mp4",
         "duration": 242,
         "ytId": "G5XpJP7f_SE"
       },
       {
         "title": "Sweater Weather",
         "artist": "The Neighbourhood",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/71/00/287100fb-5c31-0195-5343-e6b3625886d0/886443969834.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8c/37/20/8c372047-2727-8054-9411-0e4867643dd8/mzaf_10169659262182214119.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/834/I-Love-You--English-2013-20220323205211-500x500.webp",
+        "stream": "https://aac.saavncdn.com/834/18f56ba72edfe2bfab7210c173b9a5c3_320.mp4",
         "duration": 240,
         "ytId": "Ao81ziiXHhs"
       },
       {
         "title": "Call Out My Name",
         "artist": "The Weeknd",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/db/22/4e/db224ee0-b058-5d06-9a8c-fa10662bd58e/18UMGIM17205.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d5/0a/ca/d50aca46-f871-b774-077a-22cbb42df336/mzaf_7520446500958405524.plus.aac.p.m4a",
-        "duration": 228,
+        "cover": "https://c.saavncdn.com/994/My-Dear-Melancholy-English-2019-20240207052250-500x500.webp",
+        "stream": "https://aac.saavncdn.com/994/b15acc064165dbb858526ec6b26f34a8_320.mp4",
+        "duration": 238,
         "ytId": "rsEne1ZiQrk"
       },
       {
         "title": "Die For You",
         "artist": "The Weeknd",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e2/61/f8/e261f8c1-73db-9a7a-c89e-1068f19970e0/16UMGIM67863.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/50/50/1a/50501a86-bd74-e90d-8a56-68c9b5e6e7d6/mzaf_4588197682084244913.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/372/Starboy-English-2016-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/372/a5712158e6c2a723b60fc9bf76ea173b_320.mp4",
         "duration": 260,
         "ytId": "2AH5l-vrY9Q"
       },
       {
         "title": "Little Dark Age",
         "artist": "MGMT",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5e/12/58/5e1258b2-fa55-279f-5116-a0c897491f51/886446696393.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/36/61/fc/3661fcd9-17ed-48d7-00b5-1e8f76c79f6b/mzaf_9839642835835761679.plus.aac.p.m4a",
-        "duration": 300,
+        "cover": "https://c.saavncdn.com/409/Little-Dark-Age-English-2018-20180202200304-500x500.webp",
+        "stream": "https://aac.saavncdn.com/409/79f328b505a70dc25674942d12f547f6_320.mp4",
+        "duration": 299,
         "ytId": "YP3jRz9kJXs"
       },
       {
         "title": "Reflections",
         "artist": "The Neighbourhood",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fc/d0/89/fcd0899c-2236-a726-9ce2-ebb110e2204d/886447414545.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a2/ef/23/a2ef23f1-c1c9-beea-405c-c7090446f869/mzaf_13397780695955177862.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/545/Hard-to-imagine-the-neighbourhood-ever-changing-English-2018-20181030171333-500x500.webp",
+        "stream": "https://aac.saavncdn.com/545/0504777e189bb912a6b830075bb617e3_320.mp4",
         "duration": 244,
         "ytId": "x47TgeRJtH0"
       },
       {
         "title": "Sunset Lover",
         "artist": "Petit Biscuit",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/78/1c/93/781c934a-c233-cfce-39db-31f7284969b4/cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6e/7f/e8/6e7fe823-dc62-3c03-5b18-358ba31f7d2e/mzaf_7798102817870742981.plus.aac.p.m4a",
-        "duration": 238,
+        "cover": "https://c.saavncdn.com/037/Petit-Biscuit-English-2016-500x500.webp",
+        "stream": "https://aac.saavncdn.com/037/c4f8a5cec740564a4cb8fe6d8a7e9356_320.mp4",
+        "duration": 237,
         "ytId": "ocRqQcRapQQ"
       }
     ]
@@ -814,81 +814,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Perfect",
         "artist": "Ed Sheeran",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c7/ba/bc/c7babc66-f598-aaa6-bcf6-307281795817/mzaf_16337361235117168274.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/286/WMG_190295851286-English-2017-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/286/71bb6cc3391ddf619a4a3f1a1134f1c4_320.mp4",
         "duration": 263,
         "ytId": "iKzRIweSBLA"
       },
       {
         "title": "Say You Won't Let Go",
         "artist": "James Arthur",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9c/c2/89/9cc289cb-66fe-a754-8ec7-859d76d65c55/886445946789.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ca/5b/00/ca5b0049-9204-38a8-7e2e-bc7e79841b57/mzaf_3241303717288164662.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/054/Say-You-Won-t-Let-Go-English-2016-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/054/9a4455d4e9a523f9001aeb0f653e1db6_320.mp4",
         "duration": 211,
         "ytId": "-tn0z4Bz1aQ"
       },
       {
         "title": "All of Me",
         "artist": "John Legend",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/71/b9/2271b906-85b3-06ee-e611-489b91df0b73/886444160742.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ff/94/6c/ff946ca7-e49a-fdf8-ea5b-11e6f56a0417/mzaf_17369156110722174773.plus.aac.p.m4a",
-        "duration": 270,
+        "cover": "https://c.saavncdn.com/041/All-Of-Me-John-Legend-Piano-Karaoke-Instrumental-2025-20251017161543-500x500.webp",
+        "stream": "https://aac.saavncdn.com/041/1387076de04d92b35f71b298c86cd73b_320.mp4",
+        "duration": 310,
         "ytId": "4zXUHvfoEyQ"
       },
       {
         "title": "Someone You Loved",
         "artist": "Lewis Capaldi",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/92/d7/8f/92d78fb1-df3d-049e-c81d-7022808b151f/19UMGIM02973.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e5/c8/17/e5c817e2-7830-091f-8686-d6276d5beaeb/mzaf_5586826958480073790.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/945/pov-you-re-yearning-English-2026-20260703175018-500x500.webp",
+        "stream": "https://aac.saavncdn.com/945/7ab7dfc3436e002bdd6f9ca1ebcc5fea_320.mp4",
         "duration": 182,
         "ytId": "xrcMgO2fgpA"
       },
       {
         "title": "You Are the Reason",
         "artist": "Calum Scott",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cd/12/9f/cd129f77-7690-7440-2a25-d9c7f39889d8/17UM1IM44770.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c8/a2/a4/c8a2a452-9f1b-0c37-f9a8-3c40369360f1/mzaf_5868390947615190417.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/042/Wedding-Songs-2026-English-2026-20260818151840-500x500.webp",
+        "stream": "https://aac.saavncdn.com/042/64b52269f4afa63c06ed0b9cf63fea7f_320.mp4",
         "duration": 204,
         "ytId": "JcC5VGOx8I8"
       },
       {
         "title": "Let Her Go",
         "artist": "Passenger",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/9b/7e/28/9b7e2896-e049-1663-6791-e0111690ffc1/067003051361.png/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/1c/93/e5/1c93e5ed-eadc-effc-093a-cbaadc17f897/mzaf_16074705324618158471.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/154/All-the-Little-Lights-Deluxe-English-2019-20220615025427-500x500.webp",
+        "stream": "https://aac.saavncdn.com/154/f159c6e1fc580da6bf82d3abe04212ff_320.mp4",
         "duration": 253,
         "ytId": "lRVTVB94zTg"
       },
       {
         "title": "Riptide",
         "artist": "Vance Joy",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7a/1c/65/7a1c6571-34e9-bb77-32be-90c72ba003c0/075679920355.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1e/de/ea/1edeea50-c0f4-9d95-f0b8-b23a1af561db/mzaf_6343110017276582270.plus.aac.p.m4a",
-        "duration": 202,
+        "cover": "https://c.saavncdn.com/765/God-Loves-You-When-You-re-Dancing-English-2013-20190607044658-500x500.webp",
+        "stream": "https://aac.saavncdn.com/765/b2854799b78086f97eed38fe1a55b67e_320.mp4",
+        "duration": 204,
         "ytId": "TL_oroU9eN8"
       },
       {
         "title": "Stay With Me",
         "artist": "Sam Smith",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/80/74/b6/8074b6bc-387f-6cc9-5ede-92b76396ad5f/13UAEIM58958.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d8/90/ef/d890ef3d-95b8-2224-5ff2-4ed56a359449/mzaf_8285804271834164275.plus.aac.p.m4a",
-        "duration": 173,
+        "cover": "https://c.saavncdn.com/722/In-The-Lonely-Hour-English-2014-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/722/af7615a38545a7d72495607b8598a54a_320.mp4",
+        "duration": 172,
         "ytId": "bXDSR4GggUU"
       },
       {
         "title": "Treat You Better",
         "artist": "Shawn Mendes",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/dd/bb/b7/ddbbb775-836a-f7da-f89a-f33029f6ef4a/16UMGIM51585.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/38/b2/29/38b229f9-4f2e-f220-750e-44096aa7d403/mzaf_11648241450243949161.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/717/Karaoke-Essentials-English-2026-20260618053610-500x500.webp",
+        "stream": "https://aac.saavncdn.com/717/0c955f925748998cdd87d7b05168bbcd_320.mp4",
         "duration": 188,
         "ytId": "eiG_DUXD8YQ"
       },
       {
         "title": "Photograph",
         "artist": "Ed Sheeran",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2d/36/f9/2d36f9a7-2c3e-ce0f-7fb6-036feecb221f/825646974450.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/11/4f/6a/114f6ad0-165c-1e3c-8fbd-df4707d7ae26/mzaf_12480083080052535279.plus.aac.p.m4a",
-        "duration": 259,
+        "cover": "https://c.saavncdn.com/835/x-English-2014-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/835/2d0cf8c83a9f3b900ac214e21d07badc_320.mp4",
+        "duration": 258,
         "ytId": "KKQl-pIRQMY"
       }
     ]
@@ -903,81 +903,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "God's Plan",
         "artist": "Drake",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/6d/8f/bb6d8f67-6d04-10b5-dd62-eb5809ac54fc/00602567879152.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/da/7d/f1/da7df14b-8ee6-5020-d850-ccc0381eb141/mzaf_5511967710095380808.plus.aac.p.m4a",
-        "duration": 199,
+        "cover": "https://c.saavncdn.com/152/Scorpion-English-2018-20180701062706-500x500.webp",
+        "stream": "https://aac.saavncdn.com/152/ff77c15a4e8d258ce599e29d3e81991d_320.mp4",
+        "duration": 198,
         "ytId": "m1a_GqJf02M"
       },
       {
         "title": "goosebumps",
         "artist": "Travis Scott",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/b8/e5/27/b8e527c8-aaf4-c7b7-5562-c479458ed7d9/886446092645.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/03/0a/ae/030aaeb0-a9fc-280e-c33c-e02d0b95264c/mzaf_13068295871760308152.plus.aac.p.m4a",
-        "duration": 244,
+        "cover": "https://c.saavncdn.com/645/Birds-In-The-Trap-Sing-McKnight-English-2016-500x500.jpg",
+        "stream": "https://aac.saavncdn.com/645/98054781f4c1c8efc63292f459014de7_320.mp4",
+        "duration": 243,
         "ytId": "FhTtYSU7Q7g"
       },
       {
         "title": "rockstar (feat. 21 Savage)",
         "artist": "Post Malone",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/55/9f/fb/559ffb75-3c00-abd6-7b1f-8b6b1518b173/18UMGIM22101.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/22/37/94/223794d5-e415-e646-a1c6-a52f178f9c82/mzaf_4256851832513251175.plus.aac.p.m4a",
-        "duration": 218,
+        "cover": "https://c.saavncdn.com/454/beerbongs-bentleys-English-2018-20180426031217-500x500.webp",
+        "stream": "https://aac.saavncdn.com/454/19c6b38d8a59f9999e4797ab72a81a38_320.mp4",
+        "duration": 219,
         "ytId": "UceaB4D0jpo"
       },
       {
         "title": "HUMBLE.",
         "artist": "Kendrick Lamar",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ab/16/ef/ab16efe9-e7f1-66ec-021c-5592a23f0f9e/17UMGIM88793.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/30/3f/27/303f27c8-1997-8c57-66b3-b67e7c720779/mzaf_5598476068977070849.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/193/DAMN-COLLECTORS-EDITION-English-2017-20260605182516-500x500.webp",
+        "stream": "https://aac.saavncdn.com/193/0ac9e8a9843e97955d40e77e4f6da3d6_320.mp4",
         "duration": 177,
         "ytId": "ov4WobPqoSA"
       },
       {
         "title": "Without Me",
         "artist": "Eminem",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/dd/5c/e6/dd5ce621-f7d2-f767-7a08-e7a7eaa7870b/00602537526994.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/7d/38/ff/7d38ff16-b52c-063a-a34d-767e836befcc/mzaf_13413071545825673354.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/934/Curtain-Call-The-Hits-English-2005-20250826045028-500x500.webp",
+        "stream": "https://aac.saavncdn.com/934/c102186cbe0576e0f4bc9d30cfa1b730_320.mp4",
         "duration": 290,
         "ytId": "pyb13N80DZQ"
       },
       {
         "title": "Lucid Dreams",
         "artist": "Juice WRLD",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/07/2b/a4/072ba4fa-7f4c-f478-6f22-13f9e62ac1be/21UMGIM53733.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/97/45/24/9745248c-c488-c47b-6f74-b9492d1fd807/mzaf_16311560952471221231.plus.aac.p.m4a",
-        "duration": 240,
+        "cover": "https://c.saavncdn.com/124/Goodbye-Good-Riddance-English-2018-20181209231819-500x500.webp",
+        "stream": "https://aac.saavncdn.com/124/f47c3be8cfbe0da0cd6db90b6df99b18_320.mp4",
+        "duration": 239,
         "ytId": "onbC6N-QGPc"
       },
       {
         "title": "SAD! (Instrumental)",
         "artist": "XXXTENTACION",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/93/49/bb/9349bb3b-317d-57c3-966a-71fa25247dc2/19UMGIM41705.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/51/9a/f1/519af1f2-0c4b-c91c-ffca-c01b04b3b891/mzaf_12227570221781810766.plus.aac.p.m4a",
-        "duration": 167,
+        "cover": "https://c.saavncdn.com/056/ZZang-KARAOKE-2024-POP-Vol-83-Instrumental-2024-20260602173309-500x500.webp",
+        "stream": "https://aac.saavncdn.com/056/9ae515b0ba2257605ecf6631152091c1_320.mp4",
+        "duration": 170,
         "ytId": "N71H2chvdCo"
       },
       {
         "title": "INDUSTRY BABY",
         "artist": "Lil Nas X & Jack Harlow",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f7/16/67/f7166746-6299-5e54-8c7c-9535e941a53e/886449403929.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/be/9b/35/be9b35f7-e564-fafa-8586-146e2f7b7320/mzaf_7128424125938593552.plus.aac.p.m4a",
-        "duration": 212,
+        "cover": "https://c.saavncdn.com/440/MONTERO-English-2021-20210914233101-500x500.webp",
+        "stream": "https://aac.saavncdn.com/440/616cc55bb4bf6e7f6e580a311e30520c_320.mp4",
+        "duration": 214,
         "ytId": "HCq1OcAEAm0"
       },
       {
         "title": "Sunflower (Spider-Man: Into the Spider-Verse)",
         "artist": "Post Malone & Swae Lee",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/98/f0/d6/98f0d67e-f8bf-762d-cac7-1c6b3b6b35dd/mzaf_4543283896248560946.plus.aac.p.m4a",
+        "cover": "https://c.saavncdn.com/504/The-Diamond-Collection-English-2023-20240201105640-500x500.webp",
+        "stream": "https://aac.saavncdn.com/504/b3bc79be82cb12784fd3f8835bd22bf5_320.mp4",
         "duration": 158,
         "ytId": "ApXoWvfEYVU"
       },
       {
         "title": "First Class",
         "artist": "Jack Harlow",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/cf/9a/0e/cf9a0ee1-3b03-c511-cf7c-4929265e261c/075679745118.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ea/97/61/ea97619d-0c0c-53e7-ad1f-47be0dded164/mzaf_10036427914607242610.plus.aac.p.m4a",
-        "duration": 174,
+        "cover": "https://c.saavncdn.com/118/Come-Home-The-Kids-Miss-You-English-2022-20220507093510-500x500.webp",
+        "stream": "https://aac.saavncdn.com/118/7804878112147c6cfcc0ba20d213f498_320.mp4",
+        "duration": 173,
         "ytId": "5CVrij8tcP8"
       }
     ]
@@ -992,81 +992,81 @@ export const CATALOG_CATEGORIES = [
       {
         "title": "Lofi Fruits",
         "artist": "Lofi Sleep, Lofi Rain & Lofi Aesthetics",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ae/ef/5e/aeef5edc-d6ed-9891-b79b-af7694c459f4/14656.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/70/1c/dd/701cdda8-06db-90c0-3f18-11758d9837ba/mzaf_13601553677755721294.plus.aac.p.m4a",
-        "duration": 247,
+        "cover": "https://c.saavncdn.com/572/Rain-Sounds-and-Relaxing-Nature-Noise-Rain-Fruits-Sounds-Unknown-2021-20220822165020-500x500.webp",
+        "stream": "https://aac.saavncdn.com/572/f8d9f1f0c0318de680baf0094ad7911a_320.mp4",
+        "duration": 154,
         "ytId": "lPCc78REQpU"
       },
       {
         "title": "Dandelions",
         "artist": "Ruth B.",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/24/f7/82/24f782af-5aea-55e7-bf67-2f4e62664fe8/886446439341.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bc/5a/88/bc5a881d-dc44-fc7f-92fd-376680957969/mzaf_10218454983981161930.plus.aac.p.m4a",
-        "duration": 234,
+        "cover": "https://c.saavncdn.com/358/Safe-Haven-English-2017-500x500.webp",
+        "stream": "https://aac.saavncdn.com/358/5ea860e6ce088ad121efe73abbaba871_320.mp4",
+        "duration": 233,
         "ytId": "W8a4sUabCUo"
       },
       {
         "title": "Lofi",
         "artist": "Sad Music & Lofi Tokyo",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ee/0b/97/ee0b97ce-eb97-2698-198a-1033278371f4/15648.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/9d/96/e6/9d96e6f2-6cc0-8816-e4be-8beecb1885af/mzaf_6270413983496050396.plus.aac.p.m4a",
-        "duration": 46,
+        "cover": "https://c.saavncdn.com/765/BoomBap-Lo-Fi-Aesthetics-Beats-Unknown-2021-20210326035924-500x500.webp",
+        "stream": "https://aac.saavncdn.com/765/99ec7b184e0e3572b8dfc25253cdfc79_320.mp4",
+        "duration": 57,
         "ytId": "YqGqy6agS08"
       },
       {
         "title": "Moonlit Musings",
         "artist": "LoFi Girl BGM",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/ce/3e/54ce3eb0-8841-8805-9cb7-febec5853493/bigup13769046.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/18/13/ae/1813ae82-79c0-e2ad-e705-aa5bd08908bb/mzaf_256267783276225743.plus.aac.p.m4a",
-        "duration": 120,
+        "cover": "https://c.saavncdn.com/639/Embark-on-a-Serene-Journey-Master-the-Art-of-Calmness-Soothing-Music-for-Stress-Relief-Peaceful-Evenings-Insomnia-and-Hypnosis-for-Deep-Sleep-Unknown-2023-20230428021534-500x500.webp",
+        "stream": "https://aac.saavncdn.com/639/e6a94455cbc085ec14597aba33102ea1_320.mp4",
+        "duration": 179,
         "ytId": "SPy3WVPZ-mE"
       },
       {
         "title": "Cozy Sweater (chillhop, comforting, rainy day vibe, autumn lofi)",
         "artist": "LO-FI AImbients",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b8/21/80/b82180ed-e2fc-94f0-6ee8-d8c5bce70f8a/artwork.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f4/dc/71/f4dc711e-cc8c-03fa-67f9-1efe139f5974/mzaf_10085759515782513789.plus.aac.p.m4a",
-        "duration": 130,
+        "cover": "https://c.saavncdn.com/052/Cozy-Christmas-Season-English-2025-20251122210822-500x500.webp",
+        "stream": "https://aac.saavncdn.com/052/421c9f12a2c6ef3d98f14132807107b5_320.mp4",
+        "duration": 208,
         "ytId": "3LLckuZbnU0"
       },
       {
         "title": "Midnight",
         "artist": "Khruangbin & Leon Bridges",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ed/90/53/ed9053df-0476-f6aa-d7f2-8664fc589904/656605151465.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e7/b7/4f/e7b74f95-a652-c5e9-affe-a5cb69e6230e/mzaf_13895078663485547425.plus.aac.p.m4a",
-        "duration": 315,
+        "cover": "https://c.saavncdn.com/656/Khruangbin-Unknown-2025-20250219161225-500x500.webp",
+        "stream": "https://aac.saavncdn.com/656/365fd8858c88b7ed128e6c71d70e2d59_320.mp4",
+        "duration": 148,
         "ytId": "JzXsCxFNOFw"
       },
       {
         "title": "Study Session (LoFi Beats)",
         "artist": "Mind Boost",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9c/35/7d/9c357d18-7c51-0ac5-4d80-6b61bf3738af/8052869014751.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/22/27/a1/2227a112-26ba-4609-6e48-b31be3525695/mzaf_10777378943426760059.plus.aac.p.m4a",
-        "duration": 164,
+        "cover": "https://c.saavncdn.com/751/Music-for-Learners-Study-LoFi-Beats-for-Deep-Concentration-Unknown-2020-20210625181324-500x500.webp",
+        "stream": "https://aac.saavncdn.com/751/c71c81e6d1714bec4533a65adc9fe4a8_320.mp4",
+        "duration": 163,
         "ytId": "amfWIRasxtI"
       },
       {
         "title": "Peaceful Sleep",
         "artist": "REYONA",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/01/bd/52/01bd52e8-231b-0ee8-2cf3-a7c2ea5d3fb4/5059449247205.png/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a0/38/1c/a0381c02-a7f7-517c-b470-44e9f0049c9a/mzaf_15326591419014105395.plus.aac.p.m4a",
-        "duration": 220,
+        "cover": "https://c.saavncdn.com/205/Peaceful-Sleep-Unknown-2025-20251120214635-500x500.webp",
+        "stream": "https://aac.saavncdn.com/205/804c6c1ee793706810e990daec95ce42_320.mp4",
+        "duration": 219,
         "ytId": "d2S5WsXJb5w"
       },
       {
         "title": "Sunset",
         "artist": "Alto",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/ef/20/df/ef20df51-3dec-2954-3c0f-b9c3678c14e3/018736517471_cover.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/dd/70/33/dd703326-1bcf-a6e3-7fc8-82b1e6523be0/mzaf_7715579727225624179.plus.aac.p.m4a",
-        "duration": 100,
+        "cover": "https://c.saavncdn.com/794/Tropical-Sunset-Unknown-2022-20221207195539-500x500.webp",
+        "stream": "https://aac.saavncdn.com/794/5d517c223acf5e8d6bd4f911a20eda6f_320.mp4",
+        "duration": 172,
         "ytId": "Ton-bY29SCQ"
       },
       {
         "title": "Campfire",
         "artist": "LoFi Hip Hop",
-        "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/5e/d7/e9/5ed7e9e2-07ae-8f5d-61ec-aac2fc3b1a11/260.jpg/600x600bb.jpg",
-        "stream": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4a/88/da/4a88da73-908b-a126-d1f7-ec5f99f0324f/mzaf_16356964388335476474.plus.aac.p.m4a",
-        "duration": 97,
+        "cover": "https://c.saavncdn.com/239/Lo-Fi-Hip-Hop-Beats-Chillout-English-2020-20200319094859-500x500.webp",
+        "stream": "https://aac.saavncdn.com/239/5898d271746d1889a5599ec1d2ae2ebd_320.mp4",
+        "duration": 168,
         "ytId": "6k8FFuNxf_E"
       }
     ]

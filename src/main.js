@@ -58,6 +58,56 @@ import './geminiService.js';
     renderSearchResults(results);
   };
 
+  // Quick Filter Tags / Side Pills Selector
+  window.selectFilterPill = function(btn, query) {
+    document.querySelectorAll('.filter-pill').forEach(b => {
+      b.classList.remove('active-pill', 'pill-cyan');
+    });
+    if (btn) {
+      btn.classList.add('active-pill', 'pill-cyan');
+    }
+    const input = document.getElementById('global-search-input');
+    if (input) input.value = query;
+    window.executeSearch(query, false);
+  };
+
+  // Floating Anti-Gravity Side Card Handlers
+  window.dismissAntiGravityCard = function() {
+    const card = document.getElementById('floating-antigravity-card');
+    if (card) {
+      card.classList.add('hidden-card');
+    }
+  };
+
+  window.activateZeroGMode = async function() {
+    window.showToast('🪐 Anti-Gravity Mode: 432Hz Soundscape Activated', 'info', 3000);
+    const zeroGQuery = '432Hz Deep Space Zero Gravity Ambient Chill';
+    window.executeSearch(zeroGQuery, false);
+    
+    // Auto play top track if discovered
+    setTimeout(async () => {
+      if (window.musicService && typeof window.musicService.searchTracks === 'function') {
+        const tracks = await window.musicService.searchTracks(zeroGQuery, 5);
+        if (tracks && tracks.length > 0) {
+          window.playTrackDirect(tracks[0]);
+        }
+      }
+    }, 400);
+  };
+
+  window.mixZeroGMode = function() {
+    if (typeof window.openGeminiDJModal === 'function') {
+      window.openGeminiDJModal();
+      const promptInput = document.getElementById('gemini-prompt-input');
+      if (promptInput) {
+        promptInput.value = 'Weightless 432Hz deep space ambient zero gravity focus and cosmic calm';
+      }
+    } else {
+      window.showToast('🔮 Gemini AI: Curating Zero-G Soundscapes...', 'info', 2500);
+      window.executeSearch('Cosmic Ambient 432Hz Space Meditation', false);
+    }
+  };
+
   // 1. Navigation & Views Router
 
   // Auto load search view on switch

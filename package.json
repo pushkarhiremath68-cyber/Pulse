@@ -26,5 +26,7 @@
     "jsdom": "^27.0.1",
     "vite": "^5.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  }
 }

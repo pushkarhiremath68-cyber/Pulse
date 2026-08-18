@@ -8492,3 +8492,315 @@ a {
   accent-color: #ff007a !important;
   cursor: pointer !important;
 }
+
+/* ==========================================================================
+   QUICK FILTER TAGS / SIDE PILLS (CYAN GLOW & COSMIC THEME)
+   ========================================================================== */
+.quick-filter-pills-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  overflow-x: auto !important;
+  padding: 0.5rem 0.25rem 1rem 0.25rem !important;
+  margin-bottom: 1.5rem !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.quick-filter-pills-container::-webkit-scrollbar {
+  display: none !important;
+}
+
+.filter-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.5rem 1.15rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  user-select: none !important;
+  outline: none !important;
+}
+
+.filter-pill:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.filter-pill.active-pill,
+.filter-pill.pill-cyan {
+  background: rgba(6, 182, 212, 0.2) !important;
+  border-color: rgba(34, 211, 238, 0.4) !important;
+  color: #67e8f9 !important;
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.35) !important;
+}
+
+.filter-pill.active-pill:hover,
+.filter-pill.pill-cyan:hover {
+  background: rgba(6, 182, 212, 0.3) !important;
+  border-color: rgba(34, 211, 238, 0.6) !important;
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.5) !important;
+}
+
+.filter-pill-icon {
+  font-size: 1rem !important;
+  display: inline-block !important;
+}
+
+.filter-pill .animate-pulse-icon {
+  animation: pulsePillIcon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+@keyframes pulsePillIcon {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.15);
+  }
+}
+
+/* ==========================================================================
+   FLOATING ANTI-GRAVITY SIDE CARD
+   ========================================================================== */
+.floating-antigravity-card {
+  position: fixed !important;
+  bottom: 85px !important;
+  right: 24px !important;
+  z-index: 9999 !important;
+  width: 290px !important;
+  border-radius: 1.25rem !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(6, 182, 212, 0.3) !important;
+  padding: 1.15rem !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(6, 182, 212, 0.15) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: floatCardIn 0.4s ease-out !important;
+}
+
+@keyframes floatCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.floating-antigravity-card.hidden-card {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(20px) scale(0.95) !important;
+  display: none !important;
+}
+
+.floating-antigravity-card:hover {
+  border-color: rgba(34, 211, 238, 0.6) !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6), 0 0 28px rgba(6, 182, 212, 0.28) !important;
+  transform: translateY(-3px) !important;
+}
+
+.floating-card-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-bottom: 0.65rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.floating-card-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.ping-indicator {
+  position: relative !important;
+  display: inline-block !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 9999px !important;
+  background-color: #22d3ee !important;
+}
+
+.ping-indicator::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px !important;
+  background-color: #22d3ee !important;
+  animation: pingAnimation 1.5s cubic-bezier(0, 0, 0.2, 1) infinite !important;
+}
+
+@keyframes pingAnimation {
+  75%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.badge-title {
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #22d3ee !important;
+}
+
+.btn-card-close {
+  background: transparent !important;
+  border: none !important;
+  color: #94a3b8 !important;
+  font-size: 0.85rem !important;
+  cursor: pointer !important;
+  padding: 2px 6px !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  line-height: 1 !important;
+}
+
+.btn-card-close:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.floating-card-body {
+  margin-top: 0.75rem !important;
+}
+
+.card-headline {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 0 0.25rem 0 !important;
+  letter-spacing: -0.2px !important;
+}
+
+.card-desc {
+  font-size: 0.78rem !important;
+  color: #94a3b8 !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+}
+
+.floating-card-actions {
+  margin-top: 1rem !important;
+  display: flex !important;
+  gap: 0.5rem !important;
+}
+
+.btn-activate-zerog {
+  flex: 1 !important;
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 0.65rem !important;
+  background: linear-gradient(135deg, #06b6d4 0%, #9333ea 100%) !important;
+  color: #ffffff !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35) !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+}
+
+.btn-activate-zerog:hover {
+  opacity: 0.92 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(147, 51, 234, 0.45) !important;
+}
+
+.btn-mix-zerog {
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 0.65rem !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+.btn-mix-zerog:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+@media (max-width: 768px) {
+  .floating-antigravity-card {
+    bottom: 140px !important;
+    right: 16px !important;
+    left: 16px !important;
+    width: auto !important;
+  }
+}
+
+/* ==========================================================================
+   ANTI-GRAVITY HERO BADGE
+   ========================================================================== */
+.hero-antigravity-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%) !important;
+  border: 1px solid rgba(34, 211, 238, 0.35) !important;
+  color: #67e8f9 !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.15) !important;
+  margin-bottom: 0.85rem !important;
+  width: fit-content !important;
+  user-select: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.hero-antigravity-badge:hover {
+  border-color: rgba(34, 211, 238, 0.6) !important;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+.hero-antigravity-badge .badge-icon {
+  font-size: 0.9rem !important;
+  display: inline-block !important;
+  animation: floatPlanet 3s ease-in-out infinite !important;
+}
+
+@keyframes floatPlanet {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(6deg);
+  }
+}
+
+
+
