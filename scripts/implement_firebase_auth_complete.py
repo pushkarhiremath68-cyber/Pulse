@@ -1,4 +1,7 @@
-/**
+import re
+
+# 1. Update src/firebaseClient.js with complete modular Firebase Auth (Email/Pass, Phone SMS with Recaptcha, Google, onAuthStateChanged)
+firebase_client_code = """/**
  * Pulse Music - Firebase Authentication & Cloud Firestore Engine
  * Project: pulse-music-app-68
  * Providers: Email/Password, Phone SMS (with OTP & Recaptcha), and Google Sign-In
@@ -313,3 +316,8 @@ if (typeof window !== 'undefined') {
     loadPlaylistsFromFirestore
   };
 }
+"""
+
+with open('src/firebaseClient.js', 'w', encoding='utf-8') as f:
+    f.write(firebase_client_code)
+print("[OK] Updated src/firebaseClient.js with complete Firebase Auth providers.")

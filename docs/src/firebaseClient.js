@@ -1,10 +1,23 @@
 /**
- * Pulse Music - Google Cloud & Firebase Engine
- * Project: pulse-music-app-68 (845940809877)
- * Handles Firebase Authentication (Google, Email/Password),
- * Cloud Firestore Realtime Sync (Playlists, Favorites, History),
- * and Cloud Storage media endpoints.
+ * Pulse Music - Firebase Authentication & Cloud Firestore Engine
+ * Project: pulse-music-app-68
+ * Providers: Email/Password, Phone SMS (with OTP & Recaptcha), and Google Sign-In
  */
+
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPhoneNumber,
+  RecaptchaVerifier,
+  onAuthStateChanged,
+  signOut,
+  updateProfile
+} from 'firebase/auth';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAWQx9wqglmoO0OPY7pmXy7we_qC6Btt4M",
@@ -15,108 +28,187 @@ export const firebaseConfig = {
   appId: "1:845940809877:web:23602883153d95133abb9c"
 };
 
-// Global reference fallback
-if (typeof window !== 'undefined') {
-  window.PULSE_FIREBASE_CONFIG = firebaseConfig;
-}
+// Initialize App
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const googleProvider = new GoogleAuthProvider();
+googleProvider.addScope('profile');
+googleProvider.addScope('email');
 
-let firebaseApp = null;
-let firebaseAuth = null;
-let firestoreDb = null;
-let googleAuthProvider = null;
+let recaptchaVerifierInstance = null;
+let phoneConfirmationResult = null;
 
-export async function initFirebase() {
-  if (firebaseApp) {
-    return { app: firebaseApp, auth: firebaseAuth, db: firestoreDb };
+/**
+ * 1. EMAIL & PASSWORD REGISTRATION
+ */
+export async function registerWithEmail(name, email, password) {
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    throw new Error('Please enter a valid email address.');
+  }
+  if (!password || password.length < 6) {
+    throw new Error('Password must be at least 6 characters.');
   }
 
-  try {
-    // 1. Try modern modular Firebase SDK if available
-    let fbApp, fbAuth, fbFirestore;
-    try {
-      fbApp = await import('firebase/app');
-      fbAuth = await import('firebase/auth');
-      fbFirestore = await import('firebase/firestore');
-    } catch (e) {
-      // Fallback to window/compat if dynamic import not available
-    }
+  const userCredential = await createUserWithEmailAndPassword(auth, email.trim(), password);
+  const user = userCredential.user;
 
-    if (fbApp && fbApp.initializeApp) {
-      firebaseApp = fbApp.getApps().length ? fbApp.getApp() : fbApp.initializeApp(firebaseConfig);
-      firebaseAuth = fbAuth.getAuth(firebaseApp);
-      firestoreDb = fbFirestore.getFirestore(firebaseApp);
-      googleAuthProvider = new fbAuth.GoogleAuthProvider();
-      console.log('[Pulse Firebase] Initialized with Google Cloud Project:', firebaseConfig.projectId);
-      return { app: firebaseApp, auth: firebaseAuth, db: firestoreDb };
-    }
-  } catch (err) {
-    console.warn('[Pulse Firebase Module Load Notice]:', err);
-  }
+  const displayName = name ? name.trim() : email.split('@')[0];
+  const avatarUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(displayName)}&backgroundColor=8b5cf6`;
 
-  // 2. Try window.firebase (compat CDN)
-  if (typeof window !== 'undefined' && window.firebase) {
-    try {
-      if (!window.firebase.apps.length) {
-        firebaseApp = window.firebase.initializeApp(firebaseConfig);
-      } else {
-        firebaseApp = window.firebase.app();
-      }
-      firebaseAuth = window.firebase.auth();
-      firestoreDb = window.firebase.firestore ? window.firebase.firestore() : null;
-      googleAuthProvider = new window.firebase.auth.GoogleAuthProvider();
-      console.log('[Pulse Firebase CDN] Initialized with Google Cloud Project:', firebaseConfig.projectId);
-      return { app: firebaseApp, auth: firebaseAuth, db: firestoreDb };
-    } catch (e) {
-      console.warn('[Pulse Firebase CDN Init]:', e);
-    }
-  }
+  await updateProfile(user, {
+    displayName: displayName,
+    photoURL: avatarUrl
+  });
 
-  return { app: null, auth: null, db: null };
+  const userData = {
+    id: user.uid,
+    name: displayName,
+    email: user.email,
+    avatar: avatarUrl,
+    provider: 'email',
+    token: await user.getIdToken()
+  };
+
+  await syncUserDoc(userData).catch(() => {});
+  return userData;
 }
 
 /**
- * Sign In / Sign Up using Google Popup
+ * 1. EMAIL & PASSWORD LOGIN
  */
-export async function signInWithGoogle() {
-  const { auth } = await initFirebase();
-  if (!auth) {
-    console.warn('[Pulse Firebase] Auth not initialized, falling back to local Google simulation.');
+export async function loginWithEmail(email, password) {
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    throw new Error('Please enter a valid email address.');
+  }
+  if (!password) {
+    throw new Error('Password is required.');
+  }
+
+  const userCredential = await signInWithEmailAndPassword(auth, email.trim(), password);
+  const user = userCredential.user;
+
+  const userData = {
+    id: user.uid,
+    name: user.displayName || user.email.split('@')[0],
+    email: user.email,
+    avatar: user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.displayName || 'User')}&backgroundColor=8b5cf6`,
+    provider: 'email',
+    token: await user.getIdToken()
+  };
+
+  await syncUserDoc(userData).catch(() => {});
+  return userData;
+}
+
+/**
+ * 2. PHONE NUMBER SMS AUTHENTICATION (Recaptcha + OTP)
+ */
+export function setupRecaptchaVerifier(containerId = 'recaptcha-container') {
+  try {
+    if (recaptchaVerifierInstance) {
+      recaptchaVerifierInstance.clear();
+      recaptchaVerifierInstance = null;
+    }
+
+    const container = document.getElementById(containerId);
+    if (!container) {
+      console.warn('[Pulse Phone Auth] Recaptcha container element not found:', containerId);
+      return null;
+    }
+
+    recaptchaVerifierInstance = new RecaptchaVerifier(auth, containerId, {
+      size: 'invisible',
+      callback: () => {
+        console.log('[Pulse Phone Auth] Recaptcha verified successfully.');
+      },
+      'expired-callback': () => {
+        console.warn('[Pulse Phone Auth] Recaptcha expired, resetting...');
+      }
+    });
+
+    return recaptchaVerifierInstance;
+  } catch (err) {
+    console.error('[Pulse Recaptcha Init Error]:', err);
     return null;
+  }
+}
+
+export async function sendPhoneOtp(fullPhoneNumber, containerId = 'recaptcha-container') {
+  const cleanPhone = (fullPhoneNumber || '').replace(/[\s-]/g, '').trim();
+  if (!cleanPhone || !/^\+[1-9]\d{6,14}$/.test(cleanPhone)) {
+    throw new Error('Please provide a valid international phone number with country code (e.g. +91 98765 43210 or +1 650 555 1234).');
+  }
+
+  const appVerifier = recaptchaVerifierInstance || setupRecaptchaVerifier(containerId);
+  if (!appVerifier) {
+    throw new Error('Recaptcha verification initialization failed. Please refresh the page.');
   }
 
   try {
-    // Try modular
-    const fbAuth = await import('firebase/auth').catch(() => null);
-    if (fbAuth && fbAuth.signInWithPopup) {
-      const provider = new fbAuth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      const result = await fbAuth.signInWithPopup(auth, provider);
-      const user = result.user;
-      return {
-        id: user.uid,
-        name: user.displayName || 'Google Listener',
-        email: user.email,
-        avatar: user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.displayName || 'User')}&backgroundColor=8b5cf6`,
-        provider: 'google',
-        token: await user.getIdToken()
-      };
+    phoneConfirmationResult = await signInWithPhoneNumber(auth, cleanPhone, appVerifier);
+    window.phoneConfirmationResult = phoneConfirmationResult;
+    console.log('[Pulse Phone Auth] SMS OTP dispatched successfully to:', cleanPhone);
+    return { success: true, phoneNumber: cleanPhone };
+  } catch (err) {
+    console.error('[Pulse Phone Auth Send OTP Error]:', err);
+    if (recaptchaVerifierInstance) {
+      try { recaptchaVerifierInstance.clear(); } catch(e) {}
+      recaptchaVerifierInstance = null;
     }
+    throw err;
+  }
+}
 
-    // Try compat
-    if (typeof window !== 'undefined' && window.firebase && window.firebase.auth) {
-      const provider = new window.firebase.auth.GoogleAuthProvider();
-      const result = await window.firebase.auth().signInWithPopup(provider);
-      const user = result.user;
-      return {
-        id: user.uid,
-        name: user.displayName || 'Google Listener',
-        email: user.email,
-        avatar: user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.displayName || 'User')}&backgroundColor=8b5cf6`,
-        provider: 'google',
-        token: await user.getIdToken()
-      };
-    }
+export async function verifyPhoneOtp(otpCode) {
+  const cleanCode = (otpCode || '').replace(/\s+/g, '').trim();
+  if (!cleanCode || cleanCode.length !== 6 || !/^\d{6}$/.test(cleanCode)) {
+    throw new Error('Please enter a valid 6-digit SMS verification code.');
+  }
+
+  const confirmation = phoneConfirmationResult || window.phoneConfirmationResult;
+  if (!confirmation || typeof confirmation.confirm !== 'function') {
+    throw new Error('No active verification session found. Please request a new OTP code.');
+  }
+
+  const result = await confirmation.confirm(cleanCode);
+  const user = result.user;
+  const phone = user.phoneNumber || 'Phone User';
+  const name = user.displayName || `Listener ${phone.slice(-4)}`;
+  const avatarUrl = `https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(phone)}&backgroundColor=10b981`;
+
+  const userData = {
+    id: user.uid,
+    name: name,
+    email: user.email || `${phone.replace('+', '')}@phone.pulse`,
+    phone: phone,
+    avatar: avatarUrl,
+    provider: 'phone',
+    token: await user.getIdToken()
+  };
+
+  await syncUserDoc(userData).catch(() => {});
+  return userData;
+}
+
+/**
+ * 3. GOOGLE SIGN-IN (with GoogleAuthProvider)
+ */
+export async function signInWithGoogle() {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+    const userData = {
+      id: user.uid,
+      name: user.displayName || 'Google Listener',
+      email: user.email,
+      avatar: user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.displayName || 'User')}&backgroundColor=8b5cf6`,
+      provider: 'google',
+      token: await user.getIdToken()
+    };
+
+    await syncUserDoc(userData).catch(() => {});
+    return userData;
   } catch (error) {
     console.error('[Pulse Firebase Google Sign-In Error]:', error);
     throw error;
@@ -124,208 +216,78 @@ export async function signInWithGoogle() {
 }
 
 /**
- * Sign Up with Email and Password
+ * 4. OBSERVE AUTH STATE ACROSS RESTARTS
  */
-export async function registerWithEmail(name, email, password) {
-  const { auth, db } = await initFirebase();
-  if (!auth) throw new Error('Firebase Auth unavailable');
-
-  try {
-    const fbAuth = await import('firebase/auth').catch(() => null);
-    if (fbAuth && fbAuth.createUserWithEmailAndPassword) {
-      const res = await fbAuth.createUserWithEmailAndPassword(auth, email, password);
-      if (name && fbAuth.updateProfile) {
-        await fbAuth.updateProfile(res.user, {
-          displayName: name,
-          photoURL: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`
-        });
-      }
-      const token = await res.user.getIdToken();
+export function listenAuthState(callback) {
+  return onAuthStateChanged(auth, async (user) => {
+    if (user) {
       const userData = {
-        id: res.user.uid,
-        name: name || email.split('@')[0],
-        email: email,
-        avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`,
-        provider: 'email',
-        token: token
+        id: user.uid,
+        name: user.displayName || (user.email ? user.email.split('@')[0] : `Listener ${user.phoneNumber?.slice(-4) || ''}`),
+        email: user.email || (user.phoneNumber ? `${user.phoneNumber.replace('+', '')}@phone.pulse` : ''),
+        phone: user.phoneNumber || null,
+        avatar: user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.displayName || user.email || 'User')}&backgroundColor=8b5cf6`,
+        provider: user.providerData && user.providerData[0] ? user.providerData[0].providerId : 'firebase',
+        token: await user.getIdToken().catch(() => '')
       };
-
-      // Sync user doc to Firestore
-      syncUserDoc(userData).catch(() => {});
-      return userData;
+      if (typeof callback === 'function') callback(userData);
+    } else {
+      if (typeof callback === 'function') callback(null);
     }
-
-    if (window.firebase && window.firebase.auth) {
-      const res = await window.firebase.auth().createUserWithEmailAndPassword(email, password);
-      if (name) {
-        await res.user.updateProfile({
-          displayName: name,
-          photoURL: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`
-        });
-      }
-      const token = await res.user.getIdToken();
-      const userData = {
-        id: res.user.uid,
-        name: name || email.split('@')[0],
-        email: email,
-        avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`,
-        provider: 'email',
-        token: token
-      };
-      syncUserDoc(userData).catch(() => {});
-      return userData;
-    }
-  } catch (err) {
-    console.error('[Pulse Firebase Register Error]:', err);
-    throw err;
-  }
+  });
 }
 
 /**
- * Sign In with Email and Password
- */
-export async function loginWithEmail(email, password) {
-  const { auth } = await initFirebase();
-  if (!auth) throw new Error('Firebase Auth unavailable');
-
-  try {
-    const fbAuth = await import('firebase/auth').catch(() => null);
-    if (fbAuth && fbAuth.signInWithEmailAndPassword) {
-      const res = await fbAuth.signInWithEmailAndPassword(auth, email, password);
-      const user = res.user;
-      const token = await user.getIdToken();
-      return {
-        id: user.uid,
-        name: user.displayName || email.split('@')[0],
-        email: user.email,
-        avatar: user.photoURL || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`,
-        provider: 'email',
-        token: token
-      };
-    }
-
-    if (window.firebase && window.firebase.auth) {
-      const res = await window.firebase.auth().signInWithEmailAndPassword(email, password);
-      const user = res.user;
-      const token = await user.getIdToken();
-      return {
-        id: user.uid,
-        name: user.displayName || email.split('@')[0],
-        email: user.email,
-        avatar: user.photoURL || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(email)}`,
-        provider: 'email',
-        token: token
-      };
-    }
-  } catch (err) {
-    console.error('[Pulse Firebase Login Error]:', err);
-    throw err;
-  }
-}
-
-/**
- * Sign Out
+ * SIGN OUT
  */
 export async function signOutFirebase() {
-  const { auth } = await initFirebase();
-  if (!auth) return;
-  try {
-    const fbAuth = await import('firebase/auth').catch(() => null);
-    if (fbAuth && fbAuth.signOut) {
-      await fbAuth.signOut(auth);
-    } else if (window.firebase && window.firebase.auth) {
-      await window.firebase.auth().signOut();
-    }
-  } catch (e) {
-    console.warn('[Pulse Firebase SignOut Notice]:', e);
-  }
+  await signOut(auth).catch(e => console.warn('[Pulse SignOut Notice]:', e));
 }
 
 /**
- * Sync user profile to Firestore
+ * FIRESTORE SYNC HELPERS
  */
 export async function syncUserDoc(user) {
-  if (!user || !user.email) return;
+  if (!user || (!user.email && !user.id)) return;
   try {
-    const { db } = await initFirebase();
-    if (!db) return;
-
-    const fbFirestore = await import('firebase/firestore').catch(() => null);
-    if (fbFirestore && fbFirestore.doc && fbFirestore.setDoc) {
-      const userRef = fbFirestore.doc(db, 'users', user.email.toLowerCase());
-      await fbFirestore.setDoc(userRef, {
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-        provider: user.provider || 'email',
-        last_active: new Date().toISOString()
-      }, { merge: true });
-      console.log('[Pulse Firestore] User document synced for:', user.email);
-    } else if (window.firebase && window.firebase.firestore) {
-      await window.firebase.firestore().collection('users').doc(user.email.toLowerCase()).set({
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-        provider: user.provider || 'email',
-        last_active: new Date().toISOString()
-      }, { merge: true });
-    }
+    const docId = (user.email || user.id).toLowerCase();
+    const userRef = doc(db, 'users', docId);
+    await setDoc(userRef, {
+      name: user.name,
+      email: user.email,
+      phone: user.phone || null,
+      avatar: user.avatar,
+      provider: user.provider || 'firebase',
+      last_active: new Date().toISOString()
+    }, { merge: true });
+    console.log('[Pulse Firestore] User document synced for:', docId);
   } catch (err) {
     console.warn('[Pulse Firestore User Sync]:', err);
   }
 }
 
-/**
- * Save user playlists to Cloud Firestore
- */
-export async function savePlaylistsToFirestore(email, playlists) {
-  if (!email) return;
+export async function savePlaylistsToFirestore(userId, playlists) {
+  if (!userId) return;
   try {
-    const { db } = await initFirebase();
-    if (!db) return;
-
-    const fbFirestore = await import('firebase/firestore').catch(() => null);
-    if (fbFirestore && fbFirestore.doc && fbFirestore.setDoc) {
-      const playlistRef = fbFirestore.doc(db, 'user_playlists', email.toLowerCase());
-      await fbFirestore.setDoc(playlistRef, {
-        email: email.toLowerCase(),
-        playlists: playlists || [],
-        updated_at: new Date().toISOString()
-      }, { merge: true });
-    } else if (window.firebase && window.firebase.firestore) {
-      await window.firebase.firestore().collection('user_playlists').doc(email.toLowerCase()).set({
-        email: email.toLowerCase(),
-        playlists: playlists || [],
-        updated_at: new Date().toISOString()
-      }, { merge: true });
-    }
+    const playlistRef = doc(db, 'user_playlists', userId.toLowerCase());
+    await setDoc(playlistRef, {
+      user_id: userId.toLowerCase(),
+      playlists: playlists || [],
+      updated_at: new Date().toISOString()
+    }, { merge: true });
   } catch (e) {
     console.warn('[Pulse Firestore Save Playlists]:', e);
   }
 }
 
-/**
- * Load user playlists from Cloud Firestore
- */
-export async function loadPlaylistsFromFirestore(email) {
-  if (!email) return [];
+export async function loadPlaylistsFromFirestore(userId) {
+  if (!userId) return [];
   try {
-    const { db } = await initFirebase();
-    if (!db) return [];
-
-    const fbFirestore = await import('firebase/firestore').catch(() => null);
-    if (fbFirestore && fbFirestore.doc && fbFirestore.getDoc) {
-      const playlistRef = fbFirestore.doc(db, 'user_playlists', email.toLowerCase());
-      const snap = await fbFirestore.getDoc(playlistRef);
-      if (snap.exists()) {
-        const data = snap.data();
-        return data.playlists || [];
-      }
-    } else if (window.firebase && window.firebase.firestore) {
-      const doc = await window.firebase.firestore().collection('user_playlists').doc(email.toLowerCase()).get();
-      if (doc.exists) {
-        return doc.data().playlists || [];
-      }
+    const playlistRef = doc(db, 'user_playlists', userId.toLowerCase());
+    const snap = await getDoc(playlistRef);
+    if (snap.exists()) {
+      const data = snap.data();
+      return data.playlists || [];
     }
   } catch (e) {
     console.warn('[Pulse Firestore Load Playlists]:', e);
@@ -333,14 +295,20 @@ export async function loadPlaylistsFromFirestore(email) {
   return [];
 }
 
-// Auto-initialize when running in browser
+// Global Export
 if (typeof window !== 'undefined') {
   window.PulseFirebase = {
-    init: initFirebase,
-    signInWithGoogle,
+    auth,
+    db,
     registerWithEmail,
     loginWithEmail,
+    setupRecaptchaVerifier,
+    sendPhoneOtp,
+    verifyPhoneOtp,
+    signInWithGoogle,
+    listenAuthState,
     signOutFirebase,
+    syncUserDoc,
     savePlaylistsToFirestore,
     loadPlaylistsFromFirestore
   };
