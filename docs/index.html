@@ -2129,8 +2129,8 @@
 
   <!-- YOUTUBE BACKGROUND AUDIO STREAMING ENGINE -->
   <div id="hidden-youtube-container" style="position: fixed; bottom: -500px; right: -500px; width: 240px; height: 240px; z-index: -999; opacity: 1; pointer-events: none; visibility: visible;">
-    <div id="youtube-player-iframe"></div>
-    <div id="youtube-fallback-container"></div>
+    
+    
   </div>
 
   <!-- HIGH FIDELITY HTML5 BACKGROUND AUDIO ENGINE (Works with screen locked / off) -->
@@ -2138,8 +2138,6 @@
   <audio id="bg-audio-keepalive" loop playsinline webkit-playsinline preload="auto" style="display:none;"></audio>
 
   <!-- OFFICIAL YOUTUBE IFRAME PLAYER API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-
   <!-- YOUTUBE API INIT (must run BEFORE module scripts to catch the callback) -->
   <script>
     (function() {
@@ -2154,77 +2152,6 @@
           return originalOpen.apply(window, arguments);
         };
       } catch (e) {}
-
-      window._ytPlayerReady = false;
-      window._ytPlayerInstance = null;
-
-      function createYTPlayerEarly() {
-        if (window._ytPlayerInstance) return; // Already created
-        var playerDiv = document.getElementById('youtube-player-iframe');
-        if (!playerDiv) return;
-
-        window._ytPlayerInstance = new window.YT.Player('youtube-player-iframe', {
-          height: '120',
-          width: '200',
-          playerVars: {
-            autoplay: 0,
-            controls: 0,
-            disablekb: 1,
-            fs: 0,
-            rel: 0,
-            playsinline: 1,
-            showinfo: 0,
-            enablejsapi: 1,
-            iv_load_policy: 3,
-            modestbranding: 1,
-            cc_load_policy: 0,
-            origin: window.location.origin
-          },
-          events: {
-            onReady: function() {
-              window._ytPlayerReady = true;
-              console.log('[Pulse] YouTube Player API ready (Ad-Free Engine Active)');
-              if (typeof window._onYTPlayerCreated === 'function') {
-                window._onYTPlayerCreated(window._ytPlayerInstance);
-              }
-            },
-            onStateChange: function(event) {
-              if (window._ytPlayerInstance) {
-                try {
-                  // Automatic Ad-Skipper & Muter
-                  var videoData = (typeof window._ytPlayerInstance.getVideoData === 'function') ? window._ytPlayerInstance.getVideoData() : null;
-                  var dur = (typeof window._ytPlayerInstance.getDuration === 'function') ? window._ytPlayerInstance.getDuration() : 0;
-                  
-                  // Detect ad state or short promo clip (< 30s)
-                  if ((videoData && videoData.isAd) || (dur > 0 && dur <= 30 && videoData && videoData.title && videoData.title.toLowerCase().includes('ad'))) {
-                    window._ytPlayerInstance.mute();
-                    if (typeof window._ytPlayerInstance.seekTo === 'function') {
-                      window._ytPlayerInstance.seekTo(dur, true);
-                    }
-                  } else if (event.data === 1) {
-                    window._ytPlayerInstance.unMute();
-                    window._ytPlayerInstance.setVolume(100);
-                  }
-                } catch(e) {}
-              }
-              if (typeof window._onYTStateChange === 'function') {
-                window._onYTStateChange(event);
-              }
-            },
-            onError: function(event) {
-              console.error('[Pulse] YouTube Player notice:', event.data);
-              if (typeof window._onYTError === 'function') {
-                window._onYTError(event);
-              }
-            }
-          }
-        });
-      }
-
-      window.onYouTubeIframeAPIReady = function() {
-        console.log('[Pulse] YouTube IFrame API loaded');
-        createYTPlayerEarly();
-      };
 
       // Splash screen remover
       function forceRemoveSplash() {
