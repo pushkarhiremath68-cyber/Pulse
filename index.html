@@ -3,70 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Pulse - Free Music Streaming by Pushkar Hiremath</title>
-  <meta name="description" content="Listen to millions of free songs in English, Hindi, Spanish, Punjabi & more on Pulse by Pushkar Hiremath. Premium web music experience with live search, video player, visualizers & lyrics.">
-  
-  <script>
-    // Force purge old PWA caches and localStorage demo tracks immediately
-    (function() {
-      try {
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for (var i = 0; i < registrations.length; i++) {
-              registrations[i].update();
-            }
-          });
-        }
-        if ('caches' in window) {
-          caches.keys().then(function(names) {
-            names.forEach(function(name) {
-              if (!name.includes('v30-clean')) {
-                caches.delete(name);
-              }
-            });
-          });
-        }
-        var keysToPurge = [
-          'pulse_history',
-          'pulse_liked_tracks',
-          'pulse_playback_state_v2',
-          'pulse_playback_state',
-          'pulse_custom_admin_tracks',
-          'pulse_user_playlists'
-        ];
-        if (!localStorage.getItem('pulse_v3_clean_purge_done')) {
-          keysToPurge.forEach(function(k) { localStorage.removeItem(k); });
-          localStorage.setItem('pulse_v3_clean_purge_done', 'true');
-        }
-      } catch (e) {}
-    })();
-  </script>
+  <title>Pulse - Free Music Streaming</title>
+  <meta name="description" content="Listen to millions of free streamable songs worldwide on Pulse with instant search and high-fidelity audio playback.">
   
   <!-- PWA & Mobile Meta -->
   <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#8b5cf6">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Pulse Music">
   <link rel="icon" type="image/png" href="./public/icons/icon-192.png">
-  <link rel="apple-touch-icon" href="./public/icons/icon-192.png">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-
-  <!-- Supabase JS Client Library -->
-  <!-- Google Cloud & Firebase SDKs -->
-  <link rel="stylesheet" href="./src/style.css?v=2.5.0">
+  <link rel="stylesheet" href="./src/style.css">
   <style>
     :root { color-scheme: dark; }
     html, body {
@@ -76,23 +29,9 @@
       padding: 0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    .brand-logo-img { width: 42px !important; height: 42px !important; object-fit: contain; }
-    .titlebar-icon { width: 18px !important; height: 18px !important; }
   </style>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <!-- Pulse High-Fidelity Audio Engine & Gemini AI Music Suite -->
-  </head>
+</head>
 <body>
-<!-- Splash Screen Disabled Temporarily for Direct Interactive Load -->
-  <!--
-  <div id="splash-screen" class="splash-screen">
-    <div class="splash-content">
-      <img src="./public/icons/icon-512.png" alt="Pulse Music" class="splash-icon">
-      <h1>Pulse Music</h1>
-      <p>by Pushkar Hiremath</p>
-    </div>
-  </div>
-  -->
 
   <!-- MAIN APP CONTAINER -->
   <div id="app" class="app-container">
@@ -101,82 +40,53 @@
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-logo">
-          <img src="./pulse-logo.png" alt="Pulse Logo" class="brand-logo-img">
+          <img src="./pulse-logo.png" alt="Pulse Logo" class="brand-logo-img" style="width: 42px; height: 42px; object-fit: contain;">
         </div>
         <div class="brand-text">
           <span class="brand-name">PULSE</span>
-          <span class="brand-creator">By Pushkar Hiremath</span>
+          <span class="brand-badge">STUDIO</span>
         </div>
       </div>
 
+      <!-- MAIN NAVIGATION -->
       <nav class="nav-menu">
-        <a href="#" class="nav-item active" data-view="home">
-          <i class="fa-solid fa-house"></i>
-          <span>Home</span>
-        </a>
-        <a href="#" class="nav-item" data-view="search-view">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <span>Search Songs</span>
-        </a>
-        <a href="#" class="nav-item nav-item-gemini" id="nav-gemini-dj" onclick="window.openGeminiDjModal(); return false;">
-          <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
-          <span>Gemini AI DJ</span>
-          <span class="badge-ai-pill">AI</span>
-        </a>
-        <a href="#" class="nav-item" data-view="liked">
-          <i class="fa-solid fa-heart"></i>
-          <span>Liked Songs</span>
-        </a>
-        <a href="#" class="nav-item" data-view="history">
-          <i class="fa-solid fa-clock-rotate-left"></i>
-          <span>Recently Played</span>
-        </a>
-        <a href="#" id="sidebar-admin-link" class="nav-item hidden" data-view="admin-upload">
-          <i class="fa-solid fa-shield-halved text-accent"></i>
-          <span>Admin Studio</span>
-        </a>
+        <div class="nav-section">
+          <span class="nav-section-title">DISCOVER</span>
+          <a href="javascript:void(0)" class="nav-item active" data-view="home" onclick="window.switchView('home')">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-view="search-view" onclick="window.switchView('search-view')">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Search</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-view="library" onclick="window.switchView('library')">
+            <i class="fa-solid fa-bookmark"></i>
+            <span>Your Library</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <span class="nav-section-title">YOUR PLAYLISTS</span>
+          <a href="javascript:void(0)" class="nav-item" onclick="window.switchView('library')">
+            <i class="fa-solid fa-heart text-accent"></i>
+            <span>Liked Songs</span>
+          </a>
+        </div>
       </nav>
 
-      <div class="sidebar-divider"></div>
-
-      <!-- APP DOWNLOAD / INSTALL PWA BUTTON -->
-      <div class="install-app-card">
-        <div class="install-card-content">
-          <i class="fa-solid fa-cloud-arrow-down install-card-icon"></i>
-          <div>
-            <strong>Pulse Music App</strong>
-            <small>Download for PC & Phone</small>
-          </div>
-        </div>
-        <button id="sidebar-install-app-btn" class="btn-install-sidebar" onclick="window.openDownloadModal()">
-          <i class="fa-solid fa-download"></i> Download App
-        </button>
-      </div>
-
-      <div class="sidebar-divider"></div>
-
-      <div class="playlists-header">
-        <span>YOUR PLAYLISTS</span>
-        <button id="btn-create-playlist" class="btn-icon-small" title="Create Playlist">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-      </div>
-
-      <div id="user-playlists-list" class="playlists-list">
-        <!-- Dynamic playlists populated here -->
-      </div>
-
+      <!-- SIDEBAR FOOTER -->
       <div class="sidebar-footer">
-        <div class="creator-badge">
-          <i class="fa-solid fa-bolt"></i>
-          <div>
-            <strong>Pulse Music Engine</strong>
-            <small>Designed by Pushkar Hiremath</small>
+        <div class="app-download-card">
+          <div class="download-card-icon">
+            <i class="fa-solid fa-download"></i>
           </div>
+          <div class="download-card-text">
+            <strong>Pulse Desktop & Mobile</strong>
+            <p>Download our cross-platform app for free.</p>
+          </div>
+          <button class="btn-download-app" onclick="window.openDownloadModal()">Install App</button>
         </div>
-        <a href="#admin" onclick="window.switchView('admin-upload'); return false;" class="admin-footer-link" style="display:flex; align-items:center; gap:0.4rem; margin-top:0.65rem; padding:0 0.5rem; font-size:0.75rem; color:var(--text-muted); text-decoration:none; opacity:0.7; transition:opacity 0.2s;">
-          <i class="fa-solid fa-lock" style="font-size:0.7rem;"></i> <span>Admin Portal</span>
-        </a>
       </div>
     </aside>
 
@@ -185,14 +95,14 @@
       <!-- HEADER BAR -->
       <header class="top-header">
         <div class="header-nav-btns">
-          <button id="btn-back" class="btn-circle-nav"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="btn-forward" class="btn-circle-nav"><i class="fa-solid fa-chevron-right"></i></button>
+          <button id="btn-back" class="btn-circle-nav" onclick="window.history.back()"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="btn-forward" class="btn-circle-nav" onclick="window.history.forward()"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
 
         <div class="search-box-container">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          <input type="text" id="global-search-input" placeholder="Search any song (English, Hindi, Spanish, Punjabi, K-Pop)..." autocomplete="off" oninput="window.executeSearch(this.value, true)">
-          <button id="clear-search-btn" class="clear-search hidden" onclick="const i=document.getElementById('global-search-input'); if(i) i.value=''; window.executeSearch('', false);"><i class="fa-solid fa-xmark"></i></button><i class="fa-solid fa-xmark"></i></button>
+          <input type="text" id="global-search-input" placeholder="Search any song, artist, or album worldwide..." autocomplete="off" oninput="window.executeSearch(this.value, true)">
+          <button id="clear-search-btn" class="clear-search hidden" onclick="const i=document.getElementById('global-search-input'); if(i) i.value=''; window.executeSearch('', false);"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
         <div class="header-actions">
@@ -214,8 +124,6 @@
         </div>
       </header>
 
-
-
       <!-- VIEW CONTAINERS -->
 
       <!-- VIEW 1: HOME -->
@@ -224,14 +132,13 @@
         <section class="hero-banner" id="hero-banner">
           <div class="hero-bg-overlay"></div>
           <div class="hero-content">
-            <div class="hero-badge"><i class="fa-solid fa-fire"></i> MULTI-LINGUAL MUSIC ENGINE</div>
-            <h2 id="hero-title" class="hero-title">Unlimited Free Music Worldwide</h2>
-            <p id="hero-subtitle" class="hero-subtitle">Search, discover, and stream millions of songs in high-fidelity audio with Gemini AI DJ, synchronized lyrics, and personalized playlists.</p>
+            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> STREAMING AUDIO ENGINE</div>
+            <h2 id="hero-title" class="hero-title">Unlimited Free Music Discovery</h2>
+            <p id="hero-subtitle" class="hero-subtitle">Search, discover, and stream millions of tracks instantly with real-time multi-source streaming.</p>
             <div class="hero-actions">
               <button id="hero-play-btn" class="btn-primary-play" onclick="window.switchView('search-view')">
-                <i class="fa-solid fa-magnifying-glass"></i> Search Songs
+                <i class="fa-solid fa-magnifying-glass"></i> Start Searching
               </button>
-              
               <button id="hero-download-app-btn" class="btn-secondary-install" onclick="window.openDownloadModal()">
                 <i class="fa-solid fa-download"></i> Download App
               </button>
@@ -249,1799 +156,278 @@
           </div>
           <div class="feature-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
             
-            <div class="feature-action-card" onclick="window.switchView('search-view')" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 0.85rem;" onmouseover="this.style.borderColor='rgba(168,85,247,0.4)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.borderColor='var(--border-glass)'; this.style.transform='none';">
-              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); display: flex; align-items: center; justify-content: center; color: #c084fc; font-size: 1.3rem;">
+            <div class="feature-action-card" onclick="window.switchView('search-view')" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease;">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(168,85,247,0.15); display: flex; align-items: center; justify-content: center; color: #c084fc; font-size: 1.3rem; margin-bottom: 1rem;">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </div>
-              <div>
-                <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Instant Music Search</h4>
-                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">Search any song, album, or track worldwide with real-time multi-source streaming.</p>
-              </div>
-              <span style="font-size: 0.8rem; font-weight: 700; color: #c084fc; display: flex; align-items: center; gap: 0.4rem; margin-top: auto;">Explore Search <i class="fa-solid fa-arrow-right"></i></span>
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Instant Music Search</h4>
+              <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">Search any song, artist, or album worldwide with real-time multi-source streaming.</p>
             </div>
 
+            <div class="feature-action-card" onclick="window.switchView('library')" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease;">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(239,68,68,0.15); display: flex; align-items: center; justify-content: center; color: #f87171; font-size: 1.3rem; margin-bottom: 1rem;">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Your Music Library</h4>
+              <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">Access your saved tracks, favorite playlists, and recently played songs.</p>
+            </div>
+
+            <div class="feature-action-card" onclick="window.openDownloadModal()" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; cursor: pointer; transition: all 0.25s ease;">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(59,130,246,0.15); display: flex; align-items: center; justify-content: center; color: #60a5fa; font-size: 1.3rem; margin-bottom: 1rem;">
+                <i class="fa-solid fa-download"></i>
+              </div>
+              <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Install Desktop & Mobile App</h4>
+              <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">Install Pulse Music directly on Windows, macOS, Android, or iOS with one click.</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- TOP DISCOVERIES SECTION -->
+        <section class="music-shelf-section">
+          <div class="shelf-header">
+            <div>
+              <h3 class="shelf-title">Popular Discoveries</h3>
+              <p class="shelf-subtitle">Click any track to start streaming live audio instantly</p>
+            </div>
+          </div>
+          <div class="shelf-carousel" id="popular-tracks-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem;">
             
-        </section>
+            <div class="music-card" onclick="window.playSpecificTrack('rec-1')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg" alt="Starboy" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Starboy</span>
+                <span class="card-artist">The Weeknd</span>
+              </div>
+            </div>
 
-        <!-- TOP CATALOG GENRE FILTER BAR (CHIP SELECTOR) -->
-        <div class="catalog-filter-chip-bar" id="catalog-chip-bar">
-          <button class="chip-btn active" data-category="all" onclick="window.selectCatalogCategory('all', this)">
-            <i class="fa-solid fa-sparkles"></i> All
-          </button>
-          <button class="chip-btn" data-category="recommended" onclick="window.selectCatalogCategory('recommended', this)">
-            <i class="fa-solid fa-wand-magic-sparkles" style="color:#e879f9;"></i> For You
-          </button>
-          <button class="chip-btn" data-category="nineties" onclick="window.selectCatalogCategory('nineties', this)">
-            <i class="fa-solid fa-record-vinyl" style="color:#f59e0b;"></i> 90s Golden Hits
-          </button>
-          <button class="chip-btn" data-category="hollywood" onclick="window.selectCatalogCategory('hollywood', this)">
-            <i class="fa-solid fa-clapperboard" style="color:#38bdf8;"></i> Hollywood Hits
-          </button>
-          <button class="chip-btn" data-category="bollywood_evergreen" onclick="window.selectCatalogCategory('bollywood_evergreen', this)">
-            <i class="fa-solid fa-compact-disc" style="color:#ec4899;"></i> Bollywood Hits
-          </button>
-          <button class="chip-btn" data-category="punjabi_chartbusters" onclick="window.selectCatalogCategory('punjabi_chartbusters', this)">
-            <i class="fa-solid fa-guitar" style="color:#eab308;"></i> Punjabi Beats
-          </button>
-          <button class="chip-btn" data-category="trending" onclick="window.selectCatalogCategory('trending', this)">
-            <i class="fa-solid fa-fire" style="color:#f97316;"></i> Trending
-          </button>
-          <button class="chip-btn" data-category="pop" onclick="window.selectCatalogCategory('pop', this)">
-            <i class="fa-solid fa-earth-americas" style="color:#3b82f6;"></i> English Pop
-          </button>
-          <button class="chip-btn" data-category="electronic" onclick="window.selectCatalogCategory('electronic', this)">
-            <i class="fa-solid fa-bolt-lightning" style="color:#a855f7;"></i> EDM & Dance
-          </button>
-          <button class="chip-btn" data-category="lofi" onclick="window.selectCatalogCategory('lofi', this)">
-            <i class="fa-solid fa-headphones-simple" style="color:#10b981;"></i> Lo-Fi Chill
-          </button>
-          <button class="chip-btn" data-category="rock" onclick="window.selectCatalogCategory('rock', this)">
-            <i class="fa-solid fa-guitar" style="color:#ef4444;"></i> Rock & Indie
-          </button>
-          <button class="chip-btn" data-category="ambient" onclick="window.selectCatalogCategory('ambient', this)">
-            <i class="fa-solid fa-film" style="color:#06b6d4;"></i> Ambient & Score
-          </button>
-        </div>
+            <div class="music-card" onclick="window.playSpecificTrack('rec-2')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg" alt="Kesariya" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Kesariya</span>
+                <span class="card-artist">Arijit Singh</span>
+              </div>
+            </div>
 
-        <!-- DYNAMIC RECENTLY PLAYED SECTION -->
-        <section class="music-section hidden" id="section-recently-played">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-clock-rotate-left text-accent"></i> Recently Played</h3>
-            <button class="see-all-link" onclick="window.switchView('history')">View History</button>
-          </div>
-          <div id="grid-recently-played" class="music-cards-grid"></div>
-        </section>
+            <div class="music-card" onclick="window.playSpecificTrack('rec-3')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg" alt="Lover" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-title">Lover</span>
+                <span class="card-artist">Diljit Dosanjh</span>
+              </div>
+            </div>
 
-        <!-- TOP ARTISTS SPOTLIGHT ROW -->
-        <section class="artists-spotlight-section" id="artists-spotlight-section" style="margin-bottom: 2.25rem;">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-users-line text-accent"></i> Top Artists Spotlight</h3>
-            <span style="font-size: 0.8rem; color: var(--text-muted);">Explore discographies & popular tracks</span>
-          </div>
-          <div id="artists-spotlight-container" class="artists-scroll-row">
-            <div class="artist-circle-card" onclick="window.openArtistProfile('Arijit Singh')" title="Explore Arijit Singh">
-              <div class="artist-circle-avatar-wrap">
-                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" alt="Arijit Singh" class="artist-circle-avatar">
-                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+            <div class="music-card" onclick="window.playSpecificTrack('rec-4')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg" alt="Cruel Summer" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
               </div>
-              <div class="artist-circle-name">Arijit Singh</div>
-              <div class="artist-circle-genre">Bollywood & Romantic</div>
-              <div class="artist-circle-listens">4.8M Listens</div>
-            </div>
-            <div class="artist-circle-card" onclick="window.openArtistProfile('The Weeknd')" title="Explore The Weeknd">
-              <div class="artist-circle-avatar-wrap">
-                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&auto=format&fit=crop&q=80" alt="The Weeknd" class="artist-circle-avatar">
-                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+              <div class="card-meta">
+                <span class="card-title">Cruel Summer</span>
+                <span class="card-artist">Taylor Swift</span>
               </div>
-              <div class="artist-circle-name">The Weeknd</div>
-              <div class="artist-circle-genre">Pop & R&B</div>
-              <div class="artist-circle-listens">5.2M Listens</div>
             </div>
-            <div class="artist-circle-card" onclick="window.openArtistProfile('Diljit Dosanjh')" title="Explore Diljit Dosanjh">
-              <div class="artist-circle-avatar-wrap">
-                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" alt="Diljit Dosanjh" class="artist-circle-avatar">
-                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+
+            <div class="music-card" onclick="window.playSpecificTrack('90s-1')">
+              <div class="card-image-wrapper">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/46/58/97/465897ed-fe10-e218-4cac-02c69ca36ad0/191773207717.jpg/600x600bb.jpg" alt="Tujhe Dekha Toh" class="card-image">
+                <div class="card-play-overlay">
+                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                </div>
               </div>
-              <div class="artist-circle-name">Diljit Dosanjh</div>
-              <div class="artist-circle-genre">Punjabi & Pop</div>
-              <div class="artist-circle-listens">3.9M Listens</div>
-            </div>
-            <div class="artist-circle-card" onclick="window.openArtistProfile('Taylor Swift')" title="Explore Taylor Swift">
-              <div class="artist-circle-avatar-wrap">
-                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&auto=format&fit=crop&q=80" alt="Taylor Swift" class="artist-circle-avatar">
-                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
+              <div class="card-meta">
+                <span class="card-title">Tujhe Dekha Toh</span>
+                <span class="card-artist">Kumar Sanu</span>
               </div>
-              <div class="artist-circle-name">Taylor Swift</div>
-              <div class="artist-circle-genre">Pop & Country</div>
-              <div class="artist-circle-listens">6.1M Listens</div>
             </div>
-            <div class="artist-circle-card" onclick="window.openArtistProfile('Ed Sheeran')" title="Explore Ed Sheeran">
-              <div class="artist-circle-avatar-wrap">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&auto=format&fit=crop&q=80" alt="Ed Sheeran" class="artist-circle-avatar">
-                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
-              </div>
-              <div class="artist-circle-name">Ed Sheeran</div>
-              <div class="artist-circle-genre">Acoustic & Pop</div>
-              <div class="artist-circle-listens">4.4M Listens</div>
-            </div>
-            <div class="artist-circle-card" onclick="window.openArtistProfile('Karan Aujla')" title="Explore Karan Aujla">
-              <div class="artist-circle-avatar-wrap">
-                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" alt="Karan Aujla" class="artist-circle-avatar">
-                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
-              </div>
-              <div class="artist-circle-name">Karan Aujla</div>
-              <div class="artist-circle-genre">Punjabi & Hip-Hop</div>
-              <div class="artist-circle-listens">2.8M Listens</div>
-            </div>
-            <div class="artist-circle-card" onclick="window.openArtistProfile('Alan Walker')" title="Explore Alan Walker">
-              <div class="artist-circle-avatar-wrap">
-                <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&auto=format&fit=crop&q=80" alt="Alan Walker" class="artist-circle-avatar">
-                <div class="artist-circle-badge"><i class="fa-solid fa-check"></i></div>
-              </div>
-              <div class="artist-circle-name">Alan Walker</div>
-              <div class="artist-circle-genre">EDM & Electro</div>
-              <div class="artist-circle-listens">3.5M Listens</div>
-            </div>
+
           </div>
         </section>
-
-        <!-- DYNAMIC MULTI-CATEGORY CATALOG CONTAINER (HORIZONTAL ROWS WITH SEE ALL) -->
-        <div id="catalog-categories-container">
-          
-          <!-- ROW 1: RECOMMENDED / FOR YOU -->
-          <section class="category-horizontal-row" id="category-row-recommended">
-            <div class="category-row-header">
-              <div class="category-row-title">
-                <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(232,121,249,0.15); border: 1px solid rgba(232,121,249,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #e879f9;">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-                <div>
-                  <h3>Songs You Will Love</h3>
-                  <p>Curated picks tailored to your musical taste & mood</p>
-                </div>
-              </div>
-              <button class="see-all-link" onclick="window.openGenreGridView('recommended')">
-                <span>See All</span> <i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i>
-              </button>
-            </div>
-            <div class="category-row-scroll-wrap">
-              <div class="music-card" onclick="window.playSpecificTrack('rec-1')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/c0/1d/b2c01d38-2798-1bce-e6f3-8d0959ca51dd/23UMGIM22528.rgb.jpg/600x600bb.jpg" alt="Starboy" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Starboy"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Starboy</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('The Weeknd')">The Weeknd, Daft Punk</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('rec-2')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg" alt="Kesariya" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Kesariya"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Kesariya</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Arijit Singh')">Arijit Singh, Pritam</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('rec-3')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg" alt="Lover" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Lover"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Lover</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Diljit Dosanjh')">Diljit Dosanjh</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('rec-4')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg" alt="Cruel Summer" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Cruel Summer"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Cruel Summer</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Taylor Swift')">Taylor Swift</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- ROW 2: TOP 90S GOLDEN HITS -->
-          <section class="category-horizontal-row" id="category-row-nineties">
-            <div class="category-row-header">
-              <div class="category-row-title">
-                <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #f59e0b;">
-                  <i class="fa-solid fa-record-vinyl"></i>
-                </div>
-                <div>
-                  <h3>Top 90s Golden Hits & Nostalgia</h3>
-                  <p>Timeless 90s Bollywood classics & iconic international anthems</p>
-                </div>
-              </div>
-              <button class="see-all-link" onclick="window.openGenreGridView('nineties')">
-                <span>See All</span> <i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i>
-              </button>
-            </div>
-            <div class="category-row-scroll-wrap">
-              <div class="music-card" onclick="window.playSpecificTrack('90s-1')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/46/58/97/465897ed-fe10-e218-4cac-02c69ca36ad0/191773207717.jpg/600x600bb.jpg" alt="Tujhe Dekha Toh" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Tujhe Dekha Toh"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Tujhe Dekha Toh</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Kumar Sanu')">Kumar Sanu, Lata Mangeshkar</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('90s-2')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/fd/b9/95fdb9b2-6d2b-92a6-97f2-51c1a6d77f1a/00602527874609.rgb.jpg/600x600bb.jpg" alt="Smells Like Teen Spirit" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Smells Like Teen Spirit"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Smells Like Teen Spirit</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Nirvana')">Nirvana</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('90s-3')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/f8/85/8ef88544-a6c7-018b-0a75-dc3b6b024fa0/cover.jpg/600x600bb.jpg" alt="Chaiyya Chaiyya" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Chaiyya Chaiyya"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Chaiyya Chaiyya</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Sukhwinder Singh')">Sukhwinder Singh, A.R. Rahman</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('90s-4')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5f/6b/e9/5f6be919-1b9e-30ef-45b7-cc27fc428fd5/012414167224.jpg/600x600bb.jpg" alt="I Want It That Way" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play I Want It That Way"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">I Want It That Way</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Backstreet Boys')">Backstreet Boys</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('90s-5')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/96/c9/3a/96c93aa7-1872-8297-493a-2fc72d540af0/191773221072.jpg/600x600bb.jpg" alt="Pehla Nasha" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Pehla Nasha"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Pehla Nasha</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Udit Narayan')">Udit Narayan, Sadhana Sargam</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('90s-6')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/04/92/e0/0492e08b-cbcc-9969-9ad6-8f5a0888068c/5051961007107.jpg/600x600bb.jpg" alt="Wonderwall" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Wonderwall"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Wonderwall</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Oasis')">Oasis</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('90s-7')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/68/8e/23/688e230e-bb21-815e-0c41-8b8f21ef0205/cover.jpg/600x600bb.jpg" alt="Chura Ke Dil Mera" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Chura Ke Dil Mera"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Chura Ke Dil Mera</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Kumar Sanu')">Kumar Sanu, Alka Yagnik</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('90s-8')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ab/5a/96/ab5a9681-e891-8449-53d2-7d358501f97f/mzi.zbauexhy.jpg/600x600bb.jpg" alt="My Heart Will Go On" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play My Heart Will Go On"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">My Heart Will Go On</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Celine Dion')">Celine Dion</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- ROW 3: TOP HOLLYWOOD BLOCKBUSTER HITS -->
-          <section class="category-horizontal-row" id="category-row-hollywood">
-            <div class="category-row-header">
-              <div class="category-row-title">
-                <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #38bdf8;">
-                  <i class="fa-solid fa-clapperboard"></i>
-                </div>
-                <div>
-                  <h3>Top Hollywood Blockbuster Hits</h3>
-                  <p>Legendary movie soundtracks, Billboard #1s & global pop anthems</p>
-                </div>
-              </div>
-              <button class="see-all-link" onclick="window.openGenreGridView('hollywood')">
-                <span>See All</span> <i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i>
-              </button>
-            </div>
-            <div class="category-row-scroll-wrap">
-              <div class="music-card" onclick="window.playSpecificTrack('hwd-1')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e6/8a/68/e68a688e-129e-cb9d-938f-bc3ee37059ae/075679930910.jpg/600x600bb.jpg" alt="See You Again" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play See You Again"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">See You Again</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Wiz Khalifa')">Wiz Khalifa, Charlie Puth</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('hwd-2')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/600x600bb.jpg" alt="Sunflower" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Sunflower"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Sunflower</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Post Malone')">Post Malone, Swae Lee</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('hwd-3')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b3/fe/cf/b3fecf76-0359-8e14-0651-4b101fc68a3f/886443673632.jpg/600x600bb.jpg" alt="Skyfall" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Skyfall"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Skyfall</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Adele')">Adele</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('hwd-4')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b1/9f/ef/b19fef51-79de-a940-e8ab-9e4e07b04d96/18UMGIM53752.rgb.jpg/600x600bb.jpg" alt="Shallow" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Shallow"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Shallow</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Lady Gaga')">Lady Gaga, Bradley Cooper</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('hwd-5')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg" alt="Lose Yourself" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Lose Yourself"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Lose Yourself</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Eminem')">Eminem</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('hwd-6')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e7/ed/8a/e7ed8a2c-4835-e4dc-efec-5e81abd6c241/13DMGIM04438.rgb.jpg/600x600bb.jpg" alt="Let It Go" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Let It Go"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Let It Go</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Idina Menzel')">Idina Menzel</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('hwd-7')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/49/21/4d/49214d77-2eb5-60a1-75d3-67d30b449326/dj.szkhyuyj.jpg/600x600bb.jpg" alt="Eye of the Tiger" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Eye of the Tiger"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Eye of the Tiger</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Survivor')">Survivor</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- ROW 4: BOLLYWOOD EVERGREEN HITS -->
-          <section class="category-horizontal-row" id="category-row-bollywood_evergreen">
-            <div class="category-row-header">
-              <div class="category-row-title">
-                <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #ec4899;">
-                  <i class="fa-solid fa-compact-disc"></i>
-                </div>
-                <div>
-                  <h3>Bollywood Evergreen & Modern Hits</h3>
-                  <p>Soulful melodies, romantic chartbusters & cinematic blockbusters</p>
-                </div>
-              </div>
-              <button class="see-all-link" onclick="window.openGenreGridView('bollywood_evergreen')">
-                <span>See All</span> <i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i>
-              </button>
-            </div>
-            <div class="category-row-scroll-wrap">
-              <div class="music-card" onclick="window.playSpecificTrack('bolly-1')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg" alt="Kesariya" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Kesariya"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Kesariya</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Arijit Singh')">Arijit Singh, Pritam</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('bolly-2')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/2e/0b/c0/2e0bc070-112f-a827-6ad8-6bc64f7caaff/840214460180.png/600x600bb.jpg" alt="Apna Bana Le" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Apna Bana Le"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Apna Bana Le</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Arijit Singh')">Arijit Singh, Sachin-Jigar</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('bolly-5')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fb/82/da/fb82dab1-d0cd-714c-000c-6450774fd5d4/888880945587.jpg/600x600bb.jpg" alt="Kal Ho Naa Ho" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Kal Ho Naa Ho"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Kal Ho Naa Ho</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Sonu Nigam')">Sonu Nigam</span>
-                </div>
-              </div>
-              <div class="music-card" onclick="window.playSpecificTrack('bolly-6')">
-                <div class="card-image-wrapper">
-                  <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/600x600bb.jpg" alt="Tum Hi Ho" loading="lazy">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Tum Hi Ho"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                </div>
-                <div class="card-info">
-                  <span class="card-title">Tum Hi Ho</span>
-                  <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('Arijit Singh')">Arijit Singh, Mithoon</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-        </div>
       </div>
 
-      <!-- VIEW 2: SEARCH / RESULTS VIEW -->
+      <!-- VIEW 2: SEARCH -->
       <div id="view-search-view" class="app-view">
-        <div class="search-results-header">
-          <h2>Search Results for "<span id="search-query-label"></span>"</h2>
-          <span id="search-count" class="search-count-tag">0 tracks found</span>
-        </div>
-
-        <div id="search-loading" class="loading-state hidden">
-          <div class="pulse-loader"></div>
-          <p>Searching global music catalog & online music APIs...</p>
-        </div>
-
-        <div id="search-results-container" class="tracks-list-container">
-          <!-- Dynamic track list elements -->
-        </div>
-
-
-      </div>
-
-      <!-- VIEW 3: LIKED SONGS & LIBRARY -->
-      <div id="view-liked" class="app-view">
-        <div class="library-header-banner">
-          <div class="liked-cover-icon">
-            <i class="fa-solid fa-heart"></i>
-          </div>
-          <div class="library-info">
-            <span class="playlist-type">PLAYLIST</span>
-            <h1>Liked Songs</h1>
-            <p><span id="liked-count">0</span> songs saved to your library • Created by <strong>Pushkar Hiremath</strong></p>
-          </div>
-        </div>
-        <div class="library-actions">
-          <button id="play-all-liked-btn" class="btn-primary-play">
-            <i class="fa-solid fa-play"></i> Play All
-          </button>
-        </div>
-        <div id="liked-tracks-container" class="tracks-list-container">
-          <!-- Dynamic liked tracks list -->
-        </div>
-      </div>
-
-      <!-- VIEW 4: RECENT HISTORY -->
-      <div id="view-history" class="app-view">
-        <div class="history-header">
-          <h2><i class="fa-solid fa-clock-rotate-left text-accent"></i> Recently Played</h2>
-          <button id="clear-history-btn" class="btn-secondary-sm">Clear History</button>
-        </div>
-        <div id="history-tracks-container" class="tracks-list-container">
-          <!-- History list -->
-        </div>
-      </div>
-
-      <!-- VIEW 5: CUSTOM PLAYLIST VIEW -->
-      <div id="view-playlist-detail" class="app-view">
-        <div class="library-header-banner">
-          <div class="playlist-cover-icon">
-            <i class="fa-solid fa-music"></i>
-          </div>
-          <div class="library-info">
-            <span class="playlist-type">USER PLAYLIST</span>
-            <h1 id="playlist-detail-name">My Playlist</h1>
-            <p><span id="playlist-detail-count">0</span> songs • Created by <strong>Pushkar Hiremath</strong></p>
-          </div>
-        </div>
-        <div class="library-actions" style="display: flex; gap: 0.5rem; align-items: center;">
-          <button id="play-custom-playlist-btn" class="btn-primary-play">
-            <i class="fa-solid fa-play"></i> Play All
-          </button>
-          <button id="rename-playlist-btn" class="btn-secondary-outline" onclick="window.openCreatePlaylistModal(window.getCurrentPlaylistId())">
-            <i class="fa-solid fa-pen-to-square"></i> Rename
-          </button>
-          <button id="delete-playlist-btn" class="btn-secondary-outline" style="border-color: #ef4444; color: #ef4444;" onclick="window.deleteCurrentPlaylist()">
-            <i class="fa-solid fa-trash"></i> Delete
-          </button>
-        </div>
-        <div id="playlist-detail-container" class="tracks-list-container">
-          <!-- Tracks in current custom playlist -->
-        </div>
-      </div>
-
-      <!-- VIEW 6: DEDICATED GENRE / CATEGORY GRID VIEW -->
-      <div id="view-genre-grid" class="app-view">
-        <div class="genre-grid-header-banner">
-          <button type="button" class="btn-back-link" onclick="window.switchView('home')">
-            <i class="fa-solid fa-arrow-left"></i> Back to Discovery
-          </button>
-          <div class="genre-header-info">
-            <div class="genre-header-badge" id="genre-view-icon-wrap">
-              <i id="genre-view-icon" class="fa-solid fa-compact-disc"></i>
-            </div>
-            <div>
-              <div class="genre-tag-pill" id="genre-view-tag">GENRE DISCOVERY</div>
-              <h1 id="genre-view-title" class="genre-title">Genre Category</h1>
-              <p id="genre-view-subtitle" class="genre-subtitle">Explore top tracks in this category</p>
-            </div>
-          </div>
-          <div class="genre-actions-row">
-            <button class="btn-primary-play" onclick="window.playGenreTracks(false)">
-              <i class="fa-solid fa-play"></i> Play All
-            </button>
-            <button class="btn-secondary-action" onclick="window.playGenreTracks(true)">
-              <i class="fa-solid fa-shuffle"></i> Shuffle
-            </button>
-            <span id="genre-view-count" class="genre-count-badge">0 songs</span>
+        <div class="search-view-header" style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Live Search Discovery</h2>
+          <p style="color: var(--text-secondary);">Querying over 1.6 Million streamable tracks worldwide</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-glass);">
+            <h3 style="font-size: 1.1rem; color: #fff;">Results for "<span id="search-query-label" style="color: var(--accent-primary);">Everything</span>"</h3>
+            <span id="search-count" style="font-size: 0.85rem; color: var(--text-muted);">Ready to search</span>
           </div>
         </div>
 
-        <div id="genre-grid-tracks-container" class="music-cards-grid" style="margin-top: 1.5rem;">
-          <!-- Dynamically populated -->
-        </div>
-      </div>
-
-      <!-- VIEW 7: ARTIST PROFILE & DISCOGRAPHY -->
-      <div id="view-artist-profile" class="app-view">
-        <div class="artist-profile-hero" id="artist-profile-hero">
-          <button type="button" class="btn-back-link-glass" onclick="window.goBackOrHome()">
-            <i class="fa-solid fa-arrow-left"></i> Back
-          </button>
-          <div class="artist-hero-content">
-            <div class="artist-avatar-wrapper">
-              <img id="artist-profile-avatar" src="./pulse-logo.png" alt="Artist Avatar" class="artist-hero-avatar">
-              <div class="artist-verified-badge" title="Verified Artist"><i class="fa-solid fa-circle-check"></i></div>
-            </div>
-            <div class="artist-hero-details">
-              <span class="artist-tag-pill"><i class="fa-solid fa-microphone-lines"></i> Verified Artist</span>
-              <h1 id="artist-profile-name" class="artist-hero-name">Artist Name</h1>
-              <div class="artist-stats-row">
-                <span id="artist-profile-genres" class="artist-stat-badge">Bollywood, Indie</span>
-                <span class="artist-stat-sep">•</span>
-                <span id="artist-profile-track-count" class="artist-stat-text">12 Songs</span>
-                <span class="artist-stat-sep">•</span>
-                <span id="artist-profile-plays" class="artist-stat-text">1.2M Total Listens</span>
-              </div>
-              <div class="artist-action-buttons">
-                <button class="btn-primary-play" onclick="window.playCurrentArtistTracks(false)">
-                  <i class="fa-solid fa-play"></i> Play All
-                </button>
-                <button class="btn-secondary-action" onclick="window.playCurrentArtistTracks(true)">
-                  <i class="fa-solid fa-shuffle"></i> Shuffle
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="artist-discography-section" style="margin-top: 2rem;">
-          <div class="section-header">
-            <h3><i class="fa-solid fa-fire text-accent"></i> Popular Tracks & Discography</h3>
-          </div>
-          <div id="artist-popular-tracks-list" class="tracks-list-container">
-            <!-- Popular tracks rows -->
+        <div id="search-results-container" class="search-results-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            <p>Type any song name, artist, or album in the top search bar to stream live tracks.</p>
           </div>
         </div>
       </div>
 
-      <!-- VIEW 8: ADMIN UPLOAD & CATALOG STUDIO (RESTRICTED ADMIN ACCESS) -->
-      <div id="view-admin-upload" class="app-view">
-        
-        <!-- ADMIN AUTHENTICATION GATE (Shown if not yet unlocked) -->
-        <div id="admin-auth-gate" class="admin-auth-gate-box">
-          <div class="admin-gate-icon"><i class="fa-solid fa-shield-halved text-accent"></i></div>
-          <h2>Pulse Music Administration Studio</h2>
-          <p>Restricted to authorized catalog administrators. Enter your admin key to access full-length audio uploads and song catalog management.</p>
-          <div style="max-width: 380px; margin: 1.5rem auto 0 auto; display: flex; flex-direction: column; gap: 0.75rem;">
-            <input type="password" id="admin-passcode-input" class="pulse-text-input" placeholder="Enter Admin Passcode (e.g. pulse-admin-2026)" onkeydown="if(event.key==='Enter') window.unlockAdminStudio()">
-            <button type="button" class="btn-primary" style="padding: 0.75rem; border-radius: 20px; font-weight: 700;" onclick="window.unlockAdminStudio()">
-              <i class="fa-solid fa-lock-open"></i> Unlock Admin Studio
-            </button>
-            <div id="admin-auth-error" class="text-danger hidden" style="font-size: 0.8rem; text-align: center; color: #ef4444;">Incorrect passcode. Default admin key: <code>pulse-admin-2026</code></div>
-          </div>
+      <!-- VIEW 3: LIBRARY -->
+      <div id="view-library" class="app-view">
+        <div style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Your Music Library</h2>
+          <p style="color: var(--text-secondary);">All your saved songs, history, and playlists stored in your browser.</p>
         </div>
-
-        <!-- ADMIN STUDIO DASHBOARD (Shown once unlocked) -->
-        <div id="admin-studio-content" class="admin-studio-container hidden">
-          <div class="admin-studio-header">
-            <div>
-              <div class="admin-badge-tag"><i class="fa-solid fa-shield-halved"></i> Authorized Administrator</div>
-              <h1 style="font-size: 1.8rem; font-weight: 800; margin-top: 0.4rem;">Audio Upload & Catalog Studio</h1>
-              <p style="color: var(--text-secondary); font-size: 0.88rem;">Upload authorized full-length audio files (.mp3, .m4a, .wav), set metadata, and publish songs to Supabase Storage & Catalog.</p>
-            </div>
-            <button type="button" class="btn-secondary" style="padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; border: 1px solid var(--border-glass);" onclick="window.lockAdminStudio()">
-              <i class="fa-solid fa-lock"></i> Exit Admin
-            </button>
+        <div id="library-tracks-container">
+          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+            <i class="fa-solid fa-heart" style="font-size: 2.5rem; margin-bottom: 1rem; color: #f87171; opacity: 0.5;"></i>
+            <p>Your liked tracks and playback history will appear here.</p>
           </div>
-
-          <!-- UPLOAD FORM CARD -->
-          <div class="admin-card-glass" style="margin-top: 1.5rem;">
-            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-              <i class="fa-solid fa-cloud-arrow-up text-accent"></i> Upload Authorized Track to Supabase Storage
-            </h3>
-
-            <div class="admin-upload-grid">
-              <!-- Left: Dropzone -->
-              <div>
-                <div id="admin-audio-dropzone" class="audio-dropzone" onclick="document.getElementById('admin-audio-file-input').click()">
-                  <input type="file" id="admin-audio-file-input" accept="audio/*,.mp3,.m4a,.wav,.aac,.flac,.ogg" style="display:none;" onchange="window.handleAdminAudioFileSelected(event)">
-                  <i class="fa-solid fa-file-audio dropzone-icon"></i>
-                  <h4 id="admin-dropzone-label">Select or Drag & Drop MP3 / M4A / WAV file</h4>
-                  <span style="font-size: 0.78rem; color: var(--text-muted);">Supports full-length MP3, M4A, WAV, FLAC, AAC</span>
-                </div>
-
-                <div id="admin-selected-audio-preview" class="selected-audio-badge hidden">
-                  <i class="fa-solid fa-check-circle text-success"></i>
-                  <span id="admin-selected-audio-name" style="font-weight:600; font-size:0.85rem;">file.mp3</span>
-                  <span id="admin-selected-audio-size" style="font-size:0.75rem; color:var(--text-muted); margin-left:auto;">0 MB</span>
-                </div>
-
-                <!-- Cover Preview Box -->
-                <div style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center; background: rgba(255,255,255,0.03); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-glass);">
-                  <img id="admin-cover-preview-img" src="./pulse-logo.png" alt="Cover Preview" style="width: 60px; height: 60px; border-radius: 6px; object-fit: cover;">
-                  <div style="flex: 1;">
-                    <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.2rem;">Artwork / Cover URL</label>
-                    <input type="text" id="admin-track-cover" class="pulse-text-input" placeholder="https://... or ./pulse-logo.png" value="./pulse-logo.png" oninput="document.getElementById('admin-cover-preview-img').src = this.value || './pulse-logo.png'">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Right: Metadata Fields -->
-              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
-                  <div>
-                    <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Song Title *</label>
-                    <input type="text" id="admin-track-title" class="pulse-text-input" placeholder="e.g. Song Title">
-                  </div>
-                  <div>
-                    <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Artist Name(s) *</label>
-                    <input type="text" id="admin-track-artist" class="pulse-text-input" placeholder="e.g. Artist / Band Name">
-                  </div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
-                  <div>
-                    <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Album Name</label>
-                    <input type="text" id="admin-track-album" class="pulse-text-input" placeholder="e.g. Album Name">
-                  </div>
-                  <div>
-                    <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Language</label>
-                    <select id="admin-track-language" class="pulse-select-input">
-                      <option value="Hindi">Hindi</option>
-                      <option value="English">English</option>
-                      <option value="Punjabi">Punjabi</option>
-                      <option value="Spanish">Spanish</option>
-                      <option value="Tamil">Tamil</option>
-                      <option value="Telugu">Telugu</option>
-                      <option value="Kannada">Kannada</option>
-                      <option value="Instrumental">Instrumental / Lo-Fi</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
-                  <div>
-                    <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Category / Genre</label>
-                    <select id="admin-track-category" class="pulse-select-input">
-                      <option value="bollywood">Bollywood / Hindi Hits</option>
-                      <option value="english">English Worldwide Hits</option>
-                      <option value="punjabi">Punjabi Chartbusters</option>
-                      <option value="lofi">Lo-Fi Chill Beats</option>
-                      <option value="spanish">Spanish / Latin</option>
-                      <option value="party">Party & Dance</option>
-                      <option value="romantic">Romantic Classics</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Release Year</label>
-                    <input type="number" id="admin-track-year" class="pulse-text-input" value="2026">
-                  </div>
-                </div>
-
-                <!-- Associate / Replace dropdown -->
-                <div>
-                  <label style="font-size: 0.8rem; color: #b3b3b3; font-weight: 600; display: block; margin-bottom: 0.3rem;">Target Song Entry (Optional Link)</label>
-                  <select id="admin-target-catalog-select" class="pulse-select-input" onchange="window.handleAdminCatalogSelectionChange(this.value)">
-                    <option value="NEW_TRACK">+ Publish as New Song</option>
-                  </select>
-                </div>
-
-                <!-- Upload Progress -->
-                <div id="admin-upload-progress" class="upload-progress-box hidden">
-                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 0.3rem;">
-                    <span id="admin-upload-status-text">Uploading to Supabase Storage 'music'...</span>
-                    <span id="admin-upload-percent-text">0%</span>
-                  </div>
-                  <div class="progress-bar-bg" style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
-                    <div id="admin-upload-progress-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--accent-primary), #3b82f6); transition: width 0.2s;"></div>
-                  </div>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="button" id="btn-admin-submit-upload" class="btn-primary" style="margin-top: 0.5rem; padding: 0.85rem; border-radius: 20px; font-weight: 700; font-size: 0.95rem;" onclick="window.publishAdminTrack()">
-                  <i class="fa-solid fa-cloud-arrow-up"></i> Upload to Supabase & Publish Song
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- ADMIN TRACKS TABLE -->
-          <div class="admin-card-glass" style="margin-top: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-              <h3 style="font-size: 1.15rem; font-weight: 700;">
-                <i class="fa-solid fa-database text-accent"></i> Published Songs (<span id="admin-catalog-total-count">0</span>)
-              </h3>
-              <input type="text" id="admin-catalog-search" class="pulse-text-input" placeholder="Filter songs..." style="max-width: 240px; padding: 0.4rem 0.8rem; font-size: 0.82rem;" oninput="window.filterAdminCatalogTable(this.value)">
-            </div>
-            <div style="overflow-x: auto; max-height: 400px; overflow-y: auto;">
-              <table class="admin-catalog-table" style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
-                <thead>
-                  <tr style="border-bottom: 1px solid var(--border-glass); text-align: left; color: var(--text-muted);">
-                    <th style="padding: 0.6rem 0.5rem;">Track</th>
-                    <th style="padding: 0.6rem 0.5rem;">Artist</th>
-                    <th style="padding: 0.6rem 0.5rem;">Language</th>
-                    <th style="padding: 0.6rem 0.5rem;">Storage Path</th>
-                    <th style="padding: 0.6rem 0.5rem; text-align: right;">Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="admin-catalog-table-body">
-                  <!-- Populated dynamically via JS -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-
         </div>
       </div>
+
     </main>
 
-    <!-- RIGHT QUEUE / LYRICS DRAWER -->
-    <aside id="side-drawer" class="side-drawer">
-      <div class="drawer-header">
-        <div class="drawer-tabs">
-          <button class="drawer-tab active" data-tab="queue">Play Queue</button>
-          <button class="drawer-tab" data-tab="lyrics">Lyrics</button>
-        </div>
-        <button id="close-drawer-btn" class="btn-close-drawer"><i class="fa-solid fa-xmark"></i></button>
-      </div>
+    <!-- PERSISTENT BOTTOM PLAYER BAR -->
+    <div id="player-bar" class="bottom-player-bar">
+      <!-- Thin Top Progress Fill -->
+      <div id="mini-top-progress-fill" class="mini-top-progress" style="width: 0%;"></div>
 
-      <!-- TAB 1: QUEUE -->
-      <div id="tab-content-queue" class="drawer-content active">
-        <div class="queue-section-title">Now Playing</div>
-        <div id="queue-now-playing" class="queue-item-active">
-          <!-- Current track info -->
-        </div>
-        <div class="queue-section-title">Up Next</div>
-        <div id="queue-up-next" class="queue-list">
-          <!-- Upcoming tracks -->
+      <!-- Left: Track Cover & Info -->
+      <div class="player-left">
+        <img id="player-thumb" src="./pulse-logo.png" alt="Cover" class="player-thumb">
+        <div class="player-info">
+          <span id="player-title" class="player-title">Select a Song</span>
+          <span id="player-artist" class="player-artist">Pulse Music</span>
         </div>
       </div>
 
-      <!-- TAB 2: LYRICS -->
-      <div id="tab-content-lyrics" class="drawer-content">
-        <div class="lyrics-gemini-bar" style="padding: 0.5rem 0; margin-bottom: 0.8rem; border-bottom: 1px solid var(--border-glass);">
-          <button type="button" class="btn-gemini-pill" onclick="window.explainCurrentSongWithGemini()" style="width: 100%; padding: 0.55rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2)); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; color: #f3e8ff; font-weight: 700; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.2s;">
-            <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
-            <span>✨ Gemini Song Story & Meaning</span>
-          </button>
+      <!-- Center: Controls & Scrubber -->
+      <div class="player-center">
+        <div class="player-controls">
+          <button id="btn-prev" class="btn-player-icon" onclick="window.playSpecificTrack('rec-1')"><i class="fa-solid fa-backward-step"></i></button>
+          <button id="btn-play-pause" class="btn-player-main"><i class="fa-solid fa-play"></i></button>
+          <button id="btn-next" class="btn-player-icon" onclick="window.playSpecificTrack('rec-2')"><i class="fa-solid fa-forward-step"></i></button>
         </div>
-        <div id="gemini-song-insight-box" class="gemini-insight-box hidden" style="background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 14px; padding: 1rem; margin-bottom: 1rem; font-size: 0.85rem; line-height: 1.6; color: #e9d5ff;">
-          <div id="gemini-insight-loading" class="hidden" style="text-align: center; padding: 1rem;"><i class="fa-solid fa-circle-notch fa-spin" style="color: #c084fc;"></i> Analyzing song poetry & vocals with Gemini...</div>
-          <div id="gemini-insight-content" class="gemini-insight-text"></div>
-        </div>
-        <div id="lyrics-container" class="lyrics-wrapper">
-          <p class="lyrics-placeholder">Play a song to load real-time synchronized lyrics!</p>
-        </div>
-      </div>
-    </aside>
-  </div>
-
-  <!-- FULLSCREEN PLAYER OVERLAY -->
-  <div id="fullscreen-player" class="fullscreen-player">
-    <div class="fs-bg-blur" id="fs-bg-blur"></div>
-    <div class="fs-header">
-      <button id="close-fs-btn" class="btn-circle-nav" title="Minimize Fullscreen"><i class="fa-solid fa-chevron-down"></i></button>
-      <div class="fs-title-branding">
-        <span>PLAYING FROM PULSE</span>
-        <small>By Pushkar Hiremath</small>
-      </div>
-      <div style="display: flex; align-items: center; gap: 0.5rem;">
-        <button id="fs-btn-gemini" class="btn-circle-nav" title="Gemini Song Insights" onclick="window.explainCurrentSongWithGemini()" style="color: #c084fc;">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
-        </button>
-        <button id="fs-btn-lyrics" class="btn-circle-nav" title="View Synchronized Lyrics" onclick="window.openLyricsForTrack()">
-          <i class="fa-solid fa-microphone-lines"></i>
-        </button>
-        </div>
-    </div>
-
-    <div class="fs-body">
-      <div class="fs-visual-container">
-                <!-- INTERACTIVE SYNCHRONIZED KARAOKE LYRICS SHEET -->
-        <div id="fs-lyrics-view" class="fs-lyrics-view">
-          <div id="fs-lyrics-scroller" class="fs-lyrics-scroller">
-            <div class="lyrics-placeholder-empty">
-              <i class="fa-solid fa-microphone-lines" style="font-size: 2rem; margin-bottom: 0.75rem; color: #c084fc; display: block;"></i>
-              <p>Loading synchronized lyrics from LRCLIB...</p>
-            </div>
+        <div class="timeline-container">
+          <span id="player-time-current">0:00</span>
+          <div class="progress-bar-wrapper">
+            <div id="player-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+            <input type="range" id="player-seek-slider" class="timeline-range-input" min="0" max="100" value="0">
           </div>
-        </div>
-
-        <!-- CANVAS VISUALIZER -->
-        <canvas id="fs-canvas-visualizer" width="600" height="400"></canvas>
-        <div class="fs-album-art-wrapper">
-          <img id="fs-album-art" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80" alt="Track Cover" class="fs-art-img spin-disc">
+          <span id="player-time-total">3:30</span>
         </div>
       </div>
 
-      <div class="fs-info-controls">
-        <div class="fs-track-meta">
-          <h1 id="fs-track-title">Select a Song</h1>
-          <p id="fs-track-artist">Pulse Music Engine</p>
-        </div>
-
-        <!-- PROGRESS BAR -->
-        <div class="fs-progress-container">
-          <span id="fs-time-current">0:00</span>
-          <div class="progress-bar-wrapper" id="fs-progress-wrapper">
-            <div class="progress-bar-fill" id="fs-progress-fill"></div>
-            <div class="progress-handle" id="fs-progress-handle"></div>
-            <input type="range" class="timeline-range-input" id="fs-seek-slider" min="0" max="100" value="0" step="0.1">
-          </div>
-          <span id="fs-time-total">0:00</span>
-        </div>
-
-        <!-- CONTROLS -->
-        <div class="fs-controls-main">
-          <button id="fs-btn-shuffle" class="btn-player-sub" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
-          <button id="fs-btn-rewind-5s" class="btn-player-sub" title="Rewind 5s"><i class="fa-solid fa-rotate-left"></i></button>
-          <button id="fs-btn-prev" class="btn-player-sub" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
-          <button id="fs-btn-play" class="btn-player-primary" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
-          <button id="fs-btn-next" class="btn-player-sub" title="Next"><i class="fa-solid fa-forward-step"></i></button>
-          <button id="fs-btn-forward-5s" class="btn-player-sub" title="Forward 5s"><i class="fa-solid fa-rotate-right"></i></button>
-          <button id="fs-btn-repeat" class="btn-player-sub" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
-        </div>
+      <!-- Right: Action Buttons -->
+      <div class="player-right">
+        <button class="btn-player-icon" onclick="window.openDownloadModal()" title="Install App"><i class="fa-solid fa-download"></i></button>
       </div>
     </div>
+
   </div>
 
-  <!-- DEDICATED FULL LYRICS PREVIEW MODAL -->
-  <div id="lyrics-preview-modal" class="modal-overlay hidden">
-    <div class="modal-content lyrics-modal-box">
-      <div class="modal-header" style="border-bottom: 1px solid var(--border-glass); padding-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 0.85rem;">
-          <img id="lyrics-modal-cover" src="./pulse-logo.png" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
-          <div>
-            <h3 id="lyrics-modal-title" style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #fff;">Song Title</h3>
-            <p id="lyrics-modal-artist" style="margin: 0; font-size: 0.82rem; color: var(--accent-primary); font-weight: 600;">Artist Name</p>
-          </div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <button id="lyrics-modal-play-btn" class="btn-primary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; border-radius: 16px; display: inline-flex; align-items: center; gap: 0.4rem;" onclick="window.playLyricsModalTrack()">
-            <i class="fa-solid fa-play"></i> Play Song
-          </button>
-          <button id="close-lyrics-modal-btn" class="btn-icon-small" onclick="window.closeLyricsModal()"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-      </div>
-      <div id="lyrics-modal-body" class="lyrics-modal-body">
-        <div id="lyrics-modal-lines" class="lyrics-wrapper">
-          <!-- Populated dynamically via loadTrackLyrics -->
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- MODALS -->
 
-  <!-- GEMINI AI DJ STUDIO MODAL -->
-  
-  
-  <!-- AUTHENTIC GOOGLE OAUTH ACCOUNT PICKER & CONSENT MODAL -->
-  <div id="google-oauth-picker-modal" class="modal-overlay hidden">
-    <div class="modal-content google-picker-modal">
-      <div class="google-picker-header">
-        <div class="google-logo-box">
-          <svg class="google-logo-svg" viewBox="0 0 24 24" width="28" height="28">
-            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-          </svg>
-        </div>
-        <div class="google-picker-titles">
-          <h3>Sign in with Google</h3>
-          <p>Choose an account to continue to <strong style="color: #c084fc;">Pulse Music</strong></p>
-        </div>
-        <button class="google-picker-close" onclick="window.closeGooglePickerModal()" title="Close">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="google-accounts-list" id="google-accounts-list">
-        <!-- Rendered dynamically via window.renderGoogleAccountsList() -->
-      </div>
-
-      <div class="google-custom-account-form hidden" id="google-custom-account-form">
-        <div class="google-form-group">
-          <label for="google-custom-name"><i class="fa-solid fa-user"></i> Full Name</label>
-          <input type="text" id="google-custom-name" placeholder="e.g. Pushkar Hiremath" autocomplete="name">
-        </div>
-        <div class="google-form-group">
-          <label for="google-custom-email"><i class="fa-solid fa-envelope"></i> Google Email Address</label>
-          <input type="email" id="google-custom-email" placeholder="e.g. pushkar@gmail.com" autocomplete="email">
-        </div>
-        <div class="google-form-actions">
-          <button type="button" class="btn-cancel" onclick="window.toggleGoogleCustomForm(false)">
-            <i class="fa-solid fa-arrow-left"></i> Back
-          </button>
-          <button type="button" class="btn-google-confirm" onclick="window.submitGoogleCustomAccount()">
-            <span>Sign In with Google</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="google-picker-footer">
-        <p>To continue, Google will share your name, email address, and profile picture with Pulse Music. See Pulse's <a href="#" onclick="showToast('Pulse Music: 100% Free, 0% Ads, 100% Privacy.', 'info'); return false;">Privacy Policy</a> and <a href="#" onclick="showToast('Pulse Music Terms of Service', 'info'); return false;">Terms of Service</a>.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- PREMIUM GLASSMORPHIC AUTHENTICATION MODAL -->
+  <!-- AUTH MODAL -->
   <div id="auth-modal" class="modal-overlay hidden">
-    <div class="modal-content pulse-auth-modal">
-      <!-- Animated gradient border -->
-      <div class="pulse-auth-glow"></div>
+    <div class="modal-content pulse-auth-modal" style="max-width: 420px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff;">Pulse Account</h3>
+        <button class="btn-icon-small" onclick="document.getElementById('auth-modal').classList.add('hidden')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
       
-      <!-- Close button -->
-      <button id="close-auth-modal-btn" class="pulse-auth-close" onclick="document.getElementById('auth-modal').classList.add('hidden')">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <!-- Header -->
-      <div class="pulse-auth-header">
-        <div class="pulse-auth-logo-wrapper">
-          <img src="./pulse-logo.png" alt="Pulse Logo" class="pulse-auth-logo">
-          <div class="pulse-auth-logo-ring"></div>
-        </div>
-        <h2 id="spotify-auth-heading" class="pulse-auth-title">Welcome to Pulse</h2>
-        <p class="pulse-auth-subtitle">Sign in to unlock your personalized music experience</p>
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px;">
+        <button id="tab-login-btn" class="auth-tab-btn active" style="flex: 1; padding: 0.5rem; border: none; border-radius: 8px; background: var(--accent-primary); color: #fff; font-weight: 600; cursor: pointer;" onclick="window.switchAuthTab('login')">Log In</button>
+        <button id="tab-signup-btn" class="auth-tab-btn" style="flex: 1; padding: 0.5rem; border: none; border-radius: 8px; background: transparent; color: var(--text-secondary); font-weight: 600; cursor: pointer;" onclick="window.switchAuthTab('signup')">Sign Up</button>
       </div>
 
-      <!-- Status Banner -->
-      <div id="auth-status-banner" class="pulse-auth-banner hidden"></div>
-
-      <!-- Social Login Section -->
-      <div class="pulse-auth-social">
-        <button type="button" class="pulse-social-btn pulse-social-google" onclick="window.handleGoogleOAuthLogin()">
-          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="width: 20px; height: 20px;">
-          <span>Continue with Google</span>
-        </button>
-      </div>
-
-      <!-- Divider -->
-      <div class="pulse-auth-divider">
-        <div class="pulse-divider-line"></div>
-        <span>or continue with email</span>
-        <div class="pulse-divider-line"></div>
-      </div>
-
-      <!-- Tab Switcher -->
-      <div class="pulse-auth-tabs">
-        <button id="tab-login-btn" class="pulse-tab active" onclick="window.switchAuthTab('login')">
-          <i class="fa-solid fa-right-to-bracket"></i> Log In
-        </button>
-        <button id="tab-signup-btn" class="pulse-tab" onclick="window.switchAuthTab('signup')">
-          <i class="fa-solid fa-user-plus"></i> Sign Up
-        </button>
-        <div class="pulse-tab-indicator"></div>
-      </div>
-
-      <!-- Login Form -->
-      <form id="auth-form-login" class="pulse-auth-form" onsubmit="window.handleRealLogin(event); return false;" novalidate>
-        <div class="pulse-input-group">
-          <div class="pulse-input-wrapper" id="login-email-wrapper">
-            <i class="fa-solid fa-envelope pulse-input-icon"></i>
-            <input type="email" id="login-email" placeholder=" " autocomplete="email" oninput="window.clearFieldError('login-email')">
-            <label for="login-email">Email address</label>
-            <div class="pulse-input-highlight"></div>
-          </div>
-          <div class="pulse-field-error hidden" id="login-email-error"></div>
-        </div>
-        <div class="pulse-input-group">
-          <div class="pulse-input-wrapper" id="login-password-wrapper">
-            <i class="fa-solid fa-lock pulse-input-icon"></i>
-            <input type="password" id="login-password" placeholder=" " autocomplete="current-password" oninput="window.clearFieldError('login-password')">
-            <label for="login-password">Password</label>
-            <button type="button" class="pulse-password-toggle" onclick="window.togglePasswordVisibility(this)" title="Toggle password visibility">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="pulse-input-highlight"></div>
-          </div>
-          <div class="pulse-field-error hidden" id="login-password-error"></div>
-        </div>
-        <div class="pulse-auth-extras">
-          <label class="pulse-remember-me">
-            <input type="checkbox" checked id="login-remember">
-            <span class="pulse-checkbox-custom"></span>
-            <span>Remember me</span>
-          </label>
-          <a href="#" class="pulse-forgot-link" onclick="window.openForgotPasswordModal(); return false;">Forgot password?</a>
-        </div>
-        <button type="submit" id="btn-login-submit" class="pulse-auth-submit">
-          <span class="btn-text">Log In</span>
-          <i class="fa-solid fa-arrow-right btn-icon"></i>
-        </button>
-        <p class="pulse-auth-switch">
-          Don't have an account? <a href="#" onclick="window.switchAuthTab('signup'); return false;">Create one</a>
-        </p>
-      </form>
-
-      <!-- Signup Form -->
-      <form id="auth-form-signup" class="pulse-auth-form hidden" onsubmit="window.handleRealSignup(event); return false;" novalidate>
-        <div class="pulse-input-group">
-          <div class="pulse-input-wrapper" id="signup-name-wrapper">
-            <i class="fa-solid fa-user pulse-input-icon"></i>
-            <input type="text" id="signup-name" placeholder=" " autocomplete="name" oninput="window.clearFieldError('signup-name')">
-            <label for="signup-name">Full Name</label>
-            <div class="pulse-input-highlight"></div>
-          </div>
-          <div class="pulse-field-error hidden" id="signup-name-error"></div>
-        </div>
-        <div class="pulse-input-group">
-          <div class="pulse-input-wrapper" id="signup-email-wrapper">
-            <i class="fa-solid fa-envelope pulse-input-icon"></i>
-            <input type="email" id="signup-email" placeholder=" " autocomplete="email" oninput="window.clearFieldError('signup-email')">
-            <label for="signup-email">Email address</label>
-            <div class="pulse-input-highlight"></div>
-          </div>
-          <div class="pulse-field-error hidden" id="signup-email-error"></div>
-        </div>
-        <div class="pulse-input-group">
-          <div class="pulse-input-wrapper" id="signup-password-wrapper">
-            <i class="fa-solid fa-lock pulse-input-icon"></i>
-            <input type="password" id="signup-password" placeholder=" " autocomplete="new-password" oninput="window.handlePasswordInput(this)">
-            <label for="signup-password">Password (min. 8 chars)</label>
-            <button type="button" class="pulse-password-toggle" onclick="window.togglePasswordVisibility(this)" title="Toggle password visibility">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="pulse-input-highlight"></div>
-          </div>
-          <div class="pulse-password-strength" id="password-strength-bar">
-            <div class="pulse-strength-fill"></div>
-          </div>
-          <div class="pulse-field-error hidden" id="signup-password-error"></div>
-        </div>
-        <div class="pulse-input-group">
-          <div class="pulse-input-wrapper" id="signup-confirm-password-wrapper">
-            <i class="fa-solid fa-shield-halved pulse-input-icon"></i>
-            <input type="password" id="signup-confirm-password" placeholder=" " autocomplete="new-password" oninput="window.clearFieldError('signup-confirm-password')">
-            <label for="signup-confirm-password">Confirm Password</label>
-            <button type="button" class="pulse-password-toggle" onclick="window.togglePasswordVisibility(this)" title="Toggle password visibility">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="pulse-input-highlight"></div>
-          </div>
-          <div class="pulse-field-error hidden" id="signup-confirm-password-error"></div>
-        </div>
-        <button type="submit" id="btn-signup-submit" class="pulse-auth-submit">
-          <span class="btn-text">Create Account</span>
-          <i class="fa-solid fa-rocket btn-icon"></i>
-        </button>
-        <p class="pulse-auth-switch">
-          Already have an account? <a href="#" onclick="window.switchAuthTab('login'); return false;">Log in</a>
-        </p>
-      </form>
-
-      <!-- Footer -->
-      <div class="pulse-auth-footer">
-        <p>By continuing, you agree to Pulse's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ARTIST DETAIL & LIVE EVENTS MODAL -->
-  
-
-      <!-- Artist Body: Bio, Top Tracks, Albums, Live Events -->
-      <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
-        <!-- Bio -->
-        <div id="artist-bio-section" class="artist-bio-box" style="background: var(--bg-glass-card); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1.2rem;">
-          <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #fff;"><i class="fa-solid fa-book-open text-accent"></i> About</h4>
-          <p id="artist-modal-bio" style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
-            Leading playback singer and recording artist.
-          </p>
-        </div>
-
-        <!-- Popular Songs -->
-        <div>
-          <h4 style="margin: 0 0 0.85rem 0; font-size: 1.05rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
-            <i class="fa-solid fa-fire text-accent"></i> Popular Songs
-          </h4>
-          <div id="artist-top-tracks-list" style="display: flex; flex-direction: column; gap: 0.4rem;">
-            <!-- Populated dynamically via JS -->
-          </div>
-        </div>
-
-        <!-- Live Events -->
-        <div id="artist-events-section">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
-            <h4 style="margin: 0; font-size: 1.05rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
-              <i class="fa-solid fa-calendar-days text-accent"></i> Live Events & Concerts
-            </h4>
-            <span style="font-size: 0.75rem; color: var(--text-muted);">Verified Tour Dates</span>
-          </div>
-          <div id="artist-events-list">
-            <!-- Events or empty state populated via JS -->
-          </div>
-        </div>
-
-        <!-- Related Artists -->
-        <div>
-          <h4 style="margin: 0 0 0.85rem 0; font-size: 1.05rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
-            <i class="fa-solid fa-users text-accent"></i> Fans Also Like
-          </h4>
-          <div id="artist-related-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.85rem;">
-            <!-- Related artists populated via JS -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SONG CREDITS MODAL -->
-  <div id="song-credits-modal" class="modal-overlay hidden">
-    <div class="modal-content song-credits-card" style="max-width: 480px; border-radius: 20px; background: var(--bg-surface); border: 1px solid var(--border-glow); padding: 1.5rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
-        <h3 style="margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fa-solid fa-circle-info text-accent"></i> Song Credits
-        </h3>
-        <button class="pulse-auth-close" onclick="window.closeCreditsModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-
-      <div id="credits-track-header" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem; background: var(--bg-glass-card); border-radius: 12px; margin-bottom: 1.25rem;">
-        <img id="credits-track-cover" src="./pulse-logo.png" style="width: 56px; height: 56px; border-radius: 8px; object-fit: cover;">
-        <div style="min-width: 0;">
-          <h4 id="credits-track-title" style="margin: 0; font-size: 1rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Song Title</h4>
-          <p id="credits-track-artist" style="margin: 0.2rem 0 0 0; font-size: 0.85rem; color: var(--text-secondary);">Artist Name</p>
-        </div>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.88rem;">
-        <div class="credit-row" style="display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-glass);">
-          <span style="color: var(--text-muted);">Performed by</span>
-          <span id="credits-performers" style="color: #fff; font-weight: 600; text-align: right;">Artist Name</span>
-        </div>
-        <div class="credit-row" style="display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-glass);">
-          <span style="color: var(--text-muted);">Written by</span>
-          <span id="credits-writers" style="color: #fff; font-weight: 600; text-align: right;">Lyricist</span>
-        </div>
-        <div class="credit-row" style="display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-glass);">
-          <span style="color: var(--text-muted);">Produced / Composed by</span>
-          <span id="credits-producers" style="color: #fff; font-weight: 600; text-align: right;">Music Director</span>
-        </div>
-        <div class="credit-row" style="display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-glass);">
-          <span style="color: var(--text-muted);">Audio Engine</span>
-          <span id="credits-source" style="color: #d8b4fe; font-weight: 600;">Pulse Lossless Master</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FORGOT PASSWORD RESET MODAL -->
-  <div id="forgot-password-modal" class="modal-overlay hidden">
-    <div class="modal-content pulse-auth-modal" style="max-width: 420px;">
-      <div class="pulse-auth-glow"></div>
-      <button class="pulse-auth-close" onclick="document.getElementById('forgot-password-modal').classList.add('hidden')">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <div class="pulse-auth-header">
-        <div class="pulse-auth-logo-wrapper">
-          <i class="fa-solid fa-key text-accent" style="font-size: 2rem;"></i>
-        </div>
-        <h2 class="pulse-auth-title" style="font-size: 1.5rem;">Reset Password</h2>
-        <p class="pulse-auth-subtitle">Enter your email and we'll send you recovery instructions</p>
-      </div>
-      <div id="forgot-status-banner" class="pulse-auth-banner hidden"></div>
-      <form id="forgot-password-form" class="pulse-auth-form" onsubmit="window.handleForgotPassword(event); return false;" novalidate>
-        <div class="pulse-input-group">
-          <div class="pulse-input-wrapper" id="forgot-email-wrapper">
-            <i class="fa-solid fa-envelope pulse-input-icon"></i>
-            <input type="email" id="forgot-email" placeholder=" " required autocomplete="email">
-            <label for="forgot-email">Email address</label>
-            <div class="pulse-input-highlight"></div>
-          </div>
-          <div class="pulse-field-error hidden" id="forgot-email-error"></div>
-        </div>
-        <button type="submit" id="btn-forgot-submit" class="pulse-auth-submit">
-          <span class="btn-text">Send Reset Link</span>
-          <i class="fa-solid fa-paper-plane btn-icon"></i>
-        </button>
-        <p class="pulse-auth-switch">
-          Remembered your password? <a href="#" onclick="document.getElementById('forgot-password-modal').classList.add('hidden'); window.openLoginModal(); return false;">Back to login</a>
-        </p>
-      </form>
-    </div>
-  </div>
-
-
-
-
-  <!-- CREATE / RENAME PLAYLIST MODAL -->
-  <div id="create-playlist-modal" class="modal-overlay hidden">
-    <div class="modal-content pulse-auth-modal" style="max-width: 420px;">
-      <div class="spotify-auth-header" style="justify-content: space-between;">
-        <h3 id="playlist-modal-title"><i class="fa-solid fa-folder-plus text-accent"></i> Create New Playlist</h3>
-        <button class="btn-icon-small" onclick="window.closeCreatePlaylistModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <form id="create-playlist-form" onsubmit="window.handleSavePlaylist(event); return false;" style="padding: 1.5rem 1rem;">
-        <input type="hidden" id="edit-playlist-id" value="">
-        <div class="form-group" style="margin-bottom: 1.25rem;">
-          <label style="font-size: 0.85rem; font-weight: 700; color: #fff; display: block; margin-bottom: 0.5rem;">Playlist Name</label>
-          <input type="text" id="playlist-name-input" placeholder="e.g. My Bollywood Favorites" required style="width: 100%; padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid var(--border-glass); background: var(--bg-surface-elevated); color: #fff; font-size: 1rem;">
-        </div>
-        <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
-          <button type="button" class="btn-secondary-outline" onclick="window.closeCreatePlaylistModal()">Cancel</button>
-          <button type="submit" class="btn-primary-play" style="padding: 0.75rem 1.5rem;">Save Playlist</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- ADD TRACK TO PLAYLIST MODAL -->
-  <div id="add-to-playlist-modal" class="modal-overlay hidden">
-    <div class="modal-content pulse-auth-modal" style="max-width: 440px;">
-      <div class="spotify-auth-header" style="justify-content: space-between;">
-        <h3><i class="fa-solid fa-list-plus text-accent"></i> Add to Playlist</h3>
-        <button class="btn-icon-small" onclick="window.closeAddToPlaylistModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div style="padding: 1.5rem 1rem;">
-        <div id="add-to-playlist-track-info" style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem; padding: 0.75rem; background: var(--bg-glass-card); border-radius: 8px;">
-          <!-- Track preview populated via JS -->
-        </div>
-
+      <form id="auth-form-login" onsubmit="window.handleRealLogin(event)">
         <div style="margin-bottom: 1rem;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: #b3b3b3;">Select a Playlist:</span>
-            <button type="button" onclick="window.openCreatePlaylistModal()" style="font-size: 0.8rem; color: var(--accent-primary); font-weight: 700; cursor: pointer;">+ New Playlist</button>
-          </div>
-          <div id="add-playlist-options-list" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 200px; overflow-y: auto;">
-            <!-- Options populated dynamically -->
-          </div>
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Email</label>
+          <input type="email" id="login-email" required placeholder="name@example.com" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
         </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Password</label>
+          <input type="password" id="login-password" required placeholder="••••••••" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+        </div>
+        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem;">Log In</button>
+      </form>
+
+      <form id="auth-form-signup" class="hidden" onsubmit="window.handleRealSignup(event)">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Your Name</label>
+          <input type="text" id="signup-name" required placeholder="Pushkar Hiremath" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Email</label>
+          <input type="email" id="signup-email" required placeholder="name@example.com" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Password</label>
+          <input type="password" id="signup-password" required placeholder="••••••••" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+        </div>
+        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem;">Create Account</button>
+      </form>
+
+      <div style="margin-top: 1.25rem; text-align: center;">
+        <button type="button" onclick="window.handleGoogleOAuthLogin()" style="width: 100%; padding: 0.75rem; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-brands fa-google"></i> Continue with Google
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- TRUSTWORTHY CROSS-PLATFORM DOWNLOAD CENTER -->
+  <!-- DOWNLOAD MODAL -->
   <div id="download-app-modal" class="modal-overlay hidden">
-    <div class="modal-content download-modal-box" style="max-width: 780px;">
-      <div class="modal-header">
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
-          <div class="pulse-auth-logo-wrapper" style="width: 38px; height: 38px;">
-            <img src="./pulse-logo.png" alt="Pulse Logo" style="width: 24px; height: 24px;">
-          </div>
-          <div>
-            <h3 style="margin: 0; font-size: 1.25rem;"><i class="fa-solid fa-cloud-arrow-down text-accent"></i> Download Pulse Music</h3>
-            <small style="color: var(--text-muted);">Official Cross-Platform Native Apps • Version 2.4.0 (Stable)</small>
-          </div>
-        </div>
-        <button id="close-download-modal-btn" class="btn-icon-small" onclick="window.closeDownloadModal()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-content download-modal-box" style="max-width: 540px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff;">Download Pulse Music</h3>
+        <button class="btn-icon-small" onclick="window.closeDownloadModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
-
-      <div class="download-modal-body" style="padding: 1.5rem;">
-        <!-- DETECTED OS RECOMMENDED HERO BANNER -->
-        <div id="os-detection-hero" class="download-hero-card" style="background: linear-gradient(135deg, rgba(168,85,247,0.2) 0%, rgba(99,102,241,0.15) 100%); border: 1px solid var(--border-glow); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-            <div id="detected-os-badge" class="download-badge" style="background: rgba(168,85,247,0.25); border: 1px solid rgba(168,85,247,0.5); padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: #d8b4fe; display: inline-flex; align-items: center; gap: 0.4rem;">
-              <i class="fa-solid fa-bolt text-accent"></i> <span id="detected-os-text">Detected: Windows PC (64-bit)</span>
-            </div>
-            <span style="font-size: 0.78rem; color: #4ade80; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); padding: 0.25rem 0.65rem; border-radius: 12px; font-weight: 600;">
-              <i class="fa-solid fa-shield-check"></i> Code-Signed & Verified
-            </span>
-          </div>
-
-          <div>
-            <h2 id="detected-os-heading" style="font-size: 1.5rem; margin-bottom: 0.3rem;">Pulse Music for Windows</h2>
-            <p id="detected-os-subtext" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem;">
-              Experience ultra high-fidelity audio, synchronized lyrics, offline playback, and frameless native desktop performance.
-            </p>
-          </div>
-
-          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-            <a id="primary-os-download-btn" href="#" onclick="window.downloadPlatformApp('auto'); return false;" class="btn-primary-play" style="padding: 0.85rem 1.8rem; font-size: 1rem; border-radius: 12px; display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; font-weight: 700; box-shadow: 0 4px 20px rgba(168,85,247,0.4);">
-              <i class="fa-solid fa-cloud-arrow-down"></i> <span id="primary-download-label">Download Installer Package (.EXE)</span>
-            </a>
-            <div id="primary-file-meta" style="font-size: 0.8rem; color: var(--text-muted);">
-              Format: <strong id="primary-file-size" style="color: #fff;">Standalone Binary</strong> • Release: <strong style="color: #fff;">v2.4.0 (Stable)</strong>
-            </div>
-          </div>
-
-          <!-- Primary SHA256 Checksum -->
-          <div style="background: rgba(0,0,0,0.35); padding: 0.6rem 0.85rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; font-size: 0.76rem; font-family: monospace; color: #a3a3a3; overflow: hidden;">
-            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 0.5rem;">
-              <i class="fa-solid fa-shield-check text-success"></i> SHA256: <code id="primary-sha256" style="color: #c084fc;">b8aedd56db4054b74976e1f5c500c42c691994f3475e21fe4ac54bbb143ce3ce</code>
-            </span>
-            <button type="button" class="btn-copy-hash" onclick="window.copyPrimaryChecksum()" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); padding: 0.2rem 0.5rem; border-radius: 4px; color: #fff; font-size: 0.72rem; cursor: pointer; flex-shrink: 0;">
-              <i class="fa-solid fa-copy"></i> Copy Hash
-            </button>
-          </div>
-
-          <!-- Browser Security Guidance Notice -->
-          <div style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.82rem; color: #93c5fd; line-height: 1.45;">
-            <i class="fa-solid fa-shield-halved" style="font-size: 1.05rem; margin-top: 2px; color: #60a5fa; flex-shrink: 0;"></i>
-            <div>
-              <strong>Quick Installation Guide:</strong>
-              <div style="margin-top: 0.35rem; color: #cbd5e1; font-size: 0.78rem; display: flex; flex-direction: column; gap: 0.25rem;">
-                <div>🪟 <strong>Windows:</strong> If SmartScreen appears, click <em>"More info"</em> &rarr; <em>"Run anyway"</em>.</div>
-                <div>🤖 <strong>Android:</strong> If prompted <em>"File might be harmful"</em>, tap <em>"Download anyway"</em> &rarr; <em>"Open"</em> &rarr; <em>"Install"</em>.</div>
-                <div>🍏 <strong>macOS:</strong> Open DMG &rarr; Drag to Applications folder.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ALL PLATFORMS GRID -->
-        <h4 style="font-size: 0.95rem; color: #b3b3b3; margin-bottom: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">All Available Native Platforms</h4>
-        
-        <div class="platform-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-          
-          <!-- 1. WINDOWS -->
-          <div class="platform-card" id="card-windows" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem;">
-            <div style="display: flex; align-items: center; gap: 0.6rem;">
-              <i class="fa-brands fa-windows text-accent" style="font-size: 1.4rem;"></i>
-              <div>
-                <h5 style="margin: 0; font-size: 0.95rem;">Windows PC</h5>
-                <small style="color: var(--text-muted); font-size: 0.72rem;">Windows 10 & 11 (x64)</small>
-              </div>
-            </div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
-              <span>Installer: <strong>.exe (Signed)</strong></span>
-              <span id="meta-win-size">1.2 MB</span>
-            </div>
-            <a href="/api/download/windows" download="Pulse-Music-Setup-2.4.0.exe" onclick="window.downloadPlatformApp('windows');" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(168,85,247,0.15); border: 1px solid var(--accent-primary); color: #fff; text-align: center; text-decoration: none; font-weight: 600; cursor: pointer; display: block;">
-              <i class="fa-solid fa-download"></i> Download .EXE
-            </a>
-          </div>
-
-          <!-- 2. MAC OS -->
-          <div class="platform-card" id="card-mac" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem;">
-            <div style="display: flex; align-items: center; gap: 0.6rem;">
-              <i class="fa-brands fa-apple text-primary" style="font-size: 1.4rem;"></i>
-              <div>
-                <h5 style="margin: 0; font-size: 0.95rem;">macOS</h5>
-                <small style="color: var(--text-muted); font-size: 0.72rem;">Apple Silicon & Intel</small>
-              </div>
-            </div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
-              <span>Package: <strong>.dmg Universal</strong></span>
-              <span id="meta-mac-size">1.1 MB</span>
-            </div>
-            <a href="/api/download/mac" download="Pulse-Music-2.4.0.dmg" onclick="window.downloadPlatformApp('mac');" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600; cursor: pointer; display: block;">
-              <i class="fa-solid fa-download"></i> Download .DMG
-            </a>
-          </div>
-
-          <!-- 3. ANDROID -->
-          <div class="platform-card" id="card-android" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem;">
-            <div style="display: flex; align-items: center; gap: 0.6rem;">
-              <i class="fa-brands fa-android text-success" style="font-size: 1.4rem; color: #4ade80;"></i>
-              <div>
-                <h5 style="margin: 0; font-size: 0.95rem;">Android Phone</h5>
-                <small style="color: var(--text-muted); font-size: 0.72rem;">Android 8.0+ Native APK</small>
-              </div>
-            </div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
-              <span>Release: <strong>.apk Signed</strong></span>
-              <span id="meta-android-size">1.9 MB</span>
-            </div>
-            <a href="/api/download/android" download="Pulse-Music-v2.4.0.apk" onclick="window.downloadPlatformApp('android');" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.4); color: #4ade80; text-align: center; text-decoration: none; font-weight: 600; cursor: pointer; display: block;">
-              <i class="fa-solid fa-download"></i> Download APK
-            </a>
-          </div>
-
-          <!-- 4. LINUX -->
-          <div class="platform-card" id="card-linux" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem;">
-            <div style="display: flex; align-items: center; gap: 0.6rem;">
-              <i class="fa-brands fa-linux text-warning" style="font-size: 1.4rem; color: #fbbf24;"></i>
-              <div>
-                <h5 style="margin: 0; font-size: 0.95rem;">Linux Desktop</h5>
-                <small style="color: var(--text-muted); font-size: 0.72rem;">AppImage & Standalone</small>
-              </div>
-            </div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
-              <span>Package: <strong>.AppImage</strong></span>
-              <span id="meta-linux-size">1.1 MB</span>
-            </div>
-            <a href="/api/download/linux" download="Pulse-Music-2.4.0.AppImage" onclick="window.downloadPlatformApp('linux');" class="btn-platform-download" style="margin-top: auto; padding: 0.5rem; font-size: 0.82rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600; cursor: pointer; display: block;">
-              <i class="fa-solid fa-download"></i> Download AppImage
-            </a>
-          </div>
-
-          <!-- 5. IOS -->
-          <div class="platform-card" id="card-ios" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem;">
-            <div style="display: flex; align-items: center; gap: 0.6rem;">
-              <i class="fa-brands fa-apple text-accent" style="font-size: 1.4rem;"></i>
-              <div>
-                <h5 style="margin: 0; font-size: 0.95rem;">iPhone / iPad</h5>
-                <small style="color: var(--text-muted); font-size: 0.72rem;">iOS 14.0+ Package & PWA</small>
-              </div>
-            </div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between;">
-              <span>Package: <strong>.ipa / Web App</strong></span>
-              <span id="meta-ios-size">1.1 MB</span>
-            </div>
-            <div style="display: flex; gap: 0.4rem; margin-top: auto;">
-              <a href="/api/download/ios" download="Pulse-Music-v2.4.0.ipa" onclick="window.downloadPlatformApp('ios');" class="btn-platform-download" style="flex: 1; padding: 0.5rem; font-size: 0.8rem; border-radius: 8px; background: rgba(168,85,247,0.15); border: 1px solid var(--accent-primary); color: #fff; text-align: center; text-decoration: none; font-weight: 600; cursor: pointer; display: block;">
-                <i class="fa-solid fa-download"></i> .IPA
-              </a>
-              <a href="#" onclick="window.downloadPlatformApp('ios');" class="btn-platform-download" style="flex: 1; padding: 0.5rem; font-size: 0.8rem; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; text-align: center; text-decoration: none; font-weight: 600; cursor: pointer; display: block;">
-                <i class="fa-solid fa-cloud-arrow-down"></i> Install PWA
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- SHARE & INSTALL GUIDE BOX -->
-        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-size: 0.82rem; color: #4ade80;"><i class="fa-solid fa-shield-check"></i> <strong>100% Safe & Clean Software Guarantee:</strong></span>
-            <small style="color: var(--text-muted); font-size: 0.75rem;">0 Ads • 0 Telemetry • Cryptographically Verified</small>
-          </div>
-          <div style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
-            • <strong>Instant 1-Tap Install (0 Warnings):</strong> Tap <em>"Install App"</em> on your phone or PC browser for instant installation directly into your apps list with 0 security prompts.<br>
-            • <strong>Android (.APK):</strong> Chrome displays a standard prompt (<em>"File might be harmful"</em>) for all third-party APKs. Tap <em>"Download anyway"</em> $\rightarrow$ <em>"Open"</em> $\rightarrow$ <em>"Install"</em>.<br>
-            • <strong>Windows (.EXE):</strong> If Windows SmartScreen appears on newly published executables, click <em>"More info"</em> $\rightarrow$ <em>"Run anyway"</em>.<br>
-            • <strong>macOS (.DMG):</strong> Drag Pulse to Applications $\rightarrow$ Right-click $\rightarrow$ <em>"Open"</em>.<br>
-            • <strong>iOS (iPhone/iPad):</strong> Tap Safari Share button (⎋) $\rightarrow$ <em>"Add to Home Screen"</em> 📲.
-          </div>
-        </div>
-
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Experience high-fidelity audio, keyboard shortcuts, and instant access on your device.</p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <button onclick="window.downloadPlatformApp('windows')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <i class="fa-brands fa-windows" style="font-size: 1.8rem; color: #60a5fa;"></i>
+          <strong>Windows</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">PWA / Desktop</span>
+        </button>
+        <button onclick="window.downloadPlatformApp('android')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <i class="fa-brands fa-android" style="font-size: 1.8rem; color: #34d399;"></i>
+          <strong>Android</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">APK / Web App</span>
+        </button>
+        <button onclick="window.downloadPlatformApp('macos')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <i class="fa-brands fa-apple" style="font-size: 1.8rem; color: #e2e8f0;"></i>
+          <strong>macOS</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Desktop App</span>
+        </button>
+        <button onclick="window.downloadPlatformApp('ios')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-mobile-screen" style="font-size: 1.8rem; color: #c084fc;"></i>
+          <strong>iOS / iPadOS</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Home Screen</span>
+        </button>
       </div>
     </div>
   </div>
-
-  <!-- AUTHORIZED AUDIO UPLOAD & ASSOCIATION MODAL -->
-  <div id="upload-audio-modal" class="modal-overlay hidden">
-    <div class="modal-content upload-modal-box">
-      <div class="modal-header">
-        <h3><i class="fa-solid fa-cloud-arrow-up text-accent"></i> Upload Authorized Full Audio</h3>
-        <button id="close-upload-modal-btn" class="btn-icon-small" onclick="window.closeUploadAudioModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="upload-modal-body" style="padding: 1.25rem 1.5rem;">
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
-          Upload your authorized full-length audio file (<strong>.mp3, .m4a, .wav, .aac, .flac</strong>) to your Supabase <code>music</code> bucket and instantly attach it to any catalog track for high-fidelity playback.
-        </p>
-
-        <!-- Dropzone / File Picker -->
-        <div id="audio-dropzone" class="audio-dropzone" onclick="document.getElementById('audio-file-input').click()">
-          <input type="file" id="audio-file-input" accept="audio/*,.mp3,.m4a,.wav,.aac,.flac,.ogg" style="display:none;" onchange="window.handleAudioFileSelected(event)">
-          <i class="fa-solid fa-file-audio dropzone-icon"></i>
-          <h4 id="dropzone-label">Click or Drag & Drop audio file here</h4>
-          <span id="dropzone-sublabel" style="font-size: 0.78rem; color: var(--text-muted);">Supports MP3, M4A, WAV, AAC, FLAC</span>
-        </div>
-
-        <!-- Selected File Preview Badge -->
-        <div id="selected-audio-preview" class="selected-audio-badge hidden">
-          <i class="fa-solid fa-check-circle text-success"></i>
-          <span id="selected-audio-name" style="font-weight:600; font-size:0.85rem;">file.mp3</span>
-          <span id="selected-audio-size" style="font-size:0.75rem; color:var(--text-muted); margin-left:auto;">0 MB</span>
-        </div>
-
-        <!-- Song Target Association Selector -->
-        <div style="margin-top: 1.25rem;">
-          <label style="font-size: 0.85rem; font-weight: 700; color: #b3b3b3; display: block; margin-bottom: 0.4rem;">
-            Associate with Song:
-          </label>
-          <select id="upload-target-track-select" class="pulse-select-input" onchange="window.handleUploadTrackSelectionChange(this.value)">
-            <option value="NEW_TRACK">+ Create New Custom Track Entry</option>
-            <!-- Populated with all catalog tracks dynamically -->
-          </select>
-        </div>
-
-        <!-- Custom Track Details (when NEW_TRACK selected) -->
-        <div id="custom-track-fields" class="custom-fields-group" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.65rem;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;">
-            <div>
-              <label style="font-size: 0.78rem; color: var(--text-muted);">Track Title *</label>
-              <input type="text" id="upload-track-title" class="pulse-text-input" placeholder="e.g. My Studio Master">
-            </div>
-            <div>
-              <label style="font-size: 0.78rem; color: var(--text-muted);">Artist Name *</label>
-              <input type="text" id="upload-track-artist" class="pulse-text-input" placeholder="e.g. Pushkar Hiremath">
-            </div>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;">
-            <div>
-              <label style="font-size: 0.78rem; color: var(--text-muted);">Album Name</label>
-              <input type="text" id="upload-track-album" class="pulse-text-input" placeholder="e.g. Exclusive Release">
-            </div>
-            <div>
-              <label style="font-size: 0.78rem; color: var(--text-muted);">Genre / Category</label>
-              <select id="upload-track-category" class="pulse-select-input">
-                <option value="bollywood">Bollywood / Hindi</option>
-                <option value="english">English Hits</option>
-                <option value="punjabi">Punjabi</option>
-                <option value="lofi">Lo-Fi Chill</option>
-                <option value="spanish">Spanish / Latin</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- Upload Progress Bar -->
-        <div id="upload-progress-container" class="upload-progress-box hidden" style="margin-top: 1rem;">
-          <div style="display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 0.3rem;">
-            <span id="upload-status-text">Uploading to Supabase Storage bucket 'music'...</span>
-            <span id="upload-percent-text">0%</span>
-          </div>
-          <div class="progress-bar-bg" style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
-            <div id="upload-progress-bar-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--accent-primary), #3b82f6); transition: width 0.2s;"></div>
-          </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
-          <button type="button" class="btn-secondary" onclick="window.closeUploadAudioModal()" style="padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600;">Cancel</button>
-          <button type="button" id="btn-submit-audio-upload" class="btn-primary" onclick="window.executeAudioUpload()" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-weight: 700;">
-            <i class="fa-solid fa-cloud-arrow-up"></i> Upload & Associate
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PERSISTENT BOTTOM PLAYER BAR -->
-  <footer class="bottom-player-bar" id="pulse-bottom-playbar">
-    <!-- Thin top playback progress line at top edge of playbar -->
-    <div class="mini-top-progress-bar" style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: rgba(255, 255, 255, 0.08); z-index: 10; pointer-events: none;">
-      <div id="mini-top-progress-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6); transition: width 0.15s linear;"></div>
-    </div>
-
-        <!-- 2-Line Live Lyrics Preview Snippet -->
-    <div id="mini-playbar-lyrics-snippet" class="mini-lyrics-snippet hidden" onclick="window.openFullscreenPlayerWithLyrics()" title="Click to expand Karaoke Lyrics View">
-      <div class="mini-lyric-line mini-lyric-current" id="mini-lyric-current">♪ Pulse Live Lyrics Sync</div>
-      <div class="mini-lyric-line mini-lyric-next" id="mini-lyric-next"></div>
-    </div>
-
-    <!-- LEFT: CURRENT TRACK -->
-    <div class="player-left">
-      <div class="player-thumb-wrapper" id="btn-open-fullscreen">
-        <img id="player-thumb" src="./pulse-logo.png" alt="Current Track">
-        <div class="thumb-hover-overlay"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div>
-      </div>
-      <div class="player-track-info" id="btn-open-fullscreen-text">
-        <h4 id="player-title">Select a song to play</h4>
-        <p id="player-artist">Pulse Music Engine</p>
-      </div>
-      <button id="player-like-btn" class="btn-player-icon" title="Save to Favorites">
-        <i class="fa-regular fa-heart"></i>
-      </button>
-    </div>
-
-    <!-- CENTER: PLAYER CONTROLS & TIMELINE -->
-    <div class="player-center">
-      <div class="player-buttons">
-        <button id="btn-shuffle" class="btn-player-control" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
-        <button id="btn-rewind-5s" class="btn-player-control" title="Rewind 5s"><i class="fa-solid fa-rotate-left"></i></button>
-        <button id="btn-prev" class="btn-player-control" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
-        <button id="btn-play-pause" class="btn-player-main" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
-        <button id="btn-next" class="btn-player-control" title="Next"><i class="fa-solid fa-forward-step"></i></button>
-        <button id="btn-forward-5s" class="btn-player-control" title="Forward 5s"><i class="fa-solid fa-rotate-right"></i></button>
-        <button id="btn-repeat" class="btn-player-control" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
-      </div>
-
-      <div class="timeline-container">
-        <span id="player-time-current">0:00</span>
-        <div class="progress-bar-wrapper" id="player-progress-bar">
-          <div class="progress-bar-fill" id="player-progress-fill"></div>
-          <div class="progress-handle" id="player-progress-handle"></div>
-          <input type="range" class="timeline-range-input" id="player-seek-slider" min="0" max="100" value="0" step="0.1">
-        </div>
-        <span id="player-time-total">0:00</span>
-      </div>
-    </div>
-
-    <!-- RIGHT: EXTRA CONTROLS -->
-    <div class="player-right">
-      <!-- High-Fidelity Bitrate Quality Badge -->
-      <span id="player-bitrate-badge" class="bitrate-badge bitrate-master" title="Lossless High-Bitrate Master Stream">320kbps HD</span>
-
-      <!-- MINI VISUALIZER PREVIEW BAR -->
-      <div id="mini-visualizer" class="mini-eq" title="Audio Visualizer Active">
-        <span></span><span></span><span></span><span></span>
-      </div>
-
-      <button id="btn-download-song" class="btn-player-icon" title="Download Song (Offline)" onclick="window.downloadSong()"><i class="fa-solid fa-arrow-down-to-line"></i></button>
-      <button id="btn-toggle-lyrics" class="btn-player-icon" title="Lyrics"><i class="fa-solid fa-quote-right"></i></button>
-      <button id="btn-toggle-queue" class="btn-player-icon" title="Play Queue"><i class="fa-solid fa-list-ul"></i></button>
-      
-      <div class="volume-container">
-        <button id="btn-volume" class="btn-player-icon"><i class="fa-solid fa-volume-high"></i></button>
-        <div class="volume-bar-wrapper" id="volume-bar">
-          <div class="volume-bar-fill" id="volume-fill" style="width: 80%;"></div>
-        </div>
-      </div>
-      
-      <button id="btn-expand-fs" class="btn-player-icon" title="Fullscreen Player"><i class="fa-solid fa-expand"></i></button>
-    </div>
-  </footer>
-
-  <!-- NATIVE MOBILE BOTTOM NAVIGATION BAR (Breakpoints 320px - 768px) -->
-  <nav id="mobile-bottom-nav" class="mobile-bottom-nav">
-    <button class="mobile-nav-item active" data-view="home" onclick="window.switchView('home')">
-      <i class="fa-solid fa-house"></i>
-      <span>Home</span>
-    </button>
-    <button class="mobile-nav-item" data-view="search-view" onclick="window.switchView('search-view')">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <span>Search</span>
-    </button>
-    
-    <button class="mobile-nav-item" data-view="liked" onclick="window.switchView('liked')">
-      <i class="fa-solid fa-heart"></i>
-      <span>Liked</span>
-    </button>
-    <button class="mobile-nav-item" data-view="history" onclick="window.switchView('history')">
-      <i class="fa-solid fa-clock-rotate-left"></i>
-      <span>Recent</span>
-    </button>
-    <button class="mobile-nav-item" onclick="window.openDownloadModal()">
-      <i class="fa-solid fa-cloud-arrow-down"></i>
-      <span>Install</span>
-    </button>
-  </nav>
 
   <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="pulse-toast-container" class="pulse-toast-container"></div>
+  <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
 
-  <!-- YOUTUBE BACKGROUND AUDIO STREAMING ENGINE -->
-  <div id="hidden-youtube-container" style="position: fixed; bottom: -500px; right: -500px; width: 240px; height: 240px; z-index: -999; opacity: 1; pointer-events: none; visibility: visible;">
-    
-    
-  </div>
+  <!-- NATIVE AUDIO ELEMENT -->
+  <audio id="fallback-audio-player" preload="auto"></audio>
 
-  <!-- HIGH FIDELITY HTML5 BACKGROUND AUDIO ENGINE (Works with screen locked / off) -->
-  <audio id="fallback-audio-player" playsinline webkit-playsinline preload="auto" x-webkit-airplay="allow"></audio>
-  <audio id="bg-audio-keepalive" loop playsinline webkit-playsinline preload="auto" style="display:none;"></audio>
-
-  <!-- OFFICIAL YOUTUBE IFRAME PLAYER API -->
-  <!-- YOUTUBE API INIT (must run BEFORE module scripts to catch the callback) -->
-  <script>
-    (function() {
-      // Global Ad & Popup Shield - Blocks ad popups, window.open hijacking, and ad redirects
-      try {
-        const originalOpen = window.open;
-        window.open = function(url, target, features) {
-          if (!url || typeof url !== 'string' || url.includes('doubleclick') || url.includes('adnxs') || url.includes('adservice') || url.includes('syndication') || url.includes('popads')) {
-            console.warn('[Pulse Ad Shield] Blocked suspicious ad popup:', url);
-            return null;
-          }
-          return originalOpen.apply(window, arguments);
-        };
-      } catch (e) {}
-
-      // Splash screen remover
-      function forceRemoveSplash() {
-        var splash = document.getElementById('splash-screen');
-        if (splash) {
-          splash.classList.add('fade-out');
-          splash.style.opacity = '0';
-          splash.style.pointerEvents = 'none';
-          setTimeout(function() {
-            splash.style.display = 'none';
-            if (splash.parentNode) {
-              splash.parentNode.removeChild(splash);
-            }
-          }, 500);
-        }
-      }
-      setTimeout(forceRemoveSplash, 600);
-      window.addEventListener('load', forceRemoveSplash);
-
-      // Password visibility toggle
-      window.togglePasswordVisibility = function(btn) {
-        var wrapper = btn.closest('.pulse-input-wrapper');
-        var input = wrapper.querySelector('input');
-        var icon = btn.querySelector('i');
-        if (input.type === 'password') {
-          input.type = 'text';
-          icon.className = 'fa-solid fa-eye-slash';
-        } else {
-          input.type = 'password';
-          icon.className = 'fa-solid fa-eye';
-        }
-      };
-    })();
-  </script>
-
-  <script>
-    // Auto-update Service Worker cache on load
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(regs) {
-        for (var i = 0; i < regs.length; i++) {
-          regs[i].update();
-        }
-      });
-    }
-  </script>
-    <script type="module" src="./src/main.js"></script>
+  <!-- APPLICATION JAVASCRIPT -->
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>
