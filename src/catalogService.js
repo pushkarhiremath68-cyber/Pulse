@@ -698,6 +698,80 @@ function getOfficialCover(title, artist) {
 
     getActivePreviewTrackId() {
       return activePreviewTrackId;
+    },
+
+    // =========================================================================
+    // MULTI-SOURCE SEARCH ENGINE (Local Registered Tracks + Jamendo API)
+    // =========================================================================
+    async searchCatalog(query, limit = 30) {
+      if (!query || typeof query !== 'string') return [];
+      const q = query.toLowerCase().trim();
+      if (!q) return [];
+
+      const localResults = [];
+      const seenIds = new Set();
+
+      const allLocal = [
+        ...STARTER_TRACKS,
+        ...(typeof root !== 'undefined' && root.TRACKS_REGISTRY ? Object.values(root.TRACKS_REGISTRY) : [])
+      ];
+
+      for (const raw of allLocal) {
+        if (!raw) continue;
+        const id = String(raw.id);
+        if (seenIds.has(id)) continue;
+
+        const title = String(raw.title || raw.name || '').toLowerCase();
+        const artist = String(raw.artist || raw.artist_name || '').toLowerCase();
+        const album = String(raw.album || raw.album_name || '').toLowerCase();
+        const category = String(raw.category || '').toLowerCase();
+        const genre = String(raw.genre || '').toLowerCase();
+
+        if (title.includes(q) || artist.includes(q) || album.includes(q) || category.includes(q) || genre.includes(q)) {
+          const norm = normalizeCatalogTrack(raw);
+          if (norm) {
+            seenIds.add(id);
+            localResults.push(norm);
+          }
+        }
+      }
+
+      // Live Jamendo API search
+      if (q.length >= 2) {
+        try {
+          const url = `${JAMENDO_API_BASE}/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=json&limit=15&namesearch=${encodeURIComponent(query)}&include=musicinfo+licenses`;
+          const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+          if (res.ok) {
+            const json = await res.json();
+            if (json.results && Array.isArray(json.results)) {
+              for (const t of json.results) {
+                const id = 'jamendo-' + t.id;
+                if (!seenIds.has(id)) {
+                  seenIds.add(id);
+                  const norm = normalizeCatalogTrack({
+                    id: id,
+                    title: t.name,
+                    artist: t.artist_name,
+                    album: t.album_name || 'Jamendo Single',
+                    cover: t.album_image || t.image,
+                    duration: parseInt(t.duration, 10) || 210,
+                    streamUrl: t.audio || t.audiodownload,
+                    previewUrl: t.audio,
+                    category: 'search-discovery',
+                    genre: (t.musicinfo && t.musicinfo.tags && t.musicinfo.tags.genres && t.musicinfo.tags.genres[0]) || 'Pop',
+                    source: 'Jamendo Music'
+                  });
+                  if (norm) localResults.push(norm);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('[CatalogService Search] Jamendo API notice:', e.message);
+        }
+      }
+
+      return localResults.slice(0, limit);
     }
   };
 
