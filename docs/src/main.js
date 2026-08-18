@@ -1,10 +1,3 @@
-import './lyricsService.js';
-import './catalogService.js';
-import './musicService.js';
-import './audioEngine.js';
-import './playbarController.js';
-import './visualizer.js';
-
 (function() {
   'use strict';
 
@@ -230,7 +223,7 @@ import './visualizer.js';
   }
 
   /* ==========================================================================
-     STOP ALL AUDIO â€” PREVENTS DOUBLE PLAYBACK
+     STOP ALL AUDIO — PREVENTS DOUBLE PLAYBACK
      ========================================================================== */
   function stopAllAudio() {
     // 1. Stop and completely release HTML5 audio stream
@@ -271,7 +264,7 @@ import './visualizer.js';
   }
 
   /* ==========================================================================
-     PLAYBACK STATE PERSISTENCE â€” Resume from where user left off
+     PLAYBACK STATE PERSISTENCE — Resume from where user left off
      ========================================================================== */
   const PLAYBACK_STATE_KEY = 'pulse_playback_state_v2';
 
@@ -302,7 +295,7 @@ import './visualizer.js';
   }
 
   /* ==========================================================================
-     SONG DOWNLOAD ENGINE â€” Full-length via Invidious
+     SONG DOWNLOAD ENGINE — Full-length via Invidious
      ========================================================================== */
   async function downloadFullSong(track) {
     if (!track) return;
@@ -1254,166 +1247,7 @@ import './visualizer.js';
   activeLyricIndex = -1;
   let isFullscreenLyricsActive = false;
 
-  // Fetch original album artwork from iTunes
-  async function fetchOriginalArtwork(track) {
-    if (!track) return;
-    const title = (track.title || '').replace(/\s*\([^)]*\)/g, '').trim();
-    const artist = (track.artist || '').split(',')[0].trim();
-    if (!title && !artist) return;
-    try {
-      const q = encodeURIComponent(`${title} ${artist}`);
-      const res = await fetch(`https://itunes.apple.com/search?term=${q}&entity=song&limit=3`, { signal: AbortSignal.timeout(3000) });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.results && data.results.length > 0) {
-          const art = data.results[0].artworkUrl100;
-          if (art) {
-            const hdArt = art.replace('100x100bb', '600x600bb');
-            track.cover = hdArt;
-            // Update all UI elements with the HD artwork
-            const pThumb = document.getElementById('player-thumb');
-            const fsArt = document.getElementById('fs-album-art');
-            const fsBg = document.getElementById('fs-bg-blur');
-            if (pThumb) pThumb.src = hdArt;
-            if (fsArt) fsArt.src = hdArt;
-            if (fsBg) fsBg.style.backgroundImage = `url('${hdArt}')`;
-            if (window.TRACKS_REGISTRY && track.id) {
-              window.TRACKS_REGISTRY[track.id] = track;
-            }
-          }
-        }
-      }
-    } catch (e) {}
-  }
-
-  // Load lyrics for a track using lyricsService
-  async function loadTrackLyrics(track) {
-    if (!track) { updateLyricsUIEmpty(); return; }
-
-    currentLyricsData = null;
-    activeLyricIndex = -1;
-
-    const container = document.getElementById('lyrics-container');
-    const fsScroller = document.getElementById('fs-lyrics-scroller');
-    const modalLines = document.getElementById('lyrics-modal-lines');
-
-    if (container) container.innerHTML = '<p class="lyrics-placeholder" style="color: var(--text-muted); text-align: center; padding: 2rem;">Loading lyrics...</p>';
-
-    if (!window.lyricsService || typeof window.lyricsService.getLyrics !== 'function') {
-      if (container) container.innerHTML = '<p class="lyrics-placeholder" style="color: var(--text-muted); text-align: center; padding: 2rem;">Lyrics engine loading...</p>';
-      return;
-    }
-
-    try {
-      const result = await window.lyricsService.getLyrics(track.title, track.artist);
-      currentLyricsData = result;
-
-      if (result && !result.notFound && result.lines && result.lines.length > 0) {
-        const linesHtml = result.lines.map((line, idx) =>
-          `<p class="lyric-line${result.isSynced ? ' synced-line' : ''}" data-line-idx="${idx}" data-time="${line.time || 0}" style="padding: 0.5rem 0; margin: 0; font-size: 1.1rem; color: var(--text-muted); transition: all 0.3s ease; cursor: pointer; line-height: 1.6;">${line.text || '♪'}</p>`
-        ).join('');
-
-        if (container) container.innerHTML = linesHtml;
-        if (fsScroller) fsScroller.innerHTML = linesHtml;
-        if (modalLines) modalLines.innerHTML = linesHtml;
-
-        // Show mini lyrics snippet
-        const miniSnippet = document.getElementById('mini-playbar-lyrics-snippet');
-        if (miniSnippet) miniSnippet.classList.remove('hidden');
-      } else {
-        const noLyricsHtml = `<div style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);">
-          <i class="fa-solid fa-music" style="font-size: 2rem; margin-bottom: 0.75rem; display: block; opacity: 0.5;"></i>
-          <p style="font-weight: 600; color: #fff; margin-bottom: 0.3rem;">Lyrics Not Available</p>
-          <p style="font-size: 0.82rem;">Lyrics for "${track.title}" by ${track.artist} are not yet in the LRCLIB database.</p>
-        </div>`;
-        if (container) container.innerHTML = noLyricsHtml;
-        if (fsScroller) fsScroller.innerHTML = noLyricsHtml;
-        if (modalLines) modalLines.innerHTML = noLyricsHtml;
-      }
-    } catch (err) {
-      console.warn('[Pulse Lyrics] Error loading lyrics:', err);
-      if (container) container.innerHTML = '<p class="lyrics-placeholder" style="color: var(--text-muted); text-align: center; padding: 2rem;">Could not load lyrics.</p>';
-    }
-  }
-  window.loadTrackLyrics = loadTrackLyrics;
-
-  function updateLyricsUIEmpty() {
-    const container = document.getElementById('lyrics-container');
-    const fsScroller = document.getElementById('fs-lyrics-scroller');
-    if (container) container.innerHTML = '<p class="lyrics-placeholder" style="color: var(--text-muted); text-align: center; padding: 2rem;">Play a song to load real-time synchronized lyrics!</p>';
-    if (fsScroller) fsScroller.innerHTML = '<div class="lyrics-placeholder-empty"><i class="fa-solid fa-music" style="font-size: 2rem; margin-bottom: 0.5rem; display: block; color: var(--accent-primary); opacity: 0.4;"></i><p>Loading synchronized lyrics from LRCLIB...</p></div>';
-  }
-
-  // Sync lyrics highlight with current playback time
-  window.syncLiveLyrics = function(currentTime) {
-    if (!currentLyricsData || !currentLyricsData.isSynced || !currentLyricsData.lines) return;
-    const lines = currentLyricsData.lines;
-    const newIdx = window.lyricsService ? window.lyricsService.getActiveLineIndex(lines, currentTime) : -1;
-    if (newIdx === activeLyricIndex) return;
-    activeLyricIndex = newIdx;
-
-    // Update drawer lyrics
-    const container = document.getElementById('lyrics-container');
-    if (container) {
-      const allLines = container.querySelectorAll('.lyric-line');
-      allLines.forEach((el, idx) => {
-        if (idx === newIdx) {
-          el.style.color = '#fff';
-          el.style.fontWeight = '700';
-          el.style.fontSize = '1.2rem';
-          el.style.transform = 'scale(1.02)';
-          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-          el.style.color = 'var(--text-muted)';
-          el.style.fontWeight = '400';
-          el.style.fontSize = '1.1rem';
-          el.style.transform = 'scale(1)';
-        }
-      });
-    }
-
-    // Update mini lyrics snippet
-    if (newIdx >= 0 && lines[newIdx]) {
-      const currentEl = document.getElementById('mini-lyric-current');
-      const nextEl = document.getElementById('mini-lyric-next');
-      if (currentEl) currentEl.textContent = lines[newIdx].text || '';
-      if (nextEl && lines[newIdx + 1]) nextEl.textContent = lines[newIdx + 1].text || '';
-    }
-  };
-
-  // Open lyrics for current track (called from fullscreen player button and lyrics pills)
-  window.openLyricsForCurrentTrack = function() {
-    const track = state.currentTrack;
-    if (!track) {
-      showToast('Play a song first to see lyrics!', 'info', 3000);
-      return;
-    }
-    const modal = document.getElementById('lyrics-preview-modal');
-    if (modal) {
-      const titleEl = document.getElementById('lyrics-modal-title');
-      const artistEl = document.getElementById('lyrics-modal-artist');
-      const coverEl = document.getElementById('lyrics-modal-cover');
-      if (titleEl) titleEl.textContent = track.title;
-      if (artistEl) artistEl.textContent = track.artist;
-      if (coverEl) coverEl.src = track.cover || './pulse-logo.png';
-      modal.classList.remove('hidden');
-      loadTrackLyrics(track);
-    }
-  };
-
-  window.closeLyricsModal = function() {
-    const modal = document.getElementById('lyrics-preview-modal');
-    if (modal) modal.classList.add('hidden');
-  };
-
-  window.openFullscreenPlayerWithLyrics = function() {
-    const fsPlayer = document.getElementById('fullscreen-player');
-    if (fsPlayer) fsPlayer.classList.add('active');
-    const lyricsView = document.getElementById('fs-lyrics-view');
-    if (lyricsView) lyricsView.classList.add('active');
-    if (state.currentTrack) loadTrackLyrics(state.currentTrack);
-  };
-
+  
   function renderLyricsDrawer() {
     const track = state.currentTrack || (window.playbarController && typeof window.playbarController.getState === 'function' && window.playbarController.getState().currentTrack);
     if (track) {
@@ -1579,7 +1413,7 @@ import './visualizer.js';
 
     if (coverEl) coverEl.src = track.cover || './pulse-logo.png';
     if (titleEl) titleEl.textContent = title;
-    if (artistEl) artistEl.textContent = `${artist} â€¢ ${track.album || 'Single'}`;
+    if (artistEl) artistEl.textContent = `${artist} • ${track.album || 'Single'}`;
     if (perfEl) perfEl.textContent = artist;
     if (writEl) writEl.textContent = track.lyricist || artist.split(',')[0] || 'Lyricist';
     if (prodEl) prodEl.textContent = track.composer || track.producer || 'Pulse Studio Production';
@@ -1691,7 +1525,7 @@ import './visualizer.js';
             <img src="${track.cover || (window.generateTrackCover ? window.generateTrackCover(track.title, track.artist) : './pulse-logo.png')}" alt="${track.title}" onerror="if(window.generateTrackCover){this.src=window.generateTrackCover('${(track.title||'').replace(/'/g, "\\'")}','${(track.artist||'').replace(/'/g, "\\'")}');}">
             <div class="queue-item-meta">
               <strong>${track.title}</strong>
-              <small>${track.artist} â€¢ ${track.duration || '3:30'}</small>
+              <small>${track.artist} • ${track.duration || '3:30'}</small>
             </div>
             <div style="display: flex; align-items: center; gap: 0.4rem; margin-left: auto;">
               <button class="btn-lyrics-pill" title="View Lyrics" onclick="event.stopPropagation(); window.openLyricsForTrack('${track.id}')" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;">
@@ -1797,7 +1631,7 @@ import './visualizer.js';
     if (heading) heading.textContent = `Pulse Music for ${detected.name.split(' ')[0]}`;
     if (subtext) subtext.textContent = `Direct download of the official standalone ${extName} installer package. High-fidelity audio, offline library, and 0 ads.`;
     
-    if (dlLabel) dlLabel.textContent = `âš¡ Direct Download ${detected.name.split(' ')[0]} App (.${extName})`;
+    if (dlLabel) dlLabel.textContent = `⚡ Direct Download ${detected.name.split(' ')[0]} App (.${extName})`;
 
     if (dlBtn) {
       dlBtn.onclick = function(e) {
@@ -1828,7 +1662,7 @@ import './visualizer.js';
       const apkUrl = './downloads/Pulse-Music-v2.4.0.apk';
       const fileName = 'Pulse-Music-v2.4.0.apk';
 
-      showToast('ðŸ“² Direct Download: Pulse-Music-v2.4.0.apk starting now... Check your downloads!', 'success', 6000);
+      showToast('📲 Direct Download: Pulse-Music-v2.4.0.apk starting now... Check your downloads!', 'success', 6000);
 
       const a = document.createElement('a');
       a.href = apkUrl;
@@ -1859,7 +1693,7 @@ import './visualizer.js';
     };
     const fileName = `Pulse-Music-${extMap[targetOs] || 'Setup-2.4.0.exe'}`;
     
-    showToast(`âš¡ Direct Download: ${fileName} starting now... Check your downloads folder!`, 'success', 6000);
+    showToast(`⚡ Direct Download: ${fileName} starting now... Check your downloads folder!`, 'success', 6000);
 
     const a = document.createElement('a');
     a.href = dlUrl;
@@ -3795,317 +3629,6 @@ import './visualizer.js';
     if (window.electronAPI && typeof window.electronAPI.close === 'function') window.electronAPI.close();
   };
 
-  async // =========================================================================
-  // APP VIEW SWITCHER & MULTI-VIEW NAVIGATION CONTROLLER
-  // =========================================================================
-  function switchView(viewName) {
-    if (!viewName) return;
-    state.activeView = viewName;
-    const targetId = viewName.startsWith('view-') ? viewName : `view-${viewName}`;
-
-    document.querySelectorAll('.app-view').forEach(v => {
-      if (v.id === targetId || v.id === viewName) {
-        v.classList.add('active-view');
-        v.style.display = 'block';
-      } else {
-        v.classList.remove('active-view');
-        v.style.display = 'none';
-      }
-    });
-
-    document.querySelectorAll('.nav-item').forEach(item => {
-      const raw = item.dataset.view;
-      if (raw === viewName || `view-${raw}` === targetId) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
-
-    document.querySelectorAll('.mobile-nav-item').forEach(item => {
-      const raw = item.dataset.view;
-      if (raw === viewName || `view-${raw}` === targetId) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
-
-    if (viewName === 'home') {
-      const input = document.getElementById('global-search-input');
-      const clearBtn = document.getElementById('clear-search-btn');
-      if (input && input.value) input.value = '';
-      if (clearBtn) clearBtn.classList.add('hidden');
-    }
-  }
-  window.switchView = switchView;
-
-  // =========================================================================
-  // ZERO-LATENCY REAL-TIME SEARCH ENGINE
-  // =========================================================================
-  window.executeSearch = function(query, isDebounced = true) {
-    if (searchDebounceTimer) {
-      clearTimeout(searchDebounceTimer);
-      searchDebounceTimer = null;
-    }
-
-    const rawQ = query === null || query === undefined ? '' : String(query);
-    const trimmed = rawQ.trim();
-
-    const clearBtn = document.getElementById('clear-search-btn');
-    if (!trimmed && !rawQ.trim()) {
-      if (clearBtn) clearBtn.classList.add('hidden');
-      if (state.activeView === 'search-view' || state.activeView === 'view-search-view') {
-        switchView('home');
-      }
-      return;
-    }
-
-    if (clearBtn) clearBtn.classList.remove('hidden');
-
-    const performSearch = async () => {
-      if (state.activeView !== 'search-view' && state.activeView !== 'view-search-view') {
-        switchView('search-view');
-      }
-
-      const searchLabel = document.getElementById('search-query-label');
-      const searchCountEl = document.getElementById('search-count');
-      const loadingEl = document.getElementById('search-loading');
-      const container = document.getElementById('search-results-container');
-
-      if (searchLabel) searchLabel.textContent = trimmed || rawQ;
-      if (loadingEl) loadingEl.classList.remove('hidden');
-      if (searchCountEl) searchCountEl.textContent = 'Searching catalog...';
-
-      try {
-        let results = [];
-        if (window.catalogService && typeof window.catalogService.searchCatalog === 'function') {
-          results = await window.catalogService.searchCatalog(trimmed || rawQ, 35);
-        } else {
-          const qLower = (trimmed || rawQ).toLowerCase();
-          results = Object.values(window.TRACKS_REGISTRY || {}).filter(t => 
-            (t.title && t.title.toLowerCase().includes(qLower)) ||
-            (t.artist && t.artist.toLowerCase().includes(qLower)) ||
-            (t.album && t.album.toLowerCase().includes(qLower)) ||
-            (t.category && t.category.toLowerCase().includes(qLower))
-          );
-        }
-
-        if (loadingEl) loadingEl.classList.add('hidden');
-
-        if (searchCountEl) {
-          searchCountEl.textContent = `${results.length} track${results.length === 1 ? '' : 's'} found`;
-        }
-
-        if (container) {
-          if (results.length > 0) {
-            container.innerHTML = `
-              <div class="music-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
-                ${results.map(t => `
-                  <div class="music-card" onclick="window.playSpecificTrack('${t.id}')">
-                    <div class="card-image-wrapper">
-                      <img src="${t.cover || './pulse-logo.png'}" alt="${t.title}" loading="lazy">
-                      <div class="card-play-overlay">
-                        <button class="btn-card-play" title="Play ${t.title}"><i class="fa-solid fa-play"></i></button>
-                      </div>
-                    </div>
-                    <div class="card-info">
-                      <span class="card-title">${t.title}</span>
-                      <span class="card-artist artist-clickable-link" onclick="event.stopPropagation(); window.openArtistProfile('${t.artist}')">${t.artist}</span>
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            `;
-          } else {
-            container.innerHTML = `
-              <div style="text-align: center; padding: 3.5rem 1rem; color: var(--text-muted);">
-                <i class="fa-solid fa-compact-disc" style="font-size: 2.5rem; margin-bottom: 0.85rem; display: block; color: var(--accent-primary); opacity: 0.6;"></i>
-                <h3 style="color: #fff; font-weight: 700; margin-bottom: 0.35rem;">No songs found for "${trimmed || rawQ}"</h3>
-                <p style="font-size: 0.85rem;">Try searching for artist names like Arijit Singh, The Weeknd, Diljit, or song titles.</p>
-              </div>
-            `;
-          }
-        }
-      } catch (err) {
-        console.error('[Pulse Search Error]:', err);
-        if (loadingEl) loadingEl.classList.add('hidden');
-      }
-    };
-
-    if (isDebounced) {
-      searchDebounceTimer = setTimeout(performSearch, 150);
-    } else {
-      performSearch();
-    }
-  };
-
-  // =========================================================================
-  // DIRECT UNIVERSAL AUDIO PLAYBACK ENGINE & CARD DISPATCHER
-  // =========================================================================
-  window.playSpecificTrack = async function(trackId) {
-    if (!trackId) return;
-    console.log('[Pulse Direct Engine] Playing track ID:', trackId);
-
-    // 1. Resolve Track Metadata from all sources
-    let track = null;
-    if (typeof window !== 'undefined' && window.TRACKS_REGISTRY && window.TRACKS_REGISTRY[trackId]) {
-      track = window.TRACKS_REGISTRY[trackId];
-    }
-    if (!track && window.catalogService && typeof window.catalogService.getCatalogTrackById === 'function') {
-      track = window.catalogService.getCatalogTrackById(trackId);
-    }
-    if (!track && window.musicService && typeof window.musicService.getTrack === 'function') {
-      track = window.musicService.getTrack(trackId);
-    }
-
-    // Fallback: extract directly from the clicked card in the DOM
-    if (!track) {
-      const card = document.querySelector(`[onclick*="'${trackId}'"]`) || document.querySelector(`[data-track-id="${trackId}"]`);
-      if (card) {
-        const title = card.querySelector('.card-title, .music-card-title, .track-title, h4, h5')?.textContent?.trim() || trackId;
-        const artist = card.querySelector('.card-artist, .music-card-subtitle, .track-artist, p')?.textContent?.trim() || 'Pulse Artist';
-        const cover = card.querySelector('img')?.src || './pulse-logo.png';
-        track = {
-          id: trackId,
-          title: title,
-          artist: artist,
-          cover: cover,
-          duration: '3:30',
-          category: 'recommended'
-        };
-      }
-    }
-
-    if (!track) {
-      track = {
-        id: trackId,
-        title: trackId.replace(/-/g, ' ').toUpperCase(),
-        artist: 'Pulse Artist',
-        cover: './pulse-logo.png',
-        duration: '3:30'
-      };
-    }
-
-    state.currentTrack = track;
-    state.isPlaying = true;
-
-    // 2. Instant UI Update across Mini Playbar & Fullscreen Player
-    const playerBar = document.querySelector('.bottom-player-bar') || document.getElementById('player-bar');
-    if (playerBar) {
-      playerBar.classList.remove('hidden');
-      playerBar.style.display = 'flex';
-      playerBar.style.visibility = 'visible';
-      playerBar.style.opacity = '1';
-    }
-
-    // Mini bar details
-    const pTitle = document.getElementById('player-title');
-    const pArtist = document.getElementById('player-artist');
-    const pThumb = document.getElementById('player-thumb');
-    if (pTitle) pTitle.textContent = track.title;
-    if (pArtist) pArtist.textContent = track.artist;
-    if (pThumb) pThumb.src = track.cover || './pulse-logo.png';
-
-    // Fullscreen details
-    const fsTitle = document.getElementById('fs-track-title');
-    const fsArtist = document.getElementById('fs-track-artist');
-    const fsArt = document.getElementById('fs-album-art');
-    const fsBg = document.getElementById('fs-bg-blur');
-    if (fsTitle) fsTitle.textContent = track.title;
-    if (fsArtist) fsArtist.textContent = track.artist;
-    if (fsArt) fsArt.src = track.cover || './pulse-logo.png';
-    if (fsBg) fsBg.style.backgroundImage = `url('${track.cover || './pulse-logo.png'}')`;
-
-    // Update play button icons to Pause
-    document.querySelectorAll('#btn-play-pause, #fs-btn-play, .btn-primary-play').forEach(btn => {
-      const icon = btn.querySelector('i') || btn;
-      if (icon) {
-        icon.className = 'fa-solid fa-pause';
-      }
-    });
-
-    // 3. Update active card highlights in UI
-    document.querySelectorAll('.music-card').forEach(c => {
-      if (c.getAttribute('onclick')?.includes(`'${trackId}'`)) {
-        c.classList.add('playing');
-        const playBtn = c.querySelector('.btn-card-play i, .music-card-play-btn i');
-        if (playBtn) playBtn.className = 'fa-solid fa-pause';
-      } else {
-        c.classList.remove('playing');
-        const playBtn = c.querySelector('.btn-card-play i, .music-card-play-btn i');
-        if (playBtn) playBtn.className = 'fa-solid fa-play';
-      }
-    });
-
-    // 4. Resolve and play audio soundtrack
-    let audio = document.getElementById('fallback-audio-player') || window.globalAudioPlayer;
-    if (!audio) {
-      audio = new Audio();
-      audio.id = 'fallback-audio-player';
-      audio.preload = 'auto';
-      document.body.appendChild(audio);
-      window.globalAudioPlayer = audio;
-    }
-
-    // Resolve stream candidates
-    let streamCandidates = [];
-    if (track.streamUrl && track.streamUrl.startsWith('http')) {
-      streamCandidates.push(track.streamUrl);
-    }
-    if (window.PulseAudioEngine && typeof window.PulseAudioEngine.resolveCandidates === 'function') {
-      try {
-        const resolved = await window.PulseAudioEngine.resolveCandidates(track);
-        if (resolved && resolved.length > 0) {
-          streamCandidates.push(...resolved.map(r => r.url));
-        }
-      } catch (e) {}
-    }
-
-    // If still no stream candidates, add direct Jamendo / Audius fallback
-    if (streamCandidates.length === 0) {
-      const searchQ = `${track.title} ${track.artist}`.trim();
-      streamCandidates.push(
-        `https://api.jamendo.com/v3.0/tracks/file/?client_id=23b33f2a&namesearch=${encodeURIComponent(searchQ)}&audioformat=mp32`,
-        `https://discoveryprovider.audius.co/v1/tracks/search?query=${encodeURIComponent(searchQ)}&app_name=PULSE_APP`
-      );
-    }
-
-    // Play first working candidate
-    let playSucceeded = false;
-    for (const url of streamCandidates) {
-      if (!url || typeof url !== 'string') continue;
-      try {
-        audio.pause();
-        audio.src = url;
-        audio.load();
-        await audio.play();
-        console.log('[Pulse Direct Audio] Successfully playing stream:', url);
-        playSucceeded = true;
-        break;
-      } catch (playErr) {
-        console.warn('[Pulse Direct Audio] Stream candidate failed, trying next:', url, playErr.message);
-      }
-    }
-
-    // 5. Load Synchronized Lyrics
-    if (typeof window.loadTrackLyrics === 'function') {
-      window.loadTrackLyrics(track);
-    }
-
-    // 6. MediaSession metadata
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: track.title,
-        artist: track.artist,
-        album: track.album || 'Pulse Music',
-        artwork: [{ src: track.cover || './pulse-logo.png', sizes: '512x512', type: 'image/png' }]
-      });
-    }
-
-    showToast(`Playing "${track.title}" by ${track.artist}`, 'success', 3000);
-  };
-
   async function initApp() {
     // Purge legacy demo cache if transitioning to clean catalog-free architecture
     try {
@@ -4176,7 +3699,7 @@ import './visualizer.js';
       console.warn("Visualizer init notice:", e);
     }
 
-    // Set initial track â€” restore saved playback state if available
+    // Set initial track — restore saved playback state if available
     try {
       const savedState = loadPlaybackState();
       if (savedState && savedState.trackId) {
@@ -4324,7 +3847,7 @@ import './visualizer.js';
                 <span style="font-weight: 800; font-size: 0.8rem; color: #a855f7; width: 18px; text-align: center;">${i + 1}</span>
                 <div style="min-width: 0;">
                   <div style="font-weight: 700; font-size: 0.9rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
-                  <div style="font-size: 0.76rem; color: var(--text-secondary);">${t.artist} ${t.reason ? 'â€¢ <em style="color:#d8b4fe;">' + t.reason + '</em>' : ''}</div>
+                  <div style="font-size: 0.76rem; color: var(--text-secondary);">${t.artist} ${t.reason ? '• <em style="color:#d8b4fe;">' + t.reason + '</em>' : ''}</div>
                 </div>
               </div>
               <button type="button" class="btn-icon-small" title="Play Track" onclick="window.playSingleGeminiTrack(${i})" style="flex-shrink: 0; color: #c084fc;">
@@ -4360,7 +3883,7 @@ import './visualizer.js';
     state.queueIndex = 0;
     renderQueueDrawer();
     setTrack(state.queue[0], true);
-    showToast(`âœ¨ Now playing Gemini AI Mix (${_lastGeneratedGeminiTracks.length} tracks)!`);
+    showToast(`✨ Now playing Gemini AI Mix (${_lastGeneratedGeminiTracks.length} tracks)!`);
     window.closeGeminiDjModal();
   };
 

@@ -3221,7 +3221,7 @@ body:has(.fullscreen-player.active) .mobile-bottom-nav {
 }
 
 .pulse-field-error::before {
-  content: "âš ï¸";
+  content: "⚠️";
   font-size: 0.72rem;
 }
 
@@ -4817,7 +4817,7 @@ body.fullscreen-player .bottom-player-bar {
    RESPONSIVE BREAKPOINT SPECIFICATIONS
    ========================================================================== */
 
-/* 1. MOBILE PHONES (320px â€“ 480px) */
+/* 1. MOBILE PHONES (320px – 480px) */
 @media (max-width: 480px) {
   :root {
     --player-height: 62px;
@@ -4950,7 +4950,7 @@ body.fullscreen-player .bottom-player-bar {
   }
 }
 
-/* 2. LARGE PHONES / SMALL TABLETS (481px â€“ 768px) */
+/* 2. LARGE PHONES / SMALL TABLETS (481px – 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .sidebar {
     display: none !important;
@@ -4982,7 +4982,7 @@ body.fullscreen-player .bottom-player-bar {
   }
 }
 
-/* 3. TABLETS (769px â€“ 1024px) */
+/* 3. TABLETS (769px – 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .sidebar {
     width: 200px !important;
@@ -5004,7 +5004,7 @@ body.fullscreen-player .bottom-player-bar {
   }
 }
 
-/* 4. LAPTOPS / STANDARD DESKTOPS (1025px â€“ 1440px) */
+/* 4. LAPTOPS / STANDARD DESKTOPS (1025px – 1440px) */
 @media (min-width: 1025px) and (max-width: 1440px) {
   .sidebar {
     width: 240px !important;
@@ -6281,41 +6281,4 @@ body.is-standalone-app .btn-install-sidebar {
   color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.6;
-}
-
-
-/* ==========================================================================
-   STRICT MODAL OVERLAYS & ZERO-BLOCK CLICK ENFORCEMENT
-   ========================================================================== */
-.hidden, [hidden], .modal-overlay.hidden, .modal.hidden, #auth-modal.hidden, #artist-detail-modal.hidden, #lyrics-preview-modal.hidden, #song-credits-modal.hidden, #create-playlist-modal.hidden, #add-to-playlist-modal.hidden, #download-app-modal.hidden, #upload-audio-modal.hidden, #google-auth-modal.hidden, #google-oauth-picker-modal.hidden, #youtube-video-modal.hidden {
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
-  z-index: -99999 !important;
-}
-
-.modal-overlay {
-  position: fixed !important;
-  inset: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background: rgba(0, 0, 0, 0.8) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  z-index: 9999 !important;
-  padding: 1rem !important;
-  pointer-events: auto !important;
-}
-
-#app, .main-content, .home-content, #catalog-categories-container, .category-horizontal-row, .category-row-scroll-wrap, .music-card {
-  pointer-events: auto !important;
-}
-
-.music-card, .btn-card-play, .music-card-play-btn, .chip-btn, .pill-btn, .nav-item, button, a {
-  cursor: pointer !important;
-  pointer-events: auto !important;
 }

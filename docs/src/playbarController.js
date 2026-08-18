@@ -96,6 +96,7 @@
         audio = document.getElementById('pulse-singleton-audio') || new Audio();
         audio.id = 'fallback-audio-player';
         audio.preload = 'auto';
+        audio.crossOrigin = 'anonymous';
         audio.setAttribute('playsinline', 'true');
         audio.setAttribute('webkit-playsinline', 'true');
         document.body.appendChild(audio);
