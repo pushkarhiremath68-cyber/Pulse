@@ -1283,12 +1283,24 @@
 
       <!-- VIEW 2: SEARCH -->
       <div id="view-search-view" class="app-view">
-        <div class="search-view-header" style="margin-bottom: 2rem;">
-          <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Live Search & Category Discovery</h2>
-          <p style="color: var(--text-secondary);">Access over 1.6 Million free full-length streamable tracks from Audius and Jamendo</p>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-glass);">
-            <h3 style="font-size: 1.1rem; color: #fff;">Results for "<span id="search-query-label" style="color: var(--accent-primary);">Everything</span>"</h3>
-            <span id="search-count" style="font-size: 0.85rem; color: var(--text-muted);">Ready to stream</span>
+        <div class="search-view-header" style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Live Search & 1.6M+ Catalog Discovery</h2>
+          <p style="color: var(--text-secondary);">Access over 1.6 Million streamable tracks powered by Audius, Jamendo, and Universal Studio Audio</p>
+          
+          <!-- Instant Genre Explorer Chips -->
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+            <button onclick="window.executeSearch('Trending Worldwide')" style="padding: 6px 14px; border-radius: 20px; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); color: #c084fc; font-weight: 700; font-size: 0.8rem; cursor: pointer;">🔥 Trending Worldwide</button>
+            <button onclick="window.executeSearch('Bollywood Hits Arijit')" style="padding: 6px 14px; border-radius: 20px; background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.4); color: #f472b6; font-weight: 700; font-size: 0.8rem; cursor: pointer;">💖 Hindi & Bollywood</button>
+            <button onclick="window.executeSearch('Punjabi Hits Diljit')" style="padding: 6px 14px; border-radius: 20px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); color: #fbbf24; font-weight: 700; font-size: 0.8rem; cursor: pointer;">🥁 Punjabi Heat</button>
+            <button onclick="window.executeSearch('EDM Electronic Dance')" style="padding: 6px 14px; border-radius: 20px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.4); color: #60a5fa; font-weight: 700; font-size: 0.8rem; cursor: pointer;">⚡ EDM & Dance</button>
+            <button onclick="window.executeSearch('Lofi Study Chill')" style="padding: 6px 14px; border-radius: 20px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); color: #34d399; font-weight: 700; font-size: 0.8rem; cursor: pointer;">🎧 Lo-Fi Study</button>
+            <button onclick="window.executeSearch('Workout Motivation')" style="padding: 6px 14px; border-radius: 20px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #f87171; font-weight: 700; font-size: 0.8rem; cursor: pointer;">💪 Gym Power</button>
+            <button onclick="window.executeSearch('Late Night Drive Synthwave')" style="padding: 6px 14px; border-radius: 20px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.4); color: #a78bfa; font-weight: 700; font-size: 0.8rem; cursor: pointer;">🌙 Late Night</button>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-glass);">
+            <h3 style="font-size: 1.1rem; color: #fff;">Discovered Tracks for "<span id="search-query-label" style="color: var(--accent-primary);">1.6M+ Library</span>"</h3>
+            <span id="search-count" style="font-size: 0.85rem; color: #c084fc; font-weight: 700;">Ready to stream</span>
           </div>
         </div>
 

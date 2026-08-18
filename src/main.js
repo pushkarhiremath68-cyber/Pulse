@@ -59,6 +59,20 @@ import './geminiService.js';
   };
 
   // 1. Navigation & Views Router
+
+  // Auto load search view on switch
+  const originalSwitchView = window.switchView;
+  window.switchView = function(viewId) {
+    originalSwitchView(viewId);
+    if (viewId === 'search-view') {
+      const input = document.getElementById('global-search-input');
+      const val = input ? input.value : '';
+      if (!val || val.trim().length === 0) {
+        window.executeSearch('', false);
+      }
+    }
+  };
+
   window.switchView = function(viewId) {
     document.querySelectorAll('.app-view').forEach(el => el.classList.remove('active-view'));
     const target = document.getElementById(`view-${viewId}`);
