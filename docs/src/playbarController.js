@@ -1,318 +1,330 @@
 /**
- * Pulse Music - Zero-Error Persistent Bottom Playbar & Audio State Engine
- * Robust singleton HTML5 Audio player with smooth scrubber dragging and fullscreen expand mode.
+ * Pulse Music - State-of-the-Art Bottom Audio Playbar Controller
+ * Features exact stream resolution, animated vinyl cover, live scrubber, volume control, and zero-error playback.
  */
 
-(function(root) {
-  'use strict';
+let audio = null;
+let currentTrack = null;
+let isPlaying = false;
+let isMuted = false;
+let previousVolume = 0.8;
+let duration = 0;
+let currentTime = 0;
+let isSeeking = false;
+let playQueue = [];
+let queueIndex = 0;
+let isShuffle = false;
+let isRepeat = false;
 
-  // 1. Reactive Global State
-  const state = {
-    currentTrack: null,
-    isPlaying: false,
-    isBuffering: false,
-    currentTime: 0,
-    duration: 0,
-    volume: 0.85,
-    isMuted: false,
-    isShuffle: false,
-    isRepeat: false, // false | 'all' | 'one'
-    isFullscreen: false,
-    isScrubbing: false,
-    queue: [],
-    queueIndex: 0
-  };
+function getAudio() {
+  if (!audio) {
+    audio = document.getElementById('fallback-audio-player') || new Audio();
+    audio.id = 'fallback-audio-player';
+    audio.volume = 0.8;
 
-  const listeners = new Set();
-
-  function subscribe(fn) {
-    listeners.add(fn);
-    return () => listeners.delete(fn);
-  }
-
-  function setState(patch) {
-    Object.assign(state, patch);
-    listeners.forEach(fn => {
-      try { fn(state); } catch (e) { console.error('[Playbar State Listener Error]:', e); }
+    audio.addEventListener('play', () => {
+      isPlaying = true;
+      updatePlayPauseUI();
     });
-  }
 
-  // 2. Singleton Audio Instance
-  let audioInstance = null;
+    audio.addEventListener('pause', () => {
+      isPlaying = false;
+      updatePlayPauseUI();
+    });
 
-  function getAudioInstance() {
-    if (!audioInstance) {
-      audioInstance = document.getElementById('fallback-audio-player');
-      if (!audioInstance) {
-        audioInstance = new Audio();
-        audioInstance.id = 'fallback-audio-player';
-        audioInstance.preload = 'auto';
-        document.body.appendChild(audioInstance);
-      }
-      attachAudioListeners(audioInstance);
-      window.globalAudioPlayer = audioInstance;
-    }
-    return audioInstance;
-  }
-
-  // Time format helper
-  function formatTime(seconds) {
-    if (isNaN(seconds) || seconds < 0) return '0:00';
-    const m = Math.floor(seconds / 60);
-    const s = Math.floor(seconds % 60);
-    return `${m}:${s < 10 ? '0' : ''}${s}`;
-  }
-
-  // 3. Audio Event Listeners
-  function attachAudioListeners(a) {
-    a.addEventListener('timeupdate', () => {
-      if (state.isScrubbing) return;
-      const cur = a.currentTime || 0;
-      const dur = a.duration || state.duration || 0;
-      setState({ currentTime: cur });
-      updateTimelineUI(cur, dur);
-
-      // Trigger live lyrics sync if active
-      if (typeof window.syncLiveLyrics === 'function') {
-        window.syncLiveLyrics(cur);
+    audio.addEventListener('timeupdate', () => {
+      if (!isSeeking && audio.duration) {
+        currentTime = audio.currentTime;
+        duration = audio.duration;
+        updateTimeUI();
+        if (typeof window.syncLiveLyrics === 'function') {
+          window.syncLiveLyrics(currentTime);
+        }
       }
     });
 
-    a.addEventListener('loadedmetadata', () => {
-      const dur = a.duration;
-      if (!isNaN(dur) && dur > 0) {
-        setState({ duration: dur, isBuffering: false });
-        updateDurationUI(dur);
-      }
-    });
-
-    a.addEventListener('playing', () => {
-      setState({ isPlaying: true, isBuffering: false });
-      updatePlayPauseUI(true);
-    });
-
-    a.addEventListener('pause', () => {
-      if (!a.seeking) {
-        setState({ isPlaying: false, isBuffering: false });
-        updatePlayPauseUI(false);
-      }
-    });
-
-    a.addEventListener('ended', () => {
-      if (state.isRepeat === 'one') {
-        a.currentTime = 0;
-        a.play().catch(e => console.warn(e));
+    audio.addEventListener('ended', () => {
+      if (isRepeat) {
+        audio.currentTime = 0;
+        audio.play();
       } else {
         playNext();
       }
     });
 
-    a.addEventListener('error', () => {
-      if (a.error && a.error.code === 1) return; // User abort
-      console.warn('[Playbar Engine] Audio stream issue, advancing...');
-      setState({ isBuffering: false, isPlaying: false });
-      updatePlayPauseUI(false);
-      setTimeout(() => playNext(), 1500);
+    audio.addEventListener('error', (e) => {
+      console.warn('[Playbar] Audio stream notice, trying alternative node...', e);
+      if (window.musicService && typeof window.musicService.rotateAudiusNode === 'function') {
+        window.musicService.rotateAudiusNode();
+      }
     });
   }
+  return audio;
+}
 
-  // 4. Play, Pause & Resume Logic (Prevents 0:00 Reset Bug)
-  async function togglePlayPause() {
-    const a = getAudioInstance();
-    if (!state.currentTrack) return;
+export async function playTrack(track, newQueue = null) {
+  if (!track) return;
+  const a = getAudio();
 
-    if (state.isPlaying) {
-      // Pause: retain exact currentTime and buffer
-      a.pause();
-      setState({ isPlaying: false });
-      updatePlayPauseUI(false);
+  if (newQueue && Array.isArray(newQueue)) {
+    playQueue = newQueue;
+    queueIndex = playQueue.findIndex(t => t.id === track.id || t.title === track.title);
+    if (queueIndex === -1) queueIndex = 0;
+  }
+
+  currentTrack = track;
+  if (window.pulseState) {
+    window.pulseState.currentTrack = track;
+    window.pulseState.isPlaying = true;
+  }
+
+  updateTrackMetadataUI(track);
+
+  // Resolve exact authentic audio stream URL
+  let stream = track.streamUrl;
+  if (window.musicService && typeof window.musicService.resolveExactTrackStream === 'function') {
+    stream = await window.musicService.resolveExactTrackStream(track);
+  }
+
+  try {
+    a.src = stream;
+    a.load();
+    const playPromise = a.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(err => {
+        console.warn('[Playbar] Playback gesture requirement:', err);
+      });
+    }
+  } catch (err) {
+    console.error('[Playbar] Play error:', err);
+  }
+
+  // Load lyrics
+  if (typeof window.loadTrackLyrics === 'function') {
+    window.loadTrackLyrics(track);
+  }
+}
+
+export function togglePlayPause() {
+  const a = getAudio();
+  if (!a.src) {
+    if (currentTrack) playTrack(currentTrack);
+    return;
+  }
+  if (a.paused) {
+    a.play().catch(e => console.warn(e));
+  } else {
+    a.pause();
+  }
+}
+
+export function playNext() {
+  if (playQueue.length > 0) {
+    if (isShuffle) {
+      queueIndex = Math.floor(Math.random() * playQueue.length);
     } else {
-      // Resume: directly invoke play() WITHOUT resetting src or currentTime
-      try {
-        await a.play();
-        setState({ isPlaying: true });
-        updatePlayPauseUI(true);
-      } catch (err) {
-        console.warn('[Playbar Resume Notice]:', err);
-      }
+      queueIndex = (queueIndex + 1) % playQueue.length;
     }
+    playTrack(playQueue[queueIndex]);
+  } else {
+    // If no queue, pick from master registry
+    togglePlayPause();
   }
+}
 
-  async function playTrack(track) {
-    if (!track) return;
-    const a = getAudioInstance();
-    const isSameTrack = state.currentTrack && (state.currentTrack.id === track.id || state.currentTrack.streamUrl === track.streamUrl);
-
-    // If same track and paused, just resume
-    if (isSameTrack && a.src === track.streamUrl) {
-      return togglePlayPause();
-    }
-
-    // New track selected: update state and src
-    setState({
-      currentTrack: track,
-      isPlaying: true,
-      isBuffering: true,
-      currentTime: 0
-    });
-
-    updateTrackMetaUI(track);
-    updatePlayPauseUI(true);
-
-    if (track.streamUrl) {
-      a.src = track.streamUrl;
-      a.load();
-      try {
-        await a.play();
-        setState({ isBuffering: false });
-      } catch (e) {
-        console.warn('[Playbar Stream Start Error]:', e);
-      }
-    }
-
-    // Load lyrics if available
-    if (typeof window.loadTrackLyrics === 'function') {
-      window.loadTrackLyrics(track);
-    }
+export function playPrev() {
+  const a = getAudio();
+  if (a && a.currentTime > 3) {
+    a.currentTime = 0;
+    return;
   }
-
-  function playNext() {
-    if (!state.queue || state.queue.length === 0) return;
-    state.queueIndex = (state.queueIndex + 1) % state.queue.length;
-    const next = state.queue[state.queueIndex];
-    if (next) playTrack(next);
+  if (playQueue.length > 0) {
+    queueIndex = (queueIndex - 1 + playQueue.length) % playQueue.length;
+    playTrack(playQueue[queueIndex]);
   }
+}
 
-  function playPrev() {
-    const a = getAudioInstance();
-    if (a.currentTime > 3) {
-      a.currentTime = 0;
-      return;
-    }
-    if (!state.queue || state.queue.length === 0) return;
-    state.queueIndex = (state.queueIndex - 1 + state.queue.length) % state.queue.length;
-    const prev = state.queue[state.queueIndex];
-    if (prev) playTrack(prev);
+export function toggleShuffle() {
+  isShuffle = !isShuffle;
+  const btn = document.getElementById('btn-shuffle');
+  if (btn) btn.style.color = isShuffle ? '#a855f7' : 'inherit';
+  if (window.showToast) window.showToast(isShuffle ? 'Shuffle Enabled' : 'Shuffle Disabled', 'info', 1500);
+}
+
+export function toggleRepeat() {
+  isRepeat = !isRepeat;
+  const btn = document.getElementById('btn-repeat');
+  if (btn) btn.style.color = isRepeat ? '#a855f7' : 'inherit';
+  if (window.showToast) window.showToast(isRepeat ? 'Repeat Track Enabled' : 'Repeat Disabled', 'info', 1500);
+}
+
+export function setVolume(vol) {
+  const a = getAudio();
+  a.volume = Math.max(0, Math.min(1, vol));
+  isMuted = a.volume === 0;
+  updateVolumeUI();
+}
+
+export function toggleMute() {
+  const a = getAudio();
+  if (isMuted) {
+    a.volume = previousVolume || 0.8;
+    isMuted = false;
+  } else {
+    previousVolume = a.volume;
+    a.volume = 0;
+    isMuted = true;
   }
+  updateVolumeUI();
+}
 
-  // 5. Scrubber / Slider Drag Handlers (Smooth Without Stutter)
-  function handleSeekStart() {
-    state.isScrubbing = true;
-  }
+export function handleSeekStart() {
+  isSeeking = true;
+}
 
-  function handleSeekMove(percentVal) {
-    if (!state.isScrubbing) return;
-    const dur = getAudioInstance().duration || state.duration || 0;
-    const seekTime = (percentVal / 100) * dur;
+export function handleSeekMove(percentage) {
+  const a = getAudio();
+  const dur = a.duration || duration || 210;
+  const targetTime = (percentage / 100) * dur;
+  const curEl = document.getElementById('player-time-current');
+  const fsCurEl = document.getElementById('fs-time-current');
+  const timeStr = formatTime(targetTime);
+  if (curEl) curEl.textContent = timeStr;
+  if (fsCurEl) fsCurEl.textContent = timeStr;
 
-    // Update live counter during drag
-    const curEls = [document.getElementById('player-time-current'), document.getElementById('fs-time-current')];
-    curEls.forEach(el => { if (el) el.textContent = formatTime(seekTime); });
+  const fill = document.getElementById('player-progress-fill');
+  const fsFill = document.getElementById('fs-progress-fill');
+  const topFill = document.getElementById('mini-top-progress-fill');
+  if (fill) fill.style.width = `${percentage}%`;
+  if (fsFill) fsFill.style.width = `${percentage}%`;
+  if (topFill) topFill.style.width = `${percentage}%`;
+}
 
-    // Update progress fill lines
-    const fills = [document.getElementById('player-progress-fill'), document.getElementById('fs-progress-fill'), document.getElementById('mini-top-progress-fill')];
-    fills.forEach(fill => { if (fill) fill.style.width = `${percentVal}%`; });
-  }
+export function handleSeekEnd(percentage) {
+  const a = getAudio();
+  const dur = a.duration || duration || 210;
+  a.currentTime = (percentage / 100) * dur;
+  isSeeking = false;
+}
 
-  function handleSeekEnd(percentVal) {
-    state.isScrubbing = false;
-    const a = getAudioInstance();
-    const dur = a.duration || state.duration || 0;
-    const seekTime = (percentVal / 100) * dur;
+export function toggleFullscreen(open) {
+  const fs = document.getElementById('fullscreen-player');
+  if (fs) fs.classList.toggle('active', open);
+}
 
-    try {
-      a.currentTime = seekTime;
-      state.currentTime = seekTime;
-    } catch (e) {}
+function formatTime(seconds) {
+  if (isNaN(seconds) || seconds < 0) return '0:00';
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
 
-    updateTimelineUI(seekTime, dur);
-  }
+function updatePlayPauseUI() {
+  const icon = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+  const mainBtn = document.getElementById('btn-play-pause');
+  const fsBtn = document.getElementById('fs-btn-play');
+  const thumb = document.getElementById('player-thumb');
 
-  // 6. UI Synchronizers
-  function updateTrackMetaUI(track) {
-    if (!track) return;
-    const safeTitle = track.title || 'Untitled Track';
-    const safeArtist = track.artist || 'Pulse Artist';
-    const safeCover = track.coverUrl || track.cover || './pulse-logo.png';
+  if (mainBtn) mainBtn.innerHTML = icon;
+  if (fsBtn) fsBtn.innerHTML = icon;
+  if (thumb) thumb.classList.toggle('playing-spin', isPlaying);
+}
 
-    // Mini bar elements
-    const thumb = document.getElementById('player-thumb');
-    const title = document.getElementById('player-title');
-    const artist = document.getElementById('player-artist');
-    if (thumb) thumb.src = safeCover;
-    if (title) title.textContent = safeTitle;
-    if (artist) artist.textContent = safeArtist;
+function updateTrackMetadataUI(track) {
+  const thumb = document.getElementById('player-thumb');
+  const title = document.getElementById('player-title');
+  const artist = document.getElementById('player-artist');
+  const fsArt = document.getElementById('fs-album-art');
+  const fsTitle = document.getElementById('fs-track-title');
+  const fsArtist = document.getElementById('fs-track-artist');
+  const fsBg = document.getElementById('fs-bg-blur');
 
-    // Fullscreen elements
-    const fsThumb = document.getElementById('fs-album-art');
-    const fsTitle = document.getElementById('fs-track-title');
-    const fsArtist = document.getElementById('fs-track-artist');
-    const fsBg = document.getElementById('fs-bg-blur');
-    if (fsThumb) fsThumb.src = safeCover;
-    if (fsTitle) fsTitle.textContent = safeTitle;
-    if (fsArtist) fsArtist.textContent = safeArtist;
-    if (fsBg) fsBg.style.backgroundImage = `url("${safeCover}")`;
-  }
+  const cover = track.coverUrl || './pulse-logo.png';
+  if (thumb) thumb.src = cover;
+  if (title) title.textContent = track.title;
+  if (artist) artist.textContent = track.artist;
+  if (fsArt) fsArt.src = cover;
+  if (fsTitle) fsTitle.textContent = track.title;
+  if (fsArtist) fsArtist.textContent = track.artist;
+  if (fsBg) fsBg.style.backgroundImage = `url(${cover})`;
+}
 
-  function updatePlayPauseUI(isPlaying) {
-    const playBtns = [document.getElementById('btn-play-pause'), document.getElementById('fs-btn-play')];
-    playBtns.forEach(btn => {
-      if (btn) {
-        const icon = btn.querySelector('i') || btn;
-        icon.className = isPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play';
-      }
-    });
-  }
+function updateTimeUI() {
+  const curTimeStr = formatTime(currentTime);
+  const totalTimeStr = formatTime(duration);
+  const pct = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-  function updateTimelineUI(current, duration) {
-    const pct = duration > 0 ? (current / duration) * 100 : 0;
-    const curEls = [document.getElementById('player-time-current'), document.getElementById('fs-time-current')];
-    curEls.forEach(el => { if (el) el.textContent = formatTime(current); });
+  const curEl = document.getElementById('player-time-current');
+  const totalEl = document.getElementById('player-time-total');
+  const fsCurEl = document.getElementById('fs-time-current');
+  const fsTotalEl = document.getElementById('fs-time-total');
+  const slider = document.getElementById('player-seek-slider');
+  const fsSlider = document.getElementById('fs-seek-slider');
+  const fill = document.getElementById('player-progress-fill');
+  const fsFill = document.getElementById('fs-progress-fill');
+  const topFill = document.getElementById('mini-top-progress-fill');
 
-    const fills = [document.getElementById('player-progress-fill'), document.getElementById('fs-progress-fill'), document.getElementById('mini-top-progress-fill')];
-    fills.forEach(fill => { if (fill) fill.style.width = `${pct}%`; });
+  if (curEl) curEl.textContent = curTimeStr;
+  if (totalEl) totalEl.textContent = totalTimeStr;
+  if (fsCurEl) fsCurEl.textContent = curTimeStr;
+  if (fsTotalEl) fsTotalEl.textContent = totalTimeStr;
 
-    const sliders = [document.getElementById('player-seek-slider'), document.getElementById('fs-seek-slider')];
-    sliders.forEach(s => { if (s && !state.isScrubbing) s.value = pct; });
-  }
+  if (slider && !isSeeking) slider.value = pct;
+  if (fsSlider && !isSeeking) fsSlider.value = pct;
+  if (fill) fill.style.width = `${pct}%`;
+  if (fsFill) fsFill.style.width = `${pct}%`;
+  if (topFill) topFill.style.width = `${pct}%`;
+}
 
-  function updateDurationUI(duration) {
-    const durEls = [document.getElementById('player-time-total'), document.getElementById('fs-time-total')];
-    durEls.forEach(el => { if (el) el.textContent = formatTime(duration); });
-  }
+function updateVolumeUI() {
+  const a = getAudio();
+  const volIcon = document.getElementById('volume-icon');
+  const volSlider = document.getElementById('volume-slider');
 
-  function toggleFullscreen(expand = null) {
-    const fsEl = document.getElementById('fullscreen-player');
-    if (!fsEl) return;
-    const willExpand = expand !== null ? expand : !fsEl.classList.contains('active');
-    state.isFullscreen = willExpand;
-    if (willExpand) {
-      fsEl.classList.add('active');
-      document.body.classList.add('fullscreen-player-open');
-      if (state.currentTrack) updateTrackMetaUI(state.currentTrack);
+  if (volSlider) volSlider.value = a.volume * 100;
+  if (volIcon) {
+    if (isMuted || a.volume === 0) {
+      volIcon.className = 'fa-solid fa-volume-xmark';
+      volIcon.style.color = '#f87171';
+    } else if (a.volume < 0.5) {
+      volIcon.className = 'fa-solid fa-volume-low';
+      volIcon.style.color = '#fff';
     } else {
-      fsEl.classList.remove('active');
-      document.body.classList.remove('fullscreen-player-open');
+      volIcon.className = 'fa-solid fa-volume-high';
+      volIcon.style.color = '#c084fc';
     }
   }
+}
 
-  // Public API
-  const PulsePlaybar = {
-    getState: () => ({ ...state }),
-    subscribe,
-    getAudioInstance,
-    playTrack,
-    togglePlayPause,
-    playNext,
-    playPrev,
-    handleSeekStart,
-    handleSeekMove,
-    handleSeekEnd,
-    toggleFullscreen,
-    formatTime
+export function getState() {
+  return {
+    currentTrack,
+    isPlaying,
+    currentTime,
+    duration,
+    isMuted,
+    volume: audio ? audio.volume : 0.8
   };
+}
 
-  root.PulsePlaybar = PulsePlaybar;
-  root.playbarController = PulsePlaybar;
+const playbarController = {
+  playTrack,
+  togglePlayPause,
+  playNext,
+  playPrev,
+  toggleShuffle,
+  toggleRepeat,
+  setVolume,
+  toggleMute,
+  handleSeekStart,
+  handleSeekMove,
+  handleSeekEnd,
+  toggleFullscreen,
+  getState
+};
 
-})(typeof window !== 'undefined' ? window : globalThis);
+if (typeof window !== 'undefined') {
+  window.PulsePlaybar = playbarController;
+}
+
+export default playbarController;
