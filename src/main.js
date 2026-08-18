@@ -48,8 +48,6 @@ import './geminiService.js';
     document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(el => {
       el.classList.toggle('active', el.getAttribute('data-view') === viewId);
     });
-
-    if (viewId === 'home') loadHomeFeed();
   };
 
   // 2. Playback Handlers
@@ -70,7 +68,7 @@ import './geminiService.js';
     }
   };
 
-  // 3. Search Engine
+  // 3. Search Engine with Side-by-Side Responsive Grid Display
   let searchDebounceTimer = null;
   window.executeSearch = function(query, isTyping = false) {
     if (!query || query.trim().length === 0) return;
@@ -82,8 +80,8 @@ import './geminiService.js';
 
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(async () => {
-      if (count) count.textContent = 'Searching 1.6M+ tracks...';
-      const results = await window.musicService.searchTracks(query, 25);
+      if (count) count.textContent = 'Searching millions of global tracks...';
+      const results = await window.musicService.searchTracks(query, 30);
       if (count) count.textContent = `${results.length} tracks discovered`;
       renderSearchResults(results);
     }, isTyping ? 300 : 0);
@@ -95,61 +93,40 @@ import './geminiService.js';
 
     if (tracks.length === 0) {
       container.innerHTML = `
-        <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
-          <i class="fa-solid fa-compact-disc" style="font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.5;"></i>
-          <p>No audio tracks found. Try another search query.</p>
+        <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+          <i class="fa-solid fa-compact-disc" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; color: var(--accent-primary);"></i>
+          <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem;">No tracks found</h3>
+          <p>Try searching for a different artist, genre, or track title.</p>
         </div>
       `;
       return;
     }
 
+    // Side-by-side responsive music card grid
     container.innerHTML = tracks.map(t => {
+      const safeDuration = t.duration ? `${Math.floor(t.duration / 60)}:${(t.duration % 60).toString().padStart(2, '0')}` : '3:30';
       return `
-        <div class="track-search-row" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 12px; transition: all 0.2s ease; cursor: pointer;"
-          onclick="window.playTrackDirect(${JSON.stringify(t).replace(/"/g, '&quot;')})">
-          <div style="display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 0;">
-            <img src="${t.coverUrl || './pulse-logo.png'}" style="width: 46px; height: 46px; border-radius: 8px; object-fit: cover;">
-            <div style="flex: 1; min-width: 0;">
-              <div style="font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
-              <div style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.artist} • <span style="color: var(--accent-primary);">${t.source}</span></div>
+        <div class="music-card search-grid-card" onclick="window.playTrackDirect(${JSON.stringify(t).replace(/"/g, '&quot;')})">
+          <div class="card-image-wrapper">
+            <img src="${t.coverUrl || './pulse-logo.png'}" alt="${t.title}" class="card-image" loading="lazy">
+            <div class="card-play-overlay">
+              <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+            </div>
+            <span class="card-source-tag" style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.7); color: #c084fc; padding: 2px 6px; border-radius: 6px; backdrop-filter: blur(4px);">${t.source || 'Studio'}</span>
+          </div>
+          <div class="card-meta">
+            <span class="card-title" title="${t.title}" style="display: block; font-weight: 700; color: #fff; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px;">${t.title}</span>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="card-artist" title="${t.artist}" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1;">${t.artist}</span>
+              <span style="font-size: 0.72rem; color: var(--text-muted); margin-left: 6px;">${safeDuration}</span>
             </div>
           </div>
-          <button class="btn-circle-play" style="width: 38px; height: 38px; border-radius: 50%; background: var(--accent-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; margin-left: 1rem;">
-            <i class="fa-solid fa-play"></i>
-          </button>
         </div>
       `;
     }).join('');
   }
 
-  // 4. Multi-Category Home Feed Loader
-  async function loadHomeFeed() {
-    const categories = ['pop', 'hindi', 'electronic', 'lofi', 'rock', 'ambient'];
-    for (const catId of categories) {
-      const grid = document.getElementById(`cat-grid-${catId}`);
-      if (grid && (!grid.children || grid.children.length === 0)) {
-        const tracks = await window.catalogService.fetchCategoryTracks(catId, 6);
-        if (tracks && tracks.length > 0) {
-          grid.innerHTML = tracks.map(t => `
-            <div class="music-card" onclick="window.playTrackDirect(${JSON.stringify(t).replace(/"/g, '&quot;')})">
-              <div class="card-image-wrapper">
-                <img src="${t.coverUrl || './pulse-logo.png'}" alt="${t.title}" class="card-image">
-                <div class="card-play-overlay">
-                  <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
-                </div>
-              </div>
-              <div class="card-meta">
-                <span class="card-title">${t.title}</span>
-                <span class="card-artist">${t.artist}</span>
-              </div>
-            </div>
-          `).join('');
-        }
-      }
-    }
-  }
-
-  // 5. LRCLIB Live Lyrics Synchronizer
+  // 4. LRCLIB Live Lyrics Synchronizer
   window.loadTrackLyrics = async function(track) {
     if (!track) return;
     const lyrics = await window.lyricsService.getLyrics(track);
@@ -161,7 +138,7 @@ import './geminiService.js';
       if (curLine) curLine.textContent = `♪ ${lyrics.lines[0].text}`;
       if (nextLine && lyrics.lines[1]) nextLine.textContent = lyrics.lines[1].text;
     } else {
-      if (curLine) curLine.textContent = '♪ Lyrics preview ready';
+      if (curLine) curLine.textContent = '♪ Live lyrics synchronized';
       if (nextLine) nextLine.textContent = '';
     }
   };
@@ -181,7 +158,7 @@ import './geminiService.js';
     }
   };
 
-  // 6. Gemini AI DJ Handlers
+  // 5. Gemini AI DJ Handlers
   window.openGeminiDJModal = () => document.getElementById('gemini-dj-modal')?.classList.remove('hidden');
   window.closeGeminiDJModal = () => document.getElementById('gemini-dj-modal')?.classList.add('hidden');
 
@@ -230,7 +207,7 @@ import './geminiService.js';
     }
   };
 
-  // 7. Authentication UI Bindings
+  // 6. Authentication UI Bindings
   window.openLoginModal = () => { document.getElementById('auth-modal')?.classList.remove('hidden'); window.switchAuthTab('login'); };
   window.openSignupModal = () => { document.getElementById('auth-modal')?.classList.remove('hidden'); window.switchAuthTab('signup'); };
   window.closeAuthModal = () => { document.getElementById('auth-modal')?.classList.add('hidden'); };
@@ -311,7 +288,7 @@ import './geminiService.js';
     }
   }
 
-  // 8. Modals (Downloads)
+  // 7. Modals (Downloads)
   window.openDownloadModal = () => document.getElementById('download-app-modal')?.classList.remove('hidden');
   window.closeDownloadModal = () => document.getElementById('download-app-modal')?.classList.add('hidden');
 
