@@ -1,7 +1,6 @@
 /**
  * Pulse Music - 1.6M+ Universal Audius & Jamendo Live Music Engine
- * Powered by Audius Decentralized Network (1.6M+ songs) and Jamendo API (600,000+ songs).
- * Delivers full-length, streamable music across every search and shelf.
+ * Zero 30-second previews - 100% full-length audio tracks.
  */
 
 const JAMENDO_CLIENT_ID = '23b33f2a';
@@ -30,7 +29,7 @@ export function normalizeTrack(raw, source = 'Pulse') {
   const safeId = raw.id || `track-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
   const safeTitle = raw.title || raw.name || raw.trackName || 'Untitled Track';
   const safeArtist = raw.artist || raw.artist_name || raw.artistName || (raw.user && raw.user.name) || 'Pulse Artist';
-  const safeAlbum = raw.album || raw.album_name || raw.collectionName || 'Full Release';
+  const safeAlbum = raw.album || raw.album_name || raw.collectionName || 'Full Album';
   
   let cover = raw.coverUrl || raw.cover || raw.image || raw.album_image;
   if (!cover && raw.artwork) {
@@ -56,7 +55,7 @@ export function normalizeTrack(raw, source = 'Pulse') {
 }
 
 /**
- * Searches across 1.6M+ Audius and Jamendo Tracks
+ * Searches 1.6M+ Audius and Jamendo Full Tracks
  */
 export async function searchTracks(query, limit = 50) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
@@ -76,7 +75,7 @@ export async function searchTracks(query, limit = 50) {
     }
   };
 
-  // 1. Audius 1.6M+ Search
+  // 1. Audius 1.6M+ Network
   try {
     const node = getActiveAudiusNode();
     const url = `${node}/v1/tracks/search?query=${encodedQ}&app_name=${AUDIUS_APP_NAME}&limit=${Math.min(limit, 30)}`;
@@ -105,32 +104,6 @@ export async function searchTracks(query, limit = 50) {
   // 2. Jamendo Name Search
   try {
     const url = `${JAMENDO_API_BASE}/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=jsonpretty&limit=25&namesearch=${encodedQ}&audioformat=mp32`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
-    if (res.ok) {
-      const json = await res.json();
-      if (json.results && Array.isArray(json.results)) {
-        json.results.forEach(t => {
-          const audio = t.audio || t.audiodownload;
-          if (audio) {
-            addUnique(normalizeTrack({
-              id: `jamendo-${t.id}`,
-              title: t.name,
-              artist: t.artist_name,
-              album: t.album_name,
-              image: t.image || t.album_image,
-              duration: parseInt(t.duration, 10) || 210,
-              audio: audio,
-              genre: t.musicinfo?.tags?.genres?.[0]
-            }, 'Jamendo (Full Song)'));
-          }
-        });
-      }
-    }
-  } catch (e) {}
-
-  // 3. Jamendo Tag / Genre Search
-  try {
-    const url = `${JAMENDO_API_BASE}/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=jsonpretty&limit=20&tags=${encodedQ}&audioformat=mp32`;
     const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
     if (res.ok) {
       const json = await res.json();
