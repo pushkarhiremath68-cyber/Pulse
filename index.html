@@ -109,6 +109,7 @@
   </style>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <!-- Pulse High-Fidelity Audio Engine & Gemini AI Music Suite -->
+  <script type="module" src="./src/audioEngine.js"></script>
   </head>
 <body>
 <!-- Splash Screen Disabled Temporarily for Direct Interactive Load -->
@@ -819,7 +820,7 @@
           <div class="library-info">
             <span class="playlist-type">PLAYLIST</span>
             <h1>Liked Songs</h1>
-            <p><span id="liked-count">0</span> songs saved to your library • Created by <strong>Pushkar Hiremath</strong></p>
+            <p><span id="liked-count">0</span> songs saved to your library â€¢ Created by <strong>Pushkar Hiremath</strong></p>
           </div>
         </div>
         <div class="library-actions">
@@ -852,7 +853,7 @@
           <div class="library-info">
             <span class="playlist-type">USER PLAYLIST</span>
             <h1 id="playlist-detail-name">My Playlist</h1>
-            <p><span id="playlist-detail-count">0</span> songs • Created by <strong>Pushkar Hiremath</strong></p>
+            <p><span id="playlist-detail-count">0</span> songs â€¢ Created by <strong>Pushkar Hiremath</strong></p>
           </div>
         </div>
         <div class="library-actions" style="display: flex; gap: 0.5rem; align-items: center;">
@@ -919,9 +920,9 @@
               <h1 id="artist-profile-name" class="artist-hero-name">Artist Name</h1>
               <div class="artist-stats-row">
                 <span id="artist-profile-genres" class="artist-stat-badge">Bollywood, Indie</span>
-                <span class="artist-stat-sep">•</span>
+                <span class="artist-stat-sep">â€¢</span>
                 <span id="artist-profile-track-count" class="artist-stat-text">12 Songs</span>
-                <span class="artist-stat-sep">•</span>
+                <span class="artist-stat-sep">â€¢</span>
                 <span id="artist-profile-plays" class="artist-stat-text">1.2M Total Listens</span>
               </div>
               <div class="artist-action-buttons">
@@ -1141,6 +1142,8 @@
 
       <!-- TAB 2: LYRICS -->
       <div id="tab-content-lyrics" class="drawer-content">
+        <div id="gemini-insight-content" class="gemini-insight-text"></div>
+        </div>
         <div id="lyrics-container" class="lyrics-wrapper">
           <p class="lyrics-placeholder">Play a song to load real-time synchronized lyrics!</p>
         </div>
@@ -1240,8 +1243,6 @@
     </div>
   </div>
 
-  
-  
   <!-- AUTHENTIC GOOGLE OAUTH ACCOUNT PICKER & CONSENT MODAL -->
   <div id="google-oauth-picker-modal" class="modal-overlay hidden">
     <div class="modal-content google-picker-modal">
@@ -1293,9 +1294,10 @@
     </div>
   </div>
 
-    <!-- PREMIUM FIREBASE AUTHENTICATION MODAL -->
+  <!-- PREMIUM GLASSMORPHIC AUTHENTICATION MODAL -->
   <div id="auth-modal" class="modal-overlay hidden">
     <div class="modal-content pulse-auth-modal">
+      <!-- Animated gradient border -->
       <div class="pulse-auth-glow"></div>
       
       <!-- Close button -->
@@ -1310,15 +1312,15 @@
           <div class="pulse-auth-logo-ring"></div>
         </div>
         <h2 id="spotify-auth-heading" class="pulse-auth-title">Welcome to Pulse</h2>
-        <p class="pulse-auth-subtitle">Sign in to unlock personalized playlists & synchronized lyrics</p>
+        <p class="pulse-auth-subtitle">Sign in to unlock your personalized music experience</p>
       </div>
 
       <!-- Status Banner -->
       <div id="auth-status-banner" class="pulse-auth-banner hidden"></div>
 
-      <!-- Social Login Section (Google Auth) -->
+      <!-- Social Login Section -->
       <div class="pulse-auth-social">
-        <button type="button" class="pulse-social-btn pulse-social-google" onclick="window.handleGoogleOAuthLogin()" id="btn-google-login">
+        <button type="button" class="pulse-social-btn pulse-social-google" onclick="window.handleGoogleOAuthLogin()">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="width: 20px; height: 20px;">
           <span>Continue with Google</span>
         </button>
@@ -1327,25 +1329,22 @@
       <!-- Divider -->
       <div class="pulse-auth-divider">
         <div class="pulse-divider-line"></div>
-        <span>or choose an option</span>
+        <span>or continue with email</span>
         <div class="pulse-divider-line"></div>
       </div>
 
-      <!-- 3-Way Tab Switcher: Login, Signup, Phone SMS -->
-      <div class="pulse-auth-tabs" style="grid-template-columns: 1fr 1fr 1fr;">
+      <!-- Tab Switcher -->
+      <div class="pulse-auth-tabs">
         <button id="tab-login-btn" class="pulse-tab active" onclick="window.switchAuthTab('login')">
           <i class="fa-solid fa-right-to-bracket"></i> Log In
         </button>
         <button id="tab-signup-btn" class="pulse-tab" onclick="window.switchAuthTab('signup')">
           <i class="fa-solid fa-user-plus"></i> Sign Up
         </button>
-        <button id="tab-phone-btn" class="pulse-tab" onclick="window.switchAuthTab('phone')">
-          <i class="fa-solid fa-mobile-screen"></i> Phone OTP
-        </button>
         <div class="pulse-tab-indicator"></div>
       </div>
 
-      <!-- 1. Login Form (Email/Password) -->
+      <!-- Login Form -->
       <form id="auth-form-login" class="pulse-auth-form" onsubmit="window.handleRealLogin(event); return false;" novalidate>
         <div class="pulse-input-group">
           <div class="pulse-input-wrapper" id="login-email-wrapper">
@@ -1377,7 +1376,7 @@
           <a href="#" class="pulse-forgot-link" onclick="window.openForgotPasswordModal(); return false;">Forgot password?</a>
         </div>
         <button type="submit" id="btn-login-submit" class="pulse-auth-submit">
-          <span class="btn-text">Sign In with Password</span>
+          <span class="btn-text">Log In</span>
           <i class="fa-solid fa-arrow-right btn-icon"></i>
         </button>
         <p class="pulse-auth-switch">
@@ -1385,7 +1384,7 @@
         </p>
       </form>
 
-      <!-- 2. Signup Form (Email/Password) -->
+      <!-- Signup Form -->
       <form id="auth-form-signup" class="pulse-auth-form hidden" onsubmit="window.handleRealSignup(event); return false;" novalidate>
         <div class="pulse-input-group">
           <div class="pulse-input-wrapper" id="signup-name-wrapper">
@@ -1409,7 +1408,7 @@
           <div class="pulse-input-wrapper" id="signup-password-wrapper">
             <i class="fa-solid fa-lock pulse-input-icon"></i>
             <input type="password" id="signup-password" placeholder=" " autocomplete="new-password" oninput="window.handlePasswordInput(this)">
-            <label for="signup-password">Password (min. 6 chars)</label>
+            <label for="signup-password">Password (min. 8 chars)</label>
             <button type="button" class="pulse-password-toggle" onclick="window.togglePasswordVisibility(this)" title="Toggle password visibility">
               <i class="fa-solid fa-eye"></i>
             </button>
@@ -1420,6 +1419,18 @@
           </div>
           <div class="pulse-field-error hidden" id="signup-password-error"></div>
         </div>
+        <div class="pulse-input-group">
+          <div class="pulse-input-wrapper" id="signup-confirm-password-wrapper">
+            <i class="fa-solid fa-shield-halved pulse-input-icon"></i>
+            <input type="password" id="signup-confirm-password" placeholder=" " autocomplete="new-password" oninput="window.clearFieldError('signup-confirm-password')">
+            <label for="signup-confirm-password">Confirm Password</label>
+            <button type="button" class="pulse-password-toggle" onclick="window.togglePasswordVisibility(this)" title="Toggle password visibility">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+            <div class="pulse-input-highlight"></div>
+          </div>
+          <div class="pulse-field-error hidden" id="signup-confirm-password-error"></div>
+        </div>
         <button type="submit" id="btn-signup-submit" class="pulse-auth-submit">
           <span class="btn-text">Create Account</span>
           <i class="fa-solid fa-rocket btn-icon"></i>
@@ -1427,71 +1438,6 @@
         <p class="pulse-auth-switch">
           Already have an account? <a href="#" onclick="window.switchAuthTab('login'); return false;">Log in</a>
         </p>
-      </form>
-
-      <!-- 3. Phone Number SMS Auth Form -->
-      <form id="auth-form-phone" class="pulse-auth-form hidden" onsubmit="window.handlePhoneAuthSubmit(event); return false;" novalidate>
-        <!-- STEP 1: Enter Phone Number -->
-        <div id="phone-input-step">
-          <div class="pulse-input-group">
-            <label style="font-size: 0.82rem; color: #a1a1aa; font-weight: 600; display: block; margin-bottom: 0.4rem;">International Phone Number</label>
-            <div style="display: flex; gap: 0.5rem; align-items: center;">
-              <select id="phone-country-code" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; border-radius: 12px; padding: 0.75rem 0.6rem; font-size: 0.9rem; outline: none; cursor: pointer;">
-                <option value="+91">🇮🇳 +91 (IN)</option>
-                <option value="+1">🇺🇸 +1 (US)</option>
-                <option value="+44">🇬🇧 +44 (UK)</option>
-                <option value="+61">🇦🇺 +61 (AU)</option>
-                <option value="+81">🇯🇵 +81 (JP)</option>
-                <option value="+49">🇩🇪 +49 (DE)</option>
-                <option value="+33">🇫🇷 +33 (FR)</option>
-                <option value="+971">🇦🇪 +971 (UAE)</option>
-              </select>
-              <div class="pulse-input-wrapper" id="phone-number-wrapper" style="flex: 1;">
-                <i class="fa-solid fa-phone pulse-input-icon"></i>
-                <input type="tel" id="phone-number-input" placeholder=" " autocomplete="tel" oninput="window.clearFieldError('phone-number')">
-                <label for="phone-number-input">98765 43210</label>
-                <div class="pulse-input-highlight"></div>
-              </div>
-            </div>
-            <div class="pulse-field-error hidden" id="phone-number-error"></div>
-            <small style="color: var(--text-muted); font-size: 0.75rem; display: block; margin-top: 0.45rem;">
-              <i class="fa-solid fa-shield-halved text-accent"></i> We will send a secure 6-digit SMS verification code via Firebase.
-            </small>
-          </div>
-
-          <!-- Invisible Recaptcha Anchor -->
-          <div id="recaptcha-container" style="margin: 0.5rem 0;"></div>
-
-          <button type="button" id="btn-phone-send-otp" class="pulse-auth-submit" onclick="window.handleSendPhoneOtp(event)">
-            <span class="btn-text">Send SMS Verification Code</span>
-            <i class="fa-solid fa-paper-plane btn-icon"></i>
-          </button>
-        </div>
-
-        <!-- STEP 2: Enter & Verify 6-digit OTP -->
-        <div id="phone-otp-step" class="hidden" style="animation: fadeIn 0.3s ease;">
-          <div class="pulse-input-group">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
-              <label style="font-size: 0.82rem; color: #a1a1aa; font-weight: 600;">Enter 6-Digit SMS Code</label>
-              <button type="button" class="btn-link" style="font-size: 0.75rem; color: #c084fc; background: none; border: none; cursor: pointer;" onclick="window.backToPhoneInput()">Change Number</button>
-            </div>
-            <div class="pulse-input-wrapper" id="phone-otp-wrapper">
-              <i class="fa-solid fa-key pulse-input-icon"></i>
-              <input type="text" id="phone-otp-input" placeholder=" " maxlength="6" pattern="[0-9]{6}" autocomplete="one-time-code" style="letter-spacing: 0.3em; font-size: 1.2rem; font-weight: 800; text-align: center;" oninput="window.clearFieldError('phone-otp')">
-              <label for="phone-otp-input">6-digit OTP code</label>
-              <div class="pulse-input-highlight"></div>
-            </div>
-            <div class="pulse-field-error hidden" id="phone-otp-error"></div>
-            <small style="color: var(--text-muted); font-size: 0.75rem; display: block; margin-top: 0.45rem;">
-              Code sent to <strong id="phone-sent-target" style="color: #fff;">+91...</strong>
-            </small>
-          </div>
-
-          <button type="button" id="btn-phone-verify-otp" class="pulse-auth-submit" onclick="window.handleVerifyPhoneOtp(event)">
-            <span class="btn-text">Verify & Sign In</span>
-            <i class="fa-solid fa-check btn-icon"></i>
-          </button>
-        </div>
       </form>
 
       <!-- Footer -->
@@ -1710,7 +1656,7 @@
           </div>
           <div>
             <h3 style="margin: 0; font-size: 1.25rem;"><i class="fa-solid fa-cloud-arrow-down text-accent"></i> Download Pulse Music</h3>
-            <small style="color: var(--text-muted);">Official Cross-Platform Native Apps • Version 2.4.0 (Stable)</small>
+            <small style="color: var(--text-muted);">Official Cross-Platform Native Apps â€¢ Version 2.4.0 (Stable)</small>
           </div>
         </div>
         <button id="close-download-modal-btn" class="btn-icon-small" onclick="window.closeDownloadModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1740,7 +1686,7 @@
               <i class="fa-solid fa-cloud-arrow-down"></i> <span id="primary-download-label">Download Installer Package (.EXE)</span>
             </a>
             <div id="primary-file-meta" style="font-size: 0.8rem; color: var(--text-muted);">
-              Format: <strong id="primary-file-size" style="color: #fff;">Standalone Binary</strong> • Release: <strong style="color: #fff;">v2.4.0 (Stable)</strong>
+              Format: <strong id="primary-file-size" style="color: #fff;">Standalone Binary</strong> â€¢ Release: <strong style="color: #fff;">v2.4.0 (Stable)</strong>
             </div>
           </div>
 
@@ -1760,9 +1706,9 @@
             <div>
               <strong>Quick Installation Guide:</strong>
               <div style="margin-top: 0.35rem; color: #cbd5e1; font-size: 0.78rem; display: flex; flex-direction: column; gap: 0.25rem;">
-                <div>🪟 <strong>Windows:</strong> If SmartScreen appears, click <em>"More info"</em> &rarr; <em>"Run anyway"</em>.</div>
-                <div>🤖 <strong>Android:</strong> If prompted <em>"File might be harmful"</em>, tap <em>"Download anyway"</em> &rarr; <em>"Open"</em> &rarr; <em>"Install"</em>.</div>
-                <div>🍏 <strong>macOS:</strong> Open DMG &rarr; Drag to Applications folder.</div>
+                <div>ðŸªŸ <strong>Windows:</strong> If SmartScreen appears, click <em>"More info"</em> &rarr; <em>"Run anyway"</em>.</div>
+                <div>ðŸ¤– <strong>Android:</strong> If prompted <em>"File might be harmful"</em>, tap <em>"Download anyway"</em> &rarr; <em>"Open"</em> &rarr; <em>"Install"</em>.</div>
+                <div>ðŸ <strong>macOS:</strong> Open DMG &rarr; Drag to Applications folder.</div>
               </div>
             </div>
           </div>
@@ -1874,14 +1820,14 @@
         <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
           <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
             <span style="font-size: 0.82rem; color: #4ade80;"><i class="fa-solid fa-shield-check"></i> <strong>100% Safe & Clean Software Guarantee:</strong></span>
-            <small style="color: var(--text-muted); font-size: 0.75rem;">0 Ads • 0 Telemetry • Cryptographically Verified</small>
+            <small style="color: var(--text-muted); font-size: 0.75rem;">0 Ads â€¢ 0 Telemetry â€¢ Cryptographically Verified</small>
           </div>
           <div style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
-            • <strong>Instant 1-Tap Install (0 Warnings):</strong> Tap <em>"Install App"</em> on your phone or PC browser for instant installation directly into your apps list with 0 security prompts.<br>
-            • <strong>Android (.APK):</strong> Chrome displays a standard prompt (<em>"File might be harmful"</em>) for all third-party APKs. Tap <em>"Download anyway"</em> $\rightarrow$ <em>"Open"</em> $\rightarrow$ <em>"Install"</em>.<br>
-            • <strong>Windows (.EXE):</strong> If Windows SmartScreen appears on newly published executables, click <em>"More info"</em> $\rightarrow$ <em>"Run anyway"</em>.<br>
-            • <strong>macOS (.DMG):</strong> Drag Pulse to Applications $\rightarrow$ Right-click $\rightarrow$ <em>"Open"</em>.<br>
-            • <strong>iOS (iPhone/iPad):</strong> Tap Safari Share button (⎋) $\rightarrow$ <em>"Add to Home Screen"</em> 📲.
+            â€¢ <strong>Instant 1-Tap Install (0 Warnings):</strong> Tap <em>"Install App"</em> on your phone or PC browser for instant installation directly into your apps list with 0 security prompts.<br>
+            â€¢ <strong>Android (.APK):</strong> Chrome displays a standard prompt (<em>"File might be harmful"</em>) for all third-party APKs. Tap <em>"Download anyway"</em> $\rightarrow$ <em>"Open"</em> $\rightarrow$ <em>"Install"</em>.<br>
+            â€¢ <strong>Windows (.EXE):</strong> If Windows SmartScreen appears on newly published executables, click <em>"More info"</em> $\rightarrow$ <em>"Run anyway"</em>.<br>
+            â€¢ <strong>macOS (.DMG):</strong> Drag Pulse to Applications $\rightarrow$ Right-click $\rightarrow$ <em>"Open"</em>.<br>
+            â€¢ <strong>iOS (iPhone/iPad):</strong> Tap Safari Share button (âŽ‹) $\rightarrow$ <em>"Add to Home Screen"</em> ðŸ“².
           </div>
         </div>
 
@@ -1988,7 +1934,7 @@
 
         <!-- 2-Line Live Lyrics Preview Snippet -->
     <div id="mini-playbar-lyrics-snippet" class="mini-lyrics-snippet hidden" onclick="window.openFullscreenPlayerWithLyrics()" title="Click to expand Karaoke Lyrics View">
-      <div class="mini-lyric-line mini-lyric-current" id="mini-lyric-current">♪ Pulse Live Lyrics Sync</div>
+      <div class="mini-lyric-line mini-lyric-current" id="mini-lyric-current">â™ª Pulse Live Lyrics Sync</div>
       <div class="mini-lyric-line mini-lyric-next" id="mini-lyric-next"></div>
     </div>
 
@@ -2225,6 +2171,11 @@
       });
     }
   </script>
-  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="./src/lyricsService.js?v=3.0.0-clean"></script>
+  <script type="module" src="./src/catalogService.js?v=3.0.0-clean"></script>
+  <script type="module" src="./src/musicService.js?v=3.0.0-clean"></script>
+  <script type="module" src="./src/playbarController.js?v=3.0.0-clean"></script>
+  <script type="module" src="./src/visualizer.js?v=3.0.0-clean"></script>
+  <script type="module" src="./src/main.js?v=3.0.0-clean"></script>
 </body>
 </html>

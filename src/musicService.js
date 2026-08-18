@@ -483,7 +483,7 @@ function getOfficialCover(title, artist) {
     // Global Pop
     { id: 'global-1', title: 'Blinding Lights', artist: 'The Weeknd', album: 'After Hours', duration: '3:20', category: 'pop', language: 'English' },
     { id: 'global-2', title: 'Starboy', artist: 'The Weeknd, Daft Punk', album: 'Starboy', duration: '3:50', category: 'pop', language: 'English' },
-    { id: 'global-3', title: 'Shape of You', artist: 'Ed Sheeran', album: '÷ (Divide)', duration: '3:53', category: 'pop', language: 'English' },
+    { id: 'global-3', title: 'Shape of You', artist: 'Ed Sheeran', album: 'Ã· (Divide)', duration: '3:53', category: 'pop', language: 'English' },
     { id: 'global-4', title: 'Levitating', artist: 'Dua Lipa', album: 'Future Nostalgia', duration: '3:23', category: 'pop', language: 'English' },
     { id: 'global-5', title: 'Faded', artist: 'Alan Walker', album: 'Different World', duration: '3:32', category: 'pop', language: 'English' },
     { id: 'global-6', title: 'As It Was', artist: 'Harry Styles', album: "Harry's House", duration: '2:47', category: 'pop', language: 'English' },

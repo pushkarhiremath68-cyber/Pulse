@@ -1,4 +1,54 @@
-/**
+import subprocess, os, re, shutil
+
+print("[1/5] Restoring clean base from commit 539fa72...")
+# Restore files from 539fa72
+for fp in ['index.html', 'src/main.js', 'src/style.css', 'src/playbarController.js', 'src/catalogService.js', 'src/musicService.js', 'src/lyricsService.js', 'src/firebaseClient.js']:
+    res = subprocess.run(["git", "show", f"539fa72:{fp}"], capture_output=True, text=True, errors='ignore')
+    if res.returncode == 0:
+        with open(fp, 'w', encoding='utf-8') as f:
+            f.write(res.stdout)
+        print(f"  Restored {fp}")
+
+# 2. In index.html:
+# A) Remove Video Button in fullscreen header
+# B) Remove Gemini AI DJ from sidebar, hero, quick hub, lyrics drawer, fs header, and mobile nav
+with open('index.html', 'r', encoding='utf-8') as f:
+    html = f.read()
+
+# Remove video button
+html = re.sub(r'<button id="toggle-video-modal-btn"[^>]*>[\s\S]*?</button>\s*', '', html)
+
+# Remove gemini nav item
+html = re.sub(r'<a href="#" class="nav-item nav-item-gemini" id="nav-gemini-dj"[\s\S]*?</a>\s*', '', html)
+
+# Remove hero gemini button
+html = re.sub(r'<button id="hero-like-btn" class="btn-secondary-outline" onclick="window\.openGeminiDjModal\(\)">[\s\S]*?</button>\s*', '', html)
+html = html.replace('with Gemini AI DJ, synchronized lyrics,', 'with synchronized lyrics, high-definition audio,')
+
+# Remove Quick Discovery Hub Gemini card
+html = re.sub(r'<div class="feature-action-card" onclick="window\.openGeminiDjModal\(\)"[\s\S]*?Launch AI DJ <i class="fa-solid fa-arrow-right"></i></span>\s*</div>\s*', '', html)
+
+# Remove fs header gemini button
+html = re.sub(r'<button id="fs-btn-gemini"[\s\S]*?</button>\s*', '', html)
+
+# Remove side drawer gemini insight bar
+html = re.sub(r'<div class="lyrics-gemini-bar"[\s\S]*?</div>\s*<div id="gemini-song-insight-box"[\s\S]*?</div>\s*', '', html)
+
+# Remove gemini modal
+html = re.sub(r'<!-- GEMINI AI DJ STUDIO MODAL -->[\s\S]*?<!-- AUTHENTIC GOOGLE OAUTH', '<!-- AUTHENTIC GOOGLE OAUTH', html)
+
+# Remove mobile nav gemini
+html = re.sub(r'<button class="mobile-nav-item" id="mobile-nav-gemini"[\s\S]*?</button>\s*', '', html)
+
+# Remove gemini script tag from head
+html = re.sub(r'<script type="module" src="\./src/geminiService\.js"></script>\s*', '', html)
+
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(html)
+print("[2/5] Cleaned index.html (Removed video button & Gemini AI DJ)")
+
+# 3. In src/firebaseClient.js, ensure Email/Pass, Phone SMS (Recaptcha), Google, onAuthStateChanged work via window.firebase CDN
+firebase_client_code = """/**
  * Pulse Music - Firebase Authentication & Cloud Engine
  * Uses window.firebase CDN for zero-build universal browser compatibility
  */
@@ -84,7 +134,7 @@ export async function sendPhoneOtp(fullPhoneNumber, containerId = 'recaptcha-con
   if (!auth) throw new Error('Firebase Auth unavailable.');
   
   const cleanPhone = (fullPhoneNumber || '').replace(/[\s-]/g, '').trim();
-  if (!cleanPhone || !/^\+[1-9]\d{6,14}$/.test(cleanPhone)) {
+  if (!cleanPhone || !/^\\+[1-9]\\d{6,14}$/.test(cleanPhone)) {
     throw new Error('Please enter a valid international phone number with country code (e.g. +91 98765 43210).');
   }
 
@@ -101,7 +151,7 @@ export async function sendPhoneOtp(fullPhoneNumber, containerId = 'recaptcha-con
 }
 
 export async function verifyPhoneOtp(otpCode) {
-  const cleanCode = (otpCode || '').replace(/\s+/g, '').trim();
+  const cleanCode = (otpCode || '').replace(/\\s+/g, '').trim();
   const confirmation = phoneConfirmationResult || window.phoneConfirmationResult;
   if (!confirmation) throw new Error('No active verification session found.');
   
@@ -176,3 +226,58 @@ if (typeof window !== 'undefined') {
     signOutFirebase
   };
 }
+"""
+
+with open('src/firebaseClient.js', 'w', encoding='utf-8') as f:
+    f.write(firebase_client_code)
+print("[3/5] Updated src/firebaseClient.js with robust zero-error Firebase CDN client")
+
+# 4. In src/main.js, ensure window.playSpecificTrack and Lyrics drawer are wired cleanly
+with open('src/main.js', 'r', encoding='utf-8') as f:
+    main_js = f.read()
+
+# Add playSpecificTrack if not present on window
+if 'window.playSpecificTrack' not in main_js:
+    play_specific_track_code = """
+  window.playSpecificTrack = function(trackId) {
+    if (!trackId) return;
+    let track = (window.musicService && typeof window.musicService.getTrack === 'function' && window.musicService.getTrack(trackId)) ||
+                (window.TRACKS_REGISTRY && window.TRACKS_REGISTRY[trackId]);
+    if (!track) {
+      const card = document.querySelector(`[onclick*="'${trackId}'"]`);
+      if (card) {
+        const title = card.querySelector('.music-card-title, h4, h5')?.textContent?.trim() || trackId;
+        const artist = card.querySelector('.music-card-subtitle, p')?.textContent?.trim() || 'Artist';
+        const cover = card.querySelector('img')?.src || './pulse-logo.png';
+        track = { id: trackId, title, artist, cover, duration: '3:30', source: 'Pulse Direct' };
+      }
+    }
+    if (track) {
+      if (typeof setTrack === 'function') {
+        setTrack(track, true);
+      } else if (window.playbarController && typeof window.playbarController.playTrack === 'function') {
+        window.playbarController.playTrack(track);
+      }
+    }
+  };
+"""
+    main_js = main_js.replace('function initApp()', play_specific_track_code.strip() + '\n\n  function initApp()')
+
+with open('src/main.js', 'w', encoding='utf-8') as f:
+    f.write(main_js)
+
+print("[4/5] Saved src/main.js")
+
+# 5. Build and sync to docs/
+res = subprocess.run(["npm", "run", "build"], capture_output=True, text=True, shell=True)
+print(res.stdout)
+if os.path.exists('docs'):
+    shutil.rmtree('docs')
+shutil.copytree('dist', 'docs')
+shutil.copytree('src', os.path.join('docs', 'src'), dirs_exist_ok=True)
+shutil.copytree('public', os.path.join('docs', 'public'), dirs_exist_ok=True)
+with open(os.path.join('docs', '.nojekyll'), 'w') as f: f.write('')
+if os.path.exists('pulse-logo.png'): shutil.copy('pulse-logo.png', 'docs/pulse-logo.png')
+if os.path.exists('pulse-logo.svg'): shutil.copy('pulse-logo.svg', 'docs/pulse-logo.svg')
+
+print("[5/5] Build complete and synced to docs/")
