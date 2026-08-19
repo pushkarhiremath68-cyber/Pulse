@@ -76,16 +76,18 @@ export function normalizeTrack(raw, source = 'YouTube Music Ad-Free Opus') {
   if (!cover && raw.artworkUrl100) {
     cover = raw.artworkUrl100.replace('100x100bb', '600x600bb');
   }
-  if (cover && typeof cover === 'string' && cover.includes('50x50')) {
-    cover = cover.replace('50x50', '500x500');
-  }
-  if (cover && typeof cover === 'string' && cover.includes('150x150')) {
-    cover = cover.replace('150x150', '500x500');
+  if (cover && typeof cover === 'string') {
+    cover = cover
+      .replace('50x50', '500x500')
+      .replace('150x150', '500x500')
+      .replace('100x100bb', '600x600bb')
+      .replace('/default.jpg', '/hqdefault.jpg')
+      .replace('/mqdefault.jpg', '/hqdefault.jpg');
   }
   if (!cover && raw.ytId) {
     cover = `https://i.ytimg.com/vi/${raw.ytId}/hqdefault.jpg`;
   }
-  if (!cover) cover = './pulse-logo.png';
+  if (!cover) cover = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80';
 
   let stream = raw.streamUrl || raw.audio || raw.audiodownload || raw.downloadUrl || raw.stream || '';
   if (Array.isArray(raw.downloadUrl) && raw.downloadUrl.length > 0) {
