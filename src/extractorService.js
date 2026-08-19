@@ -64,17 +64,17 @@ export async function resolvePipedAudioStream(videoId) {
   }
 
   // FAST CONCURRENT RACING (Piped + Invidious Combined)
-  // We race multiple top nodes simultaneously. First valid stream wins instantly.
+  // We race ALL nodes simultaneously. First valid stream wins instantly.
   const nodesToRace = [
-    ...PIPED_INSTANCES.sort(() => 0.5 - Math.random()).slice(0, 3).map(n => ({ type: 'piped', url: `${n}/streams/${cleanId}` })),
-    ...INVIDIOUS_INSTANCES.sort(() => 0.5 - Math.random()).slice(0, 2).map(n => ({ type: 'invidious', url: `${n}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats` }))
+    ...PIPED_INSTANCES.map(n => ({ type: 'piped', url: `${n}/streams/${cleanId}` })),
+    ...INVIDIOUS_INSTANCES.map(n => ({ type: 'invidious', url: `${n}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats` }))
   ];
 
   try {
     const fastestResolved = await Promise.any(
       nodesToRace.map(async (node) => {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2000); // Super aggressive 2.0s timeout per node
+        const timeoutId = setTimeout(() => controller.abort(), 6000); // Generous 6.0s timeout to guarantee we catch even slow working nodes
         try {
           const res = await fetch(node.url, { signal: controller.signal });
           clearTimeout(timeoutId);
