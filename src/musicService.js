@@ -280,20 +280,20 @@ export async function searchTracks(query, limit = 40) {
     }
   };
 
-  // STEP 1: YouTube Music & Piped Pure Audio Extractor
+  // STEP 1: Studio Master JioSaavn 320k (100% Reliable Streams)
   try {
-    const ytmTracks = await searchYouTubeMusic(cleanQuery, Math.min(limit, 25));
-    ytmTracks.forEach(t => addUnique(t));
-  } catch (e) {
-    console.warn('[MusicService] YTM Extractor search notice:', e);
-  }
+    const saavnTracks = await searchSaavnMasterTracks(cleanQuery, Math.min(limit, 30));
+    saavnTracks.forEach(t => addUnique(t));
+  } catch (e) {}
 
-  // STEP 2: Studio Master JioSaavn 320k
+  // STEP 2: YouTube Music & Piped Pure Audio Extractor
   if (results.length < limit) {
     try {
-      const saavnTracks = await searchSaavnMasterTracks(cleanQuery, 15);
-      saavnTracks.forEach(t => addUnique(t));
-    } catch (e) {}
+      const ytmTracks = await searchYouTubeMusic(cleanQuery, 15);
+      ytmTracks.forEach(t => addUnique(t));
+    } catch (e) {
+      console.warn('[MusicService] YTM Extractor search notice:', e);
+    }
   }
 
   // STEP 3: Audius Decentralized Network
@@ -323,22 +323,22 @@ export async function fetchTrendingTracks(limit = 40) {
     }
   };
 
-  // 1. YouTube Music Global Top Charts
-  try {
-    const ytmCharts = await fetchYouTubeMusicCharts('GLOBAL', 20);
-    ytmCharts.forEach(t => addUnique(t));
-  } catch (e) {}
+  // 1. Studio Master Trending Hits
+  const trendingQueries = ['Top Global Hits 2024', 'Bollywood Romance', 'Punjabi Hits'];
+  for (const tq of trendingQueries) {
+    try {
+      const sTracks = await searchSaavnMasterTracks(tq, 15);
+      sTracks.forEach(t => addUnique(t));
+    } catch (e) {}
+    if (results.length >= 30) break;
+  }
 
-  // 2. Studio Master Trending Hits
-  if (results.length < 25) {
-    const trendingQueries = ['Top Global Hits 2024', 'Bollywood Romance', 'Punjabi Hits'];
-    for (const tq of trendingQueries) {
-      try {
-        const sTracks = await searchSaavnMasterTracks(tq, 10);
-        sTracks.forEach(t => addUnique(t));
-      } catch (e) {}
-      if (results.length >= 25) break;
-    }
+  // 2. YouTube Music Global Top Charts (Fallback)
+  if (results.length < limit) {
+    try {
+      const ytmCharts = await fetchYouTubeMusicCharts('GLOBAL', 10);
+      ytmCharts.forEach(t => addUnique(t));
+    } catch (e) {}
   }
 
   return results.slice(0, limit);
