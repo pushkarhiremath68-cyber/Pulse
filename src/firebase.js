@@ -4,14 +4,14 @@
  * with robust offline persistence and graceful fallbacks.
  */
 
-// Default Firebase Configuration (Can be overridden via window.PULSE_FIREBASE_CONFIG or .env)
+// Environment-driven Firebase Configuration with fallback to dummy strings for development
 export const DEFAULT_FIREBASE_CONFIG = {
-  apiKey: "AIzaSyPulseMusicAdFreeExtractor2026Key",
-  authDomain: "pulse-music-app-streaming.firebaseapp.com",
-  projectId: "pulse-music-app-streaming",
-  storageBucket: "pulse-music-app-streaming.appspot.com",
-  messagingSenderId: "109876543210",
-  appId: "1:109876543210:web:abcdef1234567890pulse"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyPulseMusicAdFreeExtractor2026Key",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "pulse-music-app-streaming.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "pulse-music-app-streaming",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "pulse-music-app-streaming.appspot.com",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "109876543210",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:109876543210:web:abcdef1234567890pulse"
 };
 
 let firebaseApp = null;

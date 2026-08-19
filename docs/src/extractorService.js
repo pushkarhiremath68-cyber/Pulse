@@ -63,7 +63,7 @@ export async function resolvePipedAudioStream(videoId) {
     }
   }
 
-  // 1. Try Piped API Instances
+  // 1. Try Piped API Instances (Primary)
   for (let attempt = 0; attempt < 3; attempt++) {
     const node = getActivePipedNode();
     try {
