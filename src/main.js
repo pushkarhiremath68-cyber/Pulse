@@ -328,6 +328,56 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
         </div>
       `).join('');
     }
+
+    // 4. Dynamic Language Playlists
+    const shelvesContainer = document.getElementById('dynamic-home-shelves');
+    if (shelvesContainer) {
+      // Async IIFE to fetch and render without blocking the rest of home rendering
+      (async () => {
+        try {
+          const langPlaylists = await window.musicService.fetchLanguagePlaylists();
+          window.__langPlaylists = langPlaylists;
+          
+          let html = '';
+          langPlaylists.forEach((playlist, plIdx) => {
+            if (!playlist || !playlist.tracks || playlist.tracks.length === 0) return;
+            
+            const meta = playlist.meta;
+            html += `
+              <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
+                <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                  <div>
+                    <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid ${meta.icon}" style="color: ${meta.color}; margin-right: 6px;"></i> ${meta.title}</h3>
+                    <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Curated top tracks for ${meta.title}</p>
+                  </div>
+                </div>
+                <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem;">
+                  ${playlist.tracks.map((track, trackIdx) => `
+                    <div class="music-card" onclick="window.playLanguageTrack(${plIdx}, ${trackIdx})">
+                      <div class="card-image-wrapper">
+                        <img src="${track.coverUrl}" alt="${track.title}" class="card-image" loading="lazy">
+                        <div class="card-play-overlay">
+                          <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <span style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${meta.color}; padding: 2px 6px; border-radius: 6px;">Authentic Master</span>
+                      </div>
+                      <div class="card-meta">
+                        <span class="card-title" title="${track.title}">${track.title}</span>
+                        <span class="card-artist" title="${track.artist}">${track.artist}</span>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </section>
+            `;
+          });
+          
+          shelvesContainer.innerHTML = html || '<div style="text-align: center; color: var(--text-muted);">Failed to load language playlists.</div>';
+        } catch (e) {
+          shelvesContainer.innerHTML = '<div style="text-align: center; color: var(--text-muted);">Error loading curated songs.</div>';
+        }
+      })();
+    }
   };
 
   window.playCuratedPlaylist = function(idx) {
@@ -335,6 +385,13 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     if (pl && pl.tracks && pl.tracks.length > 0) {
       window.playTrackDirect(pl.tracks[0], pl.tracks);
       window.showToast(`Playing playlist "${pl.title}"`, 'info');
+    }
+  };
+
+  window.playLanguageTrack = function(plIdx, trackIdx) {
+    const pl = window.__langPlaylists?.[plIdx];
+    if (pl && pl.tracks) {
+      window.playTrackDirect(pl.tracks[trackIdx], pl.tracks);
     }
   };
 

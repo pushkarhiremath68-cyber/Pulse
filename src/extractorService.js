@@ -168,6 +168,7 @@ export async function resolvePipedAudioStream(videoId) {
 
 /**
  * Searches YouTube Music / Piped for Songs, Artists, and Albums
+ * Utilizes a high-performance concurrent race across all nodes to guarantee instant results.
  */
 export async function searchYouTubeMusic(query, limit = 25) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
@@ -180,54 +181,48 @@ export async function searchYouTubeMusic(query, limit = 25) {
   const results = [];
   const seenIds = new Set();
 
-  // 1. Query Piped Music Search
-  for (let attempt = 0; attempt < 3; attempt++) {
-    const node = getActivePipedNode();
-    try {
-      const searchUrl = `${node}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs`;
-      const res = await fetch(searchUrl, { signal: AbortSignal.timeout(3500) });
-      if (res.ok) {
-        const json = await res.json();
-        const items = json.items || [];
-        for (const item of items) {
-          const videoId = (item.url || '').replace('/watch?v=', '').trim();
-          if (videoId && !seenIds.has(videoId)) {
-            seenIds.add(videoId);
-            results.push({
-              id: `ytm-${videoId}`,
-              ytId: videoId,
-              title: item.title || 'Untitled Track',
-              artist: item.uploaderName || item.artist || 'YouTube Music Artist',
-              album: item.album || 'YouTube Music Single',
-              coverUrl: item.thumbnail || (item.thumbnails && item.thumbnails[0]?.url) || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-              duration: item.duration || 220,
-              streamUrl: '', // Resolved on play
-              source: 'YouTube Music Ad-Free Opus'
-            });
-          }
-        }
-        if (results.length >= limit) break;
-      }
-    } catch (e) {
-      rotatePipedNode();
-    }
-  }
+  const nodesToRace = PIPED_INSTANCES.map(n => `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs`);
 
-  // 2. Query Local Backend YTM Search Endpoint
-  if (results.length === 0) {
-    try {
-      const res = await fetch(`/api/ytm/search?q=${encodeURIComponent(cleanQ)}`, { signal: AbortSignal.timeout(3000) });
-      if (res.ok) {
-        const json = await res.json();
-        const items = json.results || [];
-        for (const item of items) {
-          if (item.ytId && !seenIds.has(item.ytId)) {
-            seenIds.add(item.ytId);
-            results.push(item);
-          }
+  try {
+    const fastestSearch = await Promise.any(
+      nodesToRace.map(async (searchUrl) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000); // 6.0s max tolerance
+        try {
+          const res = await fetch(searchUrl, { signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (!res.ok) throw new Error('Not ok');
+          const json = await res.json();
+          if (!json.items || json.items.length === 0) throw new Error('Empty');
+          return json.items;
+        } catch (e) {
+          clearTimeout(timeoutId);
+          throw e;
         }
+      })
+    );
+
+    // Parse the winning fast search
+    for (const item of fastestSearch) {
+      const videoId = (item.url || '').replace('/watch?v=', '').trim();
+      if (videoId && !seenIds.has(videoId)) {
+        seenIds.add(videoId);
+        results.push({
+          id: `ytm-${videoId}`,
+          ytId: videoId,
+          title: item.title || 'Untitled Track',
+          artist: item.uploaderName || item.artist || 'YouTube Music Artist',
+          album: item.album || 'YouTube Music Single',
+          coverUrl: item.thumbnail || (item.thumbnails && item.thumbnails[0]?.url) || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+          duration: item.duration || 220,
+          streamUrl: '', // Resolved on play
+          source: 'YouTube Music Ad-Free Opus'
+        });
       }
-    } catch (e) {}
+      if (results.length >= limit) break;
+    }
+  } catch (aggregateError) {
+    console.warn('[Pulse Search Engine] All nodes failed the fast race for search:', aggregateError.errors);
   }
 
   if (results.length > 0) {

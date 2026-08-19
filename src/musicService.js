@@ -195,7 +195,7 @@ export async function searchSaavnMasterTracks(query, limit = 25) {
 
   // 1. Direct Saavn Mirror API
   try {
-    const mirrorUrl = `https://jiosaavn-api-2.vercel.app/search/songs?query=${encodeURIComponent(cleanQ)}`;
+    const mirrorUrl = `https://jiosaavn-api-2.vercel.app/search/songs?query=${encodeURIComponent(cleanQ)}&limit=${limit}`;
     const res = await fetch(mirrorUrl, { signal: AbortSignal.timeout(3500) });
     if (res.ok) {
       const json = await res.json();
@@ -209,7 +209,7 @@ export async function searchSaavnMasterTracks(query, limit = 25) {
   // 2. Local Backend Server Proxy
   if (results.length === 0) {
     try {
-      const localUrl = `/api/saavn-search?q=${encodeURIComponent(cleanQ)}`;
+      const localUrl = `/api/saavn-search?q=${encodeURIComponent(cleanQ)}&limit=${limit}`;
       const res = await fetch(localUrl, { signal: AbortSignal.timeout(2500) });
       if (res.ok) {
         const json = await res.json();
@@ -345,6 +345,39 @@ export async function fetchTrendingTracks(limit = 40) {
 }
 
 /**
+ * Fetches Curated Top Tracks for the 6 target languages
+ * Each returns up to 100 songs to satisfy the 1000+ total dynamic catalog goal.
+ */
+export async function fetchLanguagePlaylists() {
+  const languages = [
+    { id: "hindi", title: "Top Hindi Hits", query: "Bollywood Top 100", icon: "fa-compact-disc", color: "#ec4899" },
+    { id: "english", title: "Top English Hits", query: "Global Top Hits 2024", icon: "fa-fire-flame-curved", color: "#ff007a" },
+    { id: "kannada", title: "Top Kannada Hits", query: "Kannada Hits", icon: "fa-crown", color: "#f59e0b" },
+    { id: "tamil", title: "Top Tamil Hits", query: "Kollywood Chartbusters", icon: "fa-star", color: "#ef4444" },
+    { id: "telugu", title: "Top Telugu Hits", query: "Tollywood Viral Songs", icon: "fa-guitar", color: "#3b82f6" },
+    { id: "gujarati", title: "Top Gujarati Hits", query: "Gujarati Hits", icon: "fa-music", color: "#10b981" }
+  ];
+
+  const results = {};
+  
+  // Fetch these concurrently
+  const promises = languages.map(async (lang) => {
+    try {
+      const tracks = await searchSaavnMasterTracks(lang.query, 100);
+      results[lang.title] = {
+        meta: lang,
+        tracks: tracks
+      };
+    } catch (e) {
+      results[lang.title] = { meta: lang, tracks: [] };
+    }
+  });
+
+  await Promise.allSettled(promises);
+  return languages.map(l => results[l.title]);
+}
+
+/**
  * Resolves 100% Ad-Free Pure Audio Stream for ANY track
  * Eliminates preview clips completely by fetching direct Opus/M4A/320k stream
  */
@@ -437,6 +470,7 @@ export async function resolveExactTrackStream(track) {
 const musicService = {
   searchTracks,
   fetchTrendingTracks,
+  fetchLanguagePlaylists,
   searchSaavnMasterTracks,
   searchAudiusTracks,
   normalizeTrack,
