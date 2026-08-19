@@ -518,33 +518,42 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       return;
     }
 
+    window.__searchResults = tracks || [];
+
+    window.playSearchTrack = function(index) {
+      if (!window.__searchResults || !window.__searchResults[index]) {
+        console.warn('[Pulse Search] Track not found at index:', index);
+        return;
+      }
+      const track = window.__searchResults[index];
+      window.playTrackDirect(track, window.__searchResults);
+    };
+
     container.innerHTML = tracks.map((track, idx) => `
-      <div class="track-card glass-card hover-glow" onclick="window.playTrackDirect(window.__searchResults[${idx}], window.__searchResults)">
+      <div class="track-card glass-card hover-glow" onclick="window.playSearchTrack(${idx})">
         <div class="card-cover-wrap">
-          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" class="card-cover" loading="lazy" onerror="this.src='./pulse-logo.png'">
+          <img src="${track.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80'}" alt="${track.title}" class="card-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80'">
           <div class="card-play-overlay">
             <button class="btn-play-hover" title="Play Ad-Free Audio">
               <i class="fa-solid fa-play"></i>
             </button>
           </div>
-          <span class="card-badge-source">Ad-Free</span>
+          <span class="card-badge-source" style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.75); color: #c084fc; padding: 2px 6px; border-radius: 6px;">Ad-Free</span>
         </div>
         <div class="card-info">
           <h4 class="card-title" title="${track.title}">${track.title}</h4>
-          <p class="card-artist" title="${track.artist}" onclick="event.stopPropagation(); window.openArtistView('${track.artist}')">${track.artist}</p>
+          <p class="card-artist" title="${track.artist}" onclick="event.stopPropagation(); window.openArtistView('${track.artist.replace(/'/g, "\\'")}')">${track.artist}</p>
         </div>
         <div class="card-actions" onclick="event.stopPropagation()">
-          <button class="btn-action-icon" title="Add to Favorites" onclick="window.toggleFavoriteTrack(window.__searchResults[${idx}])">
+          <button class="btn-action-icon" title="Add to Favorites" onclick="window.toggleFavoriteTrack(window.__searchResults[${idx}])" style="background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size:0.9rem; padding:4px;">
             <i class="fa-regular fa-heart"></i>
           </button>
-          <button class="btn-action-icon" title="Add to Playlist" onclick="window.openAddToPlaylistModal(window.__searchResults[${idx}])">
+          <button class="btn-action-icon" title="Add to Playlist" onclick="window.openAddToPlaylistModal(window.__searchResults[${idx}])" style="background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size:0.9rem; padding:4px;">
             <i class="fa-solid fa-list-plus"></i>
           </button>
         </div>
       </div>
     `).join('');
-
-    window.__searchResults = tracks;
   }
 
   // ---------------------------------------------------------------------------

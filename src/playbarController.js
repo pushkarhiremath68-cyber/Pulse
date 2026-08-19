@@ -192,46 +192,70 @@ export async function playTrack(track, queue = null) {
     window.fetchTrackLyrics(track);
   }
 
-  // Resolve Direct Stream Candidates
-  let streamUrl = track.streamUrl;
+  // Collect Stream Candidates
+  const streamCandidates = [];
 
-  // 1. If YouTube Video ID present, resolve direct Opus/M4A audio stream
-  const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
-  if (!streamUrl || streamUrl.includes('preview') || (ytId && !streamUrl.startsWith('http'))) {
-    if (ytId) {
-      const ytmRes = await resolvePipedAudioStream(ytId);
-      if (ytmRes && ytmRes.streamUrl) {
-        streamUrl = ytmRes.streamUrl;
-        track.streamUrl = streamUrl;
-        track.source = ytmRes.source || 'YouTube Music Ad-Free Opus';
-      }
+  if (track.streamUrl && track.streamUrl.startsWith('http')) {
+    streamCandidates.push({ url: track.streamUrl, source: track.source || 'Direct Audio Stream' });
+    // If Saavn, also add 160k and 96k fallbacks
+    if (track.streamUrl.includes('_320.mp4')) {
+      streamCandidates.push({ url: track.streamUrl.replace('_320.mp4', '_160.mp4'), source: 'Studio Master 160k' });
+      streamCandidates.push({ url: track.streamUrl.replace('_320.mp4', '_96.mp4'), source: 'Studio Master 96k' });
     }
   }
 
-  // 2. Fallback to MusicService multi-tier resolver
-  if (!streamUrl || streamUrl.includes('preview')) {
-    streamUrl = await resolveExactTrackStream(track);
+  // 1. YouTube Music Extractor if videoId present
+  const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+  if (ytId) {
+    try {
+      const ytmRes = await resolvePipedAudioStream(ytId);
+      if (ytmRes && ytmRes.streamUrl) {
+        streamCandidates.push({ url: ytmRes.streamUrl, source: ytmRes.source || 'YouTube Music Ad-Free Opus' });
+      }
+    } catch (e) {}
+  }
+
+  // 2. Multi-tier resolution via MusicService
+  if (streamCandidates.length === 0 || streamCandidates[0].url.includes('preview')) {
+    try {
+      const resolved = await resolveFullAudioStream(track);
+      if (resolved && resolved.streamUrl) {
+        streamCandidates.push({ url: resolved.streamUrl, source: resolved.source || 'Pulse Pure Audio' });
+        if (resolved.streamUrl.includes('_320.mp4')) {
+          streamCandidates.push({ url: resolved.streamUrl.replace('_320.mp4', '_160.mp4'), source: 'Studio Master 160k' });
+        }
+      }
+    } catch (e) {}
   }
 
   if (sessionId !== activePlaySessionId) return;
 
-  if (streamUrl && streamUrl.startsWith('http')) {
+  // Try each stream candidate sequentially
+  let playbackStarted = false;
+  for (const cand of streamCandidates) {
+    if (!cand.url || !cand.url.startsWith('http')) continue;
     try {
       a.pause();
-      a.src = streamUrl;
+      a.src = cand.url;
       a.load();
       await a.play();
       isPlaying = true;
+      playbackStarted = true;
+      track.streamUrl = cand.url;
+      track.source = cand.source;
+      updateTrackInfoUI(track);
       updatePlayPauseUI();
       updateMediaSessionPlaybackState('playing');
-      console.log('[Pulse Pure Audio] Playing stream:', track.title, track.source || '');
-      return;
+      console.log('[Pulse Pure Audio] Streaming successfully from:', cand.source);
+      break;
     } catch (err) {
-      console.warn('[Pulse Audio] Direct stream failed, attempting native engine cascade:', err.message);
+      console.warn('[Pulse Audio] Stream candidate failed, trying next:', cand.source, err.message);
     }
   }
 
-  // 3. Last-resort fallback via PulseAudioEngine
+  if (playbackStarted) return;
+
+  // 3. Fallback via PulseAudioEngine
   if (window.PulseAudioEngine?.playTrackOnNativeAudio) {
     const success = await window.PulseAudioEngine.playTrackOnNativeAudio(track);
     if (success) {
@@ -243,9 +267,8 @@ export async function playTrack(track, queue = null) {
   }
 
   if (typeof window.showToast === 'function') {
-    window.showToast(`Unable to play "${track.title}". Trying next track...`, 'warning', 2500);
+    window.showToast(`Connecting to audio stream for "${track.title}"...`, 'info', 2000);
   }
-  setTimeout(() => playNext(), 1000);
 }
 
 export function togglePlay() {
@@ -355,21 +378,26 @@ function formatTime(secs) {
 }
 
 function updateTimeUI() {
-  const curTimeEl = document.getElementById('playbar-current-time');
-  const durTimeEl = document.getElementById('playbar-duration');
-  const progressBar = document.getElementById('playbar-progress-fill');
-  const seeker = document.getElementById('playbar-seeker');
+  const formattedCur = formatTime(currentTime);
+  const formattedDur = formatTime(duration);
 
-  if (curTimeEl) curTimeEl.textContent = formatTime(currentTime);
-  if (durTimeEl) durTimeEl.textContent = formatTime(duration);
+  const curTimeEls = document.querySelectorAll('#player-time-current, #playbar-current-time, #fs-time-current');
+  const durTimeEls = document.querySelectorAll('#player-time-total, #playbar-duration, #fs-time-total');
+  const progressBars = document.querySelectorAll('#player-progress-fill, #playbar-progress-fill, #mini-top-progress-fill, #fs-progress-fill');
+  const seekers = document.querySelectorAll('#player-seek-slider, #playbar-seeker, #fs-seek-slider');
+
+  curTimeEls.forEach(el => el.textContent = formattedCur);
+  durTimeEls.forEach(el => el.textContent = formattedDur);
 
   const pct = duration > 0 ? (currentTime / duration) * 100 : 0;
-  if (progressBar) progressBar.style.width = `${pct}%`;
-  if (seeker && !isSeeking) seeker.value = pct;
+  progressBars.forEach(el => { el.style.width = `${pct}%`; });
+  if (!isSeeking) {
+    seekers.forEach(el => { el.value = pct; });
+  }
 }
 
 function updatePlayPauseUI() {
-  const playIcons = document.querySelectorAll('.playbar-play-icon, #playbar-play-btn i, #fullscreen-play-btn i');
+  const playIcons = document.querySelectorAll('.playbar-play-icon, #btn-play-pause i, #playbar-play-btn i, #fullscreen-play-btn i, #fs-play-pause-btn i');
   playIcons.forEach(icon => {
     if (isPlaying) {
       icon.className = 'fa-solid fa-pause';
@@ -378,58 +406,69 @@ function updatePlayPauseUI() {
     }
   });
 
-  const disk = document.getElementById('fullscreen-album-art');
-  if (disk) {
+  const disks = document.querySelectorAll('#fullscreen-album-art, #fs-album-art, #player-thumb');
+  disks.forEach(disk => {
     if (isPlaying) disk.classList.add('playing-spin');
     else disk.classList.remove('playing-spin');
-  }
+  });
 }
 
 function updateVolumeUI() {
-  const volBar = document.getElementById('volume-progress-fill');
-  const volSlider = document.getElementById('volume-slider');
-  const volIcon = document.getElementById('volume-icon');
+  const volBars = document.querySelectorAll('#volume-progress-fill, #player-volume-fill');
+  const volSliders = document.querySelectorAll('#volume-slider, #player-volume-slider');
+  const volIcons = document.querySelectorAll('#volume-icon, #player-volume-icon');
 
-  if (volSlider) volSlider.value = currentVolume * 100;
-  if (volBar) volBar.style.width = `${currentVolume * 100}%`;
+  volSliders.forEach(s => { s.value = currentVolume * 100; });
+  volBars.forEach(b => { b.style.width = `${currentVolume * 100}%`; });
 
-  if (volIcon) {
+  volIcons.forEach(icon => {
     if (currentVolume === 0 || isMuted) {
-      volIcon.className = 'fa-solid fa-volume-xmark';
+      icon.className = 'fa-solid fa-volume-xmark';
     } else if (currentVolume < 0.5) {
-      volIcon.className = 'fa-solid fa-volume-low';
+      icon.className = 'fa-solid fa-volume-low';
     } else {
-      volIcon.className = 'fa-solid fa-volume-high';
+      icon.className = 'fa-solid fa-volume-high';
     }
-  }
+  });
 }
 
 function updateTrackInfoUI(track) {
   if (!track) return;
-  const titleEls = document.querySelectorAll('#playbar-title, #fullscreen-track-title');
-  const artistEls = document.querySelectorAll('#playbar-artist, #fullscreen-track-artist');
-  const coverEls = document.querySelectorAll('#playbar-cover, #fullscreen-cover-img');
-  const badgeEl = document.getElementById('playbar-source-badge');
+  const titleEls = document.querySelectorAll('#player-title, #playbar-title, #fullscreen-track-title, #fs-track-title');
+  const artistEls = document.querySelectorAll('#player-artist, #playbar-artist, #fullscreen-track-artist, #fs-track-artist');
+  const coverEls = document.querySelectorAll('#player-thumb, #playbar-cover, #fullscreen-cover-img, #fullscreen-album-art, #fs-album-art');
+  const badgeEls = document.querySelectorAll('#player-source-badge, #playbar-source-badge, #fs-source-badge');
 
-  titleEls.forEach(el => el.textContent = track.title || 'Untitled Track');
-  artistEls.forEach(el => el.textContent = track.artist || 'Pulse Artist');
+  const coverUrl = track.coverUrl || track.cover || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80';
+
+  titleEls.forEach(el => { el.textContent = track.title || 'Untitled Track'; });
+  artistEls.forEach(el => { el.textContent = track.artist || 'Pulse Artist'; });
   coverEls.forEach(el => {
-    el.src = track.coverUrl || track.cover || './pulse-logo.png';
+    if (el.tagName === 'IMG') {
+      el.src = coverUrl;
+    } else {
+      el.style.backgroundImage = `url('${coverUrl}')`;
+    }
   });
 
-  if (badgeEl) {
-    badgeEl.textContent = track.source || 'Ad-Free Opus Pure Audio';
+  const bgBlur = document.getElementById('fs-bg-blur');
+  if (bgBlur) {
+    bgBlur.style.backgroundImage = `url('${coverUrl}')`;
   }
+
+  badgeEls.forEach(el => {
+    el.textContent = track.source || 'Ad-Free Opus Pure Audio';
+  });
 
   // Update Favorite Button State in Playbar
   updateFavoriteButtonUI(track.id);
 }
 
 export function updateFavoriteButtonUI(trackId) {
-  const favBtns = document.querySelectorAll('#playbar-fav-btn, #fullscreen-fav-btn');
+  const favBtns = document.querySelectorAll('#btn-player-like, #playbar-fav-btn, #fullscreen-fav-btn, #fs-btn-like');
   const isFav = isFavorite(trackId);
   favBtns.forEach(btn => {
-    const icon = btn.querySelector('i');
+    const icon = btn.querySelector('i') || btn;
     if (icon) {
       if (isFav) {
         icon.className = 'fa-solid fa-heart';
@@ -494,16 +533,19 @@ export function playTrackAtQueueIndex(index) {
 document.addEventListener('DOMContentLoaded', () => {
   getAudio();
 
-  const seeker = document.getElementById('playbar-seeker');
-  if (seeker) {
+  const seekers = document.querySelectorAll('#player-seek-slider, #playbar-seeker, #fs-seek-slider');
+  seekers.forEach(seeker => {
     seeker.addEventListener('input', (e) => {
       isSeeking = true;
       const pct = parseFloat(e.target.value);
       currentTime = (pct / 100) * duration;
-      const curTimeEl = document.getElementById('playbar-current-time');
-      if (curTimeEl) curTimeEl.textContent = formatTime(currentTime);
-      const progressBar = document.getElementById('playbar-progress-fill');
-      if (progressBar) progressBar.style.width = `${pct}%`;
+      const formattedCur = formatTime(currentTime);
+      document.querySelectorAll('#player-time-current, #playbar-current-time, #fs-time-current').forEach(el => {
+        el.textContent = formattedCur;
+      });
+      document.querySelectorAll('#player-progress-fill, #playbar-progress-fill, #mini-top-progress-fill, #fs-progress-fill').forEach(el => {
+        el.style.width = `${pct}%`;
+      });
     });
 
     seeker.addEventListener('change', (e) => {
@@ -511,14 +553,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const pct = parseFloat(e.target.value);
       seekTo((pct / 100) * duration);
     });
-  }
+  });
 
-  const volSlider = document.getElementById('volume-slider');
-  if (volSlider) {
-    volSlider.addEventListener('input', (e) => {
+  const volSliders = document.querySelectorAll('#volume-slider, #player-volume-slider');
+  volSliders.forEach(slider => {
+    slider.addEventListener('input', (e) => {
       setVolume(parseFloat(e.target.value) / 100);
     });
-  }
+  });
 
   // Listen to Firestore Favorites changes to update UI
   onFavoritesChanged(() => {
