@@ -10317,3 +10317,11 @@ a {
 }
 
 
+
+/* Mobile Brand Fixes */
+.hidden-desktop { display: none !important; }
+@media (max-width: 768px) {
+  .hidden-desktop { display: flex !important; }
+  .header-nav-btns { display: none !important; }
+  .mobile-header-brand { flex-shrink: 0; }
+}

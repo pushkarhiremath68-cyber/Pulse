@@ -26,7 +26,6 @@ import { resolvePipedAudioStream } from './extractorService.js';
       globalAudio = document.getElementById('fallback-audio-player') || new Audio();
       globalAudio.id = 'fallback-audio-player';
       globalAudio.preload = 'auto';
-      globalAudio.crossOrigin = 'anonymous';
 
       // Keep in document body
       if (!document.body.contains(globalAudio)) {

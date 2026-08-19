@@ -286,8 +286,13 @@ export async function searchTracks(query, limit = 40) {
     saavnTracks.forEach(t => addUnique(t));
   } catch (e) {}
 
-  // STEP 2: YouTube Music is removed to guarantee 100% ad-free playable streams
-  // (Piped/Invidious extractors are rate-limited, causing unplayable tracks)
+  // STEP 2: YouTube Music Ad-Free Extractor
+  if (results.length < limit) {
+    try {
+      const ytTracks = await searchYouTubeMusic(cleanQuery, limit - results.length);
+      ytTracks.forEach(t => addUnique(t));
+    } catch (e) {}
+  }
 
   // STEP 3: Audius Decentralized Network
   if (results.length < limit) {
@@ -326,7 +331,13 @@ export async function fetchTrendingTracks(limit = 40) {
     if (results.length >= 30) break;
   }
 
-  // 2. YouTube Music Global Top Charts is removed to guarantee 100% ad-free playable streams
+  // 2. YouTube Music Global Top Charts
+  if (results.length < limit) {
+    try {
+      const ytCharts = await fetchYouTubeMusicCharts('GLOBAL', limit - results.length);
+      ytCharts.forEach(t => addUnique(t));
+    } catch (e) {}
+  }
 
   return results.slice(0, limit);
 }

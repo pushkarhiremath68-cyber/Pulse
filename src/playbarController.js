@@ -31,7 +31,6 @@ function getAudio() {
     audio.id = 'fallback-audio-player';
     audio.volume = currentVolume;
     audio.preload = 'auto';
-    audio.crossOrigin = 'anonymous';
 
     audio.addEventListener('play', () => {
       isPlaying = true;
@@ -481,6 +480,13 @@ export function updateFavoriteButtonUI(trackId) {
   });
 }
 
+export function addCurrentToPlaylist() {
+  if (!currentTrack) return;
+  if (typeof window !== 'undefined' && window.openAddToPlaylistModal) {
+    window.openAddToPlaylistModal(currentTrack);
+  }
+}
+
 export async function toggleCurrentTrackFavorite() {
   if (!currentTrack) return;
   const trackId = currentTrack.id;
@@ -610,6 +616,7 @@ const playbarController = {
   toggleShuffle,
   toggleRepeat,
   toggleCurrentTrackFavorite,
+  addCurrentToPlaylist,
   playTrackAtQueueIndex,
   getAudio,
   getCurrentTrack: () => currentTrack,

@@ -543,6 +543,28 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
   // ---------------------------------------------------------------------------
 
   let searchDebounceTimer = null;
+  window.playPresetQuery = async function(query) {
+    if (!query) return;
+    window.switchView('search-view');
+    const input = document.getElementById('global-search-input');
+    if (input) input.value = query;
+    
+    const count = document.getElementById('search-count');
+    if (count) count.textContent = 'Loading live audio stream...';
+    
+    try {
+      const results = await window.musicService.searchTracks(query, 5);
+      renderSearchResults(results);
+      if (results && results.length > 0) {
+        window.playTrackDirect(results[0], results);
+      } else {
+        window.showToast("Stream unavailable. Try another track.", 'warning');
+      }
+    } catch (e) {
+      window.showToast("Failed to fetch stream.", 'warning');
+    }
+  };
+
   window.executeSearch = function(query, isTyping = false) {
     if (!query || query.trim().length === 0) return;
     window.switchView('search-view');
