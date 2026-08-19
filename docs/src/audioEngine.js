@@ -1,136 +1,231 @@
 /**
- * Pulse Music - Dual Jamendo + Audius Streaming Audio Engine
- * Pure Native HTML5 Audio (<audio id="fallback-audio-player">)
- * Powered by Jamendo API (23b33f2a) & Decentralized Audius Nodes
+ * Pulse Music - Pure Audio Engine & Media Stream Player
+ * 100% Native HTML5 Audio & Web Audio API (Zero Video Frames / Zero Iframes)
+ * Features direct Opus/M4A audio playback, Web Audio visualizer nodes, and Cache API storage.
  */
+
+import { resolvePipedAudioStream } from './extractorService.js';
 
 (function(window) {
   'use strict';
 
-  const JAMENDO_CLIENT_ID = '23b33f2a';
-  const AUDIUS_APP_NAME = 'PULSE_MUSIC';
-  const AUDIUS_FALLBACK_NODE = 'https://discoveryprovider.audius.co';
+  let globalAudio = null;
+  let audioContext = null;
+  let analyserNode = null;
+  let sourceNode = null;
+  let isContextInitialized = false;
 
-  let cachedAudiusNode = null;
-  let audiusNodeExpiry = 0;
+  // Audio Cache Storage
+  const AUDIO_CACHE_NAME = 'pulse-audio-cache-v1';
 
   /**
-   * Dynamically fetch an active Audius Discovery Node
+   * Initializes or returns the Singleton HTML5 Audio element
    */
-  async function getAudiusNode() {
-    if (cachedAudiusNode && Date.now() < audiusNodeExpiry) {
-      return cachedAudiusNode;
-    }
-    try {
-      const res = await fetch('https://api.audius.co', { signal: AbortSignal.timeout(3000) });
-      if (res.ok) {
-        const json = await res.json();
-        if (json.data && Array.isArray(json.data) && json.data.length > 0) {
-          cachedAudiusNode = json.data[Math.floor(Math.random() * json.data.length)].replace(/\/+$/, '');
-          audiusNodeExpiry = Date.now() + 20 * 60 * 1000;
-          return cachedAudiusNode;
-        }
-      }
-    } catch (e) {}
+  function getAudioPlayer() {
+    if (!globalAudio) {
+      globalAudio = document.getElementById('fallback-audio-player') || new Audio();
+      globalAudio.id = 'fallback-audio-player';
+      globalAudio.preload = 'auto';
+      globalAudio.crossOrigin = 'anonymous';
 
-    cachedAudiusNode = AUDIUS_FALLBACK_NODE;
-    audiusNodeExpiry = Date.now() + 5 * 60 * 1000;
-    return cachedAudiusNode;
+      // Keep in document body
+      if (!document.body.contains(globalAudio)) {
+        globalAudio.style.display = 'none';
+        document.body.appendChild(globalAudio);
+      }
+      window.globalAudioPlayer = globalAudio;
+    }
+    return globalAudio;
   }
 
   /**
-   * Resolve audio stream candidates with the exact Audius -> Jamendo -> Storage cascade
+   * Initializes Web Audio Context for Spectrum Analysis & Visualization
+   */
+  function getAudioContext() {
+    if (!audioContext) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioContextClass) {
+        audioContext = new AudioContextClass();
+        analyserNode = audioContext.createAnalyser();
+        analyserNode.fftSize = 128;
+        analyserNode.smoothingTimeConstant = 0.8;
+      }
+    }
+    if (audioContext && audioContext.state === 'suspended') {
+      audioContext.resume().catch(() => {});
+    }
+    return { audioContext, analyserNode };
+  }
+
+  /**
+   * Connects HTML5 Audio to Web Audio Analyser
+   */
+  function connectAudioSource() {
+    const audio = getAudioPlayer();
+    const { audioContext: ctx, analyserNode: analyser } = getAudioContext();
+    if (!ctx || !analyser || isContextInitialized) return analyser;
+
+    try {
+      sourceNode = ctx.createMediaElementSource(audio);
+      sourceNode.connect(analyser);
+      analyser.connect(ctx.destination);
+      isContextInitialized = true;
+    } catch (e) {
+      // Media element source already connected or cross-origin restrictions
+    }
+    return analyser;
+  }
+
+  /**
+   * Caches audio stream locally for instant offline/repeat playback
+   */
+  async function cacheAudioBlob(trackId, url) {
+    if (!trackId || !url || !url.startsWith('http') || !('caches' in window)) return;
+    try {
+      const cache = await caches.open(AUDIO_CACHE_NAME);
+      const cached = await cache.match(url);
+      if (!cached) {
+        // Fetch in background
+        fetch(url, { mode: 'cors' })
+          .then(res => {
+            if (res.ok) cache.put(url, res);
+          })
+          .catch(() => {});
+      }
+    } catch (e) {}
+  }
+
+  /**
+   * Retrieves cached audio response if available
+   */
+  async function getCachedAudioUrl(url) {
+    if (!url || !('caches' in window)) return url;
+    try {
+      const cache = await caches.open(AUDIO_CACHE_NAME);
+      const match = await cache.match(url);
+      if (match) {
+        const blob = await match.blob();
+        return URL.createObjectURL(blob);
+      }
+    } catch (e) {}
+    return url;
+  }
+
+  /**
+   * Resolves audio stream candidates for any track
+   * Multi-tier: YouTube Music Opus -> Piped M4A -> Saavn Master 320k -> Audius -> Jamendo
    */
   async function resolveCandidates(track) {
     if (!track) return [];
     const candidates = [];
     const seen = new Set();
-    const add = (url, label) => {
+    const add = (url, label, codec = 'audio') => {
       if (url && typeof url === 'string' && url.startsWith('http') && !seen.has(url)) {
         seen.add(url);
-        candidates.push({ url, label });
+        candidates.push({ url, label, codec });
       }
     };
 
-    // 1. Direct explicit streamUrl if present on track
-    if (track.streamUrl && track.streamUrl.startsWith('http')) {
-      add(track.streamUrl, 'direct-track-stream');
-    }
-    if (track.audioUrl && track.audioUrl.startsWith('http')) {
-      add(track.audioUrl, 'direct-audio-url');
-    }
-    if (track.audio && track.audio.startsWith('http')) {
-      add(track.audio, 'direct-audio-mp3');
+    // 1. Direct explicit streamUrl on track if already verified
+    if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('preview')) {
+      add(track.streamUrl, track.source || 'direct-master-audio', 'master');
     }
 
+    // 2. YouTube Video ID Extraction via Piped / YTM Extractor (Direct ad-free Opus / M4A)
+    const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+    if (ytId && ytId.length >= 10) {
+      try {
+        const ytmResolved = await resolvePipedAudioStream(ytId);
+        if (ytmResolved && ytmResolved.streamUrl) {
+          add(ytmResolved.streamUrl, `ytm-opus-${ytmResolved.bitrate || '160k'}`, ytmResolved.codec || 'opus');
+        }
+      } catch (e) {}
+    }
+
+    // 3. Search YTM Extractor with track title & artist query
     const title = (track.title || track.name || '').replace(/\s*\([^)]*\)/g, '').trim();
     const artist = (track.artist || '').split(',')[0].trim();
-    const query = encodeURIComponent(`${title} ${artist}`.trim());
+    const query = `${title} ${artist}`.trim();
 
-    // 2. Cascade Step A: Audius Search & Stream
-    try {
-      const node = await getAudiusNode();
-      const audiusSearchUrl = `${node}/v1/tracks/search?query=${query}&app_name=${AUDIUS_APP_NAME}&limit=3`;
-      const aRes = await fetch(audiusSearchUrl, { signal: AbortSignal.timeout(3500) });
-      if (aRes.ok) {
-        const aJson = await aRes.json();
-        if (aJson.data && Array.isArray(aJson.data) && aJson.data.length > 0) {
-          for (const item of aJson.data) {
-            if (item.id) {
-              add(`${node}/v1/tracks/${item.id}/stream?app_name=${AUDIUS_APP_NAME}`, 'audius-stream-320k');
-            }
+    if (!ytId && query.length > 2) {
+      try {
+        const localExtRes = await fetch(`/api/ytm/stream?q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(2500) });
+        if (localExtRes.ok) {
+          const lData = await localExtRes.json();
+          if (lData.streamUrl) {
+            add(lData.streamUrl, 'pulse-server-ytm-stream', lData.codec || 'opus');
           }
         }
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
 
-    // 3. Cascade Step B: Jamendo API Search & Stream
-    try {
-      const jamendoSearchUrl = `https://api.jamendo.com/v3.0/tracks/?client_id=${JAMENDO_CLIENT_ID}&format=jsonpretty&limit=5&search=${query}&audioformat=mp32`;
-      const jRes = await fetch(jamendoSearchUrl, { signal: AbortSignal.timeout(3500) });
-      if (jRes.ok) {
-        const jJson = await jRes.json();
-        if (jJson.results && Array.isArray(jJson.results)) {
-          for (const item of jJson.results) {
-            if (item.audio) add(item.audio, 'jamendo-mp3-stream');
-            if (item.audiodownload) add(item.audiodownload, 'jamendo-download-stream');
+    // 4. Studio Master JioSaavn 320k/160k fallback
+    if (typeof window.musicService?.searchSaavnMasterTracks === 'function') {
+      try {
+        const saavnTracks = await window.musicService.searchSaavnMasterTracks(query, 3);
+        if (saavnTracks && saavnTracks.length > 0) {
+          for (const s of saavnTracks) {
+            if (s.streamUrl) add(s.streamUrl, 'saavn-master-320k', 'aac/mp4');
           }
         }
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
 
-    // 4. Cascade Step C: Storage / Fallback URLs
-    if (typeof window.getAudioStorageUrl === 'function' && track.storagePath) {
-      const sb = window.getAudioStorageUrl(track.storagePath);
-      if (sb) add(sb, 'supabase-storage-mp4');
+    // 5. Audius Decentralized Node fallback
+    if (typeof window.musicService?.searchAudiusTracks === 'function') {
+      try {
+        const audiusTracks = await window.musicService.searchAudiusTracks(query, 2);
+        if (audiusTracks && audiusTracks.length > 0) {
+          for (const a of audiusTracks) {
+            if (a.streamUrl) add(a.streamUrl, 'audius-320k', 'mp3');
+          }
+        }
+      } catch (e) {}
+    }
+
+    // 6. Jamendo fallback
+    if (typeof window.musicService?.searchJamendoTracks === 'function') {
+      try {
+        const jamendoTracks = await window.musicService.searchJamendoTracks(query, 2);
+        if (jamendoTracks && jamendoTracks.length > 0) {
+          for (const j of jamendoTracks) {
+            if (j.streamUrl) add(j.streamUrl, 'jamendo-master', 'mp3');
+          }
+        }
+      } catch (e) {}
     }
 
     return candidates;
   }
 
-  // Universal Player Singleton Dispatcher
+  /**
+   * Universal Pure Native Audio Player Dispatcher
+   */
   async function playTrackOnNativeAudio(track) {
     if (!track) return false;
-    let audio = document.getElementById('fallback-audio-player') || window.globalAudioPlayer;
-    if (!audio) {
-      audio = new Audio();
-      audio.id = 'fallback-audio-player';
-      audio.preload = 'auto';
-      document.body.appendChild(audio);
-      window.globalAudioPlayer = audio;
-    }
+    const audio = getAudioPlayer();
+    connectAudioSource();
 
     const candidates = await resolveCandidates(track);
+    if (candidates.length === 0) {
+      console.warn('[Pulse Pure Audio Engine] No valid audio candidates found for track:', track.title);
+      return false;
+    }
+
     for (const c of candidates) {
       try {
         audio.pause();
-        audio.src = c.url;
+        const playUrl = await getCachedAudioUrl(c.url);
+        audio.src = playUrl;
         audio.load();
         await audio.play();
-        console.log(`[Pulse Native Engine] Playing via ${c.label}:`, c.url);
+        console.log(`[Pulse Pure Audio Engine] Playing via ${c.label} (${c.codec}):`, c.url);
+
+        // Cache for background/offline
+        cacheAudioBlob(track.id, c.url);
         return true;
       } catch (err) {
-        console.warn(`[Pulse Native Engine] Stream candidate failed (${c.label}), trying next:`, err.message);
+        console.warn(`[Pulse Pure Audio Engine] Candidate (${c.label}) failed, trying next:`, err.message);
       }
     }
 
@@ -138,9 +233,15 @@
   }
 
   window.PulseAudioEngine = {
-    getAudiusNode,
+    getAudioPlayer,
+    getAudioContext,
+    connectAudioSource,
     resolveCandidates,
-    playTrackOnNativeAudio
+    playTrackOnNativeAudio,
+    cacheAudioBlob,
+    getCachedAudioUrl
   };
 
 })(typeof window !== 'undefined' ? window : globalThis);
+
+export default (typeof window !== 'undefined' ? window.PulseAudioEngine : {});

@@ -809,6 +809,191 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         path = parsed.path
         params = urllib.parse.parse_qs(parsed.query)
 
+        # =====================================================================
+        # YOUTUBE MUSIC EXTRACTOR BACKEND ENDPOINTS (/api/ytm/*)
+        # =====================================================================
+        if path == '/api/ytm/search':
+            query = params.get('q', [None])[0]
+            if query:
+                results = []
+                # 1. yt-dlp flat search if available
+                if yt_dlp:
+                    try:
+                        ydl_opts = {
+                            'quiet': True,
+                            'extract_flat': True,
+                            'default_search': 'ytsearch20:',
+                            'skip_download': True
+                        }
+                        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                            info = ydl.extract_info(f"ytsearch20:{query}", download=False)
+                            entries = info.get('entries', [])
+                            for entry in entries:
+                                vid = entry.get('id')
+                                if vid:
+                                    results.append({
+                                        'id': f"ytm-{vid}",
+                                        'ytId': vid,
+                                        'title': entry.get('title') or 'Untitled Track',
+                                        'artist': entry.get('uploader') or entry.get('channel') or 'YouTube Music Artist',
+                                        'album': 'YouTube Music Release',
+                                        'coverUrl': entry.get('thumbnail') or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+                                        'duration': int(entry.get('duration') or 220),
+                                        'streamUrl': '',
+                                        'source': 'YouTube Music Ad-Free Opus'
+                                    })
+                    except Exception as e:
+                        print("[Pulse Server YTM Search Error]:", e)
+
+                # 2. Piped public fallback
+                if not results:
+                    piped_nodes = ['https://api.piped.privacydev.net', 'https://pipedapi.kavin.rocks', 'https://pipedapi.tokhmi.xyz']
+                    for node in piped_nodes:
+                        try:
+                            s_url = f"{node}/search?q={urllib.parse.quote(query)}&filter=music_songs"
+                            s_req = urllib.request.Request(s_url, headers={'User-Agent': 'Mozilla/5.0'})
+                            with urllib.request.urlopen(s_req, timeout=4) as s_resp:
+                                p_data = json.loads(s_resp.read().decode('utf-8'))
+                                for item in p_data.get('items', []):
+                                    vid = item.get('url', '').replace('/watch?v=', '').strip()
+                                    if vid:
+                                        results.append({
+                                            'id': f"ytm-{vid}",
+                                            'ytId': vid,
+                                            'title': item.get('title'),
+                                            'artist': item.get('uploaderName') or 'Artist',
+                                            'album': 'YouTube Music Single',
+                                            'coverUrl': item.get('thumbnail') or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+                                            'duration': item.get('duration') or 220,
+                                            'streamUrl': '',
+                                            'source': 'YouTube Music Ad-Free Opus'
+                                        })
+                                if results:
+                                    break
+                        except Exception:
+                            pass
+
+                self._send_json(200, {'success': True, 'results': results})
+                return
+            self._send_json(400, {'success': False, 'error': 'Query parameter required'})
+            return
+
+        if path == '/api/ytm/stream':
+            vid = params.get('id', [None])[0] or params.get('ytId', [None])[0]
+            query = params.get('q', [None])[0]
+            if vid:
+                clean_vid = vid.replace('ytm-', '').replace('yt-', '').strip()
+                # 1. yt-dlp direct audio URL extraction (zero download, pure audio stream URL)
+                if yt_dlp:
+                    try:
+                        ydl_opts = {
+                            'quiet': True,
+                            'format': 'bestaudio/best',
+                            'skip_download': True
+                        }
+                        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                            info = ydl.extract_info(f"https://www.youtube.com/watch?v={clean_vid}", download=False)
+                            formats = info.get('formats', [])
+                            audio_formats = [f for f in formats if f.get('vcodec') == 'none' and f.get('acodec') != 'none']
+                            if audio_formats:
+                                audio_formats.sort(key=lambda f: f.get('abr') or f.get('tbr') or 0, reverse=True)
+                                best_audio = audio_formats[0]
+                                self._send_json(200, {
+                                    'success': True,
+                                    'streamUrl': best_audio.get('url'),
+                                    'codec': best_audio.get('acodec'),
+                                    'bitrate': f"{int(best_audio.get('abr') or 160)}kbps",
+                                    'duration': int(info.get('duration') or 220),
+                                    'title': info.get('title'),
+                                    'artist': info.get('uploader'),
+                                    'thumbnail': info.get('thumbnail')
+                                })
+                                return
+                    except Exception as e:
+                        print("[Pulse Server YTM Stream Error]:", e)
+
+                # 2. Piped public fallback for direct audio stream URL
+                piped_nodes = ['https://api.piped.privacydev.net', 'https://pipedapi.kavin.rocks', 'https://piped-api.garudalinux.org']
+                for node in piped_nodes:
+                    try:
+                        p_url = f"{node}/streams/{clean_vid}"
+                        p_req = urllib.request.Request(p_url, headers={'User-Agent': 'Mozilla/5.0'})
+                        with urllib.request.urlopen(p_req, timeout=4) as p_resp:
+                            p_data = json.loads(p_resp.read().decode('utf-8'))
+                            audio_streams = p_data.get('audioStreams', [])
+                            if audio_streams:
+                                audio_streams.sort(key=lambda s: s.get('bitrate', 0), reverse=True)
+                                best = audio_streams[0]
+                                self._send_json(200, {
+                                    'success': True,
+                                    'streamUrl': best.get('url'),
+                                    'codec': best.get('codec'),
+                                    'bitrate': f"{int((best.get('bitrate') or 160000) / 1000)}kbps",
+                                    'duration': p_data.get('duration', 220),
+                                    'title': p_data.get('title'),
+                                    'artist': p_data.get('uploader'),
+                                    'thumbnail': p_data.get('thumbnailUrl')
+                                })
+                                return
+                    except Exception:
+                        pass
+
+            self._send_json(404, {'success': False, 'error': 'Audio stream not found'})
+            return
+
+        if path == '/api/ytm/charts':
+            results = []
+            if yt_dlp:
+                try:
+                    ydl_opts = {'quiet': True, 'extract_flat': True, 'skip_download': True}
+                    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                        info = ydl.extract_info("ytsearch25:Billboard Hot 100 Top Music 2024", download=False)
+                        for item in info.get('entries', []):
+                            vid = item.get('id')
+                            if vid:
+                                results.append({
+                                    'id': f"ytm-{vid}",
+                                    'ytId': vid,
+                                    'title': item.get('title') or 'Trending Song',
+                                    'artist': item.get('uploader') or 'Artist',
+                                    'album': 'Global Chart Topper',
+                                    'coverUrl': item.get('thumbnail') or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+                                    'duration': int(item.get('duration') or 220),
+                                    'streamUrl': '',
+                                    'source': 'YouTube Music Top Chart'
+                                })
+                except Exception:
+                    pass
+
+            if not results:
+                piped_nodes = ['https://api.piped.privacydev.net', 'https://pipedapi.kavin.rocks']
+                for node in piped_nodes:
+                    try:
+                        c_url = f"{node}/trending?region=US"
+                        c_req = urllib.request.Request(c_url, headers={'User-Agent': 'Mozilla/5.0'})
+                        with urllib.request.urlopen(c_req, timeout=4) as c_resp:
+                            c_data = json.loads(c_resp.read().decode('utf-8'))
+                            for item in c_data:
+                                vid = item.get('url', '').replace('/watch?v=', '').strip()
+                                if vid and (item.get('duration') or 0) > 45:
+                                    results.append({
+                                        'id': f"ytm-{vid}",
+                                        'ytId': vid,
+                                        'title': item.get('title'),
+                                        'artist': item.get('uploaderName') or 'Artist',
+                                        'album': 'Global Chart Topper',
+                                        'coverUrl': item.get('thumbnail') or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+                                        'duration': item.get('duration') or 220,
+                                        'streamUrl': '',
+                                        'source': 'YouTube Music Top Chart'
+                                    })
+                            if results:
+                                break
+                    except Exception:
+                        pass
+            self._send_json(200, {'success': True, 'results': results})
+            return
+
         # API: JioSaavn Search Proxy (/api/saavn-search or /api/search)
         if path in ['/api/saavn-search', '/api/search']:
             query = params.get('q', [None])[0] or params.get('query', [None])[0]

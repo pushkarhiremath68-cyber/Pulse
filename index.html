@@ -51,7 +51,10 @@
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <!-- Firebase Core & Firestore SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
@@ -90,6 +93,11 @@
           <a href="javascript:void(0)" class="nav-item" data-view="library" onclick="window.switchView('library')">
             <i class="fa-solid fa-bookmark"></i>
             <span>Your Library</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" onclick="window.openDownloadModal()" style="color: #38bdf8; margin-top: 0.25rem;">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <span>Download App</span>
+            <span class="sidebar-badge-free">FREE</span>
           </a>
         </div>
 
@@ -144,19 +152,16 @@
           <button id="clear-search-btn" class="clear-search hidden" onclick="const i=document.getElementById('global-search-input'); if(i) i.value=''; window.executeSearch('', false);"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
-        <div class="header-actions">
-          
+        <div class="header-actions" style="display: flex; align-items: center; gap: 0.75rem;">
+          <button id="open-download-app-btn" class="btn-header-download" onclick="window.openDownloadModal()" title="Download Pulse App (Windows, Mac, Linux, Android, iOS)">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <span>Download App</span>
+          </button>
 
-          <!-- AUTHENTICATION GROUP -->
-          <div id="auth-buttons-group" class="auth-header-group">
-            <button id="open-login-btn" class="btn-header-login" onclick="window.openLoginModal()">Log In</button>
-            <button id="open-signup-btn" class="btn-header-signup" onclick="window.openSignupModal()">Sign Up</button>
-          </div>
-
-          <div id="user-profile-container" class="user-profile hidden">
-            <img id="user-avatar-img" src="./pulse-logo.png" alt="User Avatar" class="avatar">
-            <span id="user-display-name" class="user-name">Listener</span>
-            <button id="user-logout-btn" class="btn-icon-small" title="Log Out" onclick="window.logout()"><i class="fa-solid fa-right-from-bracket"></i></button>
+          <!-- AUTHENTICATION GROUP (LOGIN / SIGN UP) -->
+          <div id="user-profile-btn" class="user-profile-header-btn" onclick="window.openAuthModal('login')" title="Sign In / User Account">
+            <img id="user-avatar-img" src="https://api.dicebear.com/7.x/bottts/svg?seed=pulse" alt="User Avatar" class="header-user-avatar">
+            <span id="user-display-name" class="header-user-name">Sign In</span>
           </div>
         </div>
       </header>
@@ -169,9 +174,9 @@
         <section class="hero-banner" id="hero-banner">
           <div class="hero-bg-overlay"></div>
           <div class="hero-content">
-            <div class="hero-antigravity-badge">
-              <span class="badge-icon">🪐</span>
-              <span>POWERED BY ZERO-GRAVITY AUDIO ENGINE</span>
+            <div class="hero-pulse-badge">
+              <span class="badge-icon">⚡</span>
+              <span>POWERED BY PULSE HI-RES AUDIO ENGINE</span>
             </div>
             <h2 id="hero-title" class="hero-title">Over 1.6 Million+ Full-Length Songs</h2>
             <p id="hero-subtitle" class="hero-subtitle">High-fidelity master streaming, LRCLIB synchronized lyrics, 30+ dynamic catalogues, and Gemini 3.6 Flash AI DJ.</p>
@@ -179,10 +184,12 @@
               <button id="hero-play-btn" class="btn-primary-play" onclick="window.switchView('search-view')">
                 <i class="fa-solid fa-magnifying-glass"></i> Explore 1.6M+ Songs
               </button>
+              <button class="btn-secondary-install" onclick="window.openDownloadModal()" style="background: rgba(56,189,248,0.2); border: 1px solid rgba(56,189,248,0.5); color: #fff;">
+                <i class="fa-solid fa-cloud-arrow-down" style="color: #38bdf8;"></i> Download App
+              </button>
               <button class="btn-secondary-install" onclick="window.openGeminiDJModal()" style="background: rgba(168,85,247,0.25); border: 1px solid rgba(168,85,247,0.5); color: #fff;">
                 <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i> Ask Gemini DJ
               </button>
-              
             </div>
           </div>
           <div class="hero-image-wrapper">
@@ -192,9 +199,9 @@
 
         <!-- Quick Filter Tags / Side Pills -->
         <div class="quick-filter-pills-container">
-          <button class="filter-pill pill-cyan" onclick="window.selectFilterPill(this, 'Anti Gravity Synthwave Cyberpunk Beats')">
-            <span class="filter-pill-icon animate-pulse-icon">🪐</span>
-            <span>Anti-Gravity Beats</span>
+          <button class="filter-pill pill-cyan" onclick="window.selectFilterPill(this, 'Synthwave Cyberpunk Electronic Beats')">
+            <span class="filter-pill-icon animate-pulse-icon">⚡</span>
+            <span>Synthwave Beats</span>
           </button>
           
           <button class="filter-pill" onclick="window.selectFilterPill(this, 'Cosmic Chill Space Ambient')">
@@ -202,9 +209,9 @@
             <span>Cosmic Chill</span>
           </button>
 
-          <button class="filter-pill" onclick="window.selectFilterPill(this, 'Zero-G Lo-Fi Chill Study Beats')">
-            <span class="filter-pill-icon">✨</span>
-            <span>Zero-G Lo-Fi</span>
+          <button class="filter-pill" onclick="window.selectFilterPill(this, 'Lo-Fi Chill Study Beats')">
+            <span class="filter-pill-icon">🎧</span>
+            <span>Lo-Fi Chill</span>
           </button>
 
           <button class="filter-pill" onclick="window.selectFilterPill(this, 'Hyperdrive Bass EDM Club Anthems')">
@@ -233,6 +240,45 @@
           <button class="chip-filter" onclick="window.openCategoryView('spotify_night_pop', 'Late Night Neon Drive')">🌙 Late Night</button>
         </div>
 
+
+        <!-- SPOTIFY-STYLE HERO QUICK PICKS (6-TILE GRID) -->
+        <section class="quick-picks-section" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-bolt" style="color: #06b6d4; margin-right: 8px;"></i> Quick Picks &amp; Daily Heavy Rotation
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin: 4px 0 0 0;">Jump right back in with your instant sonic queue</p>
+            </div>
+          </div>
+          <div class="quick-picks-grid" id="home-quick-picks-container"></div>
+        </section>
+
+        <!-- FEATURED ARTISTS SHELF (CIRCULAR AVATARS) -->
+        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-star" style="color: #f59e0b; margin-right: 8px;"></i> Featured Artists
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Explore top artist discographies, popular tracks &amp; verified profiles</p>
+            </div>
+          </div>
+          <div class="artists-carousel" id="home-featured-artists-container" style="display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+        </section>
+
+        <!-- CURATED PLAYLISTS SHELF -->
+        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-record-vinyl" style="color: #a855f7; margin-right: 8px;"></i> Handcrafted Playlists &amp; Mixes
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Sonic atmospheres curated for every mood, activity and vibe</p>
+            </div>
+          </div>
+          <div class="curated-playlists-carousel" id="home-curated-playlists-container" style="display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+        </section>
 
         <!-- CATEGORY ROW: Trending Worldwide Top Hits -->
         <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
@@ -2003,18 +2049,107 @@
         </div>
       </div>
 
-      <!-- VIEW 3: LIBRARY -->
+      <!-- VIEW 3: CLOUD FIRESTORE LIBRARY -->
       <div id="view-library" class="app-view">
-        <div style="margin-bottom: 2rem;">
-          <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Your Music Library</h2>
-          <p style="color: var(--text-secondary);">Your saved tracks, playlists, and recently played songs.</p>
-        </div>
-        <div id="library-tracks-container">
-          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
-            <i class="fa-solid fa-heart" style="font-size: 2.5rem; margin-bottom: 1rem; color: #f87171; opacity: 0.5;"></i>
-            <p>Your liked tracks and playback history will appear here.</p>
+        <div class="library-header-wrapper" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <h2 style="font-size: 1.75rem; font-weight: 800; margin: 0; color: #fff;">Your Music Library</h2>
+              <p style="color: var(--text-secondary); margin: 4px 0 0 0; font-size: 0.88rem;">Cloud Firestore Synced Favorites, Custom Playlists &amp; Listening History</p>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn-create-playlist" onclick="window.openCreatePlaylistModal()">
+                <i class="fa-solid fa-plus"></i> New Playlist
+              </button>
+            </div>
+          </div>
+
+          <!-- Library Filter Tabs -->
+          <div class="library-nav-tabs" style="display: flex; gap: 0.5rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 0.75rem;">
+            <button class="library-tab-btn active-tab" data-tab="favorites" onclick="window.switchLibraryTab('favorites')">
+              <i class="fa-solid fa-heart" style="color: #ff007a;"></i> Liked Songs
+            </button>
+            <button class="library-tab-btn" data-tab="playlists" onclick="window.switchLibraryTab('playlists')">
+              <i class="fa-solid fa-list-ul" style="color: #38bdf8;"></i> Playlists
+            </button>
+            <button class="library-tab-btn" data-tab="history" onclick="window.switchLibraryTab('history')">
+              <i class="fa-solid fa-clock-rotate-left" style="color: #a855f7;"></i> History
+            </button>
           </div>
         </div>
+
+        <!-- Dynamic Content Area -->
+        <div id="library-content-area" class="library-content-container">
+          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+            <i class="fa-solid fa-heart" style="font-size: 2.5rem; margin-bottom: 1rem; color: #f87171; opacity: 0.5;"></i>
+            <p>Loading your Firebase music library...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 4: IMMERSIVE ARTIST DETAILS PAGE -->
+      <div id="view-artist" class="app-view">
+        <!-- Navigation Back Bar -->
+        <div style="margin-bottom: 1.25rem;">
+          <button class="btn-artist-back" onclick="window.switchView('home')" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: #fff; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Explore
+          </button>
+        </div>
+
+        <!-- Artist Panoramic Hero Banner -->
+        <div class="artist-hero-card" id="artist-hero-card">
+          <div class="artist-hero-overlay"></div>
+          <div class="artist-hero-content">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Artist</span>
+              <span id="artist-world-rank" class="rank-badge">#1 in the world</span>
+            </div>
+            <h1 id="artist-hero-name" class="artist-hero-title">The Weeknd</h1>
+            <p id="artist-hero-listeners" class="artist-hero-listeners">114,820,400 monthly listeners</p>
+            <div class="artist-hero-actions">
+              <button id="artist-play-all-btn" class="btn-primary-play" onclick="window.playArtistTopTracks()">
+                <i class="fa-solid fa-play"></i> Play All
+              </button>
+              <button id="artist-follow-btn" class="btn-secondary-outline" onclick="window.toggleFollowArtist()">
+                <i class="fa-solid fa-user-plus"></i> Follow
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Popular Tracks (Top 5) -->
+        <section style="margin-top: 2.5rem; margin-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Popular Tracks</h3>
+            <span style="font-size: 0.8rem; color: var(--text-secondary);">Ranked by global streams</span>
+          </div>
+          <div id="artist-popular-tracks-list" class="artist-tracks-table"></div>
+        </section>
+
+        <!-- Discography: Albums & Singles -->
+        <section style="margin-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Discography</h3>
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="discog-filter-btn active" data-dfilter="all" onclick="window.filterArtistDiscog('all')">All</button>
+              <button class="discog-filter-btn" data-dfilter="albums" onclick="window.filterArtistDiscog('albums')">Albums</button>
+              <button class="discog-filter-btn" data-dfilter="singles" onclick="window.filterArtistDiscog('singles')">Singles &amp; EPs</button>
+            </div>
+          </div>
+          <div id="artist-discography-grid" class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem;"></div>
+        </section>
+
+        <!-- About / Biography Card -->
+        <section style="margin-bottom: 2.5rem;">
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">About the Artist</h3>
+          <div class="artist-about-box" id="artist-about-container"></div>
+        </section>
+
+        <!-- Fans Also Like / Similar Artists -->
+        <section style="margin-bottom: 3rem;">
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">Fans Also Like</h3>
+          <div class="artists-carousel" id="artist-similar-container" style="display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+        </section>
       </div>
 
     </main>
@@ -2040,11 +2175,13 @@
 
       <!-- Center: Controls, Scrubber & 2-Line Mini Lyrics Snippet -->
       <div class="player-center" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 2; max-width: 580px; width: 100%;">
-        <div class="player-controls" style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 0.4rem;">
+        <div class="player-controls" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.4rem;">
           <button id="btn-shuffle" class="btn-player-icon" onclick="window.PulsePlaybar.toggleShuffle()" title="Shuffle" style="font-size: 0.9rem; color: var(--text-secondary);"><i class="fa-solid fa-shuffle"></i></button>
-          <button id="btn-prev" class="btn-player-icon" onclick="window.PulsePlaybar.playPrev()" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+          <button id="btn-prev" class="btn-player-icon" onclick="window.PulsePlaybar.playPrev()" title="Previous Track"><i class="fa-solid fa-backward-step"></i></button>
+          <button id="btn-seek-back-5" class="btn-player-icon btn-seek-step" onclick="window.PulsePlaybar.seekBackward5()" title="Rewind 5 Seconds" style="font-size: 0.95rem; color: #c084fc;"><i class="fa-solid fa-rotate-left"></i><span class="btn-seek-num">5</span></button>
           <button id="btn-play-pause" class="btn-player-main" onclick="window.PulsePlaybar.togglePlayPause()" title="Play / Pause" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; box-shadow: 0 0 20px rgba(168,85,247,0.7); cursor: pointer; transition: transform 0.2s ease;"><i class="fa-solid fa-play"></i></button>
-          <button id="btn-next" class="btn-player-icon" onclick="window.PulsePlaybar.playNext()" title="Next"><i class="fa-solid fa-forward-step"></i></button>
+          <button id="btn-seek-fwd-5" class="btn-player-icon btn-seek-step" onclick="window.PulsePlaybar.seekForward5()" title="Forward 5 Seconds" style="font-size: 0.95rem; color: #c084fc;"><i class="fa-solid fa-rotate-right"></i><span class="btn-seek-num">5</span></button>
+          <button id="btn-next" class="btn-player-icon" onclick="window.PulsePlaybar.playNext()" title="Next Track"><i class="fa-solid fa-forward-step"></i></button>
           <button id="btn-repeat" class="btn-player-icon" onclick="window.PulsePlaybar.toggleRepeat()" title="Repeat" style="font-size: 0.9rem; color: var(--text-secondary);"><i class="fa-solid fa-repeat"></i></button>
         </div>
 
@@ -2176,9 +2313,19 @@
           <button class="fs-ctrl-icon-btn fs-step-btn" onclick="window.PulsePlaybar.playPrev()" title="Previous Track">
             <i class="fa-solid fa-backward-step"></i>
           </button>
+
+          <button id="fs-btn-seek-back-5" class="fs-ctrl-icon-btn fs-seek-step-btn" onclick="window.PulsePlaybar.seekBackward5()" title="Rewind 5 Seconds">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span class="fs-seek-num">5</span>
+          </button>
           
           <button id="fs-btn-play" class="fs-hero-play-btn" onclick="window.PulsePlaybar.togglePlayPause()" title="Play / Pause">
             <i class="fa-solid fa-play"></i>
+          </button>
+
+          <button id="fs-btn-seek-fwd-5" class="fs-ctrl-icon-btn fs-seek-step-btn" onclick="window.PulsePlaybar.seekForward5()" title="Forward 5 Seconds">
+            <i class="fa-solid fa-rotate-right"></i>
+            <span class="fs-seek-num">5</span>
           </button>
           
           <button class="fs-ctrl-icon-btn fs-step-btn" onclick="window.PulsePlaybar.playNext()" title="Next Track">
@@ -2189,6 +2336,7 @@
             <i class="fa-solid fa-repeat"></i>
           </button>
         </div>
+
 
         <!-- Volume Bar in Fullscreen -->
         <div class="fs-volume-row">
@@ -2201,69 +2349,116 @@
     </div>
   </div>
 
-  <!-- AUTH MODAL -->
-  <div id="auth-modal" class="modal-overlay hidden">
-    <div class="modal-content pulse-auth-modal" style="max-width: 440px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
+  <!-- FIREBASE AUTH MODAL (EMAIL, GOOGLE & GUEST ACCESS) -->
+  <div id="auth-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeAuthModal()">
+    <div class="modal-content pulse-auth-modal" style="max-width: 440px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem; box-shadow: 0 24px 60px rgba(0,0,0,0.85);">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff;">Pulse Account</h3>
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <img src="./pulse-logo.png" alt="Pulse Logo" style="width: 32px; height: 32px;">
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Pulse Account</h3>
+        </div>
         <button class="btn-icon-small" onclick="window.closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       
+      <!-- Auth Switcher Tabs -->
       <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px;">
-        <button class="auth-tab-btn active" data-tab="login" style="flex: 1; padding: 0.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;" onclick="window.switchAuthTab('login')">Log In</button>
-        <button class="auth-tab-btn" data-tab="signup" style="flex: 1; padding: 0.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;" onclick="window.switchAuthTab('signup')">Sign Up</button>
-        <button class="auth-tab-btn" data-tab="phone" style="flex: 1; padding: 0.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;" onclick="window.switchAuthTab('phone')">Phone OTP</button>
+        <button id="auth-tab-login" class="auth-tab-btn active-tab" style="flex: 1; padding: 0.6rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;" onclick="window.switchAuthTab('login')">Log In</button>
+        <button id="auth-tab-signup" class="auth-tab-btn" style="flex: 1; padding: 0.6rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;" onclick="window.switchAuthTab('signup')">Sign Up</button>
       </div>
 
-      <!-- Email Login Form -->
-      <form id="auth-form-login" onsubmit="window.handleRealLogin(event)">
+      <!-- 1. Email Login Form -->
+      <form id="auth-login-form" onsubmit="window.handleEmailLogin(event)">
         <div style="margin-bottom: 1rem;">
           <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Email Address</label>
-          <input type="email" id="login-email" required placeholder="name@example.com" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+          <input type="email" id="auth-login-email" required placeholder="name@example.com" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
         </div>
         <div style="margin-bottom: 1.5rem;">
           <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Password</label>
-          <input type="password" id="login-password" required placeholder="••••••••" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+          <input type="password" id="auth-login-pass" required placeholder="••••••••" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
         </div>
-        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem;">Log In</button>
+        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem; font-weight: 700;">
+          <i class="fa-solid fa-right-to-bracket"></i> Log In
+        </button>
       </form>
 
-      <!-- Email Signup Form -->
-      <form id="auth-form-signup" class="hidden" onsubmit="window.handleRealSignup(event)">
+      <!-- 2. Email Signup Form -->
+      <form id="auth-signup-form" style="display: none;" onsubmit="window.handleEmailSignup(event)">
         <div style="margin-bottom: 1rem;">
-          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Your Name</label>
-          <input type="text" id="signup-name" required placeholder="Pushkar Hiremath" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Full Name</label>
+          <input type="text" id="auth-signup-name" required placeholder="Your Name" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
         </div>
         <div style="margin-bottom: 1rem;">
           <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Email Address</label>
-          <input type="email" id="signup-email" required placeholder="name@example.com" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+          <input type="email" id="auth-signup-email" required placeholder="name@example.com" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
         </div>
         <div style="margin-bottom: 1.5rem;">
           <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Password (Min. 6 chars)</label>
-          <input type="password" id="signup-password" required placeholder="••••••••" minlength="6" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+          <input type="password" id="auth-signup-pass" required placeholder="••••••••" minlength="6" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
         </div>
-        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem;">Create Account</button>
+        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem; font-weight: 700;">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </button>
       </form>
 
-      <!-- Phone OTP Form -->
-      <form id="auth-form-phone" class="hidden" onsubmit="event.preventDefault(); window.showToast('SMS OTP Code sent! Enter 123456 to verify.', 'info', 3000);">
-        <div style="margin-bottom: 1rem;">
-          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Phone Number (with Country Code)</label>
-          <input type="tel" id="phone-number-input" placeholder="+91 98765 43210" style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
-        </div>
-        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem; margin-bottom: 1rem;">Send SMS Code</button>
-      </form>
+      <!-- Quick OAuth & Guest Options -->
+      <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem;">
+        <button type="button" onclick="window.handleGoogleLogin()" style="width: 100%; padding: 0.75rem; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Google
+        </button>
+        <button type="button" onclick="window.handleAnonymousLogin()" style="width: 100%; padding: 0.65rem; border-radius: 10px; background: transparent; border: 1px dashed var(--border-glass); color: var(--text-secondary); font-size: 0.82rem; cursor: pointer;">
+          <i class="fa-solid fa-user-secret"></i> Continue as Guest (Instant Access)
+        </button>
+      </div>
 
-      <div style="margin-top: 1.25rem; text-align: center;">
-        <button type="button" onclick="window.handleGoogleOAuthLogin()" style="width: 100%; padding: 0.75rem; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-          <i class="fa-brands fa-google"></i> Continue with Google
+      <!-- Download Native App Link in Auth Modal -->
+      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-glass); text-align: center;">
+        <button type="button" onclick="window.closeAuthModal(); window.openDownloadModal();" style="background: none; border: none; color: #38bdf8; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s ease;">
+          <i class="fa-solid fa-cloud-arrow-down"></i> Download Pulse Native App (Free)
         </button>
       </div>
     </div>
   </div>
 
+  <!-- CREATE PLAYLIST MODAL -->
+  <div id="create-playlist-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeCreatePlaylistModal()">
+    <div class="modal-content" style="max-width: 440px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Create Playlist</h3>
+        <button class="btn-icon-small" onclick="window.closeCreatePlaylistModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="window.handleCreatePlaylist(event)">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Playlist Name</label>
+          <input type="text" id="new-playlist-name" required placeholder="e.g. Late Night Vibes" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Description (Optional)</label>
+          <input type="text" id="new-playlist-desc" placeholder="A short description of this mix..." style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+        </div>
+        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem; font-weight: 700;">
+          <i class="fa-solid fa-folder-plus"></i> Save to Cloud Firestore
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADD TO PLAYLIST PICKER MODAL -->
+  <div id="add-to-playlist-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeAddToPlaylistModal()">
+    <div class="modal-content" style="max-width: 440px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Add to Playlist</h3>
+        <button class="btn-icon-small" onclick="window.closeAddToPlaylistModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Select a playlist to save this track:</p>
+      <div id="user-playlists-picker-list" style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 250px; overflow-y: auto; margin-bottom: 1rem;"></div>
+      <button class="btn-secondary-install" onclick="window.closeAddToPlaylistModal(); window.openCreatePlaylistModal();" style="width: 100%; justify-content: center;">
+        <i class="fa-solid fa-plus"></i> Create New Playlist
+      </button>
+    </div>
+  </div>
+
   <!-- GEMINI AI DJ MODAL -->
-  <div id="gemini-dj-modal" class="modal-overlay hidden">
+  <div id="gemini-dj-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeGeminiDJModal()">
     <div class="modal-content gemini-dj-modal-box" style="max-width: 520px; background: #0f111a; border: 1px solid rgba(168,85,247,0.3); border-radius: 24px; padding: 2rem; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
         <div style="display: flex; align-items: center; gap: 0.6rem;">
@@ -2272,7 +2467,7 @@
           </div>
           <div>
             <h3 style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">Gemini 3.6 Flash DJ</h3>
-            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Smart AI Music Curator & Playlist Creator</p>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Smart AI Music Curator &amp; Playlist Creator</p>
           </div>
         </div>
         <button class="btn-icon-small" onclick="window.closeGeminiDJModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -2306,7 +2501,7 @@
   </div>
 
   <!-- FLOATING LYRICS DRAWER MODAL -->
-  <div id="lyrics-drawer-modal" class="modal-overlay hidden">
+  <div id="lyrics-drawer-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeLyricsDrawer()">
     <div class="modal-content lyrics-modal-box" style="max-width: 580px; width: 100%; max-height: 85vh; background: #0c0e17; border: 1px solid rgba(168,85,247,0.35); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; box-shadow: 0 24px 60px rgba(0,0,0,0.85); backdrop-filter: blur(20px);">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-glass);">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
@@ -2325,9 +2520,6 @@
     </div>
   </div>
 
-  
-
-  
   <!-- MOBILE BOTTOM NAVIGATION (Phones & Small Tablets) -->
   <nav class="mobile-bottom-nav">
     <a href="javascript:void(0)" class="mobile-nav-link active" data-view="home" onclick="window.switchView('home')">
@@ -2337,6 +2529,10 @@
     <a href="javascript:void(0)" class="mobile-nav-link" data-view="search-view" onclick="window.switchView('search-view')">
       <i class="fa-solid fa-magnifying-glass"></i>
       <span>Search</span>
+    </a>
+    <a href="javascript:void(0)" class="mobile-nav-link" onclick="window.openDownloadModal()" style="color: #38bdf8;">
+      <i class="fa-solid fa-cloud-arrow-down"></i>
+      <span>Get App</span>
     </a>
     <a href="javascript:void(0)" class="mobile-nav-link" onclick="window.openGeminiDJModal()" style="color: #ff007a;">
       <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -2348,39 +2544,171 @@
     </a>
   </nav>
 
-  <!-- FLOATING ANTI-GRAVITY SIDE CARD -->
-  <div id="floating-antigravity-card" class="floating-antigravity-card">
-    <div class="floating-card-header">
-      <div class="floating-card-badge">
-        <span class="ping-indicator"></span>
-        <span class="badge-title">Anti-Gravity Mode</span>
+  <!-- DOWNLOAD APP MODAL (5 NATIVE PLATFORMS: WINDOWS, MACOS, LINUX, ANDROID, IOS) -->
+  <div id="download-app-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeDownloadModal()">
+    <div class="modal-content download-modal-box">
+      <!-- Modal Header -->
+      <div class="download-modal-header">
+        <div class="download-modal-brand">
+          <div class="download-modal-logo">
+            <img src="./pulse-logo.png" alt="Pulse Music">
+          </div>
+          <div>
+            <h3 class="download-modal-title">Download Pulse Music</h3>
+            <p class="download-modal-subtitle">Official Native Apps for Windows, macOS, Linux, Android &amp; iOS</p>
+          </div>
+        </div>
+        <button class="btn-icon-small" onclick="window.closeDownloadModal()" title="Close"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <button class="btn-card-close" onclick="window.dismissAntiGravityCard()" title="Dismiss">✕</button>
-    </div>
 
-    <div class="floating-card-body">
-      <p class="card-headline">Weightless Soundscape</p>
-      <p class="card-desc">Tuned for 432Hz deep focus &amp; floating chill vibes.</p>
-    </div>
+      <!-- Platform Filter Tabs -->
+      <div class="download-tabs-container">
+        <button class="download-tab-btn active" data-dtab="all" onclick="window.switchDownloadTab('all')">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>All 5 Platforms</span>
+        </button>
+        <button class="download-tab-btn" data-dtab="laptop" onclick="window.switchDownloadTab('laptop')">
+          <i class="fa-solid fa-laptop"></i>
+          <span>Laptop &amp; Desktop (3)</span>
+        </button>
+        <button class="download-tab-btn" data-dtab="mobile" onclick="window.switchDownloadTab('mobile')">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span>Mobile &amp; Tablet (2)</span>
+        </button>
+      </div>
 
-    <div class="floating-card-actions">
-      <button class="btn-activate-zerog" onclick="window.activateZeroGMode()">
-        Activate Zero-G
-      </button>
-      <button class="btn-mix-zerog" onclick="window.mixZeroGMode()">
-        Mix
-      </button>
+      <!-- 5 NATIVE DOWNLOAD CARDS GRID -->
+      <div class="download-cards-grid" id="download-cards-container">
+        
+        <!-- 1. WINDOWS (LAPTOP / DESKTOP) -->
+        <div class="download-card" id="card-windows" data-category="laptop">
+          <div class="download-card-header">
+            <div class="platform-icon-wrap icon-windows">
+              <i class="fa-brands fa-windows"></i>
+            </div>
+            <div class="platform-meta">
+              <h4>Windows</h4>
+              <span class="platform-tag">Windows 10 / 11 (64-bit .exe)</span>
+            </div>
+            <span class="platform-size">1.2 MB</span>
+          </div>
+          <p class="download-card-desc">High-Fidelity master streaming, global media hotkeys, system tray minimization, and low RAM consumption.</p>
+          <div class="download-card-action">
+            <a href="./downloads/Pulse-Music-Setup-2.4.0.exe" download="Pulse-Music-Setup-2.4.0.exe" class="btn-download-platform" onclick="window.handleDownloadClick('Windows (Laptop/PC)', 'Pulse-Music-Setup-2.4.0.exe')">
+              <i class="fa-solid fa-download"></i> Download Windows (.exe)
+            </a>
+          </div>
+          <div class="download-card-footer">
+            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Verified &amp; Signed</span>
+            <span class="device-badge" id="badge-windows">Recommended for your PC</span>
+          </div>
+        </div>
+
+        <!-- 2. MACOS (LAPTOP / DESKTOP) -->
+        <div class="download-card" id="card-mac" data-category="laptop">
+          <div class="download-card-header">
+            <div class="platform-icon-wrap icon-apple">
+              <i class="fa-brands fa-apple"></i>
+            </div>
+            <div class="platform-meta">
+              <h4>macOS</h4>
+              <span class="platform-tag">Apple Silicon &amp; Intel (.dmg)</span>
+            </div>
+            <span class="platform-size">1.1 MB</span>
+          </div>
+          <p class="download-card-desc">Universal Mac installer optimized for Apple Silicon (M1/M2/M3/M4) and Intel MacBooks &amp; iMacs.</p>
+          <div class="download-card-action">
+            <a href="./downloads/Pulse-Music-2.4.0.dmg" download="Pulse-Music-2.4.0.dmg" class="btn-download-platform" onclick="window.handleDownloadClick('macOS (MacBook/iMac)', 'Pulse-Music-2.4.0.dmg')">
+              <i class="fa-solid fa-download"></i> Download macOS (.dmg)
+            </a>
+          </div>
+          <div class="download-card-footer">
+            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Universal Binary</span>
+            <span class="device-badge" id="badge-mac">Recommended for your Mac</span>
+          </div>
+        </div>
+
+        <!-- 3. LINUX (LAPTOP / DESKTOP) -->
+        <div class="download-card" id="card-linux" data-category="laptop">
+          <div class="download-card-header">
+            <div class="platform-icon-wrap icon-linux">
+              <i class="fa-brands fa-linux"></i>
+            </div>
+            <div class="platform-meta">
+              <h4>Linux</h4>
+              <span class="platform-tag">Standalone (.AppImage)</span>
+            </div>
+            <span class="platform-size">1.1 MB</span>
+          </div>
+          <p class="download-card-desc">Standalone universal binary. Runs seamlessly on Ubuntu, Debian, Fedora, Arch Linux, and Linux Mint.</p>
+          <div class="download-card-action">
+            <a href="./downloads/Pulse-Music-2.4.0.AppImage" download="Pulse-Music-2.4.0.AppImage" class="btn-download-platform" onclick="window.handleDownloadClick('Linux', 'Pulse-Music-2.4.0.AppImage')">
+              <i class="fa-solid fa-download"></i> Download Linux (.AppImage)
+            </a>
+          </div>
+          <div class="download-card-footer">
+            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> All Distributions</span>
+            <span class="device-badge" id="badge-linux">Recommended for Linux</span>
+          </div>
+        </div>
+
+        <!-- 4. ANDROID (MOBILE / TABLET) -->
+        <div class="download-card" id="card-android" data-category="mobile">
+          <div class="download-card-header">
+            <div class="platform-icon-wrap icon-android">
+              <i class="fa-brands fa-android"></i>
+            </div>
+            <div class="platform-meta">
+              <h4>Android</h4>
+              <span class="platform-tag">Direct Install (.apk)</span>
+            </div>
+            <span class="platform-size">18.1 MB</span>
+          </div>
+          <p class="download-card-desc">Native Android APK with screen-off background playback, lock screen media controls, and LRCLIB synchronized lyrics.</p>
+          <div class="download-card-action">
+            <a href="./downloads/Pulse-Music-v2.4.0.apk" download="Pulse-Music-v2.4.0.apk" class="btn-download-platform btn-android" onclick="window.handleDownloadClick('Android', 'Pulse-Music-v2.4.0.apk')">
+              <i class="fa-brands fa-android"></i> Download Android APK
+            </a>
+          </div>
+          <div class="download-card-footer">
+            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Android 8.0+ Ready</span>
+            <span class="device-badge" id="badge-android">Recommended for Android</span>
+          </div>
+        </div>
+
+        <!-- 5. IOS (IPHONE / IPAD) -->
+        <div class="download-card" id="card-ios" data-category="mobile">
+          <div class="download-card-header">
+            <div class="platform-icon-wrap icon-apple">
+              <i class="fa-brands fa-apple"></i>
+            </div>
+            <div class="platform-meta">
+              <h4>iOS (iPhone &amp; iPad)</h4>
+              <span class="platform-tag">Native Package (.ipa)</span>
+            </div>
+            <span class="platform-size">1.1 MB</span>
+          </div>
+          <p class="download-card-desc">Native iOS application package for iPhone and iPad with full-screen hardware-accelerated audio rendering.</p>
+          <div class="download-card-action">
+            <a href="./downloads/Pulse-Music-v2.4.0.ipa" download="Pulse-Music-v2.4.0.ipa" class="btn-download-platform btn-ios" onclick="window.handleDownloadClick('iOS (iPhone/iPad)', 'Pulse-Music-v2.4.0.ipa')">
+              <i class="fa-brands fa-apple"></i> Download iOS (.ipa)
+            </a>
+          </div>
+          <div class="download-card-footer">
+            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> iOS 14.0+ Ready</span>
+            <span class="device-badge" id="badge-ios">Recommended for iOS</span>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
 
-  <!-- NATIVE AUDIO & YOUTUBE ELEMENTS -->
-  <div id="yt-player-wrapper" style="position: fixed; bottom: -600px; right: -600px; width: 200px; height: 200px; overflow: hidden; pointer-events: none; opacity: 0.01; z-index: -9999;">
-    <div id="yt-player-host"></div>
-  </div>
-  <audio id="fallback-audio-player" preload="auto"></audio>
+  <!-- PURE HTML5 AUDIO ELEMENT (Zero Video Containers / Zero Iframes) -->
+  <audio id="fallback-audio-player" preload="auto" style="display:none;"></audio>
 
   <!-- APPLICATION JAVASCRIPT -->
   <script type="module" src="./src/main.js"></script>

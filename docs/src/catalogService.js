@@ -1135,10 +1135,484 @@ export async function fetchCategoryTracks(catId, limit = 50) {
   return results;
 }
 
+// -----------------------------------------------------------------------------
+// SPOTIFY-STYLE DISCOVERY SHELVES & QUICK PICKS
+// -----------------------------------------------------------------------------
+
+export function getQuickPicks() {
+  return [
+    {
+      id: "qp-starboy",
+      title: "Starboy (feat. Daft Punk)",
+      artist: "The Weeknd",
+      album: "Starboy",
+      coverUrl: "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
+      streamUrl: "https://aac.saavncdn.com/396/b4e570050007b056c662f2a98c9f28ec_320.mp4",
+      duration: 230,
+      ytId: "Rif-RTvmmss",
+      source: "Quick Picks"
+    },
+    {
+      id: "qp-kesariya",
+      title: "Kesariya (From \"Brahmastra\")",
+      artist: "Pritam & Arijit Singh",
+      album: "Brahmastra",
+      coverUrl: "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp",
+      streamUrl: "https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4",
+      duration: 268,
+      ytId: "BddP6PYo2gs",
+      source: "Quick Picks"
+    },
+    {
+      id: "qp-cruel-summer",
+      title: "Cruel Summer",
+      artist: "Taylor Swift",
+      album: "Lover",
+      coverUrl: "https://c.saavncdn.com/243/The-Cruelest-Summer-English-2023-20231109123211-500x500.webp",
+      streamUrl: "https://aac.saavncdn.com/243/cf6b522de1390996fdbe109298873c72_320.mp4",
+      duration: 178,
+      ytId: "ic8j13piAhQ",
+      source: "Quick Picks"
+    },
+    {
+      id: "qp-lover",
+      title: "Lover",
+      artist: "Diljit Dosanjh",
+      album: "MoonChild Era",
+      coverUrl: "https://c.saavncdn.com/540/MoonChild-Era-Punjabi-2021-20221124151745-500x500.jpg",
+      streamUrl: "https://aac.saavncdn.com/540/3e9bb8bdfad1b5597793d9a3b664d42b_320.mp4",
+      duration: 191,
+      ytId: "mH_LFkWxpI0",
+      source: "Quick Picks"
+    },
+    {
+      id: "qp-blinding-lights",
+      title: "Blinding Lights",
+      artist: "The Weeknd",
+      album: "After Hours",
+      coverUrl: "https://c.saavncdn.com/077/After-Hours-English-2020-20260804045014-500x500.webp",
+      streamUrl: "https://aac.saavncdn.com/077/0b02a92687d1ae3369b6859f44872e52_320.mp4",
+      duration: 200,
+      ytId: "fHI8X4OXluQ",
+      source: "Quick Picks"
+    },
+    {
+      id: "qp-levitating",
+      title: "Levitating",
+      artist: "Dua Lipa",
+      album: "Future Nostalgia",
+      coverUrl: "https://c.saavncdn.com/665/Future-Nostalgia-English-2020-20260306223201-500x500.webp",
+      streamUrl: "https://aac.saavncdn.com/665/7790c3b9097592113008eaf1031d6e57_320.mp4",
+      duration: 203,
+      ytId: "WHuBW3qKm9g",
+      source: "Quick Picks"
+    }
+  ];
+}
+
+export function getFeaturedArtists() {
+  return [
+    {
+      id: "art-the-weeknd",
+      name: "The Weeknd",
+      role: "Artist",
+      monthlyListeners: "114,820,400 monthly listeners",
+      avatar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80",
+      banner: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&auto=format&fit=crop&q=80",
+      genre: "R&B / Synthwave / Pop",
+      verified: true
+    },
+    {
+      id: "art-arijit-singh",
+      name: "Arijit Singh",
+      role: "Artist",
+      monthlyListeners: "42,650,900 monthly listeners",
+      avatar: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&auto=format&fit=crop&q=80",
+      banner: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1600&auto=format&fit=crop&q=80",
+      genre: "Bollywood / Romantic / Sufi",
+      verified: true
+    },
+    {
+      id: "art-taylor-swift",
+      name: "Taylor Swift",
+      role: "Artist",
+      monthlyListeners: "105,340,100 monthly listeners",
+      avatar: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&auto=format&fit=crop&q=80",
+      banner: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1600&auto=format&fit=crop&q=80",
+      genre: "Pop / Folk-Pop / Country",
+      verified: true
+    },
+    {
+      id: "art-diljit-dosanjh",
+      name: "Diljit Dosanjh",
+      role: "Artist",
+      monthlyListeners: "24,890,300 monthly listeners",
+      avatar: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=500&auto=format&fit=crop&q=80",
+      banner: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1600&auto=format&fit=crop&q=80",
+      genre: "Punjabi Pop / Bhangra / Global",
+      verified: true
+    },
+    {
+      id: "art-dua-lipa",
+      name: "Dua Lipa",
+      role: "Artist",
+      monthlyListeners: "76,120,800 monthly listeners",
+      avatar: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=500&auto=format&fit=crop&q=80",
+      banner: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&auto=format&fit=crop&q=80",
+      genre: "Disco-Pop / Dance / Future Nostalgia",
+      verified: true
+    },
+    {
+      id: "art-imagine-dragons",
+      name: "Imagine Dragons",
+      role: "Artist",
+      monthlyListeners: "62,400,000 monthly listeners",
+      avatar: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500&auto=format&fit=crop&q=80",
+      banner: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1600&auto=format&fit=crop&q=80",
+      genre: "Alt-Rock / Electropop / Anthems",
+      verified: true
+    },
+    {
+      id: "art-alan-walker",
+      name: "Alan Walker",
+      role: "Artist",
+      monthlyListeners: "38,500,000 monthly listeners",
+      avatar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80",
+      banner: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1600&auto=format&fit=crop&q=80",
+      genre: "EDM / Electro House / Synth",
+      verified: true
+    }
+  ];
+}
+
+export function getArtistDetails(artistQuery) {
+  const q = (artistQuery || 'The Weeknd').toLowerCase();
+  
+  const ARTIST_DATABASE = {
+    'the weeknd': {
+      id: 'the-weeknd',
+      name: 'The Weeknd',
+      verified: true,
+      monthlyListeners: '114,820,400 monthly listeners',
+      worldRank: '#1 in the world',
+      genre: 'R&B / Synthwave / Pop',
+      avatar: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80',
+      banner: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&auto=format&fit=crop&q=80',
+      bio: 'Abel Makkonen Tesfaye, known professionally as The Weeknd, is a Canadian singer, songwriter, and record producer known for his sonic versatility and dark lyricism. He is one of the world\'s best-selling music artists, with over 75 million records sold.',
+      topTracks: [
+        {
+          id: "tw-starboy",
+          title: "Starboy (feat. Daft Punk)",
+          artist: "The Weeknd",
+          album: "Starboy",
+          coverUrl: "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/396/b4e570050007b056c662f2a98c9f28ec_320.mp4",
+          duration: 230,
+          ytId: "Rif-RTvmmss",
+          plays: "3,142,500,000"
+        },
+        {
+          id: "tw-blinding",
+          title: "Blinding Lights",
+          artist: "The Weeknd",
+          album: "After Hours",
+          coverUrl: "https://c.saavncdn.com/077/After-Hours-English-2020-20260804045014-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/077/0b02a92687d1ae3369b6859f44872e52_320.mp4",
+          duration: 200,
+          ytId: "fHI8X4OXluQ",
+          plays: "4,210,000,000"
+        },
+        {
+          id: "tw-hills",
+          title: "The Hills",
+          artist: "The Weeknd",
+          album: "Beauty Behind the Madness",
+          coverUrl: "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/396/b4e570050007b056c662f2a98c9f28ec_320.mp4",
+          duration: 242,
+          ytId: "yzTuBuRdAyA",
+          plays: "2,450,000,000"
+        },
+        {
+          id: "tw-save-tears",
+          title: "Save Your Tears",
+          artist: "The Weeknd",
+          album: "After Hours",
+          coverUrl: "https://c.saavncdn.com/077/After-Hours-English-2020-20260804045014-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/077/0b02a92687d1ae3369b6859f44872e52_320.mp4",
+          duration: 215,
+          ytId: "XXYlFuWEuKI",
+          plays: "2,100,000,000"
+        },
+        {
+          id: "tw-cant-feel",
+          title: "Can't Feel My Face",
+          artist: "The Weeknd",
+          album: "Beauty Behind the Madness",
+          coverUrl: "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/396/b4e570050007b056c662f2a98c9f28ec_320.mp4",
+          duration: 213,
+          ytId: "KEI4qS4P-3Y",
+          plays: "1,890,000,000"
+        }
+      ],
+      albums: [
+        { title: "After Hours (Deluxe)", year: "2020", type: "Album", coverUrl: "https://c.saavncdn.com/077/After-Hours-English-2020-20260804045014-500x500.webp", tracksCount: 17 },
+        { title: "Starboy", year: "2016", type: "Album", coverUrl: "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp", tracksCount: 18 },
+        { title: "Dawn FM", year: "2022", type: "Album", coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&auto=format&fit=crop&q=80", tracksCount: 16 }
+      ],
+      singles: [
+        { title: "Dancing In The Flames", year: "2024", type: "Single", coverUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80" },
+        { title: "Creepin' (Remix)", year: "2023", type: "Single", coverUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500&auto=format&fit=crop&q=80" }
+      ],
+      similarArtists: [
+        { name: "Dua Lipa", role: "Artist", avatar: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=300&auto=format&fit=crop&q=80" },
+        { name: "Post Malone", role: "Artist", avatar: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&auto=format&fit=crop&q=80" },
+        { name: "Bruno Mars", role: "Artist", avatar: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=300&auto=format&fit=crop&q=80" }
+      ]
+    },
+    'arijit singh': {
+      id: 'arijit-singh',
+      name: 'Arijit Singh',
+      verified: true,
+      monthlyListeners: '42,650,900 monthly listeners',
+      worldRank: '#1 in India',
+      genre: 'Bollywood / Romantic / Sufi',
+      avatar: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&auto=format&fit=crop&q=80',
+      banner: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1600&auto=format&fit=crop&q=80',
+      bio: 'Arijit Singh is an Indian playback singer and music composer. Often cited as one of the most prolific and popular singers in the history of Indian music, he is recipient of multiple National Film Awards and Filmfare Awards.',
+      topTracks: [
+        {
+          id: "as-kesariya",
+          title: "Kesariya (From \"Brahmastra\")",
+          artist: "Pritam, Arijit Singh & Amitabh Bhattacharya",
+          album: "Brahmastra",
+          coverUrl: "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4",
+          duration: 268,
+          ytId: "BddP6PYo2gs",
+          plays: "940,000,000"
+        },
+        {
+          id: "as-apna-bana-le",
+          title: "Apna Bana Le",
+          artist: "Sachin-Jigar & Arijit Singh",
+          album: "Bhediya",
+          coverUrl: "https://c.saavncdn.com/120/Happy-Vibes-Hindi-2026-20260730190751-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/120/6425409a61434ace0f3333622609e288_320.mp4",
+          duration: 261,
+          ytId: "u2NAuswnTKs",
+          plays: "810,000,000"
+        },
+        {
+          id: "as-chaleya",
+          title: "Chaleya (From \"Jawan\")",
+          artist: "Anirudh Ravichander & Arijit Singh",
+          album: "Jawan",
+          coverUrl: "https://c.saavncdn.com/047/Jawan-Hindi-2023-20230921190854-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/047/d1366530468931703ac909e82a3ee788_320.mp4",
+          duration: 200,
+          ytId: "VAdGW7QDJiU",
+          plays: "750,000,000"
+        },
+        {
+          id: "as-tum-hi-ho",
+          title: "Tum Hi Ho",
+          artist: "Mithoon & Arijit Singh",
+          album: "Aashiqui 2",
+          coverUrl: "https://c.saavncdn.com/430/Aashiqui-2-Hindi-2013-500x500.jpg",
+          streamUrl: "https://aac.saavncdn.com/430/5c5ea5cc00e3bff45616013226f376fe_320.mp4",
+          duration: 262,
+          ytId: "BjL7AuPsmEk",
+          plays: "1,200,000,000"
+        },
+        {
+          id: "as-shayad",
+          title: "Shayad (From \"Love Aaj Kal\")",
+          artist: "Pritam & Arijit Singh",
+          album: "Love Aaj Kal",
+          coverUrl: "https://c.saavncdn.com/862/Love-Aaj-Kal-Hindi-2020-20200214140423-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/862/e277c1b441b562640c6b264aa3335a83_320.mp4",
+          duration: 247,
+          ytId: "9-LH8ABADdo",
+          plays: "620,000,000"
+        }
+      ],
+      albums: [
+        { title: "Ultimate Arijit Melodies", year: "2024", type: "Album", coverUrl: "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp", tracksCount: 20 },
+        { title: "Aashiqui 2 (Original Soundtrack)", year: "2013", type: "Album", coverUrl: "https://c.saavncdn.com/430/Aashiqui-2-Hindi-2013-500x500.jpg", tracksCount: 11 }
+      ],
+      singles: [
+        { title: "O Maahi (Dunki)", year: "2023", type: "Single", coverUrl: "https://c.saavncdn.com/047/Jawan-Hindi-2023-20230921190854-500x500.webp" },
+        { title: "Satranga (Animal)", year: "2023", type: "Single", coverUrl: "https://c.saavncdn.com/120/Happy-Vibes-Hindi-2026-20260730190751-500x500.webp" }
+      ],
+      similarArtists: [
+        { name: "Pritam", role: "Composer", avatar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" },
+        { name: "Jubin Nautiyal", role: "Artist", avatar: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&auto=format&fit=crop&q=80" },
+        { name: "Diljit Dosanjh", role: "Artist", avatar: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=300&auto=format&fit=crop&q=80" }
+      ]
+    },
+    'taylor swift': {
+      id: 'taylor-swift',
+      name: 'Taylor Swift',
+      verified: true,
+      monthlyListeners: '105,340,100 monthly listeners',
+      worldRank: '#2 in the world',
+      genre: 'Pop / Folk-Pop / Country',
+      avatar: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&auto=format&fit=crop&q=80',
+      banner: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1600&auto=format&fit=crop&q=80',
+      bio: 'Taylor Alison Swift is an American singer-songwriter. Recognized for her songwriting, musical versatility, artistic reinventions, and cultural impact, she is one of the world\'s most decorated artists of all time.',
+      topTracks: [
+        {
+          id: "ts-cruel-summer",
+          title: "Cruel Summer",
+          artist: "Taylor Swift",
+          album: "Lover",
+          coverUrl: "https://c.saavncdn.com/243/The-Cruelest-Summer-English-2023-20231109123211-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/243/cf6b522de1390996fdbe109298873c72_320.mp4",
+          duration: 178,
+          ytId: "ic8j13piAhQ",
+          plays: "2,650,000,000"
+        },
+        {
+          id: "ts-anti-hero",
+          title: "Anti-Hero",
+          artist: "Taylor Swift",
+          album: "Midnights",
+          coverUrl: "https://c.saavncdn.com/243/The-Cruelest-Summer-English-2023-20231109123211-500x500.webp",
+          streamUrl: "https://aac.saavncdn.com/243/cf6b522de1390996fdbe109298873c72_320.mp4",
+          duration: 200,
+          ytId: "b1kbLwvqugk",
+          plays: "1,750,000,000"
+        },
+        {
+          id: "ts-blank-space",
+          title: "Blank Space",
+          artist: "Taylor Swift",
+          album: "1989 (Taylor's Version)",
+          coverUrl: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&auto=format&fit=crop&q=80",
+          streamUrl: "https://aac.saavncdn.com/243/cf6b522de1390996fdbe109298873c72_320.mp4",
+          duration: 231,
+          ytId: "e-ORhEE9VVg",
+          plays: "3,400,000,000"
+        }
+      ],
+      albums: [
+        { title: "The Tortured Poets Department", year: "2024", type: "Album", coverUrl: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&auto=format&fit=crop&q=80", tracksCount: 31 },
+        { title: "1989 (Taylor's Version)", year: "2023", type: "Album", coverUrl: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1600&auto=format&fit=crop&q=80", tracksCount: 21 },
+        { title: "Midnights", year: "2022", type: "Album", coverUrl: "https://c.saavncdn.com/243/The-Cruelest-Summer-English-2023-20231109123211-500x500.webp", tracksCount: 13 }
+      ],
+      singles: [
+        { title: "Fortnight (feat. Post Malone)", year: "2024", type: "Single", coverUrl: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&auto=format&fit=crop&q=80" }
+      ],
+      similarArtists: [
+        { name: "Olivia Rodrigo", role: "Artist", avatar: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=300&auto=format&fit=crop&q=80" },
+        { name: "Sabrina Carpenter", role: "Artist", avatar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" }
+      ]
+    }
+  };
+
+  // Find exact or closest match
+  for (const [k, artistObj] of Object.entries(ARTIST_DATABASE)) {
+    if (q.includes(k) || k.includes(q)) {
+      return artistObj;
+    }
+  }
+
+  // Dynamic fallback artist profile generator for any queried artist
+  const cleanName = artistQuery.replace('art-', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  return {
+    id: `art-${cleanName.toLowerCase().replace(/\s+/g, '-')}`,
+    name: cleanName,
+    verified: true,
+    monthlyListeners: '28,450,000 monthly listeners',
+    worldRank: 'Popular Worldwide',
+    genre: 'Global Music',
+    avatar: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80',
+    banner: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&auto=format&fit=crop&q=80',
+    bio: `${cleanName} is a world-renowned music artist on Pulse Music. Stream all full master tracks, official releases, and top hits ad-free.`,
+    topTracks: [
+      {
+        id: `gen-${cleanName}-1`,
+        title: `${cleanName} Hit Track #1`,
+        artist: cleanName,
+        album: `${cleanName} Greatest Hits`,
+        coverUrl: 'https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp',
+        streamUrl: 'https://aac.saavncdn.com/396/b4e570050007b056c662f2a98c9f28ec_320.mp4',
+        duration: 210,
+        ytId: 'fHI8X4OXluQ',
+        plays: '1,200,000,000'
+      },
+      {
+        id: `gen-${cleanName}-2`,
+        title: `${cleanName} Melodic Anthem`,
+        artist: cleanName,
+        album: `${cleanName} Studio Edition`,
+        coverUrl: 'https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp',
+        streamUrl: 'https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4',
+        duration: 245,
+        ytId: 'BddP6PYo2gs',
+        plays: '950,000,000'
+      }
+    ],
+    albums: [
+      { title: `${cleanName} - Studio Master`, year: "2024", type: "Album", coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&auto=format&fit=crop&q=80", tracksCount: 14 }
+    ],
+    singles: [
+      { title: `${cleanName} - Live Session`, year: "2024", type: "Single", coverUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80" }
+    ],
+    similarArtists: [
+      { name: "The Weeknd", role: "Artist", avatar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" },
+      { name: "Arijit Singh", role: "Artist", avatar: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&auto=format&fit=crop&q=80" }
+    ]
+  };
+}
+
+export function getCuratedPlaylists() {
+  return [
+    {
+      id: "pl-neon-drive",
+      title: "Late Night Neon Drive",
+      description: "Atmospheric synthwave, dark R&B, and futuristic night driving beats.",
+      coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&auto=format&fit=crop&q=80",
+      trackCount: 50,
+      tracks: [
+        { title: "Starboy", artist: "The Weeknd", coverUrl: "https://c.saavncdn.com/396/The-Highlights-English-2021-20240207045714-500x500.webp", streamUrl: "https://aac.saavncdn.com/396/b4e570050007b056c662f2a98c9f28ec_320.mp4", duration: 230 },
+        { title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://c.saavncdn.com/077/After-Hours-English-2020-20260804045014-500x500.webp", streamUrl: "https://aac.saavncdn.com/077/0b02a92687d1ae3369b6859f44872e52_320.mp4", duration: 200 }
+      ]
+    },
+    {
+      id: "pl-desi-hits",
+      title: "Bollywood & Desi Romance",
+      description: "Heartfelt acoustic melodies, soul-stirring ballads, and chart-toppers.",
+      coverUrl: "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp",
+      trackCount: 45,
+      tracks: [
+        { title: "Kesariya", artist: "Arijit Singh", coverUrl: "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp", streamUrl: "https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4", duration: 268 },
+        { title: "Apna Bana Le", artist: "Arijit Singh", coverUrl: "https://c.saavncdn.com/120/Happy-Vibes-Hindi-2026-20260730190751-500x500.webp", streamUrl: "https://aac.saavncdn.com/120/6425409a61434ace0f3333622609e288_320.mp4", duration: 261 }
+      ]
+    },
+    {
+      id: "pl-lofi-chill",
+      title: "Deep Focus Lo-Fi Beats",
+      description: "Calm soothing instrumental beats engineered for deep programming and study.",
+      coverUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500&auto=format&fit=crop&q=80",
+      trackCount: 60,
+      tracks: [
+        { title: "Space Chillout", artist: "Lo-Fi Master", coverUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500&auto=format&fit=crop&q=80", streamUrl: "https://aac.saavncdn.com/286/2929d11a5d44a3592ced0383fa6f1977_320.mp4", duration: 180 }
+      ]
+    }
+  ];
+}
+
 const catalogService = {
   CATALOG_CATEGORIES,
   CATEGORY_SEARCH_QUERIES,
-  fetchCategoryTracks
+  fetchCategoryTracks,
+  getQuickPicks,
+  getFeaturedArtists,
+  getArtistDetails,
+  getCuratedPlaylists
 };
 
 if (typeof window !== 'undefined') {
@@ -1146,3 +1620,4 @@ if (typeof window !== 'undefined') {
 }
 
 export default catalogService;
+

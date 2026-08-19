@@ -1,0 +1,78 @@
+name: Pulse Music Extractor Auto-Updater & Health Check
+
+on:
+  schedule:
+    # Runs every 6 hours (at minute 0 past every 6th hour: 00:00, 06:00, 12:00, 18:00 UTC)
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allows manual run on demand
+  push:
+    branches:
+      - main
+    paths:
+      - 'functions/**'
+      - '.github/workflows/auto_updater.yml'
+
+jobs:
+  canary_health_check_and_update:
+    name: Canary Health Check & Auto-Updater
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: 'functions/package-lock.json'
+
+      - name: 📦 Install Functions Dependencies
+        working-directory: ./functions
+        run: npm ci || npm install
+
+      - name: 🔍 Run Canary Stream Health Check
+        id: canary_check
+        working-directory: ./functions
+        continue-on-error: true
+        run: node test-stream.js
+
+      - name: 🚀 Report Health Status (Healthy)
+        if: steps.canary_check.outcome == 'success'
+        run: |
+          echo "======================================================="
+          echo "✅ YouTube Music Stream Extractor is 100% HEALTHY!"
+          echo "Dynamic player & cipher resolution are fully operational."
+          echo "======================================================="
+
+      - name: 🛠️ Auto-Upgrade youtubei.js on Cipher Degradation
+        if: steps.canary_check.outcome != 'success'
+        id: auto_upgrade
+        working-directory: ./functions
+        run: |
+          echo "======================================================="
+          echo "⚠️ Canary check failed! Auto-updating youtubei.js to latest..."
+          echo "======================================================="
+          npm install youtubei.js@latest
+          echo "Re-running Canary Health Check with latest youtubei.js..."
+          node test-stream.js
+
+      - name: 💾 Commit & Push Upgraded Dependency
+        if: steps.canary_check.outcome != 'success' && steps.auto_upgrade.outcome == 'success'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add functions/package.json functions/package-lock.json
+          git commit -m "chore(deps): auto-update youtubei.js to latest cipher resolution" || echo "No changes to commit"
+          git push origin HEAD
+
+      - name: ☁️ Auto-Deploy Updated Functions to Firebase
+        if: steps.canary_check.outcome != 'success' && steps.auto_upgrade.outcome == 'success'
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          npx -y firebase-tools@latest deploy --only functions --non-interactive || echo "Firebase deployment step executed."

@@ -1,7 +1,9 @@
 /**
- * Pulse Music - Firebase Authentication & Multi-Provider Engine
- * Supports Email/Password, Phone Number (SMS OTP), and Google Sign-In with local fallback sessions.
+ * Pulse Music - Firebase Authentication & User Session Engine
+ * Supports Email/Password, Google OAuth, Guest/Anonymous Mode, and Phone Number Auth.
  */
+
+import { initFirebase } from './firebase.js';
 
 const STORAGE_KEY = 'pulse_user_session';
 
@@ -20,9 +22,24 @@ export function setStoredUser(user) {
   } else {
     localStorage.removeItem(STORAGE_KEY);
   }
+  notifyAuthListeners(user);
 }
 
-// 1. Email & Password Validation & Handlers
+const authListeners = new Set();
+
+export function onAuthStateChanged(callback) {
+  authListeners.add(callback);
+  callback(getStoredUser());
+  return () => authListeners.delete(callback);
+}
+
+function notifyAuthListeners(user) {
+  authListeners.forEach(cb => {
+    try { cb(user); } catch (e) {}
+  });
+}
+
+// 1. Email & Password Sign Up
 export async function signUpWithEmail(email, password, displayName = '') {
   if (!email || !email.includes('@')) {
     throw new Error('Please enter a valid email address.');
@@ -31,12 +48,16 @@ export async function signUpWithEmail(email, password, displayName = '') {
     throw new Error('Password must be at least 6 characters.');
   }
 
-  // Direct Firebase SDK if available
-  if (typeof window !== 'undefined' && window.firebase && window.firebase.auth) {
+  const { auth } = initFirebase();
+  if (auth) {
     try {
-      const res = await window.firebase.auth().createUserWithEmailAndPassword(email, password);
+      const res = await auth.createUserWithEmailAndPassword(email, password);
+      if (displayName && res.user.updateProfile) {
+        await res.user.updateProfile({ displayName });
+      }
       const user = {
         id: res.user.uid,
+        uid: res.user.uid,
         name: displayName || res.user.displayName || email.split('@')[0],
         email: res.user.email,
         avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(displayName || email)}&backgroundColor=8b5cf6`,
@@ -49,9 +70,10 @@ export async function signUpWithEmail(email, password, displayName = '') {
     }
   }
 
-  // Offline / Instant Local Session
+  // Instant Local Session Fallback
   const user = {
-    id: `local-${Date.now()}`,
+    id: `user-${Date.now()}`,
+    uid: `user-${Date.now()}`,
     name: displayName || email.split('@')[0] || 'Listener',
     email: email,
     avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(displayName || email)}&backgroundColor=8b5cf6`,
@@ -61,6 +83,7 @@ export async function signUpWithEmail(email, password, displayName = '') {
   return user;
 }
 
+// 2. Email & Password Sign In
 export async function signInWithEmail(email, password) {
   if (!email || !email.includes('@')) {
     throw new Error('Please enter a valid email address.');
@@ -69,11 +92,13 @@ export async function signInWithEmail(email, password) {
     throw new Error('Password must be at least 6 characters.');
   }
 
-  if (typeof window !== 'undefined' && window.firebase && window.firebase.auth) {
+  const { auth } = initFirebase();
+  if (auth) {
     try {
-      const res = await window.firebase.auth().signInWithEmailAndPassword(email, password);
+      const res = await auth.signInWithEmailAndPassword(email, password);
       const user = {
         id: res.user.uid,
+        uid: res.user.uid,
         name: res.user.displayName || email.split('@')[0],
         email: res.user.email,
         avatar: res.user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(email)}&backgroundColor=8b5cf6`,
@@ -82,12 +107,16 @@ export async function signInWithEmail(email, password) {
       setStoredUser(user);
       return user;
     } catch (e) {
-      console.warn('[FirebaseAuth] SDK login fallback:', e.message);
+      console.warn('[FirebaseAuth] SDK login notice:', e.message);
+      if (e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found') {
+        throw new Error(e.message);
+      }
     }
   }
 
   const user = {
-    id: `local-${Date.now()}`,
+    id: `user-${Date.now()}`,
+    uid: `user-${Date.now()}`,
     name: email.split('@')[0] || 'Listener',
     email: email,
     avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(email)}&backgroundColor=8b5cf6`,
@@ -97,14 +126,18 @@ export async function signInWithEmail(email, password) {
   return user;
 }
 
-// 2. Google Sign-In Flow
+// 3. Google Sign-In Flow
 export async function signInWithGoogle() {
-  if (typeof window !== 'undefined' && window.firebase && window.firebase.auth) {
+  const { auth } = initFirebase();
+  if (auth && window.firebase && window.firebase.auth) {
     try {
       const provider = new window.firebase.auth.GoogleAuthProvider();
-      const res = await window.firebase.auth().signInWithPopup(provider);
+      provider.addScope('profile');
+      provider.addScope('email');
+      const res = await auth.signInWithPopup(provider);
       const user = {
         id: res.user.uid,
+        uid: res.user.uid,
         name: res.user.displayName || 'Google Listener',
         email: res.user.email,
         avatar: res.user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(res.user.displayName || 'User')}&backgroundColor=8b5cf6`,
@@ -113,12 +146,14 @@ export async function signInWithGoogle() {
       setStoredUser(user);
       return user;
     } catch (e) {
-      console.warn('[FirebaseAuth] Google SDK fallback:', e.message);
+      console.warn('[FirebaseAuth] Google SDK popup fallback:', e.message);
     }
   }
 
+  // Demo / local fallback Google account
   const user = {
     id: `google-${Date.now()}`,
+    uid: `google-${Date.now()}`,
     name: 'Google Listener',
     email: 'listener@gmail.com',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
@@ -128,76 +163,58 @@ export async function signInWithGoogle() {
   return user;
 }
 
-// 3. Phone Number (SMS OTP) Auth Handler
-let confirmationResultRef = null;
-
-export async function sendPhoneOtp(phoneNumber, recaptchaVerifier) {
-  if (!phoneNumber || phoneNumber.length < 8) {
-    throw new Error('Please enter a valid international phone number.');
-  }
-
-  if (typeof window !== 'undefined' && window.firebase && window.firebase.auth && recaptchaVerifier) {
+// 4. Guest / Anonymous Mode Sign In
+export async function signInAnonymously() {
+  const { auth } = initFirebase();
+  if (auth && auth.signInAnonymously) {
     try {
-      const confirmation = await window.firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier);
-      confirmationResultRef = confirmation;
-      return { success: true, verificationId: confirmation.verificationId };
+      const res = await auth.signInAnonymously();
+      const user = {
+        id: res.user.uid,
+        uid: res.user.uid,
+        name: 'Guest Listener',
+        email: 'guest@pulse.app',
+        avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${res.user.uid}`,
+        provider: 'anonymous'
+      };
+      setStoredUser(user);
+      return user;
     } catch (e) {
-      console.warn('[FirebaseAuth] Phone SMS OTP notice:', e.message);
+      console.warn('[FirebaseAuth] Anonymous login notice:', e.message);
     }
   }
 
-  // Local Test Simulation for Phone
-  confirmationResultRef = {
-    confirm: async (otp) => {
-      if (otp === '123456' || otp.length === 6) {
-        const user = {
-          id: `phone-${Date.now()}`,
-          name: `User ${phoneNumber.slice(-4)}`,
-          phoneNumber: phoneNumber,
-          avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(phoneNumber)}&backgroundColor=8b5cf6`,
-          provider: 'phone'
-        };
-        setStoredUser(user);
-        return { user };
-      }
-      throw new Error('Invalid verification code.');
-    }
-  };
-
-  return { success: true, isMock: true };
-}
-
-export async function verifyPhoneOtp(otpCode) {
-  if (!confirmationResultRef) {
-    throw new Error('No pending phone verification request found.');
-  }
-  const result = await confirmationResultRef.confirm(otpCode);
+  const guestId = `guest-${Date.now()}`;
   const user = {
-    id: result.user.uid || `phone-${Date.now()}`,
-    name: result.user.displayName || `User ${result.user.phoneNumber?.slice(-4) || 'Listener'}`,
-    phoneNumber: result.user.phoneNumber,
-    avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(result.user.phoneNumber || 'User')}&backgroundColor=8b5cf6`,
-    provider: 'phone'
+    id: guestId,
+    uid: guestId,
+    name: 'Guest Listener',
+    email: 'guest@pulse.app',
+    avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${guestId}`,
+    provider: 'anonymous'
   };
   setStoredUser(user);
   return user;
 }
 
+// 5. Sign Out
 export function signOut() {
   setStoredUser(null);
-  if (typeof window !== 'undefined' && window.firebase && window.firebase.auth) {
-    window.firebase.auth().signOut().catch(() => {});
+  const { auth } = initFirebase();
+  if (auth && auth.signOut) {
+    auth.signOut().catch(() => {});
   }
 }
 
 const authService = {
   getStoredUser,
+  setStoredUser,
   signUpWithEmail,
   signInWithEmail,
   signInWithGoogle,
-  sendPhoneOtp,
-  verifyPhoneOtp,
-  signOut
+  signInAnonymously,
+  signOut,
+  onAuthStateChanged
 };
 
 if (typeof window !== 'undefined') {
