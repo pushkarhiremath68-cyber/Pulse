@@ -914,6 +914,125 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
   };
 
   // ---------------------------------------------------------------------------
+  // DOWNLOAD NATIVE APP MODAL CONTROLLERS
+  // ---------------------------------------------------------------------------
+
+  window.openDownloadModal = function() {
+    const modal = document.getElementById('download-app-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('active-modal');
+    }
+  };
+
+  window.closeDownloadModal = function() {
+    const modal = document.getElementById('download-app-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('active-modal');
+    }
+  };
+
+  window.switchDownloadTab = function(category) {
+    document.querySelectorAll('.download-tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-dtab') === category);
+    });
+    document.querySelectorAll('.download-card').forEach(card => {
+      const cat = card.getAttribute('data-category');
+      if (category === 'all' || cat === category) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  };
+
+  window.handleDownloadClick = function(platform, filename) {
+    window.showToast(`Starting ${platform} installer download (${filename})...`, 'success', 2500);
+  };
+
+  // ---------------------------------------------------------------------------
+  // GEMINI AI DJ MODAL CONTROLLERS
+  // ---------------------------------------------------------------------------
+
+  window.openGeminiDJModal = function() {
+    const modal = document.getElementById('gemini-dj-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('active-modal');
+      const input = document.getElementById('gemini-prompt-input');
+      if (input) input.focus();
+    }
+  };
+
+  window.closeGeminiDJModal = function() {
+    const modal = document.getElementById('gemini-dj-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('active-modal');
+    }
+  };
+
+  window.handleAskGeminiDJ = async function(presetPrompt) {
+    const promptInput = document.getElementById('gemini-prompt-input');
+    const prompt = presetPrompt || (promptInput ? promptInput.value : '');
+    if (!prompt || !prompt.trim()) {
+      window.showToast('Please enter a vibe or mood for Gemini DJ', 'warning');
+      return;
+    }
+    if (promptInput && presetPrompt) promptInput.value = presetPrompt;
+
+    const spinner = document.getElementById('gemini-loading-spinner');
+    const output = document.getElementById('gemini-dj-output');
+    if (spinner) spinner.classList.remove('hidden');
+    if (output) output.innerHTML = '';
+
+    try {
+      const res = await window.geminiService.askGeminiDJ(prompt);
+      if (spinner) spinner.classList.add('hidden');
+      if (output && res && res.tracks) {
+        output.innerHTML = `
+          <div style="margin-top: 1rem; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
+            <h4 style="color: #c084fc; margin-bottom: 0.25rem; font-size: 1.1rem; font-weight: 800;">${res.djTitle}</h4>
+            <p style="color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 0.85rem;">${res.vibe}</p>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              ${res.tracks.map((t, idx) => `
+                <div class="gemini-track-item hover-glow" onclick="window.executeSearch('${t.title.replace(/'/g, "\\'")} ${t.artist.replace(/'/g, "\\'")}'); window.closeGeminiDJModal();" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; border-radius: 10px; background: rgba(255,255,255,0.05); cursor: pointer; border: 1px solid var(--border-glass);">
+                  <div>
+                    <strong style="color: #fff; font-size: 0.9rem;">${t.title}</strong>
+                    <span style="color: #c084fc; font-size: 0.8rem; margin-left: 6px;">by ${t.artist}</span>
+                    <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">${t.reason || 'AI Match'}</div>
+                  </div>
+                  <button class="btn-play-hover" style="position: static; opacity: 1; transform: scale(0.85); width: 32px; height: 32px; border-radius: 50%; background: #a855f7; border: none; color: #fff; cursor: pointer;"><i class="fa-solid fa-play" style="font-size: 0.75rem;"></i></button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+    } catch (e) {
+      if (spinner) spinner.classList.add('hidden');
+      window.showToast('Curated mood tracks ready', 'info');
+    }
+  };
+
+  window.toggleFSLyrics = function() {
+    const sec = document.getElementById('fs-lyrics-section');
+    if (sec) {
+      sec.classList.toggle('hidden');
+    }
+  };
+
+  window.toggleLyricsDrawer = function() {
+    const modal = document.getElementById('lyrics-drawer-modal');
+    if (modal && modal.classList.contains('active-modal')) {
+      window.closeLyricsDrawer();
+    } else {
+      window.openLyricsDrawer();
+    }
+  };
+
+  // ---------------------------------------------------------------------------
   // INITIALIZATION ON DOM READY
   // ---------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {

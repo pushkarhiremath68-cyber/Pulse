@@ -526,14 +526,43 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+export function toggleFullscreen(forceState) {
+  const fsModal = document.getElementById('fullscreen-player');
+  if (!fsModal) return;
+  const shouldOpen = typeof forceState === 'boolean' ? forceState : fsModal.classList.contains('hidden');
+  if (shouldOpen) {
+    fsModal.classList.remove('hidden');
+    fsModal.classList.add('active-fs');
+    if (currentTrack && typeof window.loadTrackLyrics === 'function') {
+      window.loadTrackLyrics(currentTrack);
+    }
+  } else {
+    fsModal.classList.add('hidden');
+    fsModal.classList.remove('active-fs');
+  }
+}
+
+export function seekBackward5() {
+  seekTo(Math.max(0, currentTime - 5));
+}
+
+export function seekForward5() {
+  seekTo(Math.min(duration, currentTime + 5));
+}
+
 const playbarController = {
   playTrack,
   togglePlay,
+  togglePlayPause: togglePlay,
   pause,
   resume,
   playNext,
   playPrevious,
+  playPrev: playPrevious,
   seekTo,
+  seekBackward5,
+  seekForward5,
+  toggleFullscreen,
   setVolume,
   toggleMute,
   toggleShuffle,
