@@ -94,12 +94,7 @@
             <i class="fa-solid fa-bookmark"></i>
             <span>Your Library</span>
           </a>
-          <a href="javascript:void(0)" class="nav-item" onclick="window.openDownloadModal()" style="color: #38bdf8; margin-top: 0.25rem;">
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-            <span>Download App</span>
-            <span class="sidebar-badge-free">FREE</span>
-          </a>
-        </div>
+
 
         <div class="nav-section">
           <span class="nav-section-title">GENRES & MOODS</span>
@@ -155,18 +150,6 @@
         </div>
 
         <div class="header-actions" style="display: flex; align-items: center; gap: 0.75rem;">
-          <button id="open-download-app-btn" class="btn-header-download" onclick="window.openDownloadModal()" title="Download Pulse App (Windows, Mac, Linux, Android, iOS)">
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-            <span>Download App</span>
-          </button>
-
-          <!-- AUTHENTICATION GROUP (LOGIN / SIGN UP) -->
-          <div id="user-profile-btn" class="user-profile-header-btn" onclick="window.openAuthModal('login')" title="Sign In / User Account">
-            <div style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 0.75rem;">
-              <i class="fa-solid fa-user"></i>
-            </div>
-            <span id="user-display-name" class="header-user-name">Sign In</span>
-          </div>
         </div>
       </header>
 
@@ -2353,75 +2336,7 @@
     </div>
   </div>
 
-  <!-- FIREBASE AUTH MODAL (EMAIL, GOOGLE & GUEST ACCESS) -->
-  <div id="auth-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeAuthModal()">
-    <div class="modal-content pulse-auth-modal" style="max-width: 440px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem; box-shadow: 0 24px 60px rgba(0,0,0,0.85);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <div style="display: flex; align-items: center; gap: 0.6rem;">
-          <img src="./pulse-logo.png" alt="Pulse Logo" style="width: 32px; height: 32px;">
-          <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Pulse Account</h3>
-        </div>
-        <button class="btn-icon-small" onclick="window.closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      
-      <!-- Auth Switcher Tabs -->
-      <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px;">
-        <button id="auth-tab-login" class="auth-tab-btn active-tab" style="flex: 1; padding: 0.6rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;" onclick="window.switchAuthTab('login')">Log In</button>
-        <button id="auth-tab-signup" class="auth-tab-btn" style="flex: 1; padding: 0.6rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;" onclick="window.switchAuthTab('signup')">Sign Up</button>
-      </div>
 
-      <!-- 1. Email Login Form -->
-      <form id="auth-login-form" onsubmit="window.handleEmailLogin(event)">
-        <div style="margin-bottom: 1rem;">
-          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Email Address</label>
-          <input type="email" id="auth-login-email" required placeholder="name@example.com" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
-        </div>
-        <div style="margin-bottom: 1.5rem;">
-          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Password</label>
-          <input type="password" id="auth-login-pass" required placeholder="••••••••" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
-        </div>
-        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem; font-weight: 700;">
-          <i class="fa-solid fa-right-to-bracket"></i> Log In
-        </button>
-      </form>
-
-      <!-- 2. Email Signup Form -->
-      <form id="auth-signup-form" style="display: none;" onsubmit="window.handleEmailSignup(event)">
-        <div style="margin-bottom: 1rem;">
-          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Full Name</label>
-          <input type="text" id="auth-signup-name" required placeholder="Your Name" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
-        </div>
-        <div style="margin-bottom: 1rem;">
-          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Email Address</label>
-          <input type="email" id="auth-signup-email" required placeholder="name@example.com" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
-        </div>
-        <div style="margin-bottom: 1.5rem;">
-          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Password (Min. 6 chars)</label>
-          <input type="password" id="auth-signup-pass" required placeholder="••••••••" minlength="6" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
-        </div>
-        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem; font-weight: 700;">
-          <i class="fa-solid fa-user-plus"></i> Create Account
-        </button>
-      </form>
-
-      <!-- Quick OAuth & Guest Options -->
-      <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem;">
-        <button type="button" onclick="window.handleGoogleLogin()" style="width: 100%; padding: 0.75rem; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass); color: #fff; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-          <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Google
-        </button>
-        <button type="button" onclick="window.handleAnonymousLogin()" style="width: 100%; padding: 0.65rem; border-radius: 10px; background: transparent; border: 1px dashed var(--border-glass); color: var(--text-secondary); font-size: 0.82rem; cursor: pointer;">
-          <i class="fa-solid fa-user-secret"></i> Continue as Guest (Instant Access)
-        </button>
-      </div>
-
-      <!-- Download Native App Link in Auth Modal -->
-      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-glass); text-align: center;">
-        <button type="button" onclick="window.closeAuthModal(); window.openDownloadModal();" style="background: none; border: none; color: #38bdf8; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s ease;">
-          <i class="fa-solid fa-cloud-arrow-down"></i> Download Pulse Native App (Free)
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- CREATE PLAYLIST MODAL -->
   <div id="create-playlist-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeCreatePlaylistModal()">
@@ -2534,10 +2449,7 @@
       <i class="fa-solid fa-magnifying-glass"></i>
       <span>Search</span>
     </a>
-    <a href="javascript:void(0)" class="mobile-nav-link" onclick="window.openDownloadModal()" style="color: #38bdf8;">
-      <i class="fa-solid fa-cloud-arrow-down"></i>
-      <span>Get App</span>
-    </a>
+
     <a href="javascript:void(0)" class="mobile-nav-link" onclick="window.openGeminiDJModal()" style="color: #ff007a;">
       <i class="fa-solid fa-wand-magic-sparkles"></i>
       <span>Gemini DJ</span>
@@ -2548,165 +2460,7 @@
     </a>
   </nav>
 
-  <!-- DOWNLOAD APP MODAL (5 NATIVE PLATFORMS: WINDOWS, MACOS, LINUX, ANDROID, IOS) -->
-  <div id="download-app-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeDownloadModal()">
-    <div class="modal-content download-modal-box">
-      <!-- Modal Header -->
-      <div class="download-modal-header">
-        <div class="download-modal-brand">
-          <div class="download-modal-logo">
-            <img src="./pulse-logo.png" alt="Pulse Music">
-          </div>
-          <div>
-            <h3 class="download-modal-title">Download Pulse Music</h3>
-            <p class="download-modal-subtitle">Official Native Apps for Windows, macOS, Linux, Android &amp; iOS</p>
-          </div>
-        </div>
-        <button class="btn-icon-small" onclick="window.closeDownloadModal()" title="Close"><i class="fa-solid fa-xmark"></i></button>
-      </div>
 
-      <!-- Platform Filter Tabs -->
-      <div class="download-tabs-container">
-        <button class="download-tab-btn active" data-dtab="all" onclick="window.switchDownloadTab('all')">
-          <i class="fa-solid fa-layer-group"></i>
-          <span>All 5 Platforms</span>
-        </button>
-        <button class="download-tab-btn" data-dtab="laptop" onclick="window.switchDownloadTab('laptop')">
-          <i class="fa-solid fa-laptop"></i>
-          <span>Laptop &amp; Desktop (3)</span>
-        </button>
-        <button class="download-tab-btn" data-dtab="mobile" onclick="window.switchDownloadTab('mobile')">
-          <i class="fa-solid fa-mobile-screen-button"></i>
-          <span>Mobile &amp; Tablet (2)</span>
-        </button>
-      </div>
-
-      <!-- 5 NATIVE DOWNLOAD CARDS GRID -->
-      <div class="download-cards-grid" id="download-cards-container">
-        
-        <!-- 1. WINDOWS (LAPTOP / DESKTOP) -->
-        <div class="download-card" id="card-windows" data-category="laptop">
-          <div class="download-card-header">
-            <div class="platform-icon-wrap icon-windows">
-              <i class="fa-brands fa-windows"></i>
-            </div>
-            <div class="platform-meta">
-              <h4>Windows</h4>
-              <span class="platform-tag">Windows 10 / 11 (64-bit .exe)</span>
-            </div>
-            <span class="platform-size">1.2 MB</span>
-          </div>
-          <p class="download-card-desc">High-Fidelity master streaming, global media hotkeys, system tray minimization, and low RAM consumption.</p>
-          <div class="download-card-action">
-            <a href="./downloads/Pulse-Music-Setup-2.4.0.exe" download="Pulse-Music-Setup-2.4.0.exe" class="btn-download-platform" onclick="window.handleDownloadClick('Windows (Laptop/PC)', 'Pulse-Music-Setup-2.4.0.exe')">
-              <i class="fa-solid fa-download"></i> Download Windows (.exe)
-            </a>
-          </div>
-          <div class="download-card-footer">
-            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Verified &amp; Signed</span>
-            <span class="device-badge" id="badge-windows">Recommended for your PC</span>
-          </div>
-        </div>
-
-        <!-- 2. MACOS (LAPTOP / DESKTOP) -->
-        <div class="download-card" id="card-mac" data-category="laptop">
-          <div class="download-card-header">
-            <div class="platform-icon-wrap icon-apple">
-              <i class="fa-brands fa-apple"></i>
-            </div>
-            <div class="platform-meta">
-              <h4>macOS</h4>
-              <span class="platform-tag">Apple Silicon &amp; Intel (.dmg)</span>
-            </div>
-            <span class="platform-size">1.1 MB</span>
-          </div>
-          <p class="download-card-desc">Universal Mac installer optimized for Apple Silicon (M1/M2/M3/M4) and Intel MacBooks &amp; iMacs.</p>
-          <div class="download-card-action">
-            <a href="./downloads/Pulse-Music-2.4.0.dmg" download="Pulse-Music-2.4.0.dmg" class="btn-download-platform" onclick="window.handleDownloadClick('macOS (MacBook/iMac)', 'Pulse-Music-2.4.0.dmg')">
-              <i class="fa-solid fa-download"></i> Download macOS (.dmg)
-            </a>
-          </div>
-          <div class="download-card-footer">
-            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Universal Binary</span>
-            <span class="device-badge" id="badge-mac">Recommended for your Mac</span>
-          </div>
-        </div>
-
-        <!-- 3. LINUX (LAPTOP / DESKTOP) -->
-        <div class="download-card" id="card-linux" data-category="laptop">
-          <div class="download-card-header">
-            <div class="platform-icon-wrap icon-linux">
-              <i class="fa-brands fa-linux"></i>
-            </div>
-            <div class="platform-meta">
-              <h4>Linux</h4>
-              <span class="platform-tag">Standalone (.AppImage)</span>
-            </div>
-            <span class="platform-size">1.1 MB</span>
-          </div>
-          <p class="download-card-desc">Standalone universal binary. Runs seamlessly on Ubuntu, Debian, Fedora, Arch Linux, and Linux Mint.</p>
-          <div class="download-card-action">
-            <a href="./downloads/Pulse-Music-2.4.0.AppImage" download="Pulse-Music-2.4.0.AppImage" class="btn-download-platform" onclick="window.handleDownloadClick('Linux', 'Pulse-Music-2.4.0.AppImage')">
-              <i class="fa-solid fa-download"></i> Download Linux (.AppImage)
-            </a>
-          </div>
-          <div class="download-card-footer">
-            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> All Distributions</span>
-            <span class="device-badge" id="badge-linux">Recommended for Linux</span>
-          </div>
-        </div>
-
-        <!-- 4. ANDROID (MOBILE / TABLET) -->
-        <div class="download-card" id="card-android" data-category="mobile">
-          <div class="download-card-header">
-            <div class="platform-icon-wrap icon-android">
-              <i class="fa-brands fa-android"></i>
-            </div>
-            <div class="platform-meta">
-              <h4>Android</h4>
-              <span class="platform-tag">Direct Install (.apk)</span>
-            </div>
-            <span class="platform-size">18.1 MB</span>
-          </div>
-          <p class="download-card-desc">Native Android APK with screen-off background playback, lock screen media controls, and LRCLIB synchronized lyrics.</p>
-          <div class="download-card-action">
-            <a href="./downloads/Pulse-Music-v2.4.0.apk" download="Pulse-Music-v2.4.0.apk" class="btn-download-platform btn-android" onclick="window.handleDownloadClick('Android', 'Pulse-Music-v2.4.0.apk')">
-              <i class="fa-brands fa-android"></i> Download Android APK
-            </a>
-          </div>
-          <div class="download-card-footer">
-            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Android 8.0+ Ready</span>
-            <span class="device-badge" id="badge-android">Recommended for Android</span>
-          </div>
-        </div>
-
-        <!-- 5. IOS (IPHONE / IPAD) -->
-        <div class="download-card" id="card-ios" data-category="mobile">
-          <div class="download-card-header">
-            <div class="platform-icon-wrap icon-apple">
-              <i class="fa-brands fa-apple"></i>
-            </div>
-            <div class="platform-meta">
-              <h4>iOS (iPhone &amp; iPad)</h4>
-              <span class="platform-tag">Native Package (.ipa)</span>
-            </div>
-            <span class="platform-size">1.1 MB</span>
-          </div>
-          <p class="download-card-desc">Native iOS application package for iPhone and iPad with full-screen hardware-accelerated audio rendering.</p>
-          <div class="download-card-action">
-            <a href="./downloads/Pulse-Music-v2.4.0.ipa" download="Pulse-Music-v2.4.0.ipa" class="btn-download-platform btn-ios" onclick="window.handleDownloadClick('iOS (iPhone/iPad)', 'Pulse-Music-v2.4.0.ipa')">
-              <i class="fa-brands fa-apple"></i> Download iOS (.ipa)
-            </a>
-          </div>
-          <div class="download-card-footer">
-            <span><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> iOS 14.0+ Ready</span>
-            <span class="device-badge" id="badge-ios">Recommended for iOS</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
 
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>

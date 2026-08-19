@@ -4,13 +4,13 @@
    ========================================================================== */
 
 :root {
-  --bg-main: #0b0d14;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --border-glass: rgba(255, 255, 255, 0.08);
-  --accent-primary: #ff007a;
-  --accent-secondary: #06b6d4;
-  --accent-purple: #a855f7;
-  --text-primary: #ffffff;
+  --bg-main: #09090b;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --border-glass: rgba(255, 255, 255, 0.05);
+  --accent-primary: #a855f7;
+  --accent-secondary: #0ea5e9;
+  --accent-purple: #c084fc;
+  --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
 }
@@ -30,7 +30,9 @@
 .sidebar {
   width: 250px !important;
   min-width: 250px !important;
-  background: rgba(15, 17, 26, 0.95) !important;
+  background: rgba(9, 9, 11, 0.6) !important;
+  backdrop-filter: blur(24px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.2) !important;
   border-right: 1px solid var(--border-glass) !important;
   padding: 1.5rem 1rem 7rem 1rem !important;
   display: flex !important;
@@ -133,8 +135,8 @@
 
 .nav-item.active {
   color: #ffffff !important;
-  background: linear-gradient(90deg, rgba(255, 0, 122, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%) !important;
-  border-left: 3px solid #ff007a !important;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.12) 0%, rgba(192, 132, 252, 0.05) 100%) !important;
+  border-left: 3px solid var(--accent-purple) !important;
   font-weight: 700 !important;
 }
 
@@ -163,9 +165,9 @@
   left: 250px !important;
   right: 0 !important;
   height: 70px !important;
-  background: rgba(11, 13, 20, 0.88) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
+  background: rgba(9, 9, 11, 0.7) !important;
+  backdrop-filter: blur(24px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.2) !important;
   border-bottom: 1px solid var(--border-glass) !important;
   display: flex !important;
   align-items: center !important;
@@ -654,16 +656,16 @@
   background: rgba(255, 0, 122, 0.2) !important;
   border-color: rgba(255, 0, 122, 0.5) !important;
   transform: scale(1.08) !important;
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
 }
 
 .fs-btn-circle.liked {
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
   border-color: rgba(255, 0, 122, 0.6) !important;
 }
 
 .fs-btn-circle.active {
-  background: #ff007a !important;
+  background: var(--accent-purple) !important;
   color: #ffffff !important;
 }
 
@@ -784,7 +786,7 @@
 .fs-track-artist {
   font-size: 1.05rem !important;
   font-weight: 600 !important;
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
   margin-top: 4px !important;
   display: flex !important;
   align-items: center !important;
@@ -810,7 +812,7 @@
 .fs-soundwave-bars .bar {
   width: 3px !important;
   height: 6px !important;
-  background: linear-gradient(180deg, #ff007a, #ec4899) !important;
+  background: linear-gradient(180deg, var(--accent-purple), #a855f7) !important;
   border-radius: 4px !important;
   animation: pulseEqualizer 1.2s ease-in-out infinite alternate !important;
 }
@@ -868,7 +870,7 @@
 .fs-lyrics-header h4 {
   font-size: 1.1rem !important;
   font-weight: 800 !important;
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
   margin: 0 !important;
   display: flex !important;
   align-items: center !important;
@@ -956,7 +958,7 @@
   height: 100% !important;
   width: 0%;
   border-radius: 500px !important;
-  background: linear-gradient(90deg, #ff007a, #ec4899) !important;
+  background: linear-gradient(90deg, var(--accent-purple), #a855f7) !important;
   box-shadow: 0 0 12px rgba(255, 0, 122, 0.65) !important;
 }
 
@@ -1001,7 +1003,7 @@
 }
 
 .fs-step-btn:hover {
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
 }
 
 /* HERO 64px VIBRANT PINK PLAY BUTTON */
@@ -1009,7 +1011,7 @@
   width: 64px !important;
   height: 64px !important;
   border-radius: 50% !important;
-  background: linear-gradient(135deg, #ff007a 0%, #ec4899 100%) !important;
+  background: linear-gradient(135deg, var(--accent-purple) 0%, #a855f7 100%) !important;
   color: #ffffff !important;
   display: flex !important;
   align-items: center !important;
@@ -1044,26 +1046,26 @@
 }
 
 .fs-vol-icon-btn:hover {
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
 }
 
 .fs-volume-range {
   width: 120px !important;
   height: 4px !important;
-  accent-color: #ff007a !important;
+  accent-color: var(--accent-purple) !important;
   cursor: pointer !important;
 }
 
 /* Global Pink Accent Tokens */
 :root {
-  --accent-primary: #ff007a !important;
-  --accent-secondary: #ec4899 !important;
+  --accent-primary: var(--accent-purple) !important;
+  --accent-secondary: #a855f7 !important;
   --accent-hover: #ff2a8d !important;
-  --accent-spotify: #ff007a !important;
+  --accent-spotify: var(--accent-purple) !important;
 }
 
 .btn-card-play {
-  background: linear-gradient(135deg, #ff007a 0%, #ec4899 100%) !important;
+  background: linear-gradient(135deg, var(--accent-purple) 0%, #a855f7 100%) !important;
   color: #ffffff !important;
   box-shadow: 0 8px 20px rgba(255, 0, 122, 0.45) !important;
 }
@@ -1074,19 +1076,19 @@
 }
 
 .btn-see-all {
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
   background: rgba(255, 0, 122, 0.1) !important;
   border: 1px solid rgba(255, 0, 122, 0.3) !important;
 }
 
 .btn-see-all:hover {
   background: rgba(255, 0, 122, 0.2) !important;
-  border-color: #ff007a !important;
+  border-color: var(--accent-purple) !important;
 }
 
 .progress-bar-wrapper:hover .progress-bar-fill,
 .progress-bar-wrapper:hover #player-progress-fill {
-  background: linear-gradient(90deg, #ff007a, #ec4899) !important;
+  background: linear-gradient(90deg, var(--accent-purple), #a855f7) !important;
   box-shadow: 0 0 10px rgba(255, 0, 122, 0.6) !important;
 }
 
@@ -1210,15 +1212,15 @@
 .fs-btn-circle:hover {
   background: rgba(255, 255, 255, 0.18) !important;
   transform: scale(1.08) !important;
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
 }
 
 .fs-btn-circle.liked {
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
 }
 
 .fs-btn-circle.active {
-  background: #ff007a !important;
+  background: var(--accent-purple) !important;
   color: #000000 !important;
 }
 
@@ -1313,7 +1315,7 @@
 .fs-track-artist {
   font-size: 1.05rem !important;
   font-weight: 600 !important;
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
   margin-top: 4px !important;
   display: flex !important;
   align-items: center !important;
@@ -1338,7 +1340,7 @@
 .fs-soundwave-bars .bar {
   width: 3px !important;
   height: 6px !important;
-  background: linear-gradient(180deg, #ff007a, #10b981) !important;
+  background: linear-gradient(180deg, var(--accent-purple), #10b981) !important;
   border-radius: 4px !important;
   animation: pulseEqualizer 1.2s ease-in-out infinite alternate !important;
 }
@@ -1391,7 +1393,7 @@
 .fs-lyrics-header h4 {
   font-size: 1.05rem !important;
   font-weight: 800 !important;
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
   margin: 0 !important;
   display: flex !important;
   align-items: center !important;
@@ -1476,7 +1478,7 @@
   height: 100% !important;
   width: 0% !important;
   border-radius: 500px !important;
-  background: #ff007a !important;
+  background: var(--accent-purple) !important;
   box-shadow: 0 0 10px rgba(255, 0, 122, 0.5) !important;
 }
 
@@ -1524,7 +1526,7 @@
   width: 64px !important;
   height: 64px !important;
   border-radius: 50% !important;
-  background: #ff007a !important;
+  background: var(--accent-purple) !important;
   color: #000000 !important;
   display: flex !important;
   align-items: center !important;
@@ -1561,7 +1563,7 @@
 .fs-volume-range {
   width: 120px !important;
   height: 4px !important;
-  accent-color: #ff007a !important;
+  accent-color: var(--accent-purple) !important;
   cursor: pointer !important;
 }
 
@@ -1610,10 +1612,10 @@
   --bg-player: #000000;
   --bg-header: rgba(18, 18, 18, 0.85);
 
-  --accent-primary: #ff007a;
-  --accent-secondary: #ec4899;
+  --accent-primary: var(--accent-purple);
+  --accent-secondary: #a855f7;
   --accent-hover: #ff2a8d;
-  --accent-spotify: #ff007a;
+  --accent-spotify: var(--accent-purple);
 
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
@@ -1674,7 +1676,7 @@ body {
 
 .brand-creator {
   font-size: 0.65rem !important;
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
   font-weight: 700 !important;
 }
 
@@ -1709,7 +1711,7 @@ body {
 }
 
 .nav-item.active i {
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
 }
 
 /* Header Clean Minimalist Styling */
@@ -1790,7 +1792,7 @@ body {
 }
 
 .btn-card-play {
-  background: #ff007a !important;
+  background: var(--accent-purple) !important;
   color: #000000 !important;
   width: 48px !important;
   height: 48px !important;
@@ -1902,7 +1904,7 @@ body {
 
 .progress-bar-wrapper:hover .progress-bar-fill,
 .progress-bar-wrapper:hover #player-progress-fill {
-  background: #ff007a !important;
+  background: var(--accent-purple) !important;
 }
 
 /* Hide all download modal and button styles */
@@ -3174,7 +3176,7 @@ html, body {
 .g-telugu { background: linear-gradient(135deg, #f97316 0%, #ef4444 100%); }
 .g-gujarati { background: linear-gradient(135deg, #eab308 0%, #f97316 100%); }
 .g-marathi { background: linear-gradient(135deg, #ea580c 0%, #c026d3 100%); }
-.g-spanish { background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); }
+.g-spanish { background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%); }
 .g-french { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); }
 .g-kpop { background: linear-gradient(135deg, #d946ef 0%, #06b6d4 100%); }
 .g-hiphop { background: linear-gradient(135deg, #f12711 0%, #f5af19 100%); }
@@ -7375,7 +7377,7 @@ body.is-standalone-app .btn-install-sidebar {
    PULSE GEMINI AI DJ STUDIO & MUSIC INTELLIGENCE STYLES
    ========================================================================== */
 .badge-ai-pill {
-  background: linear-gradient(135deg, #a855f7, #ec4899);
+  background: linear-gradient(135deg, #a855f7, #a855f7);
   color: #ffffff;
   font-size: 0.62rem;
   font-weight: 900;
@@ -7396,7 +7398,7 @@ body.is-standalone-app .btn-install-sidebar {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #8b5cf6, #ec4899, #3b82f6);
+  background: linear-gradient(135deg, #8b5cf6, #a855f7, #3b82f6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7618,7 +7620,7 @@ body.is-standalone-app .btn-install-sidebar {
   width: 64px;
   height: 64px;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--accent-primary), #ec4899);
+  background: linear-gradient(135deg, var(--accent-primary), #a855f7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7802,7 +7804,7 @@ body.is-standalone-app .btn-install-sidebar {
   transform: scale(1.05);
 }
 .btn-snippet-preview.previewing {
-  background: linear-gradient(135deg, #a855f7, #ec4899);
+  background: linear-gradient(135deg, #a855f7, #a855f7);
   color: #fff;
   border-color: transparent;
   animation: pulseGlow 1.5s infinite;
@@ -8181,7 +8183,7 @@ a {
 :root {
   --accent-primary: #8b5cf6;
   --accent-secondary: #06b6d4;
-  --accent-pink: #ec4899;
+  --accent-pink: #a855f7;
   --accent-gradient: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
   --bg-base: #07080e;
   --bg-surface: rgba(18, 20, 32, 0.85);
@@ -8810,7 +8812,7 @@ a {
 
 .progress-bar-wrapper:hover .progress-bar-fill,
 .progress-bar-wrapper:hover #player-progress-fill {
-  background: #ff007a !important;
+  background: var(--accent-purple) !important;
 }
 
 .player-right {
@@ -8830,7 +8832,7 @@ a {
 #volume-slider {
   width: 70px !important;
   height: 3px !important;
-  accent-color: #ff007a !important;
+  accent-color: var(--accent-purple) !important;
   cursor: pointer !important;
 }
 
@@ -9320,7 +9322,7 @@ a {
 }
 
 .btn-seek-step:hover {
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
   background: rgba(255, 0, 122, 0.12) !important;
   transform: scale(1.15) !important;
 }
@@ -9360,7 +9362,7 @@ a {
 }
 
 .fs-seek-step-btn:hover {
-  color: #ff007a !important;
+  color: var(--accent-purple) !important;
   border-color: rgba(255, 0, 122, 0.5) !important;
   background: rgba(255, 0, 122, 0.15) !important;
   transform: scale(1.18) !important;
@@ -9426,7 +9428,7 @@ a {
   height: 14px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 0 12px rgba(255, 0, 122, 0.9), 0 0 6px #ff007a;
+  box-shadow: 0 0 12px rgba(255, 0, 122, 0.9), 0 0 6px var(--accent-purple);
   transition: transform 0.15s ease;
   pointer-events: none;
   z-index: 15;
@@ -9542,7 +9544,7 @@ a {
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
   border-radius: 20px;
-  background: #ff007a;
+  background: var(--accent-purple);
   color: #fff;
   font-weight: 700;
   border: none;
@@ -9752,7 +9754,7 @@ a {
 }
 
 .btn-action-icon:hover {
-  color: #ff007a;
+  color: var(--accent-purple);
   transform: scale(1.15);
 }
 
