@@ -63,82 +63,78 @@ export async function resolvePipedAudioStream(videoId) {
     }
   }
 
-  // 1. Try Piped API Instances (Primary)
-  for (let attempt = 0; attempt < 3; attempt++) {
-    const node = getActivePipedNode();
-    try {
-      const url = `${node}/streams/${cleanId}`;
-      const res = await fetch(url, { signal: AbortSignal.timeout(4000) });
-      if (res.ok) {
-        const data = await res.json();
-        const audioStreams = data.audioStreams || [];
-        if (audioStreams.length > 0) {
-          // Sort by bitrate descending; prioritize opus or high-bitrate m4a
-          audioStreams.sort((a, b) => (b.bitrate || 0) - (a.bitrate || 0));
-          const bestStream = audioStreams.find(s => s.codec === 'opus') || audioStreams[0];
+  // FAST CONCURRENT RACING (Piped + Invidious Combined)
+  // We race multiple top nodes simultaneously. First valid stream wins instantly.
+  const nodesToRace = [
+    ...PIPED_INSTANCES.sort(() => 0.5 - Math.random()).slice(0, 3).map(n => ({ type: 'piped', url: `${n}/streams/${cleanId}` })),
+    ...INVIDIOUS_INSTANCES.sort(() => 0.5 - Math.random()).slice(0, 2).map(n => ({ type: 'invidious', url: `${n}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats` }))
+  ];
 
-          if (bestStream && bestStream.url) {
-            const resolved = {
-              streamUrl: bestStream.url,
-              codec: bestStream.codec || 'opus',
-              bitrate: bestStream.bitrate ? `${Math.round(bestStream.bitrate / 1000)}kbps` : '160kbps',
-              mimeType: bestStream.mimeType || 'audio/webm',
-              duration: data.duration || 220,
-              title: data.title || '',
-              artist: data.uploader || '',
-              thumbnail: data.thumbnailUrl || (data.thumbnails && data.thumbnails[0]?.url) || '',
-              source: 'YouTube Music (Pure Opus Master)'
-            };
-
-            STREAM_RESOLVER_CACHE.set(cleanId, {
-              data: resolved,
-              expiresAt: Date.now() + 30 * 60 * 1000 // Cache for 30 minutes
-            });
-            return resolved;
+  try {
+    const fastestResolved = await Promise.any(
+      nodesToRace.map(async (node) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000); // Super aggressive 2.0s timeout per node
+        try {
+          const res = await fetch(node.url, { signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (!res.ok) throw new Error('Not ok');
+          const data = await res.json();
+          
+          if (node.type === 'piped') {
+            const audioStreams = data.audioStreams || [];
+            if (audioStreams.length > 0) {
+              audioStreams.sort((a, b) => (b.bitrate || 0) - (a.bitrate || 0));
+              const bestStream = audioStreams.find(s => s.codec === 'opus') || audioStreams[0];
+              if (bestStream && bestStream.url) {
+                return {
+                  streamUrl: bestStream.url,
+                  codec: bestStream.codec || 'opus',
+                  bitrate: bestStream.bitrate ? `${Math.round(bestStream.bitrate / 1000)}kbps` : '160kbps',
+                  mimeType: bestStream.mimeType || 'audio/webm',
+                  duration: data.duration || 220,
+                  title: data.title || '',
+                  artist: data.uploader || '',
+                  thumbnail: data.thumbnailUrl || (data.thumbnails && data.thumbnails[0]?.url) || '',
+                  source: 'Piped Master (Fast)'
+                };
+              }
+            }
+          } else if (node.type === 'invidious') {
+            const formats = (data.adaptiveFormats || []).filter(f => f.type && f.type.startsWith('audio/'));
+            if (formats.length > 0) {
+              formats.sort((a, b) => (parseInt(b.bitrate, 10) || 0) - (parseInt(a.bitrate, 10) || 0));
+              const best = formats[0];
+              if (best && best.url) {
+                return {
+                  streamUrl: best.url,
+                  codec: best.container || 'webm/opus',
+                  bitrate: best.bitrate ? `${Math.round(parseInt(best.bitrate, 10) / 1000)}kbps` : '160kbps',
+                  mimeType: best.type || 'audio/webm',
+                  duration: parseInt(data.lengthSeconds, 10) || 220,
+                  title: data.title || '',
+                  artist: data.author || '',
+                  thumbnail: `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
+                  source: 'Invidious (Fast)'
+                };
+              }
+            }
           }
+          throw new Error('No valid streams');
+        } catch (e) {
+          clearTimeout(timeoutId);
+          throw e; // Important for Promise.any to skip this failure
         }
-      }
-    } catch (e) {
-      rotatePipedNode();
-    }
-  }
+      })
+    );
 
-  // 2. Try Invidious API Instances
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const invNode = getActiveInvidiousNode();
-    try {
-      const url = `${invNode}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats`;
-      const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
-      if (res.ok) {
-        const data = await res.json();
-        const formats = (data.adaptiveFormats || []).filter(f => f.type && f.type.startsWith('audio/'));
-        if (formats.length > 0) {
-          formats.sort((a, b) => (parseInt(b.bitrate, 10) || 0) - (parseInt(a.bitrate, 10) || 0));
-          const best = formats[0];
-          if (best && best.url) {
-            const resolved = {
-              streamUrl: best.url,
-              codec: best.container || 'webm/opus',
-              bitrate: best.bitrate ? `${Math.round(parseInt(best.bitrate, 10) / 1000)}kbps` : '160kbps',
-              mimeType: best.type || 'audio/webm',
-              duration: parseInt(data.lengthSeconds, 10) || 220,
-              title: data.title || '',
-              artist: data.author || '',
-              thumbnail: `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
-              source: 'YouTube Music Invidious Extractor'
-            };
-
-            STREAM_RESOLVER_CACHE.set(cleanId, {
-              data: resolved,
-              expiresAt: Date.now() + 30 * 60 * 1000
-            });
-            return resolved;
-          }
-        }
-      }
-    } catch (e) {
-      rotateInvidiousNode();
-    }
+    STREAM_RESOLVER_CACHE.set(cleanId, {
+      data: fastestResolved,
+      expiresAt: Date.now() + 30 * 60 * 1000
+    });
+    return fastestResolved;
+  } catch (aggregateError) {
+    console.warn('[Audio Extractor] All raced nodes failed:', aggregateError.errors);
   }
 
   // 3. Try Local Backend Python Extractor
