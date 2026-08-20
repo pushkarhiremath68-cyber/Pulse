@@ -552,6 +552,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('#player-progress-fill, #playbar-progress-fill, #mini-top-progress-fill, #fs-progress-fill').forEach(el => {
         el.style.width = `${pct}%`;
       });
+      if (typeof window.syncLiveLyrics === 'function') {
+        window.syncLiveLyrics(currentTime);
+      }
     });
 
     seeker.addEventListener('change', (e) => {
@@ -568,10 +571,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Swipe to minimize fullscreen player
+  let fsStartY = 0;
+  const fsPlayer = document.getElementById('fullscreen-player');
+  if (fsPlayer) {
+    fsPlayer.addEventListener('touchstart', (e) => {
+      fsStartY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    fsPlayer.addEventListener('touchend', (e) => {
+      const deltaY = e.changedTouches[0].clientY - fsStartY;
+      if (deltaY > 80) { // Swiped down
+        toggleFullscreen(false);
+      }
+    });
+  }
+
   // Listen to Firestore Favorites changes to update UI
-  onFavoritesChanged(() => {
-    if (currentTrack) updateFavoriteButtonUI(currentTrack.id);
-  });
+  if (typeof window.onFavoritesChanged === 'function') {
+    window.onFavoritesChanged(() => {
+      if (currentTrack) updateFavoriteButtonUI(currentTrack.id);
+    });
+  } else if (typeof onFavoritesChanged === 'function') {
+    onFavoritesChanged(() => {
+      if (currentTrack) updateFavoriteButtonUI(currentTrack.id);
+    });
+  }
 });
 
 export function toggleFullscreen(forceState) {

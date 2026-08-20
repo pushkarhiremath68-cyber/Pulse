@@ -10427,3 +10427,15 @@ a {
   gap: 0.5rem;
   align-items: center;
 }
+
+@media (min-width: 769px) {
+  .mobile-playbar-controls {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-playbar-controls {
+    display: none !important;
+  }
+}
