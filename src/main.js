@@ -76,6 +76,71 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       window.renderLibraryView();
     } else if (viewId === 'home') {
       window.renderHomeDiscovery();
+    } else if (viewId === 'search-view') {
+      const searchInput = document.getElementById('global-search-input');
+      if (searchInput) searchInput.focus();
+    }
+  };
+
+  // Render Library / Liked Songs
+  window.renderLibraryView = async function() {
+    const container = document.getElementById('library-tracks-container');
+    if (!container) return;
+
+    if (!window.pulseState.currentUser) {
+      container.innerHTML = `
+        <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+          <i class="fa-solid fa-lock" style="font-size: 2.5rem; margin-bottom: 1rem; color: #a855f7; opacity: 0.5;"></i>
+          <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem;">Sign in to view your Library</h3>
+          <p>Your liked tracks and playlists are synced across devices.</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fa-solid fa-spinner fa-spin"></i> Loading Library...</div>';
+
+    try {
+      const favs = await getFavorites(window.pulseState.currentUser.uid);
+      if (!favs || favs.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+            <i class="fa-solid fa-heart" style="font-size: 2.5rem; margin-bottom: 1rem; color: #f87171; opacity: 0.5;"></i>
+            <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem;">No Liked Songs yet</h3>
+            <p>Tap the heart icon on any track to add it to your library.</p>
+          </div>
+        `;
+        return;
+      }
+
+      window.__libraryResults = favs;
+
+      window.playLibraryTrack = function(index) {
+        if (!window.__libraryResults || !window.__libraryResults[index]) return;
+        window.playTrackDirect(window.__libraryResults[index], window.__libraryResults);
+      };
+
+      container.className = 'search-results-list'; // Reuse styling
+      
+      container.innerHTML = favs.map((track, idx) => `
+        <div class="track-card glass-card hover-glow" onclick="window.playLibraryTrack(${idx})">
+          <div class="card-cover-wrap">
+            <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" class="card-cover" loading="lazy">
+            <div class="card-play-overlay">
+              <button class="btn-play-hover"><i class="fa-solid fa-play"></i></button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h4 class="card-title">${track.title}</h4>
+            <p class="card-artist">${track.artist}</p>
+          </div>
+          <div class="card-actions">
+            <button class="btn-icon-small" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.toggleCurrentTrackFavorite(${idx})" title="Remove"><i class="fa-solid fa-heart" style="color: #f87171;"></i></button>
+          </div>
+        </div>
+      `).join('');
+    } catch (e) {
+      container.innerHTML = '<div style="text-align: center; color: #f87171;">Failed to load library.</div>';
     }
   };
 
