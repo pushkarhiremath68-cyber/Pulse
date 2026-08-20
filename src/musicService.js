@@ -462,7 +462,6 @@ export async function resolveExactTrackStream(track) {
 const musicService = {
   searchTracks,
   fetchTrendingTracks,
-  fetchLanguagePlaylists,
   searchSaavnMasterTracks,
   searchAudiusTracks,
   normalizeTrack,

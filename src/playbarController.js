@@ -7,7 +7,7 @@
 
 import { addToHistory, isFavorite, addFavorite, removeFavorite, onFavoritesChanged } from './firestoreService.js';
 import { resolvePipedAudioStream } from './extractorService.js';
-import { resolveExactTrackStream } from './musicService.js';
+import { resolveFullAudioStream } from './musicService.js';
 
 let audio = null;
 let currentTrack = null;
