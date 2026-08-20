@@ -123,6 +123,19 @@ export async function fetchTrendingTracks(limit = 40) {
     ytTracks.forEach(t => addUnique(t));
   } catch (e) {}
 
+  // Hardcoded Fallback if all APIs fail (Guarantees UI never looks broken)
+  if (results.length === 0) {
+    const fallbackTracks = [
+      { id: 'ytm-4NRXx6U8ABQ', ytId: '4NRXx6U8ABQ', title: 'Blinding Lights', artist: 'The Weeknd', coverUrl: 'https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg', duration: 200, source: 'Top Hit (Fallback)' },
+      { id: 'ytm-kJQP7kiw5Fk', ytId: 'kJQP7kiw5Fk', title: 'Despacito', artist: 'Luis Fonsi ft. Daddy Yankee', coverUrl: 'https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg', duration: 288, source: 'Top Hit (Fallback)' },
+      { id: 'ytm-JGwWNGJdvx8', ytId: 'JGwWNGJdvx8', title: 'Shape of You', artist: 'Ed Sheeran', coverUrl: 'https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg', duration: 233, source: 'Top Hit (Fallback)' },
+      { id: 'ytm-YykjpeuMNEk', ytId: 'YykjpeuMNEk', title: 'Coldplay - Hymn For The Weekend', artist: 'Coldplay', coverUrl: 'https://i.ytimg.com/vi/YykjpeuMNEk/hqdefault.jpg', duration: 258, source: 'Top Hit (Fallback)' },
+      { id: 'ytm-VqebCewxAyk', ytId: 'VqebCewxAyk', title: 'Tum Hi Ho', artist: 'Arijit Singh', coverUrl: 'https://i.ytimg.com/vi/VqebCewxAyk/hqdefault.jpg', duration: 262, source: 'Top Hit (Fallback)' },
+      { id: 'ytm-2Vv-BfVoq4g', ytId: '2Vv-BfVoq4g', title: 'Perfect', artist: 'Ed Sheeran', coverUrl: 'https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg', duration: 263, source: 'Top Hit (Fallback)' }
+    ];
+    fallbackTracks.forEach(t => addUnique(t));
+  }
+
   return results.slice(0, limit);
 }
 

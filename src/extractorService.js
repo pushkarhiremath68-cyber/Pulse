@@ -252,32 +252,39 @@ export async function fetchYouTubeMusicCharts(country = 'GLOBAL', limit = 30) {
   }
 
   const results = [];
-  const node = getActivePipedNode();
-  try {
-    const res = await fetch(`${node}/trending?region=US`, { signal: AbortSignal.timeout(3500) });
-    if (res.ok) {
-      const items = await res.json();
-      if (Array.isArray(items)) {
-        for (const item of items) {
-          const videoId = (item.url || '').replace('/watch?v=', '').trim();
-          if (videoId && (item.duration || 0) > 45) {
-            results.push({
-              id: `ytm-${videoId}`,
-              ytId: videoId,
-              title: item.title || 'Trending Track',
-              artist: item.uploaderName || 'Trending Artist',
-              album: 'Global Trending Release',
-              coverUrl: item.thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-              duration: item.duration || 220,
-              streamUrl: '',
-              source: 'YouTube Music Top Chart'
-            });
+  
+  let attempts = 0;
+  while (attempts < 3 && results.length === 0) {
+    const node = getActivePipedNode();
+    try {
+      const res = await fetch(`${node}/trending?region=US`, { signal: AbortSignal.timeout(3500) });
+      if (res.ok) {
+        const items = await res.json();
+        if (Array.isArray(items)) {
+          for (const item of items) {
+            const videoId = (item.url || '').replace('/watch?v=', '').trim();
+            if (videoId && (item.duration || 0) > 45) {
+              results.push({
+                id: `ytm-${videoId}`,
+                ytId: videoId,
+                title: item.title || 'Trending Track',
+                artist: item.uploaderName || 'Trending Artist',
+                album: 'Global Trending Release',
+                coverUrl: item.thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+                duration: item.duration || 220,
+                streamUrl: '',
+                source: 'YouTube Music Top Chart'
+              });
+            }
           }
         }
+      } else {
+        throw new Error('Not ok');
       }
+    } catch (e) {
+      rotatePipedNode();
     }
-  } catch (e) {
-    rotatePipedNode();
+    attempts++;
   }
 
   if (results.length > 0) {
