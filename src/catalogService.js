@@ -128,11 +128,11 @@ export const LANGUAGE_PLAYLISTS = [
   }
 ];
 
-export const getQuickPicks = async (limit = 6) => {
+export const getQuickPicks = (limit = 6) => {
   return [];
 };
 
-export const getFeaturedArtists = async () => {
+export const getFeaturedArtists = () => {
   return [
     { name: "Arijit Singh", genre: "Bollywood", avatar: "https://i.scdn.co/image/ab6761610000e5eb0261696c5df3be99da6ed3f3" },
     { name: "Ed Sheeran", genre: "Pop", avatar: "https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6" },
@@ -143,7 +143,7 @@ export const getFeaturedArtists = async () => {
   ];
 };
 
-export const getCuratedPlaylists = async () => {
+export const getCuratedPlaylists = () => {
   return [];
 };
 
