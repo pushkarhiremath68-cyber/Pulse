@@ -244,37 +244,12 @@ export async function playTrack(track, queue = null) {
 
   for (const cand of streamCandidates) {
     if (cand.url === 'yt-iframe' && cand.ytId) {
-      if (ytPlayer && ytPlayerReady) {
-        a.pause(); // stop native
-        activeEngine = 'youtube';
-        ytPlayer.loadVideoById(cand.ytId);
-        isPlaying = true;
+      const ytStarted = await playOnYouTubeIframe(cand.ytId, track);
+      if (ytStarted) {
         playbackStarted = true;
-        track.streamUrl = 'yt-iframe';
-        track.source = cand.source || 'Official YouTube Embed (With Ads)';
-        updateTrackInfoUI(track);
-        updatePlayPauseUI();
-        updateMediaSessionPlaybackState('playing');
-        
-        // Start a time interval loop for YT player
-        if (ytTimeInterval) clearInterval(ytTimeInterval);
-        ytTimeInterval = setInterval(() => {
-          if (activeEngine === 'youtube' && isPlaying && ytPlayer.getCurrentTime) {
-            currentTime = ytPlayer.getCurrentTime();
-            if (ytPlayer.getDuration) duration = ytPlayer.getDuration();
-            if (currentTrack) currentTrack.duration = duration;
-            updateTimeUI();
-            updateMediaSessionPositionState();
-            if (typeof window.syncLiveLyrics === 'function') {
-              window.syncLiveLyrics(currentTime);
-            }
-          }
-        }, 500);
         break;
-      } else {
-        console.warn('[Pulse Engine] YT Player not ready yet');
-        continue; // Fallback or fail
       }
+      continue;
     }
 
     if (!cand.url || !cand.url.startsWith('http')) continue;
@@ -294,7 +269,15 @@ export async function playTrack(track, queue = null) {
       updateMediaSessionPlaybackState('playing');
       break;
     } catch (err) {
-      console.warn('[Pulse Audio] Candidate notice:', cand.source);
+      console.warn('[Pulse Audio] Native playback candidate failed, falling back:', cand.source);
+    }
+  }
+
+  // If native audio candidates all failed and we have ytId, force YouTube playback
+  if (!playbackStarted && ytId) {
+    const ytFallbackSuccess = await playOnYouTubeIframe(ytId, track);
+    if (ytFallbackSuccess) {
+      playbackStarted = true;
     }
   }
 
@@ -727,54 +710,136 @@ function initPlaybarController() {
   }
 }
 
-}
+// -----------------------------------------------------------------------------
+// INITIALIZE YOUTUBE IFRAME API & HYBRID PLAYBACK RESOLVER
+// -----------------------------------------------------------------------------
+function initYouTubePlayer() {
+  if (ytPlayer) return;
+  const container = document.getElementById('yt-player-container');
+  if (!container) return;
 
-// -----------------------------------------------------------------------------
-// INITIALIZE YOUTUBE IFRAME API
-// -----------------------------------------------------------------------------
-window.onYouTubeIframeAPIReady = function() {
-  ytPlayer = new window.YT.Player('yt-player-container', {
-    height: '0',
-    width: '0',
-    videoId: '',
-    playerVars: {
-      'autoplay': 0,
-      'controls': 0,
-      'disablekb': 1,
-      'playsinline': 1
-    },
-    events: {
-      'onReady': (event) => {
-        ytPlayerReady = true;
-        ytPlayer.setVolume(currentVolume * 100);
-        console.log('[Pulse Hybrid Engine] YouTube IFrame API Ready.');
-      },
-      'onStateChange': (event) => {
-        if (activeEngine !== 'youtube') return;
-        if (event.data === window.YT.PlayerState.PLAYING) {
-          isPlaying = true;
-          updatePlayPauseUI();
-          updateMediaSessionPlaybackState('playing');
-        } else if (event.data === window.YT.PlayerState.PAUSED) {
-          isPlaying = false;
-          updatePlayPauseUI();
-          updateMediaSessionPlaybackState('paused');
-        } else if (event.data === window.YT.PlayerState.ENDED) {
-          if (isRepeat) {
-            ytPlayer.seekTo(0, true);
-            ytPlayer.playVideo();
-          } else {
+  if (typeof window.YT !== 'undefined' && window.YT.Player) {
+    try {
+      ytPlayer = new window.YT.Player('yt-player-container', {
+        height: '160',
+        width: '240',
+        videoId: '',
+        playerVars: {
+          'autoplay': 1,
+          'controls': 0,
+          'disablekb': 1,
+          'playsinline': 1,
+          'enablejsapi': 1
+        },
+        events: {
+          'onReady': (event) => {
+            ytPlayerReady = true;
+            try {
+              ytPlayer.setVolume(currentVolume * 100);
+            } catch (e) {}
+            console.log('[Pulse Hybrid Engine] YouTube IFrame API Ready.');
+          },
+          'onStateChange': (event) => {
+            if (activeEngine !== 'youtube') return;
+            if (event.data === window.YT.PlayerState.PLAYING) {
+              isPlaying = true;
+              updatePlayPauseUI();
+              updateMediaSessionPlaybackState('playing');
+            } else if (event.data === window.YT.PlayerState.PAUSED) {
+              isPlaying = false;
+              updatePlayPauseUI();
+              updateMediaSessionPlaybackState('paused');
+            } else if (event.data === window.YT.PlayerState.ENDED) {
+              if (isRepeat) {
+                ytPlayer.seekTo(0, true);
+                ytPlayer.playVideo();
+              } else {
+                playNext();
+              }
+            }
+          },
+          'onError': (e) => {
+            console.warn('[Pulse Hybrid Engine] YT IFrame Error:', e);
             playNext();
           }
         }
-      },
-      'onError': (e) => {
-        console.warn('[Pulse Hybrid Engine] YT IFrame Error:', e);
-        playNext();
+      });
+    } catch (e) {
+      console.warn('[Pulse Hybrid Engine] Error instantiating YT Player:', e);
+    }
+  }
+}
+
+export async function playOnYouTubeIframe(videoId, track) {
+  if (!videoId) return false;
+  const cleanId = videoId.replace('ytm-', '').replace('yt-', '').trim();
+  const a = getAudio();
+
+  return new Promise((resolve) => {
+    function executePlay() {
+      try {
+        a.pause();
+        activeEngine = 'youtube';
+        ytPlayer.loadVideoById(cleanId);
+        ytPlayer.playVideo();
+        isPlaying = true;
+        if (window.pulseState) window.pulseState.isPlaying = true;
+        track.streamUrl = 'yt-iframe';
+        track.source = 'YouTube Audio Stream';
+        updateTrackInfoUI(track);
+        updatePlayPauseUI();
+        updateMediaSessionPlaybackState('playing');
+
+        if (ytTimeInterval) clearInterval(ytTimeInterval);
+        ytTimeInterval = setInterval(() => {
+          if (activeEngine === 'youtube' && isPlaying && ytPlayer && ytPlayer.getCurrentTime) {
+            try {
+              currentTime = ytPlayer.getCurrentTime() || 0;
+              if (ytPlayer.getDuration) duration = ytPlayer.getDuration() || 220;
+              if (currentTrack) currentTrack.duration = duration;
+              updateTimeUI();
+              updateMediaSessionPositionState();
+              if (typeof window.syncLiveLyrics === 'function') {
+                window.syncLiveLyrics(currentTime);
+              }
+            } catch (e) {}
+          }
+        }, 500);
+        resolve(true);
+      } catch (err) {
+        console.warn('[Pulse Engine] YT Play error:', err);
+        resolve(false);
       }
     }
+
+    if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === 'function') {
+      executePlay();
+    } else {
+      initYouTubePlayer();
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === 'function') {
+          clearInterval(interval);
+          executePlay();
+        } else if (attempts > 25) {
+          clearInterval(interval);
+          resolve(false);
+        }
+      }, 150);
+    }
   });
+}
+
+// Global hook for YouTube Iframe API callback
+window.onYouTubeIframeAPIReady = function() {
+  initYouTubePlayer();
 };
+
+// Also check immediately in case API script already loaded
+if (typeof window.YT !== 'undefined' && window.YT.Player) {
+  initYouTubePlayer();
+}
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initPlaybarController);

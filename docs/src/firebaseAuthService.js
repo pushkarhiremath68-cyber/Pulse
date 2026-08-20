@@ -10,10 +10,19 @@ const STORAGE_KEY = 'pulse_user_session';
 export function getStoredUser() {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : null;
-  } catch (e) {
-    return null;
-  }
+    if (stored) return JSON.parse(stored);
+  } catch (e) {}
+
+  const guest = {
+    id: `guest-${Date.now()}`,
+    uid: `guest-${Date.now()}`,
+    name: 'Guest Listener',
+    email: 'guest@pulse.app',
+    avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=guest`,
+    provider: 'anonymous'
+  };
+  setStoredUser(guest);
+  return guest;
 }
 
 export function setStoredUser(user) {

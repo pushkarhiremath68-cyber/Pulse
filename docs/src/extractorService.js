@@ -4,23 +4,24 @@
  * with 0 video frames and zero visual container dependencies.
  */
 
-// Active High-Performance Piped API Instances
+// Active High-Performance Piped & Invidious Instances
 export const PIPED_INSTANCES = [
   'https://api.piped.privacydev.net',
   'https://pipedapi.kavin.rocks',
   'https://piped-api.garudalinux.org',
-  'https://api.piped.projectsegfau.lt',
-  'https://pipedapi.tokhmi.xyz',
   'https://pa.il.ax',
+  'https://pipedapi.tokhmi.xyz',
+  'https://api.piped.projectsegfau.lt',
   'https://pipedapi.r4fo.com'
 ];
 
-// Active Invidious Instances for Secondary Fallback
 export const INVIDIOUS_INSTANCES = [
-  'https://invidious.nerdvpn.de',
   'https://inv.tux.pizza',
+  'https://invidious.nerdvpn.de',
   'https://invidious.private.coffee',
-  'https://invidious.jing.rocks'
+  'https://invidious.jing.rocks',
+  'https://yewtu.be',
+  'https://vid.puffyan.us'
 ];
 
 let pipedIdx = 0;
@@ -55,7 +56,7 @@ const SEARCH_CACHE = new Map();
 export async function resolvePipedAudioStream(videoId) {
   if (!videoId || typeof videoId !== 'string' || videoId.length < 5) return null;
 
-  const cleanId = videoId.replace('yt-', '').trim();
+  const cleanId = videoId.replace('ytm-', '').replace('yt-', '').trim();
   if (STREAM_RESOLVER_CACHE.has(cleanId)) {
     const cached = STREAM_RESOLVER_CACHE.get(cleanId);
     if (Date.now() < cached.expiresAt) {
@@ -63,85 +64,80 @@ export async function resolvePipedAudioStream(videoId) {
     }
   }
 
-  // 1. Try Piped API Instances (Primary)
-  for (let attempt = 0; attempt < 3; attempt++) {
-    const node = getActivePipedNode();
-    try {
-      const url = `${node}/streams/${cleanId}`;
-      const res = await fetch(url, { signal: AbortSignal.timeout(4000) });
-      if (res.ok) {
-        const data = await res.json();
-        const audioStreams = data.audioStreams || [];
-        if (audioStreams.length > 0) {
-          // Sort by bitrate descending; prioritize opus or high-bitrate m4a
-          audioStreams.sort((a, b) => (b.bitrate || 0) - (a.bitrate || 0));
-          const bestStream = audioStreams.find(s => s.codec === 'opus') || audioStreams[0];
+  // FAST CONCURRENT RACING (Piped + Invidious Combined)
+  const nodesToRace = [
+    ...PIPED_INSTANCES.map(n => ({ type: 'piped', url: `${n}/streams/${cleanId}` })),
+    ...INVIDIOUS_INSTANCES.map(n => ({ type: 'invidious', url: `${n}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats` }))
+  ];
 
-          if (bestStream && bestStream.url) {
-            const resolved = {
-              streamUrl: bestStream.url,
-              codec: bestStream.codec || 'opus',
-              bitrate: bestStream.bitrate ? `${Math.round(bestStream.bitrate / 1000)}kbps` : '160kbps',
-              mimeType: bestStream.mimeType || 'audio/webm',
-              duration: data.duration || 220,
-              title: data.title || '',
-              artist: data.uploader || '',
-              thumbnail: data.thumbnailUrl || (data.thumbnails && data.thumbnails[0]?.url) || '',
-              source: 'YouTube Music (Pure Opus Master)'
-            };
-
-            STREAM_RESOLVER_CACHE.set(cleanId, {
-              data: resolved,
-              expiresAt: Date.now() + 30 * 60 * 1000 // Cache for 30 minutes
-            });
-            return resolved;
+  try {
+    const fastestResolved = await Promise.any(
+      nodesToRace.map(async (node) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5500);
+        try {
+          const res = await fetch(node.url, { signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (!res.ok) throw new Error('Not ok');
+          const data = await res.json();
+          
+          if (node.type === 'piped') {
+            const audioStreams = data.audioStreams || [];
+            if (audioStreams.length > 0) {
+              audioStreams.sort((a, b) => (b.bitrate || 0) - (a.bitrate || 0));
+              const bestStream = audioStreams.find(s => s.codec === 'opus') || audioStreams[0];
+              if (bestStream && bestStream.url) {
+                return {
+                  streamUrl: bestStream.url,
+                  codec: bestStream.codec || 'opus',
+                  bitrate: bestStream.bitrate ? `${Math.round(bestStream.bitrate / 1000)}kbps` : '160kbps',
+                  mimeType: bestStream.mimeType || 'audio/webm',
+                  duration: data.duration || 220,
+                  title: data.title || '',
+                  artist: data.uploader || '',
+                  thumbnail: data.thumbnailUrl || (data.thumbnails && data.thumbnails[0]?.url) || `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
+                  source: 'YouTube Music Opus 160k'
+                };
+              }
+            }
+          } else if (node.type === 'invidious') {
+            const formats = (data.adaptiveFormats || []).filter(f => f.type && f.type.startsWith('audio/'));
+            if (formats.length > 0) {
+              formats.sort((a, b) => (parseInt(b.bitrate, 10) || 0) - (parseInt(a.bitrate, 10) || 0));
+              const best = formats[0];
+              if (best && best.url) {
+                return {
+                  streamUrl: best.url,
+                  codec: best.container || 'webm/opus',
+                  bitrate: best.bitrate ? `${Math.round(parseInt(best.bitrate, 10) / 1000)}kbps` : '160kbps',
+                  mimeType: best.type || 'audio/webm',
+                  duration: parseInt(data.lengthSeconds, 10) || 220,
+                  title: data.title || '',
+                  artist: data.author || '',
+                  thumbnail: `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
+                  source: 'YouTube Music Pure Audio'
+                };
+              }
+            }
           }
+          throw new Error('No valid streams');
+        } catch (e) {
+          clearTimeout(timeoutId);
+          throw e;
         }
-      }
-    } catch (e) {
-      rotatePipedNode();
-    }
+      })
+    );
+
+    STREAM_RESOLVER_CACHE.set(cleanId, {
+      data: fastestResolved,
+      expiresAt: Date.now() + 30 * 60 * 1000
+    });
+    return fastestResolved;
+  } catch (aggregateError) {
+    console.warn('[Audio Extractor] Raced instances note:', cleanId);
   }
 
-  // 2. Try Invidious API Instances
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const invNode = getActiveInvidiousNode();
-    try {
-      const url = `${invNode}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats`;
-      const res = await fetch(url, { signal: AbortSignal.timeout(3500) });
-      if (res.ok) {
-        const data = await res.json();
-        const formats = (data.adaptiveFormats || []).filter(f => f.type && f.type.startsWith('audio/'));
-        if (formats.length > 0) {
-          formats.sort((a, b) => (parseInt(b.bitrate, 10) || 0) - (parseInt(a.bitrate, 10) || 0));
-          const best = formats[0];
-          if (best && best.url) {
-            const resolved = {
-              streamUrl: best.url,
-              codec: best.container || 'webm/opus',
-              bitrate: best.bitrate ? `${Math.round(parseInt(best.bitrate, 10) / 1000)}kbps` : '160kbps',
-              mimeType: best.type || 'audio/webm',
-              duration: parseInt(data.lengthSeconds, 10) || 220,
-              title: data.title || '',
-              artist: data.author || '',
-              thumbnail: `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
-              source: 'YouTube Music Invidious Extractor'
-            };
-
-            STREAM_RESOLVER_CACHE.set(cleanId, {
-              data: resolved,
-              expiresAt: Date.now() + 30 * 60 * 1000
-            });
-            return resolved;
-          }
-        }
-      }
-    } catch (e) {
-      rotateInvidiousNode();
-    }
-  }
-
-  // 3. Try Local Backend Python Extractor
+  // Fallback: Local backend proxy
   try {
     const localUrl = `/api/ytm/stream?id=${cleanId}`;
     const res = await fetch(localUrl, { signal: AbortSignal.timeout(3000) });
@@ -171,7 +167,8 @@ export async function resolvePipedAudioStream(videoId) {
 }
 
 /**
- * Searches YouTube Music / Piped for Songs, Artists, and Albums
+ * Searches YouTube Music & YouTube for Songs, Artists, and Audio Tracks
+ * Utilizes a high-performance concurrent race across all instances.
  */
 export async function searchYouTubeMusic(query, limit = 25) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
@@ -184,54 +181,58 @@ export async function searchYouTubeMusic(query, limit = 25) {
   const results = [];
   const seenIds = new Set();
 
-  // 1. Query Piped Music Search
-  for (let attempt = 0; attempt < 3; attempt++) {
-    const node = getActivePipedNode();
-    try {
-      const searchUrl = `${node}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs`;
-      const res = await fetch(searchUrl, { signal: AbortSignal.timeout(3500) });
-      if (res.ok) {
-        const json = await res.json();
-        const items = json.items || [];
-        for (const item of items) {
-          const videoId = (item.url || '').replace('/watch?v=', '').trim();
-          if (videoId && !seenIds.has(videoId)) {
-            seenIds.add(videoId);
-            results.push({
-              id: `ytm-${videoId}`,
-              ytId: videoId,
-              title: item.title || 'Untitled Track',
-              artist: item.uploaderName || item.artist || 'YouTube Music Artist',
-              album: item.album || 'YouTube Music Single',
-              coverUrl: item.thumbnail || (item.thumbnails && item.thumbnails[0]?.url) || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-              duration: item.duration || 220,
-              streamUrl: '', // Resolved on play
-              source: 'YouTube Music Ad-Free Opus'
-            });
-          }
-        }
-        if (results.length >= limit) break;
-      }
-    } catch (e) {
-      rotatePipedNode();
-    }
-  }
+  const nodesToRace = [
+    ...PIPED_INSTANCES.map(n => ({ type: 'piped', url: `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` })),
+    ...PIPED_INSTANCES.map(n => ({ type: 'piped', url: `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=all` })),
+    ...INVIDIOUS_INSTANCES.map(n => ({ type: 'invidious', url: `${n}/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` }))
+  ];
 
-  // 2. Query Local Backend YTM Search Endpoint
-  if (results.length === 0) {
-    try {
-      const res = await fetch(`/api/ytm/search?q=${encodeURIComponent(cleanQ)}`, { signal: AbortSignal.timeout(3000) });
-      if (res.ok) {
-        const json = await res.json();
-        const items = json.results || [];
-        for (const item of items) {
-          if (item.ytId && !seenIds.has(item.ytId)) {
-            seenIds.add(item.ytId);
-            results.push(item);
-          }
+  try {
+    const fastestSearch = await Promise.any(
+      nodesToRace.map(async (node) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5500);
+        try {
+          const res = await fetch(node.url, { signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (!res.ok) throw new Error('Not ok');
+          const json = await res.json();
+          const items = Array.isArray(json) ? json : (json.items || []);
+          if (items.length === 0) throw new Error('Empty');
+          return { items, type: node.type };
+        } catch (e) {
+          clearTimeout(timeoutId);
+          throw e;
         }
+      })
+    );
+
+    for (const item of fastestSearch.items) {
+      let videoId = '';
+      if (item.videoId) {
+        videoId = item.videoId;
+      } else if (item.url) {
+        videoId = item.url.replace('/watch?v=', '').replace('/streams/', '').trim();
       }
-    } catch (e) {}
+
+      if (videoId && !seenIds.has(videoId) && videoId.length >= 8) {
+        seenIds.add(videoId);
+        results.push({
+          id: `ytm-${videoId}`,
+          ytId: videoId,
+          title: item.title || 'Untitled Track',
+          artist: item.uploaderName || item.author || item.artist || 'YouTube Music Artist',
+          album: item.album || 'YouTube Music Single',
+          coverUrl: item.thumbnail || (item.thumbnails && item.thumbnails[0]?.url) || (item.videoThumbnails && item.videoThumbnails[0]?.url) || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+          duration: typeof item.duration === 'number' ? item.duration : (parseInt(item.lengthSeconds, 10) || 220),
+          streamUrl: '',
+          source: 'YouTube Music Ad-Free Opus'
+        });
+      }
+      if (results.length >= limit) break;
+    }
+  } catch (aggregateError) {
+    console.warn('[Pulse Search Engine] Notice on public node search race');
   }
 
   if (results.length > 0) {
@@ -251,32 +252,39 @@ export async function fetchYouTubeMusicCharts(country = 'GLOBAL', limit = 30) {
   }
 
   const results = [];
-  const node = getActivePipedNode();
-  try {
-    const res = await fetch(`${node}/trending?region=US`, { signal: AbortSignal.timeout(3500) });
-    if (res.ok) {
-      const items = await res.json();
-      if (Array.isArray(items)) {
-        for (const item of items) {
-          const videoId = (item.url || '').replace('/watch?v=', '').trim();
-          if (videoId && (item.duration || 0) > 45) {
-            results.push({
-              id: `ytm-${videoId}`,
-              ytId: videoId,
-              title: item.title || 'Trending Track',
-              artist: item.uploaderName || 'Trending Artist',
-              album: 'Global Trending Release',
-              coverUrl: item.thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-              duration: item.duration || 220,
-              streamUrl: '',
-              source: 'YouTube Music Top Chart'
-            });
+  
+  let attempts = 0;
+  while (attempts < 3 && results.length === 0) {
+    const node = getActivePipedNode();
+    try {
+      const res = await fetch(`${node}/trending?region=US`, { signal: AbortSignal.timeout(3500) });
+      if (res.ok) {
+        const items = await res.json();
+        if (Array.isArray(items)) {
+          for (const item of items) {
+            const videoId = (item.url || '').replace('/watch?v=', '').trim();
+            if (videoId && (item.duration || 0) > 45) {
+              results.push({
+                id: `ytm-${videoId}`,
+                ytId: videoId,
+                title: item.title || 'Trending Track',
+                artist: item.uploaderName || 'Trending Artist',
+                album: 'Global Trending Release',
+                coverUrl: item.thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+                duration: item.duration || 220,
+                streamUrl: '',
+                source: 'YouTube Music Top Chart'
+              });
+            }
           }
         }
+      } else {
+        throw new Error('Not ok');
       }
+    } catch (e) {
+      rotatePipedNode();
     }
-  } catch (e) {
-    rotatePipedNode();
+    attempts++;
   }
 
   if (results.length > 0) {
@@ -291,7 +299,9 @@ const extractorService = {
   searchYouTubeMusic,
   fetchYouTubeMusicCharts,
   getActivePipedNode,
-  rotatePipedNode
+  rotatePipedNode,
+  getActiveInvidiousNode,
+  rotateInvidiousNode
 };
 
 if (typeof window !== 'undefined') {
