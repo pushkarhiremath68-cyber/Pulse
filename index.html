@@ -178,17 +178,44 @@
           </div>
         </section>
 
-        `
-        <!-- TOP DISCOVERIES SECTION -->
-        <section class="music-shelf-section">
-          <div class="shelf-header">
+        <!-- SPOTIFY-STYLE HERO QUICK PICKS (6-TILE GRID) -->
+        <section class="quick-picks-section" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div>
-              <h3 class="shelf-title">Popular Discoveries</h3>
-              <p class="shelf-subtitle">Click any track to start streaming live audio instantly</p>
+              <h3 class="shelf-title" style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-bolt" style="color: #06b6d4; margin-right: 8px;"></i> Quick Picks &amp; Daily Heavy Rotation
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin: 4px 0 0 0;">Jump right back in with your instant sonic queue</p>
             </div>
           </div>
-          <div class="shelf-carousel" id="popular-tracks-grid" style="display: grid
-      </div>
+          <div class="quick-picks-grid" id="home-quick-picks-container"></div>
+        </section>
+
+        <!-- FEATURED ARTISTS SHELF (CIRCULAR AVATARS) -->
+        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-star" style="color: #f59e0b; margin-right: 8px;"></i> Featured Artists
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Explore top artist discographies, popular tracks &amp; verified profiles</p>
+            </div>
+          </div>
+          <div class="artists-carousel" id="home-featured-artists-container" style="display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+        </section>
+
+        <!-- CURATED PLAYLISTS SHELF -->
+        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-record-vinyl" style="color: #a855f7; margin-right: 8px;"></i> Handcrafted Playlists &amp; Mixes
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Sonic atmospheres curated for every mood, activity and vibe</p>
+            </div>
+          </div>
+          <div class="curated-playlists-carousel" id="home-curated-playlists-container" style="display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+        </section>
 
       <!-- VIEW 2: SEARCH -->
       <div id="view-search-view" class="app-view">
