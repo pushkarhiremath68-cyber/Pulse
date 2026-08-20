@@ -487,7 +487,7 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       // Async IIFE to fetch and render without blocking the rest of home rendering
       (async () => {
         try {
-          const langPlaylists = await window.musicService.fetchLanguagePlaylists();
+          const langPlaylists = window.catalogService.LANGUAGE_PLAYLISTS || [];
           window.__langPlaylists = langPlaylists;
           
           let html = '';
