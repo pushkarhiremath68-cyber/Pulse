@@ -193,8 +193,15 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
    * Called on audio timeupdate to highlight current line and center-scroll
    */
   window.syncLiveLyrics = function(currentTime) {
+    const preview = document.getElementById('playbar-lyrics-preview');
     const lyrics = window.pulseState.currentLyrics;
+    
     if (!lyrics || !lyrics.isSynced || !lyrics.lines || lyrics.lines.length === 0) {
+      if (preview) {
+        preview.style.opacity = '0';
+        preview.style.transform = 'translateY(10px)';
+        preview.style.pointerEvents = 'none';
+      }
       return;
     }
 
@@ -204,6 +211,27 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     }
 
     window.pulseState.activeLyricIdx = activeIdx;
+    
+    // Update live floating preview
+    if (preview) {
+      if (activeIdx >= 0 && activeIdx < lyrics.lines.length) {
+        const activeText = lyrics.lines[activeIdx].text || '♪';
+        if (activeText.trim() === '' || activeText.trim() === '♪') {
+           preview.style.opacity = '0';
+           preview.style.transform = 'translateY(10px)';
+           preview.style.pointerEvents = 'none';
+        } else {
+           preview.textContent = activeText;
+           preview.style.opacity = '1';
+           preview.style.transform = 'translateY(0)';
+           preview.style.pointerEvents = 'auto';
+        }
+      } else {
+        preview.style.opacity = '0';
+        preview.style.transform = 'translateY(10px)';
+        preview.style.pointerEvents = 'none';
+      }
+    }
 
     // Update highlights in all active lyrics containers
     ['lyrics-drawer-content', 'fs-lyrics-scroll-box'].forEach(containerId => {
