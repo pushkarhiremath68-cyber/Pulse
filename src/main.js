@@ -329,9 +329,68 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       `).join('');
     }
 
-    // 4. Dynamic Language Playlists
+    // 4. Dynamic Language Playlists & Catalog
     const shelvesContainer = document.getElementById('dynamic-home-shelves');
     if (shelvesContainer) {
+      if (window.catalogService && window.catalogService.CATALOG_CATEGORIES) {
+        let catalogHTML = '';
+        window.catalogService.CATALOG_CATEGORIES.forEach((cat, cIdx) => {
+          catalogHTML += `
+            <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
+              <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div>
+                  <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+                    <i class="fa-solid ${cat.icon}" style="color: ${cat.color}; margin-right: 8px;"></i> ${cat.title}
+                  </h3>
+                  <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">${cat.subtitle}</p>
+                </div>
+              </div>
+              <div class="shelf-carousel" id="cat-carousel-${cIdx}" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;">
+                ${cat.tracks.map((t, tIdx) => `
+                  <div class="music-card hover-glow" onclick="window.playCatalogTrack(${cIdx}, ${tIdx})" style="min-width: 140px; width: 140px; flex-shrink: 0; background: rgba(255,255,255,0.03); padding: 0.5rem; border-radius: 8px; cursor: pointer;">
+                    <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem;">
+                      <img src="${t.cover}" alt="${t.title}" style="width:100%; height:100%; object-fit:cover;">
+                      <div class="card-play-overlay" style="position:absolute; inset:0; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.2s;">
+                        <i class="fa-solid fa-play" style="color:#fff; font-size:1.5rem;"></i>
+                      </div>
+                    </div>
+                    <div class="card-meta">
+                      <div style="font-size: 0.9rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
+                      <div style="font-size: 0.75rem; color: #a1a1aa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.artist}</div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </section>
+          `;
+        });
+        
+        window.playCatalogTrack = function(cIdx, tIdx) {
+          const category = window.catalogService.CATALOG_CATEGORIES[cIdx];
+          const track = category.tracks[tIdx];
+          const formattedTrack = {
+            id: track.ytId ? `ytm-${track.ytId}` : `pulse-${Math.random()}`,
+            title: track.title,
+            artist: track.artist,
+            coverUrl: track.cover,
+            streamUrl: track.stream,
+            duration: track.duration,
+            source: "Catalog Master"
+          };
+          window.playTrackDirect(formattedTrack, category.tracks.map(t => ({
+            id: t.ytId ? `ytm-${t.ytId}` : `pulse-${Math.random()}`,
+            title: t.title,
+            artist: t.artist,
+            coverUrl: t.cover,
+            streamUrl: t.stream,
+            duration: t.duration,
+            source: "Catalog Master"
+          })));
+        };
+
+        shelvesContainer.innerHTML = catalogHTML;
+      }
+
       // Async IIFE to fetch and render without blocking the rest of home rendering
       (async () => {
         try {
