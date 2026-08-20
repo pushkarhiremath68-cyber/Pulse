@@ -632,13 +632,7 @@ export function playTrackAtQueueIndex(index) {
   }
 }
 
-export function seekBackward5() {
-  seekTo(Math.max(0, currentTime - 5));
-}
 
-export function seekForward5() {
-  seekTo(Math.min(duration, currentTime + 5));
-}
 
 // -----------------------------------------------------------------------------
 // EVENT LISTENERS BINDING
