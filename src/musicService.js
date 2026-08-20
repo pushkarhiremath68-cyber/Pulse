@@ -87,7 +87,7 @@ export function normalizeTrack(raw, source = 'YouTube Music Ad-Free Opus') {
   if (!cover && raw.ytId) {
     cover = `https://i.ytimg.com/vi/${raw.ytId}/hqdefault.jpg`;
   }
-  if (!cover) cover = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80';
+  if (!cover) cover = './pulse-logo.png';
 
   let stream = raw.streamUrl || raw.audio || raw.audiodownload || raw.downloadUrl || raw.stream || '';
   if (Array.isArray(raw.downloadUrl) && raw.downloadUrl.length > 0) {

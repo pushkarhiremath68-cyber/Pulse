@@ -670,7 +670,7 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     container.innerHTML = tracks.map((track, idx) => `
       <div class="track-card glass-card hover-glow" onclick="window.playSearchTrack(${idx})">
         <div class="card-cover-wrap">
-          <img src="${track.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80'}" alt="${track.title}" class="card-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80'">
+          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" class="card-cover" loading="lazy" onerror="this.src='./pulse-logo.png'">
           <div class="card-play-overlay">
             <button class="btn-play-hover" title="Play Ad-Free Audio">
               <i class="fa-solid fa-play"></i>
