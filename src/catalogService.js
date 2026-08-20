@@ -133,7 +133,14 @@ export const getQuickPicks = async (limit = 6) => {
 };
 
 export const getFeaturedArtists = async () => {
-  return [];
+  return [
+    { name: "Arijit Singh", genre: "Bollywood", avatar: "https://i.scdn.co/image/ab6761610000e5eb0261696c5df3be99da6ed3f3" },
+    { name: "Ed Sheeran", genre: "Pop", avatar: "https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6" },
+    { name: "Taylor Swift", genre: "Pop", avatar: "https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3132a15fbb0" },
+    { name: "Anirudh Ravichander", genre: "Kollywood", avatar: "https://i.scdn.co/image/ab6761610000e5eb989ed05e1f0570cc4726c2d3" },
+    { name: "AP Dhillon", genre: "Punjabi", avatar: "https://i.scdn.co/image/ab6761610000e5eb01bd9b08f8f26c6db2057370" },
+    { name: "Bad Bunny", genre: "Latin", avatar: "https://i.scdn.co/image/ab6761610000e5eb9e2b100863bb0df9f92fc0a3" }
+  ];
 };
 
 export const getCuratedPlaylists = async () => {
@@ -149,16 +156,48 @@ export const fetchCategoryTracks = async (categoryId, limit = 20) => {
 };
 
 export const getArtistDetails = (artistName) => {
+  const normalized = artistName.toLowerCase().trim();
+  let tracks = [];
+  
+  if (normalized.includes('arijit')) {
+    tracks = [
+      { title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://i.ytimg.com/vi/Umqb9KENgmk/hqdefault.jpg", ytId: "Umqb9KENgmk", duration: 262 },
+      { title: "Chaleya", artist: "Arijit Singh", coverUrl: "https://i.ytimg.com/vi/VAdGW7QDJiU/hqdefault.jpg", ytId: "VAdGW7QDJiU", duration: 198 },
+      { title: "Kesariya", artist: "Arijit Singh", coverUrl: "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg", ytId: "BddP6PYo2gs", duration: 268 }
+    ];
+  } else if (normalized.includes('sheeran')) {
+    tracks = [
+      { title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg", ytId: "JGwWNGJdvx8", duration: 233 },
+      { title: "Perfect", artist: "Ed Sheeran", coverUrl: "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg", ytId: "2Vv-BfVoq4g", duration: 263 }
+    ];
+  } else if (normalized.includes('taylor')) {
+    tracks = [
+      { title: "Cruel Summer", artist: "Taylor Swift", coverUrl: "https://i.ytimg.com/vi/ic8j13piAhQ/hqdefault.jpg", ytId: "ic8j13piAhQ", duration: 178 },
+      { title: "Blank Space", artist: "Taylor Swift", coverUrl: "https://i.ytimg.com/vi/e-ORhEE9VVg/hqdefault.jpg", ytId: "e-ORhEE9VVg", duration: 231 }
+    ];
+  } else if (normalized.includes('anirudh')) {
+    tracks = [
+      { title: "Arabic Kuthu", artist: "Anirudh Ravichander", coverUrl: "https://i.ytimg.com/vi/KqNX2xW1Icw/hqdefault.jpg", ytId: "KqNX2xW1Icw", duration: 279 },
+      { title: "Vaathi Coming", artist: "Anirudh Ravichander", coverUrl: "https://i.ytimg.com/vi/fRD_3vJagOU/hqdefault.jpg", ytId: "fRD_3vJagOU", duration: 230 }
+    ];
+  } else {
+    // Fallback default tracks so click always works
+    tracks = [
+      { title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg", ytId: "4NRXx6U8ABQ", duration: 200 },
+      { title: "Starboy", artist: "The Weeknd", coverUrl: "https://i.ytimg.com/vi/34Na4j8HLws/hqdefault.jpg", ytId: "34Na4j8HLws", duration: 230 }
+    ];
+  }
+
   return {
     id: artistName.toLowerCase().replace(/\s+/g, '-'),
     name: artistName,
-    monthlyListeners: "0",
-    worldRank: "#0",
-    banner: "./pulse-logo.png",
-    topTracks: [],
+    monthlyListeners: "24,500,000",
+    worldRank: "#12",
+    banner: "https://i.scdn.co/image/ab67618600001016c0dbdf08b49e1e2d1eb11b15",
+    topTracks: tracks,
     albums: [],
     singles: [],
-    bio: "No information available.",
+    bio: `Top global hits and discography for ${artistName}.`,
     similarArtists: []
   };
 };

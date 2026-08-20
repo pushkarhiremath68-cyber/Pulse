@@ -181,7 +181,7 @@ export async function searchYouTubeMusic(query, limit = 25) {
   const results = [];
   const seenIds = new Set();
 
-  const nodesToRace = PIPED_INSTANCES.map(n => `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs`);
+  const nodesToRace = PIPED_INSTANCES.map(n => `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=all`);
 
   try {
     const fastestSearch = await Promise.any(
