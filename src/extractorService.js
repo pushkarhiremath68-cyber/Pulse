@@ -4,23 +4,24 @@
  * with 0 video frames and zero visual container dependencies.
  */
 
-// Active High-Performance Piped API Instances
+// Active High-Performance Piped & Invidious Instances
 export const PIPED_INSTANCES = [
   'https://api.piped.privacydev.net',
   'https://pipedapi.kavin.rocks',
   'https://piped-api.garudalinux.org',
-  'https://api.piped.projectsegfau.lt',
-  'https://pipedapi.tokhmi.xyz',
   'https://pa.il.ax',
+  'https://pipedapi.tokhmi.xyz',
+  'https://api.piped.projectsegfau.lt',
   'https://pipedapi.r4fo.com'
 ];
 
-// Active Invidious Instances for Secondary Fallback
 export const INVIDIOUS_INSTANCES = [
-  'https://invidious.nerdvpn.de',
   'https://inv.tux.pizza',
+  'https://invidious.nerdvpn.de',
   'https://invidious.private.coffee',
-  'https://invidious.jing.rocks'
+  'https://invidious.jing.rocks',
+  'https://yewtu.be',
+  'https://vid.puffyan.us'
 ];
 
 let pipedIdx = 0;
@@ -55,7 +56,7 @@ const SEARCH_CACHE = new Map();
 export async function resolvePipedAudioStream(videoId) {
   if (!videoId || typeof videoId !== 'string' || videoId.length < 5) return null;
 
-  const cleanId = videoId.replace('yt-', '').trim();
+  const cleanId = videoId.replace('ytm-', '').replace('yt-', '').trim();
   if (STREAM_RESOLVER_CACHE.has(cleanId)) {
     const cached = STREAM_RESOLVER_CACHE.get(cleanId);
     if (Date.now() < cached.expiresAt) {
@@ -64,7 +65,6 @@ export async function resolvePipedAudioStream(videoId) {
   }
 
   // FAST CONCURRENT RACING (Piped + Invidious Combined)
-  // We race ALL nodes simultaneously. First valid stream wins instantly.
   const nodesToRace = [
     ...PIPED_INSTANCES.map(n => ({ type: 'piped', url: `${n}/streams/${cleanId}` })),
     ...INVIDIOUS_INSTANCES.map(n => ({ type: 'invidious', url: `${n}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats` }))
@@ -74,7 +74,7 @@ export async function resolvePipedAudioStream(videoId) {
     const fastestResolved = await Promise.any(
       nodesToRace.map(async (node) => {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 6000); // Generous 6.0s timeout to guarantee we catch even slow working nodes
+        const timeoutId = setTimeout(() => controller.abort(), 5500);
         try {
           const res = await fetch(node.url, { signal: controller.signal });
           clearTimeout(timeoutId);
@@ -95,8 +95,8 @@ export async function resolvePipedAudioStream(videoId) {
                   duration: data.duration || 220,
                   title: data.title || '',
                   artist: data.uploader || '',
-                  thumbnail: data.thumbnailUrl || (data.thumbnails && data.thumbnails[0]?.url) || '',
-                  source: 'Piped Master (Fast)'
+                  thumbnail: data.thumbnailUrl || (data.thumbnails && data.thumbnails[0]?.url) || `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
+                  source: 'YouTube Music Opus 160k'
                 };
               }
             }
@@ -115,7 +115,7 @@ export async function resolvePipedAudioStream(videoId) {
                   title: data.title || '',
                   artist: data.author || '',
                   thumbnail: `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
-                  source: 'Invidious (Fast)'
+                  source: 'YouTube Music Pure Audio'
                 };
               }
             }
@@ -123,7 +123,7 @@ export async function resolvePipedAudioStream(videoId) {
           throw new Error('No valid streams');
         } catch (e) {
           clearTimeout(timeoutId);
-          throw e; // Important for Promise.any to skip this failure
+          throw e;
         }
       })
     );
@@ -134,10 +134,10 @@ export async function resolvePipedAudioStream(videoId) {
     });
     return fastestResolved;
   } catch (aggregateError) {
-    console.warn('[Audio Extractor] All raced nodes failed:', aggregateError.errors);
+    console.warn('[Audio Extractor] Raced instances note:', cleanId);
   }
 
-  // 3. Try Local Backend Python Extractor
+  // Fallback: Local backend proxy
   try {
     const localUrl = `/api/ytm/stream?id=${cleanId}`;
     const res = await fetch(localUrl, { signal: AbortSignal.timeout(3000) });
@@ -167,8 +167,8 @@ export async function resolvePipedAudioStream(videoId) {
 }
 
 /**
- * Searches YouTube Music / Piped for Songs, Artists, and Albums
- * Utilizes a high-performance concurrent race across all nodes to guarantee instant results.
+ * Searches YouTube Music & YouTube for Songs, Artists, and Audio Tracks
+ * Utilizes a high-performance concurrent race across all instances.
  */
 export async function searchYouTubeMusic(query, limit = 25) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
@@ -181,20 +181,25 @@ export async function searchYouTubeMusic(query, limit = 25) {
   const results = [];
   const seenIds = new Set();
 
-  const nodesToRace = PIPED_INSTANCES.map(n => `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=all`);
+  const nodesToRace = [
+    ...PIPED_INSTANCES.map(n => ({ type: 'piped', url: `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` })),
+    ...PIPED_INSTANCES.map(n => ({ type: 'piped', url: `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=all` })),
+    ...INVIDIOUS_INSTANCES.map(n => ({ type: 'invidious', url: `${n}/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` }))
+  ];
 
   try {
     const fastestSearch = await Promise.any(
-      nodesToRace.map(async (searchUrl) => {
+      nodesToRace.map(async (node) => {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 6000); // 6.0s max tolerance
+        const timeoutId = setTimeout(() => controller.abort(), 5500);
         try {
-          const res = await fetch(searchUrl, { signal: controller.signal });
+          const res = await fetch(node.url, { signal: controller.signal });
           clearTimeout(timeoutId);
           if (!res.ok) throw new Error('Not ok');
           const json = await res.json();
-          if (!json.items || json.items.length === 0) throw new Error('Empty');
-          return json.items;
+          const items = Array.isArray(json) ? json : (json.items || []);
+          if (items.length === 0) throw new Error('Empty');
+          return { items, type: node.type };
         } catch (e) {
           clearTimeout(timeoutId);
           throw e;
@@ -202,27 +207,32 @@ export async function searchYouTubeMusic(query, limit = 25) {
       })
     );
 
-    // Parse the winning fast search
-    for (const item of fastestSearch) {
-      const videoId = (item.url || '').replace('/watch?v=', '').trim();
-      if (videoId && !seenIds.has(videoId)) {
+    for (const item of fastestSearch.items) {
+      let videoId = '';
+      if (item.videoId) {
+        videoId = item.videoId;
+      } else if (item.url) {
+        videoId = item.url.replace('/watch?v=', '').replace('/streams/', '').trim();
+      }
+
+      if (videoId && !seenIds.has(videoId) && videoId.length >= 8) {
         seenIds.add(videoId);
         results.push({
           id: `ytm-${videoId}`,
           ytId: videoId,
           title: item.title || 'Untitled Track',
-          artist: item.uploaderName || item.artist || 'YouTube Music Artist',
+          artist: item.uploaderName || item.author || item.artist || 'YouTube Music Artist',
           album: item.album || 'YouTube Music Single',
-          coverUrl: item.thumbnail || (item.thumbnails && item.thumbnails[0]?.url) || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-          duration: item.duration || 220,
-          streamUrl: '', // Resolved on play
+          coverUrl: item.thumbnail || (item.thumbnails && item.thumbnails[0]?.url) || (item.videoThumbnails && item.videoThumbnails[0]?.url) || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+          duration: typeof item.duration === 'number' ? item.duration : (parseInt(item.lengthSeconds, 10) || 220),
+          streamUrl: '',
           source: 'YouTube Music Ad-Free Opus'
         });
       }
       if (results.length >= limit) break;
     }
   } catch (aggregateError) {
-    console.warn('[Pulse Search Engine] All nodes failed the fast race for search:', aggregateError.errors);
+    console.warn('[Pulse Search Engine] Notice on public node search race');
   }
 
   if (results.length > 0) {
@@ -282,7 +292,9 @@ const extractorService = {
   searchYouTubeMusic,
   fetchYouTubeMusicCharts,
   getActivePipedNode,
-  rotatePipedNode
+  rotatePipedNode,
+  getActiveInvidiousNode,
+  rotateInvidiousNode
 };
 
 if (typeof window !== 'undefined') {

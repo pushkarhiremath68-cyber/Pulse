@@ -2,9 +2,11 @@
  * Pulse Music - Main Application Coordinator
  * Integrates:
  * 1. Real-Time LRCLIB Synchronized Lyrics with active-line highlight, smooth centering auto-scroll & click-to-seek.
- * 2. Spotify-Style Home Discovery Feed: Quick Picks 6-Tile Grid, Featured Artists, Curated Playlists.
- * 3. Dedicated Immersive Artist Page (/artist/:artistId) with Top Tracks, Discography, Bio & Similar Artists.
- * 4. Firebase Authentication, Cloud Firestore (Playlists & Favorites), and Pure Audio Engine.
+ * 2. Fullscreen Maximized / Minimized Playbar transitions with album art & visualizer.
+ * 3. Complete Home Catalogues: Quick Picks, Featured Artists, Curated Mixes, Genre Shelves, Language Hubs.
+ * 4. Universal YouTube & Studio Search Engine with instant multi-source discovery.
+ * 5. Dedicated Immersive Artist Page (/artist/:artistId) with Top Tracks & Discography.
+ * 6. Cloud Firestore (Playlists & Favorites) and Pure Audio Engine.
  */
 
 import './firebase.js';
@@ -16,12 +18,14 @@ import './audioEngine.js';
 import './playbarController.js';
 import './lyricsService.js';
 import './catalogService.js';
+import './visualizer.js';
 import './geminiService.js';
 
-import { getStoredUser, signInWithEmail, signUpWithEmail, signInWithGoogle, signInAnonymously, signOut, onAuthStateChanged } from './firebaseAuthService.js';
-import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, removeTrackFromPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
-import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists } from './catalogService.js';
+import { getStoredUser, onAuthStateChanged } from './firebaseAuthService.js';
+import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
+import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
 import { getLyrics, getActiveLineIndex } from './lyricsService.js';
+import { askGeminiDJ } from './geminiService.js';
 
 (function() {
   'use strict';
@@ -44,7 +48,7 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     if (!container) {
       container = document.createElement('div');
       container.id = 'pulse-toast-container';
-      container.style.cssText = 'position: fixed; bottom: 90px; right: 24px; z-index: 99999; display: flex; flex-direction: column; gap: 8px; pointer-events: none;';
+      container.style.cssText = 'position: fixed; bottom: 100px; right: 24px; z-index: 99999; display: flex; flex-direction: column; gap: 8px; pointer-events: none;';
       document.body.appendChild(container);
     }
     const toast = document.createElement('div');
@@ -82,99 +86,6 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     }
   };
 
-  // Render Library / Liked Songs
-  window.renderLibraryView = async function() {
-    const container = document.getElementById('library-tracks-container');
-    if (!container) return;
-
-    if (!window.pulseState.currentUser) {
-      container.innerHTML = `
-        <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
-          <i class="fa-solid fa-lock" style="font-size: 2.5rem; margin-bottom: 1rem; color: #a855f7; opacity: 0.5;"></i>
-          <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem;">Sign in to view your Library</h3>
-          <p>Your liked tracks and playlists are synced across devices.</p>
-        </div>
-      `;
-      return;
-    }
-
-    container.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fa-solid fa-spinner fa-spin"></i> Loading Library...</div>';
-
-    try {
-      const favs = await getFavorites(window.pulseState.currentUser.uid);
-      if (!favs || favs.length === 0) {
-        container.innerHTML = `
-          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
-            <i class="fa-solid fa-heart" style="font-size: 2.5rem; margin-bottom: 1rem; color: #f87171; opacity: 0.5;"></i>
-            <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem;">No Liked Songs yet</h3>
-            <p>Tap the heart icon on any track to add it to your library.</p>
-          </div>
-        `;
-        return;
-      }
-
-      window.__libraryResults = favs;
-
-      window.playLibraryTrack = function(index) {
-        if (!window.__libraryResults || !window.__libraryResults[index]) return;
-        window.playTrackDirect(window.__libraryResults[index], window.__libraryResults);
-      };
-
-      container.className = 'search-results-list'; // Reuse styling
-      
-      container.innerHTML = favs.map((track, idx) => `
-        <div class="track-card glass-card hover-glow" onclick="window.playLibraryTrack(${idx})">
-          <div class="card-cover-wrap">
-            <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" class="card-cover" loading="lazy">
-            <div class="card-play-overlay">
-              <button class="btn-play-hover"><i class="fa-solid fa-play"></i></button>
-            </div>
-          </div>
-          <div class="card-info">
-            <h4 class="card-title">${track.title}</h4>
-            <p class="card-artist">${track.artist}</p>
-          </div>
-          <div class="card-actions">
-            <button class="btn-icon-small" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.toggleCurrentTrackFavorite(${idx})" title="Remove"><i class="fa-solid fa-heart" style="color: #f87171;"></i></button>
-          </div>
-        </div>
-      `).join('');
-    } catch (e) {
-      container.innerHTML = '<div style="text-align: center; color: #f87171;">Failed to load library.</div>';
-    }
-  };
-
-  // Dedicated Category Grid Viewer
-  window.openCategoryView = async function(catId, catTitle) {
-    window.switchView('search-view');
-    const label = document.getElementById('search-query-label');
-    const count = document.getElementById('search-count');
-    if (label) label.textContent = catTitle || catId;
-    if (count) count.textContent = 'Curating category tracks...';
-
-    const container = document.getElementById('search-results-container');
-    if (container) {
-      container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #c084fc;"><i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem;"></i><p style="margin-top: 0.5rem;">Loading ' + catTitle + '...</p></div>';
-    }
-
-    const results = await window.catalogService.fetchCategoryTracks(catId, 24);
-    if (count) count.textContent = `${results.length} pure audio tracks available`;
-    renderSearchResults(results);
-  };
-
-  // Filter Pills Selector
-  window.selectFilterPill = function(btn, query) {
-    document.querySelectorAll('.filter-pill').forEach(b => {
-      b.classList.remove('active-pill', 'pill-cyan');
-    });
-    if (btn) {
-      btn.classList.add('active-pill', 'pill-cyan');
-    }
-    const input = document.getElementById('global-search-input');
-    if (input) input.value = query;
-    window.executeSearch(query, false);
-  };
-
   // Playback Trigger
   window.playTrackDirect = function(track, queue = null) {
     if (!track) return;
@@ -196,16 +107,16 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     // Update Drawer Header
     const drawerTitle = document.getElementById('lyrics-drawer-title');
     const drawerArtist = document.getElementById('lyrics-drawer-artist');
-    if (drawerTitle) drawerTitle.textContent = track.title || 'Live Lyrics';
+    if (drawerTitle) drawerTitle.textContent = track.title || 'Live Synced Lyrics';
     if (drawerArtist) drawerArtist.textContent = track.artist || 'Pulse Karaoke';
 
     // Show Loading state
     const drawerContent = document.getElementById('lyrics-drawer-content');
     const fsScrollBox = document.getElementById('fs-lyrics-scroll-box');
-    const loadingHtml = `<div class="lyrics-loading-state"><i class="fa-solid fa-spinner fa-spin"></i> Synchronizing LRCLIB lyrics...</div>`;
+    const loadingHtml = `<div class="lyrics-loading-state" style="padding: 2rem; color: #c084fc;"><i class="fa-solid fa-spinner fa-spin"></i> Synchronizing LRCLIB lyrics...</div>`;
 
     if (drawerContent) drawerContent.innerHTML = loadingHtml;
-    if (fsScrollBox) fsScrollBox.innerHTML = `<p class="fs-lyric-line fs-lyric-active">${loadingHtml}</p>`;
+    if (fsScrollBox) fsScrollBox.innerHTML = loadingHtml;
 
     try {
       const lyricsData = await getLyrics(track);
@@ -213,10 +124,10 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 
       if (!lyricsData || lyricsData.notFound || !lyricsData.lines || lyricsData.lines.length === 0) {
         const notFoundHtml = `
-          <div class="lyrics-empty-state">
-            <i class="fa-solid fa-microphone-slash" style="font-size: 2.5rem; opacity: 0.4; margin-bottom: 0.75rem;"></i>
-            <h4>Lyrics not available</h4>
-            <p>Enjoy the instrumental and pure audio flow.</p>
+          <div class="lyrics-empty-state" style="padding: 3rem 1rem; color: var(--text-muted); text-align: center;">
+            <i class="fa-solid fa-microphone-slash" style="font-size: 2.5rem; opacity: 0.4; margin-bottom: 0.75rem; color: #a855f7;"></i>
+            <h4 style="color: #fff; margin-bottom: 0.25rem;">Live lyrics not available</h4>
+            <p style="font-size: 0.85rem;">Enjoy the pure high-fidelity audio stream.</p>
           </div>
         `;
         if (drawerContent) drawerContent.innerHTML = notFoundHtml;
@@ -230,7 +141,7 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
         const seekHandler = line.time !== null ? `onclick="window.seekToLyricTimestamp(${line.time})"` : '';
         const clickableClass = line.time !== null ? 'lyric-clickable' : '';
         return `
-          <p class="fs-lyric-line lyric-line ${clickableClass}" id="lyric-line-${idx}" ${timeAttr} ${seekHandler} title="${line.time !== null ? `Click to jump to ${Math.floor(line.time / 60)}:${Math.floor(line.time % 60).toString().padStart(2, '0')}` : ''}">
+          <p class="fs-lyric-line lyric-line ${clickableClass}" id="lyric-line-${idx}" ${timeAttr} ${seekHandler} title="${line.time !== null ? `Click to jump to ${Math.floor(line.time / 60)}:${Math.floor(line.time % 60).toString().padStart(2, '0')}` : ''}" style="margin: 0.75rem 0; font-size: 1.15rem; font-weight: 700; color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.25s ease; border-radius: 8px; padding: 4px 8px;">
             ${line.text}
           </p>
         `;
@@ -238,15 +149,15 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 
       if (drawerContent) {
         drawerContent.innerHTML = `
-          <div class="lyrics-mode-badge">${lyricsData.isSynced ? '⚡ Synchronized Karaoke' : '📄 Plain Lyrics'} • ${lyricsData.source}</div>
-          <div class="lyrics-lines-wrapper">${linesHtml}</div>
+          <div class="lyrics-mode-badge" style="font-size: 0.8rem; font-weight: 700; color: #c084fc; margin-bottom: 1rem; text-align: center;">${lyricsData.isSynced ? '⚡ Real-Time Synchronized Karaoke' : '📄 Plain Lyrics'} • ${lyricsData.source}</div>
+          <div class="lyrics-lines-wrapper" style="display: flex; flex-direction: column; align-items: center; text-align: center;">${linesHtml}</div>
         `;
       }
 
       if (fsScrollBox) {
         fsScrollBox.innerHTML = `
-          <div class="fs-lyrics-badge">${lyricsData.isSynced ? '⚡ Real-Time Karaoke' : '📄 Lyrics'}</div>
-          <div class="fs-lines-wrapper">${linesHtml}</div>
+          <div class="fs-lyrics-badge" style="font-size: 0.75rem; font-weight: 700; color: #c084fc; margin-bottom: 0.75rem;">${lyricsData.isSynced ? '⚡ Live Lyrics' : '📄 Lyrics'}</div>
+          <div class="fs-lines-wrapper" style="display: flex; flex-direction: column; align-items: center;">${linesHtml}</div>
         `;
       }
     } catch (err) {
@@ -272,24 +183,24 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 
     const activeIdx = getActiveLineIndex(lyrics.lines, currentTime);
     if (activeIdx === window.pulseState.activeLyricIdx) {
-      return; // No change
+      return;
     }
 
     window.pulseState.activeLyricIdx = activeIdx;
     
-    // Update live floating preview
+    // Update live floating preview in bottom playbar
     if (preview) {
       if (activeIdx >= 0 && activeIdx < lyrics.lines.length) {
         const activeText = lyrics.lines[activeIdx].text || '♪';
         if (activeText.trim() === '' || activeText.trim() === '♪') {
-           preview.style.opacity = '0';
-           preview.style.transform = 'translateY(10px)';
-           preview.style.pointerEvents = 'none';
+          preview.style.opacity = '0';
+          preview.style.transform = 'translateY(10px)';
+          preview.style.pointerEvents = 'none';
         } else {
-           preview.textContent = activeText;
-           preview.style.opacity = '1';
-           preview.style.transform = 'translateY(0)';
-           preview.style.pointerEvents = 'auto';
+          preview.textContent = activeText;
+          preview.style.opacity = '1';
+          preview.style.transform = 'translateY(0)';
+          preview.style.pointerEvents = 'auto';
         }
       } else {
         preview.style.opacity = '0';
@@ -307,9 +218,14 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       allLines.forEach((el, idx) => {
         if (idx === activeIdx) {
           el.classList.add('active-lyric-line', 'fs-lyric-active');
-          el.classList.remove('past-lyric-line', 'future-lyric-line');
+          el.style.color = '#ffffff';
+          el.style.fontSize = '1.35rem';
+          el.style.fontWeight = '900';
+          el.style.textShadow = '0 0 20px rgba(192, 132, 252, 0.8), 0 0 35px rgba(168, 85, 247, 0.5)';
+          el.style.transform = 'scale(1.05)';
+          el.style.background = 'rgba(168, 85, 247, 0.15)';
 
-          // Smooth Auto-Scroll keeping active line centered vertically
+          // Center Scroll
           el.scrollIntoView({
             behavior: 'smooth',
             block: 'center',
@@ -317,11 +233,20 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
           });
         } else if (idx < activeIdx) {
           el.classList.remove('active-lyric-line', 'fs-lyric-active');
-          el.classList.add('past-lyric-line');
-          el.classList.remove('future-lyric-line');
+          el.style.color = 'rgba(255, 255, 255, 0.35)';
+          el.style.fontSize = '1.15rem';
+          el.style.fontWeight = '600';
+          el.style.textShadow = 'none';
+          el.style.transform = 'scale(1)';
+          el.style.background = 'transparent';
         } else {
-          el.classList.remove('active-lyric-line', 'fs-lyric-active', 'past-lyric-line');
-          el.classList.add('future-lyric-line');
+          el.classList.remove('active-lyric-line', 'fs-lyric-active');
+          el.style.color = 'rgba(255, 255, 255, 0.5)';
+          el.style.fontSize = '1.15rem';
+          el.style.fontWeight = '600';
+          el.style.textShadow = 'none';
+          el.style.transform = 'scale(1)';
+          el.style.background = 'transparent';
         }
       });
     });
@@ -358,24 +283,24 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
   };
 
   // ---------------------------------------------------------------------------
-  // 2. MAIN SCREEN CATALOG & DISCOVERY SHELVES
+  // 2. MAIN SCREEN CATALOGUES & DISCOVERY SHELVES
   // ---------------------------------------------------------------------------
 
   window.renderHomeDiscovery = function() {
     // 1. Quick Picks 6-Tile Grid
     const qpContainer = document.getElementById('home-quick-picks-container');
     if (qpContainer) {
-      const qpList = getQuickPicks();
+      const qpList = getQuickPicks(6);
       window.__quickPicks = qpList;
       qpContainer.innerHTML = qpList.map((track, idx) => `
-        <div class="quick-pick-tile hover-glow" onclick="window.playTrackDirect(window.__quickPicks[${idx}], window.__quickPicks)">
-          <img src="${track.coverUrl}" alt="${track.title}" class="qp-thumb" loading="lazy">
-          <div class="qp-info">
-            <span class="qp-title" title="${track.title}">${track.title}</span>
-            <span class="qp-artist" title="${track.artist}">${track.artist}</span>
+        <div class="quick-pick-tile hover-glow" onclick="window.playTrackDirect(window.__quickPicks[${idx}], window.__quickPicks)" style="cursor: pointer; display: flex; align-items: center; gap: 0.85rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.5rem; transition: all 0.25s ease;">
+          <img src="${track.coverUrl}" alt="${track.title}" class="qp-thumb" style="width: 54px; height: 54px; border-radius: 8px; object-fit: cover;" loading="lazy">
+          <div class="qp-info" style="flex: 1; overflow: hidden;">
+            <div class="qp-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.title}">${track.title}</div>
+            <div class="qp-artist" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.artist}">${track.artist}</div>
           </div>
-          <button class="qp-play-btn" title="Play Now">
-            <i class="fa-solid fa-play"></i>
+          <button class="qp-play-btn btn-circle-play" style="width: 38px; height: 38px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-right: 0.5rem;" title="Play Now">
+            <i class="fa-solid fa-play" style="font-size: 0.85rem;"></i>
           </button>
         </div>
       `).join('');
@@ -386,16 +311,16 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     if (artContainer) {
       const artists = getFeaturedArtists();
       window.__featuredArtists = artists;
-      artContainer.innerHTML = artists.map((art, idx) => `
-        <div class="artist-card-item" onclick="window.openArtistView('${art.name}')">
-          <div class="artist-avatar-wrap">
-            <img src="${art.avatar}" alt="${art.name}" class="artist-avatar-img" loading="lazy">
-            <div class="artist-play-hover">
-              <i class="fa-solid fa-play"></i>
+      artContainer.innerHTML = artists.map((art) => `
+        <div class="artist-card-item hover-glow" onclick="window.openArtistView('${art.name.replace(/'/g, "\\'")}')" style="min-width: 140px; text-align: center; cursor: pointer; flex-shrink: 0;">
+          <div class="artist-avatar-wrap" style="position: relative; width: 120px; height: 120px; margin: 0 auto 0.75rem auto; border-radius: 50%; overflow: hidden; border: 2px solid var(--border-glass);">
+            <img src="${art.avatar}" alt="${art.name}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            <div class="artist-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
+              <i class="fa-solid fa-play" style="color: #fff; font-size: 1.5rem;"></i>
             </div>
           </div>
-          <div class="artist-card-name">${art.name}</div>
-          <div class="artist-card-role"><i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 0.7rem;"></i> ${art.genre.split('/')[0]}</div>
+          <div class="artist-card-name" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${art.name}</div>
+          <div class="artist-card-role" style="font-size: 0.75rem; color: #c084fc; margin-top: 2px;"><i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 0.65rem;"></i> ${art.genre.split('/')[0]}</div>
         </div>
       `).join('');
     }
@@ -406,129 +331,141 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       const playlists = getCuratedPlaylists();
       window.__curatedPlaylists = playlists;
       plContainer.innerHTML = playlists.map((pl, idx) => `
-        <div class="curated-playlist-card hover-glow" onclick="window.playCuratedPlaylist(${idx})">
-          <div class="curated-cover-wrap">
-            <img src="${pl.coverUrl}" alt="${pl.title}" class="curated-cover-img" loading="lazy">
-            <div class="curated-play-overlay">
-              <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
-            </div>
-            <span class="curated-badge">${pl.trackCount} Tracks</span>
+        <div class="curated-playlist-card hover-glow" onclick="window.playCuratedPlaylist(${idx})" style="min-width: 200px; width: 200px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1rem; cursor: pointer; transition: all 0.25s ease;">
+          <div class="curated-cover-wrap" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; margin-bottom: 0.75rem;">
+            <img src="${pl.coverUrl}" alt="${pl.title}" class="curated-cover-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            <span class="curated-badge" style="position: absolute; top: 8px; right: 8px; font-size: 0.7rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 8px; border-radius: 12px;">${pl.trackCount} Tracks</span>
           </div>
           <div class="curated-meta">
-            <h4 class="curated-title">${pl.title}</h4>
-            <p class="curated-desc">${pl.description}</p>
+            <h4 class="curated-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${pl.title}</h4>
+            <p class="curated-desc" style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${pl.description}</p>
           </div>
         </div>
       `).join('');
     }
 
-    // 4. Dynamic Language Playlists & Catalog
+    // 4. Dynamic Genre & Mood Shelves
     const shelvesContainer = document.getElementById('dynamic-home-shelves');
-    if (shelvesContainer) {
-      if (window.catalogService && window.catalogService.CATALOG_CATEGORIES) {
-        let catalogHTML = '';
-        window.catalogService.CATALOG_CATEGORIES.forEach((cat, cIdx) => {
-          catalogHTML += `
-            <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
-              <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <div>
-                  <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
-                    <i class="fa-solid ${cat.icon}" style="color: ${cat.color}; margin-right: 8px;"></i> ${cat.title}
-                  </h3>
-                  <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">${cat.subtitle}</p>
+    if (shelvesContainer && CATALOG_CATEGORIES && CATALOG_CATEGORIES.length > 0) {
+      window.__catalogCategories = CATALOG_CATEGORIES;
+      shelvesContainer.innerHTML = CATALOG_CATEGORIES.map((cat, cIdx) => `
+        <section class="music-shelf-section" id="shelf-${cat.id}" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid ${cat.icon}" style="color: ${cat.color}; margin-right: 8px;"></i> ${cat.title}
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">${cat.subtitle}</p>
+            </div>
+            <button class="btn-see-all" onclick="window.playPresetQuery('${cat.title}')" style="background: none; border: none; color: #c084fc; font-size: 0.82rem; font-weight: 700; cursor: pointer;">Explore All <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
+          </div>
+          <div class="shelf-carousel" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;">
+            ${cat.tracks.map((t, tIdx) => `
+              <div class="music-card hover-glow" onclick="window.playCatalogTrack(${cIdx}, ${tIdx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
+                <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
+                  <img src="${t.cover}" alt="${t.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                  <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
+                    <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                  <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${cat.color}; padding: 2px 6px; border-radius: 6px;">Ad-Free</span>
+                </div>
+                <div class="card-meta">
+                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${t.artist}</div>
                 </div>
               </div>
-              <div class="shelf-carousel" id="cat-carousel-${cIdx}" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;">
-                ${cat.tracks.map((t, tIdx) => `
-                  <div class="music-card hover-glow" onclick="window.playCatalogTrack(${cIdx}, ${tIdx})" style="min-width: 140px; width: 140px; flex-shrink: 0; background: rgba(255,255,255,0.03); padding: 0.5rem; border-radius: 8px; cursor: pointer;">
-                    <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem;">
-                      <img src="${t.cover}" alt="${t.title}" style="width:100%; height:100%; object-fit:cover;">
-                      <div class="card-play-overlay" style="position:absolute; inset:0; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.2s;">
-                        <i class="fa-solid fa-play" style="color:#fff; font-size:1.5rem;"></i>
-                      </div>
-                    </div>
-                    <div class="card-meta">
-                      <div style="font-size: 0.9rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
-                      <div style="font-size: 0.75rem; color: #a1a1aa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.artist}</div>
-                    </div>
+            `).join('')}
+          </div>
+        </section>
+      `).join('');
+    }
+
+    // 5. Regional Language Hubs
+    const langContainer = document.getElementById('language-shelves-container');
+    if (langContainer && LANGUAGE_PLAYLISTS && LANGUAGE_PLAYLISTS.length > 0) {
+      window.__langPlaylists = LANGUAGE_PLAYLISTS;
+      langContainer.innerHTML = LANGUAGE_PLAYLISTS.map((lang, lIdx) => `
+        <section class="music-shelf-section" id="lang-shelf-${lang.id}" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid ${lang.meta.icon}" style="color: ${lang.meta.color}; margin-right: 8px;"></i> ${lang.meta.title}
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">${lang.meta.subtitle}</p>
+            </div>
+            <button class="btn-see-all" onclick="window.playPresetQuery('${lang.meta.title}')" style="background: none; border: none; color: #c084fc; font-size: 0.82rem; font-weight: 700; cursor: pointer;">See All <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
+          </div>
+          <div class="shelf-carousel" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;">
+            ${lang.tracks.map((track, tIdx) => `
+              <div class="music-card hover-glow" onclick="window.playLanguageTrack(${lIdx}, ${tIdx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
+                <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
+                  <img src="${track.coverUrl}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                  <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
+                    <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
                   </div>
-                `).join('')}
+                  <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${lang.meta.color}; padding: 2px 6px; border-radius: 6px;">Master</span>
+                </div>
+                <div class="card-meta">
+                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${track.title}</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${track.artist}</div>
+                </div>
               </div>
-            </section>
-          `;
-        });
-        
-        window.playCatalogTrack = function(cIdx, tIdx) {
-          const category = window.catalogService.CATALOG_CATEGORIES[cIdx];
-          const track = category.tracks[tIdx];
-          const formattedTrack = {
-            id: track.ytId ? `ytm-${track.ytId}` : `pulse-${Math.random()}`,
-            title: track.title,
-            artist: track.artist,
-            coverUrl: track.cover,
-            streamUrl: track.stream,
-            duration: track.duration,
-            source: "Catalog Master"
-          };
-          window.playTrackDirect(formattedTrack, category.tracks.map(t => ({
-            id: t.ytId ? `ytm-${t.ytId}` : `pulse-${Math.random()}`,
-            title: t.title,
-            artist: t.artist,
-            coverUrl: t.cover,
-            streamUrl: t.stream,
-            duration: t.duration,
-            source: "Catalog Master"
-          })));
-        };
+            `).join('')}
+          </div>
+        </section>
+      `).join('');
+    }
+  };
 
-        shelvesContainer.innerHTML = catalogHTML;
-      }
+  window.playCatalogTrack = function(cIdx, tIdx) {
+    const category = window.__catalogCategories?.[cIdx];
+    if (category && category.tracks && category.tracks[tIdx]) {
+      const t = category.tracks[tIdx];
+      const normalizedTrack = {
+        id: t.id || (t.ytId ? `ytm-${t.ytId}` : `pulse-${Math.random()}`),
+        ytId: t.ytId,
+        title: t.title,
+        artist: t.artist,
+        coverUrl: t.cover || `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg`,
+        duration: t.duration || 220,
+        source: "Catalog Master"
+      };
+      const queue = category.tracks.map(item => ({
+        id: item.id || (item.ytId ? `ytm-${item.ytId}` : `pulse-${Math.random()}`),
+        ytId: item.ytId,
+        title: item.title,
+        artist: item.artist,
+        coverUrl: item.cover || `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`,
+        duration: item.duration || 220,
+        source: "Catalog Master"
+      }));
+      window.playTrackDirect(normalizedTrack, queue);
+    }
+  };
 
-      // Async IIFE to fetch and render without blocking the rest of home rendering
-      (async () => {
-        try {
-          const langPlaylists = window.catalogService.LANGUAGE_PLAYLISTS || [];
-          window.__langPlaylists = langPlaylists;
-          
-          let html = '';
-          langPlaylists.forEach((playlist, plIdx) => {
-            if (!playlist || !playlist.tracks || playlist.tracks.length === 0) return;
-            
-            const meta = playlist.meta;
-            html += `
-              <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
-                <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                  <div>
-                    <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff;"><i class="fa-solid ${meta.icon}" style="color: ${meta.color}; margin-right: 6px;"></i> ${meta.title}</h3>
-                    <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Curated top tracks for ${meta.title}</p>
-                  </div>
-                </div>
-                <div class="shelf-carousel" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem;">
-                  ${playlist.tracks.map((track, trackIdx) => `
-                    <div class="music-card" onclick="window.playLanguageTrack(${plIdx}, ${trackIdx})">
-                      <div class="card-image-wrapper">
-                        <img src="${track.coverUrl}" alt="${track.title}" class="card-image" loading="lazy">
-                        <div class="card-play-overlay">
-                          <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
-                        </div>
-                        <span style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${meta.color}; padding: 2px 6px; border-radius: 6px;">Authentic Master</span>
-                      </div>
-                      <div class="card-meta">
-                        <span class="card-title" title="${track.title}">${track.title}</span>
-                        <span class="card-artist" title="${track.artist}">${track.artist}</span>
-                      </div>
-                    </div>
-                  `).join('')}
-                </div>
-              </section>
-            `;
-          });
-          
-          shelvesContainer.innerHTML = html || '<div style="text-align: center; color: var(--text-muted);">Failed to load language playlists.</div>';
-        } catch (e) {
-          shelvesContainer.innerHTML = '<div style="text-align: center; color: var(--text-muted);">Error loading curated songs.</div>';
-        }
-      })();
+  window.playLanguageTrack = function(lIdx, tIdx) {
+    const lang = window.__langPlaylists?.[lIdx];
+    if (lang && lang.tracks && lang.tracks[tIdx]) {
+      const t = lang.tracks[tIdx];
+      const normalizedTrack = {
+        id: t.id || (t.ytId ? `ytm-${t.ytId}` : `pulse-${Math.random()}`),
+        ytId: t.ytId,
+        title: t.title,
+        artist: t.artist,
+        coverUrl: t.coverUrl || `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg`,
+        duration: t.duration || 220,
+        source: lang.meta.title
+      };
+      const queue = lang.tracks.map(item => ({
+        id: item.id || (item.ytId ? `ytm-${item.ytId}` : `pulse-${Math.random()}`),
+        ytId: item.ytId,
+        title: item.title,
+        artist: item.artist,
+        coverUrl: item.coverUrl || `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`,
+        duration: item.duration || 220,
+        source: lang.meta.title
+      }));
+      window.playTrackDirect(normalizedTrack, queue);
     }
   };
 
@@ -536,26 +473,44 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     const pl = window.__curatedPlaylists?.[idx];
     if (pl && pl.tracks && pl.tracks.length > 0) {
       window.playTrackDirect(pl.tracks[0], pl.tracks);
-      window.showToast(`Playing playlist "${pl.title}"`, 'info');
+      window.showToast(`Playing "${pl.title}"`, 'info');
     }
   };
 
-  window.playLanguageTrack = function(plIdx, trackIdx) {
-    const pl = window.__langPlaylists?.[plIdx];
-    if (pl && pl.tracks) {
-      window.playTrackDirect(pl.tracks[trackIdx], pl.tracks);
+  window.filterHomeGenre = function(genreKey, btn) {
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active-pill', 'pill-cyan'));
+    if (btn) btn.classList.add('active-pill', 'pill-cyan');
+
+    if (genreKey === 'all') {
+      document.querySelectorAll('.music-shelf-section').forEach(s => s.style.display = 'block');
+    } else {
+      document.querySelectorAll('.music-shelf-section').forEach(s => {
+        const id = (s.id || '').toLowerCase();
+        if (id.includes(genreKey)) {
+          s.style.display = 'block';
+        } else {
+          s.style.display = 'none';
+        }
+      });
+    }
+  };
+
+  window.filterByGenre = function(catId) {
+    window.switchView('home');
+    const el = document.getElementById(`shelf-${catId}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
   // ---------------------------------------------------------------------------
-  // 3. IMMERSIVE ARTIST DETAILS PAGE (/artist/:artistId)
+  // 3. IMMERSIVE ARTIST DETAILS PAGE
   // ---------------------------------------------------------------------------
 
   window.openArtistView = function(artistQuery) {
     const artist = getArtistDetails(artistQuery);
     window.pulseState.currentArtistData = artist;
 
-    // Update Hero Banner
     const heroName = document.getElementById('artist-hero-name');
     const heroListeners = document.getElementById('artist-hero-listeners');
     const heroRank = document.getElementById('artist-world-rank');
@@ -568,109 +523,33 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       heroCard.style.backgroundImage = `linear-gradient(180deg, rgba(15,17,26,0.3) 0%, #0f111a 100%), url('${artist.banner}')`;
     }
 
-    // Render Popular Tracks (Top 5)
     const topTracksList = document.getElementById('artist-popular-tracks-list');
     if (topTracksList) {
       window.__artistTopTracks = artist.topTracks;
       topTracksList.innerHTML = artist.topTracks.map((track, idx) => `
-        <div class="artist-track-row hover-glow" onclick="window.playTrackDirect(window.__artistTopTracks[${idx}], window.__artistTopTracks)">
-          <span class="artist-track-rank">${idx + 1}</span>
-          <img src="${track.coverUrl}" alt="${track.title}" class="artist-track-thumb" loading="lazy">
-          <div class="artist-track-info">
-            <span class="artist-track-title">${track.title}</span>
-            <span class="artist-track-plays">${track.plays || '1,200,000'} plays</span>
+        <div class="artist-track-row hover-glow" onclick="window.playTrackDirect(window.__artistTopTracks[${idx}], window.__artistTopTracks)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
+          <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
+          <img src="${track.coverUrl}" alt="${track.title}" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;" loading="lazy">
+          <div style="flex: 1;">
+            <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${track.title}</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary);">${track.plays || 'Top Release'} plays</div>
           </div>
-          <span class="artist-track-duration">${Math.floor(track.duration / 60)}:${Math.floor(track.duration % 60).toString().padStart(2, '0')}</span>
-          <div class="artist-track-actions" onclick="event.stopPropagation()">
-            <button class="btn-action-icon" title="Save to Favorites" onclick="window.toggleFavoriteTrack(window.__artistTopTracks[${idx}])">
-              <i class="fa-regular fa-heart"></i>
-            </button>
-            <button class="btn-action-icon" title="Add to Playlist" onclick="window.openAddToPlaylistModal(window.__artistTopTracks[${idx}])">
-              <i class="fa-solid fa-list-plus"></i>
-            </button>
-          </div>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">${Math.floor(track.duration / 60)}:${Math.floor(track.duration % 60).toString().padStart(2, '0')}</span>
+          <button class="btn-player-icon" onclick="event.stopPropagation(); window.toggleFavoriteTrack(window.__artistTopTracks[${idx}])"><i class="fa-regular fa-heart"></i></button>
         </div>
       `).join('');
     }
 
-    // Render Discography Grid
-    window.renderArtistDiscog('all');
-
-    // Render About Box
     const aboutBox = document.getElementById('artist-about-container');
     if (aboutBox) {
       aboutBox.innerHTML = `
-        <div class="artist-about-inner">
-          <img src="${artist.avatar}" alt="${artist.name}" class="artist-about-avatar">
-          <div class="artist-about-details">
-            <div class="artist-about-rank">${artist.worldRank}</div>
-            <p class="artist-about-bio">${artist.bio}</p>
-            <div class="artist-about-stats">
-              <div class="stat-pill"><i class="fa-solid fa-users"></i> ${artist.monthlyListeners}</div>
-              <div class="stat-pill"><i class="fa-solid fa-music"></i> ${artist.genre}</div>
-            </div>
-          </div>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1.5rem;">
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">${artist.bio}</p>
         </div>
       `;
     }
 
-    // Render Similar Artists
-    const similarBox = document.getElementById('artist-similar-container');
-    if (similarBox) {
-      similarBox.innerHTML = artist.similarArtists.map(sim => `
-        <div class="artist-card-item" onclick="window.openArtistView('${sim.name}')">
-          <div class="artist-avatar-wrap">
-            <img src="${sim.avatar}" alt="${sim.name}" class="artist-avatar-img" loading="lazy">
-            <div class="artist-play-hover">
-              <i class="fa-solid fa-play"></i>
-            </div>
-          </div>
-          <div class="artist-card-name">${sim.name}</div>
-          <div class="artist-card-role">${sim.role}</div>
-        </div>
-      `).join('');
-    }
-
     window.switchView('artist');
-  };
-
-  window.renderArtistDiscog = function(filter) {
-    const artist = window.pulseState.currentArtistData;
-    if (!artist) return;
-
-    const grid = document.getElementById('artist-discography-grid');
-    if (!grid) return;
-
-    let items = [];
-    if (filter === 'all' || filter === 'albums') {
-      items = items.concat(artist.albums || []);
-    }
-    if (filter === 'all' || filter === 'singles') {
-      items = items.concat(artist.singles || []);
-    }
-
-    grid.innerHTML = items.map(item => `
-      <div class="music-card hover-glow" onclick="window.openCategoryView('spotify_global_top50', '${item.title}')">
-        <div class="card-image-wrapper">
-          <img src="${item.coverUrl}" alt="${item.title}" class="card-image" loading="lazy">
-          <div class="card-play-overlay">
-            <button class="btn-card-play"><i class="fa-solid fa-play"></i></button>
-          </div>
-          <span style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #38bdf8; padding: 2px 6px; border-radius: 6px;">${item.year}</span>
-        </div>
-        <div class="card-meta">
-          <span class="card-title">${item.title}</span>
-          <span class="card-artist">${item.type} • ${artist.name}</span>
-        </div>
-      </div>
-    `).join('');
-  };
-
-  window.filterArtistDiscog = function(filter) {
-    document.querySelectorAll('.discog-filter-btn').forEach(b => {
-      b.classList.toggle('active', b.getAttribute('data-dfilter') === filter);
-    });
-    window.renderArtistDiscog(filter);
   };
 
   window.playArtistTopTracks = function() {
@@ -686,12 +565,12 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     if (btn) {
       const isFollowing = btn.classList.toggle('following');
       btn.innerHTML = isFollowing ? `<i class="fa-solid fa-check"></i> Following` : `<i class="fa-solid fa-user-plus"></i> Follow`;
-      window.showToast(isFollowing ? `Following ${window.pulseState.currentArtistData?.name || 'Artist'}` : `Unfollowed`, 'info', 1500);
+      window.showToast(isFollowing ? `Following artist` : `Unfollowed`, 'info', 1500);
     }
   };
 
   // ---------------------------------------------------------------------------
-  // GLOBAL SEARCH & CONTROLLERS
+  // 4. GLOBAL UNIVERSAL SEARCH & CONTROLLERS
   // ---------------------------------------------------------------------------
 
   let searchDebounceTimer = null;
@@ -702,15 +581,13 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     if (input) input.value = query;
     
     const count = document.getElementById('search-count');
-    if (count) count.textContent = 'Loading live audio stream...';
+    if (count) count.textContent = 'Searching YouTube & high-fidelity streams...';
     
     try {
-      const results = await window.musicService.searchTracks(query, 5);
+      const results = await window.musicService.searchTracks(query, 30);
       renderSearchResults(results);
       if (results && results.length > 0) {
         window.playTrackDirect(results[0], results);
-      } else {
-        window.showToast("Stream unavailable. Try another track.", 'warning');
       }
     } catch (e) {
       window.showToast("Failed to fetch stream.", 'warning');
@@ -727,11 +604,11 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(async () => {
-      if (count) count.textContent = 'Searching YouTube Music & ad-free streams...';
-      const results = await window.musicService.searchTracks(query, 30);
-      if (count) count.textContent = `${results.length} ad-free audio tracks discovered`;
+      if (count) count.textContent = 'Searching YouTube Music & studio masters...';
+      const results = await window.musicService.searchTracks(query, 35);
+      if (count) count.textContent = `${results.length} ad-free tracks discovered`;
       renderSearchResults(results);
-    }, isTyping ? 300 : 0);
+    }, isTyping ? 250 : 0);
   };
 
   function renderSearchResults(tracks) {
@@ -743,7 +620,7 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
         <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
           <i class="fa-solid fa-compact-disc" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; color: var(--accent-primary);"></i>
           <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem;">No audio tracks found</h3>
-          <p>Try searching for a different artist, genre, or track title.</p>
+          <p>Try searching for a different song, artist, or YouTube title.</p>
         </div>
       `;
       return;
@@ -752,34 +629,31 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     window.__searchResults = tracks || [];
 
     window.playSearchTrack = function(index) {
-      if (!window.__searchResults || !window.__searchResults[index]) {
-        console.warn('[Pulse Search] Track not found at index:', index);
-        return;
-      }
+      if (!window.__searchResults || !window.__searchResults[index]) return;
       const track = window.__searchResults[index];
       window.playTrackDirect(track, window.__searchResults);
     };
 
     container.innerHTML = tracks.map((track, idx) => `
-      <div class="track-card glass-card hover-glow" onclick="window.playSearchTrack(${idx})">
-        <div class="card-cover-wrap">
-          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" class="card-cover" loading="lazy" onerror="this.src='./pulse-logo.png'">
-          <div class="card-play-overlay">
-            <button class="btn-play-hover" title="Play Ad-Free Audio">
+      <div class="track-card glass-card hover-glow" onclick="window.playSearchTrack(${idx})" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 14px; padding: 0.85rem; cursor: pointer; transition: all 0.25s ease;">
+        <div class="card-cover-wrap" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 10px; overflow: hidden; margin-bottom: 0.75rem;">
+          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.src='./pulse-logo.png'">
+          <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
+            <button class="btn-play-hover" style="width: 44px; height: 44px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer;" title="Play Ad-Free Audio">
               <i class="fa-solid fa-play"></i>
             </button>
           </div>
-          <span class="card-badge-source" style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.75); color: #c084fc; padding: 2px 6px; border-radius: 6px;">Ad-Free</span>
+          <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 6px; border-radius: 6px;">YouTube Audio</span>
         </div>
         <div class="card-info">
-          <h4 class="card-title" title="${track.title}">${track.title}</h4>
-          <p class="card-artist" title="${track.artist}" onclick="event.stopPropagation(); window.openArtistView('${track.artist.replace(/'/g, "\\'")}')">${track.artist}</p>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 0.25rem 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.title}">${track.title}</h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.artist}" onclick="event.stopPropagation(); window.openArtistView('${track.artist.replace(/'/g, "\\'")}')">${track.artist}</p>
         </div>
-        <div class="card-actions" onclick="event.stopPropagation()">
-          <button class="btn-action-icon" title="Add to Favorites" onclick="window.toggleFavoriteTrack(window.__searchResults[${idx}])" style="background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size:0.9rem; padding:4px;">
+        <div class="card-actions" onclick="event.stopPropagation()" style="display: flex; gap: 0.5rem; margin-top: 0.75rem; justify-content: flex-end;">
+          <button class="btn-player-icon" title="Add to Favorites" onclick="window.toggleFavoriteTrack(window.__searchResults[${idx}])">
             <i class="fa-regular fa-heart"></i>
           </button>
-          <button class="btn-action-icon" title="Add to Playlist" onclick="window.openAddToPlaylistModal(window.__searchResults[${idx}])" style="background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size:0.9rem; padding:4px;">
+          <button class="btn-player-icon" title="Add to Playlist" onclick="window.openAddToPlaylistModal(window.__searchResults[${idx}])">
             <i class="fa-solid fa-list-plus"></i>
           </button>
         </div>
@@ -788,130 +662,14 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
   }
 
   // ---------------------------------------------------------------------------
-  // FIREBASE USER AUTHENTICATION & PROFILE CONTROLLERS
-  // ---------------------------------------------------------------------------
-
-  window.openAuthModal = function(mode = 'login') {
-    const modal = document.getElementById('auth-modal');
-    if (!modal) return;
-    modal.classList.add('active-modal');
-    window.switchAuthTab(mode);
-  };
-
-  window.closeAuthModal = function() {
-    const modal = document.getElementById('auth-modal');
-    if (modal) modal.classList.remove('active-modal');
-  };
-
-  window.switchAuthTab = function(mode) {
-    const loginForm = document.getElementById('auth-login-form');
-    const signupForm = document.getElementById('auth-signup-form');
-    const tabLogin = document.getElementById('auth-tab-login');
-    const tabSignup = document.getElementById('auth-tab-signup');
-
-    if (mode === 'login') {
-      if (loginForm) loginForm.style.display = 'block';
-      if (signupForm) signupForm.style.display = 'none';
-      if (tabLogin) tabLogin.classList.add('active-tab');
-      if (tabSignup) tabSignup.classList.remove('active-tab');
-    } else {
-      if (loginForm) loginForm.style.display = 'none';
-      if (signupForm) signupForm.style.display = 'block';
-      if (tabLogin) tabLogin.classList.remove('active-tab');
-      if (tabSignup) tabSignup.classList.add('active-tab');
-    }
-  };
-
-  window.handleEmailLogin = async function(e) {
-    if (e) e.preventDefault();
-    const email = document.getElementById('auth-login-email')?.value;
-    const pass = document.getElementById('auth-login-pass')?.value;
-    try {
-      const user = await signInWithEmail(email, pass);
-      window.closeAuthModal();
-      window.showToast(`Welcome back, ${user.name}!`, 'success');
-      updateUserUI(user);
-    } catch (err) {
-      window.showToast(err.message || 'Login failed', 'warning');
-    }
-  };
-
-  window.handleEmailSignup = async function(e) {
-    if (e) e.preventDefault();
-    const name = document.getElementById('auth-signup-name')?.value;
-    const email = document.getElementById('auth-signup-email')?.value;
-    const pass = document.getElementById('auth-signup-pass')?.value;
-    try {
-      const user = await signUpWithEmail(email, pass, name);
-      window.closeAuthModal();
-      window.showToast(`Welcome to Pulse, ${user.name}!`, 'success');
-      updateUserUI(user);
-    } catch (err) {
-      window.showToast(err.message || 'Sign up failed', 'warning');
-    }
-  };
-
-  window.handleGoogleLogin = async function() {
-    try {
-      const user = await signInWithGoogle();
-      window.closeAuthModal();
-      window.showToast(`Signed in with Google as ${user.name}`, 'success');
-      updateUserUI(user);
-    } catch (err) {
-      window.showToast(err.message || 'Google sign-in failed', 'warning');
-    }
-  };
-
-  window.handleAnonymousLogin = async function() {
-    try {
-      const user = await signInAnonymously();
-      window.closeAuthModal();
-      window.showToast(`Continuing as Guest Listener`, 'info');
-      updateUserUI(user);
-    } catch (err) {
-      window.showToast('Guest sign in failed', 'warning');
-    }
-  };
-
-  window.handleSignOut = function() {
-    signOut();
-    window.showToast('Signed out of Pulse', 'info');
-    updateUserUI(null);
-  };
-
-  function updateUserUI(user) {
-    window.pulseState.currentUser = user;
-    const userBtn = document.getElementById('user-profile-btn');
-    const userAvatar = document.getElementById('user-avatar-img');
-    const userName = document.getElementById('user-display-name');
-
-    if (user) {
-      if (userAvatar) userAvatar.src = user.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.name || 'User')}`;
-      if (userName) userName.textContent = user.name || 'Listener';
-      if (userBtn) {
-        userBtn.onclick = () => window.handleSignOut();
-        userBtn.title = `Signed in as ${user.name} (Click to Sign Out)`;
-      }
-    } else {
-      if (userAvatar) userAvatar.src = 'https://api.dicebear.com/7.x/bottts/svg?seed=pulse';
-      if (userName) userName.textContent = 'Sign In';
-      if (userBtn) {
-        userBtn.onclick = () => window.openAuthModal('login');
-        userBtn.title = 'Sign In / Register';
-      }
-    }
-
-    window.renderLibraryView();
-  }
-
-  // ---------------------------------------------------------------------------
-  // CLOUD FIRESTORE USER LIBRARY (FAVORITES, PLAYLISTS, HISTORY)
+  // 5. USER LIBRARY (FAVORITES, PLAYLISTS, HISTORY)
   // ---------------------------------------------------------------------------
 
   window.switchLibraryTab = function(tabName) {
     window.pulseState.activeLibraryTab = tabName;
     document.querySelectorAll('.library-tab-btn').forEach(btn => {
-      btn.classList.toggle('active-tab', btn.getAttribute('data-tab') === tabName);
+      btn.classList.toggle('active-pill', btn.getAttribute('data-tab') === tabName);
+      btn.classList.toggle('pill-cyan', btn.getAttribute('data-tab') === tabName);
     });
     window.renderLibraryView();
   };
@@ -926,13 +684,10 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       const favorites = await getFavorites();
       if (favorites.length === 0) {
         container.innerHTML = `
-          <div class="empty-library-state">
+          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
             <i class="fa-solid fa-heart" style="font-size: 3rem; color: #ff007a; margin-bottom: 1rem; opacity: 0.6;"></i>
-            <h3>No liked songs yet</h3>
-            <p>Tap the heart icon on any song to save it to your Firebase favorites.</p>
-            <button class="btn-primary-action" onclick="window.switchView('home')" style="margin-top: 1rem;">
-              <i class="fa-solid fa-compass"></i> Discover Music
-            </button>
+            <h3 style="color: #fff; margin-bottom: 0.5rem;">No Liked Songs yet</h3>
+            <p>Tap the heart icon on any track to save it to your library.</p>
           </div>
         `;
         return;
@@ -940,30 +695,16 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 
       window.__userFavorites = favorites;
       container.innerHTML = `
-        <div class="library-header-row">
-          <div>
-            <h3 style="font-size: 1.4rem; font-weight: 700; color: #fff;">Liked Songs</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">${favorites.length} saved songs</p>
-          </div>
-          <button class="btn-play-all" onclick="window.playTrackDirect(window.__userFavorites[0], window.__userFavorites)">
-            <i class="fa-solid fa-play"></i> Play All
-          </button>
-        </div>
-        <div class="library-track-list">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
           ${favorites.map((track, idx) => `
-            <div class="library-track-row" onclick="window.playTrackDirect(window.__userFavorites[${idx}], window.__userFavorites)">
-              <span class="track-row-idx">${idx + 1}</span>
-              <img src="${track.coverUrl || './pulse-logo.png'}" alt="cover" class="track-row-thumb">
-              <div class="track-row-meta">
-                <div class="track-row-title">${track.title}</div>
-                <div class="track-row-artist">${track.artist}</div>
+            <div class="library-track-row hover-glow" onclick="window.playTrackDirect(window.__userFavorites[${idx}], window.__userFavorites)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
+              <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
+              <img src="${track.coverUrl || './pulse-logo.png'}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
+              <div style="flex: 1;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${track.title}</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">${track.artist}</div>
               </div>
-              <div class="track-row-album">${track.album || 'Single'}</div>
-              <div class="track-row-actions" onclick="event.stopPropagation()">
-                <button class="btn-icon-danger" title="Remove from Favorites" onclick="window.removeFavoriteTrack('${track.id}')">
-                  <i class="fa-solid fa-heart" style="color: #ff007a;"></i>
-                </button>
-              </div>
+              <button class="btn-player-icon" title="Remove" onclick="event.stopPropagation(); window.removeFavoriteTrack('${track.id}')"><i class="fa-solid fa-heart" style="color: #ff007a;"></i></button>
             </div>
           `).join('')}
         </div>
@@ -972,26 +713,21 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       const playlists = await getPlaylists();
       if (playlists.length === 0) {
         container.innerHTML = `
-          <div class="empty-library-state">
+          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
             <i class="fa-solid fa-folder-plus" style="font-size: 3rem; color: #38bdf8; margin-bottom: 1rem; opacity: 0.6;"></i>
-            <h3>No custom playlists</h3>
-            <p>Create your first cloud playlist to organize tracks.</p>
-            <button class="btn-primary-action" onclick="window.openCreatePlaylistModal()" style="margin-top: 1rem;">
-              <i class="fa-solid fa-plus"></i> Create Playlist
-            </button>
+            <h3 style="color: #fff; margin-bottom: 0.5rem;">No custom playlists</h3>
+            <p>Create your first playlist to organize tracks.</p>
+            <button class="btn-primary-play" onclick="window.openCreatePlaylistModal()" style="margin-top: 1rem; display: inline-flex;"><i class="fa-solid fa-plus"></i> Create Playlist</button>
           </div>
         `;
         return;
       }
 
       container.innerHTML = `
-        <div class="playlist-grid">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
           ${playlists.map(pl => `
-            <div class="playlist-card" onclick="window.playPlaylistDirect('${pl.id}')">
-              <button class="btn-delete-playlist" title="Delete Playlist" onclick="event.stopPropagation(); window.deleteUserPlaylist('${pl.id}', '${pl.name}')">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-              <img src="${pl.coverUrl || './pulse-logo.png'}" alt="playlist" class="playlist-card-cover" style="width: 100%; aspect-ratio: 1; border-radius: 12px; object-fit: cover; margin-bottom: 0.75rem;">
+            <div class="playlist-card hover-glow" onclick="window.playPlaylistDirect('${pl.id}')" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1rem; cursor: pointer;">
+              <img src="${pl.coverUrl || './pulse-logo.png'}" alt="playlist" style="width: 100%; aspect-ratio: 1; border-radius: 12px; object-fit: cover; margin-bottom: 0.75rem;">
               <h4 style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">${pl.name}</h4>
               <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">${pl.tracks ? pl.tracks.length : 0} tracks</p>
             </div>
@@ -1002,10 +738,10 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       const history = await getHistory();
       if (history.length === 0) {
         container.innerHTML = `
-          <div class="empty-library-state">
+          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
             <i class="fa-solid fa-clock-rotate-left" style="font-size: 3rem; color: #a855f7; margin-bottom: 1rem; opacity: 0.6;"></i>
-            <h3>No listening history</h3>
-            <p>Songs you stream will automatically appear here.</p>
+            <h3 style="color: #fff; margin-bottom: 0.5rem;">No listening history</h3>
+            <p>Tracks you stream will automatically appear here.</p>
           </div>
         `;
         return;
@@ -1013,25 +749,15 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 
       window.__userHistory = history;
       container.innerHTML = `
-        <div class="library-header-row">
-          <div>
-            <h3 style="font-size: 1.4rem; font-weight: 700; color: #fff;">Listening History</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Recently played tracks</p>
-          </div>
-          <button class="btn-secondary-action" onclick="window.clearUserHistory()">
-            <i class="fa-solid fa-trash-can"></i> Clear History
-          </button>
-        </div>
-        <div class="library-track-list">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
           ${history.map((track, idx) => `
-            <div class="library-track-row" onclick="window.playTrackDirect(window.__userHistory[${idx}], window.__userHistory)">
-              <span class="track-row-idx">${idx + 1}</span>
-              <img src="${track.coverUrl || './pulse-logo.png'}" alt="cover" class="track-row-thumb">
-              <div class="track-row-meta">
-                <div class="track-row-title">${track.title}</div>
-                <div class="track-row-artist">${track.artist}</div>
+            <div class="library-track-row hover-glow" onclick="window.playTrackDirect(window.__userHistory[${idx}], window.__userHistory)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
+              <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
+              <img src="${track.coverUrl || './pulse-logo.png'}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
+              <div style="flex: 1;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${track.title}</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">${track.artist}</div>
               </div>
-              <div class="track-row-album">${track.album || 'Single'}</div>
             </div>
           `).join('')}
         </div>
@@ -1042,7 +768,7 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
   window.toggleFavoriteTrack = async function(track) {
     if (!track) return;
     const isFav = await addFavorite(track);
-    window.showToast(isFav ? `Added "${track.title}" to Liked Songs` : `Song already in favorites`, 'success', 2000);
+    window.showToast(isFav ? `Added "${track.title}" to Liked Songs ❤️` : `Song already in favorites`, 'success', 2000);
   };
 
   window.removeFavoriteTrack = async function(id) {
@@ -1053,12 +779,12 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 
   window.openCreatePlaylistModal = function() {
     const modal = document.getElementById('create-playlist-modal');
-    if (modal) modal.classList.add('active-modal');
+    if (modal) modal.classList.remove('hidden');
   };
 
   window.closeCreatePlaylistModal = function() {
     const modal = document.getElementById('create-playlist-modal');
-    if (modal) modal.classList.remove('active-modal');
+    if (modal) modal.classList.add('hidden');
   };
 
   window.handleCreatePlaylist = async function(e) {
@@ -1068,10 +794,7 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     const name = nameInput ? nameInput.value : '';
     const desc = descInput ? descInput.value : '';
 
-    if (!name.trim()) {
-      window.showToast('Please enter a playlist name', 'warning');
-      return;
-    }
+    if (!name.trim()) return;
 
     try {
       const pl = await createPlaylist(name, desc);
@@ -1082,14 +805,6 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       window.renderLibraryView();
     } catch (err) {
       window.showToast(err.message || 'Error creating playlist', 'warning');
-    }
-  };
-
-  window.deleteUserPlaylist = async function(id, name) {
-    if (confirm(`Delete playlist "${name}"?`)) {
-      await deletePlaylist(id);
-      window.showToast(`Playlist deleted`, 'info');
-      window.renderLibraryView();
     }
   };
 
@@ -1104,7 +819,6 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     }
   };
 
-  // Add to Playlist Modal
   let trackToAddToPlaylist = null;
   window.openAddToPlaylistModal = async function(track) {
     trackToAddToPlaylist = track;
@@ -1114,23 +828,23 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 
     const playlists = await getPlaylists();
     if (playlists.length === 0) {
-      listEl.innerHTML = '<p style="padding: 1rem; color: var(--text-muted);">No playlists created yet. Create one first!</p>';
+      listEl.innerHTML = '<p style="padding: 1rem; color: var(--text-muted); text-align: center;">No playlists created yet. Create one first!</p>';
     } else {
       listEl.innerHTML = playlists.map(pl => `
-        <div class="playlist-picker-item" onclick="window.confirmAddTrackToPlaylist('${pl.id}')">
+        <div class="playlist-picker-item hover-glow" onclick="window.confirmAddTrackToPlaylist('${pl.id}')" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border-radius: 10px; background: rgba(255,255,255,0.05); cursor: pointer;">
           <i class="fa-solid fa-list-check text-accent"></i>
-          <span style="font-weight: 600;">${pl.name}</span>
+          <span style="font-weight: 600; color: #fff;">${pl.name}</span>
           <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">${pl.tracks ? pl.tracks.length : 0} tracks</span>
         </div>
       `).join('');
     }
 
-    modal.classList.add('active-modal');
+    modal.classList.remove('hidden');
   };
 
   window.closeAddToPlaylistModal = function() {
     const modal = document.getElementById('add-to-playlist-modal');
-    if (modal) modal.classList.remove('active-modal');
+    if (modal) modal.classList.add('hidden');
     trackToAddToPlaylist = null;
   };
 
@@ -1145,61 +859,23 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     }
   };
 
-  window.clearUserHistory = async function() {
-    if (confirm('Clear all listening history?')) {
-      await clearHistory();
-      window.showToast('History cleared', 'info');
-      window.renderLibraryView();
-    }
-  };
-
-  // ---------------------------------------------------------------------------
-  // DOWNLOAD NATIVE APP MODAL CONTROLLERS
-  // ---------------------------------------------------------------------------
-
   window.openDownloadModal = function() {
     const modal = document.getElementById('download-app-modal');
-    if (modal) {
-      modal.classList.remove('hidden');
-      modal.classList.add('active-modal');
-    }
+    if (modal) modal.classList.remove('hidden');
   };
 
   window.closeDownloadModal = function() {
     const modal = document.getElementById('download-app-modal');
-    if (modal) {
-      modal.classList.add('hidden');
-      modal.classList.remove('active-modal');
-    }
-  };
-
-  window.switchDownloadTab = function(category) {
-    document.querySelectorAll('.download-tab-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-dtab') === category);
-    });
-    document.querySelectorAll('.download-card').forEach(card => {
-      const cat = card.getAttribute('data-category');
-      if (category === 'all' || cat === category) {
-        card.style.display = 'flex';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  };
-
-  window.handleDownloadClick = function(platform, filename) {
-    window.showToast(`Starting ${platform} installer download (${filename})...`, 'success', 2500);
+    if (modal) modal.classList.add('hidden');
   };
 
   // ---------------------------------------------------------------------------
-  // GEMINI AI DJ MODAL CONTROLLERS
+  // 6. GEMINI AI DJ & SONG DISCOVERY CONTROLLERS
   // ---------------------------------------------------------------------------
-
   window.openGeminiDJModal = function() {
     const modal = document.getElementById('gemini-dj-modal');
     if (modal) {
       modal.classList.remove('hidden');
-      modal.classList.add('active-modal');
       const input = document.getElementById('gemini-prompt-input');
       if (input) input.focus();
     }
@@ -1207,17 +883,14 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 
   window.closeGeminiDJModal = function() {
     const modal = document.getElementById('gemini-dj-modal');
-    if (modal) {
-      modal.classList.add('hidden');
-      modal.classList.remove('active-modal');
-    }
+    if (modal) modal.classList.add('hidden');
   };
 
   window.handleAskGeminiDJ = async function(presetPrompt) {
     const promptInput = document.getElementById('gemini-prompt-input');
     const prompt = presetPrompt || (promptInput ? promptInput.value : '');
     if (!prompt || !prompt.trim()) {
-      window.showToast('Please enter a vibe or mood for Gemini DJ', 'warning');
+      window.showToast('Please enter a vibe or song for Gemini AI', 'warning');
       return;
     }
     if (promptInput && presetPrompt) promptInput.value = presetPrompt;
@@ -1228,22 +901,24 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     if (output) output.innerHTML = '';
 
     try {
-      const res = await window.geminiService.askGeminiDJ(prompt);
+      const res = await askGeminiDJ(prompt);
       if (spinner) spinner.classList.add('hidden');
       if (output && res && res.tracks) {
         output.innerHTML = `
           <div style="margin-top: 1rem; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
-            <h4 style="color: #c084fc; margin-bottom: 0.25rem; font-size: 1.1rem; font-weight: 800;">${res.djTitle}</h4>
-            <p style="color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 0.85rem;">${res.vibe}</p>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-              ${res.tracks.map((t, idx) => `
-                <div class="gemini-track-item hover-glow" onclick="window.executeSearch('${t.title.replace(/'/g, "\\'")} ${t.artist.replace(/'/g, "\\'")}'); window.closeGeminiDJModal();" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; border-radius: 10px; background: rgba(255,255,255,0.05); cursor: pointer; border: 1px solid var(--border-glass);">
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c084fc; margin-bottom: 0.25rem;">${res.djTitle}</div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">${res.vibe}</p>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; max-height: 280px; overflow-y: auto;">
+              ${res.tracks.map((t) => `
+                <div class="hover-glow" onclick="window.playPresetQuery('${(t.ytQuery || `${t.title} ${t.artist}`).replace(/'/g, "\\'")}'); window.closeGeminiDJModal();" style="display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.85rem; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); cursor: pointer;">
                   <div>
-                    <strong style="color: #fff; font-size: 0.9rem;">${t.title}</strong>
-                    <span style="color: #c084fc; font-size: 0.8rem; margin-left: 6px;">by ${t.artist}</span>
-                    <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">${t.reason || 'AI Match'}</div>
+                    <div style="font-size: 0.92rem; font-weight: 700; color: #fff;">${t.title}</div>
+                    <div style="font-size: 0.78rem; color: #c084fc;">${t.artist}</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">${t.reason || 'AI Match'}</div>
                   </div>
-                  <button class="btn-play-hover" style="position: static; opacity: 1; transform: scale(0.85); width: 32px; height: 32px; border-radius: 50%; background: #a855f7; border: none; color: #fff; cursor: pointer;"><i class="fa-solid fa-play" style="font-size: 0.75rem;"></i></button>
+                  <button class="btn-primary-play" style="padding: 0.4rem 0.75rem; font-size: 0.75rem; border-radius: 8px;">
+                    <i class="fa-solid fa-play"></i> Play
+                  </button>
                 </div>
               `).join('')}
             </div>
@@ -1252,37 +927,21 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
       }
     } catch (e) {
       if (spinner) spinner.classList.add('hidden');
-      window.showToast('Curated mood tracks ready', 'info');
-    }
-  };
-
-  window.toggleFSLyrics = function() {
-    const sec = document.getElementById('fs-lyrics-section');
-    if (sec) {
-      sec.classList.toggle('hidden');
-    }
-  };
-
-  window.toggleLyricsDrawer = function() {
-    const modal = document.getElementById('lyrics-drawer-modal');
-    if (modal && modal.classList.contains('active-modal')) {
-      window.closeLyricsDrawer();
-    } else {
-      window.openLyricsDrawer();
+      window.showToast('Gemini tracks ready', 'info');
     }
   };
 
   // ---------------------------------------------------------------------------
   // INITIALIZATION ON DOM READY
   // ---------------------------------------------------------------------------
-  document.addEventListener('DOMContentLoaded', () => {
-    // Render Home Feed Discovery
-    window.renderHomeDiscovery();
+  function initPulseApp() {
+    // Render Home Feed Discovery immediately
+    if (typeof window.renderHomeDiscovery === 'function') {
+      window.renderHomeDiscovery();
+    }
 
     // Initial Auth State Sync
-    onAuthStateChanged((user) => {
-      updateUserUI(user);
-    });
+    onAuthStateChanged(() => {});
 
     // Realtime Library Updates
     onFavoritesChanged(() => {
@@ -1307,6 +966,10 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     const searchInput = document.getElementById('global-search-input');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
+        const clearBtn = document.getElementById('clear-search-btn');
+        if (clearBtn) {
+          clearBtn.classList.toggle('hidden', !e.target.value);
+        }
         window.executeSearch(e.target.value, true);
       });
       searchInput.addEventListener('keypress', (e) => {
@@ -1315,7 +978,13 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
         }
       });
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPulseApp);
+  } else {
+    initPulseApp();
+  }
 
   // ---------------------------------------------------------------------------
   // PROGRESSIVE WEB APP (PWA) SUPPORT

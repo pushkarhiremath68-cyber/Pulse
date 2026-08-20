@@ -8,9 +8,7 @@ import { disambiguateQuery } from './geminiService.js';
 import { searchYouTubeMusic, resolvePipedAudioStream, fetchYouTubeMusicCharts } from './extractorService.js';
 import CryptoJS from 'crypto-js';
 
-
-
-// In-memory LRU-like stream resolution cache
+// In-memory LRU stream resolution cache
 const RESOLVED_STREAM_CACHE = new Map();
 
 /**
@@ -31,9 +29,7 @@ export function decryptSaavnMediaUrl(encryptedUrl) {
       const u160 = url.replace('_96.mp4', '_160.mp4').replace('_320.mp4', '_160.mp4').replace('_48.mp4', '_160.mp4');
       return { '320': u320, '160': u160, '96': url };
     }
-  } catch (e) {
-    console.warn('[Pulse Decrypt Notice]', e);
-  }
+  } catch (e) {}
   return null;
 }
 
@@ -92,36 +88,6 @@ export function normalizeTrack(raw, source = 'YouTube Music Ad-Free Opus') {
     source: source,
     ytId: raw.ytId || (safeId.startsWith('ytm-') ? safeId.replace('ytm-', '') : null)
   };
-}
-
-/**
- * Expands user query using YouTube and Gemini search intelligence
- */
-async function expandQuery(query) {
-  const expanded = [query];
-  try {
-    const ytUrl = `https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=${encodeURIComponent(query)}`;
-    const res = await fetch(ytUrl, { signal: AbortSignal.timeout(2000) });
-    if (res.ok) {
-      const text = await res.text();
-      const matches = text.match(/\["(.*?)"/g);
-      if (matches) {
-        matches.slice(0, 3).forEach(m => {
-          const clean = m.replace(/^\["/, '').replace(/"$/, '').trim();
-          if (clean && !expanded.includes(clean)) {
-            expanded.push(clean);
-          }
-        });
-      }
-    }
-  } catch (e) {}
-
-  const geminiQueries = disambiguateQuery(query);
-  geminiQueries.forEach(g => {
-    if (!expanded.includes(g)) expanded.push(g);
-  });
-
-  return expanded;
 }
 
 /**
@@ -205,9 +171,8 @@ export async function searchSaavnMasterTracks(query, limit = 25) {
   return results.slice(0, limit);
 }
 
-
 /**
- * Master Global Search: Searches YouTube Music Extractor + Studio Masters + Audius + Jamendo
+ * Master Global Search: Searches YouTube Music Extractor + Studio Masters + Audius
  * Guarantees zero ads, direct pure audio streams, and complete metadata.
  */
 export async function searchTracks(query, limit = 40) {
@@ -228,20 +193,19 @@ export async function searchTracks(query, limit = 40) {
     }
   };
 
-  // STEP 1: Studio Master JioSaavn 320k (100% Reliable Streams)
-  try {
-    const saavnTracks = await searchSaavnMasterTracks(cleanQuery, Math.min(limit, 30));
-    saavnTracks.forEach(t => addUnique(t));
-  } catch (e) {}
+  // Execute concurrent search across Studio Masters + YouTube Music Extractor
+  const [saavnRes, ytRes] = await Promise.allSettled([
+    searchSaavnMasterTracks(cleanQuery, Math.min(limit, 25)),
+    searchYouTubeMusic(cleanQuery, Math.min(limit, 30))
+  ]);
 
-  // STEP 2: YouTube Music Ad-Free Extractor
-  if (results.length < limit) {
-    try {
-      const ytTracks = await searchYouTubeMusic(cleanQuery, limit - results.length);
-      ytTracks.forEach(t => addUnique(t));
-    } catch (e) {}
+  if (saavnRes.status === 'fulfilled' && Array.isArray(saavnRes.value)) {
+    saavnRes.value.forEach(t => addUnique(t));
   }
 
+  if (ytRes.status === 'fulfilled' && Array.isArray(ytRes.value)) {
+    ytRes.value.forEach(t => addUnique(t));
+  }
 
   return results.slice(0, limit);
 }
@@ -279,94 +243,7 @@ export async function fetchTrendingTracks(limit = 40) {
     } catch (e) {}
   }
 
-  // 3. Audius Trending Top 10
-  if (results.length < limit) {
-    try {
-      const node = getActiveAudiusNode();
-      const res = await fetch(`${node}/v1/tracks/trending?app_name=${AUDIUS_APP_NAME}&limit=10`, { signal: AbortSignal.timeout(3000) });
-      if (res.ok) {
-        const json = await res.json();
-        if (json.data && Array.isArray(json.data)) {
-          json.data.forEach(t => {
-            if (t.duration && t.duration > 45) {
-              const norm = normalizeTrack({
-                id: `audius-${t.id}`,
-                title: t.title,
-                artist: t.user?.name,
-                artwork: t.artwork,
-                duration: t.duration || 220,
-                streamUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
-                genre: t.genre || 'Trending Decentralized'
-              }, 'Audius Decentralized');
-              if (norm) addUnique(norm);
-            }
-          });
-        }
-      }
-    } catch (e) {}
-  }
-
-  // 4. Jamendo Top Tracks of the Week
-  if (results.length < limit) {
-    try {
-      const clientId = 'b6747d04'; // Public Jamendo Client ID
-      const res = await fetch(`https://api.jamendo.com/v3.0/tracks/?client_id=${clientId}&format=json&limit=10&order=popularity_week`, { signal: AbortSignal.timeout(3000) });
-      if (res.ok) {
-        const json = await res.json();
-        if (json.results && Array.isArray(json.results)) {
-          json.results.forEach(t => {
-            if (t.audio && t.duration > 30) {
-              const norm = normalizeTrack({
-                id: `jamendo-${t.id}`,
-                title: t.name,
-                artist: t.artist_name,
-                artwork: { '1000x1000': t.image },
-                duration: parseInt(t.duration, 10) || 200,
-                streamUrl: t.audio,
-                genre: 'Jamendo Top Weekly'
-              }, 'Jamendo Independent');
-              if (norm) addUnique(norm);
-            }
-          });
-        }
-      }
-    } catch (e) {}
-  }
-
   return results.slice(0, limit);
-}
-
-/**
- * Fetches Curated Top Tracks for the 6 target languages
- * Each returns up to 100 songs to satisfy the 1000+ total dynamic catalog goal.
- */
-export async function fetchLanguagePlaylists() {
-  const languages = [
-    { id: "hindi", title: "Top Hindi Hits", query: "Bollywood Top 100", icon: "fa-compact-disc", color: "#ec4899" },
-    { id: "english", title: "Top English Hits", query: "Global Top Hits 2024", icon: "fa-fire-flame-curved", color: "#ff007a" },
-    { id: "kannada", title: "Top Kannada Hits", query: "Kannada Hits", icon: "fa-crown", color: "#f59e0b" },
-    { id: "tamil", title: "Top Tamil Hits", query: "Kollywood Chartbusters", icon: "fa-star", color: "#ef4444" },
-    { id: "telugu", title: "Top Telugu Hits", query: "Tollywood Viral Songs", icon: "fa-guitar", color: "#3b82f6" },
-    { id: "gujarati", title: "Top Gujarati Hits", query: "Gujarati Hits", icon: "fa-music", color: "#10b981" }
-  ];
-
-  const results = {};
-  
-  // Fetch these concurrently
-  const promises = languages.map(async (lang) => {
-    try {
-      const tracks = await searchSaavnMasterTracks(lang.query, 100);
-      results[lang.title] = {
-        meta: lang,
-        tracks: tracks
-      };
-    } catch (e) {
-      results[lang.title] = { meta: lang, tracks: [] };
-    }
-  });
-
-  await Promise.allSettled(promises);
-  return languages.map(l => results[l.title]);
 }
 
 /**
@@ -433,21 +310,6 @@ export async function resolveFullAudioStream(track) {
     }
   } catch (e) {}
 
-  // 3. Search Audius
-  try {
-    const audiusMatches = await searchAudiusTracks(query, 3);
-    if (audiusMatches.length > 0 && audiusMatches[0].streamUrl) {
-      const match = audiusMatches[0];
-      const resolved = {
-        streamUrl: match.streamUrl,
-        duration: match.duration || 220,
-        source: 'Audius Pure Audio'
-      };
-      RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
-      return resolved;
-    }
-  } catch (e) {}
-
   return null;
 }
 
@@ -463,7 +325,6 @@ const musicService = {
   searchTracks,
   fetchTrendingTracks,
   searchSaavnMasterTracks,
-  searchAudiusTracks,
   normalizeTrack,
   resolveFullAudioStream,
   resolveExactTrackStream,

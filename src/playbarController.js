@@ -2,7 +2,7 @@
  * Pulse Music - Pure Audio Playbar & Media Session Controller
  * 100% Ad-Free Pure Audio Playback (Zero Video Containers / Zero Visual Frames)
  * Features lock screen media controls (navigator.mediaSession), Firestore history & favorites sync,
- * Web Audio spectrum analysis, and synchronized LRCLIB lyrics.
+ * Web Audio spectrum analysis, synchronized LRCLIB lyrics, and smooth Maximize/Minimize states.
  */
 
 import { addToHistory, isFavorite, addFavorite, removeFavorite, onFavoritesChanged } from './firestoreService.js';
@@ -22,6 +22,7 @@ let playQueue = [];
 let queueIndex = 0;
 let isShuffle = false;
 let isRepeat = false;
+let isMaximized = false;
 let activePlaySessionId = 0;
 
 // Initialize Native HTML5 Pure Audio Element
@@ -77,7 +78,7 @@ function getAudio() {
     });
 
     audio.addEventListener('error', (e) => {
-      console.warn('[Pulse Audio Player] Playback error event:', e);
+      console.warn('[Pulse Audio Player] Playback notice:', e);
     });
   }
   return audio;
@@ -105,18 +106,17 @@ function updateMediaSession(track) {
     ]
   });
 
-  // Action handlers
   try {
     navigator.mediaSession.setActionHandler('play', () => resume());
     navigator.mediaSession.setActionHandler('pause', () => pause());
     navigator.mediaSession.setActionHandler('previoustrack', () => playPrevious());
     navigator.mediaSession.setActionHandler('nexttrack', () => playNext());
     navigator.mediaSession.setActionHandler('seekbackward', (details) => {
-      const skipTime = details.seekOffset || 10;
+      const skipTime = details.seekOffset || 5;
       seekTo(Math.max(currentTime - skipTime, 0));
     });
     navigator.mediaSession.setActionHandler('seekforward', (details) => {
-      const skipTime = details.seekOffset || 10;
+      const skipTime = details.seekOffset || 5;
       seekTo(Math.min(currentTime + skipTime, duration));
     });
     navigator.mediaSession.setActionHandler('seekto', (details) => {
@@ -187,19 +187,17 @@ export async function playTrack(track, queue = null) {
   addToHistory(track);
 
   // Fetch LRCLIB Synchronized Lyrics
-  if (typeof window.fetchTrackLyrics === 'function') {
-    window.fetchTrackLyrics(track);
+  if (typeof window.loadTrackLyrics === 'function') {
+    window.loadTrackLyrics(track);
   }
 
   // Collect Stream Candidates
   const streamCandidates = [];
 
-  if (track.streamUrl && track.streamUrl.startsWith('http')) {
+  if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('preview')) {
     streamCandidates.push({ url: track.streamUrl, source: track.source || 'Direct Audio Stream' });
-    // If Saavn, also add 160k and 96k fallbacks
     if (track.streamUrl.includes('_320.mp4')) {
       streamCandidates.push({ url: track.streamUrl.replace('_320.mp4', '_160.mp4'), source: 'Studio Master 160k' });
-      streamCandidates.push({ url: track.streamUrl.replace('_320.mp4', '_96.mp4'), source: 'Studio Master 96k' });
     }
   }
 
@@ -245,25 +243,13 @@ export async function playTrack(track, queue = null) {
       updateTrackInfoUI(track);
       updatePlayPauseUI();
       updateMediaSessionPlaybackState('playing');
-      console.log('[Pulse Pure Audio] Streaming successfully from:', cand.source);
       break;
     } catch (err) {
-      console.warn('[Pulse Audio] Stream candidate failed, trying next:', cand.source, err.message);
+      console.warn('[Pulse Audio] Candidate notice:', cand.source);
     }
   }
 
   if (playbackStarted) return;
-
-  // 3. Fallback via PulseAudioEngine
-  if (window.PulseAudioEngine?.playTrackOnNativeAudio) {
-    const success = await window.PulseAudioEngine.playTrackOnNativeAudio(track);
-    if (success) {
-      isPlaying = true;
-      updatePlayPauseUI();
-      updateMediaSessionPlaybackState('playing');
-      return;
-    }
-  }
 
   if (typeof window.showToast === 'function') {
     window.showToast(`Connecting to audio stream for "${track.title}"...`, 'info', 2000);
@@ -306,7 +292,7 @@ export function playNext() {
   } else {
     queueIndex = (queueIndex + 1) % playQueue.length;
   }
-  playTrack(playQueue[queueIndex]);
+  playTrack(playQueue[queueIndex], playQueue);
 }
 
 export function playPrevious() {
@@ -316,7 +302,7 @@ export function playPrevious() {
     return;
   }
   queueIndex = (queueIndex - 1 + playQueue.length) % playQueue.length;
-  playTrack(playQueue[queueIndex]);
+  playTrack(playQueue[queueIndex], playQueue);
 }
 
 export function seekTo(seconds) {
@@ -349,8 +335,8 @@ export function toggleMute() {
 
 export function toggleShuffle() {
   isShuffle = !isShuffle;
-  const btn = document.getElementById('btn-shuffle');
-  if (btn) btn.classList.toggle('active-ctrl', isShuffle);
+  const btns = document.querySelectorAll('#btn-shuffle, #fs-btn-shuffle');
+  btns.forEach(b => b.classList.toggle('active-ctrl', isShuffle));
   if (typeof window.showToast === 'function') {
     window.showToast(`Shuffle is ${isShuffle ? 'ON' : 'OFF'}`, 'info', 1500);
   }
@@ -358,10 +344,49 @@ export function toggleShuffle() {
 
 export function toggleRepeat() {
   isRepeat = !isRepeat;
-  const btn = document.getElementById('btn-repeat');
-  if (btn) btn.classList.toggle('active-ctrl', isRepeat);
+  const btns = document.querySelectorAll('#btn-repeat, #fs-btn-repeat');
+  btns.forEach(b => b.classList.toggle('active-ctrl', isRepeat));
   if (typeof window.showToast === 'function') {
     window.showToast(`Repeat is ${isRepeat ? 'ON' : 'OFF'}`, 'info', 1500);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// MAXIMIZE & MINIMIZE CONTROLS
+// -----------------------------------------------------------------------------
+
+export function maximizePlayer() {
+  toggleFullscreen(true);
+}
+
+export function minimizePlayer() {
+  toggleFullscreen(false);
+}
+
+export function toggleFullscreen(forceState) {
+  const fsModal = document.getElementById('fullscreen-player');
+  if (!fsModal) return;
+
+  const shouldOpen = typeof forceState === 'boolean' ? forceState : fsModal.classList.contains('hidden');
+  isMaximized = shouldOpen;
+
+  if (shouldOpen) {
+    fsModal.classList.remove('hidden');
+    fsModal.classList.add('active-fs');
+    document.body.style.overflow = 'hidden';
+
+    // Start Visualizer Canvas if present
+    if (window.pulseVisualizerInstance) {
+      window.pulseVisualizerInstance.start();
+    }
+
+    if (currentTrack && typeof window.loadTrackLyrics === 'function') {
+      window.loadTrackLyrics(currentTrack);
+    }
+  } else {
+    fsModal.classList.add('hidden');
+    fsModal.classList.remove('active-fs');
+    document.body.style.overflow = '';
   }
 }
 
@@ -413,9 +438,9 @@ function updatePlayPauseUI() {
 }
 
 function updateVolumeUI() {
-  const volBars = document.querySelectorAll('#volume-progress-fill, #player-volume-fill');
-  const volSliders = document.querySelectorAll('#volume-slider, #player-volume-slider');
-  const volIcons = document.querySelectorAll('#volume-icon, #player-volume-icon');
+  const volBars = document.querySelectorAll('#volume-progress-fill, #player-volume-fill, #fs-volume-fill');
+  const volSliders = document.querySelectorAll('#volume-slider, #player-volume-slider, #fs-volume-slider');
+  const volIcons = document.querySelectorAll('#volume-icon, #player-volume-icon, #fs-volume-icon');
 
   volSliders.forEach(s => { s.value = currentVolume * 100; });
   volBars.forEach(b => { b.style.width = `${currentVolume * 100}%`; });
@@ -459,7 +484,6 @@ function updateTrackInfoUI(track) {
     el.textContent = track.source || 'Ad-Free Opus Pure Audio';
   });
 
-  // Update Favorite Button State in Playbar
   updateFavoriteButtonUI(track.id);
 }
 
@@ -505,7 +529,7 @@ export async function toggleCurrentTrackFavorite() {
 }
 
 function renderQueueUI() {
-  const container = document.getElementById('playbar-queue-list');
+  const container = document.getElementById('playbar-queue-list') || document.getElementById('fs-queue-list');
   if (!container) return;
 
   if (playQueue.length === 0) {
@@ -528,15 +552,23 @@ function renderQueueUI() {
 export function playTrackAtQueueIndex(index) {
   if (index >= 0 && index < playQueue.length) {
     queueIndex = index;
-    playTrack(playQueue[queueIndex]);
+    playTrack(playQueue[queueIndex], playQueue);
   }
+}
+
+export function seekBackward5() {
+  seekTo(Math.max(0, currentTime - 5));
+}
+
+export function seekForward5() {
+  seekTo(Math.min(duration, currentTime + 5));
 }
 
 // -----------------------------------------------------------------------------
 // EVENT LISTENERS BINDING
 // -----------------------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', () => {
+function initPlaybarController() {
   getAudio();
 
   const seekers = document.querySelectorAll('#player-seek-slider, #playbar-seeker, #fs-seek-slider');
@@ -564,14 +596,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const volSliders = document.querySelectorAll('#volume-slider, #player-volume-slider');
+  const volSliders = document.querySelectorAll('#volume-slider, #player-volume-slider, #fs-volume-slider');
   volSliders.forEach(slider => {
     slider.addEventListener('input', (e) => {
       setVolume(parseFloat(e.target.value) / 100);
     });
   });
 
-  // Swipe to minimize fullscreen player
+  // Keyboard Shortcuts: Space, Arrows, Escape, M, L
+  window.addEventListener('keydown', (e) => {
+    if (['input', 'textarea'].includes(e.target.tagName.toLowerCase())) return;
+
+    if (e.code === 'Space') {
+      e.preventDefault();
+      togglePlay();
+    } else if (e.code === 'Escape') {
+      if (isMaximized) {
+        minimizePlayer();
+      }
+    } else if (e.code === 'ArrowRight') {
+      seekForward5();
+    } else if (e.code === 'ArrowLeft') {
+      seekBackward5();
+    } else if (e.code === 'ArrowUp') {
+      e.preventDefault();
+      setVolume(Math.min(1, currentVolume + 0.05));
+    } else if (e.code === 'ArrowDown') {
+      e.preventDefault();
+      setVolume(Math.max(0, currentVolume - 0.05));
+    } else if (e.key === 'm' || e.key === 'M') {
+      toggleMute();
+    } else if (e.key === 'l' || e.key === 'L') {
+      if (typeof window.openLyricsDrawer === 'function') {
+        window.openLyricsDrawer();
+      }
+    }
+  });
+
+  // Swipe down to minimize fullscreen player on mobile
   let fsStartY = 0;
   const fsPlayer = document.getElementById('fullscreen-player');
   if (fsPlayer) {
@@ -581,46 +643,24 @@ document.addEventListener('DOMContentLoaded', () => {
     
     fsPlayer.addEventListener('touchend', (e) => {
       const deltaY = e.changedTouches[0].clientY - fsStartY;
-      if (deltaY > 80) { // Swiped down
-        toggleFullscreen(false);
+      if (deltaY > 80) {
+        minimizePlayer();
       }
     });
   }
 
-  // Listen to Firestore Favorites changes to update UI
-  if (typeof window.onFavoritesChanged === 'function') {
-    window.onFavoritesChanged(() => {
-      if (currentTrack) updateFavoriteButtonUI(currentTrack.id);
-    });
-  } else if (typeof onFavoritesChanged === 'function') {
+  // Listen to Firestore Favorites
+  if (typeof onFavoritesChanged === 'function') {
     onFavoritesChanged(() => {
       if (currentTrack) updateFavoriteButtonUI(currentTrack.id);
     });
   }
-});
-
-export function toggleFullscreen(forceState) {
-  const fsModal = document.getElementById('fullscreen-player');
-  if (!fsModal) return;
-  const shouldOpen = typeof forceState === 'boolean' ? forceState : fsModal.classList.contains('hidden');
-  if (shouldOpen) {
-    fsModal.classList.remove('hidden');
-    fsModal.classList.add('active-fs');
-    if (currentTrack && typeof window.loadTrackLyrics === 'function') {
-      window.loadTrackLyrics(currentTrack);
-    }
-  } else {
-    fsModal.classList.add('hidden');
-    fsModal.classList.remove('active-fs');
-  }
 }
 
-export function seekBackward5() {
-  seekTo(Math.max(0, currentTime - 5));
-}
-
-export function seekForward5() {
-  seekTo(Math.min(duration, currentTime + 5));
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPlaybarController);
+} else {
+  initPlaybarController();
 }
 
 const playbarController = {
@@ -635,6 +675,10 @@ const playbarController = {
   seekTo,
   seekBackward5,
   seekForward5,
+  maximize: maximizePlayer,
+  minimize: minimizePlayer,
+  maximizePlayer,
+  minimizePlayer,
   toggleFullscreen,
   setVolume,
   toggleMute,
@@ -646,7 +690,8 @@ const playbarController = {
   getAudio,
   getCurrentTrack: () => currentTrack,
   getIsPlaying: () => isPlaying,
-  getPlayQueue: () => playQueue
+  getPlayQueue: () => playQueue,
+  getIsMaximized: () => isMaximized
 };
 
 if (typeof window !== 'undefined') {
