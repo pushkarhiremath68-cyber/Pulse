@@ -8,26 +8,7 @@ import { disambiguateQuery } from './geminiService.js';
 import { searchYouTubeMusic, resolvePipedAudioStream, fetchYouTubeMusicCharts } from './extractorService.js';
 import CryptoJS from 'crypto-js';
 
-const JAMENDO_CLIENT_ID = '23b33f2a';
-const JAMENDO_API_BASE = 'https://api.jamendo.com/v3.0';
-const AUDIUS_APP_NAME = 'PULSE_MUSIC_PRO';
 
-const AUDIUS_NODES = [
-  'https://discoveryprovider.audius.co',
-  'https://audius-discovery-1.cultur3stake.com',
-  'https://audius-dp.singapore.creatorseed.com',
-  'https://discovery-us-01.audius.openplayer.org'
-];
-
-let nodeIdx = 0;
-export function getActiveAudiusNode() {
-  return AUDIUS_NODES[nodeIdx % AUDIUS_NODES.length];
-}
-
-export function rotateAudiusNode() {
-  nodeIdx = (nodeIdx + 1) % AUDIUS_NODES.length;
-  return getActiveAudiusNode();
-}
 
 // In-memory LRU-like stream resolution cache
 const RESOLVED_STREAM_CACHE = new Map();
@@ -224,73 +205,6 @@ export async function searchSaavnMasterTracks(query, limit = 25) {
   return results.slice(0, limit);
 }
 
-/**
- * Searches Audius Decentralized Network for Full Songs
- */
-export async function searchAudiusTracks(query, limit = 10) {
-  const results = [];
-  try {
-    const node = getActiveAudiusNode();
-    const url = `${node}/v1/tracks/search?query=${encodeURIComponent(query)}&app_name=${AUDIUS_APP_NAME}&limit=${limit}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
-    if (res.ok) {
-      const json = await res.json();
-      if (json.data && Array.isArray(json.data)) {
-        json.data.forEach(t => {
-          if (t.duration && t.duration > 45) {
-            const norm = normalizeTrack({
-              id: `audius-${t.id}`,
-              title: t.title,
-              artist: t.user?.name,
-              artwork: t.artwork,
-              duration: t.duration || 220,
-              streamUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
-              genre: t.genre || 'Audius Full Song'
-            }, 'Audius Decentralized');
-            if (norm) results.push(norm);
-          }
-        });
-      }
-    }
-  } catch (e) {
-    rotateAudiusNode();
-  }
-  return results;
-}
-
-/**
- * Searches Jamendo API for Independent & Royalty-Free Tracks
- */
-export async function searchJamendoTracks(query, limit = 10) {
-  const results = [];
-  try {
-    const clientId = 'b6747d04'; // Public Jamendo Client ID
-    const url = `https://api.jamendo.com/v3.0/tracks/?client_id=${clientId}&format=json&limit=${limit}&search=${encodeURIComponent(query)}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
-    if (res.ok) {
-      const json = await res.json();
-      if (json.results && Array.isArray(json.results)) {
-        json.results.forEach(t => {
-          if (t.audio && t.duration > 30) {
-            const norm = normalizeTrack({
-              id: `jamendo-${t.id}`,
-              title: t.name,
-              artist: t.artist_name,
-              artwork: { '1000x1000': t.image },
-              duration: parseInt(t.duration, 10) || 200,
-              streamUrl: t.audio,
-              genre: 'Jamendo Indie'
-            }, 'Jamendo Independent');
-            if (norm) results.push(norm);
-          }
-        });
-      }
-    }
-  } catch (e) {
-    console.warn('[Jamendo API] Failed to fetch:', e.message);
-  }
-  return results;
-}
 
 /**
  * Master Global Search: Searches YouTube Music Extractor + Studio Masters + Audius + Jamendo
@@ -328,21 +242,6 @@ export async function searchTracks(query, limit = 40) {
     } catch (e) {}
   }
 
-  // STEP 3: Audius Decentralized Network
-  if (results.length < limit) {
-    try {
-      const audiusTracks = await searchAudiusTracks(cleanQuery, 8);
-      audiusTracks.forEach(t => addUnique(t));
-    } catch (e) {}
-  }
-
-  // STEP 4: Jamendo Independent Artists
-  if (results.length < limit) {
-    try {
-      const jamendoTracks = await searchJamendoTracks(cleanQuery, 8);
-      jamendoTracks.forEach(t => addUnique(t));
-    } catch (e) {}
-  }
 
   return results.slice(0, limit);
 }
