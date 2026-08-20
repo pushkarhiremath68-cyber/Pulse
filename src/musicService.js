@@ -259,7 +259,41 @@ export async function searchAudiusTracks(query, limit = 10) {
 }
 
 /**
- * Master Global Search: Searches YouTube Music Extractor + Studio Masters + Audius
+ * Searches Jamendo API for Independent & Royalty-Free Tracks
+ */
+export async function searchJamendoTracks(query, limit = 10) {
+  const results = [];
+  try {
+    const clientId = 'b6747d04'; // Public Jamendo Client ID
+    const url = `https://api.jamendo.com/v3.0/tracks/?client_id=${clientId}&format=json&limit=${limit}&search=${encodeURIComponent(query)}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.results && Array.isArray(json.results)) {
+        json.results.forEach(t => {
+          if (t.audio && t.duration > 30) {
+            const norm = normalizeTrack({
+              id: `jamendo-${t.id}`,
+              title: t.name,
+              artist: t.artist_name,
+              artwork: { '1000x1000': t.image },
+              duration: parseInt(t.duration, 10) || 200,
+              streamUrl: t.audio,
+              genre: 'Jamendo Indie'
+            }, 'Jamendo Independent');
+            if (norm) results.push(norm);
+          }
+        });
+      }
+    }
+  } catch (e) {
+    console.warn('[Jamendo API] Failed to fetch:', e.message);
+  }
+  return results;
+}
+
+/**
+ * Master Global Search: Searches YouTube Music Extractor + Studio Masters + Audius + Jamendo
  * Guarantees zero ads, direct pure audio streams, and complete metadata.
  */
 export async function searchTracks(query, limit = 40) {
@@ -302,6 +336,14 @@ export async function searchTracks(query, limit = 40) {
     } catch (e) {}
   }
 
+  // STEP 4: Jamendo Independent Artists
+  if (results.length < limit) {
+    try {
+      const jamendoTracks = await searchJamendoTracks(cleanQuery, 8);
+      jamendoTracks.forEach(t => addUnique(t));
+    } catch (e) {}
+  }
+
   return results.slice(0, limit);
 }
 
@@ -328,14 +370,67 @@ export async function fetchTrendingTracks(limit = 40) {
       const sTracks = await searchSaavnMasterTracks(tq, 15);
       sTracks.forEach(t => addUnique(t));
     } catch (e) {}
-    if (results.length >= 30) break;
   }
 
-  // 2. YouTube Music Global Top Charts
+  // 2. YouTube Music Global Charts Fallback
   if (results.length < limit) {
     try {
-      const ytCharts = await fetchYouTubeMusicCharts('GLOBAL', limit - results.length);
-      ytCharts.forEach(t => addUnique(t));
+      const ytTracks = await fetchYouTubeMusicCharts(Math.min(limit - results.length, 20));
+      ytTracks.forEach(t => addUnique(t));
+    } catch (e) {}
+  }
+
+  // 3. Audius Trending Top 10
+  if (results.length < limit) {
+    try {
+      const node = getActiveAudiusNode();
+      const res = await fetch(`${node}/v1/tracks/trending?app_name=${AUDIUS_APP_NAME}&limit=10`, { signal: AbortSignal.timeout(3000) });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data && Array.isArray(json.data)) {
+          json.data.forEach(t => {
+            if (t.duration && t.duration > 45) {
+              const norm = normalizeTrack({
+                id: `audius-${t.id}`,
+                title: t.title,
+                artist: t.user?.name,
+                artwork: t.artwork,
+                duration: t.duration || 220,
+                streamUrl: `${node}/v1/tracks/${t.id}/stream?app_name=${AUDIUS_APP_NAME}`,
+                genre: t.genre || 'Trending Decentralized'
+              }, 'Audius Decentralized');
+              if (norm) addUnique(norm);
+            }
+          });
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 4. Jamendo Top Tracks of the Week
+  if (results.length < limit) {
+    try {
+      const clientId = 'b6747d04'; // Public Jamendo Client ID
+      const res = await fetch(`https://api.jamendo.com/v3.0/tracks/?client_id=${clientId}&format=json&limit=10&order=popularity_week`, { signal: AbortSignal.timeout(3000) });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.results && Array.isArray(json.results)) {
+          json.results.forEach(t => {
+            if (t.audio && t.duration > 30) {
+              const norm = normalizeTrack({
+                id: `jamendo-${t.id}`,
+                title: t.name,
+                artist: t.artist_name,
+                artwork: { '1000x1000': t.image },
+                duration: parseInt(t.duration, 10) || 200,
+                streamUrl: t.audio,
+                genre: 'Jamendo Top Weekly'
+              }, 'Jamendo Independent');
+              if (norm) addUnique(norm);
+            }
+          });
+        }
+      }
     } catch (e) {}
   }
 

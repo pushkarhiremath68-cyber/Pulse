@@ -246,9 +246,11 @@
       <!-- Center: Controls & Scrubber -->
       <div class="player-center">
         <div class="player-controls">
-          <button id="btn-prev" class="btn-player-icon" onclick="window.playSpecificTrack('rec-1')"><i class="fa-solid fa-backward-step"></i></button>
-          <button id="btn-play-pause" class="btn-player-main"><i class="fa-solid fa-play"></i></button>
-          <button id="btn-next" class="btn-player-icon" onclick="window.playSpecificTrack('rec-2')"><i class="fa-solid fa-forward-step"></i></button>
+          <button id="btn-seek-back" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.seekBackward5()" title="-5s"><i class="fa-solid fa-rotate-left"></i></button>
+          <button id="btn-prev" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.playPrevious()" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+          <button id="btn-play-pause" class="btn-player-main" onclick="window.PulsePlaybar && window.PulsePlaybar.togglePlay()" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+          <button id="btn-next" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.playNext()" title="Next"><i class="fa-solid fa-forward-step"></i></button>
+          <button id="btn-seek-forward" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.seekForward5()" title="+5s"><i class="fa-solid fa-rotate-right"></i></button>
         </div>
         <div class="timeline-container">
           <span id="player-time-current">0:00</span>
@@ -261,7 +263,9 @@
       </div>
 
       <!-- Right: Action Buttons -->
-      <div class="player-right">
+      <div class="player-right" style="display: flex; gap: 1rem; align-items: center;">
+        <button class="btn-player-icon" onclick="window.openLyricsDrawer()" title="Show Lyrics"><i class="fa-solid fa-microphone-lines"></i></button>
+        <button class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen(true)" title="Fullscreen Player"><i class="fa-solid fa-expand"></i></button>
         <button class="btn-player-icon" onclick="window.openDownloadModal()" title="Install App"><i class="fa-solid fa-download"></i></button>
       </div>
     </div>
@@ -309,35 +313,83 @@
   </div>
 
   <!-- DOWNLOAD MODAL -->
-  <div id="download-app-modal" class="modal-overlay hidden">
-    <div class="modal-content download-modal-box" style="max-width: 540px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
+  <div id="download-app-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeDownloadModal()">
+    <div class="modal-content download-modal-box" style="max-width: 440px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff;">Download Pulse Music</h3>
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff;">Install Pulse Music</h3>
         <button class="btn-icon-small" onclick="window.closeDownloadModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Experience high-fidelity audio, keyboard shortcuts, and instant access on your device.</p>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Get the full native experience on your device without any security warnings. Enjoy background playback and offline access via our secure PWA!</p>
+      <button id="pwa-install-btn" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem; font-weight: 700; margin-bottom: 0.5rem;" onclick="window.triggerPWAInstall()">
+        <i class="fa-solid fa-download"></i> Install Now
+      </button>
+      <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center;">Works securely on Windows, macOS, Android, and iOS directly from your browser.</p>
+    </div>
+  </div>
+
+  <!-- LYRICS DRAWER MODAL -->
+  <div id="lyrics-drawer-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeLyricsDrawer()">
+    <div class="modal-content" style="max-width: 600px; max-height: 85vh; height: 85vh; display: flex; flex-direction: column; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 0;">
+      <div style="padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h3 id="lyrics-drawer-title" style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Live Lyrics</h3>
+          <p id="lyrics-drawer-artist" style="color: var(--accent-primary); font-size: 0.9rem; font-weight: 600; margin-top: 4px;">Pulse Karaoke</p>
+        </div>
+        <button class="btn-icon-small" onclick="window.closeLyricsDrawer()"><i class="fa-solid fa-chevron-down"></i></button>
+      </div>
+      <div id="lyrics-drawer-content" style="flex: 1; overflow-y: auto; padding: 2rem; position: relative; scroll-behavior: smooth;">
+        <div class="lyrics-loading-state"><i class="fa-solid fa-spinner fa-spin"></i> Synchronizing LRCLIB lyrics...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN PLAYER -->
+  <div id="fullscreen-player" class="fullscreen-player hidden">
+    <div id="fs-bg-blur" class="fs-bg-blur"></div>
+    <div class="fs-overlay">
+      <div class="fs-header">
+        <button class="btn-icon-small" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen(false)"><i class="fa-solid fa-chevron-down"></i></button>
+        <span class="fs-badge">PURE AUDIO ENGINE</span>
+        <button class="btn-icon-small" onclick="window.openLyricsDrawer()"><i class="fa-solid fa-microphone-lines"></i></button>
+      </div>
       
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-        <button onclick="window.downloadPlatformApp('windows')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-brands fa-windows" style="font-size: 1.8rem; color: #60a5fa;"></i>
-          <strong>Windows</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">PWA / Desktop</span>
-        </button>
-        <button onclick="window.downloadPlatformApp('android')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-brands fa-android" style="font-size: 1.8rem; color: #34d399;"></i>
-          <strong>Android</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">APK / Web App</span>
-        </button>
-        <button onclick="window.downloadPlatformApp('macos')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-brands fa-apple" style="font-size: 1.8rem; color: #e2e8f0;"></i>
-          <strong>macOS</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Desktop App</span>
-        </button>
-        <button onclick="window.downloadPlatformApp('ios')" style="padding: 1rem; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <i class="fa-solid fa-mobile-screen" style="font-size: 1.8rem; color: #c084fc;"></i>
-          <strong>iOS / iPadOS</strong>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Home Screen</span>
-        </button>
+      <div class="fs-content">
+        <div class="fs-album-section">
+          <div id="fs-album-art" class="fs-album-art"></div>
+        </div>
+        
+        <div class="fs-info-section">
+          <div class="fs-track-meta">
+            <h2 id="fs-track-title" class="fs-title">Select a Song</h2>
+            <p id="fs-track-artist" class="fs-artist">Pulse Music</p>
+            <span id="fs-source-badge" class="fs-source">Ad-Free</span>
+          </div>
+          
+          <div class="fs-lyrics-panel">
+            <div id="fs-lyrics-scroll-box" class="fs-lyrics-scroll-box"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="fs-controls-section">
+        <div class="timeline-container">
+          <span id="fs-time-current">0:00</span>
+          <div class="progress-bar-wrapper">
+            <div id="fs-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+            <input type="range" id="fs-seek-slider" class="timeline-range-input" min="0" max="100" value="0">
+          </div>
+          <span id="fs-time-total">3:30</span>
+        </div>
+        
+        <div class="player-controls" style="margin-top: 1.5rem; justify-content: center; gap: 2rem;">
+          <button class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleShuffle()"><i class="fa-solid fa-shuffle"></i></button>
+          <button class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.seekBackward5()"><i class="fa-solid fa-rotate-left"></i></button>
+          <button class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.playPrevious()"><i class="fa-solid fa-backward-step"></i></button>
+          <button id="fs-play-pause-btn" class="btn-player-main" onclick="window.PulsePlaybar && window.PulsePlaybar.togglePlay()" style="width: 64px; height: 64px; font-size: 1.5rem;"><i class="fa-solid fa-play"></i></button>
+          <button class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.playNext()"><i class="fa-solid fa-forward-step"></i></button>
+          <button class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.seekForward5()"><i class="fa-solid fa-rotate-right"></i></button>
+          <button class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleRepeat()"><i class="fa-solid fa-repeat"></i></button>
+        </div>
       </div>
     </div>
   </div>

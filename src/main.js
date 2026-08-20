@@ -1165,4 +1165,33 @@ import { getLyrics, getActiveLineIndex } from './lyricsService.js';
     }
   });
 
+  // ---------------------------------------------------------------------------
+  // PROGRESSIVE WEB APP (PWA) SUPPORT
+  // ---------------------------------------------------------------------------
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  window.triggerPWAInstall = async function() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        deferredPrompt = null;
+        window.closeDownloadModal();
+        window.showToast('App installed successfully!', 'success');
+      }
+    } else {
+      window.showToast('PWA installation is not supported or already installed', 'warning');
+    }
+  };
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('Pulse PWA Service Worker registered:', reg.scope))
+      .catch(err => console.error('Pulse PWA Service Worker error:', err));
+  }
+
 })();
