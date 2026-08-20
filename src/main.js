@@ -21,6 +21,14 @@ import './catalogService.js';
 import './visualizer.js';
 import './geminiService.js';
 
+// Global error handler to catch broken images and provide a fallback icon
+window.addEventListener('error', function(e) {
+  if (e.target && e.target.tagName === 'IMG') {
+    const title = e.target.getAttribute('alt') || 'Song';
+    e.target.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(title)}&backgroundColor=1e1b4b&textColor=c084fc`;
+  }
+}, true);
+
 import { getStoredUser, onAuthStateChanged } from './firebaseAuthService.js';
 import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
 import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';

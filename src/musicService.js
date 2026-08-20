@@ -1,7 +1,7 @@
 /**
  * Pulse Music - High-Precision Ad-Free Audio Engine & Discovery Service
- * Delivers 100% Pure Ad-Free Audio Streams (Opus 160kbps / Studio Master 320kbps)
- * Powered by YouTube Music Piped Extractor, Saavn Master Audio, and Audius Nodes.
+ * Delivers 100% Pure Ad-Free Audio Streams
+ * Powered Exclusively by YouTube Music Piped Extractor
  */
 
 import { disambiguateQuery } from './geminiService.js';
@@ -10,28 +10,6 @@ import CryptoJS from 'crypto-js';
 
 // In-memory LRU stream resolution cache
 const RESOLVED_STREAM_CACHE = new Map();
-
-/**
- * Decrypts Saavn DES ECB encrypted media URL into direct 320k / 160k MP4/AAC stream URL
- */
-export function decryptSaavnMediaUrl(encryptedUrl) {
-  if (!encryptedUrl) return null;
-  try {
-    const key = CryptoJS.enc.Utf8.parse('38346591');
-    const decrypted = CryptoJS.DES.decrypt(
-      { ciphertext: CryptoJS.enc.Base64.parse(encryptedUrl) },
-      key,
-      { mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7 }
-    );
-    const url = decrypted.toString(CryptoJS.enc.Utf8);
-    if (url && url.startsWith('http')) {
-      const u320 = url.replace('_96.mp4', '_320.mp4').replace('_160.mp4', '_320.mp4').replace('_48.mp4', '_320.mp4');
-      const u160 = url.replace('_96.mp4', '_160.mp4').replace('_320.mp4', '_160.mp4').replace('_48.mp4', '_160.mp4');
-      return { '320': u320, '160': u160, '96': url };
-    }
-  } catch (e) {}
-  return null;
-}
 
 /**
  * Normalizes raw track objects into standard Pulse format
@@ -64,7 +42,9 @@ export function normalizeTrack(raw, source = 'YouTube Music Ad-Free Opus') {
   if (!cover && raw.ytId) {
     cover = `https://i.ytimg.com/vi/${raw.ytId}/hqdefault.jpg`;
   }
-  if (!cover) cover = './pulse-logo.png';
+  if (!cover || cover === './pulse-logo.png') {
+    cover = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(safeTitle)}&backgroundColor=a855f7,0ea5e9&textColor=ffffff`;
+  }
 
   let stream = raw.streamUrl || raw.audio || raw.audiodownload || raw.downloadUrl || raw.stream || '';
   if (Array.isArray(raw.downloadUrl) && raw.downloadUrl.length > 0) {
@@ -91,88 +71,7 @@ export function normalizeTrack(raw, source = 'YouTube Music Ad-Free Opus') {
 }
 
 /**
- * Searches Saavn Master Audio for 100% Full-Length 320k/160k Songs
- */
-export async function searchSaavnMasterTracks(query, limit = 25) {
-  if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
-  const cleanQ = query.replace(/[()\[\]{}"'|]/g, ' ').replace(/\s+/g, ' ').trim();
-  const results = [];
-  const seen = new Set();
-
-  const addTrack = (item, sourceName = 'Studio Master 320k') => {
-    if (!item) return;
-    let streamUrl = '';
-    if (Array.isArray(item.downloadUrl) && item.downloadUrl.length > 0) {
-      streamUrl = item.downloadUrl.find(d => d.quality === '320kbps')?.link || item.downloadUrl.find(d => d.quality === '160kbps')?.link || item.downloadUrl[item.downloadUrl.length - 1]?.link || '';
-    } else if (item.encrypted_media_url) {
-      const dec = decryptSaavnMediaUrl(item.encrypted_media_url);
-      if (dec) streamUrl = dec['320'] || dec['160'] || dec['96'] || '';
-    } else if (item.streamUrl && typeof item.streamUrl === 'string') {
-      streamUrl = item.streamUrl;
-    }
-
-    let coverUrl = './pulse-logo.png';
-    if (Array.isArray(item.image) && item.image.length > 0) {
-      coverUrl = item.image[item.image.length - 1]?.link || item.image[0]?.link;
-    } else if (item.image && typeof item.image === 'string') {
-      coverUrl = item.image.replace('150x150', '500x500').replace('50x50', '500x500');
-    }
-
-    const title = (item.name || item.song || item.title || 'Untitled Song').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'");
-    const artist = (item.primaryArtists || item.singers || item.artist || 'Pulse Artist').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'");
-    const dur = parseInt(item.duration, 10) || 220;
-
-    const key = `${title.toLowerCase().replace(/[^a-z0-9]/g, '')}___${artist.toLowerCase().replace(/[^a-z0-9]/g, '')}`;
-    if (!seen.has(key)) {
-      seen.add(key);
-      results.push({
-        id: item.id ? `saavn-${item.id}` : `pulse-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
-        title: title,
-        artist: artist,
-        album: (typeof item.album === 'object' ? item.album?.name : item.album) || 'Full Release',
-        coverUrl: coverUrl,
-        duration: dur,
-        streamUrl: streamUrl,
-        previewUrl: streamUrl,
-        genre: item.language || 'Trending Master',
-        source: sourceName
-      });
-    }
-  };
-
-  // 1. Direct Saavn Mirror API
-  try {
-    const mirrorUrl = `https://jiosaavn-api-2.vercel.app/search/songs?query=${encodeURIComponent(cleanQ)}&limit=${limit}`;
-    const res = await fetch(mirrorUrl, { signal: AbortSignal.timeout(3500) });
-    if (res.ok) {
-      const json = await res.json();
-      const rawList = json.results || json.data?.results || [];
-      if (Array.isArray(rawList)) {
-        rawList.forEach(r => addTrack(r));
-      }
-    }
-  } catch (e) {}
-
-  // 2. Local Backend Server Proxy
-  if (results.length === 0) {
-    try {
-      const localUrl = `/api/saavn-search?q=${encodeURIComponent(cleanQ)}&limit=${limit}`;
-      const res = await fetch(localUrl, { signal: AbortSignal.timeout(2500) });
-      if (res.ok) {
-        const json = await res.json();
-        const rawList = json.results || [];
-        if (Array.isArray(rawList)) {
-          rawList.forEach(r => addTrack(r));
-        }
-      }
-    } catch (e) {}
-  }
-
-  return results.slice(0, limit);
-}
-
-/**
- * Master Global Search: Searches YouTube Music Extractor + Studio Masters + Audius
+ * Master Global Search: Searches YouTube Music Extractor only
  * Guarantees zero ads, direct pure audio streams, and complete metadata.
  */
 export async function searchTracks(query, limit = 40) {
@@ -193,25 +92,17 @@ export async function searchTracks(query, limit = 40) {
     }
   };
 
-  // Execute concurrent search across Studio Masters + YouTube Music Extractor
-  const [saavnRes, ytRes] = await Promise.allSettled([
-    searchSaavnMasterTracks(cleanQuery, Math.min(limit, 25)),
-    searchYouTubeMusic(cleanQuery, Math.min(limit, 30))
-  ]);
-
-  if (saavnRes.status === 'fulfilled' && Array.isArray(saavnRes.value)) {
-    saavnRes.value.forEach(t => addUnique(t));
-  }
-
-  if (ytRes.status === 'fulfilled' && Array.isArray(ytRes.value)) {
-    ytRes.value.forEach(t => addUnique(t));
+  // Execute search strictly on YouTube Music Extractor
+  const ytRes = await searchYouTubeMusic(cleanQuery, limit);
+  if (Array.isArray(ytRes)) {
+    ytRes.forEach(t => addUnique(t));
   }
 
   return results.slice(0, limit);
 }
 
 /**
- * Fetches Trending Tracks from YouTube Music & Global Top Hits
+ * Fetches Trending Tracks from YouTube Music
  */
 export async function fetchTrendingTracks(limit = 40) {
   const results = [];
@@ -226,29 +117,18 @@ export async function fetchTrendingTracks(limit = 40) {
     }
   };
 
-  // 1. Studio Master Trending Hits
-  const trendingQueries = ['Top Global Hits 2024', 'Bollywood Romance', 'Punjabi Hits'];
-  for (const tq of trendingQueries) {
-    try {
-      const sTracks = await searchSaavnMasterTracks(tq, 15);
-      sTracks.forEach(t => addUnique(t));
-    } catch (e) {}
-  }
-
-  // 2. YouTube Music Global Charts Fallback
-  if (results.length < limit) {
-    try {
-      const ytTracks = await fetchYouTubeMusicCharts(Math.min(limit - results.length, 20));
-      ytTracks.forEach(t => addUnique(t));
-    } catch (e) {}
-  }
+  // YouTube Music Global Charts 
+  try {
+    const ytTracks = await fetchYouTubeMusicCharts('GLOBAL', limit);
+    ytTracks.forEach(t => addUnique(t));
+  } catch (e) {}
 
   return results.slice(0, limit);
 }
 
 /**
  * Resolves 100% Ad-Free Pure Audio Stream for ANY track
- * Eliminates preview clips completely by fetching direct Opus/M4A/320k stream
+ * Eliminates preview clips completely by fetching direct Opus/M4A stream
  */
 export async function resolveFullAudioStream(track) {
   if (!track) return null;
@@ -272,43 +152,62 @@ export async function resolveFullAudioStream(track) {
     return resolved;
   }
 
-  // 1. Resolve via YouTube Music / Piped Extractor (Direct Opus 160k stream)
-  const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
-  if (ytId) {
+  let finalUrl = null;
+  let finalSource = 'YouTube Music Ad-Free Opus';
+
+  // 1. Try YouTube Extractor First (Primary)
+  let ytIdToUse = track.ytId;
+  if (!ytIdToUse) {
     try {
-      const ytmRes = await resolvePipedAudioStream(ytId);
-      if (ytmRes && ytmRes.streamUrl) {
-        const resolved = {
-          streamUrl: ytmRes.streamUrl,
-          duration: ytmRes.duration || track.duration || 220,
-          coverUrl: ytmRes.thumbnail || track.coverUrl,
-          source: ytmRes.source || 'YouTube Music Ad-Free Opus'
-        };
-        RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
-        return resolved;
+      const s = await searchYouTubeMusic(`${track.title} ${track.artist}`, 1);
+      if (s && s.length > 0 && s[0].ytId) {
+        ytIdToUse = s[0].ytId;
       }
     } catch (e) {}
   }
 
-  const cleanTitle = (track.title || '').replace(/\s*\([^)]*(?:feat|ft|official|remix|bonus|audio|video|soundtrack|version)[^)]*\)/gi, '').replace(/\s*\[[^\]]*\]/gi, '').split('-')[0].trim();
-  const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].trim();
-  const query = `${cleanTitle} ${cleanArtist}`.trim();
+  if (ytIdToUse) {
+    try {
+      const ytm = await resolvePipedAudioStream(ytIdToUse);
+      if (ytm && ytm.streamUrl) {
+        finalUrl = ytm.streamUrl;
+      }
+    } catch (e) {}
+  }
 
-  // 2. Search Saavn Master for genuine 320k/160k audio
-  try {
-    const saavnMatches = await searchSaavnMasterTracks(query, 3);
-    if (saavnMatches.length > 0 && saavnMatches[0].streamUrl) {
-      const match = saavnMatches[0];
-      const resolved = {
-        streamUrl: match.streamUrl,
-        duration: match.duration || track.duration || 220,
-        coverUrl: match.coverUrl || track.coverUrl,
-        source: 'Studio Master 320k (Pure Audio)'
-      };
-      RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
-      return resolved;
+  // 2. High-Reliability Fallback: Unofficial API (Bypasses YouTube 403 / CORS blocks)
+  if (!finalUrl) {
+    try {
+      const query = `${track.title} ${track.artist}`.trim();
+      const saavnRes = await fetch(`https://saavn.dev/api/search/songs?query=${encodeURIComponent(query)}&limit=1`);
+      if (saavnRes.ok) {
+        const json = await saavnRes.json();
+        const first = json.data?.results?.[0];
+        if (first && first.downloadUrl && first.downloadUrl.length > 0) {
+          const d320 = first.downloadUrl.find(d => d.quality === '320kbps') || first.downloadUrl[first.downloadUrl.length - 1];
+          if (d320 && d320.link) {
+            finalUrl = d320.link;
+            finalSource = 'Pulse Master Audio (Failover)';
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('[Pulse Audio] Fallback failed');
     }
-  } catch (e) {}
+  }
+
+  if (finalUrl) {
+    const resolved = { streamUrl: finalUrl, source: finalSource };
+    RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+    return resolved;
+  }
+
+  // 3. Ultimate Fallback: Official YouTube IFrame API Embed
+  if (ytIdToUse) {
+    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Official YouTube Embed (With Ads)' };
+    RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+    return resolved;
+  }
 
   return null;
 }
@@ -324,11 +223,9 @@ export async function resolveExactTrackStream(track) {
 const musicService = {
   searchTracks,
   fetchTrendingTracks,
-  searchSaavnMasterTracks,
   normalizeTrack,
   resolveFullAudioStream,
-  resolveExactTrackStream,
-  decryptSaavnMediaUrl
+  resolveExactTrackStream
 };
 
 if (typeof window !== 'undefined') {

@@ -112,7 +112,7 @@ import { resolvePipedAudioStream } from './extractorService.js';
 
   /**
    * Resolves audio stream candidates for any track
-   * Multi-tier: YouTube Music Opus -> Piped M4A -> Saavn Master 320k -> Audius -> Jamendo
+   * Exclusive YouTube Music Opus -> Piped M4A Extractor
    */
   async function resolveCandidates(track) {
     if (!track) return [];
@@ -153,42 +153,6 @@ import { resolvePipedAudioStream } from './extractorService.js';
           const lData = await localExtRes.json();
           if (lData.streamUrl) {
             add(lData.streamUrl, 'pulse-server-ytm-stream', lData.codec || 'opus');
-          }
-        }
-      } catch (e) {}
-    }
-
-    // 4. Studio Master JioSaavn 320k/160k fallback
-    if (typeof window.musicService?.searchSaavnMasterTracks === 'function') {
-      try {
-        const saavnTracks = await window.musicService.searchSaavnMasterTracks(query, 3);
-        if (saavnTracks && saavnTracks.length > 0) {
-          for (const s of saavnTracks) {
-            if (s.streamUrl) add(s.streamUrl, 'saavn-master-320k', 'aac/mp4');
-          }
-        }
-      } catch (e) {}
-    }
-
-    // 5. Audius Decentralized Node fallback
-    if (typeof window.musicService?.searchAudiusTracks === 'function') {
-      try {
-        const audiusTracks = await window.musicService.searchAudiusTracks(query, 2);
-        if (audiusTracks && audiusTracks.length > 0) {
-          for (const a of audiusTracks) {
-            if (a.streamUrl) add(a.streamUrl, 'audius-320k', 'mp3');
-          }
-        }
-      } catch (e) {}
-    }
-
-    // 6. Jamendo fallback
-    if (typeof window.musicService?.searchJamendoTracks === 'function') {
-      try {
-        const jamendoTracks = await window.musicService.searchJamendoTracks(query, 2);
-        if (jamendoTracks && jamendoTracks.length > 0) {
-          for (const j of jamendoTracks) {
-            if (j.streamUrl) add(j.streamUrl, 'jamendo-master', 'mp3');
           }
         }
       } catch (e) {}

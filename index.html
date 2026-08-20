@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <link rel="stylesheet" href="./src/style.css">
+  <!-- YouTube IFrame API for Guaranteed Fallback Audio -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
   <style>
     :root { color-scheme: dark; }
     html, body {
@@ -304,15 +307,15 @@
     </main>
 
     <!-- PERSISTENT BOTTOM PLAYER BAR -->
-    <div id="player-bar" class="bottom-player-bar">
+    <div id="player-bar" class="bottom-player-bar" style="display: flex; justify-content: space-between; align-items: center; z-index: 9999;">
       <!-- Floating Live Lyrics Preview -->
       <div id="playbar-lyrics-preview" onclick="window.PulsePlaybar && window.PulsePlaybar.maximize()" title="Click to view live lyrics in fullscreen player"></div>
 
       <!-- Thin Top Progress Fill -->
       <div id="mini-top-progress-fill" class="mini-top-progress" style="width: 0%;"></div>
 
-      <!-- Left: Track Cover & Info (Clicking maximizes to Fullscreen) -->
-      <div class="player-left" style="cursor: pointer; flex-grow: 1; align-items: center;" onclick="window.PulsePlaybar && window.PulsePlaybar.maximize()" title="Click to Maximize Player">
+      <!-- Left: Track Cover & Info (Clicking toggles Fullscreen) -->
+      <div class="player-left" style="cursor: pointer; flex-grow: 1; align-items: center; display: flex;" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen()" title="Click to Maximize/Minimize Player">
         <img id="player-thumb" src="./pulse-logo.png" alt="Cover" class="player-thumb">
         <div class="player-info">
           <span id="player-title" class="player-title">Select a Song</span>
@@ -349,7 +352,7 @@
       <div class="player-right" style="display: flex; gap: 1rem; align-items: center;">
         <div class="mobile-playbar-controls" style="display: flex; gap: 0.5rem; align-items: center;">
           <button id="playbar-play-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.togglePlay()"><i class="fa-solid fa-play"></i></button>
-          <button class="btn-player-icon" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.maximize()" title="Maximize"><i class="fa-solid fa-chevron-up"></i></button>
+          <button class="btn-player-icon" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen()" title="Toggle Fullscreen"><i class="fa-solid fa-chevron-up"></i></button>
         </div>
         <div class="desktop-playbar-controls" style="display: flex; gap: 0.85rem; align-items: center;">
           <button class="btn-player-icon" onclick="event.stopPropagation(); window.openLyricsDrawer()" title="Live Synced Lyrics"><i class="fa-solid fa-microphone-lines"></i></button>
@@ -560,8 +563,9 @@
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
 
-  <!-- NATIVE AUDIO ELEMENT -->
+  <!-- Hidden Native Audio Elements & Fallback YouTube Iframe -->
   <audio id="fallback-audio-player" preload="auto"></audio>
+  <div id="yt-player-container" style="position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none; z-index: -999;"></div>
 
   <!-- APPLICATION JAVASCRIPT -->
   <script type="module" src="./src/main.js"></script>

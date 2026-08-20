@@ -25,6 +25,12 @@ let isRepeat = false;
 let isMaximized = false;
 let activePlaySessionId = 0;
 
+// Hybrid Engine State
+let activeEngine = 'native'; // 'native' | 'youtube'
+let ytPlayer = null;
+let ytPlayerReady = false;
+let ytTimeInterval = null;
+
 // Initialize Native HTML5 Pure Audio Element
 function getAudio() {
   if (!audio) {
@@ -225,13 +231,56 @@ export async function playTrack(track, queue = null) {
     } catch (e) {}
   }
 
+  // 3. Fallback to Official YouTube Iframe (Allows Ads, guarantees playback)
+  if (ytId) {
+    streamCandidates.push({ url: 'yt-iframe', ytId: ytId, source: 'Official YouTube Embed (With Ads)' });
+  }
+
   if (sessionId !== activePlaySessionId) return;
 
   // Try each stream candidate sequentially
   let playbackStarted = false;
+  activeEngine = 'native'; // Default
+
   for (const cand of streamCandidates) {
+    if (cand.url === 'yt-iframe' && cand.ytId) {
+      if (ytPlayer && ytPlayerReady) {
+        a.pause(); // stop native
+        activeEngine = 'youtube';
+        ytPlayer.loadVideoById(cand.ytId);
+        isPlaying = true;
+        playbackStarted = true;
+        track.streamUrl = 'yt-iframe';
+        track.source = cand.source || 'Official YouTube Embed (With Ads)';
+        updateTrackInfoUI(track);
+        updatePlayPauseUI();
+        updateMediaSessionPlaybackState('playing');
+        
+        // Start a time interval loop for YT player
+        if (ytTimeInterval) clearInterval(ytTimeInterval);
+        ytTimeInterval = setInterval(() => {
+          if (activeEngine === 'youtube' && isPlaying && ytPlayer.getCurrentTime) {
+            currentTime = ytPlayer.getCurrentTime();
+            if (ytPlayer.getDuration) duration = ytPlayer.getDuration();
+            if (currentTrack) currentTrack.duration = duration;
+            updateTimeUI();
+            updateMediaSessionPositionState();
+            if (typeof window.syncLiveLyrics === 'function') {
+              window.syncLiveLyrics(currentTime);
+            }
+          }
+        }, 500);
+        break;
+      } else {
+        console.warn('[Pulse Engine] YT Player not ready yet');
+        continue; // Fallback or fail
+      }
+    }
+
     if (!cand.url || !cand.url.startsWith('http')) continue;
     try {
+      activeEngine = 'native';
+      if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
       a.pause();
       a.src = cand.url;
       a.load();
@@ -257,7 +306,6 @@ export async function playTrack(track, queue = null) {
 }
 
 export function togglePlay() {
-  const a = getAudio();
   if (isPlaying) {
     pause();
   } else {
@@ -266,8 +314,11 @@ export function togglePlay() {
 }
 
 export function pause() {
-  const a = getAudio();
-  a.pause();
+  if (activeEngine === 'native') {
+    getAudio().pause();
+  } else if (activeEngine === 'youtube' && ytPlayer && ytPlayer.pauseVideo) {
+    ytPlayer.pauseVideo();
+  }
   isPlaying = false;
   if (window.pulseState) window.pulseState.isPlaying = false;
   updatePlayPauseUI();
@@ -275,9 +326,12 @@ export function pause() {
 }
 
 export function resume() {
-  const a = getAudio();
   if (currentTrack) {
-    a.play().catch(() => {});
+    if (activeEngine === 'native') {
+      getAudio().play().catch(() => {});
+    } else if (activeEngine === 'youtube' && ytPlayer && ytPlayer.playVideo) {
+      ytPlayer.playVideo();
+    }
     isPlaying = true;
     if (window.pulseState) window.pulseState.isPlaying = true;
     updatePlayPauseUI();
@@ -306,17 +360,39 @@ export function playPrevious() {
 }
 
 export function seekTo(seconds) {
-  const a = getAudio();
   currentTime = seconds;
-  a.currentTime = seconds;
+  if (activeEngine === 'native') {
+    getAudio().currentTime = seconds;
+  } else if (activeEngine === 'youtube' && ytPlayer && ytPlayer.seekTo) {
+    ytPlayer.seekTo(seconds, true);
+  }
   updateTimeUI();
   updateMediaSessionPositionState();
 }
 
-export function setVolume(vol) {
+export function seekForward5() {
   const a = getAudio();
+  if (!a || !a.duration) return;
+  seekTo(Math.min(a.duration, a.currentTime + 5));
+}
+
+export function seekBackward5() {
+  const a = getAudio();
+  if (!a) return;
+  seekTo(Math.max(0, a.currentTime - 5));
+}
+
+export function setVolume(vol) {
   currentVolume = Math.max(0, Math.min(1, vol));
-  a.volume = currentVolume;
+  
+  // Native
+  getAudio().volume = currentVolume;
+  
+  // Youtube
+  if (ytPlayer && ytPlayer.setVolume) {
+    ytPlayer.setVolume(currentVolume * 100);
+  }
+
   if (currentVolume > 0) isMuted = false;
   updateVolumeUI();
 }
@@ -372,7 +448,7 @@ export function toggleFullscreen(forceState) {
 
   if (shouldOpen) {
     fsModal.classList.remove('hidden');
-    fsModal.classList.add('active-fs');
+    fsModal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
     // Start Visualizer Canvas if present
@@ -385,7 +461,7 @@ export function toggleFullscreen(forceState) {
     }
   } else {
     fsModal.classList.add('hidden');
-    fsModal.classList.remove('active-fs');
+    fsModal.classList.remove('active');
     document.body.style.overflow = '';
   }
 }
@@ -656,6 +732,55 @@ function initPlaybarController() {
     });
   }
 }
+
+}
+
+// -----------------------------------------------------------------------------
+// INITIALIZE YOUTUBE IFRAME API
+// -----------------------------------------------------------------------------
+window.onYouTubeIframeAPIReady = function() {
+  ytPlayer = new window.YT.Player('yt-player-container', {
+    height: '0',
+    width: '0',
+    videoId: '',
+    playerVars: {
+      'autoplay': 0,
+      'controls': 0,
+      'disablekb': 1,
+      'playsinline': 1
+    },
+    events: {
+      'onReady': (event) => {
+        ytPlayerReady = true;
+        ytPlayer.setVolume(currentVolume * 100);
+        console.log('[Pulse Hybrid Engine] YouTube IFrame API Ready.');
+      },
+      'onStateChange': (event) => {
+        if (activeEngine !== 'youtube') return;
+        if (event.data === window.YT.PlayerState.PLAYING) {
+          isPlaying = true;
+          updatePlayPauseUI();
+          updateMediaSessionPlaybackState('playing');
+        } else if (event.data === window.YT.PlayerState.PAUSED) {
+          isPlaying = false;
+          updatePlayPauseUI();
+          updateMediaSessionPlaybackState('paused');
+        } else if (event.data === window.YT.PlayerState.ENDED) {
+          if (isRepeat) {
+            ytPlayer.seekTo(0, true);
+            ytPlayer.playVideo();
+          } else {
+            playNext();
+          }
+        }
+      },
+      'onError': (e) => {
+        console.warn('[Pulse Hybrid Engine] YT IFrame Error:', e);
+        playNext();
+      }
+    }
+  });
+};
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initPlaybarController);
