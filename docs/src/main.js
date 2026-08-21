@@ -21,11 +21,13 @@ import './catalogService.js';
 import './visualizer.js';
 import './geminiService.js';
 
-// Global error handler to catch broken images and provide a fallback icon
+// Global error handler to catch broken images and provide the Pulse icon fallback
 window.addEventListener('error', function(e) {
   if (e.target && e.target.tagName === 'IMG') {
-    const title = e.target.getAttribute('alt') || 'Song';
-    e.target.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(title)}&backgroundColor=1e1b4b&textColor=c084fc`;
+    if (!e.target.dataset.pulseFallback) {
+      e.target.dataset.pulseFallback = 'true';
+      e.target.src = './pulse-logo.png';
+    }
   }
 }, true);
 
@@ -290,6 +292,35 @@ import { askGeminiDJ } from './geminiService.js';
     }
   };
 
+  /**
+   * Toggles between Album Art Showcase and Live Synced Lyrics View in Fullscreen Player
+   */
+  window.toggleFullscreenLyricsView = function() {
+    const fsModal = document.getElementById('fullscreen-player');
+    const content = document.getElementById('fs-content-container');
+    const toggleBtn = document.getElementById('fs-toggle-lyrics-btn');
+    const pillBtn = document.getElementById('fs-switch-lyrics-pill');
+
+    if (!fsModal || fsModal.classList.contains('hidden')) {
+      if (window.PulsePlaybar && typeof window.PulsePlaybar.maximize === 'function') {
+        window.PulsePlaybar.maximize();
+      }
+    }
+
+    if (content) {
+      content.classList.toggle('lyrics-view-active');
+      const isLyricsActive = content.classList.contains('lyrics-view-active');
+      if (toggleBtn) {
+        toggleBtn.classList.toggle('active-mode', isLyricsActive);
+      }
+      if (pillBtn) {
+        pillBtn.innerHTML = isLyricsActive
+          ? '<i class="fa-solid fa-compact-disc"></i> <span>View Album Art</span>'
+          : '<i class="fa-solid fa-microphone-lines"></i> <span>Live Synced Lyrics</span>';
+      }
+    }
+  };
+
   // ---------------------------------------------------------------------------
   // 2. MAIN SCREEN CATALOGUES & DISCOVERY SHELVES
   // ---------------------------------------------------------------------------
@@ -302,7 +333,7 @@ import { askGeminiDJ } from './geminiService.js';
       window.__quickPicks = qpList;
       qpContainer.innerHTML = qpList.map((track, idx) => `
         <div class="quick-pick-tile hover-glow" onclick="window.playTrackDirect(window.__quickPicks[${idx}], window.__quickPicks)" style="cursor: pointer; display: flex; align-items: center; gap: 0.85rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.5rem; transition: all 0.25s ease;">
-          <img src="${track.coverUrl}" alt="${track.title}" class="qp-thumb" style="width: 54px; height: 54px; border-radius: 8px; object-fit: cover;" loading="lazy">
+          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" class="qp-thumb" style="width: 54px; height: 54px; border-radius: 8px; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
           <div class="qp-info" style="flex: 1; overflow: hidden;">
             <div class="qp-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.title}">${track.title}</div>
             <div class="qp-artist" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.artist}">${track.artist}</div>
@@ -322,7 +353,7 @@ import { askGeminiDJ } from './geminiService.js';
       artContainer.innerHTML = artists.map((art) => `
         <div class="artist-card-item hover-glow" onclick="window.openArtistView('${art.name.replace(/'/g, "\\'")}')" style="min-width: 140px; text-align: center; cursor: pointer; flex-shrink: 0;">
           <div class="artist-avatar-wrap" style="position: relative; width: 120px; height: 120px; margin: 0 auto 0.75rem auto; border-radius: 50%; overflow: hidden; border: 2px solid var(--border-glass);">
-            <img src="${art.avatar}" alt="${art.name}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            <img src="${art.avatar || './pulse-logo.png'}" alt="${art.name}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
             <div class="artist-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
               <i class="fa-solid fa-play" style="color: #fff; font-size: 1.5rem;"></i>
             </div>
@@ -341,7 +372,7 @@ import { askGeminiDJ } from './geminiService.js';
       plContainer.innerHTML = playlists.map((pl, idx) => `
         <div class="curated-playlist-card hover-glow" onclick="window.playCuratedPlaylist(${idx})" style="min-width: 200px; width: 200px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1rem; cursor: pointer; transition: all 0.25s ease;">
           <div class="curated-cover-wrap" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; margin-bottom: 0.75rem;">
-            <img src="${pl.coverUrl}" alt="${pl.title}" class="curated-cover-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            <img src="${pl.coverUrl || './pulse-logo.png'}" alt="${pl.title}" class="curated-cover-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
             <span class="curated-badge" style="position: absolute; top: 8px; right: 8px; font-size: 0.7rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 8px; border-radius: 12px;">${pl.trackCount} Tracks</span>
           </div>
           <div class="curated-meta">
@@ -371,7 +402,7 @@ import { askGeminiDJ } from './geminiService.js';
             ${cat.tracks.map((t, tIdx) => `
               <div class="music-card hover-glow" onclick="window.playCatalogTrack(${cIdx}, ${tIdx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
                 <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
-                  <img src="${t.cover}" alt="${t.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                  <img src="${t.cover || './pulse-logo.png'}" alt="${t.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
                   <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
                     <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
                   </div>
@@ -407,7 +438,7 @@ import { askGeminiDJ } from './geminiService.js';
             ${lang.tracks.map((track, tIdx) => `
               <div class="music-card hover-glow" onclick="window.playLanguageTrack(${lIdx}, ${tIdx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
                 <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
-                  <img src="${track.coverUrl}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                  <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
                   <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
                     <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
                   </div>
@@ -869,12 +900,39 @@ import { askGeminiDJ } from './geminiService.js';
 
   window.openDownloadModal = function() {
     const modal = document.getElementById('download-app-modal');
-    if (modal) modal.classList.remove('hidden');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('active-modal');
+    }
   };
 
   window.closeDownloadModal = function() {
     const modal = document.getElementById('download-app-modal');
-    if (modal) modal.classList.add('hidden');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('active-modal');
+    }
+  };
+
+  window.switchDownloadTab = function(category) {
+    document.querySelectorAll('.download-tab-btn').forEach(btn => {
+      btn.classList.toggle('active-pill', btn.getAttribute('data-category') === category);
+    });
+
+    document.querySelectorAll('.download-card-tile').forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      if (category === 'all' || cardCat === category) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  };
+
+  window.handleDownloadClick = function(platformName, fileSize) {
+    if (typeof window.showToast === 'function') {
+      window.showToast(`Starting ${platformName} download (${fileSize || 'Instant'})... ⚡`, 'success', 3000);
+    }
   };
 
   // ---------------------------------------------------------------------------

@@ -522,13 +522,14 @@ function updateTrackInfoUI(track) {
   const coverEls = document.querySelectorAll('#player-thumb, #playbar-cover, #fullscreen-cover-img, #fullscreen-album-art, #fs-album-art');
   const badgeEls = document.querySelectorAll('#player-source-badge, #playbar-source-badge, #fs-source-badge');
 
-  const coverUrl = track.coverUrl || track.cover || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80';
+  const coverUrl = track.coverUrl || track.cover || './pulse-logo.png';
 
   titleEls.forEach(el => { el.textContent = track.title || 'Untitled Track'; });
   artistEls.forEach(el => { el.textContent = track.artist || 'Pulse Artist'; });
   coverEls.forEach(el => {
     if (el.tagName === 'IMG') {
       el.src = coverUrl;
+      el.onerror = function() { this.onerror = null; this.src = './pulse-logo.png'; };
     } else {
       el.style.backgroundImage = `url('${coverUrl}')`;
     }
