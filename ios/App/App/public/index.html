@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulse - Unlimited Free Music & Live Lyrics</title>
+  <meta name="description" content="Stream millions of songs from YouTube and studio master audio ad-free with real-time live synchronized lyrics on Pulse Music.">
+  
+  <!-- PWA & Mobile Meta -->
+  <link rel="manifest" href="./assets/manifest.json">
+  <meta name="theme-color" content="#8b5cf6">
+  <link rel="icon" type="image/png" href="./assets/icon-192.png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- YouTube IFrame API for Guaranteed Fallback Audio -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <style>
+    :root { color-scheme: dark; }
+    html, body {
+      background-color: #0b0d14 !important;
+      color: #f3f4f6 !important;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+  </style>
+  <script type="module" crossorigin src="./assets/pulse.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index.css">
+</head>
+<body>
+
+  <!-- MAIN APP CONTAINER -->
+  <div id="app" class="app-container">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="./assets/pulse-logo.png" alt="Pulse Logo" class="brand-logo-img" style="width: 42px; height: 42px; object-fit: contain;">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Pulse</span>
+          <span class="brand-creator">Music Discovery</span>
+        </div>
+      </div>
+
+      <!-- MAIN NAVIGATION -->
+      <nav class="nav-menu">
+        <div class="nav-section">
+          <span class="nav-section-title">DISCOVER</span>
+          <a href="javascript:void(0)" class="nav-item active" data-view="home" onclick="window.switchView('home')">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-view="search-view" onclick="window.switchView('search-view')">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Search All Songs</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-view="library" onclick="window.switchView('library')">
+            <i class="fa-solid fa-bookmark"></i>
+            <span>Your Library</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <span class="nav-section-title">COLLECTIONS</span>
+          <a href="javascript:void(0)" class="nav-item" onclick="window.filterByGenre('cat-trending')">
+            <i class="fa-solid fa-fire-flame-curved" style="color: #f43f5e;"></i>
+            <span>Trending Hits</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" onclick="window.filterByGenre('cat-workout')">
+            <i class="fa-solid fa-bolt" style="color: #eab308;"></i>
+            <span>Workout EDM</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" onclick="window.filterByGenre('cat-lofi')">
+            <i class="fa-solid fa-moon" style="color: #a855f7;"></i>
+            <span>Lo-Fi Chill & Focus</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" onclick="window.filterByGenre('cat-romance')">
+            <i class="fa-solid fa-heart" style="color: #ec4899;"></i>
+            <span>Romantic Melodies</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- SIDEBAR FOOTER -->
+      <div class="sidebar-footer">
+        <div class="app-download-card">
+          <div class="download-card-icon">
+            <i class="fa-solid fa-download"></i>
+          </div>
+          <div class="download-card-text">
+            <strong>Pulse Desktop & Mobile</strong>
+            <p>Install our cross-platform PWA for free.</p>
+          </div>
+          <button class="btn-download-app" onclick="window.openDownloadModal()">Install App</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+      <!-- HEADER BAR -->
+      <header class="top-header">
+        <div class="header-nav-btns">
+          <button id="btn-back" class="btn-circle-nav" onclick="window.history.back()"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="btn-forward" class="btn-circle-nav" onclick="window.history.forward()"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <!-- Mobile Brand -->
+        <div class="mobile-header-brand hidden-desktop" style="align-items: center; gap: 0.5rem; margin-right: 0.5rem; cursor: pointer;" onclick="window.switchView('home')">
+          <img src="./assets/pulse-logo.png" alt="Pulse" style="width: 32px; height: 32px; object-fit: contain;">
+          <span style="font-weight: 900; font-size: 1.2rem; letter-spacing: -0.5px; color: #fff;">Pulse</span>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-box-container">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="global-search-input" placeholder="Search any song in any language (Kannada, Hindi, English, Punjabi, Spanish...)" autocomplete="off" oninput="window.executeSearch(this.value, true)">
+          <button id="clear-search-btn" class="clear-search hidden" onclick="const i=document.getElementById('global-search-input'); if(i) i.value=''; window.executeSearch('', false);"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="header-actions">
+          <button id="header-gemini-btn" class="btn-download-header" onclick="window.openGeminiDJModal()" style="background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); border: none; color: #fff; font-weight: 700;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Ask Gemini AI</span>
+          </button>
+          <button id="header-lyrics-btn" class="btn-circle-nav" onclick="window.openLyricsDrawer()" title="Live Lyrics">
+            <i class="fa-solid fa-microphone-lines"></i>
+          </button>
+          <button id="header-download-btn" class="btn-download-header" onclick="window.openDownloadModal()">
+            <i class="fa-solid fa-download"></i> <span>Download App</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEW CONTAINERS -->
+
+      <!-- VIEW 1: HOME -->
+      <div id="view-home" class="app-view active-view">
+        <!-- FEATURED HERO BANNER -->
+        <section class="hero-banner" id="hero-banner">
+          <div class="hero-bg-overlay"></div>
+          <div class="hero-content">
+            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> HIGH-FIDELITY YOUTUBE AUDIO ENGINE</div>
+            <h2 id="hero-title" class="hero-title">Unlimited Free Music & Live Synced Lyrics</h2>
+            <p id="hero-subtitle" class="hero-subtitle">Search, discover, and stream any track from YouTube with real-time multi-source streaming and karaoke lyric synchronization.</p>
+            <div class="hero-actions">
+              <button id="hero-play-btn" class="btn-primary-play" onclick="window.playPresetQuery('Blinding Lights The Weeknd')">
+                <i class="fa-solid fa-play"></i> Play Top Hit
+              </button>
+              <button id="hero-download-app-btn" class="btn-secondary-install" onclick="window.openDownloadModal()">
+                <i class="fa-solid fa-download"></i> Download App
+              </button>
+            </div>
+          </div>
+          <div class="hero-image-wrapper">
+            <img id="hero-image" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80" alt="Pulse Music">
+          </div>
+        </section>
+
+        <!-- CATEGORY FILTER PILLS -->
+        <section class="filter-pills-bar" style="margin-bottom: 2rem; display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 0.5rem;">
+          <button class="filter-pill active-pill pill-cyan" onclick="window.filterHomeGenre('all', this)">All</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('trending', this)"><i class="fa-solid fa-fire text-accent"></i> Trending</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('hindi', this)">Bollywood</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('english', this)">English Pop</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('punjabi', this)">Punjabi</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('kannada', this)">Kannada</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('tamil', this)">Tamil</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('telugu', this)">Telugu</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('lofi', this)">Lo-Fi Chill</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('workout', this)">Workout EDM</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('rock', this)">Rock</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('spanish', this)">Latin Fiesta</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('kpop', this)">K-Pop</button>
+        </section>
+
+        <!-- SPOTIFY-STYLE HERO QUICK PICKS (6-TILE GRID) -->
+        <section class="quick-picks-section" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-bolt" style="color: #06b6d4; margin-right: 8px;"></i> Quick Picks &amp; Heavy Rotation
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin: 4px 0 0 0;">Jump right into your high-fidelity queue</p>
+            </div>
+          </div>
+          <div class="quick-picks-grid" id="home-quick-picks-container"></div>
+        </section>
+
+        <!-- FEATURED ARTISTS SHELF -->
+        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-star" style="color: #f59e0b; margin-right: 8px;"></i> Featured Verified Artists
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Explore top artist discographies &amp; popular releases</p>
+            </div>
+          </div>
+          <div class="artists-carousel" id="home-featured-artists-container" style="display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+        </section>
+
+        <!-- CURATED PLAYLISTS SHELF -->
+        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-record-vinyl" style="color: #a855f7; margin-right: 8px;"></i> Handcrafted Playlists &amp; Mixes
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Sonic atmospheres curated for every mood and vibe</p>
+            </div>
+          </div>
+          <div class="curated-playlists-carousel" id="home-curated-playlists-container" style="display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+        </section>
+
+        <!-- DYNAMIC CATALOG GENRE & MOOD SHELVES -->
+        <div id="dynamic-home-shelves"></div>
+
+        <!-- MULTILINGUAL REGIONAL CATALOGUES -->
+        <div id="language-shelves-container"></div>
+      </div>
+
+      <!-- VIEW 2: SEARCH -->
+      <div id="view-search-view" class="app-view">
+        <div class="search-view-header" style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Live YouTube & Studio Search</h2>
+          <p style="color: var(--text-secondary);">Instantly searching all streamable tracks and audio worldwide</p>
+          
+          <!-- Search Quick Tags -->
+          <div class="search-quick-tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+            <button class="tag-pill" onclick="window.playPresetQuery('Arijit Singh')">Arijit Singh</button>
+            <button class="tag-pill" onclick="window.playPresetQuery('The Weeknd')">The Weeknd</button>
+            <button class="tag-pill" onclick="window.playPresetQuery('Taylor Swift')">Taylor Swift</button>
+            <button class="tag-pill" onclick="window.playPresetQuery('Ed Sheeran')">Ed Sheeran</button>
+            <button class="tag-pill" onclick="window.playPresetQuery('AP Dhillon')">AP Dhillon</button>
+            <button class="tag-pill" onclick="window.playPresetQuery('Anirudh Ravichander')">Anirudh</button>
+            <button class="tag-pill" onclick="window.playPresetQuery('Sid Sriram')">Sid Sriram</button>
+            <button class="tag-pill" onclick="window.playPresetQuery('Lo-Fi Chill Beats')">Lo-Fi Beats</button>
+            <button class="tag-pill" onclick="window.playPresetQuery('EDM Workout')">Workout EDM</button>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-glass);">
+            <h3 style="font-size: 1.1rem; color: #fff;">Results for "<span id="search-query-label" style="color: var(--accent-primary);">Everything</span>"</h3>
+            <span id="search-count" style="font-size: 0.85rem; color: var(--text-muted);">Ready to search</span>
+          </div>
+        </div>
+
+        <div id="search-results-container" class="search-results-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            <p>Type any song name, YouTube track, artist, or album in the top search bar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 3: LIBRARY -->
+      <div id="view-library" class="app-view">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end;">
+          <div>
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Your Music Library</h2>
+            <p style="color: var(--text-secondary);">All your saved songs, playlists and playback history.</p>
+          </div>
+          <div class="library-tabs" style="display: flex; gap: 0.5rem;">
+            <button class="filter-pill active-pill library-tab-btn" data-tab="favorites" onclick="window.switchLibraryTab('favorites')">Liked Songs</button>
+            <button class="filter-pill library-tab-btn" data-tab="playlists" onclick="window.switchLibraryTab('playlists')">Playlists</button>
+            <button class="filter-pill library-tab-btn" data-tab="history" onclick="window.switchLibraryTab('history')">History</button>
+          </div>
+        </div>
+        <div id="library-content-area">
+          <div id="library-tracks-container"></div>
+        </div>
+      </div>
+
+      <!-- VIEW 4: ARTIST PAGE -->
+      <div id="view-artist" class="app-view">
+        <div id="artist-hero-card" class="artist-hero-banner" style="position: relative; border-radius: 20px; padding: 3rem 2rem; margin-bottom: 2rem; background-size: cover; background-position: center; border: 1px solid var(--border-glass);">
+          <div style="position: relative; z-index: 2;">
+            <span style="display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(168,85,247,0.3); color: #c084fc; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.75rem;">VERIFIED ARTIST</span>
+            <h1 id="artist-hero-name" style="font-size: 2.75rem; font-weight: 900; margin-bottom: 0.5rem;">Artist Name</h1>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;"><span id="artist-hero-listeners">0</span> monthly listeners • <span id="artist-world-rank">#1</span></p>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <button class="btn-primary-play" onclick="window.playArtistTopTracks()"><i class="fa-solid fa-play"></i> Play Top Tracks</button>
+              <button id="artist-follow-btn" class="btn-secondary-install" onclick="window.toggleFollowArtist()"><i class="fa-solid fa-user-plus"></i> Follow</button>
+            </div>
+          </div>
+        </div>
+
+        <section style="margin-bottom: 2.5rem;">
+          <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem;">Popular Tracks</h3>
+          <div id="artist-popular-tracks-list" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+        </section>
+
+        <section style="margin-bottom: 2.5rem;">
+          <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem;">About the Artist</h3>
+          <div id="artist-about-container"></div>
+        </section>
+      </div>
+
+    </main>
+
+    <!-- PERSISTENT BOTTOM PLAYER BAR -->
+    <div id="player-bar" class="bottom-player-bar" style="z-index: 9999;">
+      <!-- Floating Live Lyrics Preview -->
+      <div id="playbar-lyrics-preview" onclick="window.PulsePlaybar && window.PulsePlaybar.maximize()" title="Click to view live lyrics in fullscreen player"></div>
+
+      <!-- Thin Top Progress Fill -->
+      <div id="mini-top-progress-fill" class="mini-top-progress" style="width: 0%;"></div>
+
+      <!-- Left: Track Cover & Info (Clicking toggles Fullscreen) -->
+      <div class="player-left" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen()" title="Click to Maximize Player">
+        <img id="player-thumb" src="./assets/pulse-logo.png" alt="Cover" class="player-thumb">
+        <div class="player-info">
+          <span id="player-title" class="player-title">Select a Song</span>
+          <span id="player-artist" class="player-artist">Pulse Music</span>
+        </div>
+        <div class="player-track-actions">
+          <button class="btn-player-icon" id="playbar-fav-btn" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.toggleCurrentTrackFavorite()" title="Like Song"><i class="fa-regular fa-heart"></i></button>
+          <button class="btn-player-icon" id="playbar-playlist-btn" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.addCurrentToPlaylist()" title="Add to Playlist"><i class="fa-solid fa-list-plus"></i></button>
+        </div>
+      </div>
+
+      <!-- Center: Playback Controls & Timeline Scrubber (Centered in Laptop & Desktop) -->
+      <div class="player-center">
+        <div class="player-controls">
+          <button id="btn-shuffle" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleShuffle()" title="Shuffle (S)"><i class="fa-solid fa-shuffle"></i></button>
+          <button id="btn-seek-back" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.seekBackward5()" title="Seek -5s (←)"><i class="fa-solid fa-rotate-left"></i></button>
+          <button id="btn-prev" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.playPrevious()" title="Previous Track"><i class="fa-solid fa-backward-step"></i></button>
+          <button id="btn-play-pause" class="btn-player-main" onclick="window.PulsePlaybar && window.PulsePlaybar.togglePlay()" title="Play / Pause (Space)"><i class="fa-solid fa-play"></i></button>
+          <button id="btn-next" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.playNext()" title="Next Track"><i class="fa-solid fa-forward-step"></i></button>
+          <button id="btn-seek-forward" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.seekForward5()" title="Seek +5s (→)"><i class="fa-solid fa-rotate-right"></i></button>
+          <button id="btn-repeat" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleRepeat()" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
+        </div>
+        <div class="timeline-container">
+          <span id="player-time-current">0:00</span>
+          <div class="progress-bar-wrapper">
+            <div id="player-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+            <input type="range" id="player-seek-slider" class="timeline-range-input" min="0" max="100" value="0">
+          </div>
+          <span id="player-time-total">3:30</span>
+        </div>
+      </div>
+
+      <!-- Right: Lyrics, Volume, Maximize -->
+      <div class="player-right">
+        <!-- Mobile Playbar Controls -->
+        <div class="mobile-playbar-controls">
+          <button id="mobile-playbar-lyrics-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.openLyricsDrawer()" title="Live Synced Lyrics">
+            <i class="fa-solid fa-microphone-lines"></i>
+          </button>
+          <button id="mobile-prev-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.playPrevious()" title="Previous">
+            <i class="fa-solid fa-backward-step"></i>
+          </button>
+          <button id="playbar-play-btn" class="btn-player-icon btn-mobile-play" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.togglePlay()" title="Play/Pause">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button id="mobile-next-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.playNext()" title="Next">
+            <i class="fa-solid fa-forward-step"></i>
+          </button>
+          <button class="btn-player-icon btn-mobile-expand" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen()" title="Maximize Player">
+            <i class="fa-solid fa-chevron-up"></i>
+          </button>
+        </div>
+
+        <!-- Desktop Playbar Controls -->
+        <div class="desktop-playbar-controls">
+          <!-- Dedicated Live Synced Lyrics Button with Badge/Label -->
+          <button id="playbar-lyrics-btn" class="btn-player-lyrics" onclick="event.stopPropagation(); window.openLyricsDrawer()" title="Open Live Synced Lyrics (L)">
+            <i class="fa-solid fa-microphone-lines"></i>
+            <span>Lyrics</span>
+          </button>
+          
+          <!-- Volume Control -->
+          <div class="volume-control-wrap">
+            <button id="player-volume-icon" class="btn-player-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleMute()" title="Mute / Unmute (M)"><i class="fa-solid fa-volume-high"></i></button>
+            <input type="range" id="player-volume-slider" min="0" max="100" value="80" class="volume-range-slider">
+          </div>
+
+          <!-- Maximize Player Button -->
+          <button id="playbar-maximize-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.maximize()" title="Maximize Fullscreen Player">
+            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE BOTTOM NAVIGATION (Visible only on mobile/tablets < 900px) -->
+    <nav class="mobile-bottom-nav">
+      <a href="javascript:void(0)" class="mobile-nav-item active" data-view="home" onclick="window.switchView('home')">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+      <a href="javascript:void(0)" class="mobile-nav-item" data-view="search-view" onclick="window.switchView('search-view')">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Search</span>
+      </a>
+      <a href="javascript:void(0)" class="mobile-nav-item" data-view="library" onclick="window.switchView('library')">
+        <i class="fa-solid fa-bookmark"></i>
+        <span>Library</span>
+      </a>
+      <a href="javascript:void(0)" class="mobile-nav-item" onclick="window.openGeminiDJModal()">
+        <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
+        <span>AI DJ</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- FULLSCREEN MAXIMIZED PLAYER -->
+  <div id="fullscreen-player" class="fullscreen-player hidden">
+    <div id="fs-bg-blur" class="fs-bg-blur"></div>
+    <div class="fs-overlay">
+      <!-- Fullscreen Top Header -->
+      <div class="fs-header">
+        <button id="btn-fs-minimize" class="btn-icon-circle-lg" onclick="window.PulsePlaybar && window.PulsePlaybar.minimize()" title="Minimize Player (Esc)">
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <!-- 2-Way Pure Audio Mode Switcher: Album Art & Synced Lyrics -->
+        <div class="fs-view-mode-pills">
+          <button class="fs-mode-tab-btn active-tab" id="tab-fs-art" data-mode="art" onclick="window.switchFullscreenView('art')">
+            <i class="fa-solid fa-compact-disc"></i> <span>Album Art</span>
+          </button>
+          <button class="fs-mode-tab-btn" id="tab-fs-lyrics" data-mode="lyrics" onclick="window.switchFullscreenView('lyrics')">
+            <i class="fa-solid fa-microphone-lines" style="color: #c084fc;"></i> <span>Live Lyrics</span>
+          </button>
+        </div>
+
+        <div class="fs-header-actions">
+          <button id="fs-toggle-lyrics-btn" class="btn-icon-circle-lg" onclick="window.switchFullscreenView('lyrics')" title="Toggle Live Lyrics View">
+            <i class="fa-solid fa-microphone-lines"></i>
+          </button>
+          <button id="fs-btn-like" class="btn-icon-circle-lg" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleCurrentTrackFavorite()" title="Like Track">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <button class="btn-icon-circle-lg" onclick="window.PulsePlaybar && window.PulsePlaybar.addCurrentToPlaylist()" title="Add to Playlist">
+            <i class="fa-solid fa-list-plus"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Fullscreen Main Body: Centered Showcase & Live Synced Lyrics -->
+      <div class="fs-content" id="fs-content-container" data-active-view="art">
+        
+        <!-- View 1: Centered Album Art Showcase, Title, Artist, & Soundwave -->
+        <div class="fs-album-section" id="fs-album-section">
+          <div class="fs-art-wrapper">
+            <div id="fs-album-art" class="fs-album-art"></div>
+          </div>
+          
+          <div class="fs-track-meta">
+            <h2 id="fs-track-title" class="fs-title">Select a Song</h2>
+            <div class="fs-artist-row">
+              <span id="fs-track-artist" class="fs-artist">Pulse Music</span>
+              <i class="fa-solid fa-circle-check fs-verified-badge" title="Verified Artist"></i>
+            </div>
+          </div>
+
+          <!-- Animated Dynamic Equalizer Bars -->
+          <div class="fs-soundwave-bars">
+            <div class="bar bar-1"></div>
+            <div class="bar bar-2"></div>
+            <div class="bar bar-3"></div>
+            <div class="bar bar-4"></div>
+            <div class="bar bar-5"></div>
+            <div class="bar bar-6"></div>
+            <div class="bar bar-7"></div>
+            <div class="bar bar-8"></div>
+            <div class="bar bar-9"></div>
+            <div class="bar bar-10"></div>
+            <div class="bar bar-11"></div>
+            <div class="bar bar-12"></div>
+            <div class="bar bar-13"></div>
+            <div class="bar bar-14"></div>
+            <div class="bar bar-15"></div>
+            <div class="bar bar-16"></div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="fs-quick-action-pills">
+            <button id="fs-switch-lyrics-pill" class="fs-pill-btn" onclick="window.switchFullscreenView('lyrics')">
+              <i class="fa-solid fa-microphone-lines"></i>
+              <span>Live Synced Lyrics</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hidden Pure Audio Background Engine (No Video Frames) -->
+        <div id="fs-yt-section" style="position: fixed; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden; top: -9999px; left: -9999px;">
+          <div id="yt-player-container"></div>
+        </div>
+        
+        <!-- View 2: Real-time Live Synchronized Lyrics Panel -->
+        <div class="fs-lyrics-panel hidden-view" id="fs-lyrics-panel">
+          <div class="fs-lyrics-header">
+            <span class="fs-lyrics-badge"><i class="fa-solid fa-bolt"></i> REAL-TIME LIVE KARAOKE</span>
+            <span class="fs-lyrics-hint">Click any line to jump</span>
+          </div>
+          <div id="fs-lyrics-scroll-box" class="fs-lyrics-scroll-box">
+            <p class="fs-lyric-line fs-lyric-active">Loading live synchronized lyrics...</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Fullscreen Controls Section (Centered in both Laptop & Mobile) -->
+      <div class="fs-controls-section">
+        <div class="timeline-container fs-timeline-wrap">
+          <span id="fs-time-current" class="fs-time-current">0:00</span>
+          <div class="progress-bar-wrapper fs-progress-bar-wrapper">
+            <div id="fs-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+            <input type="range" id="fs-seek-slider" class="timeline-range-input" min="0" max="100" value="0">
+          </div>
+          <span id="fs-time-total" class="fs-time-total">3:30</span>
+        </div>
+        
+        <div class="player-controls fs-player-controls">
+          <button id="fs-btn-shuffle" class="btn-player-icon fs-ctrl-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleShuffle()" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
+          <button class="btn-player-icon fs-ctrl-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.seekBackward5()" title="Seek -5s"><i class="fa-solid fa-rotate-left"></i></button>
+          <button id="fs-btn-prev" class="btn-player-icon fs-ctrl-icon fs-step-btn" onclick="window.PulsePlaybar && window.PulsePlaybar.playPrevious()" title="Previous Track"><i class="fa-solid fa-backward-step"></i></button>
+          <button id="fs-play-pause-btn" class="btn-player-main fs-hero-play-btn" onclick="window.PulsePlaybar && window.PulsePlaybar.togglePlay()" title="Play / Pause"><i class="fa-solid fa-play"></i></button>
+          <button id="fs-btn-next" class="btn-player-icon fs-ctrl-icon fs-step-btn" onclick="window.PulsePlaybar && window.PulsePlaybar.playNext()" title="Next Track"><i class="fa-solid fa-forward-step"></i></button>
+          <button class="btn-player-icon fs-ctrl-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.seekForward5()" title="Seek +5s"><i class="fa-solid fa-rotate-right"></i></button>
+          <button id="fs-btn-repeat" class="btn-player-icon fs-ctrl-icon" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleRepeat()" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- CREATE PLAYLIST MODAL -->
+  <div id="create-playlist-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeCreatePlaylistModal()">
+    <div class="modal-content" style="max-width: 440px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Create Playlist</h3>
+        <button class="btn-icon-small" onclick="window.closeCreatePlaylistModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="window.handleCreatePlaylist(event)">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Playlist Name</label>
+          <input type="text" id="new-playlist-name" required placeholder="e.g. Late Night Vibes" style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Description (Optional)</label>
+          <input type="text" id="new-playlist-desc" placeholder="A short description of this mix..." style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;">
+        </div>
+        <button type="submit" class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.85rem; font-weight: 700;">
+          <i class="fa-solid fa-folder-plus"></i> Create Playlist
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADD TO PLAYLIST PICKER MODAL -->
+  <div id="add-to-playlist-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeAddToPlaylistModal()">
+    <div class="modal-content" style="max-width: 440px; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Add to Playlist</h3>
+        <button class="btn-icon-small" onclick="window.closeAddToPlaylistModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Select a playlist to save this track:</p>
+      <div id="user-playlists-picker-list" style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 250px; overflow-y: auto; margin-bottom: 1rem;"></div>
+      <button class="btn-secondary-install" onclick="window.closeAddToPlaylistModal(); window.openCreatePlaylistModal();" style="width: 100%; justify-content: center;">
+        <i class="fa-solid fa-plus"></i> Create New Playlist
+      </button>
+    </div>
+  </div>
+
+  <!-- DOWNLOAD MODAL (MULTI-PLATFORM PACKAGES & PWA) -->
+  <div id="download-app-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeDownloadModal()">
+    <div class="modal-content download-modal-box" style="max-width: 620px; max-height: 88vh; overflow-y: auto; background: #0c0e17; border: 1px solid rgba(168,85,247,0.35); border-radius: 24px; padding: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.85);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <img src="./assets/pulse-logo.png" alt="Pulse" style="width: 38px; height: 38px; object-fit: contain;">
+          <div>
+            <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0;">Download Pulse Music</h3>
+            <span style="font-size: 0.75rem; color: #c084fc; font-weight: 700;">v2.4.0 High-Fidelity Master Audio • Ad-Free</span>
+          </div>
+        </div>
+        <button class="btn-icon-small" onclick="window.closeDownloadModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.25rem; line-height: 1.4;">
+        Get Pulse on all your devices. Enjoy pure audio streaming, lock screen media controls, and synchronized karaoke lyrics.
+      </p>
+
+      <!-- Platform Filter Tabs -->
+      <div class="filter-pills-bar" style="margin-bottom: 1.25rem; padding-bottom: 0.25rem;">
+        <button class="filter-pill download-tab-btn active-pill" data-category="all" onclick="window.switchDownloadTab('all')">All Platforms</button>
+        <button class="filter-pill download-tab-btn" data-category="mobile" onclick="window.switchDownloadTab('mobile')"><i class="fa-solid fa-mobile-screen"></i> Mobile (Android/iOS)</button>
+        <button class="filter-pill download-tab-btn" data-category="desktop" onclick="window.switchDownloadTab('desktop')"><i class="fa-solid fa-laptop"></i> Desktop (Win/Mac/Linux)</button>
+        <button class="filter-pill download-tab-btn" data-category="pwa" onclick="window.switchDownloadTab('pwa')"><i class="fa-solid fa-globe"></i> Web PWA</button>
+      </div>
+
+      <!-- Download Cards Grid -->
+      <div class="download-cards-grid" style="display: flex; flex-direction: column; gap: 0.85rem;">
+        
+        <!-- 1. Instant PWA Web App -->
+        <div class="download-card-tile" data-category="pwa" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-radius: 16px; background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.3);">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.3rem; flex-shrink: 0;">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #fff;">Instant PWA Web App</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Universal 0 MB Install • Works in Chrome, Edge, Safari & Firefox</div>
+            </div>
+          </div>
+          <button id="pwa-install-btn" class="btn-primary-play" style="padding: 0.6rem 1.1rem; font-size: 0.82rem; white-space: nowrap;" onclick="window.triggerPWAInstall()">
+            <i class="fa-solid fa-download"></i> Install PWA
+          </button>
+        </div>
+
+        <!-- 2. Android APK -->
+        <div class="download-card-tile" data-category="mobile" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-radius: 16px; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass);">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 1.4rem; flex-shrink: 0;">
+              <i class="fa-brands fa-android"></i>
+            </div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #fff;">Android APK (.apk)</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Direct APK for Android 8.0+ • Background playback support</div>
+            </div>
+          </div>
+          <a href="./downloads/Pulse-Android.apk" download="Pulse-Android.apk" class="btn-primary-play" style="text-decoration: none; padding: 0.6rem 1.1rem; font-size: 0.82rem; white-space: nowrap; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);" onclick="window.handleDownloadClick('Android APK', '1.9 MB')">
+            <i class="fa-solid fa-download"></i> Download APK
+          </a>
+        </div>
+
+        <!-- 3. Windows Setup (.exe) -->
+        <div class="download-card-tile" data-category="desktop" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-radius: 16px; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass);">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); display: flex; align-items: center; justify-content: center; color: #0ea5e9; font-size: 1.4rem; flex-shrink: 0;">
+              <i class="fa-brands fa-windows"></i>
+            </div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #fff;">Windows Setup (.exe)</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">64-bit Installer for Windows 10 & 11 • Media keys & tray support</div>
+            </div>
+          </div>
+          <a href="./downloads/Pulse-Music-Setup-2.4.0.exe" download="Pulse-Music-Setup-2.4.0.exe" class="btn-primary-play" style="text-decoration: none; padding: 0.6rem 1.1rem; font-size: 0.82rem; white-space: nowrap; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);" onclick="window.handleDownloadClick('Windows Setup', '1.2 MB')">
+            <i class="fa-solid fa-download"></i> Download .EXE
+          </a>
+        </div>
+
+        <!-- 4. macOS (.dmg) -->
+        <div class="download-card-tile" data-category="desktop" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-radius: 16px; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass);">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.4rem; flex-shrink: 0;">
+              <i class="fa-brands fa-apple"></i>
+            </div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #fff;">macOS DMG (.dmg)</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Universal for Apple Silicon (M1-M4) & Intel Macs</div>
+            </div>
+          </div>
+          <a href="./downloads/Pulse-Mac.dmg" download="Pulse-Mac.dmg" class="btn-primary-play" style="text-decoration: none; padding: 0.6rem 1.1rem; font-size: 0.82rem; white-space: nowrap;" onclick="window.handleDownloadClick('macOS DMG', '1.1 MB')">
+            <i class="fa-solid fa-download"></i> Download .DMG
+          </a>
+        </div>
+
+        <!-- 5. Linux AppImage -->
+        <div class="download-card-tile" data-category="desktop" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-radius: 16px; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass);">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(234, 179, 8, 0.15); border: 1px solid rgba(234, 179, 8, 0.3); display: flex; align-items: center; justify-content: center; color: #eab308; font-size: 1.4rem; flex-shrink: 0;">
+              <i class="fa-brands fa-linux"></i>
+            </div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #fff;">Linux AppImage (.AppImage)</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Standalone binary for Ubuntu, Debian, Fedora & Arch</div>
+            </div>
+          </div>
+          <a href="./downloads/Pulse-Linux.AppImage" download="Pulse-Linux.AppImage" class="btn-primary-play" style="text-decoration: none; padding: 0.6rem 1.1rem; font-size: 0.82rem; white-space: nowrap; background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);" onclick="window.handleDownloadClick('Linux AppImage', '1.1 MB')">
+            <i class="fa-solid fa-download"></i> Download .AppImage
+          </a>
+        </div>
+
+        <!-- 6. iOS Package / Web App -->
+        <div class="download-card-tile" data-category="mobile" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-radius: 16px; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass);">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.3); display: flex; align-items: center; justify-content: center; color: #ec4899; font-size: 1.4rem; flex-shrink: 0;">
+              <i class="fa-brands fa-apple"></i>
+            </div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #fff;">iOS / iPadOS Package (.ipa)</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Sideloadable IPA package for AltStore / Sideloadly</div>
+            </div>
+          </div>
+          <a href="./downloads/Pulse-iOS.ipa" download="Pulse-iOS.ipa" class="btn-primary-play" style="text-decoration: none; padding: 0.6rem 1.1rem; font-size: 0.82rem; white-space: nowrap; background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);" onclick="window.handleDownloadClick('iOS Package', '1.1 MB')">
+            <i class="fa-solid fa-download"></i> Download .IPA
+          </a>
+        </div>
+
+      </div>
+
+      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-glass); text-align: center;">
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">
+          All packages are digitally packaged and virus-free. Built by Pushkar Hiremath.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LYRICS DRAWER MODAL -->
+  <div id="lyrics-drawer-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeLyricsDrawer()">
+    <div class="modal-content" style="max-width: 600px; max-height: 85vh; height: 85vh; display: flex; flex-direction: column; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 0;">
+      <div style="padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h3 id="lyrics-drawer-title" style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Live Synced Lyrics</h3>
+          <p id="lyrics-drawer-artist" style="color: var(--accent-primary); font-size: 0.9rem; font-weight: 600; margin-top: 4px;">Pulse Karaoke</p>
+        </div>
+        <button class="btn-icon-small" onclick="window.closeLyricsDrawer()"><i class="fa-solid fa-chevron-down"></i></button>
+      </div>
+      <div id="lyrics-drawer-content" style="flex: 1; overflow-y: auto; padding: 2rem; position: relative; scroll-behavior: smooth;">
+        <div class="lyrics-loading-state"><i class="fa-solid fa-spinner fa-spin"></i> Synchronizing LRCLIB lyrics...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEMINI AI DJ MODAL -->
+  <div id="gemini-dj-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeGeminiDJModal()">
+    <div class="modal-content" style="max-width: 520px; background: #0f111a; border: 1px solid rgba(168,85,247,0.4); border-radius: 24px; padding: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Gemini AI Music Assistant</h3>
+            <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 2px 0 0 0;">Add & stream any song from YouTube with Gemini</p>
+          </div>
+        </div>
+        <button class="btn-icon-small" onclick="window.closeGeminiDJModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <label style="display: block; font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 600;">Ask Gemini for songs, artists, genres, or vibes:</label>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="gemini-prompt-input" placeholder="e.g. Top 90s Bollywood romance or high-energy workout..." style="flex: 1; padding: 0.85rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: #fff; font-size: 0.9rem;" onkeypress="if(event.key==='Enter') window.handleAskGeminiDJ()">
+          <button class="btn-primary-play" onclick="window.handleAskGeminiDJ()" style="padding: 0.85rem 1.25rem; font-weight: 700;">
+            <i class="fa-solid fa-sparkles"></i> Curate
+          </button>
+        </div>
+      </div>
+
+      <!-- Preset prompts -->
+      <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.25rem;">
+        <button class="tag-pill" onclick="window.handleAskGeminiDJ('Arijit Singh Top Romantic Songs')">Arijit Romance</button>
+        <button class="tag-pill" onclick="window.handleAskGeminiDJ('High energy EDM gym tracks')">Gym EDM</button>
+        <button class="tag-pill" onclick="window.handleAskGeminiDJ('Late night aesthetic Lo-Fi beats')">Lo-Fi Study</button>
+        <button class="tag-pill" onclick="window.handleAskGeminiDJ('Viral Punjabi drill hits')">Punjabi Hype</button>
+        <button class="tag-pill" onclick="window.handleAskGeminiDJ('Global Synthwave hits')">Synthwave</button>
+      </div>
+
+      <div id="gemini-loading-spinner" class="hidden" style="text-align: center; padding: 2rem; color: #c084fc;">
+        <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+        <p style="font-size: 0.85rem; margin: 0;">Gemini 3.6 Flash is curating YouTube tracks...</p>
+      </div>
+
+      <div id="gemini-dj-output"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
+
+  <!-- Native Audio Element -->
+  <audio id="fallback-audio-player" preload="auto"></audio>
+
+  <!-- APPLICATION JAVASCRIPT -->
+</body>
+</html>

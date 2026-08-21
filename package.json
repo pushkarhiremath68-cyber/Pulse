@@ -23,6 +23,10 @@
     "test:download": "python scripts/test_download_api.py"
   },
   "devDependencies": {
+    "@capacitor/android": "6.2.0",
+    "@capacitor/cli": "6.2.0",
+    "@capacitor/core": "6.2.0",
+    "@capacitor/ios": "6.2.0",
     "jsdom": "^27.0.1",
     "vite": "^5.0.0"
   },
