@@ -34,14 +34,21 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
   }
   if (cover && typeof cover === 'string') {
     cover = cover
-      .replace('50x50', '500x500')
-      .replace('150x150', '500x500')
-      .replace('100x100bb', '600x600bb')
-      .replace('/default.jpg', '/hqdefault.jpg')
-      .replace('/mqdefault.jpg', '/hqdefault.jpg');
+      .replace('50x50', '1000x1000')
+      .replace('150x150', '1000x1000')
+      .replace('100x100', '1000x1000')
+      .replace('100x100bb', '1000x1000bb')
+      .replace('/default.jpg', '/maxresdefault.jpg')
+      .replace('/mqdefault.jpg', '/maxresdefault.jpg')
+      .replace('/hqdefault.jpg', '/maxresdefault.jpg');
+    
+    // YouTube Music specific high-res upgrade (=w120-h120...)
+    if (cover.includes('=w') && cover.includes('-h')) {
+      cover = cover.replace(/=w\d+-h\d+-[a-zA-Z0-9-]+/, '=w1000-h1000-l90-rj');
+    }
   }
   if (!cover && raw.ytId) {
-    cover = `https://i.ytimg.com/vi/${raw.ytId}/hqdefault.jpg`;
+    cover = `https://i.ytimg.com/vi/${raw.ytId}/maxresdefault.jpg`;
   }
   if (!cover) {
     cover = './pulse-logo.png';
@@ -195,12 +202,12 @@ export async function fetchTrendingTracks(limit = 40) {
   // Hardcoded Fallback if all APIs fail (Guarantees UI never looks broken)
   if (results.length === 0) {
     const fallbackTracks = [
-      { id: 'ytm-4NRXx6U8ABQ', ytId: '4NRXx6U8ABQ', title: 'Blinding Lights', artist: 'The Weeknd', coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80', duration: 200, source: 'Top Hit' },
-      { id: 'ytm-kJQP7kiw5Fk', ytId: 'kJQP7kiw5Fk', title: 'Despacito', artist: 'Luis Fonsi ft. Daddy Yankee', coverUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&auto=format&fit=crop&q=80', duration: 288, source: 'Top Hit' },
-      { id: 'ytm-JGwWNGJdvx8', ytId: 'JGwWNGJdvx8', title: 'Shape of You', artist: 'Ed Sheeran', coverUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&auto=format&fit=crop&q=80', duration: 233, source: 'Top Hit' },
-      { id: 'ytm-YykjpeuMNEk', ytId: 'YykjpeuMNEk', title: 'Hymn For The Weekend', artist: 'Coldplay', coverUrl: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500&auto=format&fit=crop&q=80', duration: 258, source: 'Top Hit' },
-      { id: 'ytm-VqebCewxAyk', ytId: 'VqebCewxAyk', title: 'Tum Hi Ho', artist: 'Arijit Singh', coverUrl: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=500&auto=format&fit=crop&q=80', duration: 262, source: 'Top Hit' },
-      { id: 'ytm-2Vv-BfVoq4g', ytId: '2Vv-BfVoq4g', title: 'Perfect', artist: 'Ed Sheeran', coverUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&auto=format&fit=crop&q=80', duration: 263, source: 'Top Hit' }
+      { id: 'ytm-4NRXx6U8ABQ', ytId: '4NRXx6U8ABQ', title: 'Blinding Lights', artist: 'The Weeknd', coverUrl: 'https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg', duration: 200, source: 'Top Hit' },
+      { id: 'ytm-kJQP7kiw5Fk', ytId: 'kJQP7kiw5Fk', title: 'Despacito', artist: 'Luis Fonsi ft. Daddy Yankee', coverUrl: 'https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg', duration: 288, source: 'Top Hit' },
+      { id: 'ytm-JGwWNGJdvx8', ytId: 'JGwWNGJdvx8', title: 'Shape of You', artist: 'Ed Sheeran', coverUrl: 'https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg', duration: 233, source: 'Top Hit' },
+      { id: 'ytm-YykjpeuMNEk', ytId: 'YykjpeuMNEk', title: 'Hymn For The Weekend', artist: 'Coldplay', coverUrl: 'https://i.ytimg.com/vi/YykjpeuMNEk/hqdefault.jpg', duration: 258, source: 'Top Hit' },
+      { id: 'ytm-VqebCewxAyk', ytId: 'VqebCewxAyk', title: 'Tum Hi Ho', artist: 'Arijit Singh', coverUrl: 'https://i.ytimg.com/vi/VqebCewxAyk/hqdefault.jpg', duration: 262, source: 'Top Hit' },
+      { id: 'ytm-2Vv-BfVoq4g', ytId: '2Vv-BfVoq4g', title: 'Perfect', artist: 'Ed Sheeran', coverUrl: 'https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg', duration: 263, source: 'Top Hit' }
     ];
     fallbackTracks.forEach(t => addUnique(t));
   }

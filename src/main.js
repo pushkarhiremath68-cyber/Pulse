@@ -21,10 +21,20 @@ import './catalogService.js';
 import './visualizer.js';
 import './geminiService.js';
 
-// Global error handler to catch broken images and provide the Pulse icon fallback
+// Global error handler to catch broken images and provide progressive fallback
 window.addEventListener('error', function(e) {
   if (e.target && e.target.tagName === 'IMG') {
-    if (!e.target.dataset.pulseFallback) {
+    // Clear inline onerror to prevent it from overriding our progressive fallback
+    e.target.onerror = null;
+    
+    const src = e.target.src || '';
+    if (src.includes('maxresdefault.jpg') && e.target.dataset.fallbackLevel !== 'hq') {
+      e.target.dataset.fallbackLevel = 'hq';
+      e.target.src = src.replace('maxresdefault.jpg', 'hqdefault.jpg');
+    } else if (src.includes('hqdefault.jpg') && e.target.dataset.fallbackLevel !== 'mq') {
+      e.target.dataset.fallbackLevel = 'mq';
+      e.target.src = src.replace('hqdefault.jpg', 'mqdefault.jpg');
+    } else if (!e.target.dataset.pulseFallback) {
       e.target.dataset.pulseFallback = 'true';
       e.target.src = './pulse-logo.png';
     }
