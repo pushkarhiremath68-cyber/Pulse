@@ -249,7 +249,12 @@ export async function playTrack(track, queue = null) {
     }
 
     if (searchRes && searchRes.length > 0) {
-      const fullTrack = searchRes.find(t => (t.duration || 0) > 60) || searchRes[0];
+      const titleWords = cleanTitle.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+      const fullTrack = searchRes.find(t => {
+        const tTitle = (t.title || '').toLowerCase();
+        return titleWords.length > 0 && titleWords.some(w => tTitle.includes(w));
+      }) || searchRes.find(t => (t.duration || 0) > 60) || searchRes[0];
+
       if (fullTrack && fullTrack.ytId) {
         ytId = fullTrack.ytId;
         track.ytId = ytId;

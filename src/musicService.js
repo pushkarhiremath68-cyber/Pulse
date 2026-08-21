@@ -166,16 +166,19 @@ export async function searchTracks(query, limit = 40) {
   // Merge iTunes results (adds studio covers and any extra regional songs)
   if (itunesRes.status === 'fulfilled' && Array.isArray(itunesRes.value)) {
     const ytTracks = (ytRes.status === 'fulfilled' && Array.isArray(ytRes.value)) ? ytRes.value : [];
-    itunesRes.value.forEach((it, idx) => {
+    itunesRes.value.forEach((it) => {
       if (!it.ytId && ytTracks.length > 0) {
-        // Pair with matching YouTube track or fallback to corresponding index
-        const matched = ytTracks.find(y => 
-          y.title.toLowerCase().includes(it.title.toLowerCase().slice(0, 5)) ||
-          it.title.toLowerCase().includes(y.title.toLowerCase().slice(0, 5))
-        ) || ytTracks[idx % ytTracks.length];
-        if (matched && matched.ytId) {
-          it.ytId = matched.ytId;
-          it.id = `ytm-${matched.ytId}`;
+        // ONLY pair if title has an exact or strong match! NEVER guess by index!
+        const cleanItTitle = (it.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (cleanItTitle.length >= 3) {
+          const matched = ytTracks.find(y => {
+            const cleanYtTitle = (y.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            return cleanYtTitle.includes(cleanItTitle) || cleanItTitle.includes(cleanYtTitle);
+          });
+          if (matched && matched.ytId) {
+            it.ytId = matched.ytId;
+            it.id = `ytm-${matched.ytId}`;
+          }
         }
       }
       addOrMergeTrack(it);
