@@ -197,94 +197,68 @@ export async function playTrack(track, queue = null) {
     window.loadTrackLyrics(track);
   }
 
-  // Collect Stream Candidates
-  const streamCandidates = [];
+  // 1. Resolve YouTube Video ID for guaranteed playback with ads
+  let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null) || (track.id && !track.id.startsWith('pulse-') && !track.id.startsWith('itunes-') && !track.id.startsWith('cat-') ? track.id : null);
 
-  if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('preview')) {
-    streamCandidates.push({ url: track.streamUrl, source: track.source || 'Direct Audio Stream' });
-    if (track.streamUrl.includes('_320.mp4')) {
-      streamCandidates.push({ url: track.streamUrl.replace('_320.mp4', '_160.mp4'), source: 'Studio Master 160k' });
-    }
-  }
-
-  // 1. YouTube Music Extractor if videoId present
-  const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
-  if (ytId) {
+  // If no direct YouTube ID, resolve via search
+  if (!ytId) {
     try {
-      const ytmRes = await resolvePipedAudioStream(ytId);
-      if (ytmRes && ytmRes.streamUrl) {
-        streamCandidates.push({ url: ytmRes.streamUrl, source: ytmRes.source || 'YouTube Music Ad-Free Opus' });
+      const searchRes = await searchYouTubeMusic(`${track.title} ${track.artist}`, 1);
+      if (searchRes && searchRes.length > 0 && searchRes[0].ytId) {
+        ytId = searchRes[0].ytId;
+        track.ytId = ytId;
       }
     } catch (e) {}
-  }
-
-  // 2. Multi-tier resolution via MusicService
-  if (streamCandidates.length === 0 || streamCandidates[0].url.includes('preview')) {
-    try {
-      const resolved = await resolveFullAudioStream(track);
-      if (resolved && resolved.streamUrl) {
-        streamCandidates.push({ url: resolved.streamUrl, source: resolved.source || 'Pulse Pure Audio' });
-        if (resolved.streamUrl.includes('_320.mp4')) {
-          streamCandidates.push({ url: resolved.streamUrl.replace('_320.mp4', '_160.mp4'), source: 'Studio Master 160k' });
-        }
-      }
-    } catch (e) {}
-  }
-
-  // 3. Fallback to Official YouTube Iframe (Allows Ads, guarantees playback)
-  if (ytId) {
-    streamCandidates.push({ url: 'yt-iframe', ytId: ytId, source: 'Official YouTube Embed (With Ads)' });
   }
 
   if (sessionId !== activePlaySessionId) return;
 
-  // Try each stream candidate sequentially
-  let playbackStarted = false;
-  activeEngine = 'native'; // Default
+  // 2. Play via Official YouTube IFrame Player (with ad support enabled)
+  if (ytId) {
+    const ytSuccess = await playOnYouTubeIframe(ytId, track);
+    if (ytSuccess) return;
+  }
 
-  for (const cand of streamCandidates) {
-    if (cand.url === 'yt-iframe' && cand.ytId) {
-      const ytStarted = await playOnYouTubeIframe(cand.ytId, track);
-      if (ytStarted) {
-        playbackStarted = true;
-        break;
-      }
-      continue;
-    }
-
-    if (!cand.url || !cand.url.startsWith('http')) continue;
+  // 3. Fallback: Native Audio Stream
+  if (track.streamUrl && track.streamUrl.startsWith('http')) {
     try {
       activeEngine = 'native';
       if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
       a.pause();
-      a.src = cand.url;
+      a.src = track.streamUrl;
       a.load();
       await a.play();
       isPlaying = true;
-      playbackStarted = true;
-      track.streamUrl = cand.url;
-      track.source = cand.source;
+      track.source = track.source || 'Universal Audio Stream';
       updateTrackInfoUI(track);
       updatePlayPauseUI();
       updateMediaSessionPlaybackState('playing');
-      break;
-    } catch (err) {
-      console.warn('[Pulse Audio] Native playback candidate failed, falling back:', cand.source);
-    }
+      return;
+    } catch (err) {}
   }
 
-  // If native audio candidates all failed and we have ytId, force YouTube playback
-  if (!playbackStarted && ytId) {
-    const ytFallbackSuccess = await playOnYouTubeIframe(ytId, track);
-    if (ytFallbackSuccess) {
-      playbackStarted = true;
+  // 4. Fallback: Multi-tier MusicService resolution
+  try {
+    const resolved = await resolveFullAudioStream(track);
+    if (resolved && resolved.streamUrl) {
+      activeEngine = 'native';
+      if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+      a.pause();
+      a.src = resolved.streamUrl;
+      a.load();
+      await a.play();
+      isPlaying = true;
+      track.streamUrl = resolved.streamUrl;
+      track.source = resolved.source || 'Pulse Audio Engine';
+      updateTrackInfoUI(track);
+      updatePlayPauseUI();
+      updateMediaSessionPlaybackState('playing');
+      return;
     }
-  }
-
-  if (playbackStarted) return;
+  } catch (e) {}
 
   if (typeof window.showToast === 'function') {
-    window.showToast(`Connecting to audio stream for "${track.title}"...`, 'info', 2000);
+    window.showToast(`Loading stream for "${track.title}"...`, 'info', 2000);
   }
 }
 
