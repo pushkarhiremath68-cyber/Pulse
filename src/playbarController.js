@@ -159,9 +159,36 @@ function updateMediaSessionPositionState() {
   }
 }
 
-// -----------------------------------------------------------------------------
-// PLAYBACK CONTROLLER
-// -----------------------------------------------------------------------------
+/**
+ * Dynamic High-Resolution Official Album Artwork Resolver
+ * Upgrades YouTube video frames / low-res images to crystal-clear 1000x1000 studio covers
+ */
+export async function ensureOriginalAlbumCover(track) {
+  if (!track || !track.title) return;
+  const currentCover = track.coverUrl || track.cover || '';
+  if (currentCover.includes('mzstatic.com') || currentCover.includes('1000x1000') || currentCover.includes('600x600')) {
+    return;
+  }
+
+  try {
+    const cleanTitle = (track.title || '').replace(/\(.*?\)|\[.*?\]|ft\..*|feat\..*|Official.*|Video.*/gi, '').trim();
+    const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].split('ft.')[0].trim();
+    const query = `${cleanTitle} ${cleanArtist}`.trim();
+    const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=1`, { signal: AbortSignal.timeout(4000) });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.results && data.results.length > 0 && data.results[0].artworkUrl100) {
+        const hdCover = data.results[0].artworkUrl100.replace('100x100bb', '1000x1000bb');
+        track.coverUrl = hdCover;
+        track.cover = hdCover;
+        if (currentTrack && (currentTrack.id === track.id || currentTrack.title === track.title)) {
+          updateTrackInfoUI(track);
+          updateMediaSession(track);
+        }
+      }
+    }
+  } catch (e) {}
+}
 
 export async function playTrack(track, queue = null) {
   if (!track) return;
@@ -196,6 +223,9 @@ export async function playTrack(track, queue = null) {
   if (typeof window.loadTrackLyrics === 'function') {
     window.loadTrackLyrics(track);
   }
+
+  // Dynamic High-Resolution Official Album Cover Enhancer
+  ensureOriginalAlbumCover(track);
 
   // 1. Resolve YouTube Video ID for full-length song playback with ads
   let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null) || (track.id && !track.id.startsWith('pulse-') && !track.id.startsWith('itunes-') && !track.id.startsWith('cat-') ? track.id : null);
