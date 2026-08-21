@@ -227,50 +227,54 @@ export async function playTrack(track, queue = null) {
   // Dynamic High-Resolution Official Album Cover Enhancer
   ensureOriginalAlbumCover(track);
 
-  // 1. Resolve YouTube Video ID for full-length song playback with ads
+  // 1. Resolve direct YouTube ID
   let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null) || (track.id && !track.id.startsWith('pulse-') && !track.id.startsWith('itunes-') && !track.id.startsWith('cat-') ? track.id : null);
 
-  // If no direct YouTube ID, search YouTube with smart multi-query fallback
-  if (!ytId) {
-    try {
-      const cleanTitle = (track.title || '').replace(/\(.*?\)|\[.*?\]|ft\..*|feat\..*|Official.*|Video.*/gi, '').trim();
-      const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].trim();
-      
-      let searchRes = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 6);
-      if (!searchRes || searchRes.length === 0) {
-        searchRes = await searchYouTubeMusic(`${track.title} ${track.artist}`, 6);
-      }
-      if (!searchRes || searchRes.length === 0) {
-        searchRes = await searchYouTubeMusic(cleanTitle, 6);
-      }
-
-      if (searchRes && searchRes.length > 0) {
-        const fullTrack = searchRes.find(t => (t.duration || 0) > 60) || searchRes[0];
-        if (fullTrack && fullTrack.ytId) {
-          ytId = fullTrack.ytId;
-          track.ytId = ytId;
-          if (fullTrack.duration && fullTrack.duration > 60) {
-            track.duration = fullTrack.duration;
-            duration = fullTrack.duration;
-          }
-          if (!track.coverUrl || track.coverUrl === './pulse-logo.png') {
-            track.coverUrl = fullTrack.coverUrl;
-          }
-        }
-      }
-    } catch (e) {}
-  }
-
-  if (sessionId !== activePlaySessionId) return;
-
-  // 2. Play via Official YouTube IFrame Player (Guaranteed full length & ads enabled)
   if (ytId) {
     const ytSuccess = await playOnYouTubeIframe(ytId, track);
     if (ytSuccess) return;
   }
 
-  // 3. Fallback: Full Native Audio Stream (Guaranteed never to play 30s preview clips)
-  if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('preview')) {
+  // 2. Search Multi-Node YouTube Music Engine for direct stream
+  try {
+    const cleanTitle = (track.title || '').replace(/\(.*?\)|\[.*?\]|ft\..*|feat\..*|Official.*|Video.*/gi, '').trim();
+    const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].trim();
+    
+    let searchRes = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 6);
+    if (!searchRes || searchRes.length === 0) {
+      searchRes = await searchYouTubeMusic(`${track.title} ${track.artist}`, 6);
+    }
+    if (!searchRes || searchRes.length === 0) {
+      searchRes = await searchYouTubeMusic(cleanTitle, 6);
+    }
+
+    if (searchRes && searchRes.length > 0) {
+      const fullTrack = searchRes.find(t => (t.duration || 0) > 60) || searchRes[0];
+      if (fullTrack && fullTrack.ytId) {
+        ytId = fullTrack.ytId;
+        track.ytId = ytId;
+        if (fullTrack.duration && fullTrack.duration > 60) {
+          track.duration = fullTrack.duration;
+          duration = fullTrack.duration;
+        }
+        if (!track.coverUrl || track.coverUrl === './pulse-logo.png') {
+          track.coverUrl = fullTrack.coverUrl;
+        }
+        const ytSuccess = await playOnYouTubeIframe(ytId, track);
+        if (ytSuccess) return;
+      }
+    }
+  } catch (e) {}
+
+  if (sessionId !== activePlaySessionId) return;
+
+  // 3. Guaranteed YouTube IFrame Player Direct Search (Google/YouTube native search)
+  const searchQuery = `${track.title} ${track.artist}`.trim();
+  const searchSuccess = await playOnYouTubeSearch(searchQuery, track);
+  if (searchSuccess) return;
+
+  // 4. Fallback: Full Native Audio Stream
+  if (track.streamUrl && track.streamUrl.startsWith('http')) {
     try {
       activeEngine = 'native';
       if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
@@ -886,6 +890,75 @@ export async function playOnYouTubeIframe(videoId, track) {
         if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === 'function') {
           clearInterval(interval);
           executePlay();
+        } else if (attempts > 25) {
+          clearInterval(interval);
+          resolve(false);
+        }
+      }, 150);
+    }
+  });
+}
+
+export async function playOnYouTubeSearch(query, track) {
+  if (!query) return false;
+  const a = getAudio();
+
+  return new Promise((resolve) => {
+    function executeSearchPlay() {
+      try {
+        a.pause();
+        activeEngine = 'youtube';
+        if (ytPlayer && typeof ytPlayer.loadPlaylist === 'function') {
+          ytPlayer.loadPlaylist({
+            listType: 'search',
+            list: query,
+            index: 0,
+            startSeconds: 0
+          });
+          ytPlayer.playVideo();
+          isPlaying = true;
+          if (window.pulseState) window.pulseState.isPlaying = true;
+          track.streamUrl = 'yt-iframe';
+          track.source = 'YouTube Audio Stream';
+          updateTrackInfoUI(track);
+          updatePlayPauseUI();
+          updateMediaSessionPlaybackState('playing');
+
+          if (ytTimeInterval) clearInterval(ytTimeInterval);
+          ytTimeInterval = setInterval(() => {
+            if (activeEngine === 'youtube' && isPlaying && ytPlayer && ytPlayer.getCurrentTime) {
+              try {
+                currentTime = ytPlayer.getCurrentTime() || 0;
+                if (ytPlayer.getDuration) duration = ytPlayer.getDuration() || 220;
+                if (currentTrack) currentTrack.duration = duration;
+                updateTimeUI();
+                updateMediaSessionPositionState();
+                if (typeof window.syncLiveLyrics === 'function') {
+                  window.syncLiveLyrics(currentTime);
+                }
+              } catch (e) {}
+            }
+          }, 500);
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      } catch (err) {
+        console.warn('[Pulse Engine] YT Search error:', err);
+        resolve(false);
+      }
+    }
+
+    if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadPlaylist === 'function') {
+      executeSearchPlay();
+    } else {
+      initYouTubePlayer();
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadPlaylist === 'function') {
+          clearInterval(interval);
+          executeSearchPlay();
         } else if (attempts > 25) {
           clearInterval(interval);
           resolve(false);
