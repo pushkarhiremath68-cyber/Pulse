@@ -665,7 +665,7 @@ import { askGeminiDJ } from './geminiService.js';
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(async () => {
       if (count) count.textContent = 'Searching worldwide & multilingual catalogs...';
-      const results = await window.musicService.searchTracks(query, 40);
+      const results = await window.musicService.searchTracks(query, 80);
       if (count) count.textContent = `${results.length} songs found worldwide`;
       renderSearchResults(results);
     }, isTyping ? 250 : 0);

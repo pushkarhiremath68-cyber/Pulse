@@ -82,30 +82,48 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
 
 /**
  * Universal Global Search via iTunes Apple Music (Covers ANY song in ANY language/script worldwide)
- * Uses original crystal-clear 1000x1000 studio artwork and guarantees full song resolution.
+ * Queries multi-region catalogs (Global, India, US) with 1000x1000 original studio covers.
  */
-export async function searchITunesUniversal(query, limit = 30) {
+export async function searchITunesUniversal(query, limit = 60) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
   const cleanQ = query.trim();
+  const allTracks = [];
+  const seenIds = new Set();
+
+  const endpoints = [
+    `https://itunes.apple.com/search?term=${encodeURIComponent(cleanQ)}&entity=song&limit=${limit}`,
+    `https://itunes.apple.com/search?term=${encodeURIComponent(cleanQ)}&country=IN&entity=song&limit=${limit}`,
+    `https://itunes.apple.com/search?term=${encodeURIComponent(cleanQ)}&country=US&entity=song&limit=${limit}`
+  ];
+
   try {
-    const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(cleanQ)}&entity=song&limit=${limit}`, { signal: AbortSignal.timeout(4500) });
-    if (!res.ok) return [];
-    const data = await res.json();
-    if (!data.results || !Array.isArray(data.results)) return [];
-    return data.results.map(r => normalizeTrack({
-      id: `itunes-${r.trackId}`,
-      title: r.trackName || 'Untitled Song',
-      artist: r.artistName || 'Various Artists',
-      album: r.collectionName || 'Single Release',
-      coverUrl: r.artworkUrl100 ? r.artworkUrl100.replace('100x100bb', '1000x1000bb') : './pulse-logo.png',
-      duration: r.trackTimeMillis ? Math.round(r.trackTimeMillis / 1000) : 220,
-      streamUrl: '', // Ensure 30s previewUrl is never used; full-length YouTube video/audio will be played
-      genre: r.primaryGenreName || 'Music',
-      source: 'Official Studio Release'
-    }, 'Official Studio Release'));
-  } catch (e) {
-    return [];
-  }
+    const responses = await Promise.allSettled(
+      endpoints.map(url => fetch(url, { signal: AbortSignal.timeout(4500) }).then(r => r.ok ? r.json() : { results: [] }))
+    );
+
+    for (const r of responses) {
+      if (r.status === 'fulfilled' && r.value && Array.isArray(r.value.results)) {
+        for (const item of r.value.results) {
+          if (item.trackId && !seenIds.has(item.trackId)) {
+            seenIds.add(item.trackId);
+            allTracks.push(normalizeTrack({
+              id: `itunes-${item.trackId}`,
+              title: item.trackName || 'Untitled Song',
+              artist: item.artistName || 'Various Artists',
+              album: item.collectionName || 'Single Release',
+              coverUrl: item.artworkUrl100 ? item.artworkUrl100.replace('100x100bb', '1000x1000bb') : './pulse-logo.png',
+              duration: item.trackTimeMillis ? Math.round(item.trackTimeMillis / 1000) : 220,
+              streamUrl: '',
+              genre: item.primaryGenreName || 'Music',
+              source: 'Official Studio Release'
+            }, 'Official Studio Release'));
+          }
+        }
+      }
+    }
+  } catch (e) {}
+
+  return allTracks.slice(0, limit);
 }
 
 /**
