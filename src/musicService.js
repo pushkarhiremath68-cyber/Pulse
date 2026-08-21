@@ -119,6 +119,7 @@ export async function searchTracks(query, limit = 40) {
   }
 
   const cleanQuery = query.trim();
+  const results = [];
   const trackMap = new Map();
 
   const addOrMergeTrack = (t) => {
