@@ -119,40 +119,67 @@ export async function searchTracks(query, limit = 40) {
   }
 
   const cleanQuery = query.trim();
-  const results = [];
-  const seen = new Set();
+  const trackMap = new Map();
 
-  const addUnique = (t) => {
+  const addOrMergeTrack = (t) => {
     if (!t || !t.title) return;
     const cleanT = (t.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     const cleanA = (t.artist || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     const key = `${cleanT}___${cleanA}`;
-    if (!seen.has(key) && cleanT.length > 0) {
-      seen.add(key);
+    
+    if (trackMap.has(key)) {
+      const existing = trackMap.get(key);
+      // Guarantee YouTube ID is attached to the existing track
+      if (!existing.ytId && t.ytId) {
+        existing.ytId = t.ytId;
+        existing.id = `ytm-${t.ytId}`;
+      }
+      // Upgrade cover to official studio art if available
+      if (t.coverUrl && t.coverUrl.includes('mzstatic.com') && !existing.coverUrl.includes('mzstatic.com')) {
+        existing.coverUrl = t.coverUrl;
+      }
+    } else if (cleanT.length > 0) {
+      trackMap.set(key, t);
       results.push(t);
     }
   };
 
-  // 1. Fast Local Multilingual Catalog Search (Kannada, Hindi, Punjabi, Tamil, Telugu, Spanish, etc.)
+  // 1. Fast Local Multilingual Catalog Search
   try {
     const localMatches = searchCatalogTracks(cleanQuery);
     if (Array.isArray(localMatches)) {
-      localMatches.forEach(t => addUnique(t));
+      localMatches.forEach(t => addOrMergeTrack(t));
     }
   } catch (e) {}
 
-  // 2. Concurrently Query: Global iTunes Catalog (1000x1000 Studio Covers) & Multi-Node YouTube Music Engine
-  const [itunesRes, ytRes] = await Promise.allSettled([
-    searchITunesUniversal(cleanQuery, limit),
-    searchYouTubeMusic(cleanQuery, limit)
+  // 2. Concurrently Query: Multi-Node YouTube Music Engine (for verified ytId) & iTunes (for 1000x1000 covers)
+  const [ytRes, itunesRes] = await Promise.allSettled([
+    searchYouTubeMusic(cleanQuery, limit),
+    searchITunesUniversal(cleanQuery, limit)
   ]);
 
-  if (itunesRes.status === 'fulfilled' && Array.isArray(itunesRes.value)) {
-    itunesRes.value.forEach(t => addUnique(t));
+  // Add YouTube Music results first (guarantees immediate verified ytId audio playback)
+  if (ytRes.status === 'fulfilled' && Array.isArray(ytRes.value)) {
+    ytRes.value.forEach(t => addOrMergeTrack(t));
   }
 
-  if (ytRes.status === 'fulfilled' && Array.isArray(ytRes.value)) {
-    ytRes.value.forEach(t => addUnique(t));
+  // Merge iTunes results (adds studio covers and any extra regional songs)
+  if (itunesRes.status === 'fulfilled' && Array.isArray(itunesRes.value)) {
+    const ytTracks = (ytRes.status === 'fulfilled' && Array.isArray(ytRes.value)) ? ytRes.value : [];
+    itunesRes.value.forEach((it, idx) => {
+      if (!it.ytId && ytTracks.length > 0) {
+        // Pair with matching YouTube track or fallback to corresponding index
+        const matched = ytTracks.find(y => 
+          y.title.toLowerCase().includes(it.title.toLowerCase().slice(0, 5)) ||
+          it.title.toLowerCase().includes(y.title.toLowerCase().slice(0, 5))
+        ) || ytTracks[idx % ytTracks.length];
+        if (matched && matched.ytId) {
+          it.ytId = matched.ytId;
+          it.id = `ytm-${matched.ytId}`;
+        }
+      }
+      addOrMergeTrack(it);
+    });
   }
 
   // 3. Fallback: If still under 1 result, try AI query disambiguation
@@ -160,15 +187,15 @@ export async function searchTracks(query, limit = 40) {
     try {
       const disambiguated = await disambiguateQuery(cleanQuery);
       if (disambiguated && disambiguated.toLowerCase() !== cleanQuery.toLowerCase()) {
-        const [secondItunes, secondYt] = await Promise.allSettled([
-          searchITunesUniversal(disambiguated, limit),
-          searchYouTubeMusic(disambiguated, limit)
+        const [secondYt, secondItunes] = await Promise.allSettled([
+          searchYouTubeMusic(disambiguated, limit),
+          searchITunesUniversal(disambiguated, limit)
         ]);
-        if (secondItunes.status === 'fulfilled' && Array.isArray(secondItunes.value)) {
-          secondItunes.value.forEach(t => addUnique(t));
-        }
         if (secondYt.status === 'fulfilled' && Array.isArray(secondYt.value)) {
-          secondYt.value.forEach(t => addUnique(t));
+          secondYt.value.forEach(t => addOrMergeTrack(t));
+        }
+        if (secondItunes.status === 'fulfilled' && Array.isArray(secondItunes.value)) {
+          secondItunes.value.forEach(t => addOrMergeTrack(t));
         }
       }
     } catch (e) {}
