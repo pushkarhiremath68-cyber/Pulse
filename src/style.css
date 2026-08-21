@@ -1883,7 +1883,7 @@ html, body {
     left: 50% !important;
     right: auto !important;
     transform: translateX(-50%) !important;
-    width: calc(100% - 20px) !important;
+    width: calc(100vw - 20px) !important;
     max-width: 480px !important;
     margin: 0 !important;
     height: 60px !important;
@@ -1912,12 +1912,22 @@ html, body {
   .player-left {
     flex: 1 1 auto !important;
     min-width: 0 !important;
-    max-width: calc(100% - 150px) !important;
+    max-width: none !important;
     display: flex !important;
     align-items: center !important;
-    gap: 0.55rem !important;
+    gap: 0.65rem !important;
     overflow: hidden !important;
     cursor: pointer !important;
+    padding-right: 0.5rem !important;
+  }
+
+  .player-right {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 0 !important;
   }
 
   .player-thumb {
