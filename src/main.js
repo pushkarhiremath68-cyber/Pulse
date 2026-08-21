@@ -303,13 +303,13 @@ import { askGeminiDJ } from './geminiService.js';
   };
 
   /**
-   * 3-Way Mode Switcher for Fullscreen Player: 'art' | 'video' | 'lyrics'
+   * 2-Way Pure Audio Mode Switcher for Fullscreen Player: 'art' | 'lyrics'
    */
   window.switchFullscreenView = function(viewMode) {
+    if (viewMode === 'video') viewMode = 'art'; // Automatically redirect any video triggers to album art
     const fsModal = document.getElementById('fullscreen-player');
     const content = document.getElementById('fs-content-container');
     const artSec = document.getElementById('fs-album-section');
-    const ytSec = document.getElementById('fs-yt-section');
     const lyricsSec = document.getElementById('fs-lyrics-panel');
 
     if (!fsModal || fsModal.classList.contains('hidden')) {
@@ -328,7 +328,6 @@ import { askGeminiDJ } from './geminiService.js';
     }
 
     if (artSec) artSec.classList.toggle('hidden-view', viewMode !== 'art');
-    if (ytSec) ytSec.classList.toggle('hidden-view', viewMode !== 'video');
     if (lyricsSec) lyricsSec.classList.toggle('hidden-view', viewMode !== 'lyrics');
 
     const toggleBtn = document.getElementById('fs-toggle-lyrics-btn');

@@ -2055,32 +2055,11 @@ html, body {
     font-size: 0.88rem !important;
   }
 
-  .fs-yt-section {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .yt-video-wrapper {
-    width: 100% !important;
-    aspect-ratio: 16 / 9 !important;
-    border-radius: 14px !important;
-  }
-
   /* View switcher rules on mobile */
   .fs-content[data-active-view="art"] .fs-album-section {
     display: flex !important;
   }
-  .fs-content[data-active-view="art"] .fs-yt-section,
   .fs-content[data-active-view="art"] .fs-lyrics-panel {
-    display: none !important;
-  }
-
-  .fs-content[data-active-view="video"] .fs-yt-section {
-    display: flex !important;
-    width: 100% !important;
-  }
-  .fs-content[data-active-view="video"] .fs-album-section,
-  .fs-content[data-active-view="video"] .fs-lyrics-panel {
     display: none !important;
   }
 
@@ -2091,8 +2070,7 @@ html, body {
     max-height: 50vh !important;
     margin: 0 auto !important;
   }
-  .fs-content[data-active-view="lyrics"] .fs-album-section,
-  .fs-content[data-active-view="lyrics"] .fs-yt-section {
+  .fs-content[data-active-view="lyrics"] .fs-album-section {
     display: none !important;
   }
 
