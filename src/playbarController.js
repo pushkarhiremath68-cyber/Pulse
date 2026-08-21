@@ -302,7 +302,15 @@ export async function playTrack(track, queue = null) {
   }
 }
 
+let lastToggleTime = 0;
+
 export function togglePlay() {
+  const now = Date.now();
+  if (now - lastToggleTime < 250) {
+    return; // Prevent rapid double-clicks from duplicate event handlers
+  }
+  lastToggleTime = now;
+
   if (isPlaying) {
     pause();
   } else {
@@ -311,11 +319,16 @@ export function togglePlay() {
 }
 
 export function pause() {
-  if (activeEngine === 'native') {
-    getAudio().pause();
-  } else if (activeEngine === 'youtube' && ytPlayer && ytPlayer.pauseVideo) {
-    ytPlayer.pauseVideo();
+  // 1. Guaranteed pause on Native Audio
+  if (audio) {
+    try { audio.pause(); } catch (e) {}
   }
+  
+  // 2. Guaranteed pause on YouTube IFrame API
+  if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+    try { ytPlayer.pauseVideo(); } catch (e) {}
+  }
+
   isPlaying = false;
   if (window.pulseState) window.pulseState.isPlaying = false;
   updatePlayPauseUI();
@@ -323,17 +336,24 @@ export function pause() {
 }
 
 export function resume() {
-  if (currentTrack) {
-    if (activeEngine === 'native') {
-      getAudio().play().catch(() => {});
-    } else if (activeEngine === 'youtube' && ytPlayer && ytPlayer.playVideo) {
-      ytPlayer.playVideo();
+  if (!currentTrack) return;
+
+  if (activeEngine === 'youtube' && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+    try { ytPlayer.playVideo(); } catch (e) {}
+  } else {
+    const a = getAudio();
+    if (a && a.src && !a.src.endsWith('/') && !a.src.includes('about:blank')) {
+      a.play().catch(() => {});
+    } else if (currentTrack.ytId || currentTrack.id) {
+      playTrack(currentTrack);
+      return;
     }
-    isPlaying = true;
-    if (window.pulseState) window.pulseState.isPlaying = true;
-    updatePlayPauseUI();
-    updateMediaSessionPlaybackState('playing');
   }
+
+  isPlaying = true;
+  if (window.pulseState) window.pulseState.isPlaying = true;
+  updatePlayPauseUI();
+  updateMediaSessionPlaybackState('playing');
 }
 
 export function playNext() {
@@ -494,7 +514,7 @@ function updateTimeUI() {
 }
 
 function updatePlayPauseUI() {
-  const playIcons = document.querySelectorAll('.playbar-play-icon, #btn-play-pause i, #playbar-play-btn i, #fullscreen-play-btn i, #fs-play-pause-btn i');
+  const playIcons = document.querySelectorAll('.playbar-play-icon, #btn-play-pause i, #playbar-play-btn i, #mobile-play-btn i, #fullscreen-play-btn i, #fs-play-pause-btn i');
   playIcons.forEach(icon => {
     if (isPlaying) {
       icon.className = 'fa-solid fa-pause';
@@ -656,53 +676,6 @@ function initPlaybarController() {
       minimizePlayer();
     });
   }
-
-  // Play / Pause Buttons
-  document.querySelectorAll('#btn-play-pause, #playbar-play-btn, #fs-play-pause-btn, #mobile-play-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      togglePlay();
-    });
-  });
-
-  // Previous Track Buttons
-  document.querySelectorAll('#btn-prev, #fs-btn-prev, #mobile-prev-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      playPrevious();
-    });
-  });
-
-  // Next Track Buttons
-  document.querySelectorAll('#btn-next, #fs-btn-next, #mobile-next-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      playNext();
-    });
-  });
-
-  // Shuffle & Repeat Buttons
-  document.querySelectorAll('#btn-shuffle, #fs-btn-shuffle').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleShuffle();
-    });
-  });
-
-  document.querySelectorAll('#btn-repeat, #fs-btn-repeat').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleRepeat();
-    });
-  });
-
-  // Like Track Buttons
-  document.querySelectorAll('#btn-player-like, #fs-btn-like, #playbar-fav-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleCurrentTrackFavorite();
-    });
-  });
 
   const seekers = document.querySelectorAll('#player-seek-slider, #playbar-seeker, #fs-seek-slider');
   seekers.forEach(seeker => {
