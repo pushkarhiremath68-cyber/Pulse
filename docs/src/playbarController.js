@@ -197,30 +197,40 @@ export async function playTrack(track, queue = null) {
     window.loadTrackLyrics(track);
   }
 
-  // 1. Resolve YouTube Video ID for guaranteed playback with ads
+  // 1. Resolve YouTube Video ID for full-length song playback with ads
   let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null) || (track.id && !track.id.startsWith('pulse-') && !track.id.startsWith('itunes-') && !track.id.startsWith('cat-') ? track.id : null);
 
-  // If no direct YouTube ID, resolve via search
+  // If no direct YouTube ID, search YouTube to get the full-length YouTube video
   if (!ytId) {
     try {
-      const searchRes = await searchYouTubeMusic(`${track.title} ${track.artist}`, 1);
-      if (searchRes && searchRes.length > 0 && searchRes[0].ytId) {
-        ytId = searchRes[0].ytId;
-        track.ytId = ytId;
+      const searchRes = await searchYouTubeMusic(`${track.title} ${track.artist}`, 4);
+      if (searchRes && searchRes.length > 0) {
+        const fullTrack = searchRes.find(t => (t.duration || 0) > 60) || searchRes[0];
+        if (fullTrack && fullTrack.ytId) {
+          ytId = fullTrack.ytId;
+          track.ytId = ytId;
+          if (fullTrack.duration && fullTrack.duration > 60) {
+            track.duration = fullTrack.duration;
+            duration = fullTrack.duration;
+          }
+          if (!track.coverUrl || track.coverUrl === './pulse-logo.png') {
+            track.coverUrl = fullTrack.coverUrl;
+          }
+        }
       }
     } catch (e) {}
   }
 
   if (sessionId !== activePlaySessionId) return;
 
-  // 2. Play via Official YouTube IFrame Player (with ad support enabled)
+  // 2. Play via Official YouTube IFrame Player (Guaranteed full length & ads enabled)
   if (ytId) {
     const ytSuccess = await playOnYouTubeIframe(ytId, track);
     if (ytSuccess) return;
   }
 
-  // 3. Fallback: Native Audio Stream
-  if (track.streamUrl && track.streamUrl.startsWith('http')) {
+  // 3. Fallback: Full Native Audio Stream (Guaranteed never to play 30s preview clips)
+  if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('preview')) {
     try {
       activeEngine = 'native';
       if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();

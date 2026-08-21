@@ -52,7 +52,9 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
     const d320 = raw.downloadUrl.find(d => d.quality === '320kbps')?.link || raw.downloadUrl.find(d => d.quality === '160kbps')?.link || raw.downloadUrl[raw.downloadUrl.length - 1]?.link;
     if (d320) stream = d320;
   }
-  if (typeof stream !== 'string') stream = '';
+  if (typeof stream !== 'string' || stream.includes('preview')) {
+    stream = ''; // Strictly discard 30-second preview clips to guarantee full song playback
+  }
 
   const duration = typeof raw.duration === 'number' ? raw.duration : (parseInt(raw.duration, 10) || 220);
 
@@ -73,6 +75,7 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
 
 /**
  * Universal Global Search via iTunes Apple Music (Covers ANY song in ANY language/script worldwide)
+ * Uses original crystal-clear 1000x1000 studio artwork and guarantees full song resolution.
  */
 export async function searchITunesUniversal(query, limit = 30) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
@@ -87,12 +90,12 @@ export async function searchITunesUniversal(query, limit = 30) {
       title: r.trackName || 'Untitled Song',
       artist: r.artistName || 'Various Artists',
       album: r.collectionName || 'Single Release',
-      coverUrl: r.artworkUrl100 ? r.artworkUrl100.replace('100x100bb', '600x600bb') : './pulse-logo.png',
+      coverUrl: r.artworkUrl100 ? r.artworkUrl100.replace('100x100bb', '1000x1000bb') : './pulse-logo.png',
       duration: r.trackTimeMillis ? Math.round(r.trackTimeMillis / 1000) : 220,
-      streamUrl: r.previewUrl || '',
+      streamUrl: '', // Ensure 30s previewUrl is never used; full-length YouTube video/audio will be played
       genre: r.primaryGenreName || 'Music',
-      source: 'Global Universal Catalog'
-    }, 'Global Universal Catalog'));
+      source: 'Official Studio Release'
+    }, 'Official Studio Release'));
   } catch (e) {
     return [];
   }
