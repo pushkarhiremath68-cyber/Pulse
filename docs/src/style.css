@@ -11010,109 +11010,398 @@ a {
 }
 
 /* ==========================================================================
-   EXTRA RESPONSIVENESS FOR LAPTOPS & LARGE DESKTOPS
+   COMPLETE RESPONSIVE DESIGN SYSTEM (MOBILE, TABLET, LAPTOP, DESKTOP)
    ========================================================================== */
 
-/* Laptops / Tablets */
-@media (max-width: 1100px) and (min-width: 900px) {
+/* -----------------------------------------------------------------------------
+   1. MOBILE BOTTOM NAVIGATION (BASE STYLES)
+   ----------------------------------------------------------------------------- */
+.mobile-bottom-nav {
+  display: none !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 60px !important;
+  background: rgba(9, 9, 14, 0.96) !important;
+  backdrop-filter: blur(24px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  z-index: 9998 !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+  padding: 0 0.5rem !important;
+  box-sizing: border-box !important;
+}
+
+.mobile-nav-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  flex: 1 !important;
+  height: 100% !important;
+  transition: all 0.2s ease !important;
+}
+
+.mobile-nav-item i {
+  font-size: 1.15rem !important;
+  transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+.mobile-nav-item.active {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.mobile-nav-item.active i {
+  color: var(--accent-purple) !important;
+  transform: translateY(-2px) scale(1.1) !important;
+}
+
+/* -----------------------------------------------------------------------------
+   2. MOBILE & TABLET LAYOUTS (< 900px)
+   ----------------------------------------------------------------------------- */
+@media (max-width: 899px) {
   .sidebar {
-    width: 200px !important;
-    min-width: 200px !important;
+    display: none !important;
   }
+
+  .mobile-bottom-nav {
+    display: flex !important;
+  }
+
+  .mobile-header-brand {
+    display: flex !important;
+  }
+
+  .header-nav-btns {
+    display: none !important;
+  }
+
   .main-content {
-    margin-left: 200px !important;
-    width: calc(100vw - 200px) !important;
-    padding: 5rem 1.5rem 7rem 1.5rem !important;
+    margin-left: 0 !important;
+    width: 100vw !important;
+    padding: 4.8rem 1rem 145px 1rem !important;
+    box-sizing: border-box !important;
   }
+
   .top-header {
-    left: 200px !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 60px !important;
+    padding: 0 0.85rem !important;
+    gap: 0.5rem !important;
   }
-  .search-results-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
-  }
-  .shelf-carousel {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
-  }
-}
 
-/* Large Desktop Monitors */
-@media (min-width: 1400px) {
-  .main-content {
-    padding: 5.5rem 3rem 8rem 3rem !important;
+  .search-box-container {
+    max-width: none !important;
+    flex: 1 !important;
   }
-  .search-results-grid {
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
+
+  .search-box-container input {
+    font-size: 0.8rem !important;
+    padding: 0.55rem 1.8rem 0.55rem 2.2rem !important;
   }
-  .shelf-carousel {
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
+
+  #header-download-btn {
+    display: none !important;
   }
-  .track-card, .music-card {
-    padding: 1rem !important;
+
+  #header-gemini-btn span {
+    display: none !important;
   }
-  .card-title {
-    font-size: 1.05rem !important;
+
+  #header-gemini-btn {
+    padding: 0.5rem 0.65rem !important;
+    border-radius: 50% !important;
+    width: 34px !important;
+    height: 34px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
-  .card-artist {
+
+  /* Hero Banner on Mobile */
+  .hero-banner {
+    flex-direction: column !important;
+    padding: 1.5rem 1.25rem !important;
+    border-radius: 16px !important;
+    margin-bottom: 1.5rem !important;
+    gap: 1rem !important;
+  }
+
+  .hero-content {
+    max-width: 100% !important;
+  }
+
+  .hero-title {
+    font-size: 1.4rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 0.82rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .hero-image-wrapper {
+    display: none !important;
+  }
+
+  /* Quick Picks Grid */
+  .quick-picks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .quick-pick-tile {
+    padding: 0.4rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .qp-thumb {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .qp-title {
     font-size: 0.85rem !important;
   }
-  .bottom-player-bar {
-    height: 90px !important;
-    padding: 0 3rem !important;
-  }
-  .player-thumb {
-    width: 64px !important;
-    height: 64px !important;
-    border-radius: 12px !important;
-  }
-  .player-title {
-    font-size: 1.05rem !important;
-  }
-  .player-artist {
-    font-size: 0.85rem !important;
-  }
-  .btn-player-main {
-    width: 52px !important;
-    height: 52px !important;
-    font-size: 1.25rem !important;
-  }
-}
 
-/* Playbar Sizing for Normal Laptops */
-@media (min-width: 900px) and (max-width: 1399px) {
-  .bottom-player-bar {
-    height: 80px !important;
-    padding: 0 2rem !important;
+  .qp-artist {
+    font-size: 0.72rem !important;
   }
+
+  .qp-play-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Bottom Player Bar on Mobile (Floating Pill above Bottom Nav) */
+  .bottom-player-bar {
+    position: fixed !important;
+    bottom: 66px !important;
+    left: 8px !important;
+    right: 8px !important;
+    width: calc(100vw - 16px) !important;
+    height: 62px !important;
+    border-radius: 16px !important;
+    background: rgba(18, 15, 26, 0.95) !important;
+    backdrop-filter: blur(24px) saturate(1.3) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(1.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+    padding: 0 0.85rem !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+  }
+
+  .player-center {
+    display: none !important;
+  }
+
+  .desktop-playbar-controls {
+    display: none !important;
+  }
+
+  .mobile-playbar-controls {
+    display: flex !important;
+  }
+
   .player-thumb {
-    width: 54px !important;
-    height: 54px !important;
+    width: 44px !important;
+    height: 44px !important;
     border-radius: 10px !important;
   }
+
+  .player-title {
+    font-size: 0.86rem !important;
+    max-width: 140px !important;
+  }
+
+  .player-artist {
+    font-size: 0.74rem !important;
+    max-width: 140px !important;
+  }
+
+  .player-track-actions {
+    display: none !important;
+  }
+
+  /* Fullscreen Player on Mobile */
+  .fs-content {
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+    padding: 0.5rem 1rem !important;
+    max-height: calc(100vh - 200px) !important;
+    overflow-y: auto !important;
+  }
+
+  .fs-album-art-wrap {
+    width: 220px !important;
+    height: 220px !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .fs-title {
+    font-size: 1.25rem !important;
+  }
+
+  .fs-artist {
+    font-size: 0.95rem !important;
+  }
+
+  .fs-lyrics-panel {
+    height: 220px !important;
+    padding: 1rem !important;
+  }
+
+  .fs-controls-section {
+    padding: 1rem 1.25rem 2rem 1.25rem !important;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   3. LAPTOPS & TABLETS (900px - 1399px)
+   ----------------------------------------------------------------------------- */
+@media (min-width: 900px) and (max-width: 1399px) {
+  .sidebar {
+    width: 220px !important;
+    min-width: 220px !important;
+    display: flex !important;
+  }
+
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  .mobile-header-brand {
+    display: none !important;
+  }
+
+  .main-content {
+    margin-left: 220px !important;
+    width: calc(100vw - 220px) !important;
+    padding: 5.5rem 2rem 7.5rem 2rem !important;
+  }
+
+  .top-header {
+    left: 220px !important;
+    width: calc(100vw - 220px) !important;
+    padding: 0 1.75rem !important;
+  }
+
+  .bottom-player-bar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    height: 78px !important;
+    padding: 0 2rem !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    background: rgba(12, 10, 18, 0.95) !important;
+    backdrop-filter: blur(24px) saturate(1.3) !important;
+  }
+
+  .player-thumb {
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 10px !important;
+  }
+
   .player-title {
     font-size: 0.95rem !important;
   }
+
   .player-artist {
     font-size: 0.8rem !important;
   }
+
   .btn-player-main {
-    width: 48px !important;
-    height: 48px !important;
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  .search-results-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
   }
 }
 
-/* Playbar Sizing for Mobile & Tablets */
-@media (max-width: 899px) {
-  .bottom-player-bar {
-    height: 72px !important;
+/* -----------------------------------------------------------------------------
+   4. LARGE DESKTOPS (1400px+)
+   ----------------------------------------------------------------------------- */
+@media (min-width: 1400px) {
+  .sidebar {
+    width: 250px !important;
+    min-width: 250px !important;
+    display: flex !important;
   }
+
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  .mobile-header-brand {
+    display: none !important;
+  }
+
+  .main-content {
+    margin-left: 250px !important;
+    width: calc(100vw - 250px) !important;
+    padding: 5.5rem 3rem 8rem 3rem !important;
+  }
+
+  .top-header {
+    left: 250px !important;
+    width: calc(100vw - 250px) !important;
+    padding: 0 2.5rem !important;
+  }
+
+  .bottom-player-bar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    height: 84px !important;
+    padding: 0 3rem !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    background: rgba(12, 10, 18, 0.95) !important;
+    backdrop-filter: blur(24px) saturate(1.3) !important;
+  }
+
   .player-thumb {
+    width: 58px !important;
+    height: 58px !important;
+    border-radius: 12px !important;
+  }
+
+  .player-title {
+    font-size: 1rem !important;
+  }
+
+  .player-artist {
+    font-size: 0.84rem !important;
+  }
+
+  .btn-player-main {
     width: 50px !important;
     height: 50px !important;
+    font-size: 1.25rem !important;
   }
-  .player-title {
-    font-size: 0.95rem !important;
-  }
-  .player-artist {
-    font-size: 0.82rem !important;
+
+  .search-results-grid {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
   }
 }
+

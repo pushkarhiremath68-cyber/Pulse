@@ -290,6 +290,35 @@ import { askGeminiDJ } from './geminiService.js';
     }
   };
 
+  /**
+   * Toggles between Album Art Showcase and Live Synced Lyrics View in Fullscreen Player
+   */
+  window.toggleFullscreenLyricsView = function() {
+    const fsModal = document.getElementById('fullscreen-player');
+    const content = document.getElementById('fs-content-container');
+    const toggleBtn = document.getElementById('fs-toggle-lyrics-btn');
+    const pillBtn = document.getElementById('fs-switch-lyrics-pill');
+
+    if (!fsModal || fsModal.classList.contains('hidden')) {
+      if (window.PulsePlaybar && typeof window.PulsePlaybar.maximize === 'function') {
+        window.PulsePlaybar.maximize();
+      }
+    }
+
+    if (content) {
+      content.classList.toggle('lyrics-view-active');
+      const isLyricsActive = content.classList.contains('lyrics-view-active');
+      if (toggleBtn) {
+        toggleBtn.classList.toggle('active-mode', isLyricsActive);
+      }
+      if (pillBtn) {
+        pillBtn.innerHTML = isLyricsActive
+          ? '<i class="fa-solid fa-compact-disc"></i> <span>View Album Art</span>'
+          : '<i class="fa-solid fa-microphone-lines"></i> <span>Live Synced Lyrics</span>';
+      }
+    }
+  };
+
   // ---------------------------------------------------------------------------
   // 2. MAIN SCREEN CATALOGUES & DISCOVERY SHELVES
   // ---------------------------------------------------------------------------
@@ -869,12 +898,39 @@ import { askGeminiDJ } from './geminiService.js';
 
   window.openDownloadModal = function() {
     const modal = document.getElementById('download-app-modal');
-    if (modal) modal.classList.remove('hidden');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('active-modal');
+    }
   };
 
   window.closeDownloadModal = function() {
     const modal = document.getElementById('download-app-modal');
-    if (modal) modal.classList.add('hidden');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('active-modal');
+    }
+  };
+
+  window.switchDownloadTab = function(category) {
+    document.querySelectorAll('.download-tab-btn').forEach(btn => {
+      btn.classList.toggle('active-pill', btn.getAttribute('data-category') === category);
+    });
+
+    document.querySelectorAll('.download-card-tile').forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      if (category === 'all' || cardCat === category) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  };
+
+  window.handleDownloadClick = function(platformName, fileSize) {
+    if (typeof window.showToast === 'function') {
+      window.showToast(`Starting ${platformName} download (${fileSize || 'Instant'})... ⚡`, 'success', 3000);
+    }
   };
 
   // ---------------------------------------------------------------------------
