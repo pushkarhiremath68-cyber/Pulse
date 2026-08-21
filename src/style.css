@@ -1166,6 +1166,46 @@ html, body {
   align-items: center;
 }
 
+/* 3-Way Mode Switcher in Fullscreen Header */
+.fs-view-mode-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.fs-mode-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fs-mode-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.fs-mode-tab-btn.active-tab {
+  background: linear-gradient(135deg, rgba(192, 132, 252, 0.35) 0%, rgba(168, 85, 247, 0.45) 100%);
+  border: 1px solid rgba(192, 132, 252, 0.6);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
+}
+
 .fs-badge-now-playing {
   font-size: 0.7rem;
   font-weight: 800;
@@ -1185,6 +1225,69 @@ html, body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+/* Dedicated YouTube Video Player Section */
+.fs-yt-section {
+  flex: 1;
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 0 auto;
+}
+
+.yt-video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000000;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.9), 0 0 45px rgba(239, 68, 68, 0.25);
+  pointer-events: auto !important;
+  z-index: 25;
+}
+
+#yt-player-container {
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: auto !important;
+}
+
+#yt-player-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  pointer-events: auto !important;
+}
+
+.yt-video-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.yt-ad-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 4px 14px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hidden-view {
+  display: none !important;
 }
 
 /* Fullscreen Center Body Showcase */
@@ -1893,47 +1996,82 @@ html, body {
 
   /* Fullscreen Player on Mobile (Centered & Symmetrical) */
   .fs-overlay {
-    padding: 1rem 1.25rem 1.75rem 1.25rem !important;
+    padding: 0.85rem 1rem 1.5rem 1rem !important;
+  }
+
+  .fs-view-mode-pills {
+    padding: 2px 3px !important;
+    gap: 2px !important;
+  }
+
+  .fs-mode-tab-btn {
+    padding: 0.3rem 0.55rem !important;
+    font-size: 0.68rem !important;
+    gap: 0.25rem !important;
   }
 
   .fs-content {
     flex-direction: column !important;
-    gap: 1rem !important;
-    padding: 0.5rem 0 !important;
-    max-height: calc(100vh - 200px) !important;
+    gap: 0.85rem !important;
+    padding: 0.25rem 0 !important;
+    max-height: calc(100vh - 190px) !important;
     overflow-y: auto !important;
   }
 
   .fs-art-wrapper {
-    width: 220px !important;
-    height: 220px !important;
-    margin-bottom: 0.75rem !important;
-    border-radius: 18px !important;
+    width: 200px !important;
+    height: 200px !important;
+    margin-bottom: 0.6rem !important;
+    border-radius: 16px !important;
   }
 
   .fs-title {
-    font-size: 1.35rem !important;
+    font-size: 1.25rem !important;
   }
 
   .fs-artist {
-    font-size: 0.92rem !important;
+    font-size: 0.88rem !important;
   }
 
-  .fs-lyrics-panel {
+  .fs-yt-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .yt-video-wrapper {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    border-radius: 14px !important;
+  }
+
+  /* View switcher rules on mobile */
+  .fs-content[data-active-view="art"] .fs-album-section {
+    display: flex !important;
+  }
+  .fs-content[data-active-view="art"] .fs-yt-section,
+  .fs-content[data-active-view="art"] .fs-lyrics-panel {
     display: none !important;
   }
 
-  /* When lyrics view is toggled active on mobile */
-  .fs-content.lyrics-view-active .fs-album-section {
-    display: none !important;
-  }
-
-  .fs-content.lyrics-view-active .fs-lyrics-panel {
+  .fs-content[data-active-view="video"] .fs-yt-section {
     display: flex !important;
     width: 100% !important;
-    height: 360px !important;
-    max-height: 52vh !important;
+  }
+  .fs-content[data-active-view="video"] .fs-album-section,
+  .fs-content[data-active-view="video"] .fs-lyrics-panel {
+    display: none !important;
+  }
+
+  .fs-content[data-active-view="lyrics"] .fs-lyrics-panel {
+    display: flex !important;
+    width: 100% !important;
+    height: 350px !important;
+    max-height: 50vh !important;
     margin: 0 auto !important;
+  }
+  .fs-content[data-active-view="lyrics"] .fs-album-section,
+  .fs-content[data-active-view="lyrics"] .fs-yt-section {
+    display: none !important;
   }
 
   .fs-controls-section {
@@ -1941,12 +2079,12 @@ html, body {
   }
 
   .fs-player-controls {
-    gap: 1.25rem !important;
+    gap: 1.15rem !important;
   }
 
   .fs-hero-play-btn {
-    width: 58px !important;
-    height: 58px !important;
-    font-size: 1.35rem !important;
+    width: 54px !important;
+    height: 54px !important;
+    font-size: 1.25rem !important;
   }
 }

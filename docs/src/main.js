@@ -293,13 +293,14 @@ import { askGeminiDJ } from './geminiService.js';
   };
 
   /**
-   * Toggles between Album Art Showcase and Live Synced Lyrics View in Fullscreen Player
+   * 3-Way Mode Switcher for Fullscreen Player: 'art' | 'video' | 'lyrics'
    */
-  window.toggleFullscreenLyricsView = function() {
+  window.switchFullscreenView = function(viewMode) {
     const fsModal = document.getElementById('fullscreen-player');
     const content = document.getElementById('fs-content-container');
-    const toggleBtn = document.getElementById('fs-toggle-lyrics-btn');
-    const pillBtn = document.getElementById('fs-switch-lyrics-pill');
+    const artSec = document.getElementById('fs-album-section');
+    const ytSec = document.getElementById('fs-yt-section');
+    const lyricsSec = document.getElementById('fs-lyrics-panel');
 
     if (!fsModal || fsModal.classList.contains('hidden')) {
       if (window.PulsePlaybar && typeof window.PulsePlaybar.maximize === 'function') {
@@ -307,18 +308,29 @@ import { askGeminiDJ } from './geminiService.js';
       }
     }
 
+    // Update active tab buttons
+    document.querySelectorAll('.fs-mode-tab-btn').forEach(btn => {
+      btn.classList.toggle('active-tab', btn.getAttribute('data-mode') === viewMode);
+    });
+
     if (content) {
-      content.classList.toggle('lyrics-view-active');
-      const isLyricsActive = content.classList.contains('lyrics-view-active');
-      if (toggleBtn) {
-        toggleBtn.classList.toggle('active-mode', isLyricsActive);
-      }
-      if (pillBtn) {
-        pillBtn.innerHTML = isLyricsActive
-          ? '<i class="fa-solid fa-compact-disc"></i> <span>View Album Art</span>'
-          : '<i class="fa-solid fa-microphone-lines"></i> <span>Live Synced Lyrics</span>';
-      }
+      content.setAttribute('data-active-view', viewMode);
     }
+
+    if (artSec) artSec.classList.toggle('hidden-view', viewMode !== 'art');
+    if (ytSec) ytSec.classList.toggle('hidden-view', viewMode !== 'video');
+    if (lyricsSec) lyricsSec.classList.toggle('hidden-view', viewMode !== 'lyrics');
+
+    const toggleBtn = document.getElementById('fs-toggle-lyrics-btn');
+    if (toggleBtn) {
+      toggleBtn.classList.toggle('active-mode', viewMode === 'lyrics');
+    }
+  };
+
+  window.toggleFullscreenLyricsView = function() {
+    const content = document.getElementById('fs-content-container');
+    const curView = content ? content.getAttribute('data-active-view') : 'art';
+    window.switchFullscreenView(curView === 'lyrics' ? 'art' : 'lyrics');
   };
 
   // ---------------------------------------------------------------------------
