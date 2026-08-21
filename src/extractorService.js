@@ -170,7 +170,7 @@ export async function resolvePipedAudioStream(videoId) {
  * Searches YouTube Music & YouTube for Songs, Artists, and Audio Tracks
  * Utilizes a high-performance concurrent race across all instances.
  */
-export async function searchYouTubeMusic(query, limit = 25) {
+export async function searchYouTubeMusic(query, limit = 30) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
   const cleanQ = query.trim();
 
@@ -182,16 +182,19 @@ export async function searchYouTubeMusic(query, limit = 25) {
   const seenIds = new Set();
 
   const nodesToRace = [
-    ...PIPED_INSTANCES.map(n => ({ type: 'piped', url: `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` })),
-    ...PIPED_INSTANCES.map(n => ({ type: 'piped', url: `${n}/search?q=${encodeURIComponent(cleanQ)}&filter=all` })),
-    ...INVIDIOUS_INSTANCES.map(n => ({ type: 'invidious', url: `${n}/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` }))
+    { type: 'piped', url: `https://pipedapi.kavin.rocks/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` },
+    { type: 'piped', url: `https://api.piped.privacydev.net/search?q=${encodeURIComponent(cleanQ)}&filter=all` },
+    { type: 'piped', url: `https://pa.il.ax/search?q=${encodeURIComponent(cleanQ)}&filter=all` },
+    { type: 'invidious', url: `https://inv.nadeko.net/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
+    { type: 'invidious', url: `https://invidious.nerdvpn.de/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
+    { type: 'invidious', url: `https://invidious.private.coffee/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` }
   ];
 
   try {
-    const fastestSearch = await Promise.any(
+    const responses = await Promise.allSettled(
       nodesToRace.map(async (node) => {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5500);
+        const timeoutId = setTimeout(() => controller.abort(), 4500);
         try {
           const res = await fetch(node.url, { signal: controller.signal });
           clearTimeout(timeoutId);
@@ -199,7 +202,7 @@ export async function searchYouTubeMusic(query, limit = 25) {
           const json = await res.json();
           const items = Array.isArray(json) ? json : (json.items || []);
           if (items.length === 0) throw new Error('Empty');
-          return { items, type: node.type };
+          return items;
         } catch (e) {
           clearTimeout(timeoutId);
           throw e;
@@ -207,33 +210,35 @@ export async function searchYouTubeMusic(query, limit = 25) {
       })
     );
 
-    for (const item of fastestSearch.items) {
-      let videoId = '';
-      if (item.videoId) {
-        videoId = item.videoId;
-      } else if (item.url) {
-        videoId = item.url.replace('/watch?v=', '').replace('/streams/', '').trim();
-      }
+    for (const r of responses) {
+      if (r.status === 'fulfilled' && Array.isArray(r.value)) {
+        for (const item of r.value) {
+          let videoId = '';
+          if (item.videoId) {
+            videoId = item.videoId;
+          } else if (item.url) {
+            videoId = item.url.replace('/watch?v=', '').replace('/streams/', '').trim();
+          }
 
-      if (videoId && !seenIds.has(videoId) && videoId.length >= 8) {
-        seenIds.add(videoId);
-        results.push({
-          id: `ytm-${videoId}`,
-          ytId: videoId,
-          title: item.title || 'Untitled Track',
-          artist: item.uploaderName || item.author || item.artist || 'YouTube Music Artist',
-          album: item.album || 'YouTube Music Single',
-          coverUrl: item.thumbnail || (item.thumbnails && item.thumbnails[0]?.url) || (item.videoThumbnails && item.videoThumbnails[0]?.url) || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-          duration: typeof item.duration === 'number' ? item.duration : (parseInt(item.lengthSeconds, 10) || 220),
-          streamUrl: '',
-          source: 'YouTube Music Ad-Free Opus'
-        });
+          if (videoId && !seenIds.has(videoId) && videoId.length >= 8) {
+            seenIds.add(videoId);
+            results.push({
+              id: `ytm-${videoId}`,
+              ytId: videoId,
+              title: item.title || 'Untitled Track',
+              artist: item.uploaderName || item.author || item.artist || 'YouTube Artist',
+              album: item.album || 'YouTube Release',
+              coverUrl: item.thumbnail || (item.thumbnails && item.thumbnails[0]?.url) || (item.videoThumbnails && item.videoThumbnails[0]?.url) || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+              duration: typeof item.duration === 'number' ? item.duration : (parseInt(item.lengthSeconds, 10) || 220),
+              streamUrl: '',
+              source: 'YouTube Music'
+            });
+          }
+          if (results.length >= limit) break;
+        }
       }
-      if (results.length >= limit) break;
     }
-  } catch (aggregateError) {
-    console.warn('[Pulse Search Engine] Notice on public node search race');
-  }
+  } catch (e) {}
 
   if (results.length > 0) {
     SEARCH_CACHE.set(cleanQ, results.slice(0, limit));

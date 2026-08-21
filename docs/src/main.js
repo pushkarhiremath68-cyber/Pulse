@@ -655,9 +655,9 @@ import { askGeminiDJ } from './geminiService.js';
 
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(async () => {
-      if (count) count.textContent = 'Searching YouTube Music & studio masters...';
-      const results = await window.musicService.searchTracks(query, 35);
-      if (count) count.textContent = `${results.length} ad-free tracks discovered`;
+      if (count) count.textContent = 'Searching worldwide & multilingual catalogs...';
+      const results = await window.musicService.searchTracks(query, 40);
+      if (count) count.textContent = `${results.length} songs found worldwide`;
       renderSearchResults(results);
     }, isTyping ? 250 : 0);
   };
@@ -671,7 +671,7 @@ import { askGeminiDJ } from './geminiService.js';
         <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
           <i class="fa-solid fa-compact-disc" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; color: var(--accent-primary);"></i>
           <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem;">No audio tracks found</h3>
-          <p>Try searching for a different song, artist, or YouTube title.</p>
+          <p>Try searching for a song, artist, album, or regional language name.</p>
         </div>
       `;
       return;
@@ -688,13 +688,13 @@ import { askGeminiDJ } from './geminiService.js';
     container.innerHTML = tracks.map((track, idx) => `
       <div class="track-card glass-card hover-glow" onclick="window.playSearchTrack(${idx})" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 14px; padding: 0.85rem; cursor: pointer; transition: all 0.25s ease;">
         <div class="card-cover-wrap" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 10px; overflow: hidden; margin-bottom: 0.75rem;">
-          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.src='./pulse-logo.png'">
+          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
           <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
-            <button class="btn-play-hover" style="width: 44px; height: 44px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer;" title="Play Ad-Free Audio">
+            <button class="btn-play-hover" style="width: 44px; height: 44px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer;" title="Play Audio">
               <i class="fa-solid fa-play"></i>
             </button>
           </div>
-          <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 6px; border-radius: 6px;">YouTube Audio</span>
+          <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 6px; border-radius: 6px;">${track.source || 'Global Track'}</span>
         </div>
         <div class="card-info">
           <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 0.25rem 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.title}">${track.title}</h4>

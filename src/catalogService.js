@@ -329,6 +329,56 @@ export const fetchCategoryTracks = async (categoryId, limit = 20) => {
   return [];
 };
 
+/**
+ * Searches across all built-in catalog categories, language playlists, and curated tracks
+ */
+export function searchCatalogTracks(query) {
+  if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
+  const q = query.trim().toLowerCase();
+  const matched = [];
+  const seen = new Set();
+
+  const add = (t, src) => {
+    if (!t || !t.title) return;
+    const title = (t.title || '').toLowerCase();
+    const artist = (t.artist || '').toLowerCase();
+    if (title.includes(q) || artist.includes(q) || q.includes(title) || q.includes(artist)) {
+      const key = `${title}___${artist}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        matched.push({
+          id: t.id || (t.ytId ? `ytm-${t.ytId}` : `cat-${Math.random()}`),
+          ytId: t.ytId,
+          title: t.title,
+          artist: t.artist,
+          album: t.album || 'Pulse Master Catalog',
+          coverUrl: t.coverUrl || t.cover || './pulse-logo.png',
+          duration: t.duration || 220,
+          source: src || 'Catalog Master'
+        });
+      }
+    }
+  };
+
+  // 1. Search in CATALOG_CATEGORIES
+  CATALOG_CATEGORIES.forEach(cat => {
+    (cat.tracks || []).forEach(t => add(t, cat.title));
+  });
+
+  // 2. Search in LANGUAGE_PLAYLISTS (Hindi, English, Punjabi, Kannada, Tamil, Telugu, Marathi, Gujarati, Spanish, K-Pop)
+  LANGUAGE_PLAYLISTS.forEach(lang => {
+    (lang.tracks || []).forEach(t => add(t, lang.meta.title));
+  });
+
+  // 3. Search in Quick Picks & Curated Playlists
+  getQuickPicks(30).forEach(t => add(t, 'Quick Picks'));
+  getCuratedPlaylists().forEach(pl => {
+    (pl.tracks || []).forEach(t => add(t, pl.title));
+  });
+
+  return matched;
+}
+
 export const getArtistDetails = (artistName) => {
   const normalized = (artistName || '').toLowerCase().trim();
   let tracks = [];
@@ -424,7 +474,8 @@ const catalogService = {
   getFeaturedArtists,
   getCuratedPlaylists,
   fetchCategoryTracks,
-  getArtistDetails
+  getArtistDetails,
+  searchCatalogTracks
 };
 
 if (typeof window !== 'undefined') {
