@@ -230,10 +230,20 @@ export async function playTrack(track, queue = null) {
   // 1. Resolve YouTube Video ID for full-length song playback with ads
   let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null) || (track.id && !track.id.startsWith('pulse-') && !track.id.startsWith('itunes-') && !track.id.startsWith('cat-') ? track.id : null);
 
-  // If no direct YouTube ID, search YouTube to get the full-length YouTube video
+  // If no direct YouTube ID, search YouTube with smart multi-query fallback
   if (!ytId) {
     try {
-      const searchRes = await searchYouTubeMusic(`${track.title} ${track.artist}`, 4);
+      const cleanTitle = (track.title || '').replace(/\(.*?\)|\[.*?\]|ft\..*|feat\..*|Official.*|Video.*/gi, '').trim();
+      const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].trim();
+      
+      let searchRes = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 6);
+      if (!searchRes || searchRes.length === 0) {
+        searchRes = await searchYouTubeMusic(`${track.title} ${track.artist}`, 6);
+      }
+      if (!searchRes || searchRes.length === 0) {
+        searchRes = await searchYouTubeMusic(cleanTitle, 6);
+      }
+
       if (searchRes && searchRes.length > 0) {
         const fullTrack = searchRes.find(t => (t.duration || 0) > 60) || searchRes[0];
         if (fullTrack && fullTrack.ytId) {

@@ -182,12 +182,16 @@ export async function searchYouTubeMusic(query, limit = 30) {
   const seenIds = new Set();
 
   const nodesToRace = [
-    { type: 'piped', url: `https://pipedapi.kavin.rocks/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` },
     { type: 'piped', url: `https://api.piped.privacydev.net/search?q=${encodeURIComponent(cleanQ)}&filter=all` },
+    { type: 'piped', url: `https://pipedapi.kavin.rocks/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` },
     { type: 'piped', url: `https://pa.il.ax/search?q=${encodeURIComponent(cleanQ)}&filter=all` },
-    { type: 'invidious', url: `https://inv.nadeko.net/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
+    { type: 'piped', url: `https://pipedapi.tokhmi.xyz/search?q=${encodeURIComponent(cleanQ)}&filter=all` },
+    { type: 'piped', url: `https://piped-api.garudalinux.org/search?q=${encodeURIComponent(cleanQ)}&filter=all` },
+    { type: 'invidious', url: `https://inv.tux.pizza/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
     { type: 'invidious', url: `https://invidious.nerdvpn.de/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
-    { type: 'invidious', url: `https://invidious.private.coffee/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` }
+    { type: 'invidious', url: `https://invidious.private.coffee/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
+    { type: 'invidious', url: `https://inv.nadeko.net/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
+    { type: 'invidious', url: `https://yewtu.be/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` }
   ];
 
   try {
