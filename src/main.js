@@ -1111,7 +1111,7 @@ window.addEventListener('error', function(e) {
   };
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('./sw.js')
       .then(reg => console.log('Pulse PWA Service Worker registered:', reg.scope))
       .catch(err => console.error('Pulse PWA Service Worker error:', err));
   }

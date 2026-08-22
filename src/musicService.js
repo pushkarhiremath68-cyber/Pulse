@@ -200,7 +200,7 @@ export async function searchJioSaavnDirect(query, limit = 25) {
     }
   } catch (e) {}
 
-  // 3. Resilient Public CORS Proxies (for static hosting or browser fallbacks)
+  // 3. Resilient Public CORS Proxies (Raced concurrently for instant response)
   const encodedSaavn = encodeURIComponent(`https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=${limit}&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQ)}`);
   const proxyEndpoints = [
     `https://api.allorigins.win/raw?url=${encodedSaavn}`,
@@ -208,17 +208,31 @@ export async function searchJioSaavnDirect(query, limit = 25) {
     `https://api.codetabs.com/v1/proxy?quest=${encodedSaavn}`
   ];
 
-  for (const proxyUrl of proxyEndpoints) {
-    try {
-      const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(3500) });
-      if (res.ok) {
-        const text = await res.text();
-        const data = JSON.parse(text);
-        parseResults(data.results || data);
-        if (results.length > 0) return results.slice(0, limit);
-      }
-    } catch (e) {}
-  }
+  try {
+    await Promise.any(
+      proxyEndpoints.map(async (proxyUrl) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        try {
+          const res = await fetch(proxyUrl, { signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (!res.ok) throw new Error('Proxy error');
+          const text = await res.text();
+          const data = JSON.parse(text);
+          const raw = data.results || data;
+          if (Array.isArray(raw) && raw.length > 0) {
+            parseResults(raw);
+            return raw;
+          }
+          throw new Error('Empty');
+        } catch (e) {
+          clearTimeout(timeoutId);
+          throw e;
+        }
+      })
+    );
+    if (results.length > 0) return results.slice(0, limit);
+  } catch (e) {}
 
   return results.slice(0, limit);
 }
@@ -520,7 +534,7 @@ export async function resolveFullAudioStream(track) {
         const json = await res.json();
         if (json.streamUrl && !json.streamUrl.includes('preview')) {
           finalUrl = json.streamUrl;
-          finalSource = json.source || 'Pulse Master Studio 320k';
+          finalSource = json.source || 'Studio Master Audio (YouTube)';
         }
       }
     } catch (e) {}
