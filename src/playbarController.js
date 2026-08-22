@@ -259,7 +259,7 @@ export async function playTrack(track, queue = null) {
         }
       } else if (resolved.streamUrl && resolved.streamUrl.startsWith('http') && !resolved.streamUrl.includes('preview')) {
         track.streamUrl = resolved.streamUrl;
-        track.source = resolved.source || 'Studio Master Audio 320k';
+        track.source = resolved.source || 'Studio Master Audio (YouTube)';
         const played = await playOnNativeAudio(track);
         if (played) return;
       }
@@ -1032,3 +1032,4 @@ if (typeof window !== 'undefined') {
 }
 
 export default playbarController;
+

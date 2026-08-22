@@ -75,7 +75,7 @@ function pulseApiPlugin() {
                 streamUrl,
                 previewUrl: '',
                 genre: item.language ? `${item.language.charAt(0).toUpperCase() + item.language.slice(1)} Studio` : 'Master Studio Audio',
-                source: 'Studio Master Audio 320k'
+                source: 'Studio Master Audio (YouTube)'
               });
             }
 
@@ -209,18 +209,12 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    emptyOutDir: true,
-    rollupOptions: {
-      output: {
-        entryFileNames: 'assets/pulse.js',
-        chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]'
-      }
-    }
+    emptyOutDir: true
   },
   server: {
     port: 3000,
     open: false
   }
 });
+
 

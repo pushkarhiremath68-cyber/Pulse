@@ -488,7 +488,7 @@ window.addEventListener('error', function(e) {
         artist: t.artist,
         coverUrl: t.cover || t.coverUrl || './pulse-logo.png',
         duration: t.duration || 220,
-        source: "Studio Master Audio 320k"
+        source: "Studio Master Audio (YouTube)"
       };
       const queue = category.tracks.map(item => ({
         id: item.id || (item.ytId ? `ytm-${item.ytId}` : `pulse-${Math.random()}`),
@@ -497,7 +497,7 @@ window.addEventListener('error', function(e) {
         artist: item.artist,
         coverUrl: item.cover || item.coverUrl || './pulse-logo.png',
         duration: item.duration || 220,
-        source: "Studio Master Audio 320k"
+        source: "Studio Master Audio (YouTube)"
       }));
       window.playTrackDirect(normalizedTrack, queue);
     }
@@ -514,7 +514,7 @@ window.addEventListener('error', function(e) {
         artist: t.artist,
         coverUrl: t.coverUrl || t.cover || './pulse-logo.png',
         duration: t.duration || 220,
-        source: "Studio Master Audio 320k"
+        source: "Studio Master Audio (YouTube)"
       };
       const queue = lang.tracks.map(item => ({
         id: item.id || (item.ytId ? `ytm-${item.ytId}` : `pulse-${Math.random()}`),
@@ -523,7 +523,7 @@ window.addEventListener('error', function(e) {
         artist: item.artist,
         coverUrl: item.coverUrl || item.cover || './pulse-logo.png',
         duration: item.duration || 220,
-        source: "Studio Master Audio 320k"
+        source: "Studio Master Audio (YouTube)"
       }));
       window.playTrackDirect(normalizedTrack, queue);
     }
@@ -1117,3 +1117,4 @@ window.addEventListener('error', function(e) {
   }
 
 })();
+
