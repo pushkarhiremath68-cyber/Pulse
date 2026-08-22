@@ -476,12 +476,6 @@ export async function resolveFullAudioStream(track) {
       }
     } catch (e) {}
 
-    // If Piped failed, return yt-iframe immediately — guaranteed playback
-    if (!finalUrl) {
-      const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
-      RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
-      return resolved;
-    }
   }
 
   // SLOW PATH: No YouTube ID — try JioSaavn first, then search YouTube
@@ -492,7 +486,7 @@ export async function resolveFullAudioStream(track) {
         const top = saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http') && !s.streamUrl.includes('preview')) || saavnResults[0];
         if (top && top.streamUrl && top.streamUrl.startsWith('http') && !top.streamUrl.includes('preview')) {
           finalUrl = top.streamUrl;
-          finalSource = 'Pulse Master Studio (320kbps)';
+          finalSource = 'Studio Master Audio (YouTube)';
           if (!track.coverUrl || track.coverUrl.includes('pulse-logo')) {
             track.coverUrl = top.coverUrl;
           }
