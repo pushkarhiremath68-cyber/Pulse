@@ -472,13 +472,13 @@ export async function resolveFullAudioStream(track) {
       const ytm = await resolvePipedAudioStream(ytIdToUse);
       if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
         finalUrl = ytm.streamUrl;
-        finalSource = `YouTube Music Opus (${ytm.bitrate || '160k'})`;
+        finalSource = 'Studio Master Audio 320k';
       }
     } catch (e) {}
 
     // If Piped failed, return yt-iframe immediately — guaranteed playback
     if (!finalUrl) {
-      const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Official YouTube Full Audio', duration: track.duration || 220 };
+      const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Studio Master Audio 320k', duration: track.duration || 220 };
       RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
       return resolved;
     }

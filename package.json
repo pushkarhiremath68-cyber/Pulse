@@ -33,6 +33,7 @@
     "electron-builder": "^26.15.3",
     "electron-packager": "^17.1.2",
     "electron-winstaller": "^5.4.4",
+    "gh-pages": "^6.3.0",
     "jsdom": "^27.0.1",
     "vite": "^5.0.0"
   },
