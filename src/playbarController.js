@@ -231,7 +231,10 @@ export async function playTrack(track, queue = null) {
   // Dynamic High-Resolution Official Album Cover Enhancer
   ensureOriginalAlbumCover(track);
 
-  // 1. If track already has a verified full-length master stream, play immediately on Native Audio
+  // 1. FAST PATH: If track has a YouTube ID, try YouTube IFrame FIRST for guaranteed playback
+  const hasYtId = track.ytId || (track.id && track.id.startsWith('ytm-') && track.id.replace('ytm-', '').length >= 8);
+
+  // Only try native audio if track has a verified full-length master stream (not YouTube-sourced)
   if (track.streamUrl && 
       track.streamUrl.startsWith('http') && 
       !track.streamUrl.includes('preview') && 
@@ -263,18 +266,26 @@ export async function playTrack(track, queue = null) {
     }
   } catch (e) {}
 
-  // 3. Fallback: YouTube ID direct playback
+  // 3. Direct YouTube ID playback (fastest path for catalog tracks)
   let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
   if (ytId && ytId.length >= 8) {
     const ytSuccess = await playOnYouTubeIframe(ytId, track);
     if (ytSuccess) return;
   }
 
-  // 4. Fallback: YouTube Search and play
+  // 4. Final Fallback: YouTube Search and play
   const searchQuery = `${track.title} ${track.artist}`.trim();
   if (sessionId === activePlaySessionId) {
     const searchSuccess = await playOnYouTubeSearch(searchQuery, track);
     if (searchSuccess) return;
+  }
+
+  // 5. If absolutely everything failed, show a toast
+  if (sessionId === activePlaySessionId && typeof window.showToast === 'function') {
+    window.showToast(`Unable to stream "${track.title}" right now. Trying next...`, 'warning', 2500);
+    setTimeout(() => {
+      if (sessionId === activePlaySessionId && playQueue.length > 1) playNext();
+    }, 1500);
   }
 }
 
@@ -737,6 +748,9 @@ function initPlaybarController() {
       if (currentTrack) updateFavoriteButtonUI(currentTrack.id);
     });
   }
+
+  // Eagerly pre-initialize YouTube IFrame API for instant playback
+  ensureYouTubeReady();
 }
 
 // -----------------------------------------------------------------------------
@@ -849,6 +863,43 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ') {
   }
 }
 
+/**
+ * Ensures the YouTube IFrame API script is loaded and player is ready.
+ * Handles the race condition where the API script may load before or after our module.
+ */
+function ensureYouTubeReady() {
+  // If YT API is already loaded, init immediately
+  if (typeof window.YT !== 'undefined' && window.YT.Player) {
+    initYouTubePlayer();
+    return;
+  }
+
+  // If the script tag doesn't exist yet, inject it
+  if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    if (firstScriptTag && firstScriptTag.parentNode) {
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    } else {
+      document.head.appendChild(tag);
+    }
+  }
+
+  // Poll for API readiness (handles delayed script loading)
+  let ytPollAttempts = 0;
+  const ytPollInterval = setInterval(() => {
+    ytPollAttempts++;
+    if (typeof window.YT !== 'undefined' && window.YT.Player) {
+      clearInterval(ytPollInterval);
+      initYouTubePlayer();
+    } else if (ytPollAttempts > 50) {
+      clearInterval(ytPollInterval);
+      console.warn('[Pulse] YouTube IFrame API did not load after 10s');
+    }
+  }, 200);
+}
+
 export async function playOnYouTubeIframe(videoId, track) {
   if (!videoId) return false;
   const cleanId = videoId.replace('ytm-', '').replace('yt-', '').trim();
@@ -897,15 +948,17 @@ export async function playOnYouTubeIframe(videoId, track) {
     if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === 'function') {
       executePlay();
     } else {
-      initYouTubePlayer();
+      // Ensure YouTube is initializing
+      ensureYouTubeReady();
       let attempts = 0;
       const interval = setInterval(() => {
         attempts++;
         if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === 'function') {
           clearInterval(interval);
           executePlay();
-        } else if (attempts > 25) {
+        } else if (attempts > 40) {
           clearInterval(interval);
+          console.warn('[Pulse Engine] YouTube IFrame failed to become ready after 6s');
           resolve(false);
         }
       }, 150);

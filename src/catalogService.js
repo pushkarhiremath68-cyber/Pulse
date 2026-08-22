@@ -62,7 +62,7 @@ export const CATALOG_CATEGORIES = [
     color: "#ec4899",
     tracks: [
       { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 263, genre: "Acoustic Pop" },
-      { id: "ytm-Umqb9KENgmk", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262, genre: "Bollywood Romance" },
+      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262, genre: "Bollywood Romance" },
       { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/71/b9/2271b906-85b3-06ee-e611-489b91df0b73/886444160742.jpg/1000x1000bb.jpg", duration: 269, genre: "Soul / R&B" },
       { id: "ytm-ElZfdU54Cp8", ytId: "ElZfdU54Cp8", title: "Apna Bana Le", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/1000x1000bb.jpg", duration: 201, genre: "Bollywood Romance" },
       { id: "ytm-5mqFmNl11-M", ytId: "5mqFmNl11-M", title: "O Maahi", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cf/cf/af/cfcfaf49-f337-eeab-2351-dd0a137dc740/8902894362139_cover.jpg/1000x1000bb.jpg", duration: 233, genre: "Bollywood" },
@@ -79,11 +79,11 @@ export const CATALOG_CATEGORIES = [
     color: "#06b6d4",
     tracks: [
       { id: "ytm-fJ9rUzIMcZQ", ytId: "fJ9rUzIMcZQ", title: "Bohemian Rhapsody", artist: "Queen", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 354, genre: "Classic Rock" },
-      { id: "ytm-kXYiU_JCYtU", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216, genre: "Alternative Rock" },
+      { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216, genre: "Alternative Rock" },
       { id: "ytm-hTWKbfoikeg", ytId: "hTWKbfoikeg", title: "Smells Like Teen Spirit", artist: "Nirvana", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/fd/b9/95fdb9b2-6d2b-92a6-97f2-51c1a6d77f1a/00602527874609.rgb.jpg/1000x1000bb.jpg", duration: 301, genre: "Grunge" },
       { id: "ytm-1w7OgIMMRc4", ytId: "1w7OgIMMRc4", title: "Sweet Child O' Mine", artist: "Guns N' Roses", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/56/47/b7/5647b700-6b9d-9e72-ec9f-51140b6d4492/00602567673781.rgb.jpg/1000x1000bb.jpg", duration: 303, genre: "Hard Rock" },
       { id: "ytm-v2AC41dglnM", ytId: "v2AC41dglnM", title: "Thunderstruck", artist: "AC/DC", cover: "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/bb/a2/f0/bba2f0d7-4d9e-c617-d49e-3ae02fd5d440/dj.xbkfgllk.jpg/1000x1000bb.jpg", duration: 292, genre: "Hard Rock" },
-      { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the Shadows", artist: "The Rasmus", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/53/a8/47/53a84700-1148-ea61-85c0-7461383d7c2b/cover.jpg/1000x1000bb.jpg", duration: 246, genre: "Rock" }
+      { id: "ytm-_ao2u7F_Qzg", ytId: "_ao2u7F_Qzg", title: "In the Shadows", artist: "The Rasmus", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/53/a8/47/53a84700-1148-ea61-85c0-7461383d7c2b/cover.jpg/1000x1000bb.jpg", duration: 246, genre: "Rock" }
     ]
   },
   {
@@ -95,7 +95,7 @@ export const CATALOG_CATEGORIES = [
     tracks: [
       { id: "ytm-VNs_cCtdbPc", ytId: "VNs_cCtdbPc", title: "Brown Munde", artist: "AP Dhillon, Gurinder Gill", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg", duration: 267, genre: "Punjabi Urban" },
       { id: "ytm-99e_0_Z-Bw0", ytId: "99e_0_Z-Bw0", title: "Zingaat", artist: "Ajay-Atul", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/66/5a/e8/665ae8ad-1aab-5d0c-3ca9-4fa062b1606c/8718857670711.png/1000x1000bb.jpg", duration: 230, genre: "Marathi Dance" },
-      { id: "ytm-KqNX2xW1Icw", ytId: "8FAUEv_E_xU", title: "Arabic Kuthu", artist: "Anirudh Ravichander", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg", duration: 279, genre: "Kollywood Dance" },
+      { id: "ytm-8FAUEv_E_xU", ytId: "8FAUEv_E_xU", title: "Arabic Kuthu", artist: "Anirudh Ravichander", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg", duration: 279, genre: "Kollywood Dance" },
       { id: "ytm-OsU0CGZoV8E", ytId: "OsU0CGZoV8E", title: "Naatu Naatu", artist: "Rahul Sipligunj, Kaala Bhairava", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/dd/39/14/dd3914e5-a2f3-b355-51f3-9a1f0e3ca246/8903431853592_cover.jpg/1000x1000bb.jpg", duration: 215, genre: "Tollywood Dance" },
       { id: "ytm-kJQP7kiw5Fk", ytId: "kJQP7kiw5Fk", title: "Despacito", artist: "Luis Fonsi ft. Daddy Yankee", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e2/ef/f0/e2eff0bc-c51d-7de5-9280-6891ddcee71b/18UMGIM85289.rgb.jpg/1000x1000bb.jpg", duration: 229, genre: "Latin Pop" },
       { id: "ytm-d4OsvFi6mms", ytId: "d4OsvFi6mms", title: "Chogada", artist: "Darshan Raval", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/af/69/79/af697907-7447-e35b-5446-40d3cb3e1f64/8903431684981_cover.jpg/1000x1000bb.jpg", duration: 247, genre: "Gujarati Garba" }
@@ -108,14 +108,14 @@ export const LANGUAGE_PLAYLISTS = [
     id: "lang-hindi",
     meta: { title: "Hindi Bollywood Chartbusters", icon: "fa-music", color: "#ff5722", subtitle: "Top trending Bollywood & romantic hits" },
     tracks: [
-      { id: "ytm-Umqb9KENgmk", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
+      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
       { id: "ytm-VAdGW7QDJiU", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1000x1000bb.jpg", duration: 198 },
       { id: "ytm-BddP6PYo2gs", ytId: "BddP6PYo2gs", title: "Kesariya", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg", duration: 268 },
       { id: "ytm-ElZfdU54Cp8", ytId: "ElZfdU54Cp8", title: "Apna Bana Le", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/1000x1000bb.jpg", duration: 201 },
       { id: "ytm-5mqFmNl11-M", ytId: "5mqFmNl11-M", title: "O Maahi", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cf/cf/af/cfcfaf49-f337-eeab-2351-dd0a137dc740/8902894362139_cover.jpg/1000x1000bb.jpg", duration: 233 },
-      { id: "ytm-kJQP7kiw5Fk", ytId: "kJQP7kiw5Fk", title: "Satranga", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/ad/5e/dbad5e8b-0bee-d962-92d4-021c90e375ac/8902894362092_cover.jpg/1000x1000bb.jpg", duration: 271 },
+      { id: "ytm-SbAILuIeFqc", ytId: "SbAILuIeFqc", title: "Satranga", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/ad/5e/dbad5e8b-0bee-d962-92d4-021c90e375ac/8902894362092_cover.jpg/1000x1000bb.jpg", duration: 271 },
       { id: "ytm-8Vnm_uN_3oA", ytId: "8Vnm_uN_3oA", title: "Heeriye", artist: "Jasleen Royal, Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f0/8c/2a/f08c2aeb-3903-8738-d0a5-8c2e4547eed7/5054197711039.jpg/1000x1000bb.jpg", duration: 194 },
-      { id: "ytm-60ItHLz5WEA", ytId: "60ItHLz5WEA", title: "Pehle Bhi Main", artist: "Vishal Mishra", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/ad/5e/dbad5e8b-0bee-d962-92d4-021c90e375ac/8902894362092_cover.jpg/1000x1000bb.jpg", duration: 250 }
+      { id: "ytm-t5MlnGOKGDI", ytId: "t5MlnGOKGDI", title: "Pehle Bhi Main", artist: "Vishal Mishra", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/ad/5e/dbad5e8b-0bee-d962-92d4-021c90e375ac/8902894362092_cover.jpg/1000x1000bb.jpg", duration: 250 }
     ]
   },
   {
@@ -138,10 +138,10 @@ export const LANGUAGE_PLAYLISTS = [
     tracks: [
       { id: "ytm-VNs_cCtdbPc", ytId: "VNs_cCtdbPc", title: "Brown Munde", artist: "AP Dhillon, Gurinder Gill", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg", duration: 267 },
       { id: "ytm-vX2cDW8LUWk", ytId: "vX2cDW8LUWk", title: "Excuses", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/47/ac/4747ac85-1658-64ae-bc82-220a4d6213d5/859747478890_cover.jpg/1000x1000bb.jpg", duration: 176 },
-      { id: "ytm-Z9e7kHnN6wE", ytId: "qLCHz_qG6zU", title: "Elevated", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music117/v4/a3/31/f8/a331f824-3dd1-e8b6-5148-8d016d71fc26/191061761174.jpg/1000x1000bb.jpg", duration: 201 },
-      { id: "ytm-N2-0GqH3wM0", ytId: "fukvQcQ3g6U", title: "We Rollin", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/56/d7/4e/56d74e0d-207f-d65a-83b6-bb4ab53b6f5b/mzi.xdfimjwb.jpg/1000x1000bb.jpg", duration: 199 },
+      { id: "ytm-qLCHz_qG6zU", ytId: "qLCHz_qG6zU", title: "Elevated", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music117/v4/a3/31/f8/a331f824-3dd1-e8b6-5148-8d016d71fc26/191061761174.jpg/1000x1000bb.jpg", duration: 201 },
+      { id: "ytm-fukvQcQ3g6U", ytId: "fukvQcQ3g6U", title: "We Rollin", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/56/d7/4e/56d74e0d-207f-d65a-83b6-bb4ab53b6f5b/mzi.xdfimjwb.jpg/1000x1000bb.jpg", duration: 199 },
       { id: "ytm-Zf8q6N4I4Gk", ytId: "Zf8q6N4I4Gk", title: "No Love", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/a7/b3/80/a7b380b9-9e29-1642-566e-d1ca4b920886/196776912972.jpg/1000x1000bb.jpg", duration: 181 },
-      { id: "ytm-cl0a3i2wFcc", ytId: "n_FCrCQ6-9U", title: "295", artist: "Sidhu Moose Wala", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/69/58/976958ae-725e-bd41-6755-f0921c697840/810063889609_cover.jpg/1000x1000bb.jpg", duration: 270 },
+      { id: "ytm-n_FCrCQ6-9U", ytId: "n_FCrCQ6-9U", title: "295", artist: "Sidhu Moose Wala", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/69/58/976958ae-725e-bd41-6755-f0921c697840/810063889609_cover.jpg/1000x1000bb.jpg", duration: 270 },
       { id: "ytm-eZ2_6LgB93k", ytId: "eZ2_6LgB93k", title: "With You", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5a/ac/00/5aac005f-9403-70e4-bce0-cf452017476e/197189606472.jpg/1000x1000bb.jpg", duration: 154 }
     ]
   },
@@ -163,7 +163,7 @@ export const LANGUAGE_PLAYLISTS = [
     tracks: [
       { id: "ytm-x6Q7c9RyMzk", ytId: "x6Q7c9RyMzk", title: "Rowdy Baby", artist: "Dhanush, Dhee", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/09/0b/4f/090b4ffb-f4eb-f975-ae79-ce5446eeabc8/718598836276.jpg/1000x1000bb.jpg", duration: 284 },
       { id: "ytm-eYq7WapuDLU", ytId: "eYq7WapuDLU", title: "Enjoy Enjaami", artist: "Dhee, Arivu", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cf/c5/9b/cfc59b20-dda2-e4a3-54db-e23ac7a55b80/cover.jpg/1000x1000bb.jpg", duration: 298 },
-      { id: "ytm-KqNX2xW1Icw", ytId: "8FAUEv_E_xU", title: "Arabic Kuthu", artist: "Anirudh Ravichander, Jonita Gandhi", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg", duration: 279 },
+      { id: "ytm-8FAUEv_E_xU", ytId: "8FAUEv_E_xU", title: "Arabic Kuthu", artist: "Anirudh Ravichander, Jonita Gandhi", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg", duration: 279 },
       { id: "ytm-rN1fS03JvV8", ytId: "rN1fS03JvV8", title: "Naa Ready", artist: "Thalapathy Vijay, Anirudh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b0/bf/d4/b0bfd46c-da95-2f95-1f7d-a75aa51c2465/196871252386.jpg/1000x1000bb.jpg", duration: 248 },
       { id: "ytm-fRD_3vJagOU", ytId: "fRD_3vJagOU", title: "Vaathi Coming", artist: "Anirudh Ravichander", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a3/f2/dc/a3f2dc29-fc54-07bb-8f9c-2a3936d21a5d/886448363347.jpg/1000x1000bb.jpg", duration: 230 },
       { id: "ytm-1b4ZpP_g1g8", ytId: "1b4ZpP_g1g8", title: "Hukum (Jailer)", artist: "Anirudh Ravichander", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg", duration: 207 }
@@ -177,7 +177,7 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-P2uM8E1c-1k", ytId: "P2uM8E1c-1k", title: "Samajavaragamana", artist: "Sid Sriram", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/53/98/c1/5398c1cf-7c16-24a6-bfa3-391dc6015376/cover.jpg/1000x1000bb.jpg", duration: 224 },
       { id: "ytm-hcMzwMrr1tE", ytId: "hcMzwMrr1tE", title: "Srivalli", artist: "Sid Sriram", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ec/34/7b/ec347b9b-0add-c529-4746-799277a5e1c0/cover.jpg/1000x1000bb.jpg", duration: 221 },
       { id: "ytm-61X-N712DqY", ytId: "61X-N712DqY", title: "Oo Antava Mava", artist: "Indravathi Chauhan", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/59/19/65/591965d4-84b4-d62d-345f-88bd29ce0843/cover.jpg/1000x1000bb.jpg", duration: 223 },
-      { id: "ytm-2mDCVzruVgQ", ytId: "2mDCVzruYzQ", title: "Butta Bomma", artist: "Armaan Malik", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/46/aa/48/46aa4863-c1ec-4574-e98e-80b8c1f3ef69/cover.jpg/1000x1000bb.jpg", duration: 198 },
+      { id: "ytm-2mDCVzruYzQ", ytId: "2mDCVzruYzQ", title: "Butta Bomma", artist: "Armaan Malik", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/46/aa/48/46aa4863-c1ec-4574-e98e-80b8c1f3ef69/cover.jpg/1000x1000bb.jpg", duration: 198 },
       { id: "ytm-W_12qM1F5gA", ytId: "W_12qM1F5gA", title: "Ramuloo Ramulaa", artist: "Anurag Kulkarni", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/4d/7c/4a/4d7c4a33-0c3b-b0e5-1e5a-8182d9a25811/cover.jpg/1000x1000bb.jpg", duration: 250 }
     ]
   },
@@ -208,7 +208,7 @@ export const LANGUAGE_PLAYLISTS = [
     meta: { title: "Latin & Reggaeton Fiesta", icon: "fa-pepper-hot", color: "#ef4444", subtitle: "Global Latin party bangers and reggaeton" },
     tracks: [
       { id: "ytm-kJQP7kiw5Fk", ytId: "kJQP7kiw5Fk", title: "Despacito", artist: "Luis Fonsi ft. Daddy Yankee", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e2/ef/f0/e2eff0bc-c51d-7de5-9280-6891ddcee71b/18UMGIM85289.rgb.jpg/1000x1000bb.jpg", duration: 229 },
-      { id: "ytm-7zp1TbIG4fM", ytId: "7zp1TbLFPp8", title: "Danza Kuduro", artist: "Don Omar", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/be/9d/22/be9d22c2-99b2-9e26-11dd-d1a043779b8d/10UMGIM27798.rgb.jpg/1000x1000bb.jpg", duration: 199 },
+      { id: "ytm-7zp1TbLFPp8", ytId: "7zp1TbLFPp8", title: "Danza Kuduro", artist: "Don Omar", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/be/9d/22/be9d22c2-99b2-9e26-11dd-d1a043779b8d/10UMGIM27798.rgb.jpg/1000x1000bb.jpg", duration: 199 },
       { id: "ytm-TmKhEnGlfG0", ytId: "TmKhEnGlfG0", title: "Dakiti", artist: "Bad Bunny, Jhay Cortez", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg", duration: 205 },
       { id: "ytm-tbneQDc2H3I", ytId: "tbneQDc2H3I", title: "Tusa", artist: "KAROL G, Nicki Minaj", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/13/32/be/1332be24-5c7f-8050-36b7-0862c83a1b69/23UM1IM08464.rgb.jpg/1000x1000bb.jpg", duration: 200 },
       { id: "ytm-NUsoVlDFqZg", ytId: "NUsoVlDFqZg", title: "Bailando", artist: "Enrique Iglesias", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c7/18/3e/c7183ef7-49f1-8941-03cf-ad17ca8b97ea/00602537854097.rgb.jpg/1000x1000bb.jpg", duration: 243 }
@@ -230,7 +230,7 @@ export const LANGUAGE_PLAYLISTS = [
 export const getQuickPicks = (limit = 6) => {
   return [
     { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
-    { id: "ytm-Umqb9KENgmk", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
+    { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
     { id: "ytm-JGwWNGJdvx8", ytId: "JGwWNGJdvx8", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233 },
     { id: "ytm-34Na4j8HLws", ytId: "34Na4j8HLws", title: "Starboy", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg", duration: 230 },
     { id: "ytm-VNs_cCtdbPc", ytId: "VNs_cCtdbPc", title: "Brown Munde", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg", duration: 267 },
@@ -273,7 +273,7 @@ export const getCuratedPlaylists = () => {
       coverUrl: "https://i.ytimg.com/vi/Umqb9KENgmk/hqdefault.jpg",
       trackCount: 20,
       tracks: [
-        { id: "ytm-Umqb9KENgmk", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
+        { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
         { id: "ytm-VAdGW7QDJiU", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1000x1000bb.jpg", duration: 198 },
         { id: "ytm-BddP6PYo2gs", ytId: "BddP6PYo2gs", title: "Kesariya", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg", duration: 268 },
         { id: "ytm-ElZfdU54Cp8", ytId: "ElZfdU54Cp8", title: "Apna Bana Le", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/1000x1000bb.jpg", duration: 201 }
@@ -288,7 +288,7 @@ export const getCuratedPlaylists = () => {
       tracks: [
         { id: "ytm-VNs_cCtdbPc", ytId: "VNs_cCtdbPc", title: "Brown Munde", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg", duration: 267 },
         { id: "ytm-vX2cDW8LUWk", ytId: "vX2cDW8LUWk", title: "Excuses", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/47/ac/4747ac85-1658-64ae-bc82-220a4d6213d5/859747478890_cover.jpg/1000x1000bb.jpg", duration: 176 },
-        { id: "ytm-Z9e7kHnN6wE", ytId: "qLCHz_qG6zU", title: "Elevated", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music117/v4/a3/31/f8/a331f824-3dd1-e8b6-5148-8d016d71fc26/191061761174.jpg/1000x1000bb.jpg", duration: 201 }
+        { id: "ytm-qLCHz_qG6zU", ytId: "qLCHz_qG6zU", title: "Elevated", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music117/v4/a3/31/f8/a331f824-3dd1-e8b6-5148-8d016d71fc26/191061761174.jpg/1000x1000bb.jpg", duration: 201 }
       ]
     },
     {
@@ -393,7 +393,7 @@ export const getArtistDetails = (artistName) => {
     banner = "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg";
     bio = "Arijit Singh is a celebrated Indian playback singer and music composer, known as the 'King of Playback Singing' in contemporary Bollywood.";
     tracks = [
-      { id: "ytm-Umqb9KENgmk", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262, plays: "1,450,000,000" },
+      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262, plays: "1,450,000,000" },
       { id: "ytm-VAdGW7QDJiU", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1000x1000bb.jpg", duration: 198, plays: "820,000,000" },
       { id: "ytm-BddP6PYo2gs", ytId: "BddP6PYo2gs", title: "Kesariya", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg", duration: 268, plays: "980,000,000" },
       { id: "ytm-ElZfdU54Cp8", ytId: "ElZfdU54Cp8", title: "Apna Bana Le", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/1000x1000bb.jpg", duration: 201, plays: "640,000,000" },
@@ -433,7 +433,7 @@ export const getArtistDetails = (artistName) => {
     banner = "https://i.ytimg.com/vi/e-ORhEE9VVg/hqdefault.jpg";
     bio = "Anirudh Ravichander is an Indian music composer and singer who works predominantly in Tamil cinema with worldwide viral chartbusters.";
     tracks = [
-      { id: "ytm-KqNX2xW1Icw", ytId: "8FAUEv_E_xU", title: "Arabic Kuthu", artist: "Anirudh Ravichander", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg", duration: 279, plays: "750,000,000" },
+      { id: "ytm-8FAUEv_E_xU", ytId: "8FAUEv_E_xU", title: "Arabic Kuthu", artist: "Anirudh Ravichander", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg", duration: 279, plays: "750,000,000" },
       { id: "ytm-fRD_3vJagOU", ytId: "fRD_3vJagOU", title: "Vaathi Coming", artist: "Anirudh Ravichander", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a3/f2/dc/a3f2dc29-fc54-07bb-8f9c-2a3936d21a5d/886448363347.jpg/1000x1000bb.jpg", duration: 230, plays: "620,000,000" }
     ];
   } else {

@@ -459,12 +459,33 @@ export async function resolveFullAudioStream(track) {
   let finalUrl = null;
   let finalSource = 'Studio Master Audio 320k';
 
-  // 1. TIER 1: JioSaavn Direct High-Bitrate Master Studio Audio (320k/160k with pure-client decryption)
   const cleanTitle = (track.title || '').replace(/\(.*?\)|\[.*?\]|ft\..*|feat\..*|Official.*|Video.*/gi, '').trim();
   const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].split('ft.')[0].trim();
   const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
 
-  if (query.length > 1) {
+  // FAST PATH: If track already has a YouTube ID, skip JioSaavn and go straight to Piped → YT IFrame
+  let ytIdToUse = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+
+  if (ytIdToUse) {
+    // Try Piped first for direct audio stream (fast, no iframe needed)
+    try {
+      const ytm = await resolvePipedAudioStream(ytIdToUse);
+      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
+        finalUrl = ytm.streamUrl;
+        finalSource = `YouTube Music Opus (${ytm.bitrate || '160k'})`;
+      }
+    } catch (e) {}
+
+    // If Piped failed, return yt-iframe immediately — guaranteed playback
+    if (!finalUrl) {
+      const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Official YouTube Full Audio', duration: track.duration || 220 };
+      RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+      return resolved;
+    }
+  }
+
+  // SLOW PATH: No YouTube ID — try JioSaavn first, then search YouTube
+  if (!finalUrl && query.length > 1) {
     try {
       const saavnResults = await searchJioSaavnDirect(query, 3);
       if (saavnResults && saavnResults.length > 0) {
@@ -478,12 +499,11 @@ export async function resolveFullAudioStream(track) {
         }
       }
     } catch (e) {
-      // Continue to Tier 2
+      // Continue to YouTube search
     }
   }
 
-  // 2. TIER 2: YouTube Music / Piped Opus Extractor
-  let ytIdToUse = track.ytId;
+  // Search YouTube to find a ytId if we still don't have one
   if (!finalUrl && !ytIdToUse) {
     try {
       const s = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 2);
@@ -494,24 +514,14 @@ export async function resolveFullAudioStream(track) {
     } catch (e) {}
   }
 
-  if (!finalUrl && ytIdToUse) {
-    try {
-      const ytm = await resolvePipedAudioStream(ytIdToUse);
-      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
-        finalUrl = ytm.streamUrl;
-        finalSource = `YouTube Music Opus (${ytm.bitrate || '160k'})`;
-      }
-    } catch (e) {}
-  }
-
-  // 3. TIER 3: Local Backend Proxy (/api/ytm/stream or /api/saavn-search)
+  // 3. TIER 3: Local Backend Proxy (/api/ytm/stream or /api/saavn-search) — fast timeout
   if (!finalUrl) {
     try {
       const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
       const localUrl = ytIdToUse 
         ? `${localBase}/api/ytm/stream?id=${ytIdToUse}` 
         : `${localBase}/api/ytm/stream?q=${encodeURIComponent(query)}`;
-      const res = await fetch(localUrl, { signal: AbortSignal.timeout(3000) });
+      const res = await fetch(localUrl, { signal: AbortSignal.timeout(1500) });
       if (res.ok) {
         const json = await res.json();
         if (json.streamUrl && !json.streamUrl.includes('preview')) {

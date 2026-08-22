@@ -6,21 +6,20 @@
 
 // Active Verified High-Performance Piped & Invidious Instances (2026 Resilient Fleet)
 export const PIPED_INSTANCES = [
+  'https://pipedapi.kavin.rocks',
   'https://api.piped.projectsegfau.lt',
   'https://pipedapi.r4fo.com',
   'https://pipedapi.leptons.xyz',
-  'https://piped.video',
-  'https://cf.pipedapi.kavin.rocks',
-  'https://piped-api.hosthatch.me',
-  'https://yt.artemislena.eu'
+  'https://piped-api.lunar.icu',
+  'https://pipedapi.in.projectsegfau.lt'
 ];
 
 export const INVIDIOUS_INSTANCES = [
+  'https://inv.nadeko.net',
   'https://invidious.flokinet.to',
-  'https://invidious.asir.dev',
-  'https://invidious.drgns.space',
+  'https://invidious.privacyredirect.com',
   'https://iv.ggtyler.dev',
-  'https://invidious.no-logs.com',
+  'https://invidious.protokolla.fi',
   'https://yewtu.be'
 ];
 
@@ -90,17 +89,17 @@ export async function resolvePipedAudioStream(videoId) {
     }
   } catch (e) {}
 
-  // 2. FAST CONCURRENT RACING across top responsive nodes
+  // 2. FAST CONCURRENT RACING across top responsive nodes (short timeout for fast YouTube fallback)
   const nodesToRace = [
-    ...PIPED_INSTANCES.slice(0, 4).map(n => ({ type: 'piped', url: `${n}/streams/${cleanId}` })),
-    ...INVIDIOUS_INSTANCES.slice(0, 3).map(n => ({ type: 'invidious', url: `${n}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats` }))
+    ...PIPED_INSTANCES.slice(0, 3).map(n => ({ type: 'piped', url: `${n}/streams/${cleanId}` })),
+    ...INVIDIOUS_INSTANCES.slice(0, 2).map(n => ({ type: 'invidious', url: `${n}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats` }))
   ];
 
   try {
     const fastestResolved = await Promise.any(
       nodesToRace.map(async (node) => {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2800);
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
         try {
           const res = await fetch(node.url, { signal: controller.signal });
           clearTimeout(timeoutId);
@@ -160,10 +159,8 @@ export async function resolvePipedAudioStream(videoId) {
     });
     return fastestResolved;
   } catch (aggregateError) {
-    // Raced instances fallback
+    // All raced instances failed — caller should fall through to YouTube IFrame
   }
-
-  return null;
 
   return null;
 }
@@ -178,6 +175,10 @@ export async function searchYouTubeMusic(query, limit = 30) {
   if (SEARCH_CACHE.has(cleanQ)) {
     return SEARCH_CACHE.get(cleanQ);
   }
+
+  // Result aggregation arrays (CRITICAL: these must be declared before use)
+  const results = [];
+  const seenIds = new Set();
 
   // 1. Primary: Local / Vite backend direct YouTube search endpoint
   try {
@@ -194,17 +195,17 @@ export async function searchYouTubeMusic(query, limit = 30) {
 
   // 2. Secondary: Fallback to active Piped & Invidious nodes
   const nodesToRace = [
-    { type: 'piped', url: `https://api.piped.projectsegfau.lt/search?q=${encodeURIComponent(cleanQ)}&filter=all` },
-    { type: 'piped', url: `https://pipedapi.r4fo.com/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` },
-    { type: 'invidious', url: `https://invidious.flokinet.to/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
-    { type: 'invidious', url: `https://invidious.asir.dev/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` }
+    { type: 'piped', url: `${PIPED_INSTANCES[0]}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` },
+    { type: 'piped', url: `${PIPED_INSTANCES[1]}/search?q=${encodeURIComponent(cleanQ)}&filter=all` },
+    { type: 'invidious', url: `${INVIDIOUS_INSTANCES[0]}/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
+    { type: 'invidious', url: `${INVIDIOUS_INSTANCES[1]}/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` }
   ];
 
   try {
     const responses = await Promise.allSettled(
       nodesToRace.map(async (node) => {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        const timeoutId = setTimeout(() => controller.abort(), 2500);
         try {
           const res = await fetch(node.url, { signal: controller.signal });
           clearTimeout(timeoutId);

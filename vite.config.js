@@ -152,7 +152,9 @@ function pulseApiPlugin() {
               }
             });
             const html = await ytRes.text();
-            const match = html.match(/ytInitialData\s*=\s*({.+?});<\/script>/s) || html.match(/var ytInitialData\s*=\s*({.+?});/s);
+            const match = html.match(/var\s+ytInitialData\s*=\s*({.+?});\s*<\/script>/s)
+              || html.match(/ytInitialData\s*=\s*({.+?});\s*<\/script>/s)
+              || html.match(/window\["ytInitialData"\]\s*=\s*({.+?});/s);
             const results = [];
             if (match) {
               const data = JSON.parse(match[1]);
