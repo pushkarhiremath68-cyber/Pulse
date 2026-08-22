@@ -70,5 +70,10 @@ storage/downloads/*.dmg
 storage/downloads/*.AppImage
 storage/downloads/*.apk
 storage/downloads/*.ipa
+downloads/*.exe
+downloads/*.dmg
+downloads/*.AppImage
+downloads/*.apk
+downloads/*.ipa
 !storage/downloads/manifest.json
 Pulse/

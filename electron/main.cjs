@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu, globalShortcut, shell, powerSaveBlocker } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu, globalShortcut, shell, powerSaveBlocker, session } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
@@ -94,10 +94,17 @@ if (!gotTheLock) {
 
     // Load web application
     const isDev = process.env.NODE_ENV === 'development';
+    const distIndex = path.join(__dirname, '../dist/index.html');
+    const rootIndex = path.join(__dirname, '../index.html');
+
     if (isDev) {
-      mainWindow.loadURL('http://localhost:3000');
+      mainWindow.loadURL('http://localhost:5173').catch(() => {
+        mainWindow.loadURL('http://localhost:3000');
+      });
+    } else if (fs.existsSync(distIndex)) {
+      mainWindow.loadFile(distIndex);
     } else {
-      mainWindow.loadFile(path.join(__dirname, '../index.html'));
+      mainWindow.loadFile(rootIndex);
     }
 
     // Graceful presentation once DOM content is ready
@@ -231,6 +238,21 @@ if (!gotTheLock) {
   });
 
   app.whenReady().then(() => {
+    // Bypass CORS for YouTube Audio Engine and APIs
+    session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+      details.requestHeaders['Origin'] = 'https://www.youtube.com';
+      callback({ cancel: false, requestHeaders: details.requestHeaders });
+    });
+    session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+      callback({
+        responseHeaders: {
+          ...details.responseHeaders,
+          'Access-Control-Allow-Origin': ['*'],
+          'Access-Control-Allow-Headers': ['*']
+        }
+      });
+    });
+
     createMainWindow();
     createTray();
     registerGlobalMediaShortcuts();

@@ -125,8 +125,12 @@ import { resolvePipedAudioStream } from './extractorService.js';
       }
     };
 
-    // 1. Direct explicit streamUrl on track if already verified
-    if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('preview')) {
+    // 1. Direct explicit streamUrl on track if already verified full-length master
+    if (track.streamUrl && 
+        track.streamUrl.startsWith('http') && 
+        !track.streamUrl.includes('preview') && 
+        !track.streamUrl.includes('audio-ssl.itunes.apple.com') && 
+        !track.streamUrl.includes('mzstatic')) {
       add(track.streamUrl, track.source || 'direct-master-audio', 'master');
     }
 

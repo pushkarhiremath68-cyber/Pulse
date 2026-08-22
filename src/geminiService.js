@@ -97,7 +97,7 @@ export function disambiguateQuery(rawQuery) {
  * Resolves user query using Gemini AI to identify exact YouTube title & artist
  */
 export async function resolveQueryWithGemini(userQuery, apiKey = null) {
-  const key = apiKey || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
+  const key = apiKey || (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
   
   if (!key || !userQuery) {
     return disambiguateQuery(userQuery);
@@ -147,7 +147,7 @@ export async function askGeminiDJ(userPrompt, apiKey = null) {
     throw new Error('Please enter a mood, artist, or vibe for Gemini DJ.');
   }
 
-  const key = apiKey || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
+  const key = apiKey || (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
 
   if (key) {
     try {

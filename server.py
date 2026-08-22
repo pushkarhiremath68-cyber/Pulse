@@ -27,6 +27,17 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 MUSIC_DIR = os.path.join(ROOT_DIR, 'storage', 'music')
 os.makedirs(MUSIC_DIR, exist_ok=True)
 
+TOP_SONGS = [
+    ("yt-4NRXx6U8ABQ", "Blinding Lights", "The Weeknd", "4NRXx6U8ABQ"),
+    ("yt-BddP6PYo2gs", "Kesariya", "Arijit Singh", "BddP6PYo2gs"),
+    ("yt-kJQP7kiw5Fk", "Despacito", "Luis Fonsi", "kJQP7kiw5Fk"),
+    ("yt-JGwWNGJdvx8", "Shape of You", "Ed Sheeran", "JGwWNGJdvx8"),
+    ("yt-34Na4j8HLws", "Starboy", "The Weeknd", "34Na4j8HLws"),
+    ("yt-VNs_cCtdbPc", "Brown Munde", "AP Dhillon", "VNs_cCtdbPc"),
+    ("yt-d1qgL-Hmsf0", "Singara Siriye", "Vijay Prakash", "d1qgL-Hmsf0"),
+    ("yt-OsU0CGZoV8E", "Naatu Naatu", "Rahul Sipligunj", "OsU0CGZoV8E")
+]
+
 # Lock map for concurrent track downloads
 DOWNLOAD_LOCKS = {}
 GLOBAL_LOCK = threading.Lock()
@@ -994,6 +1005,56 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             self._send_json(200, {'success': True, 'results': results})
             return
 
+        # API: Direct YouTube Search (/api/yt/search)
+        if path == '/api/yt/search':
+            query = params.get('q', [None])[0] or params.get('query', [None])[0]
+            if query:
+                try:
+                    yt_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(query + ' audio')}"
+                    yt_req = urllib.request.Request(yt_url, headers={
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                        'Accept-Language': 'en-US,en;q=0.9'
+                    })
+                    with urllib.request.urlopen(yt_req, timeout=5) as yt_resp:
+                        html = yt_resp.read().decode('utf-8', errors='ignore')
+                        match = re.search(r'ytInitialData\s*=\s*({.+?});</script>', html) or re.search(r'var ytInitialData\s*=\s*({.+?});', html)
+                        results = []
+                        if match:
+                            data = json.loads(match.group(1))
+                            contents = data.get('contents', {}).get('twoColumnSearchResultsRenderer', {}).get('primaryContents', {}).get('sectionListRenderer', {}).get('contents', [{}])[0].get('itemSectionRenderer', {}).get('contents', [])
+                            for item in contents:
+                                v = item.get('videoRenderer')
+                                if v and v.get('videoId'):
+                                    title = (v.get('title', {}).get('runs', [{}])[0].get('text') or 'YouTube Track')
+                                    artist = (v.get('ownerText', {}).get('runs', [{}])[0].get('text') or 'Artist')
+                                    duration_text = v.get('lengthText', {}).get('simpleText') or '3:30'
+                                    duration_sec = 210
+                                    if ':' in duration_text:
+                                        p = [int(x) for x in duration_text.split(':') if x.isdigit()]
+                                        if len(p) == 2:
+                                            duration_sec = p[0] * 60 + p[1]
+                                        elif len(p) == 3:
+                                            duration_sec = p[0] * 3600 + p[1] * 60 + p[2]
+                                    thumbnails = v.get('thumbnail', {}).get('thumbnails', [])
+                                    thumb = thumbnails[-1].get('url') if thumbnails else f"https://i.ytimg.com/vi/{v.get('videoId')}/hqdefault.jpg"
+                                    results.append({
+                                        'id': f"ytm-{v.get('videoId')}",
+                                        'ytId': v.get('videoId'),
+                                        'title': title,
+                                        'artist': artist,
+                                        'duration': duration_sec,
+                                        'coverUrl': thumb,
+                                        'streamUrl': '',
+                                        'source': 'YouTube Music'
+                                    })
+                        self._send_json(200, {'success': True, 'results': results[:25]})
+                        return
+                except Exception as e:
+                    self._send_json(500, {'success': False, 'error': str(e), 'results': []})
+                    return
+            self._send_json(400, {'success': False, 'error': 'Query required'})
+            return
+
         # API: JioSaavn Search Proxy (/api/saavn-search or /api/search)
         if path in ['/api/saavn-search', '/api/search']:
             query = params.get('q', [None])[0] or params.get('query', [None])[0]
@@ -1003,61 +1064,39 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                     s_url = "https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=25&p=1&_marker=0&ctx=android&q=" + urllib.parse.quote(clean_q)
                     s_req = urllib.request.Request(s_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
                     with urllib.request.urlopen(s_req, timeout=5) as s_resp:
-                        raw_data = s_resp.read()
-                        self.send_response(200)
-                        self.send_header('Content-Type', 'application/json; charset=utf-8')
-                        self.send_header('Access-Control-Allow-Origin', '*')
-                        self.end_headers()
-                        self.wfile.write(raw_data)
+                        raw_data = s_resp.read().decode('utf-8', errors='ignore')
+                        data = json.loads(raw_data)
+                        results = data.get('results', [])
+                        
+                        # Decrypt all stream URLs for each song
+                        formatted_results = []
+                        for r in results:
+                            enc = r.get('encrypted_media_url')
+                            dec = decrypt_saavn_url(enc) if enc else None
+                            stream_320 = dec.get('320') if dec else ''
+                            stream_160 = dec.get('160') if dec else ''
+                            
+                            formatted_results.append({
+                                'id': r.get('id'),
+                                'song': r.get('song') or r.get('title'),
+                                'singers': r.get('singers') or r.get('primary_artists'),
+                                'album': r.get('album'),
+                                'image': (r.get('image') or '').replace('50x50', '500x500').replace('150x150', '500x500'),
+                                'duration': r.get('duration'),
+                                'encrypted_media_url': enc,
+                                'streamUrl': stream_320 or stream_160,
+                                'downloadUrl': [
+                                    {'quality': '320kbps', 'link': stream_320},
+                                    {'quality': '160kbps', 'link': stream_160}
+                                ] if stream_320 else []
+                            })
+
+                        self._send_json(200, {'success': True, 'results': formatted_results, 'raw': data})
                         return
                 except Exception as e:
-                    self._send_json(500, {'success': False, 'error': str(e)})
+                    self._send_json(500, {'success': False, 'error': str(e), 'results': []})
                     return
             self._send_json(400, {'success': False, 'error': 'Query required'})
-            return
-
-        # API: Audio Stream Endpoint (/api/stream)
-        # API: High-Throughput JioSaavn Master Audio Search (/api/saavn-search)
-        if path == '/api/saavn-search':
-            query = params.get('q', [None])[0]
-            if query:
-                clean_q = clean_query_string(query)
-                s_url = "https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=5&p=1&_marker=0&ctx=android&q=" + urllib.parse.quote(clean_q)
-                try:
-                    s_req = urllib.request.Request(s_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
-                    with urllib.request.urlopen(s_req, timeout=4) as s_resp:
-                        data = json.loads(s_resp.read().decode('utf-8', errors='ignore'))
-                        results = data.get('results', [])
-                        if not results and ' ' in clean_q:
-                            # Multi-tier fallback: artist name, first title term
-                            words = [w for w in clean_q.split() if len(w) > 1]
-                            candidate_queries = []
-                            if len(words) >= 2:
-                                candidate_queries.append(' '.join(words[-2:]))  # Full Artist Name e.g. "Aditya Rikhari"
-                                candidate_queries.append(words[-1])             # Single Artist Word e.g. "Rikhari"
-                                candidate_queries.append(words[0])              # Primary Title e.g. "Ishq"
-                            elif len(words) == 1:
-                                candidate_queries.append(words[0])
-
-                            for fallback_q in candidate_queries:
-                                f_url = "https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=3&p=1&_marker=0&ctx=android&q=" + urllib.parse.quote(fallback_q)
-                                try:
-                                    f_req = urllib.request.Request(f_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
-                                    with urllib.request.urlopen(f_req, timeout=4) as f_resp:
-                                        f_data = json.loads(f_resp.read().decode('utf-8', errors='ignore'))
-                                        f_res = f_data.get('results', [])
-                                        if f_res:
-                                            results = f_res
-                                            break
-                                except Exception:
-                                    pass
-
-                        self._send_json(200, {'results': results})
-                        return
-                except Exception as e:
-                    self._send_json(500, {'error': str(e), 'results': []})
-                    return
-            self._send_json(400, {'error': 'Missing query parameter', 'results': []})
             return
 
         # API: Live Jamendo Search Proxy (/api/jamendo-search)

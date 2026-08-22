@@ -21,6 +21,12 @@ import './catalogService.js';
 import './visualizer.js';
 import './geminiService.js';
 
+import { getStoredUser, onAuthStateChanged } from './firebaseAuthService.js';
+import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
+import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
+import { getLyrics, getActiveLineIndex } from './lyricsService.js';
+import { askGeminiDJ } from './geminiService.js';
+
 // Global error handler to catch broken images and provide progressive fallback
 window.addEventListener('error', function(e) {
   if (e.target && e.target.tagName === 'IMG') {
@@ -40,12 +46,6 @@ window.addEventListener('error', function(e) {
     }
   }
 }, true);
-
-import { getStoredUser, onAuthStateChanged } from './firebaseAuthService.js';
-import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
-import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
-import { getLyrics, getActiveLineIndex } from './lyricsService.js';
-import { askGeminiDJ } from './geminiService.js';
 
 (function() {
   'use strict';
@@ -486,7 +486,7 @@ import { askGeminiDJ } from './geminiService.js';
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.cover || `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg`,
+        coverUrl: t.cover || t.coverUrl || './pulse-logo.png',
         duration: t.duration || 220,
         source: "Catalog Master"
       };
@@ -495,7 +495,7 @@ import { askGeminiDJ } from './geminiService.js';
         ytId: item.ytId,
         title: item.title,
         artist: item.artist,
-        coverUrl: item.cover || `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`,
+        coverUrl: item.cover || item.coverUrl || './pulse-logo.png',
         duration: item.duration || 220,
         source: "Catalog Master"
       }));
@@ -512,7 +512,7 @@ import { askGeminiDJ } from './geminiService.js';
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.coverUrl || `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg`,
+        coverUrl: t.coverUrl || t.cover || './pulse-logo.png',
         duration: t.duration || 220,
         source: lang.meta.title
       };
@@ -521,7 +521,7 @@ import { askGeminiDJ } from './geminiService.js';
         ytId: item.ytId,
         title: item.title,
         artist: item.artist,
-        coverUrl: item.coverUrl || `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`,
+        coverUrl: item.coverUrl || item.cover || './pulse-logo.png',
         duration: item.duration || 220,
         source: lang.meta.title
       }));
@@ -543,21 +543,32 @@ import { askGeminiDJ } from './geminiService.js';
 
     if (genreKey === 'all') {
       document.querySelectorAll('.music-shelf-section').forEach(s => s.style.display = 'block');
+      const qpSection = document.querySelector('.quick-picks-section');
+      if (qpSection) qpSection.style.display = 'block';
     } else {
+      let matchedCount = 0;
       document.querySelectorAll('.music-shelf-section').forEach(s => {
         const id = (s.id || '').toLowerCase();
-        if (id.includes(genreKey)) {
+        if (id.includes(genreKey.toLowerCase())) {
           s.style.display = 'block';
+          matchedCount++;
         } else {
           s.style.display = 'none';
         }
       });
+      const qpSection = document.querySelector('.quick-picks-section');
+      if (qpSection) {
+        qpSection.style.display = (genreKey === 'all' || genreKey === 'trending') ? 'block' : 'none';
+      }
+      if (matchedCount === 0) {
+        window.playPresetQuery(genreKey);
+      }
     }
   };
 
   window.filterByGenre = function(catId) {
     window.switchView('home');
-    const el = document.getElementById(`shelf-${catId}`);
+    const el = document.getElementById(`shelf-${catId}`) || document.getElementById(`lang-shelf-${catId}`);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -640,11 +651,14 @@ import { askGeminiDJ } from './geminiService.js';
     const input = document.getElementById('global-search-input');
     if (input) input.value = query;
     
+    const label = document.getElementById('search-query-label');
     const count = document.getElementById('search-count');
-    if (count) count.textContent = 'Searching YouTube & high-fidelity streams...';
+    if (label) label.textContent = query;
+    if (count) count.textContent = 'Searching worldwide & multilingual catalogs...';
     
     try {
-      const results = await window.musicService.searchTracks(query, 30);
+      const results = await window.musicService.searchTracks(query, 50);
+      if (count) count.textContent = `${results.length} songs found worldwide`;
       renderSearchResults(results);
       if (results && results.length > 0) {
         window.playTrackDirect(results[0], results);

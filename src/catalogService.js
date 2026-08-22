@@ -188,7 +188,7 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-99e_0_Z-Bw0", ytId: "99e_0_Z-Bw0", title: "Zingaat", artist: "Ajay-Atul", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/66/5a/e8/665ae8ad-1aab-5d0c-3ca9-4fa062b1606c/8718857670711.png/1000x1000bb.jpg", duration: 230 },
       { id: "ytm-p8gq4I26q7k", ytId: "p8gq4I26q7k", title: "Apsara Aali", artist: "Bela Shende", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c4/d3/61/c4d3615e-b652-e204-026c-827db678a280/8718857704249.png/1000x1000bb.jpg", duration: 245 },
       { id: "ytm-mI60DtyDpsk", ytId: "mI60DtyDpsk", title: "Bring It On", artist: "Ajay-Atul", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0d/a8/4c/0da84c40-989b-90e9-9d86-1b4a33a75643/840214492952.png/1000x1000bb.jpg", duration: 211 },
-      { id: "ytm-n-k4iC1F2E0", ytId: "n-k4iC1F2E0", title: "Yad Lagla", artist: "Ajay Gogavale", coverUrl: "https://i.ytimg.com/vi/n-k4iC1F2E0/hqdefault.jpg", duration: 301 },
+      { id: "ytm-n-k4iC1F2E0", ytId: "n-k4iC1F2E0", title: "Yad Lagla", artist: "Ajay Gogavale", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/42/27/c742279a-586b-976a-df12-659f8539a788/8718857700166.png/1000x1000bb.jpg", duration: 301 },
       { id: "ytm-Oq8j5Qz9Q6U", ytId: "Oq8j5Qz9Q6U", title: "Sairat Zaala Ji", artist: "Chinmayi Sripaada", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/42/27/c742279a-586b-976a-df12-659f8539a788/8718857700166.png/1000x1000bb.jpg", duration: 366 }
     ]
   },
@@ -198,7 +198,7 @@ export const LANGUAGE_PLAYLISTS = [
     tracks: [
       { id: "ytm-d4OsvFi6mms", ytId: "d4OsvFi6mms", title: "Chogada", artist: "Darshan Raval", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/af/69/79/af697907-7447-e35b-5446-40d3cb3e1f64/8903431684981_cover.jpg/1000x1000bb.jpg", duration: 247 },
       { id: "ytm-QdXVhEiaY9c", ytId: "QdXVhEiaY9c", title: "Kamariya", artist: "Darshan Raval", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/d2/1c/bd/d21cbda3-8080-ba8a-37cb-14adc9682a6f/886447288764.jpg/1000x1000bb.jpg", duration: 260 },
-      { id: "ytm-Q28K4vDtd4Y", ytId: "Q28K4vDtd4Y", title: "Dholida", artist: "Neha Kakkar", coverUrl: "https://i.ytimg.com/vi/Q28K4vDtd4Y/hqdefault.jpg", duration: 180 },
+      { id: "ytm-Q28K4vDtd4Y", ytId: "Q28K4vDtd4Y", title: "Dholida", artist: "Neha Kakkar", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/6d/3b/ad/6d3bad14-744c-b8bc-53c5-0e01493f5f02/8903431696953_cover.jpg/1000x1000bb.jpg", duration: 180 },
       { id: "ytm-1_M0i09nK5M", ytId: "1_M0i09nK5M", title: "Gori Radha Ne Kalo Kaan", artist: "Kirtidan Gadhvi", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f2/96/82/f29682a7-e780-fbb2-e6f9-8cf346816494/8718857702542.png/1000x1000bb.jpg", duration: 320 },
       { id: "ytm-uY0Qe6wA0hA", ytId: "uY0Qe6wA0hA", title: "Radha Ne Shyam Mali Jaahe", artist: "Sachin-Jigar", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/76/f5/e476f57f-c316-c45b-4203-c86c30b2051c/cover.jpg/1000x1000bb.jpg", duration: 280 }
     ]

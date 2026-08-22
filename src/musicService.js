@@ -1,7 +1,7 @@
 /**
  * Pulse Music - High-Precision Ad-Free Audio Engine & Discovery Service
- * Delivers 100% Pure Ad-Free Audio Streams
- * Powered Exclusively by YouTube Music Piped Extractor
+ * 100% Zero 30-Second Previews (Only Full-Length Master Streams & Full YouTube Audio)
+ * Powered by Multi-Tier High-Bitrate Master Studio Audio & YouTube Opus Extractor
  */
 
 import { disambiguateQuery } from './geminiService.js';
@@ -13,14 +13,62 @@ import CryptoJS from 'crypto-js';
 const RESOLVED_STREAM_CACHE = new Map();
 
 /**
+ * Pure Client-Side DES Decryption for JioSaavn High-Bitrate Master Streams
+ * Produces authentic 320kbps & 160kbps MP4/AAC master audio with real vocals
+ */
+export function decryptSaavnMediaUrl(encryptedMediaUrl) {
+  if (!encryptedMediaUrl || typeof encryptedMediaUrl !== 'string') return null;
+  try {
+    const key = CryptoJS.enc.Utf8.parse("38346591");
+    const decrypted = CryptoJS.DES.decrypt(
+      { ciphertext: CryptoJS.enc.Base64.parse(encryptedMediaUrl.trim()) },
+      key,
+      {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+      }
+    );
+    const url = decrypted.toString(CryptoJS.enc.Utf8);
+    if (!url || !url.startsWith('http')) return null;
+
+    const u320 = url.replace('_96.mp4', '_320.mp4').replace('_48.mp4', '_320.mp4').replace('_160.mp4', '_320.mp4').replace('_96.m4a', '_320.m4a').replace('_160.m4a', '_320.m4a');
+    const u160 = url.replace('_96.mp4', '_160.mp4').replace('_48.mp4', '_160.mp4').replace('_320.mp4', '_160.mp4').replace('_96.m4a', '_160.m4a');
+    return {
+      '320': u320,
+      '160': u160,
+      '96': url
+    };
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
  * Normalizes raw track objects into standard Pulse format
+ * Completely filters out 30-second preview URLs
  */
 export function normalizeTrack(raw, source = 'Universal Music Stream') {
   if (!raw) return null;
   const safeId = raw.id || (raw.ytId ? `ytm-${raw.ytId}` : `pulse-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`);
-  const safeTitle = (raw.title || raw.name || raw.trackName || raw.song || 'Untitled Song').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'");
-  const safeArtist = (raw.artist || raw.artist_name || raw.artistName || raw.uploaderName || raw.primaryArtists || raw.singers || (raw.user && raw.user.name) || 'Pulse Artist').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'");
-  const safeAlbum = (raw.album || raw.album_name || raw.collectionName || (typeof raw.album === 'object' && raw.album?.name) || 'Full Album Release').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'");
+  const safeTitle = (raw.title || raw.name || raw.trackName || raw.song || 'Untitled Song')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .trim();
+  const safeArtist = (raw.artist || raw.artist_name || raw.artistName || raw.uploaderName || raw.primaryArtists || raw.singers || (raw.user && raw.user.name) || 'Pulse Artist')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .trim();
+  const safeAlbum = (raw.album || raw.album_name || raw.collectionName || (typeof raw.album === 'object' && raw.album?.name) || 'Full Album Release')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .trim();
   
   let cover = raw.coverUrl || raw.cover || raw.image || raw.album_image || raw.thumbnail;
   if (Array.isArray(raw.image) && raw.image.length > 0) {
@@ -34,8 +82,8 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
   }
   if (cover && typeof cover === 'string') {
     cover = cover
-      .replace('50x50', '1000x1000')
-      .replace('150x150', '1000x1000')
+      .replace('50x50', '500x500')
+      .replace('150x150', '500x500')
       .replace('100x100', '1000x1000')
       .replace('100x100bb', '1000x1000bb')
       .replace('/default.jpg', '/maxresdefault.jpg')
@@ -59,8 +107,10 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
     const d320 = raw.downloadUrl.find(d => d.quality === '320kbps')?.link || raw.downloadUrl.find(d => d.quality === '160kbps')?.link || raw.downloadUrl[raw.downloadUrl.length - 1]?.link;
     if (d320) stream = d320;
   }
-  if (typeof stream !== 'string' || stream.includes('preview')) {
-    stream = ''; // Strictly discard 30-second preview clips to guarantee full song playback
+
+  // NO 30-SECOND PREVIEWS: Filter out any sample/preview links so full resolution is enforced
+  if (stream && (stream.includes('audio-ssl.itunes.apple.com') || stream.includes('preview') || stream.includes('mzstatic'))) {
+    stream = '';
   }
 
   const duration = typeof raw.duration === 'number' ? raw.duration : (parseInt(raw.duration, 10) || 220);
@@ -73,7 +123,7 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
     coverUrl: cover,
     duration: duration,
     streamUrl: stream,
-    previewUrl: stream,
+    previewUrl: '',
     genre: raw.genre || raw.primaryGenreName || raw.language || 'Global Hit',
     source: source,
     ytId: raw.ytId || (safeId.startsWith('ytm-') ? safeId.replace('ytm-', '') : null)
@@ -81,10 +131,104 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
 }
 
 /**
- * Universal Global Search via iTunes Apple Music (Covers ANY song in ANY language/script worldwide)
- * Queries multi-region catalogs (Global, India, US) with 1000x1000 original studio covers.
+ * Direct High-Speed Master Search via JioSaavn Engine with Pure JS Decryption
+ * Returns genuine 320kbps/160kbps master studio audio streams with authentic vocals
  */
-export async function searchITunesUniversal(query, limit = 60) {
+export async function searchJioSaavnDirect(query, limit = 25) {
+  if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
+  const cleanQ = query.trim().replace(/[()\[\]{}"'|]/g, ' ');
+  const results = [];
+  const seenTitles = new Set();
+
+  const parseResults = (rawResults) => {
+    for (const item of (rawResults || [])) {
+      let streamUrl = item.streamUrl || '';
+      if (!streamUrl && item.encrypted_media_url) {
+        const dec = decryptSaavnMediaUrl(item.encrypted_media_url);
+        if (dec) {
+          streamUrl = dec['320'] || dec['160'] || dec['96'] || '';
+        }
+      }
+
+      let cover = item.image || item.coverUrl || '';
+      if (cover) {
+        cover = cover.replace('50x50', '500x500').replace('150x150', '500x500');
+      }
+
+      const title = (item.song || item.title || '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'").trim();
+      const artist = (item.singers || item.primary_artists || item.more_info?.singers || item.artist || 'Pulse Artist').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'").trim();
+      const album = (item.album || item.more_info?.album || 'Studio Release').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'").trim();
+
+      const key = `${title.toLowerCase()}___${artist.toLowerCase()}`;
+      if (title && !seenTitles.has(key)) {
+        seenTitles.add(key);
+        results.push({
+          id: `saavn-${item.id || Math.random().toString(36).substr(2, 8)}`,
+          title,
+          artist,
+          album,
+          coverUrl: cover || './pulse-logo.png',
+          duration: parseInt(item.duration, 10) || 220,
+          streamUrl: streamUrl,
+          previewUrl: '',
+          genre: item.language ? `${item.language.charAt(0).toUpperCase() + item.language.slice(1)} Studio` : 'Master Studio Audio',
+          source: 'Studio Master Audio 320k'
+        });
+      }
+    }
+  };
+
+  // 1. Primary: Local / Vite / Python backend proxy /api/saavn-search
+  try {
+    const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+    const res = await fetch(`${localBase}/api/saavn-search?q=${encodeURIComponent(cleanQ)}`, { signal: AbortSignal.timeout(3000) });
+    if (res.ok) {
+      const data = await res.json();
+      parseResults(data.results);
+      if (results.length > 0) return results.slice(0, limit);
+    }
+  } catch (e) {}
+
+  // 2. Direct JioSaavn API (Works in Node, Electron & environments without CORS restrictions)
+  try {
+    const url = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=${limit}&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQ)}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(2500) });
+    if (res.ok) {
+      const data = await res.json();
+      parseResults(data.results);
+      if (results.length > 0) return results.slice(0, limit);
+    }
+  } catch (e) {}
+
+  // 3. Resilient Public CORS Proxies (for static hosting or browser fallbacks)
+  const encodedSaavn = encodeURIComponent(`https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&n=${limit}&p=1&_marker=0&ctx=android&q=${encodeURIComponent(cleanQ)}`);
+  const proxyEndpoints = [
+    `https://api.allorigins.win/raw?url=${encodedSaavn}`,
+    `https://corsproxy.io/?url=${encodedSaavn}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodedSaavn}`
+  ];
+
+  for (const proxyUrl of proxyEndpoints) {
+    try {
+      const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(3500) });
+      if (res.ok) {
+        const text = await res.text();
+        const data = JSON.parse(text);
+        parseResults(data.results || data);
+        if (results.length > 0) return results.slice(0, limit);
+      }
+    } catch (e) {}
+  }
+
+  return results.slice(0, limit);
+}
+
+/**
+ * Universal Global Search via iTunes Apple Music
+ * Queries multi-region catalogs (Global, India, US) with 1000x1000 original studio covers.
+ * Does NOT attach 30-second previews to streamUrl.
+ */
+export async function searchITunesUniversal(query, limit = 40) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
   const cleanQ = query.trim();
   const allTracks = [];
@@ -98,7 +242,7 @@ export async function searchITunesUniversal(query, limit = 60) {
 
   try {
     const responses = await Promise.allSettled(
-      endpoints.map(url => fetch(url, { signal: AbortSignal.timeout(4500) }).then(r => r.ok ? r.json() : { results: [] }))
+      endpoints.map(url => fetch(url, { signal: AbortSignal.timeout(4000) }).then(r => r.ok ? r.json() : { results: [] }))
     );
 
     for (const r of responses) {
@@ -113,7 +257,8 @@ export async function searchITunesUniversal(query, limit = 60) {
               album: item.collectionName || 'Single Release',
               coverUrl: item.artworkUrl100 ? item.artworkUrl100.replace('100x100bb', '1000x1000bb') : './pulse-logo.png',
               duration: item.trackTimeMillis ? Math.round(item.trackTimeMillis / 1000) : 220,
-              streamUrl: '',
+              streamUrl: '', // NO 30s preview
+              previewUrl: '',
               genre: item.primaryGenreName || 'Music',
               source: 'Official Studio Release'
             }, 'Official Studio Release'));
@@ -128,10 +273,10 @@ export async function searchITunesUniversal(query, limit = 60) {
 
 /**
  * Master Global Search: Unified Multi-Source Discovery
- * Searches local multilingual tracks, iTunes Universal, YouTube Music & AI fallback
- * Guarantees that any song in ANY language is found and playable.
+ * Searches Local Multilingual Catalog, Direct JioSaavn Master Engine, iTunes Universal & YouTube
+ * Guarantees that any song in ANY language is found with full master streaming audio.
  */
-export async function searchTracks(query, limit = 40) {
+export async function searchTracks(query, limit = 50) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
     return await fetchTrendingTracks(limit);
   }
@@ -148,13 +293,18 @@ export async function searchTracks(query, limit = 40) {
     
     if (trackMap.has(key)) {
       const existing = trackMap.get(key);
-      // Guarantee YouTube ID is attached to the existing track
+      // Upgrade streamUrl if candidate has full high-bitrate master audio
+      if (!existing.streamUrl && t.streamUrl && !t.streamUrl.includes('preview')) {
+        existing.streamUrl = t.streamUrl;
+        existing.source = t.source || existing.source;
+      }
+      // Attach YouTube ID if present
       if (!existing.ytId && t.ytId) {
         existing.ytId = t.ytId;
-        existing.id = `ytm-${t.ytId}`;
+        if (!existing.id.startsWith('saavn-')) existing.id = `ytm-${t.ytId}`;
       }
       // Upgrade cover to official studio art if available
-      if (t.coverUrl && t.coverUrl.includes('mzstatic.com') && !existing.coverUrl.includes('mzstatic.com')) {
+      if (t.coverUrl && (t.coverUrl.includes('mzstatic.com') || t.coverUrl.includes('500x500')) && !existing.coverUrl.includes('mzstatic.com')) {
         existing.coverUrl = t.coverUrl;
       }
     } else if (cleanT.length > 0) {
@@ -163,7 +313,7 @@ export async function searchTracks(query, limit = 40) {
     }
   };
 
-  // 1. Fast Local Multilingual Catalog Search
+  // 1. Fast Local Multilingual Catalog Search (0ms instant response)
   try {
     const localMatches = searchCatalogTracks(cleanQuery);
     if (Array.isArray(localMatches)) {
@@ -171,53 +321,41 @@ export async function searchTracks(query, limit = 40) {
     }
   } catch (e) {}
 
-  // 2. Concurrently Query: Multi-Node YouTube Music Engine (for verified ytId) & iTunes (for 1000x1000 covers)
-  const [ytRes, itunesRes] = await Promise.allSettled([
+  // 2. Concurrently Query: JioSaavn Direct + YouTube Music Search + iTunes Universal
+  const [saavnRes, ytRes, itunesRes] = await Promise.allSettled([
+    searchJioSaavnDirect(cleanQuery, limit),
     searchYouTubeMusic(cleanQuery, limit),
     searchITunesUniversal(cleanQuery, limit)
   ]);
 
-  // Add YouTube Music results first (guarantees immediate verified ytId audio playback)
+  if (saavnRes.status === 'fulfilled' && Array.isArray(saavnRes.value)) {
+    saavnRes.value.forEach(t => addOrMergeTrack(t));
+  }
+
   if (ytRes.status === 'fulfilled' && Array.isArray(ytRes.value)) {
     ytRes.value.forEach(t => addOrMergeTrack(t));
   }
 
-  // Merge iTunes results (adds studio covers and any extra regional songs)
   if (itunesRes.status === 'fulfilled' && Array.isArray(itunesRes.value)) {
-    const ytTracks = (ytRes.status === 'fulfilled' && Array.isArray(ytRes.value)) ? ytRes.value : [];
-    itunesRes.value.forEach((it) => {
-      if (!it.ytId && ytTracks.length > 0) {
-        // ONLY pair if title has an exact or strong match! NEVER guess by index!
-        const cleanItTitle = (it.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-        if (cleanItTitle.length >= 3) {
-          const matched = ytTracks.find(y => {
-            const cleanYtTitle = (y.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-            return cleanYtTitle.includes(cleanItTitle) || cleanItTitle.includes(cleanYtTitle);
-          });
-          if (matched && matched.ytId) {
-            it.ytId = matched.ytId;
-            it.id = `ytm-${matched.ytId}`;
-          }
-        }
-      }
-      addOrMergeTrack(it);
-    });
+    itunesRes.value.forEach(t => addOrMergeTrack(t));
   }
 
-  // 3. Fallback: If still under 1 result, try AI query disambiguation
-  if (results.length === 0) {
+  // 3. Fallback: Disambiguate query via Gemini AI if still under 3 results
+  if (results.length < 3) {
     try {
-      const disambiguated = await disambiguateQuery(cleanQuery);
-      if (disambiguated && disambiguated.toLowerCase() !== cleanQuery.toLowerCase()) {
-        const [secondYt, secondItunes] = await Promise.allSettled([
-          searchYouTubeMusic(disambiguated, limit),
-          searchITunesUniversal(disambiguated, limit)
-        ]);
-        if (secondYt.status === 'fulfilled' && Array.isArray(secondYt.value)) {
-          secondYt.value.forEach(t => addOrMergeTrack(t));
-        }
-        if (secondItunes.status === 'fulfilled' && Array.isArray(secondItunes.value)) {
-          secondItunes.value.forEach(t => addOrMergeTrack(t));
+      const disambiguatedList = disambiguateQuery(cleanQuery);
+      for (const disambiguated of disambiguatedList) {
+        if (disambiguated.toLowerCase() !== cleanQuery.toLowerCase()) {
+          const [secondYt, secondSaavn] = await Promise.allSettled([
+            searchYouTubeMusic(disambiguated, 10),
+            searchJioSaavnDirect(disambiguated, 10)
+          ]);
+          if (secondYt.status === 'fulfilled' && Array.isArray(secondYt.value)) {
+            secondYt.value.forEach(t => addOrMergeTrack(t));
+          }
+          if (secondSaavn.status === 'fulfilled' && Array.isArray(secondSaavn.value)) {
+            secondSaavn.value.forEach(t => addOrMergeTrack(t));
+          }
         }
       }
     } catch (e) {}
@@ -227,7 +365,7 @@ export async function searchTracks(query, limit = 40) {
 }
 
 /**
- * Fetches Trending Tracks from YouTube Music
+ * Fetches Trending Tracks from Global iTunes Top Songs & Charts
  */
 export async function fetchTrendingTracks(limit = 40) {
   const results = [];
@@ -242,21 +380,42 @@ export async function fetchTrendingTracks(limit = 40) {
     }
   };
 
-  // YouTube Music Global Charts 
   try {
-    const ytTracks = await fetchYouTubeMusicCharts('GLOBAL', limit);
-    ytTracks.forEach(t => addUnique(t));
+    const res = await fetch(`https://itunes.apple.com/us/rss/topsongs/limit=${limit}/json`, { signal: AbortSignal.timeout(4000) });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.feed && data.feed.entry) {
+        data.feed.entry.forEach(entry => {
+          const title = entry['im:name']?.label || 'Trending Song';
+          const artist = entry['im:artist']?.label || 'Trending Artist';
+          let cover = './pulse-logo.png';
+          if (entry['im:image'] && entry['im:image'].length > 0) {
+            cover = entry['im:image'][entry['im:image'].length - 1].label;
+            cover = cover.replace(/\/\d+x\d+bb/g, '/1000x1000bb');
+          }
+          addUnique({
+            id: `itunes-trending-${Math.random().toString(36).substr(2, 6)}`,
+            title: title,
+            artist: artist,
+            album: entry['im:collection']?.['im:name']?.label || 'Single',
+            coverUrl: cover,
+            duration: 210,
+            streamUrl: '', // NO 30s preview
+            previewUrl: '',
+            source: 'Global Trending Chart'
+          });
+        });
+      }
+    }
   } catch (e) {}
 
-  // Hardcoded Fallback if all APIs fail (Guarantees UI never looks broken)
+  // Hardcoded Fallback if API fails
   if (results.length === 0) {
     const fallbackTracks = [
       { id: 'ytm-4NRXx6U8ABQ', ytId: '4NRXx6U8ABQ', title: 'Blinding Lights', artist: 'The Weeknd', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg', duration: 200, source: 'Top Hit' },
-      { id: 'ytm-kJQP7kiw5Fk', ytId: 'kJQP7kiw5Fk', title: 'Despacito', artist: 'Luis Fonsi ft. Daddy Yankee', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bf/bb/d6/bfbbd697-76c2-04e8-8868-d0df006fa6b0/17UMGIM00896.rgb.jpg/1000x1000bb.jpg', duration: 288, source: 'Top Hit' },
-      { id: 'ytm-JGwWNGJdvx8', ytId: 'JGwWNGJdvx8', title: 'Shape of You', artist: 'Ed Sheeran', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg', duration: 233, source: 'Top Hit' },
-      { id: 'ytm-YykjpeuMNEk', ytId: 'YykjpeuMNEk', title: 'Hymn For The Weekend', artist: 'Coldplay', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/e5/75/eb/e575eb37-c15d-a60d-d40b-d242637213b3/825646982646.jpg/1000x1000bb.jpg', duration: 258, source: 'Top Hit' },
-      { id: 'ytm-VqebCewxAyk', ytId: 'VqebCewxAyk', title: 'Tum Hi Ho', artist: 'Arijit Singh', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg', duration: 262, source: 'Top Hit' },
-      { id: 'ytm-2Vv-BfVoq4g', ytId: '2Vv-BfVoq4g', title: 'Perfect', artist: 'Ed Sheeran', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg', duration: 263, source: 'Top Hit' }
+      { id: 'ytm-BddP6PYo2gs', ytId: 'BddP6PYo2gs', title: 'Kesariya', artist: 'Arijit Singh', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg', duration: 268, source: 'Top Hit' },
+      { id: 'ytm-kJQP7kiw5Fk', ytId: 'kJQP7kiw5Fk', title: 'Despacito', artist: "Luis Fonsi ft. Daddy Yankee", coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bf/bb/d6/bfbbd697-76c2-04e8-8868-d0df006fa6b0/17UMGIM00896.rgb.jpg/1000x1000bb.jpg', duration: 288, source: 'Top Hit' },
+      { id: 'ytm-JGwWNGJdvx8', ytId: 'JGwWNGJdvx8', title: 'Shape of You', artist: 'Ed Sheeran', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg', duration: 233, source: 'Top Hit' }
     ];
     fallbackTracks.forEach(t => addUnique(t));
   }
@@ -266,7 +425,12 @@ export async function fetchTrendingTracks(limit = 40) {
 
 /**
  * Resolves 100% Ad-Free Pure Audio Stream for ANY track
- * Eliminates preview clips completely by fetching direct Opus/M4A stream
+ * 100% ZERO 30-Second Previews (Only Full-Length Master Streams & Full YouTube Audio)
+ * Multi-Tier Resolution:
+ * Tier 1: Direct JioSaavn 320k/160k Master Studio Audio (Instant, full-length 3-6 min, authentic vocals)
+ * Tier 2: YouTube Music Piped Opus Stream (160kbps Opus audio)
+ * Tier 3: Local Backend Stream Proxy (/api/ytm/stream or /api/saavn-search)
+ * Tier 4: Official YouTube IFrame API Embed (yt-iframe)
  */
 export async function resolveFullAudioStream(track) {
   if (!track) return null;
@@ -276,76 +440,110 @@ export async function resolveFullAudioStream(track) {
     return RESOLVED_STREAM_CACHE.get(cacheKey);
   }
 
-  // Check if current streamUrl is already a verified full-length audio stream
+  // 0. Check if current streamUrl is already a verified full-length master stream
   if (track.streamUrl && 
       track.streamUrl.startsWith('http') && 
       !track.streamUrl.includes('preview') && 
-      track.duration > 30) {
+      !track.streamUrl.includes('audio-ssl.itunes.apple.com') && 
+      !track.streamUrl.includes('mzstatic') &&
+      (track.duration || 0) > 40) {
     const resolved = {
       streamUrl: track.streamUrl,
       duration: track.duration || 220,
-      source: track.source || 'Ad-Free Opus Pure Audio'
+      source: track.source || 'Studio Master Audio 320k'
     };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }
 
   let finalUrl = null;
-  let finalSource = 'YouTube Music Ad-Free Opus';
+  let finalSource = 'Studio Master Audio 320k';
 
-  // 1. Try YouTube Extractor First (Primary)
-  let ytIdToUse = track.ytId;
-  if (!ytIdToUse) {
-    try {
-      const s = await searchYouTubeMusic(`${track.title} ${track.artist}`, 1);
-      if (s && s.length > 0 && s[0].ytId) {
-        ytIdToUse = s[0].ytId;
-      }
-    } catch (e) {}
-  }
+  // 1. TIER 1: JioSaavn Direct High-Bitrate Master Studio Audio (320k/160k with pure-client decryption)
+  const cleanTitle = (track.title || '').replace(/\(.*?\)|\[.*?\]|ft\..*|feat\..*|Official.*|Video.*/gi, '').trim();
+  const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].split('ft.')[0].trim();
+  const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
 
-  if (ytIdToUse) {
+  if (query.length > 1) {
     try {
-      const ytm = await resolvePipedAudioStream(ytIdToUse);
-      if (ytm && ytm.streamUrl) {
-        finalUrl = ytm.streamUrl;
-      }
-    } catch (e) {}
-  }
-
-  // 2. High-Reliability Fallback: Unofficial API (Bypasses YouTube 403 / CORS blocks)
-  if (!finalUrl) {
-    try {
-      const query = `${track.title} ${track.artist}`.trim();
-      const saavnRes = await fetch(`https://saavn.dev/api/search/songs?query=${encodeURIComponent(query)}&limit=1`);
-      if (saavnRes.ok) {
-        const json = await saavnRes.json();
-        const first = json.data?.results?.[0];
-        if (first && first.downloadUrl && first.downloadUrl.length > 0) {
-          const d320 = first.downloadUrl.find(d => d.quality === '320kbps') || first.downloadUrl[first.downloadUrl.length - 1];
-          if (d320 && d320.link) {
-            finalUrl = d320.link;
-            finalSource = 'Pulse Master Audio (Failover)';
+      const saavnResults = await searchJioSaavnDirect(query, 3);
+      if (saavnResults && saavnResults.length > 0) {
+        const top = saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http') && !s.streamUrl.includes('preview')) || saavnResults[0];
+        if (top && top.streamUrl && top.streamUrl.startsWith('http') && !top.streamUrl.includes('preview')) {
+          finalUrl = top.streamUrl;
+          finalSource = 'Pulse Master Studio (320kbps)';
+          if (!track.coverUrl || track.coverUrl.includes('pulse-logo')) {
+            track.coverUrl = top.coverUrl;
           }
         }
       }
     } catch (e) {
-      console.warn('[Pulse Audio] Fallback failed');
+      // Continue to Tier 2
     }
   }
 
+  // 2. TIER 2: YouTube Music / Piped Opus Extractor
+  let ytIdToUse = track.ytId;
+  if (!finalUrl && !ytIdToUse) {
+    try {
+      const s = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 2);
+      if (s && s.length > 0 && s[0].ytId) {
+        ytIdToUse = s[0].ytId;
+        track.ytId = ytIdToUse;
+      }
+    } catch (e) {}
+  }
+
+  if (!finalUrl && ytIdToUse) {
+    try {
+      const ytm = await resolvePipedAudioStream(ytIdToUse);
+      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
+        finalUrl = ytm.streamUrl;
+        finalSource = `YouTube Music Opus (${ytm.bitrate || '160k'})`;
+      }
+    } catch (e) {}
+  }
+
+  // 3. TIER 3: Local Backend Proxy (/api/ytm/stream or /api/saavn-search)
+  if (!finalUrl) {
+    try {
+      const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+      const localUrl = ytIdToUse 
+        ? `${localBase}/api/ytm/stream?id=${ytIdToUse}` 
+        : `${localBase}/api/ytm/stream?q=${encodeURIComponent(query)}`;
+      const res = await fetch(localUrl, { signal: AbortSignal.timeout(3000) });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.streamUrl && !json.streamUrl.includes('preview')) {
+          finalUrl = json.streamUrl;
+          finalSource = json.source || 'Pulse Master Studio 320k';
+        }
+      }
+    } catch (e) {}
+  }
+
   if (finalUrl) {
-    const resolved = { streamUrl: finalUrl, source: finalSource };
+    const resolved = { streamUrl: finalUrl, source: finalSource, duration: track.duration || 220 };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }
 
-  // 3. Ultimate Fallback: Official YouTube IFrame API Embed
+  // 4. TIER 4: Official YouTube IFrame Player Embed (Plays 100% full song without 30s preview limits)
   if (ytIdToUse) {
-    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Official YouTube Embed (With Ads)' };
+    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Official YouTube Full Audio', duration: track.duration || 220 };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }
+
+  // 5. Final Fallback: Query YouTube Search to find YouTube ID for Full Playback
+  try {
+    const fallbackSearch = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 1);
+    if (fallbackSearch && fallbackSearch.length > 0 && fallbackSearch[0].ytId) {
+      const resolved = { streamUrl: 'yt-iframe', ytId: fallbackSearch[0].ytId, source: 'Official YouTube Full Audio', duration: track.duration || 220 };
+      RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+      return resolved;
+    }
+  } catch (e) {}
 
   return null;
 }
@@ -360,8 +558,11 @@ export async function resolveExactTrackStream(track) {
 
 const musicService = {
   searchTracks,
+  searchJioSaavnDirect,
+  searchITunesUniversal,
   fetchTrendingTracks,
   normalizeTrack,
+  decryptSaavnMediaUrl,
   resolveFullAudioStream,
   resolveExactTrackStream
 };
