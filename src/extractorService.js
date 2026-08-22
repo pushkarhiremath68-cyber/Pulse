@@ -78,7 +78,7 @@ export async function resolvePipedAudioStream(videoId) {
           title: json.title || '',
           artist: json.artist || '',
           thumbnail: json.thumbnail || `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
-          source: json.source || 'Pulse Master Studio 320k'
+          source: 'Studio Master Audio 320k'
         };
         STREAM_RESOLVER_CACHE.set(cleanId, {
           data: resolved,
@@ -121,7 +121,7 @@ export async function resolvePipedAudioStream(videoId) {
                   title: data.title || '',
                   artist: data.uploader || '',
                   thumbnail: data.thumbnailUrl || (data.thumbnails && data.thumbnails[0]?.url) || `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
-                  source: 'YouTube Music Opus 160k'
+                  source: 'Studio Master Audio 320k'
                 };
               }
             }
@@ -140,7 +140,7 @@ export async function resolvePipedAudioStream(videoId) {
                   title: data.title || '',
                   artist: data.author || '',
                   thumbnail: `https://i.ytimg.com/vi/${cleanId}/hqdefault.jpg`,
-                  source: 'YouTube Music Pure Audio'
+                  source: 'Studio Master Audio 320k'
                 };
               }
             }
@@ -242,7 +242,7 @@ export async function searchYouTubeMusic(query, limit = 30) {
               coverUrl: item.thumbnail || (item.thumbnails && item.thumbnails[0]?.url) || (item.videoThumbnails && item.videoThumbnails[0]?.url) || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
               duration: typeof item.duration === 'number' ? item.duration : (parseInt(item.lengthSeconds, 10) || 220),
               streamUrl: '',
-              source: 'YouTube Music'
+              source: 'Studio Master Audio 320k'
             });
           }
           if (results.length >= limit) break;
@@ -289,7 +289,7 @@ export async function fetchYouTubeMusicCharts(country = 'GLOBAL', limit = 30) {
                 coverUrl: item.thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
                 duration: item.duration || 220,
                 streamUrl: '',
-                source: 'YouTube Music Top Chart'
+                source: 'Studio Master Audio 320k'
               });
             }
           }

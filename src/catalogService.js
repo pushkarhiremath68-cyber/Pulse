@@ -315,7 +315,7 @@ export const fetchCategoryTracks = async (categoryId, limit = 20) => {
       artist: t.artist,
       coverUrl: t.cover || t.coverUrl || "./pulse-logo.png",
       duration: t.duration || 220,
-      source: "Pulse Catalog Master"
+      source: "Studio Master Audio 320k"
     })).slice(0, limit);
   }
 
@@ -354,7 +354,7 @@ export function searchCatalogTracks(query) {
           album: t.album || 'Pulse Master Catalog',
           coverUrl: t.coverUrl || t.cover || './pulse-logo.png',
           duration: t.duration || 220,
-          source: src || 'Catalog Master'
+          source: src || 'Studio Master Audio 320k'
         });
       }
     }
