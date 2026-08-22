@@ -429,7 +429,7 @@ export async function fetchTrendingTracks(limit = 40) {
       { id: 'ytm-4NRXx6U8ABQ', ytId: '4NRXx6U8ABQ', title: 'Blinding Lights', artist: 'The Weeknd', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg', duration: 200, source: 'Studio Master Audio (YouTube)' },
       { id: 'ytm-BddP6PYo2gs', ytId: 'BddP6PYo2gs', title: 'Kesariya', artist: 'Arijit Singh', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg', duration: 268, source: 'Studio Master Audio (YouTube)' },
       { id: 'ytm-kJQP7kiw5Fk', ytId: 'kJQP7kiw5Fk', title: 'Despacito', artist: "Luis Fonsi ft. Daddy Yankee", coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bf/bb/d6/bfbbd697-76c2-04e8-8868-d0df006fa6b0/17UMGIM00896.rgb.jpg/1000x1000bb.jpg', duration: 288, source: 'Studio Master Audio (YouTube)' },
-      { id: 'ytm-JGwWNGJdvx8', ytId: 'JGwWNGJdvx8', title: 'Shape of You', artist: 'Ed Sheeran', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg', duration: 233, source: 'Studio Master Audio (YouTube)' }
+      { id: 'ytm-_dK2tDK9grQ', ytId: '_dK2tDK9grQ', title: 'Shape of You', artist: 'Ed Sheeran', coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg', duration: 233, source: 'Studio Master Audio (YouTube)' }
     ];
     fallbackTracks.forEach(t => addUnique(t));
   }

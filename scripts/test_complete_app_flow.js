@@ -187,7 +187,7 @@ async function runTests() {
   const testTracks = [
     { title: 'Kesariya', artist: 'Arijit Singh', ytId: 'BddP6PYo2gs' },
     { title: 'Blinding Lights', artist: 'The Weeknd', ytId: '4NRXx6U8ABQ' },
-    { title: 'Shape of You', artist: 'Ed Sheeran', ytId: 'JGwWNGJdvx8' }
+    { title: 'Shape of You', artist: 'Ed Sheeran', ytId: '_dK2tDK9grQ' }
   ];
 
   for (const track of testTracks) {

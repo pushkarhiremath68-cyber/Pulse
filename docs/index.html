@@ -7,9 +7,9 @@
   <meta name="description" content="Stream millions of songs from YouTube and studio master audio ad-free with real-time live synchronized lyrics on Pulse Music.">
   
   <!-- PWA & Mobile Meta -->
-  <link rel="manifest" href="./assets/manifest.json">
+  <link rel="manifest" href="./assets/manifest-C_PKC7MV.json">
   <meta name="theme-color" content="#8b5cf6">
-  <link rel="icon" type="image/png" href="./assets/icon-192.png">
+  <link rel="icon" type="image/png" href="./assets/icon-192-BrVpSW3B.png">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+  
   <!-- YouTube IFrame API for Guaranteed Fallback Audio -->
   <script src="https://www.youtube.com/iframe_api"></script>
 
@@ -32,8 +32,8 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
-  <script type="module" crossorigin src="./assets/pulse.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index.css">
+  <script type="module" crossorigin src="./assets/index-it1MV1Il.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-IBM8wccg.css">
 </head>
 <body>
 
@@ -44,7 +44,7 @@
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-logo">
-          <img src="./assets/pulse-logo.png" alt="Pulse Logo" class="brand-logo-img" style="width: 42px; height: 42px; object-fit: contain;">
+          <img src="./assets/pulse-logo-CG85IKCd.png" alt="Pulse Logo" class="brand-logo-img" style="width: 42px; height: 42px; object-fit: contain;">
         </div>
         <div class="brand-text">
           <span class="brand-name">Pulse</span>
@@ -117,7 +117,7 @@
 
         <!-- Mobile Brand -->
         <div class="mobile-header-brand hidden-desktop" style="align-items: center; gap: 0.5rem; margin-right: 0.5rem; cursor: pointer;" onclick="window.switchView('home')">
-          <img src="./assets/pulse-logo.png" alt="Pulse" style="width: 32px; height: 32px; object-fit: contain;">
+          <img src="./assets/pulse-logo-CG85IKCd.png" alt="Pulse" style="width: 32px; height: 32px; object-fit: contain;">
           <span style="font-weight: 900; font-size: 1.2rem; letter-spacing: -0.5px; color: #fff;">Pulse</span>
         </div>
 
@@ -317,7 +317,7 @@
 
       <!-- Left: Track Cover & Info (Clicking toggles Fullscreen) -->
       <div class="player-left" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen()" title="Click to Maximize Player">
-        <img id="player-thumb" src="./assets/pulse-logo.png" alt="Cover" class="player-thumb">
+        <img id="player-thumb" src="./assets/pulse-logo-CG85IKCd.png" alt="Cover" class="player-thumb">
         <div class="player-info">
           <span id="player-title" class="player-title">Select a Song</span>
           <span id="player-artist" class="player-artist">Pulse Music</span>
@@ -493,10 +493,7 @@
           </div>
         </div>
 
-        <!-- Hidden Pure Audio Background Engine (No Video Frames) -->
-        <div id="fs-yt-section" style="position: fixed; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden; top: -9999px; left: -9999px;">
-          <div id="yt-player-container"></div>
-        </div>
+        <!-- Fullscreen Soundwave & Live Karaoke Switcher -->
         
         <!-- View 2: Real-time Live Synchronized Lyrics Panel -->
         <div class="fs-lyrics-panel hidden-view" id="fs-lyrics-panel">
@@ -579,7 +576,7 @@
     <div class="modal-content download-modal-box" style="max-width: 620px; max-height: 88vh; overflow-y: auto; background: #0c0e17; border: 1px solid rgba(168,85,247,0.35); border-radius: 24px; padding: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.85);">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
-          <img src="./assets/pulse-logo.png" alt="Pulse" style="width: 38px; height: 38px; object-fit: contain;">
+          <img src="./assets/pulse-logo-CG85IKCd.png" alt="Pulse" style="width: 38px; height: 38px; object-fit: contain;">
           <div>
             <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0;">Download Pulse Music</h3>
             <span style="font-size: 0.75rem; color: #c084fc; font-weight: 700;">v2.4.0 High-Fidelity Master Audio • Ad-Free</span>
@@ -772,9 +769,14 @@
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
 
+  <!-- Global YouTube IFrame Audio Host (Always in DOM for instant YouTube initialization) -->
+  <div id="global-yt-host" class="global-yt-dock">
+    <div id="yt-player-container"></div>
+  </div>
+
   <!-- Native Audio Element -->
   <audio id="fallback-audio-player" preload="auto"></audio>
 
-  <!-- APPLICATION JAVASCRIPT -->
+  <!-- APPLICATION JAVASCRIPT -->
 </body>
 </html>
