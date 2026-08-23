@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pushkarhiremath68-cyber.github.io/Pulse/sitemap.xml
