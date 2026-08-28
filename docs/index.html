@@ -63,7 +63,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-D2slMt1w.js"></script>
+  <script type="module" crossorigin src="./assets/index-BEY075RT.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-pPDCQQSC.css">
 </head>
 <body>
@@ -106,6 +106,10 @@
           <a href="javascript:void(0)" class="nav-item" onclick="window.filterByGenre('cat-trending')">
             <i class="fa-solid fa-fire-flame-curved" style="color: #f43f5e;"></i>
             <span>Trending Hits</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" onclick="window.filterByGenre('cat-devotional')">
+            <i class="fa-solid fa-om" style="color: #f59e0b;"></i>
+            <span>Devotional & Sacred</span>
           </a>
           <a href="javascript:void(0)" class="nav-item" onclick="window.filterByGenre('cat-workout')">
             <i class="fa-solid fa-bolt" style="color: #eab308;"></i>
@@ -203,10 +207,11 @@
         <section class="filter-pills-bar" style="margin-bottom: 2rem; display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 0.5rem;">
           <button class="filter-pill active-pill pill-cyan" onclick="window.filterHomeGenre('all', this)">All</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('trending', this)"><i class="fa-solid fa-fire text-accent"></i> Trending</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('devotional', this)"><i class="fa-solid fa-om" style="color: #f59e0b;"></i> Devotional</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('kannada', this)">Kannada</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('hindi', this)">Bollywood</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('english', this)">English Pop</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('punjabi', this)">Punjabi</button>
-          <button class="filter-pill" onclick="window.filterHomeGenre('kannada', this)">Kannada</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('tamil', this)">Tamil</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('telugu', this)">Telugu</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('lofi', this)">Lo-Fi Chill</button>
@@ -270,6 +275,8 @@
           
           <!-- Search Quick Tags -->
           <div class="search-quick-tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+            <button class="tag-pill" onclick="window.playPresetQuery('Devi Kavacham Appaji')"><i class="fa-solid fa-om" style="color: #f59e0b; margin-right: 4px;"></i> Devi Kavacham</button>
+            <button class="tag-pill" onclick="window.openArtistView('Appaji')">Appaji</button>
             <button class="tag-pill" onclick="window.playPresetQuery('Arijit Singh')">Arijit Singh</button>
             <button class="tag-pill" onclick="window.playPresetQuery('The Weeknd')">The Weeknd</button>
             <button class="tag-pill" onclick="window.playPresetQuery('Taylor Swift')">Taylor Swift</button>

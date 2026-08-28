@@ -327,6 +327,26 @@ export async function searchTracks(query, limit = 50) {
     }
   };
 
+  // 0. Direct YouTube URL or Video ID recognition
+  const ytMatch = cleanQuery.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+  const directYtId = ytMatch ? ytMatch[1] : (cleanQuery.trim().length === 11 && !cleanQuery.includes(' ') ? cleanQuery.trim() : null);
+  if (directYtId) {
+    const isAppajiDeviKavacham = directYtId === 'b2t2XURj7MU';
+    addOrMergeTrack({
+      id: `ytm-${directYtId}`,
+      ytId: directYtId,
+      title: isAppajiDeviKavacham ? 'Devi Kavacham' : 'Devi Kavacham by Appaji',
+      artist: isAppajiDeviKavacham ? 'Appaji' : 'YouTube Artist',
+      album: isAppajiDeviKavacham ? 'Devi Kavacham' : 'YouTube Master Audio',
+      coverUrl: `https://i.ytimg.com/vi/${directYtId}/maxresdefault.jpg`,
+      duration: isAppajiDeviKavacham ? 840 : 220,
+      streamUrl: '',
+      previewUrl: '',
+      genre: 'Devotional / Spiritual',
+      source: 'Studio Master Audio (YouTube)'
+    });
+  }
+
   // 1. Fast Local Multilingual Catalog Search (0ms instant response)
   try {
     const localMatches = searchCatalogTracks(cleanQuery);
@@ -539,6 +559,8 @@ export async function resolveFullAudioStream(track) {
     return RESOLVED_STREAM_CACHE.get(cacheKey);
   }
 
+  const localBaseUrl = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+
   // 0. Check if current streamUrl is already a verified full-length master stream
   if (track.streamUrl && 
       track.streamUrl.startsWith('http') && 
@@ -546,8 +568,15 @@ export async function resolveFullAudioStream(track) {
       !track.streamUrl.includes('audio-ssl.itunes.apple.com') && 
       !track.streamUrl.includes('mzstatic') &&
       (track.duration || 0) > 40) {
+    let finalStreamUrl = track.streamUrl;
+
+    if (finalStreamUrl.includes('saavncdn.com')) {
+      const localBaseUrl = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+      finalStreamUrl = `${localBaseUrl}/api/proxy-stream?url=${encodeURIComponent(finalStreamUrl)}`;
+    }
+
     const resolved = {
-      streamUrl: track.streamUrl,
+      streamUrl: finalStreamUrl,
       duration: track.duration || 220,
       source: track.source || 'Studio Master Audio (YouTube)'
     };
@@ -562,82 +591,64 @@ export async function resolveFullAudioStream(track) {
   const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].split('ft.')[0].trim();
   const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
 
-  const isHindi = isHindiTrack(track);
   let ytIdToUse = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
 
   // =====================================================================
-  // HINDI TRACKS: JioSaavn 320k is the best source (original Hindi audio)
+  // UNIVERSAL RESOLUTION: Try the most reliable source first
   // =====================================================================
-  if (isHindi) {
-    // Tier 1: JioSaavn 320k Master Audio (best for Hindi/Bollywood)
-    if (!finalUrl && query.length > 1) {
-      try {
-        const saavnResults = await searchJioSaavnDirect(query, 3);
-        if (saavnResults && saavnResults.length > 0) {
-          const top = saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http') && !s.streamUrl.includes('preview')) || saavnResults[0];
-          if (top && top.streamUrl && top.streamUrl.startsWith('http') && !top.streamUrl.includes('preview')) {
-            finalUrl = top.streamUrl;
-            finalSource = 'Studio Master Audio (YouTube)';
-            if (!track.coverUrl || track.coverUrl.includes('pulse-logo')) {
-              track.coverUrl = top.coverUrl;
-            }
+  
+  // Tier 1: Local Backend /api/ytm/stream (MOST RELIABLE — bypasses CORS, decrypts Saavn)
+  try {
+    const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+    const localUrl = ytIdToUse 
+      ? `${localBase}/api/ytm/stream?id=${ytIdToUse}` 
+      : `${localBase}/api/ytm/stream?q=${encodeURIComponent(query)}`;
+    const res = await fetch(localUrl, { signal: AbortSignal.timeout(4000) });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.streamUrl && !json.streamUrl.includes('preview')) {
+        if (!json.title || isSaavnResultMatching({ title: json.title, artist: json.artist || '' }, track)) {
+          finalUrl = json.streamUrl;
+          finalSource = json.source || 'Studio Master Audio (YouTube)';
+        }
+      }
+    }
+  } catch (e) {}
+
+  // Tier 2: JioSaavn Direct (client-side, needs CORS proxy for CDN playback)
+  if (!finalUrl && query.length > 1) {
+    try {
+      const saavnResults = await searchJioSaavnDirect(query, 5);
+      if (saavnResults && saavnResults.length > 0) {
+        const verified = saavnResults.find(s => 
+          s.streamUrl && 
+          s.streamUrl.startsWith('http') && 
+          !s.streamUrl.includes('preview') &&
+          isSaavnResultMatching(s, track)
+        );
+        if (verified) {
+          finalUrl = verified.streamUrl;
+          finalSource = 'Studio Master Audio (YouTube)';
+          if (!track.coverUrl || track.coverUrl.includes('pulse-logo')) {
+            track.coverUrl = verified.coverUrl;
           }
         }
-      } catch (e) {}
-    }
-
-    // Tier 2: YouTube Piped (if track has a YouTube ID)
-    if (!finalUrl && ytIdToUse) {
-      try {
-        const ytm = await resolvePipedAudioStream(ytIdToUse);
-        if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
-          finalUrl = ytm.streamUrl;
-          finalSource = 'Studio Master Audio (YouTube)';
-        }
-      } catch (e) {}
-    }
-  }
-  // =====================================================================
-  // NON-HINDI TRACKS: YouTube is the best source (original language audio)
-  // English, Tamil, Telugu, Kannada, Marathi, Korean, Spanish, etc.
-  // =====================================================================
-  else {
-    // Tier 1: YouTube Piped Opus (BEST for non-Hindi — guaranteed original audio)
-    if (ytIdToUse) {
-      try {
-        const ytm = await resolvePipedAudioStream(ytIdToUse);
-        if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
-          finalUrl = ytm.streamUrl;
-          finalSource = 'Studio Master Audio (YouTube)';
-        }
-      } catch (e) {}
-    }
-
-    // Tier 2: JioSaavn ONLY if result title closely matches (prevents wrong songs)
-    if (!finalUrl && query.length > 1) {
-      try {
-        const saavnResults = await searchJioSaavnDirect(query, 5);
-        if (saavnResults && saavnResults.length > 0) {
-          // Find a result that actually matches the requested song
-          const verified = saavnResults.find(s => 
-            s.streamUrl && 
-            s.streamUrl.startsWith('http') && 
-            !s.streamUrl.includes('preview') &&
-            isSaavnResultMatching(s, track)
-          );
-          if (verified) {
-            finalUrl = verified.streamUrl;
-            finalSource = 'Studio Master Audio (YouTube)';
-            if (!track.coverUrl || track.coverUrl.includes('pulse-logo')) {
-              track.coverUrl = verified.coverUrl;
-            }
-          }
-        }
-      } catch (e) {}
-    }
+      }
+    } catch (e) {}
   }
 
-  // Search YouTube to find a ytId if we still don't have one
+  // Tier 3: YouTube Piped Opus (often blocked by CORS in browsers)
+  if (!finalUrl && ytIdToUse) {
+    try {
+      const ytm = await resolvePipedAudioStream(ytIdToUse);
+      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
+        finalUrl = ytm.streamUrl;
+        finalSource = 'Studio Master Audio (YouTube)';
+      }
+    } catch (e) {}
+  }
+
+  // Tier 4: Search YouTube to find a ytId, then try Piped
   if (!finalUrl && !ytIdToUse) {
     try {
       const s = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 2);
@@ -645,7 +656,6 @@ export async function resolveFullAudioStream(track) {
         ytIdToUse = s[0].ytId;
         track.ytId = ytIdToUse;
 
-        // Try Piped with the newly found YouTube ID
         try {
           const ytm = await resolvePipedAudioStream(ytIdToUse);
           if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
@@ -657,29 +667,20 @@ export async function resolveFullAudioStream(track) {
     } catch (e) {}
   }
 
-  // Tier 3: Local Backend Proxy (/api/ytm/stream) — fast timeout
-  if (!finalUrl) {
-    try {
-      const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
-      const localUrl = ytIdToUse 
-        ? `${localBase}/api/ytm/stream?id=${ytIdToUse}` 
-        : `${localBase}/api/ytm/stream?q=${encodeURIComponent(query)}`;
-      const res = await fetch(localUrl, { signal: AbortSignal.timeout(1500) });
-      if (res.ok) {
-        const json = await res.json();
-        if (json.streamUrl && !json.streamUrl.includes('preview')) {
-          // For non-Hindi tracks from backend, validate the title match
-          if (isHindi || !json.title || isSaavnResultMatching({ title: json.title, artist: json.artist || '' }, track)) {
-            finalUrl = json.streamUrl;
-            finalSource = json.source || 'Studio Master Audio (YouTube)';
-          }
-        }
-      }
-    } catch (e) {}
-  }
-
   if (finalUrl) {
-    const resolved = { streamUrl: finalUrl, source: finalSource, duration: track.duration || 220 };
+    // -----------------------------------------------------------------
+    // CRITICAL PROXY FOR SAAVN CDN (Bypasses Browser 403 Forbidden)
+    // -----------------------------------------------------------------
+    if (finalUrl.includes('saavncdn.com')) {
+      const localBaseUrl = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+      finalUrl = `${localBaseUrl}/api/proxy-stream?url=${encodeURIComponent(finalUrl)}`;
+    }
+
+    const resolved = {
+      streamUrl: finalUrl,
+      duration: track.duration || 220,
+      source: finalSource
+    };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }

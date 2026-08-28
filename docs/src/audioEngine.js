@@ -125,35 +125,51 @@ import { resolvePipedAudioStream } from './extractorService.js';
       }
     };
 
-    // 1. Direct explicit streamUrl on track if already verified
-    if (track.streamUrl && track.streamUrl.startsWith('http') && !track.streamUrl.includes('preview')) {
-      add(track.streamUrl, track.source || 'direct-master-audio', 'master');
+    // 1. Local Backend /api/ytm/stream (MOST RELIABLE — bypasses CORS, returns decrypted Saavn CDN URLs)
+    const title = (track.title || track.name || '').replace(/\s*\([^)]*\)/g, '').trim();
+    const artist = (track.artist || '').split(',')[0].trim();
+    const query = `${title} ${artist}`.trim();
+    const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+
+    try {
+      const localUrl = ytId
+        ? `/api/ytm/stream?id=${ytId}`
+        : `/api/ytm/stream?q=${encodeURIComponent(query)}`;
+      const localExtRes = await fetch(localUrl, { signal: AbortSignal.timeout(4000) });
+      if (localExtRes.ok) {
+        const lData = await localExtRes.json();
+        if (lData.streamUrl) {
+          // Proxy saavncdn URLs through our backend
+          let streamUrl = lData.streamUrl;
+          if (streamUrl.includes('saavncdn.com')) {
+            const origin = (typeof window !== 'undefined' && window.location?.origin) || 'http://localhost:5173';
+            streamUrl = `${origin}/api/proxy-stream?url=${encodeURIComponent(streamUrl)}`;
+          }
+          add(streamUrl, 'pulse-server-ytm-stream', lData.codec || 'mp4/aac');
+        }
+      }
+    } catch (e) {}
+
+    // 2. Direct explicit streamUrl on track if already verified full-length master
+    if (track.streamUrl && 
+        track.streamUrl.startsWith('http') && 
+        !track.streamUrl.includes('preview') && 
+        !track.streamUrl.includes('audio-ssl.itunes.apple.com') && 
+        !track.streamUrl.includes('mzstatic')) {
+      let streamUrl = track.streamUrl;
+      if (streamUrl.includes('saavncdn.com')) {
+        const origin = (typeof window !== 'undefined' && window.location?.origin) || 'http://localhost:5173';
+        streamUrl = `${origin}/api/proxy-stream?url=${encodeURIComponent(streamUrl)}`;
+      }
+      add(streamUrl, track.source || 'direct-master-audio', 'master');
     }
 
-    // 2. YouTube Video ID Extraction via Piped / YTM Extractor (Direct ad-free Opus / M4A)
-    const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+    // 3. YouTube Piped Opus (often blocked by CORS in browsers)
     if (ytId && ytId.length >= 10) {
       try {
         const ytmResolved = await resolvePipedAudioStream(ytId);
         if (ytmResolved && ytmResolved.streamUrl) {
           add(ytmResolved.streamUrl, `ytm-opus-${ytmResolved.bitrate || '160k'}`, ytmResolved.codec || 'opus');
-        }
-      } catch (e) {}
-    }
-
-    // 3. Search YTM Extractor with track title & artist query
-    const title = (track.title || track.name || '').replace(/\s*\([^)]*\)/g, '').trim();
-    const artist = (track.artist || '').split(',')[0].trim();
-    const query = `${title} ${artist}`.trim();
-
-    if (!ytId && query.length > 2) {
-      try {
-        const localExtRes = await fetch(`/api/ytm/stream?q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(2500) });
-        if (localExtRes.ok) {
-          const lData = await localExtRes.json();
-          if (lData.streamUrl) {
-            add(lData.streamUrl, 'pulse-server-ytm-stream', lData.codec || 'opus');
-          }
         }
       } catch (e) {}
     }
