@@ -1,7 +1,8 @@
 {
-  "name": "Pulse Music - by Pushkar Hiremath",
-  "short_name": "Pulse Music",
-  "description": "Pulse Music - Lossless Global Music Streaming with Synchronized Karaoke Lyrics by Pushkar Hiremath",
+  "name": "Pulse Music",
+  "short_name": "Pulse",
+  "description": "Pulse Music - High-Fidelity Lossless Global Music Streaming with Live Synchronized Lyrics by Pushkar Hiremath",
+  "id": "/pulse-music",
   "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",
@@ -9,8 +10,39 @@
   "orientation": "portrait-primary",
   "background_color": "#0b0d14",
   "theme_color": "#8b5cf6",
+  "categories": ["music", "entertainment", "audio"],
   "prefer_related_applications": false,
   "icons": [
+    {
+      "src": "./icons/icon-16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-64.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "./icons/icon-192.png",
       "sizes": "192x192",
@@ -18,25 +50,50 @@
       "purpose": "any maskable"
     },
     {
+      "src": "./icons/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "./icons/icon-512.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-1024.png",
+      "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
   "shortcuts": [
     {
-      "name": "Search Music",
+      "name": "Search Global Music",
       "short_name": "Search",
-      "description": "Search global music catalog on Pulse",
-      "url": "./index.html?view=search",
+      "description": "Instant search across millions of tracks and artists",
+      "url": "./index.html?view=search-view",
       "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Liked Songs",
-      "short_name": "Liked",
-      "description": "View your saved favorites",
-      "url": "./index.html?view=liked",
+      "name": "Your Liked Songs",
+      "short_name": "Liked Songs",
+      "description": "View and play your saved favorites",
+      "url": "./index.html?view=library",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Trending Hits",
+      "short_name": "Trending",
+      "description": "Explore global trending songs",
+      "url": "./index.html?view=home",
       "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
     }
   ]

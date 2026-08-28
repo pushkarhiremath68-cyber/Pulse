@@ -18,6 +18,7 @@
     "dist:mac": "npm run build && python scripts/build_release_packages.py",
     "dist:mac-windows-host": "npm run build && npx electron-packager . \"Pulse Music\" --platform=darwin --arch=universal --out=dist/mac-app --app-version=2.4.0 --overwrite",
     "dist:win": "npm run build && npx electron-packager . \"Pulse Music\" --platform=win32 --arch=x64 --out=dist/win-app --app-version=2.4.0 --overwrite --asar && node scripts/build_win_installer.js",
+    "shortcut": "python scripts/create_all_platform_shortcuts.py",
     "dist:linux": "npm run build && python scripts/build_release_packages.py",
     "dist:android": "npm run build && python scripts/build_valid_android_apk.py",
     "dist:ios": "npm run build && npx cap sync ios",

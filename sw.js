@@ -1,29 +1,33 @@
-const CACHE_NAME = 'pulse-music-cache-v2';
-const urlsToCache = [
+const CACHE_NAME = 'pulse-music-v2.4.0';
+const STATIC_ASSETS = [
   './',
   './index.html',
-  './src/style.css',
-  './src/main.js',
-  './pulse-logo.png'
+  './manifest.json',
+  './pulse-logo.png',
+  './pulse-logo.svg',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './icons/icon.ico'
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(STATIC_ASSETS).catch((err) => {
+        console.warn('[Pulse SW] Non-blocking cache warning:', err);
+      });
+    })
   );
   self.skipWaiting();
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
+    caches.keys().then((keys) => {
       return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
+        keys.map((key) => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
           }
         })
       );
@@ -32,31 +36,46 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
-  if (event.request.url.includes('/api/') || event.request.url.includes('lrclib') || event.request.url.includes('audius') || event.request.url.includes('jamendo') || event.request.url.includes('saavn')) return;
+  const url = new URL(event.request.url);
+
+  // Do not intercept external streaming/API audio requests
+  if (
+    url.pathname.startsWith('/api/') ||
+    url.hostname.includes('saavn') ||
+    url.hostname.includes('youtube') ||
+    url.hostname.includes('googlevideo') ||
+    url.hostname.includes('audius') ||
+    url.hostname.includes('jamendo') ||
+    url.hostname.includes('lrclib')
+  ) {
+    return;
+  }
 
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request).then(
-          response => {
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-            var responseToCache = response.clone();
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-            return response;
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        // Fetch fresh copy in background for next time
+        fetch(event.request).then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
           }
-        );
+        }).catch(() => {});
+        return cachedResponse;
+      }
+      return fetch(event.request).then((networkResponse) => {
+        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+          return networkResponse;
+        }
+        const responseToCache = networkResponse.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
+        return networkResponse;
       }).catch(() => {
-        // Fallback for offline if not cached
-      })
+        if (event.request.headers.get('accept')?.includes('text/html')) {
+          return caches.match('./index.html');
+        }
+      });
+    })
   );
 });

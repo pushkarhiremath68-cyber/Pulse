@@ -2,6 +2,7 @@
  * Pulse Music - Comprehensive Multi-Genre & Multilingual Catalog Service
  * Provides complete catalog hierarchies, mood shelves, language hubs,
  * curated playlist mixes, quick picks, and featured artists with rich music wallpapers.
+ * 100% Studio Master Audio with Authentic Vocals & Zero 30-Second Limits.
  */
 
 export const CATALOG_CATEGORIES = [
@@ -12,14 +13,70 @@ export const CATALOG_CATEGORIES = [
     icon: "fa-fire-flame-curved",
     color: "#f43f5e",
     tracks: [
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", cover: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840, genre: "Devotional / Sanskrit" },
       { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200, genre: "Pop / Synthwave" },
       { id: "ytm-34Na4j8HLws", ytId: "34Na4j8HLws", title: "Starboy", artist: "The Weeknd ft. Daft Punk", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg", duration: 230, genre: "Pop / R&B" },
+      { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 175, genre: "Pop / Disco" },
+      { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg", duration: 196, genre: "Alt Pop" },
+      { id: "ytm-kPa7bsKwL-c", ytId: "kPa7bsKwL-c", title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1a/ff/f6/1afff69c-0979-37ea-630e-eefb92c431f2/24UMGIM92429.rgb.jpg/1000x1000bb.jpg", duration: 251, genre: "Pop Soul" },
       { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233, genre: "Pop" },
       { id: "ytm-ic8j13piAhQ", ytId: "ic8j13piAhQ", title: "Cruel Summer", artist: "Taylor Swift", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg", duration: 178, genre: "Pop" },
       { id: "ytm-H5v3kku4y6Q", ytId: "H5v3kku4y6Q", title: "As It Was", artist: "Harry Styles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/1000x1000bb.jpg", duration: 167, genre: "Indie Pop" },
       { id: "ytm-G7KNmW9a75Y", ytId: "G7KNmW9a75Y", title: "Flowers", artist: "Miley Cyrus", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8c/67/ff/8c67ff91-31c3-3fef-1884-ce3ec89f3af4/196589946874.jpg/1000x1000bb.jpg", duration: 199, genre: "Pop" },
+      { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg", duration: 204, genre: "Alternative Rock" },
+      { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258, genre: "Hip-Hop" },
       { id: "ytm-VAdGW7QDJiU", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1000x1000bb.jpg", duration: 198, genre: "Bollywood" },
       { id: "ytm-BddP6PYo2gs", ytId: "BddP6PYo2gs", title: "Kesariya", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg", duration: 268, genre: "Bollywood" }
+    ]
+  },
+  {
+    id: "cat-devotional",
+    title: "Devotional & Sacred Stotrams",
+    subtitle: "Spiritual chants, sacred mantras, healing stotrams and divine peace",
+    icon: "fa-om",
+    color: "#f59e0b",
+    tracks: [
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", cover: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840, genre: "Devotional / Sanskrit Stotram" },
+      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", cover: "https://i.ytimg.com/vi/x0rIbgR41Z4/hqdefault.jpg", duration: 1800, genre: "Devotional" },
+      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", cover: "https://i.ytimg.com/vi/Z943lUvW0G4/hqdefault.jpg", duration: 720, genre: "Devotional" },
+      { id: "ytm-tL4w5gZc_jE", ytId: "tL4w5gZc_jE", title: "Hanuman Chalisa", artist: "Hariharan", cover: "https://i.ytimg.com/vi/tL4w5gZc_jE/hqdefault.jpg", duration: 580, genre: "Devotional" },
+      { id: "ytm-U3mQ0v5r3pY", ytId: "U3mQ0v5r3pY", title: "Shiv Tandav Stotram", artist: "Shankar Mahadevan", cover: "https://i.ytimg.com/vi/U3mQ0v5r3pY/hqdefault.jpg", duration: 554, genre: "Devotional" }
+    ]
+  },
+  {
+    id: "cat-english-pop",
+    title: "Global English Pop & Chart Masters",
+    subtitle: "Authentic studio recordings of international chart-topping masterpieces",
+    icon: "fa-earth-americas",
+    color: "#38bdf8",
+    tracks: [
+      { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200, genre: "Synthwave" },
+      { id: "ytm-ic8j13piAhQ", ytId: "ic8j13piAhQ", title: "Cruel Summer", artist: "Taylor Swift", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg", duration: 178, genre: "Pop" },
+      { id: "ytm-e-ORhEE9VVg", ytId: "e-ORhEE9VVg", title: "Blank Space", artist: "Taylor Swift", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a7/98/d8/a798d867-344d-2bf2-fbfe-d2d1412dcef8/14UMDIM03793.rgb.jpg/1000x1000bb.jpg", duration: 231, genre: "Pop" },
+      { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 175, genre: "Pop" },
+      { id: "ytm-cF1Na4AIecM", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 186, genre: "Pop" },
+      { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg", duration: 196, genre: "Alt Pop" },
+      { id: "ytm-DyDfgMOUjCI", ytId: "DyDfgMOUjCI", title: "Bad Guy", artist: "Billie Eilish", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/80/7e/17/807e174a-2fa9-e932-a50d-d42f8832a829/19UMGIM08994.rgb.jpg/1000x1000bb.jpg", duration: 194, genre: "Electropop" },
+      { id: "ytm-TUVcZfQe-Kw", ytId: "TUVcZfQe-Kw", title: "Levitating", artist: "Dua Lipa", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d5/8b/1a/d58b1a1a-a82f-8700-1c4b-3d9a1758f8b8/190295286101.jpg/1000x1000bb.jpg", duration: 203, genre: "Disco Pop" },
+      { id: "ytm-PMivT7MJ41M", ytId: "PMivT7MJ41M", title: "That's What I Like", artist: "Bruno Mars", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8c/b8/b5/8cb8b51d-93cb-9fb3-8321-df13a40498ec/075679904324.jpg/1000x1000bb.jpg", duration: 206, genre: "Funk / R&B" },
+      { id: "ytm-hLQl3WQQoQ0", ytId: "hLQl3WQQoQ0", title: "Someone Like You", artist: "Adele", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/24/79/4b2479e0-8260-2ff0-6cf9-c3b6f86c2e39/886443208742.jpg/1000x1000bb.jpg", duration: 285, genre: "Ballad" },
+      { id: "ytm-rYEDA3JcQqw", ytId: "rYEDA3JcQqw", title: "Rolling in the Deep", artist: "Adele", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/24/79/4b2479e0-8260-2ff0-6cf9-c3b6f86c2e39/886443208742.jpg/1000x1000bb.jpg", duration: 228, genre: "Soul" },
+      { id: "ytm-ApXoWvfEYVU", ytId: "ApXoWvfEYVU", title: "Sunflower", artist: "Post Malone ft. Swae Lee", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b8/6f/a6/b86fa644-8cb2-2051-ce63-ee65275e5f03/18UMGIM68512.rgb.jpg/1000x1000bb.jpg", duration: 158, genre: "Hip-Hop Pop" }
+    ]
+  },
+  {
+    id: "cat-hiphop",
+    title: "Hip-Hop & Rap Master Anthems",
+    subtitle: "Heavy flow, iconic beats, and platinum studio anthems",
+    icon: "fa-microphone",
+    color: "#f59e0b",
+    tracks: [
+      { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258, genre: "Hip-Hop" },
+      { id: "ytm-_Yhyp-_hX2s", ytId: "_Yhyp-_hX2s", title: "Lose Yourself", artist: "Eminem", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/21/df/b5/21dfb572-c2cb-0568-18e5-3d449339e160/00606949352723.rgb.jpg/1000x1000bb.jpg", duration: 326, genre: "Hip-Hop" },
+      { id: "ytm-YVkUvmDQ3HY", ytId: "YVkUvmDQ3HY", title: "Without Me", artist: "Eminem", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/31/54/6a/31546ac5-a0ee-6c3e-d90f-90e6378e4745/00606949329022.rgb.jpg/1000x1000bb.jpg", duration: 290, genre: "Hip-Hop" },
+      { id: "ytm-uelHwf8o7_U", ytId: "uelHwf8o7_U", title: "Love The Way You Lie", artist: "Eminem ft. Rihanna", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/38/c4/fa/38c4fa0d-fe3f-08e1-512c-15494d4d62b9/10UMGIM19659.rgb.jpg/1000x1000bb.jpg", duration: 263, genre: "Hip-Hop" },
+      { id: "ytm-wXhTHyIgQ_U", ytId: "wXhTHyIgQ_U", title: "Circles", artist: "Post Malone", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0c/33/c7/0c33c7f9-6799-318e-49b0-9b48b7a66f0e/19UMGIM78942.rgb.jpg/1000x1000bb.jpg", duration: 215, genre: "Rap Rock" },
+      { id: "ytm-kXYiU_JCYtU", ytId: "kXYiU_JCYtU", title: "Numb / Encore", artist: "Linkin Park & Jay-Z", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8c/ab/2e/8cab2ea3-490b-a9b5-94db-6e1fe30739c4/d191ed5d-23c7-4769-99bc-1385e103ece1.jpg/1000x1000bb.jpg", duration: 205, genre: "Hip-Hop Rock" }
     ]
   },
   {
@@ -33,10 +90,44 @@ export const CATALOG_CATEGORIES = [
       { id: "ytm-60ItHLz5WEA", ytId: "60ItHLz5WEA", title: "Faded", artist: "Alan Walker", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0d/a3/1a/0da31af7-d0ff-9bee-c427-1b6d0336f6fc/886446321981.jpg/1000x1000bb.jpg", duration: 212, genre: "Electro" },
       { id: "ytm-YqeW9_5kURI", ytId: "YqeW9_5kURI", title: "Lean On", artist: "Major Lazer & DJ Snake", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/3a/9b/bd/3a9bbdba-5829-91c8-1349-cc04cdaf3423/653738030629_Cover.jpg/1000x1000bb.jpg", duration: 176, genre: "Dance" },
       { id: "ytm-JRfuAukYTKg", ytId: "JRfuAukYTKg", title: "Animals", artist: "Martin Garrix", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6e/1e/f0/6e1ef055-195a-bb73-d5a8-5926058366a5/8712944577525.png/1000x1000bb.jpg", duration: 185, genre: "Big Room House" },
-      { id: "ytm-kXYiU_JCYtU", ytId: "kXYiU_JCYtU", title: "Numb / Encore", artist: "Linkin Park & Jay-Z", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8c/ab/2e/8cab2ea3-490b-a9b5-94db-6e1fe30739c4/d191ed5d-23c7-4769-99bc-1385e103ece1.jpg/1000x1000bb.jpg", duration: 205, genre: "Rock / Hip-Hop" },
       { id: "ytm-pAgnJDJN4VA", ytId: "pAgnJDJN4VA", title: "Levels", artist: "Avicii", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/67/38/43/67384338-9ed7-fc68-5927-93f1fcf4705d/11UMGIM36900.rgb.jpg/1000x1000bb.jpg", duration: 220, genre: "EDM" },
       { id: "ytm-IcrbM1l_BoI", ytId: "IcrbM1l_BoI", title: "Wake Me Up", artist: "Avicii", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/5b/1e/185b1ef5-5d97-19d8-aebf-8e29e41874ef/13UAAIM59255.rgb.jpg/1000x1000bb.jpg", duration: 247, genre: "Progressive House" },
+      { id: "ytm-PT2_F-1esPk", ytId: "PT2_F-1esPk", title: "Closer", artist: "The Chainsmokers ft. Halsey", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/2f/b4/052fb4aa-a82f-8700-1c4b-3d9a1758f8b8/886445989410.jpg/1000x1000bb.jpg", duration: 245, genre: "Electropop" },
       { id: "ytm-09R8_2nJtjg", ytId: "09R8_2nJtjg", title: "Sugar", artist: "Maroon 5", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b7/25/76/b72576f1-072e-3da2-60d5-2724a9bccf4a/14UMGIM31673.rgb.jpg/1000x1000bb.jpg", duration: 235, genre: "Pop Funk" }
+    ]
+  },
+  {
+    id: "cat-rock",
+    title: "Rock Legends & Alternative Anthems",
+    subtitle: "Timeless guitar solos, soaring vocals and stadium power chords",
+    icon: "fa-guitar",
+    color: "#06b6d4",
+    tracks: [
+      { id: "ytm-fJ9rUzIMcZQ", ytId: "fJ9rUzIMcZQ", title: "Bohemian Rhapsody", artist: "Queen", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 354, genre: "Classic Rock" },
+      { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216, genre: "Alternative Rock" },
+      { id: "ytm-kXYiU_JCYtU", ytId: "kXYiU_JCYtU", title: "Numb", artist: "Linkin Park", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b8/6f/a6/b86fa644-8cb2-2051-ce63-ee65275e5f03/093624948988.jpg/1000x1000bb.jpg", duration: 187, genre: "Alternative Rock" },
+      { id: "ytm-hTWKbfoikeg", ytId: "hTWKbfoikeg", title: "Smells Like Teen Spirit", artist: "Nirvana", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/fd/b9/95fdb9b2-6d2b-92a6-97f2-51c1a6d77f1a/00602527874609.rgb.jpg/1000x1000bb.jpg", duration: 301, genre: "Grunge" },
+      { id: "ytm-1w7OgIMMRc4", ytId: "1w7OgIMMRc4", title: "Sweet Child O' Mine", artist: "Guns N' Roses", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/56/47/b7/5647b700-6b9d-9e72-ec9f-51140b6d4492/00602567673781.rgb.jpg/1000x1000bb.jpg", duration: 303, genre: "Hard Rock" },
+      { id: "ytm-v2AC41dglnM", ytId: "v2AC41dglnM", title: "Thunderstruck", artist: "AC/DC", cover: "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/bb/a2/f0/bba2f0d7-4d9e-c617-d49e-3ae02fd5d440/dj.xbkfgllk.jpg/1000x1000bb.jpg", duration: 292, genre: "Hard Rock" },
+      { id: "ytm-dvgZkm1xWPE", ytId: "dvgZkm1xWPE", title: "Viva La Vida", artist: "Coldplay", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/c2/79/33c27940-0255-a0d0-4bf6-0eb0393246eb/5099921211459.jpg/1000x1000bb.jpg", duration: 242, genre: "Alt Rock" },
+      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/2f/b4/052fb4aa-a82f-8700-1c4b-3d9a1758f8b8/724352778358.jpg/1000x1000bb.jpg", duration: 269, genre: "Alt Rock" }
+    ]
+  },
+  {
+    id: "cat-romance",
+    title: "Soulful Acoustic & Romantic Hits",
+    subtitle: "Heartwarming melodies, acoustic ballads and love anthems",
+    icon: "fa-heart",
+    color: "#ec4899",
+    tracks: [
+      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 263, genre: "Acoustic Pop" },
+      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/71/b9/2271b906-85b3-06ee-e611-489b91df0b73/886444160742.jpg/1000x1000bb.jpg", duration: 269, genre: "Soul / R&B" },
+      { id: "ytm-LPn0KStbm9M", ytId: "LPn0KStbm9M", title: "Someone You Loved", artist: "Lewis Capaldi", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/92/d7/8f/92d78fb1-df3d-049e-c81d-7022808b151f/19UMGIM02973.rgb.jpg/1000x1000bb.jpg", duration: 182, genre: "Ballad" },
+      { id: "ytm-RBumgq5yVrA", ytId: "RBumgq5yVrA", title: "Let Her Go", artist: "Passenger", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/71/df/b5/71dfb572-c2cb-0568-18e5-3d449339e160/886443425989.jpg/1000x1000bb.jpg", duration: 252, genre: "Folk Pop" },
+      { id: "ytm-k4V3Mo61fJM", ytId: "k4V3Mo61fJM", title: "Fix You", artist: "Coldplay", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4f/90/a6/4f90a6e0-24da-96ce-63d1-678fe01ad394/724347478652.jpg/1000x1000bb.jpg", duration: 295, genre: "Acoustic" },
+      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262, genre: "Bollywood Romance" },
+      { id: "ytm-ElZfdU54Cp8", ytId: "ElZfdU54Cp8", title: "Apna Bana Le", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/1000x1000bb.jpg", duration: 201, genre: "Bollywood Romance" },
+      { id: "ytm-5mqFmNl11-M", ytId: "5mqFmNl11-M", title: "O Maahi", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cf/cf/af/cfcfaf49-f337-eeab-2351-dd0a137dc740/8902894362139_cover.jpg/1000x1000bb.jpg", duration: 233, genre: "Bollywood" }
     ]
   },
   {
@@ -55,38 +146,6 @@ export const CATALOG_CATEGORIES = [
     ]
   },
   {
-    id: "cat-romance",
-    title: "Soulful Acoustic & Romantic Hits",
-    subtitle: "Heartwarming melodies, acoustic ballads and love anthems",
-    icon: "fa-heart",
-    color: "#ec4899",
-    tracks: [
-      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 263, genre: "Acoustic Pop" },
-      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262, genre: "Bollywood Romance" },
-      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/71/b9/2271b906-85b3-06ee-e611-489b91df0b73/886444160742.jpg/1000x1000bb.jpg", duration: 269, genre: "Soul / R&B" },
-      { id: "ytm-ElZfdU54Cp8", ytId: "ElZfdU54Cp8", title: "Apna Bana Le", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/1000x1000bb.jpg", duration: 201, genre: "Bollywood Romance" },
-      { id: "ytm-5mqFmNl11-M", ytId: "5mqFmNl11-M", title: "O Maahi", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cf/cf/af/cfcfaf49-f337-eeab-2351-dd0a137dc740/8902894362139_cover.jpg/1000x1000bb.jpg", duration: 233, genre: "Bollywood" },
-      { id: "ytm-LPn0KStbm9M", ytId: "LPn0KStbm9M", title: "Someone You Loved", artist: "Lewis Capaldi", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/92/d7/8f/92d78fb1-df3d-049e-c81d-7022808b151f/19UMGIM02973.rgb.jpg/1000x1000bb.jpg", duration: 182, genre: "Ballad" },
-      { id: "ytm-Yx5V6l9Q-G8", ytId: "Yx5V6l9Q-G8", title: "Neene Neene", artist: "Armaan Malik", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3a/ec/34/3aec34e1-fe78-1078-5946-b7b75844c38f/191018009687.jpg/1000x1000bb.jpg", duration: 200, genre: "Kannada Melody" },
-      { id: "ytm-31383g2K6nE", ytId: "31383g2K6nE", title: "Darshana", artist: "Hesham Abdul Wahab", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/69/26/34/6926341a-b85f-f853-de47-cb6fa81544aa/cover.jpg/1000x1000bb.jpg", duration: 224, genre: "Malayalam" }
-    ]
-  },
-  {
-    id: "cat-rock",
-    title: "Rock Legends & Alternative Anthems",
-    subtitle: "Timeless guitar solos, soaring vocals and stadium power chords",
-    icon: "fa-guitar",
-    color: "#06b6d4",
-    tracks: [
-      { id: "ytm-fJ9rUzIMcZQ", ytId: "fJ9rUzIMcZQ", title: "Bohemian Rhapsody", artist: "Queen", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 354, genre: "Classic Rock" },
-      { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216, genre: "Alternative Rock" },
-      { id: "ytm-hTWKbfoikeg", ytId: "hTWKbfoikeg", title: "Smells Like Teen Spirit", artist: "Nirvana", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/fd/b9/95fdb9b2-6d2b-92a6-97f2-51c1a6d77f1a/00602527874609.rgb.jpg/1000x1000bb.jpg", duration: 301, genre: "Grunge" },
-      { id: "ytm-1w7OgIMMRc4", ytId: "1w7OgIMMRc4", title: "Sweet Child O' Mine", artist: "Guns N' Roses", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/56/47/b7/5647b700-6b9d-9e72-ec9f-51140b6d4492/00602567673781.rgb.jpg/1000x1000bb.jpg", duration: 303, genre: "Hard Rock" },
-      { id: "ytm-v2AC41dglnM", ytId: "v2AC41dglnM", title: "Thunderstruck", artist: "AC/DC", cover: "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/bb/a2/f0/bba2f0d7-4d9e-c617-d49e-3ae02fd5d440/dj.xbkfgllk.jpg/1000x1000bb.jpg", duration: 292, genre: "Hard Rock" },
-      { id: "ytm-_ao2u7F_Qzg", ytId: "_ao2u7F_Qzg", title: "In the Shadows", artist: "The Rasmus", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/53/a8/47/53a84700-1148-ea61-85c0-7461383d7c2b/cover.jpg/1000x1000bb.jpg", duration: 246, genre: "Rock" }
-    ]
-  },
-  {
     id: "cat-party",
     title: "Club Nights & Party Starters",
     subtitle: "High-octane floor fillers, dancehall rhythms and club bangers",
@@ -94,16 +153,61 @@ export const CATALOG_CATEGORIES = [
     color: "#10b981",
     tracks: [
       { id: "ytm-VNs_cCtdbPc", ytId: "VNs_cCtdbPc", title: "Brown Munde", artist: "AP Dhillon, Gurinder Gill", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg", duration: 267, genre: "Punjabi Urban" },
-      { id: "ytm-99e_0_Z-Bw0", ytId: "99e_0_Z-Bw0", title: "Zingaat", artist: "Ajay-Atul", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/66/5a/e8/665ae8ad-1aab-5d0c-3ca9-4fa062b1606c/8718857670711.png/1000x1000bb.jpg", duration: 230, genre: "Marathi Dance" },
-      { id: "ytm-8FAUEv_E_xU", ytId: "8FAUEv_E_xU", title: "Arabic Kuthu", artist: "Anirudh Ravichander", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg", duration: 279, genre: "Kollywood Dance" },
-      { id: "ytm-OsU0CGZoV8E", ytId: "OsU0CGZoV8E", title: "Naatu Naatu", artist: "Rahul Sipligunj, Kaala Bhairava", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/dd/39/14/dd3914e5-a2f3-b355-51f3-9a1f0e3ca246/8903431853592_cover.jpg/1000x1000bb.jpg", duration: 215, genre: "Tollywood Dance" },
       { id: "ytm-kJQP7kiw5Fk", ytId: "kJQP7kiw5Fk", title: "Despacito", artist: "Luis Fonsi ft. Daddy Yankee", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e2/ef/f0/e2eff0bc-c51d-7de5-9280-6891ddcee71b/18UMGIM85289.rgb.jpg/1000x1000bb.jpg", duration: 229, genre: "Latin Pop" },
+      { id: "ytm-8FAUEv_E_xU", ytId: "8FAUEv_E_xU", title: "Arabic Kuthu", artist: "Anirudh Ravichander", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg", duration: 279, genre: "Kollywood Dance" },
+      { id: "ytm-99e_0_Z-Bw0", ytId: "99e_0_Z-Bw0", title: "Zingaat", artist: "Ajay-Atul", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/66/5a/e8/665ae8ad-1aab-5d0c-3ca9-4fa062b1606c/8718857670711.png/1000x1000bb.jpg", duration: 230, genre: "Marathi Dance" },
+      { id: "ytm-OsU0CGZoV8E", ytId: "OsU0CGZoV8E", title: "Naatu Naatu", artist: "Rahul Sipligunj, Kaala Bhairava", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/dd/39/14/dd3914e5-a2f3-b355-51f3-9a1f0e3ca246/8903431853592_cover.jpg/1000x1000bb.jpg", duration: 215, genre: "Tollywood Dance" },
       { id: "ytm-d4OsvFi6mms", ytId: "d4OsvFi6mms", title: "Chogada", artist: "Darshan Raval", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/af/69/79/af697907-7447-e35b-5446-40d3cb3e1f64/8903431684981_cover.jpg/1000x1000bb.jpg", duration: 247, genre: "Gujarati Garba" }
     ]
   }
 ];
 
 export const LANGUAGE_PLAYLISTS = [
+  {
+    id: "lang-english",
+    meta: { title: "Global English Hits & Billboard Top 50", icon: "fa-globe", color: "#3b82f6", subtitle: "Official studio masters by The Weeknd, Taylor Swift, Eminem, Billie Eilish & more" },
+    tracks: [
+      { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
+      { id: "ytm-34Na4j8HLws", ytId: "34Na4j8HLws", title: "Starboy", artist: "The Weeknd ft. Daft Punk", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg", duration: 230 },
+      { id: "ytm-yzTuBuRdAyA", ytId: "yzTuBuRdAyA", title: "The Hills", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/30/05/1e/30051e57-a63a-3acc-4b30-42568293f5f7/15UMGIM36514.rgb.jpg/1000x1000bb.jpg", duration: 242 },
+      { id: "ytm-ic8j13piAhQ", ytId: "ic8j13piAhQ", title: "Cruel Summer", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg", duration: 178 },
+      { id: "ytm-e-ORhEE9VVg", ytId: "e-ORhEE9VVg", title: "Blank Space", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a7/98/d8/a798d867-344d-2bf2-fbfe-d2d1412dcef8/14UMDIM03793.rgb.jpg/1000x1000bb.jpg", duration: 231 },
+      { id: "ytm-b1kbLwvqugk", ytId: "b1kbLwvqugk", title: "Anti-Hero", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/f7/a9/b6/f7a9b6c0-671c-3083-d023-e5786b6a2245/22UMGIM95147.rgb.jpg/1000x1000bb.jpg", duration: 200 },
+      { id: "ytm-8xg3vE8Ie_E", ytId: "8xg3vE8Ie_E", title: "Love Story", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/43/40/e3/4340e340-9fe4-d193-c918-0a0ad058102a/00843930007134.rgb.jpg/1000x1000bb.jpg", duration: 235 },
+      { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233 },
+      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 263 },
+      { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258 },
+      { id: "ytm-_Yhyp-_hX2s", ytId: "_Yhyp-_hX2s", title: "Lose Yourself", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/21/df/b5/21dfb572-c2cb-0568-18e5-3d449339e160/00606949352723.rgb.jpg/1000x1000bb.jpg", duration: 326 },
+      { id: "ytm-YVkUvmDQ3HY", ytId: "YVkUvmDQ3HY", title: "Without Me", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/31/54/6a/31546ac5-a0ee-6c3e-d90f-90e6378e4745/00606949329022.rgb.jpg/1000x1000bb.jpg", duration: 290 },
+      { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg", duration: 204 },
+      { id: "ytm-mWRsgZuwf_8", ytId: "mWRsgZuwf_8", title: "Demons", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/58/01/21/58012170-659f-dcf8-6617-64010372df3b/12UMGIM22363.rgb.jpg/1000x1000bb.jpg", duration: 177 },
+      { id: "ytm-TO-_3tck2tg", ytId: "TO-_3tck2tg", title: "Bones", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/3d/bf/9a/3dbf9a1f-fca1-dfeb-c42e-13c55d045d47/22UMGIM16413.rgb.jpg/1000x1000bb.jpg", duration: 165 },
+      { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 175 },
+      { id: "ytm-cF1Na4AIecM", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 186 },
+      { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg", duration: 196 },
+      { id: "ytm-DyDfgMOUjCI", ytId: "DyDfgMOUjCI", title: "Bad Guy", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/80/7e/17/807e174a-2fa9-e932-a50d-d42f8832a829/19UMGIM08994.rgb.jpg/1000x1000bb.jpg", duration: 194 },
+      { id: "ytm-kPa7bsKwL-c", ytId: "kPa7bsKwL-c", title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1a/ff/f6/1afff69c-0979-37ea-630e-eefb92c431f2/24UMGIM92429.rgb.jpg/1000x1000bb.jpg", duration: 251 },
+      { id: "ytm-PMivT7MJ41M", ytId: "PMivT7MJ41M", title: "That's What I Like", artist: "Bruno Mars", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8c/b8/b5/8cb8b51d-93cb-9fb3-8321-df13a40498ec/075679904324.jpg/1000x1000bb.jpg", duration: 206 },
+      { id: "ytm-hLQl3WQQoQ0", ytId: "hLQl3WQQoQ0", title: "Someone Like You", artist: "Adele", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/24/79/4b2479e0-8260-2ff0-6cf9-c3b6f86c2e39/886443208742.jpg/1000x1000bb.jpg", duration: 285 },
+      { id: "ytm-rYEDA3JcQqw", ytId: "rYEDA3JcQqw", title: "Rolling in the Deep", artist: "Adele", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/24/79/4b2479e0-8260-2ff0-6cf9-c3b6f86c2e39/886443208742.jpg/1000x1000bb.jpg", duration: 228 },
+      { id: "ytm-H5v3kku4y6Q", ytId: "H5v3kku4y6Q", title: "As It Was", artist: "Harry Styles", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/1000x1000bb.jpg", duration: 167 },
+      { id: "ytm-G7KNmW9a75Y", ytId: "G7KNmW9a75Y", title: "Flowers", artist: "Miley Cyrus", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8c/67/ff/8c67ff91-31c3-3fef-1884-ce3ec89f3af4/196589946874.jpg/1000x1000bb.jpg", duration: 199 },
+      { id: "ytm-TUVcZfQe-Kw", ytId: "TUVcZfQe-Kw", title: "Levitating", artist: "Dua Lipa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d5/8b/1a/d58b1a1a-a82f-8700-1c4b-3d9a1758f8b8/190295286101.jpg/1000x1000bb.jpg", duration: 203 },
+      { id: "ytm-ApXoWvfEYVU", ytId: "ApXoWvfEYVU", title: "Sunflower", artist: "Post Malone ft. Swae Lee", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b8/6f/a6/b86fa644-8cb2-2051-ce63-ee65275e5f03/18UMGIM68512.rgb.jpg/1000x1000bb.jpg", duration: 158 },
+      { id: "ytm-wXhTHyIgQ_U", ytId: "wXhTHyIgQ_U", title: "Circles", artist: "Post Malone", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0c/33/c7/0c33c7f9-6799-318e-49b0-9b48b7a66f0e/19UMGIM78942.rgb.jpg/1000x1000bb.jpg", duration: 215 },
+      { id: "ytm-dvgZkm1xWPE", ytId: "dvgZkm1xWPE", title: "Viva La Vida", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/c2/79/33c27940-0255-a0d0-4bf6-0eb0393246eb/5099921211459.jpg/1000x1000bb.jpg", duration: 242 },
+      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/2f/b4/052fb4aa-a82f-8700-1c4b-3d9a1758f8b8/724352778358.jpg/1000x1000bb.jpg", duration: 269 },
+      { id: "ytm-k4V3Mo61fJM", ytId: "k4V3Mo61fJM", title: "Fix You", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4f/90/a6/4f90a6e0-24da-96ce-63d1-678fe01ad394/724347478652.jpg/1000x1000bb.jpg", duration: 295 },
+      { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216 },
+      { id: "ytm-kXYiU_JCYtU", ytId: "kXYiU_JCYtU", title: "Numb", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b8/6f/a6/b86fa644-8cb2-2051-ce63-ee65275e5f03/093624948988.jpg/1000x1000bb.jpg", duration: 187 },
+      { id: "ytm-fJ9rUzIMcZQ", ytId: "fJ9rUzIMcZQ", title: "Bohemian Rhapsody", artist: "Queen", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 354 },
+      { id: "ytm-1_kZ47Lh60s", ytId: "1_kZ47Lh60s", title: "Titanium", artist: "David Guetta ft. Sia", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/1000x1000bb.jpg", duration: 245 },
+      { id: "ytm-60ItHLz5WEA", ytId: "60ItHLz5WEA", title: "Faded", artist: "Alan Walker", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0d/a3/1a/0da31af7-d0ff-9bee-c427-1b6d0336f6fc/886446321981.jpg/1000x1000bb.jpg", duration: 212 },
+      { id: "ytm-IcrbM1l_BoI", ytId: "IcrbM1l_BoI", title: "Wake Me Up", artist: "Avicii", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/5b/1e/185b1ef5-5d97-19d8-aebf-8e29e41874ef/13UAAIM59255.rgb.jpg/1000x1000bb.jpg", duration: 247 },
+      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/71/b9/2271b906-85b3-06ee-e611-489b91df0b73/886444160742.jpg/1000x1000bb.jpg", duration: 269 },
+      { id: "ytm-LPn0KStbm9M", ytId: "LPn0KStbm9M", title: "Someone You Loved", artist: "Lewis Capaldi", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/92/d7/8f/92d78fb1-df3d-049e-c81d-7022808b151f/19UMGIM02973.rgb.jpg/1000x1000bb.jpg", duration: 182 }
+    ]
+  },
   {
     id: "lang-hindi",
     meta: { title: "Hindi Bollywood Chartbusters", icon: "fa-music", color: "#ff5722", subtitle: "Top trending Bollywood & romantic hits" },
@@ -116,20 +220,6 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-SbAILuIeFqc", ytId: "SbAILuIeFqc", title: "Satranga", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/ad/5e/dbad5e8b-0bee-d962-92d4-021c90e375ac/8902894362092_cover.jpg/1000x1000bb.jpg", duration: 271 },
       { id: "ytm-8Vnm_uN_3oA", ytId: "8Vnm_uN_3oA", title: "Heeriye", artist: "Jasleen Royal, Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f0/8c/2a/f08c2aeb-3903-8738-d0a5-8c2e4547eed7/5054197711039.jpg/1000x1000bb.jpg", duration: 194 },
       { id: "ytm-t5MlnGOKGDI", ytId: "t5MlnGOKGDI", title: "Pehle Bhi Main", artist: "Vishal Mishra", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/ad/5e/dbad5e8b-0bee-d962-92d4-021c90e375ac/8902894362092_cover.jpg/1000x1000bb.jpg", duration: 250 }
-    ]
-  },
-  {
-    id: "lang-english",
-    meta: { title: "Global English Hits & Billboard Top 50", icon: "fa-globe", color: "#3b82f6", subtitle: "Worldwide pop, synth and indie favorites" },
-    tracks: [
-      { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
-      { id: "ytm-34Na4j8HLws", ytId: "34Na4j8HLws", title: "Starboy", artist: "The Weeknd ft. Daft Punk", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg", duration: 230 },
-      { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233 },
-      { id: "ytm-ic8j13piAhQ", ytId: "ic8j13piAhQ", title: "Cruel Summer", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg", duration: 178 },
-      { id: "ytm-H5v3kku4y6Q", ytId: "H5v3kku4y6Q", title: "As It Was", artist: "Harry Styles", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/1000x1000bb.jpg", duration: 167 },
-      { id: "ytm-G7KNmW9a75Y", ytId: "G7KNmW9a75Y", title: "Flowers", artist: "Miley Cyrus", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8c/67/ff/8c67ff91-31c3-3fef-1884-ce3ec89f3af4/196589946874.jpg/1000x1000bb.jpg", duration: 199 },
-      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 263 },
-      { id: "ytm-e-ORhEE9VVg", ytId: "e-ORhEE9VVg", title: "Blank Space", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a7/98/d8/a798d867-344d-2bf2-fbfe-d2d1412dcef8/14UMDIM03793.rgb.jpg/1000x1000bb.jpg", duration: 231 }
     ]
   },
   {
@@ -146,9 +236,21 @@ export const LANGUAGE_PLAYLISTS = [
     ]
   },
   {
-    id: "lang-kannada",
-    meta: { title: "Kannada Sandalwood Sensations", icon: "fa-crown", color: "#8b5cf6", subtitle: "Chartbusters from KGF, Kantara and melodies" },
+    id: "lang-devotional",
+    meta: { title: "Sacred Devotional Chants & Stotrams", icon: "fa-om", color: "#f59e0b", subtitle: "Devi Kavacham by Appaji, Vedic stotrams & divine peace" },
     tracks: [
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840 },
+      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/x0rIbgR41Z4/hqdefault.jpg", duration: 1800 },
+      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/Z943lUvW0G4/hqdefault.jpg", duration: 720 },
+      { id: "ytm-tL4w5gZc_jE", ytId: "tL4w5gZc_jE", title: "Hanuman Chalisa", artist: "Hariharan", coverUrl: "https://i.ytimg.com/vi/tL4w5gZc_jE/hqdefault.jpg", duration: 580 },
+      { id: "ytm-U3mQ0v5r3pY", ytId: "U3mQ0v5r3pY", title: "Shiv Tandav Stotram", artist: "Shankar Mahadevan", coverUrl: "https://i.ytimg.com/vi/U3mQ0v5r3pY/hqdefault.jpg", duration: 554 }
+    ]
+  },
+  {
+    id: "lang-kannada",
+    meta: { title: "Kannada Sandalwood & Devotional Sensations", icon: "fa-crown", color: "#8b5cf6", subtitle: "Devi Kavacham by Appaji, KGF, Kantara and chartbusters" },
+    tracks: [
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840 },
       { id: "ytm-d1qgL-Hmsf0", ytId: "d1qgL-Hmsf0", title: "Singara Siriye", artist: "Vijay Prakash, Ananya Bhat", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/08/1e/a0/081ea00b-1dd6-876f-860a-a0add84d317e/8904337278427.jpg/1000x1000bb.jpg", duration: 284 },
       { id: "ytm-e1L1Rydm25c", ytId: "e1L1Rydm25c", title: "Ra Ra Rakkamma", artist: "Nakash Aziz, Sunidhi Chauhan", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f8/e2/e2/f8e2e2e1-16af-34a7-9563-adbc9f9f5664/8903431880192_cover.jpg/1000x1000bb.jpg", duration: 215 },
       { id: "ytm-Yx5V6l9Q-G8", ytId: "Yx5V6l9Q-G8", title: "Neene Neene", artist: "Armaan Malik", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3a/ec/34/3aec34e1-fe78-1078-5946-b7b75844c38f/191018009687.jpg/1000x1000bb.jpg", duration: 200 },
@@ -227,32 +329,94 @@ export const LANGUAGE_PLAYLISTS = [
   }
 ];
 
-export const getQuickPicks = (limit = 6) => {
+export const getQuickPicks = (limit = 8) => {
   return [
+    { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840 },
     { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
+    { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258 },
+    { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg", duration: 204 },
+    { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 175 },
+    { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg", duration: 196 },
     { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
     { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233 },
-    { id: "ytm-34Na4j8HLws", ytId: "34Na4j8HLws", title: "Starboy", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg", duration: 230 },
-    { id: "ytm-VNs_cCtdbPc", ytId: "VNs_cCtdbPc", title: "Brown Munde", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg", duration: 267 },
     { id: "ytm-BddP6PYo2gs", ytId: "BddP6PYo2gs", title: "Kesariya", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg", duration: 268 }
   ].slice(0, limit);
 };
 
 export const getFeaturedArtists = () => {
   return [
-    { name: "Arijit Singh", genre: "Bollywood / Soul", avatar: "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg" },
+    { id: "appaji", name: "Appaji", genre: "Devotional / Spiritual", avatar: "https://i.ytimg.com/vi/b2t2XURj7MU/hqdefault.jpg" },
     { name: "The Weeknd", genre: "Pop / R&B", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg" },
+    { name: "Taylor Swift", genre: "Pop / Country", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg" },
+    { name: "Eminem", genre: "Hip-Hop / Rap", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg" },
+    { id: "imagine-dragons", name: "Imagine Dragons", genre: "Alt Rock", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg" },
+    { name: "Billie Eilish", genre: "Alt Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg" },
+    { name: "Bruno Mars", genre: "Pop / Soul", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8c/b8/b5/8cb8b51d-93cb-9fb3-8321-df13a40498ec/075679904324.jpg/1000x1000bb.jpg" },
+    { name: "Adele", genre: "Soul / Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/24/79/4b2479e0-8260-2ff0-6cf9-c3b6f86c2e39/886443208742.jpg/1000x1000bb.jpg" },
     { name: "Ed Sheeran", genre: "Pop / Acoustic", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg" },
-    { name: "Taylor Swift", genre: "Pop / Country", avatar: "https://i.ytimg.com/vi/ic8j13piAhQ/hqdefault.jpg" },
-    { name: "Anirudh Ravichander", genre: "Kollywood / Electronic", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg" },
+    { name: "Coldplay", genre: "Alternative Rock", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/c2/79/33c27940-0255-a0d0-4bf6-0eb0393246eb/5099921211459.jpg/1000x1000bb.jpg" },
+    { name: "Linkin Park", genre: "Rock / Metal", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg" },
+    { name: "Dua Lipa", genre: "Dance Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d5/8b/1a/d58b1a1a-a82f-8700-1c4b-3d9a1758f8b8/190295286101.jpg/1000x1000bb.jpg" },
+    { name: "Arijit Singh", genre: "Bollywood / Soul", avatar: "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg" },
+    { name: "Anirudh Ravichander", genre: "Kollywood / EDM", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg" },
     { name: "AP Dhillon", genre: "Punjabi / Urban", avatar: "https://i.ytimg.com/vi/Ib_eaGBQVNM/hqdefault.jpg" },
-    { name: "Dua Lipa", genre: "Dance Pop", avatar: "https://i.ytimg.com/vi/k2qgadSvNyU/hqdefault.jpg" },
-    { name: "Bad Bunny", genre: "Latin / Reggaeton", avatar: "https://i.ytimg.com/vi/CPK_IdHe1Yg/hqdefault.jpg" }
+    { name: "Bad Bunny", genre: "Latin / Reggaeton", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg" }
   ];
 };
 
 export const getCuratedPlaylists = () => {
   return [
+    {
+      id: "pl-appaji-devotional",
+      title: "Devi Kavacham & Sacred Mantras",
+      description: "Devi Kavacham by Appaji, Vedic stotrams, and divine spiritual healing",
+      coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/hqdefault.jpg",
+      trackCount: 10,
+      tracks: [
+        { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840 },
+        { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/x0rIbgR41Z4/hqdefault.jpg", duration: 1800 },
+        { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/Z943lUvW0G4/hqdefault.jpg", duration: 720 }
+      ]
+    },
+    {
+      id: "pl-billboard-masters",
+      title: "Billboard Global Top 50 Master",
+      description: "Sabrina Carpenter, Billie Eilish, The Weeknd, Taylor Swift & Bruno Mars",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg",
+      trackCount: 35,
+      tracks: [
+        { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 175 },
+        { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg", duration: 196 },
+        { id: "ytm-kPa7bsKwL-c", ytId: "kPa7bsKwL-c", title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1a/ff/f6/1afff69c-0979-37ea-630e-eefb92c431f2/24UMGIM92429.rgb.jpg/1000x1000bb.jpg", duration: 251 },
+        { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 }
+      ]
+    },
+    {
+      id: "pl-hiphop-royalty",
+      title: "Hip-Hop Royalty & Rap Masters",
+      description: "Eminem, Post Malone, Jay-Z & classic hip-hop master audio",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg",
+      trackCount: 20,
+      tracks: [
+        { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258 },
+        { id: "ytm-_Yhyp-_hX2s", ytId: "_Yhyp-_hX2s", title: "Lose Yourself", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/21/df/b5/21dfb572-c2cb-0568-18e5-3d449339e160/00606949352723.rgb.jpg/1000x1000bb.jpg", duration: 326 },
+        { id: "ytm-YVkUvmDQ3HY", ytId: "YVkUvmDQ3HY", title: "Without Me", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/31/54/6a/31546ac5-a0ee-6c3e-d90f-90e6378e4745/00606949329022.rgb.jpg/1000x1000bb.jpg", duration: 290 },
+        { id: "ytm-wXhTHyIgQ_U", ytId: "wXhTHyIgQ_U", title: "Circles", artist: "Post Malone", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0c/33/c7/0c33c7f9-6799-318e-49b0-9b48b7a66f0e/19UMGIM78942.rgb.jpg/1000x1000bb.jpg", duration: 215 }
+      ]
+    },
+    {
+      id: "pl-rock-legends",
+      title: "Rock Legends & Stadium Power",
+      description: "Queen, Linkin Park, Imagine Dragons, Coldplay & Nirvana",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg",
+      trackCount: 25,
+      tracks: [
+        { id: "ytm-fJ9rUzIMcZQ", ytId: "fJ9rUzIMcZQ", title: "Bohemian Rhapsody", artist: "Queen", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 354 },
+        { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216 },
+        { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg", duration: 204 },
+        { id: "ytm-dvgZkm1xWPE", ytId: "dvgZkm1xWPE", title: "Viva La Vida", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/c2/79/33c27940-0255-a0d0-4bf6-0eb0393246eb/5099921211459.jpg/1000x1000bb.jpg", duration: 242 }
+      ]
+    },
     {
       id: "pl-daily-mix-1",
       title: "Daily Mix 1: Pure Synth & Pop",
@@ -262,7 +426,7 @@ export const getCuratedPlaylists = () => {
       tracks: [
         { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
         { id: "ytm-34Na4j8HLws", ytId: "34Na4j8HLws", title: "Starboy", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg", duration: 230 },
-        { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233 },
+        { id: "_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233 },
         { id: "ytm-H5v3kku4y6Q", ytId: "H5v3kku4y6Q", title: "As It Was", artist: "Harry Styles", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/1000x1000bb.jpg", duration: 167 }
       ]
     },
@@ -305,7 +469,7 @@ export const getCuratedPlaylists = () => {
   ];
 };
 
-export const fetchCategoryTracks = async (categoryId, limit = 20) => {
+export const fetchCategoryTracks = async (categoryId, limit = 25) => {
   const cat = CATALOG_CATEGORIES.find(c => c.id === categoryId);
   if (cat && cat.tracks && cat.tracks.length > 0) {
     return cat.tracks.map(t => ({
@@ -365,7 +529,7 @@ export function searchCatalogTracks(query) {
     (cat.tracks || []).forEach(t => add(t, cat.title));
   });
 
-  // 2. Search in LANGUAGE_PLAYLISTS (Hindi, English, Punjabi, Kannada, Tamil, Telugu, Marathi, Gujarati, Spanish, K-Pop)
+  // 2. Search in LANGUAGE_PLAYLISTS (English, Hindi, Punjabi, Kannada, Tamil, Telugu, Marathi, Gujarati, Spanish, K-Pop)
   LANGUAGE_PLAYLISTS.forEach(lang => {
     (lang.tracks || []).forEach(t => add(t, lang.meta.title));
   });
@@ -382,12 +546,91 @@ export function searchCatalogTracks(query) {
 export const getArtistDetails = (artistName) => {
   const normalized = (artistName || '').toLowerCase().trim();
   let tracks = [];
-  let banner = "https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg";
+  let banner = "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg";
   let monthlyListeners = "45,000,000";
   let worldRank = "#5";
-  let bio = `Official verified discography and high-fidelity streams for ${artistName}.`;
+  let bio = `Official verified discography and high-fidelity studio master streams for ${artistName}.`;
 
-  if (normalized.includes('arijit')) {
+  if (normalized.includes('appaji') || normalized.includes('ganapathy') || normalized.includes('srimatha') || normalized.includes('kavacham')) {
+    monthlyListeners = "12,500,000";
+    worldRank = "#1 Devotional";
+    banner = "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg";
+    bio = "His Holiness Sri Ganapathy Sachchidananda Swamiji (Appaji) is a globally revered spiritual master, music therapist, and composer renowned worldwide for healing ragas, Devi Kavacham, and sacred Vedic stotrams.";
+    tracks = [
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840, plays: "45,000,000" },
+      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/x0rIbgR41Z4/hqdefault.jpg", duration: 1800, plays: "38,000,000" },
+      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/Z943lUvW0G4/hqdefault.jpg", duration: 720, plays: "22,000,000" }
+    ];
+  } else if (normalized.includes('eminem')) {
+    monthlyListeners = "74,200,000";
+    worldRank = "#8 Globally";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg";
+    bio = "Eminem (Marshall Mathers) is widely considered one of the greatest rappers of all time, with 15 Grammy Awards and over 220 million records sold worldwide.";
+    tracks = [
+      { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258, plays: "2,100,000,000" },
+      { id: "ytm-_Yhyp-_hX2s", ytId: "_Yhyp-_hX2s", title: "Lose Yourself", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/21/df/b5/21dfb572-c2cb-0568-18e5-3d449339e160/00606949352723.rgb.jpg/1000x1000bb.jpg", duration: 326, plays: "2,850,000,000" },
+      { id: "ytm-YVkUvmDQ3HY", ytId: "YVkUvmDQ3HY", title: "Without Me", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/31/54/6a/31546ac5-a0ee-6c3e-d90f-90e6378e4745/00606949329022.rgb.jpg/1000x1000bb.jpg", duration: 290, plays: "2,400,000,000" },
+      { id: "ytm-uelHwf8o7_U", ytId: "uelHwf8o7_U", title: "Love The Way You Lie", artist: "Eminem ft. Rihanna", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/38/c4/fa/38c4fa0d-fe3f-08e1-512c-15494d4d62b9/10UMGIM19659.rgb.jpg/1000x1000bb.jpg", duration: 263, plays: "2,600,000,000" }
+    ];
+  } else if (normalized.includes('imagine') || normalized.includes('dragons')) {
+    monthlyListeners = "63,800,000";
+    worldRank = "#12 Globally";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg";
+    bio = "Imagine Dragons is an American pop rock band from Las Vegas, Nevada, consisting of lead singer Dan Reynolds, guitarist Wayne Sermon, and bassist Ben McKee.";
+    tracks = [
+      { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg", duration: 204, plays: "2,900,000,000" },
+      { id: "ytm-mWRsgZuwf_8", ytId: "mWRsgZuwf_8", title: "Demons", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/58/01/21/58012170-659f-dcf8-6617-64010372df3b/12UMGIM22363.rgb.jpg/1000x1000bb.jpg", duration: 177, plays: "2,400,000,000" },
+      { id: "ytm-TO-_3tck2tg", ytId: "TO-_3tck2tg", title: "Bones", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/3d/bf/9a/3dbf9a1f-fca1-dfeb-c42e-13c55d045d47/22UMGIM16413.rgb.jpg/1000x1000bb.jpg", duration: 165, plays: "1,850,000,000" }
+    ];
+  } else if (normalized.includes('billie') || normalized.includes('eilish')) {
+    monthlyListeners = "104,000,000";
+    worldRank = "#3 Globally";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg";
+    bio = "Billie Eilish Pirate Baird O'Connell is an American singer-songwriter who first gained public attention with her breakout single 'Ocean Eyes' and multiple Academy & Grammy awards.";
+    tracks = [
+      { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg", duration: 196, plays: "1,750,000,000" },
+      { id: "ytm-DyDfgMOUjCI", ytId: "DyDfgMOUjCI", title: "Bad Guy", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/80/7e/17/807e174a-2fa9-e932-a50d-d42f8832a829/19UMGIM08994.rgb.jpg/1000x1000bb.jpg", duration: 194, plays: "2,500,000,000" },
+      { id: "ytm-V1Pl8CzNzCw", ytId: "V1Pl8CzNzCw", title: "Lovely", artist: "Billie Eilish ft. Khalid", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/80/7e/17/807e174a-2fa9-e932-a50d-d42f8832a829/19UMGIM08994.rgb.jpg/1000x1000bb.jpg", duration: 200, plays: "2,900,000,000" }
+    ];
+  } else if (normalized.includes('sabrina') || normalized.includes('carpenter')) {
+    monthlyListeners = "82,000,000";
+    worldRank = "#7 Globally";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg";
+    bio = "Sabrina Annlynn Carpenter is an American singer and actress who conquered the world charts with massive hits 'Espresso' and 'Please Please Please'.";
+    tracks = [
+      { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 175, plays: "1,600,000,000" },
+      { id: "ytm-cF1Na4AIecM", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 186, plays: "1,200,000,000" }
+    ];
+  } else if (normalized.includes('adele')) {
+    monthlyListeners = "58,000,000";
+    worldRank = "#15 Globally";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/24/79/4b2479e0-8260-2ff0-6cf9-c3b6f86c2e39/886443208742.jpg/1000x1000bb.jpg";
+    bio = "Adele Laurie Blue Adkins is an English singer-songwriter known for her soulful voice and multi-platinum record-breaking studio albums '21', '25', and '30'.";
+    tracks = [
+      { id: "ytm-hLQl3WQQoQ0", ytId: "hLQl3WQQoQ0", title: "Someone Like You", artist: "Adele", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/24/79/4b2479e0-8260-2ff0-6cf9-c3b6f86c2e39/886443208742.jpg/1000x1000bb.jpg", duration: 285, plays: "2,200,000,000" },
+      { id: "ytm-rYEDA3JcQqw", ytId: "rYEDA3JcQqw", title: "Rolling in the Deep", artist: "Adele", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/24/79/4b2479e0-8260-2ff0-6cf9-c3b6f86c2e39/886443208742.jpg/1000x1000bb.jpg", duration: 228, plays: "1,950,000,000" },
+      { id: "ytm-Ri7-vnrJD3k", ytId: "Ri7-vnrJD3k", title: "Set Fire to the Rain", artist: "Adele", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/24/79/4b2479e0-8260-2ff0-6cf9-c3b6f86c2e39/886443208742.jpg/1000x1000bb.jpg", duration: 242, plays: "1,500,000,000" }
+    ];
+  } else if (normalized.includes('coldplay')) {
+    monthlyListeners = "85,500,000";
+    worldRank = "#5 Globally";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/c2/79/33c27940-0255-a0d0-4bf6-0eb0393246eb/5099921211459.jpg/1000x1000bb.jpg";
+    bio = "Coldplay are a British rock band formed in London in 1997, celebrated worldwide for emotional stadium anthems and legendary visual concerts.";
+    tracks = [
+      { id: "ytm-dvgZkm1xWPE", ytId: "dvgZkm1xWPE", title: "Viva La Vida", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/c2/79/33c27940-0255-a0d0-4bf6-0eb0393246eb/5099921211459.jpg/1000x1000bb.jpg", duration: 242, plays: "2,700,000,000" },
+      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/2f/b4/052fb4aa-a82f-8700-1c4b-3d9a1758f8b8/724352778358.jpg/1000x1000bb.jpg", duration: 269, plays: "2,450,000,000" },
+      { id: "ytm-k4V3Mo61fJM", ytId: "k4V3Mo61fJM", title: "Fix You", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4f/90/a6/4f90a6e0-24da-96ce-63d1-678fe01ad394/724347478652.jpg/1000x1000bb.jpg", duration: 295, plays: "2,100,000,000" }
+    ];
+  } else if (normalized.includes('linkin') || normalized.includes('park')) {
+    monthlyListeners = "48,000,000";
+    worldRank = "#20 Globally";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg";
+    bio = "Linkin Park is an American rock band from Agoura Hills, California, whose album 'Hybrid Theory' is the best-selling rock debut of the 21st century.";
+    tracks = [
+      { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216, plays: "2,600,000,000" },
+      { id: "ytm-kXYiU_JCYtU", ytId: "kXYiU_JCYtU", title: "Numb", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b8/6f/a6/b86fa644-8cb2-2051-ce63-ee65275e5f03/093624948988.jpg/1000x1000bb.jpg", duration: 187, plays: "2,350,000,000" }
+    ];
+  } else if (normalized.includes('arijit')) {
     monthlyListeners = "68,400,000";
     worldRank = "#1 in India";
     banner = "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg";
@@ -402,17 +645,17 @@ export const getArtistDetails = (artistName) => {
   } else if (normalized.includes('weeknd')) {
     monthlyListeners = "112,000,000";
     worldRank = "#1 Globally";
-    banner = "https://i.ytimg.com/vi/5mqFmNl11-M/hqdefault.jpg";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg";
     bio = "The Weeknd (Abel Tesfaye) is a Canadian singer, songwriter, and record producer known for his sonic versatility and dark lyricism.";
     tracks = [
       { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200, plays: "4,100,000,000" },
       { id: "ytm-34Na4j8HLws", ytId: "34Na4j8HLws", title: "Starboy", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg", duration: 230, plays: "3,200,000,000" },
-      { id: "ytm-fHI8X48Y36I", ytId: "fHI8X48Y36I", title: "The Hills", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/30/05/1e/30051e57-a63a-3acc-4b30-42568293f5f7/15UMGIM36514.rgb.jpg/1000x1000bb.jpg", duration: 242, plays: "2,500,000,000" }
+      { id: "ytm-yzTuBuRdAyA", ytId: "yzTuBuRdAyA", title: "The Hills", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/30/05/1e/30051e57-a63a-3acc-4b30-42568293f5f7/15UMGIM36514.rgb.jpg/1000x1000bb.jpg", duration: 242, plays: "2,500,000,000" }
     ];
   } else if (normalized.includes('sheeran')) {
     monthlyListeners = "84,000,000";
     worldRank = "#6 Globally";
-    banner = "https://i.ytimg.com/vi/fHI8X48Y36I/hqdefault.jpg";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg";
     bio = "Ed Sheeran is an English singer-songwriter who has sold more than 150 million records worldwide, making him one of the best-selling artists.";
     tracks = [
       { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233, plays: "3,800,000,000" },
@@ -421,16 +664,17 @@ export const getArtistDetails = (artistName) => {
   } else if (normalized.includes('taylor')) {
     monthlyListeners = "105,000,000";
     worldRank = "#2 Globally";
-    banner = "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg";
     bio = "Taylor Swift is an American singer-songwriter whose discography spans multiple genres and has broken records across modern music history.";
     tracks = [
       { id: "ytm-ic8j13piAhQ", ytId: "ic8j13piAhQ", title: "Cruel Summer", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg", duration: 178, plays: "2,200,000,000" },
-      { id: "ytm-e-ORhEE9VVg", ytId: "e-ORhEE9VVg", title: "Blank Space", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a7/98/d8/a798d867-344d-2bf2-fbfe-d2d1412dcef8/14UMDIM03793.rgb.jpg/1000x1000bb.jpg", duration: 231, plays: "1,900,000,000" }
+      { id: "ytm-e-ORhEE9VVg", ytId: "e-ORhEE9VVg", title: "Blank Space", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a7/98/d8/a798d867-344d-2bf2-fbfe-d2d1412dcef8/14UMDIM03793.rgb.jpg/1000x1000bb.jpg", duration: 231, plays: "1,900,000,000" },
+      { id: "ytm-b1kbLwvqugk", ytId: "b1kbLwvqugk", title: "Anti-Hero", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/f7/a9/b6/f7a9b6c0-671c-3083-d023-e5786b6a2245/22UMGIM95147.rgb.jpg/1000x1000bb.jpg", duration: 200, plays: "1,500,000,000" }
     ];
   } else if (normalized.includes('anirudh')) {
     monthlyListeners = "28,000,000";
     worldRank = "#1 in South India";
-    banner = "https://i.ytimg.com/vi/e-ORhEE9VVg/hqdefault.jpg";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg";
     bio = "Anirudh Ravichander is an Indian music composer and singer who works predominantly in Tamil cinema with worldwide viral chartbusters.";
     tracks = [
       { id: "ytm-8FAUEv_E_xU", ytId: "8FAUEv_E_xU", title: "Arabic Kuthu", artist: "Anirudh Ravichander", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg", duration: 279, plays: "750,000,000" },
@@ -438,8 +682,8 @@ export const getArtistDetails = (artistName) => {
     ];
   } else {
     tracks = [
-      { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: artistName, coverUrl: "https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg", duration: 200, plays: "1,200,000" },
-      { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: artistName, coverUrl: "https://i.ytimg.com/vi/_dK2tDK9grQ/hqdefault.jpg", duration: 233, plays: "980,000" }
+      { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: artistName, coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200, plays: "1,200,000" },
+      { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: artistName, coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233, plays: "980,000" }
     ];
   }
 
@@ -460,9 +704,11 @@ export const getArtistDetails = (artistName) => {
     ],
     bio,
     similarArtists: [
+      { name: "The Weeknd", role: "Pop Icon", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg" },
+      { name: "Taylor Swift", role: "Global Superstar", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg" },
+      { name: "Eminem", role: "Rap Legend", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg" },
       { name: "Arijit Singh", role: "Playback Legend", avatar: "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg" },
-      { name: "Ed Sheeran", role: "Singer-Songwriter", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg" },
-      { name: "The Weeknd", role: "Pop Icon", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg" }
+      { name: "Ed Sheeran", role: "Singer-Songwriter", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg" }
     ]
   };
 };
@@ -483,4 +729,3 @@ if (typeof window !== 'undefined') {
 }
 
 export default catalogService;
-

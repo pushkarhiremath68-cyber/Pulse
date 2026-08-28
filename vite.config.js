@@ -104,24 +104,33 @@ function pulseApiPlugin() {
                 headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
               });
               const data = await fetchRes.json();
-              const top = data.results?.[0];
-              if (top && top.encrypted_media_url) {
-                const dec = decryptSaavnUrl(top.encrypted_media_url);
-                if (dec) {
-                  res.writeHead(200, {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                  });
-                  res.end(JSON.stringify({
-                    streamUrl: dec['320'] || dec['160'] || dec['96'],
-                    bitrate: '320kbps',
-                    codec: 'mp4/aac',
-                    duration: parseInt(top.duration, 10) || 220,
-                    title: top.song || top.title || '',
-                    artist: top.singers || top.primary_artists || '',
-                    source: 'Pulse Master Studio 320k'
-                  }));
-                  return;
+              // Try all results to find the best match, not just the first one
+              const results = data.results || [];
+              for (const top of results) {
+                if (top && top.encrypted_media_url) {
+                  const dec = decryptSaavnUrl(top.encrypted_media_url);
+                  if (dec) {
+                    const streamUrl = dec['320'] || dec['160'] || dec['96'];
+                    if (streamUrl) {
+                      const saavnTitle = (top.song || top.title || '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'");
+                      const saavnArtist = (top.singers || top.primary_artists || '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'");
+                      res.writeHead(200, {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                      });
+                      res.end(JSON.stringify({
+                        streamUrl: streamUrl,
+                        bitrate: '320kbps',
+                        codec: 'mp4/aac',
+                        duration: parseInt(top.duration, 10) || 220,
+                        title: saavnTitle,
+                        artist: saavnArtist,
+                        language: top.language || '',
+                        source: 'Pulse Master Studio 320k'
+                      }));
+                      return;
+                    }
+                  }
                 }
               }
             }
@@ -135,6 +144,7 @@ function pulseApiPlugin() {
             return;
           }
         }
+
 
         if (pathname === '/api/yt/search') {
           const q = urlObj.searchParams.get('q') || '';
@@ -209,7 +219,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    emptyOutDir: true
+    emptyOutDir: false
   },
   server: {
     port: 3000,

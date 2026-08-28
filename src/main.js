@@ -933,12 +933,55 @@ window.addEventListener('error', function(e) {
     }
   };
 
-  window.openDownloadModal = function() {
-    const modal = document.getElementById('download-app-modal');
-    if (modal) {
-      modal.classList.remove('hidden');
-      modal.classList.add('active-modal');
+  // ---------------------------------------------------------------------------
+  // 5. UNIVERSAL MULTI-PLATFORM SHORTCUT & DOWNLOAD CONTROLLERS
+  // ---------------------------------------------------------------------------
+  window.detectUserPlatform = function() {
+    const ua = (navigator.userAgent || navigator.vendor || window.opera || '').toLowerCase();
+    const plat = (navigator.platform || '').toLowerCase();
+
+    if (/ipad|iphone|ipod/.test(ua) || (plat === 'macintel' && navigator.maxTouchPoints > 1)) {
+      return 'ios';
     }
+    if (/android/.test(ua)) {
+      return 'android';
+    }
+    if (/win/.test(ua) || /win/.test(plat)) {
+      return 'windows';
+    }
+    if (/mac/.test(ua) || /mac/.test(plat)) {
+      return 'mac';
+    }
+    if (/linux/.test(ua) || /linux/.test(plat)) {
+      return 'linux';
+    }
+    return 'pwa';
+  };
+
+  window.openDownloadModal = function(preferredCategory) {
+    const modal = document.getElementById('download-app-modal');
+    if (!modal) return;
+
+    const detected = window.detectUserPlatform();
+    const badge = document.getElementById('detected-device-badge');
+    
+    if (badge) {
+      const labels = {
+        windows: '<i class="fa-brands fa-windows"></i> Detected: Windows PC',
+        ios: '<i class="fa-brands fa-apple"></i> Detected: iPhone / iPad',
+        android: '<i class="fa-brands fa-android"></i> Detected: Android Device',
+        mac: '<i class="fa-brands fa-apple"></i> Detected: macOS System',
+        linux: '<i class="fa-brands fa-linux"></i> Detected: Linux Desktop',
+        pwa: '<i class="fa-solid fa-globe"></i> Detected: Web Browser'
+      };
+      badge.innerHTML = labels[detected] || labels.pwa;
+    }
+
+    const activeTab = preferredCategory || (detected === 'pwa' ? 'all' : detected);
+    window.switchDownloadTab(activeTab);
+
+    modal.classList.remove('hidden');
+    modal.classList.add('active-modal');
   };
 
   window.closeDownloadModal = function() {
@@ -951,17 +994,116 @@ window.addEventListener('error', function(e) {
 
   window.switchDownloadTab = function(category) {
     document.querySelectorAll('.download-tab-btn').forEach(btn => {
-      btn.classList.toggle('active-pill', btn.getAttribute('data-category') === category);
+      const btnCat = btn.getAttribute('data-category');
+      btn.classList.toggle('active-pill', btnCat === category);
     });
 
     document.querySelectorAll('.download-card-tile').forEach(card => {
       const cardCat = card.getAttribute('data-category');
-      if (category === 'all' || cardCat === category) {
+      if (category === 'all' || cardCat === category || cardCat === 'pwa') {
         card.style.display = 'flex';
       } else {
         card.style.display = 'none';
       }
     });
+  };
+
+  // Client-Side Windows .URL Shortcut Generator
+  window.downloadWindowsShortcut = function() {
+    const currentUrl = window.location.href.split('#')[0];
+    const iconUrl = new URL('./icons/icon.ico', window.location.href).href;
+    const urlFileContent = `[InternetShortcut]
+URL=${currentUrl}
+IconFile=${iconUrl}
+IconIndex=0
+HotKey=0
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,0
+`;
+    const blob = new Blob([urlFileContent], { type: 'application/octet-stream' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Pulse Music.url';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+
+    window.showToast('Windows Shortcut with Pulse icon downloaded! Move it to your Desktop or Taskbar.', 'success', 4500);
+  };
+
+  // Client-Side Windows .BAT Fast Launcher Generator
+  window.downloadWindowsBatLauncher = function() {
+    const currentUrl = window.location.href.split('#')[0];
+    const batContent = `@echo off
+title Pulse Music Launcher
+echo Starting Pulse Music with Master Audio...
+start "" "${currentUrl}"
+exit
+`;
+    const blob = new Blob([batContent], { type: 'application/x-bat' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Launch-Pulse-Music.bat';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+
+    window.showToast('Windows Launcher script (.bat) downloaded!', 'success', 3500);
+  };
+
+  // Client-Side macOS .webloc Shortcut Generator
+  window.downloadMacShortcut = function() {
+    const currentUrl = window.location.href.split('#')[0];
+    const plistContent = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>URL</key>
+	<string>${currentUrl}</string>
+</dict>
+</plist>
+`;
+    const blob = new Blob([plistContent], { type: 'application/x-apple-webloc' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Pulse Music.webloc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+
+    window.showToast('macOS Web Shortcut downloaded! Drag it to your Dock or Desktop.', 'success', 4500);
+  };
+
+  // Client-Side Linux .desktop Launcher Generator
+  window.downloadLinuxDesktopShortcut = function() {
+    const currentUrl = window.location.href.split('#')[0];
+    const iconUrl = new URL('./icons/icon-512.png', window.location.href).href;
+    const desktopContent = `[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pulse Music
+GenericName=Lossless Music Player
+Comment=High-Fidelity Global Music Streaming & Synced Lyrics
+Exec=xdg-open "${currentUrl}"
+Icon=${iconUrl}
+Terminal=false
+StartupNotify=true
+Categories=AudioVideo;Audio;Player;Music;
+Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
+`;
+    const blob = new Blob([desktopContent], { type: 'application/x-desktop' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Pulse-Music.desktop';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+
+    window.showToast('Linux .desktop launcher downloaded! Use chmod +x to make executable.', 'success', 4500);
   };
 
   window.handleDownloadClick = function(platformName, fileSize) {
@@ -1098,22 +1240,42 @@ window.addEventListener('error', function(e) {
 
   window.triggerPWAInstall = async function() {
     if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        deferredPrompt = null;
-        window.closeDownloadModal();
-        window.showToast('App installed successfully!', 'success');
+      try {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          deferredPrompt = null;
+          window.closeDownloadModal();
+          window.showToast('Pulse Music installed successfully with Pulse logo!', 'success', 5000);
+        }
+      } catch (err) {
+        console.warn('PWA prompt error:', err);
       }
     } else {
-      window.showToast('PWA installation is not supported or already installed', 'warning');
+      const plat = window.detectUserPlatform();
+      if (plat === 'ios') {
+        window.openDownloadModal('ios');
+        window.showToast('On iOS: Tap Safari Share button then "Add to Home Screen" 📲', 'info', 6000);
+      } else if (plat === 'android') {
+        window.showToast('On Android: Tap Chrome menu (⋮) -> "Add to Home screen" / "Install app" 📲', 'info', 6000);
+      } else if (plat === 'windows') {
+        window.downloadWindowsShortcut();
+      } else if (plat === 'mac') {
+        window.downloadMacShortcut();
+      } else if (plat === 'linux') {
+        window.downloadLinuxDesktopShortcut();
+      } else {
+        window.showToast('Install Pulse: Use your browser address bar install icon or menu ⚡', 'info', 5000);
+      }
     }
   };
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('Pulse PWA Service Worker registered:', reg.scope))
-      .catch(err => console.error('Pulse PWA Service Worker error:', err));
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Pulse PWA Service Worker registered:', reg.scope))
+        .catch(err => console.error('Pulse PWA Service Worker error:', err));
+    });
   }
 
 })();

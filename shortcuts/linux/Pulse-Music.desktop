@@ -1,0 +1,31 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pulse Music
+GenericName=Music Streaming Player
+Comment=High-Fidelity Cross-Platform Music Streaming by Pushkar Hiremath
+Exec=bash -c 'DIR="$(dirname "$(readlink -f "%k")")/../.."; if [ -f "$DIR/dist/electron/Pulse Music-2.4.0.AppImage" ]; then "$DIR/dist/electron/Pulse Music-2.4.0.AppImage" %U; elif command -v npm >/dev/null 2>&1; then cd "$DIR" && xdg-open http://localhost:5173 & npm run dev; else xdg-open https://pushkarhiremath68-cyber.github.io/Pulse/; fi'
+Icon=C:/Users/pushk/.gemini/antigravity-ide/scratch/pulse-music-app/public/icons/icon-512.png
+Terminal=false
+StartupNotify=true
+StartupWMClass=pulse-music-app
+Categories=AudioVideo;Audio;Player;Music;
+MimeType=audio/mpeg;audio/flac;audio/aac;audio/ogg;audio/wav;x-scheme-handler/pulse;
+Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
+Actions=Search;Liked;Charts;WebApp;
+
+[Desktop Action Search]
+Name=Search Global Music
+Exec=xdg-open "https://pushkarhiremath68-cyber.github.io/Pulse/?view=search-view"
+
+[Desktop Action Liked]
+Name=Liked Songs
+Exec=xdg-open "https://pushkarhiremath68-cyber.github.io/Pulse/?view=library"
+
+[Desktop Action Charts]
+Name=Top Global Charts
+Exec=xdg-open "https://pushkarhiremath68-cyber.github.io/Pulse/?view=home"
+
+[Desktop Action WebApp]
+Name=Open Web App
+Exec=xdg-open "https://pushkarhiremath68-cyber.github.io/Pulse/"

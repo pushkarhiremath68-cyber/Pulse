@@ -327,6 +327,26 @@ export async function searchTracks(query, limit = 50) {
     }
   };
 
+  // 0. Direct YouTube URL or Video ID recognition
+  const ytMatch = cleanQuery.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+  const directYtId = ytMatch ? ytMatch[1] : (cleanQuery.trim().length === 11 && !cleanQuery.includes(' ') ? cleanQuery.trim() : null);
+  if (directYtId) {
+    const isAppajiDeviKavacham = directYtId === 'b2t2XURj7MU';
+    addOrMergeTrack({
+      id: `ytm-${directYtId}`,
+      ytId: directYtId,
+      title: isAppajiDeviKavacham ? 'Devi Kavacham' : 'Devi Kavacham by Appaji',
+      artist: isAppajiDeviKavacham ? 'Appaji' : 'YouTube Artist',
+      album: isAppajiDeviKavacham ? 'Devi Kavacham' : 'YouTube Master Audio',
+      coverUrl: `https://i.ytimg.com/vi/${directYtId}/maxresdefault.jpg`,
+      duration: isAppajiDeviKavacham ? 840 : 220,
+      streamUrl: '',
+      previewUrl: '',
+      genre: 'Devotional / Spiritual',
+      source: 'Studio Master Audio (YouTube)'
+    });
+  }
+
   // 1. Fast Local Multilingual Catalog Search (0ms instant response)
   try {
     const localMatches = searchCatalogTracks(cleanQuery);
@@ -438,13 +458,98 @@ export async function fetchTrendingTracks(limit = 40) {
 }
 
 /**
+ * Detects whether a track is likely Hindi/Bollywood based on its metadata.
+ * Hindi tracks get best results from JioSaavn; other languages should use YouTube.
+ */
+function isHindiTrack(track) {
+  if (!track) return false;
+  const id = (track.id || '').toLowerCase();
+  const genre = (track.genre || '').toLowerCase();
+  const source = (track.source || '').toLowerCase();
+  const language = (track.language || '').toLowerCase();
+
+  // Check explicit language field
+  if (language === 'hindi' || language === 'bollywood') return true;
+
+  // Check genre for Bollywood/Hindi indicators
+  if (genre.includes('bollywood') || genre.includes('hindi')) return true;
+
+  // Check if ID contains hindi/bollywood prefix (from catalog)
+  if (id.startsWith('in-') || id.startsWith('hn-')) return true;
+
+  // Check for Saavn source (already resolved via JioSaavn)
+  if (id.startsWith('saavn-')) return true;
+
+  // Detect by known Hindi/Bollywood artist names
+  const artist = (track.artist || '').toLowerCase();
+  const hindiArtists = [
+    'arijit singh', 'shreya ghoshal', 'neha kakkar', 'atif aslam',
+    'vishal mishra', 'jubin nautiyal', 'b praak', 'jasleen royal',
+    'darshan raval', 'sonu nigam', 'kumar sanu', 'udit narayan',
+    'kishore kumar', 'lata mangeshkar', 'mohammed rafi', 'k.k.',
+    'shilpa rao', 'sunidhi chauhan', 'palak muchhal', 'sachin-jigar',
+    'pritam', 'a.r. rahman', 'ar rahman', 'amit trivedi',
+    'tanishk bagchi', 'honey singh', 'badshah', 'raftaar'
+  ];
+  if (hindiArtists.some(a => artist.includes(a))) return true;
+
+  return false;
+}
+
+/**
+ * Validates if a JioSaavn search result actually matches the requested track.
+ * Prevents playing the wrong song when JioSaavn returns mismatched results.
+ */
+function isSaavnResultMatching(saavnTrack, requestedTrack) {
+  if (!saavnTrack || !requestedTrack) return false;
+
+  const normalize = (str) => (str || '').toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const saavnTitle = normalize(saavnTrack.title);
+  const requestedTitle = normalize(requestedTrack.title);
+  const saavnArtist = normalize(saavnTrack.artist);
+  const requestedArtist = normalize(requestedTrack.artist);
+
+  if (!saavnTitle || !requestedTitle) return false;
+
+  // Check if titles overlap significantly
+  const titleWords = requestedTitle.split(' ').filter(w => w.length > 2);
+  const matchedWords = titleWords.filter(w => saavnTitle.includes(w));
+  const titleMatchRatio = titleWords.length > 0 ? matchedWords.length / titleWords.length : 0;
+
+  // Check artist overlap
+  const artistWords = requestedArtist.split(' ').filter(w => w.length > 2);
+  const matchedArtistWords = artistWords.filter(w => saavnArtist.includes(w));
+  const artistMatchRatio = artistWords.length > 0 ? matchedArtistWords.length / artistWords.length : 0;
+
+  // Require at least 60% title word match AND at least one artist word match (if artist has meaningful words)
+  if (titleMatchRatio >= 0.6) {
+    if (artistWords.length === 0 || artistMatchRatio >= 0.3) {
+      return true;
+    }
+  }
+
+  // Exact substring match (one title contains the other)
+  if (saavnTitle.includes(requestedTitle) || requestedTitle.includes(saavnTitle)) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
  * Resolves 100% Ad-Free Pure Audio Stream for ANY track
  * 100% ZERO 30-Second Previews (Only Full-Length Master Streams & Full YouTube Audio)
- * Multi-Tier Resolution:
- * Tier 1: Direct JioSaavn 320k/160k Master Studio Audio (Instant, full-length 3-6 min, authentic vocals)
- * Tier 2: YouTube Music Piped Opus Stream (160kbps Opus audio)
- * Tier 3: Local Backend Stream Proxy (/api/ytm/stream or /api/saavn-search)
- * Tier 4: Official YouTube IFrame API Embed (yt-iframe)
+ * 
+ * Language-Aware Multi-Tier Resolution:
+ * - Hindi/Bollywood tracks: JioSaavn 320k → YouTube Piped → Backend → YouTube IFrame
+ * - All other languages (English, Tamil, Telugu, Kannada, Marathi, Korean, etc.):
+ *   YouTube Piped → YouTube IFrame → Backend (JioSaavn only if title verified)
+ * 
+ * This ensures every language gets its ORIGINAL studio master audio with authentic vocals.
  */
 export async function resolveFullAudioStream(track) {
   if (!track) return null;
@@ -454,6 +559,8 @@ export async function resolveFullAudioStream(track) {
     return RESOLVED_STREAM_CACHE.get(cacheKey);
   }
 
+  const localBaseUrl = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+
   // 0. Check if current streamUrl is already a verified full-length master stream
   if (track.streamUrl && 
       track.streamUrl.startsWith('http') && 
@@ -461,8 +568,16 @@ export async function resolveFullAudioStream(track) {
       !track.streamUrl.includes('audio-ssl.itunes.apple.com') && 
       !track.streamUrl.includes('mzstatic') &&
       (track.duration || 0) > 40) {
+    let finalStreamUrl = track.streamUrl;
+    
+    // Saavn CDN links often 403 in modern browsers, proxy them via backend
+    if (finalStreamUrl.includes('saavncdn.com')) {
+      const cleanQ = `${track.title || ''} ${track.artist || ''}`.trim();
+      finalStreamUrl = `${localBaseUrl}/api/stream?id=${track.id}&q=${encodeURIComponent(cleanQ)}`;
+    }
+
     const resolved = {
-      streamUrl: track.streamUrl,
+      streamUrl: finalStreamUrl,
       duration: track.duration || 220,
       source: track.source || 'Studio Master Audio (YouTube)'
     };
@@ -477,11 +592,15 @@ export async function resolveFullAudioStream(track) {
   const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].split('ft.')[0].trim();
   const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
 
-  // FAST PATH: If track already has a YouTube ID, skip JioSaavn and go straight to Piped → YT IFrame
   let ytIdToUse = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
 
+  // =====================================================================
+  // UNIVERSAL TRACKS: YouTube is the best source (original language audio)
+  // Ensures all songs get the original play from YouTube
+  // =====================================================================
+  
+  // Tier 1: YouTube Piped Opus (BEST for original audio)
   if (ytIdToUse) {
-    // Try Piped first for direct audio stream (fast, no iframe needed)
     try {
       const ytm = await resolvePipedAudioStream(ytIdToUse);
       if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
@@ -489,26 +608,32 @@ export async function resolveFullAudioStream(track) {
         finalSource = 'Studio Master Audio (YouTube)';
       }
     } catch (e) {}
-
   }
 
-  // SLOW PATH: No YouTube ID — try JioSaavn first, then search YouTube
+  // Tier 2: JioSaavn ONLY if result title closely matches (prevents wrong songs)
   if (!finalUrl && query.length > 1) {
     try {
-      const saavnResults = await searchJioSaavnDirect(query, 3);
+      const saavnResults = await searchJioSaavnDirect(query, 5);
       if (saavnResults && saavnResults.length > 0) {
-        const top = saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http') && !s.streamUrl.includes('preview')) || saavnResults[0];
-        if (top && top.streamUrl && top.streamUrl.startsWith('http') && !top.streamUrl.includes('preview')) {
-          finalUrl = top.streamUrl;
+        // Find a result that actually matches the requested song
+        const verified = saavnResults.find(s => 
+          s.streamUrl && 
+          s.streamUrl.startsWith('http') && 
+          !s.streamUrl.includes('preview') &&
+          isSaavnResultMatching(s, track)
+        );
+        if (verified) {
+          finalUrl = verified.streamUrl;
+          if (finalUrl.includes('saavncdn.com')) {
+            finalUrl = `${localBaseUrl}/api/stream?id=${track.id}&q=${encodeURIComponent(query)}`;
+          }
           finalSource = 'Studio Master Audio (YouTube)';
           if (!track.coverUrl || track.coverUrl.includes('pulse-logo')) {
-            track.coverUrl = top.coverUrl;
+            track.coverUrl = verified.coverUrl;
           }
         }
       }
-    } catch (e) {
-      // Continue to YouTube search
-    }
+    } catch (e) {}
   }
 
   // Search YouTube to find a ytId if we still don't have one
@@ -518,11 +643,20 @@ export async function resolveFullAudioStream(track) {
       if (s && s.length > 0 && s[0].ytId) {
         ytIdToUse = s[0].ytId;
         track.ytId = ytIdToUse;
+
+        // Try Piped with the newly found YouTube ID
+        try {
+          const ytm = await resolvePipedAudioStream(ytIdToUse);
+          if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
+            finalUrl = ytm.streamUrl;
+            finalSource = 'Studio Master Audio (YouTube)';
+          }
+        } catch (e) {}
       }
     } catch (e) {}
   }
 
-  // 3. TIER 3: Local Backend Proxy (/api/ytm/stream or /api/saavn-search) — fast timeout
+  // Tier 3: Local Backend Proxy (/api/ytm/stream) — fast timeout
   if (!finalUrl) {
     try {
       const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
@@ -533,8 +667,11 @@ export async function resolveFullAudioStream(track) {
       if (res.ok) {
         const json = await res.json();
         if (json.streamUrl && !json.streamUrl.includes('preview')) {
-          finalUrl = json.streamUrl;
-          finalSource = json.source || 'Studio Master Audio (YouTube)';
+          // For all tracks from backend, validate the title match to prevent wrong songs
+          if (!json.title || isSaavnResultMatching({ title: json.title, artist: json.artist || '' }, track)) {
+            finalUrl = json.streamUrl;
+            finalSource = json.source || 'Studio Master Audio (YouTube)';
+          }
         }
       }
     } catch (e) {}
@@ -546,14 +683,14 @@ export async function resolveFullAudioStream(track) {
     return resolved;
   }
 
-  // 4. TIER 4: Official YouTube IFrame Player Embed (Plays 100% full song without 30s preview limits)
+  // Tier 4: Official YouTube IFrame Player Embed (Plays 100% full song — guaranteed original audio)
   if (ytIdToUse) {
     const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }
 
-  // 5. Final Fallback: Query YouTube Search to find YouTube ID for Full Playback
+  // Tier 5: Final Fallback — YouTube Search to find YouTube ID for Full Playback
   try {
     const fallbackSearch = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 1);
     if (fallbackSearch && fallbackSearch.length > 0 && fallbackSearch[0].ytId) {

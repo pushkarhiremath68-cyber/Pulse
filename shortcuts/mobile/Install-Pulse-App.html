@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Pulse Music - Install App</title>
+  <meta name="description" content="Install Pulse Music on your phone">
+  <meta name="theme-color" content="#8b5cf6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="../../public/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="../../public/apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(180deg, #050508 0%, #0f0a1e 50%, #1a0d2e 100%);
+      color: #fff; font-family: 'Inter', -apple-system, sans-serif;
+      min-height: 100vh; padding: 40px 20px;
+    }
+    .header { text-align: center; margin-bottom: 40px; }
+    .logo {
+      width: 96px; height: 96px; border-radius: 22px; margin-bottom: 16px;
+      filter: drop-shadow(0 0 24px rgba(139, 92, 246, 0.5));
+    }
+    h1 {
+      font-size: 26px; font-weight: 700; margin-bottom: 6px;
+      background: linear-gradient(135deg, #fff, #c4b5fd);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .tagline { color: #94a3b8; font-size: 14px; }
+    .open-btn {
+      display: block; width: 100%; max-width: 360px; margin: 24px auto;
+      padding: 16px 24px; background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: #fff; border: none; border-radius: 14px; font-size: 17px; font-weight: 600;
+      cursor: pointer; text-decoration: none; text-align: center;
+      box-shadow: 0 4px 24px rgba(139, 92, 246, 0.4); transition: transform 0.2s;
+    }
+    .open-btn:active { transform: scale(0.97); }
+    .section {
+      max-width: 420px; margin: 0 auto 32px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px; padding: 24px;
+    }
+    .section h2 { font-size: 18px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .steps { list-style: none; counter-reset: step; }
+    .steps li {
+      counter-increment: step; position: relative; padding-left: 36px;
+      margin-bottom: 14px; font-size: 14px; line-height: 1.6; color: #cbd5e1;
+    }
+    .steps li::before {
+      content: counter(step); position: absolute; left: 0; top: 1px;
+      width: 24px; height: 24px; background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.4); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 600; color: #a78bfa;
+    }
+    .steps li strong { color: #fff; }
+    .badge {
+      display: inline-block; padding: 2px 8px; background: rgba(139, 92, 246, 0.2);
+      border-radius: 6px; font-size: 11px; color: #a78bfa; font-weight: 500;
+    }
+    .features { max-width: 420px; margin: 0 auto; text-align: center; }
+    .features h3 { font-size: 15px; color: #94a3b8; margin-bottom: 12px; }
+    .fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .feat {
+      background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px; padding: 14px 10px; font-size: 13px; color: #cbd5e1;
+    }
+    .feat span { font-size: 20px; display: block; margin-bottom: 6px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img class="logo" src="../../public/icons/icon-512.png" alt="Pulse Music"
+         onerror="this.src='../../pulse-logo.png'">
+    <h1>Pulse Music</h1>
+    <p class="tagline">High-Fidelity Cross-Platform Music Streaming</p>
+  </div>
+  <a class="open-btn" href="https://pushkarhiremath68-cyber.github.io/Pulse/">🎵 Open Pulse Music Now</a>
+
+  <div class="section hidden" id="android-section">
+    <h2><span>🤖</span> Install on Android</h2>
+    <ol class="steps">
+      <li>Open <strong>Pulse Music</strong> in <strong>Chrome</strong></li>
+      <li>Tap the <strong>⋮ menu</strong> (three dots) top-right</li>
+      <li>Tap <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong></li>
+      <li>Tap <strong>"Install"</strong> to confirm</li>
+      <li>Find it on your home screen — works like a native app! <span class="badge">Full Screen</span></li>
+    </ol>
+  </div>
+
+  <div class="section hidden" id="ios-section">
+    <h2><span>🍎</span> Install on iPhone / iPad</h2>
+    <ol class="steps">
+      <li>Open <strong>Pulse Music</strong> in <strong>Safari</strong> (required)</li>
+      <li>Tap the <strong>Share button</strong> (square with arrow) at the bottom</li>
+      <li>Scroll down, tap <strong>"Add to Home Screen"</strong></li>
+      <li>Tap <strong>"Add"</strong> in top-right</li>
+      <li>Launch from home screen — full screen, no browser bars! <span class="badge">Native Feel</span></li>
+    </ol>
+  </div>
+
+  <div class="section hidden" id="desktop-section">
+    <h2><span>💻</span> Install on Desktop</h2>
+    <ol class="steps">
+      <li>Open <strong>Pulse Music</strong> in <strong>Chrome</strong> or <strong>Edge</strong></li>
+      <li>Click the <strong>Install icon</strong> (⊕) in the address bar</li>
+      <li>Click <strong>"Install"</strong> to add as a desktop app</li>
+      <li>Find it in your Start Menu / Launchpad / Applications</li>
+    </ol>
+  </div>
+
+  <div class="section hidden" id="apk-section">
+    <h2><span>📦</span> Download Android APK</h2>
+    <ol class="steps">
+      <li><a href="https://pushkarhiremath68-cyber.github.io/Pulse/downloads/Pulse-Music-v2.4.0.apk" style="color:#a78bfa;font-weight:600;">Download Pulse-Music-v2.4.0.apk</a></li>
+      <li>Open the downloaded APK file</li>
+      <li>Allow <strong>"Install from Unknown Sources"</strong> if prompted</li>
+      <li>Tap <strong>Install</strong> and open Pulse Music!</li>
+    </ol>
+  </div>
+
+  <div class="features">
+    <h3>What you get</h3>
+    <div class="fgrid">
+      <div class="feat"><span>🎧</span>Lossless Audio</div>
+      <div class="feat"><span>🎤</span>Synced Lyrics</div>
+      <div class="feat"><span>📱</span>Background Play</div>
+      <div class="feat"><span>🌍</span>All Languages</div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var ua = navigator.userAgent || '';
+      var isAndroid = /android/i.test(ua);
+      var isIOS = /iphone|ipad|ipod/i.test(ua);
+
+      if (isAndroid) {
+        document.getElementById('android-section').classList.remove('hidden');
+        document.getElementById('apk-section').classList.remove('hidden');
+      } else if (isIOS) {
+        document.getElementById('ios-section').classList.remove('hidden');
+      } else {
+        document.getElementById('desktop-section').classList.remove('hidden');
+        document.getElementById('android-section').classList.remove('hidden');
+        document.getElementById('ios-section').classList.remove('hidden');
+      }
+    })();
+  </script>
+</body>
+</html>
