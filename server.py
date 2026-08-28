@@ -952,6 +952,29 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             self._send_json(404, {'success': False, 'error': 'Audio stream not found'})
             return
 
+        if path == '/api/proxy-stream':
+            url = params.get('url', [None])[0]
+            if url:
+                try:
+                    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+                    with urllib.request.urlopen(req) as resp:
+                        self.send_response(200)
+                        self.send_header('Content-Type', resp.headers.get('Content-Type', 'audio/mp4'))
+                        if resp.headers.get('Content-Length'):
+                            self.send_header('Content-Length', resp.headers.get('Content-Length'))
+                        self.send_header('Access-Control-Allow-Origin', '*')
+                        self.end_headers()
+                        import shutil
+                        shutil.copyfileobj(resp, self.wfile)
+                        return
+                except Exception as e:
+                    print("[Pulse Server Proxy Stream Error]:", e)
+                    self.send_response(500)
+                    self.end_headers()
+                    return
+            self._send_json(400, {'success': False, 'error': 'url parameter required'})
+            return
+
         if path == '/api/ytm/charts':
             results = []
             if yt_dlp:

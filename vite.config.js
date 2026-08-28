@@ -145,6 +145,36 @@ function pulseApiPlugin() {
           }
         }
 
+        if (pathname === '/api/proxy-stream') {
+          const targetUrl = urlObj.searchParams.get('url');
+          if (targetUrl) {
+            try {
+              const fetchRes = await fetch(targetUrl, {
+                headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
+              });
+              const headers = { 'Access-Control-Allow-Origin': '*' };
+              if (fetchRes.headers.has('content-type')) headers['Content-Type'] = fetchRes.headers.get('content-type');
+              if (fetchRes.headers.has('content-length')) headers['Content-Length'] = fetchRes.headers.get('content-length');
+              res.writeHead(200, headers);
+              
+              if (fetchRes.body) {
+                const reader = fetchRes.body.getReader();
+                while (true) {
+                  const { done, value } = await reader.read();
+                  if (done) { res.end(); break; }
+                  res.write(value);
+                }
+              } else {
+                res.end();
+              }
+              return;
+            } catch (e) {
+              res.writeHead(500, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: e.message }));
+              return;
+            }
+          }
+        }
 
         if (pathname === '/api/yt/search') {
           const q = urlObj.searchParams.get('q') || '';

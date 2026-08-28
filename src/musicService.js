@@ -569,11 +569,10 @@ export async function resolveFullAudioStream(track) {
       !track.streamUrl.includes('mzstatic') &&
       (track.duration || 0) > 40) {
     let finalStreamUrl = track.streamUrl;
-    
-    // Saavn CDN links often 403 in modern browsers, proxy them via backend
+
     if (finalStreamUrl.includes('saavncdn.com')) {
-      const cleanQ = `${track.title || ''} ${track.artist || ''}`.trim();
-      finalStreamUrl = `${localBaseUrl}/api/stream?id=${track.id}&q=${encodeURIComponent(cleanQ)}`;
+      const localBaseUrl = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+      finalStreamUrl = `${localBaseUrl}/api/proxy-stream?url=${encodeURIComponent(finalStreamUrl)}`;
     }
 
     const resolved = {
@@ -624,9 +623,6 @@ export async function resolveFullAudioStream(track) {
         );
         if (verified) {
           finalUrl = verified.streamUrl;
-          if (finalUrl.includes('saavncdn.com')) {
-            finalUrl = `${localBaseUrl}/api/stream?id=${track.id}&q=${encodeURIComponent(query)}`;
-          }
           finalSource = 'Studio Master Audio (YouTube)';
           if (!track.coverUrl || track.coverUrl.includes('pulse-logo')) {
             track.coverUrl = verified.coverUrl;
@@ -678,7 +674,19 @@ export async function resolveFullAudioStream(track) {
   }
 
   if (finalUrl) {
-    const resolved = { streamUrl: finalUrl, source: finalSource, duration: track.duration || 220 };
+    // -----------------------------------------------------------------
+    // CRITICAL PROXY FOR SAAVN CDN (Bypasses Browser 403 Forbidden)
+    // -----------------------------------------------------------------
+    if (finalUrl.includes('saavncdn.com')) {
+      const localBaseUrl = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+      finalUrl = `${localBaseUrl}/api/proxy-stream?url=${encodeURIComponent(finalUrl)}`;
+    }
+
+    const resolved = {
+      streamUrl: finalUrl,
+      duration: track.duration || 220,
+      source: finalSource
+    };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }
