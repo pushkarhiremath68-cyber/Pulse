@@ -6,20 +6,20 @@
 
 // Active Verified High-Performance Piped & Invidious Instances (2026 Resilient Fleet)
 export const PIPED_INSTANCES = [
-  'https://pipedapi.kavin.rocks',
   'https://api.piped.projectsegfau.lt',
   'https://pipedapi.r4fo.com',
+  'https://pipedapi.in.projectsegfau.lt',
+  'https://pipedapi.kavin.rocks',
   'https://pipedapi.leptons.xyz',
-  'https://piped-api.lunar.icu',
-  'https://pipedapi.in.projectsegfau.lt'
+  'https://piped-api.lunar.icu'
 ];
 
 export const INVIDIOUS_INSTANCES = [
+  'https://invidious.protokolla.fi',
   'https://inv.nadeko.net',
   'https://invidious.flokinet.to',
-  'https://invidious.privacyredirect.com',
   'https://iv.ggtyler.dev',
-  'https://invidious.protokolla.fi',
+  'https://invidious.privacyredirect.com',
   'https://yewtu.be'
 ];
 

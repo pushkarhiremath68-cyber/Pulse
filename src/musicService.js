@@ -594,27 +594,32 @@ export async function resolveFullAudioStream(track) {
   let ytIdToUse = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
 
   // =====================================================================
-  // UNIVERSAL TRACKS: YouTube is the best source (original language audio)
-  // Ensures all songs get the original play from YouTube
+  // UNIVERSAL RESOLUTION: Try the most reliable source first
   // =====================================================================
   
-  // Tier 1: YouTube Piped Opus (BEST for original audio)
-  if (ytIdToUse) {
-    try {
-      const ytm = await resolvePipedAudioStream(ytIdToUse);
-      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
-        finalUrl = ytm.streamUrl;
-        finalSource = 'Studio Master Audio (YouTube)';
+  // Tier 1: Local Backend /api/ytm/stream (MOST RELIABLE — bypasses CORS, decrypts Saavn)
+  try {
+    const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+    const localUrl = ytIdToUse 
+      ? `${localBase}/api/ytm/stream?id=${ytIdToUse}` 
+      : `${localBase}/api/ytm/stream?q=${encodeURIComponent(query)}`;
+    const res = await fetch(localUrl, { signal: AbortSignal.timeout(4000) });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.streamUrl && !json.streamUrl.includes('preview')) {
+        if (!json.title || isSaavnResultMatching({ title: json.title, artist: json.artist || '' }, track)) {
+          finalUrl = json.streamUrl;
+          finalSource = json.source || 'Studio Master Audio (YouTube)';
+        }
       }
-    } catch (e) {}
-  }
+    }
+  } catch (e) {}
 
-  // Tier 2: JioSaavn ONLY if result title closely matches (prevents wrong songs)
+  // Tier 2: JioSaavn Direct (client-side, needs CORS proxy for CDN playback)
   if (!finalUrl && query.length > 1) {
     try {
       const saavnResults = await searchJioSaavnDirect(query, 5);
       if (saavnResults && saavnResults.length > 0) {
-        // Find a result that actually matches the requested song
         const verified = saavnResults.find(s => 
           s.streamUrl && 
           s.streamUrl.startsWith('http') && 
@@ -632,7 +637,18 @@ export async function resolveFullAudioStream(track) {
     } catch (e) {}
   }
 
-  // Search YouTube to find a ytId if we still don't have one
+  // Tier 3: YouTube Piped Opus (often blocked by CORS in browsers)
+  if (!finalUrl && ytIdToUse) {
+    try {
+      const ytm = await resolvePipedAudioStream(ytIdToUse);
+      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
+        finalUrl = ytm.streamUrl;
+        finalSource = 'Studio Master Audio (YouTube)';
+      }
+    } catch (e) {}
+  }
+
+  // Tier 4: Search YouTube to find a ytId, then try Piped
   if (!finalUrl && !ytIdToUse) {
     try {
       const s = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 2);
@@ -640,7 +656,6 @@ export async function resolveFullAudioStream(track) {
         ytIdToUse = s[0].ytId;
         track.ytId = ytIdToUse;
 
-        // Try Piped with the newly found YouTube ID
         try {
           const ytm = await resolvePipedAudioStream(ytIdToUse);
           if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
@@ -648,27 +663,6 @@ export async function resolveFullAudioStream(track) {
             finalSource = 'Studio Master Audio (YouTube)';
           }
         } catch (e) {}
-      }
-    } catch (e) {}
-  }
-
-  // Tier 3: Local Backend Proxy (/api/ytm/stream) — fast timeout
-  if (!finalUrl) {
-    try {
-      const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
-      const localUrl = ytIdToUse 
-        ? `${localBase}/api/ytm/stream?id=${ytIdToUse}` 
-        : `${localBase}/api/ytm/stream?q=${encodeURIComponent(query)}`;
-      const res = await fetch(localUrl, { signal: AbortSignal.timeout(1500) });
-      if (res.ok) {
-        const json = await res.json();
-        if (json.streamUrl && !json.streamUrl.includes('preview')) {
-          // For all tracks from backend, validate the title match to prevent wrong songs
-          if (!json.title || isSaavnResultMatching({ title: json.title, artist: json.artist || '' }, track)) {
-            finalUrl = json.streamUrl;
-            finalSource = json.source || 'Studio Master Audio (YouTube)';
-          }
-        }
       }
     } catch (e) {}
   }
