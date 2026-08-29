@@ -8,9 +8,11 @@
 import { addToHistory, isFavorite, addFavorite, removeFavorite, onFavoritesChanged } from './firestoreService.js';
 import { resolvePipedAudioStream, searchYouTubeMusic } from './extractorService.js';
 import { resolveFullAudioStream } from './musicService.js';
+import { downloadCurrentTrack } from './downloadService.js';
 
 if (typeof window !== 'undefined') {
   window.PulsePlaybar = window.PulsePlaybar || {};
+  window.downloadCurrentTrack = downloadCurrentTrack;
 }
 
 let audio = null;
@@ -1085,6 +1087,8 @@ const playbarController = {
   toggleRepeat,
   toggleCurrentTrackFavorite,
   addCurrentToPlaylist,
+  downloadCurrentTrack,
+  downloadTrack,
   playTrackAtQueueIndex,
   getAudio,
   getCurrentTrack: () => currentTrack,

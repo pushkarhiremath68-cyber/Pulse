@@ -63,7 +63,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-DN8J0EUM.js"></script>
+  <script type="module" crossorigin src="./assets/index-CKsCl1jv.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-C-PEwBFs.css">
 </head>
 <body>
@@ -365,6 +365,7 @@
         <div class="player-track-actions">
           <button class="btn-player-icon" id="playbar-fav-btn" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.toggleCurrentTrackFavorite()" title="Like Song"><i class="fa-regular fa-heart"></i></button>
           <button class="btn-player-icon" id="playbar-playlist-btn" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.addCurrentToPlaylist()" title="Add to Playlist"><i class="fa-solid fa-list-plus"></i></button>
+          <button class="btn-player-icon" id="playbar-download-btn" onclick="event.stopPropagation(); window.downloadCurrentTrack()" title="Download Song (320kbps Master)"><i class="fa-solid fa-arrow-down-to-line"></i></button>
         </div>
       </div>
 
@@ -393,6 +394,9 @@
       <div class="player-right">
         <!-- Mobile Playbar Controls -->
         <div class="mobile-playbar-controls">
+          <button id="mobile-playbar-download-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.downloadCurrentTrack()" title="Download Song">
+            <i class="fa-solid fa-arrow-down-to-line"></i>
+          </button>
           <button id="mobile-playbar-lyrics-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.openLyricsDrawer()" title="Live Synced Lyrics">
             <i class="fa-solid fa-microphone-lines"></i>
           </button>
@@ -450,12 +454,16 @@
         <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
         <span>AI DJ</span>
       </a>
+      <a href="javascript:void(0)" class="mobile-nav-item" onclick="window.openDownloadModal()">
+        <i class="fa-solid fa-download" style="color: #06b6d4;"></i>
+        <span>Install App</span>
+      </a>
     </nav>
 
   </div>
 
   <!-- FULLSCREEN MAXIMIZED PLAYER -->
-  <div id="fullscreen-player" class="fullscreen-player hidden">
+  <div id="fullscreen-player" class="fullscreen-player-modal hidden">
     <div id="fs-bg-blur" class="fs-bg-blur"></div>
     <div class="fs-overlay">
       <!-- Fullscreen Top Header -->
@@ -475,6 +483,9 @@
         </div>
 
         <div class="fs-header-actions">
+          <button id="fs-btn-download" class="btn-icon-circle-lg" onclick="window.downloadCurrentTrack()" title="Download Song (320kbps Master Audio)">
+            <i class="fa-solid fa-arrow-down-to-line"></i>
+          </button>
           <button id="fs-toggle-lyrics-btn" class="btn-icon-circle-lg" onclick="window.switchFullscreenView('lyrics')" title="Toggle Live Lyrics View">
             <i class="fa-solid fa-microphone-lines"></i>
           </button>
@@ -526,6 +537,10 @@
 
           <!-- Quick Action Buttons -->
           <div class="fs-quick-action-pills">
+            <button id="fs-download-song-pill" class="fs-pill-btn" onclick="window.downloadCurrentTrack()">
+              <i class="fa-solid fa-arrow-down-to-line"></i>
+              <span>Download Song</span>
+            </button>
             <button id="fs-switch-lyrics-pill" class="fs-pill-btn" onclick="window.switchFullscreenView('lyrics')">
               <i class="fa-solid fa-microphone-lines"></i>
               <span>Live Synced Lyrics</span>
