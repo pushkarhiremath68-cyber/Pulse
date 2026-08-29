@@ -674,47 +674,23 @@
       <!-- Download & Shortcut Cards Grid -->
       <div class="download-cards-grid" style="display: flex; flex-direction: column; gap: 0.85rem;">
         
-        <!-- 1. Universal Instant PWA Web App (Zero Warnings) -->
+        <!-- 1. Universal Instant 1-Click Install (All Devices) -->
         <div class="download-card-tile" data-category="pwa" style="display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.25rem; border-radius: 16px; background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.35);">
           <div style="display: flex; align-items: center; gap: 1rem;">
             <div style="width: 46px; height: 46px; border-radius: 12px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.3rem; flex-shrink: 0; box-shadow: 0 4px 15px rgba(168,85,247,0.3);">
               <i class="fa-solid fa-bolt"></i>
             </div>
             <div>
-              <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">1-Click Add to Home Screen (Zero Warnings)</div>
-              <div style="font-size: 0.78rem; color: var(--text-secondary);">Official Verified Web App • 0 MB storage • Full background audio</div>
+              <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">1-Click Install App (This Device)</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Official Verified Web App • 0 MB storage • Full background audio • Zero warnings</div>
             </div>
           </div>
           <button id="pwa-install-btn" class="btn-primary-play" style="padding: 0.65rem 1.2rem; font-size: 0.84rem; white-space: nowrap;" onclick="window.triggerPWAInstall()">
-            <i class="fa-solid fa-plus"></i> Add App Now
+            <i class="fa-solid fa-download"></i> Install / Add App
           </button>
         </div>
 
-        <!-- 2. Android Home Screen Shortcut & APK -->
-        <div class="download-card-tile" data-category="android" style="display: flex; flex-direction: column; gap: 0.85rem; padding: 1.15rem 1.25rem; border-radius: 16px; background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.25);">
-          <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <div style="width: 46px; height: 46px; border-radius: 12px; background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.35); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 1.4rem; flex-shrink: 0;">
-                <i class="fa-brands fa-android"></i>
-              </div>
-              <div>
-                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Android 1-Tap Home Screen & APK</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Add official Pulse icon with zero warnings, or download standalone APK</div>
-              </div>
-            </div>
-            <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; background: rgba(34, 197, 94, 0.15); color: #4ade80; font-weight: 700;">100% Safe</span>
-          </div>
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.06);">
-            <button class="btn-primary-play" style="padding: 0.55rem 1.1rem; font-size: 0.82rem; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); box-shadow: 0 4px 15px rgba(34, 197, 94, 0.35);" onclick="window.triggerPWAInstall()">
-              <i class="fa-solid fa-plus"></i> Add to Home Screen (Safe)
-            </button>
-            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadAndroidApk()">
-              <i class="fa-solid fa-download"></i> Download APK (.apk)
-            </button>
-          </div>
-        </div>
-
-        <!-- 3. Windows Desktop Shortcut & App -->
+        <!-- 2. Windows Desktop & Laptop App -->
         <div class="download-card-tile" data-category="windows" style="display: flex; flex-direction: column; gap: 0.85rem; padding: 1.15rem 1.25rem; border-radius: 16px; background: rgba(14, 165, 233, 0.06); border: 1px solid rgba(14, 165, 233, 0.25);">
           <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
             <div style="display: flex; align-items: center; gap: 1rem;">
@@ -722,39 +698,59 @@
                 <i class="fa-brands fa-windows"></i>
               </div>
               <div>
-                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Windows Laptop & PC Desktop App</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Standalone Desktop App with Pulse icon on Taskbar • 0 Blocks • Windows 10 & 11</div>
+                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Windows PC & Laptop App</div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary);">Native Taskbar & Desktop Icon • Standalone Window • Windows 10 & 11</div>
               </div>
             </div>
             <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; background: rgba(14, 165, 233, 0.15); color: #38bdf8; font-weight: 700;">Zero Warnings</span>
           </div>
 
-          <!-- Laptop Install Walkthrough (Zero SmartScreen Blocks) -->
+          <!-- Windows Quick Guide -->
           <div style="background: rgba(14, 165, 233, 0.08); border-radius: 12px; padding: 0.85rem 1rem; border: 1px solid rgba(14, 165, 233, 0.25);">
-            <div style="font-size: 0.82rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.4rem;">
-              <i class="fa-solid fa-laptop"></i> How to Install on Laptop in 3 seconds (Zero SmartScreen warnings):
+            <div style="font-size: 0.82rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.35rem;">
+              <i class="fa-solid fa-laptop"></i> Fast 1-Click Laptop Installation:
             </div>
-            <div style="display: flex; flex-direction: column; gap: 0.45rem; font-size: 0.78rem; color: #f1f5f9; line-height: 1.4;">
-              <div><strong style="color: #38bdf8;">1. Browser Address Bar:</strong> Click the <strong>Install App icon</strong> <i class="fa-solid fa-download" style="color: #38bdf8;"></i> in your browser URL address bar (top right near star).</div>
-              <div><strong style="color: #4ade80;">2. Or Browser Menu:</strong> Tap <strong>Chrome/Edge 3 dots (⋮)</strong> ➔ <strong>"Install Pulse Music"</strong> (or "Apps" ➔ "Install").</div>
-              <div><strong style="color: #f59e0b;">3. Or Safe Shortcut:</strong> Click <strong>"Download Desktop Shortcut (.url)"</strong> below.</div>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.78rem; color: #f1f5f9; line-height: 1.4;">
+              <div><strong style="color: #38bdf8;">Option A (1-Click App):</strong> Click <strong>"1-Click Install on Laptop"</strong> below or the <strong>Install Icon (💻↓)</strong> in your browser address bar.</div>
+              <div><strong style="color: #4ade80;">Option B (Desktop Shortcut):</strong> Click <strong>"Desktop Shortcut (.url)"</strong> to download an instant shortcut with the official Pulse icon.</div>
             </div>
           </div>
 
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.06);">
-            <button class="btn-primary-play" style="padding: 0.55rem 1.1rem; font-size: 0.82rem; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);" onclick="window.downloadWindowsInstaller()">
-              <i class="fa-solid fa-download"></i> Download Windows Setup (.exe)
-            </button>
-            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.triggerPWAInstall()">
-              <i class="fa-solid fa-laptop"></i> 1-Click Install App
+            <button class="btn-primary-play" style="padding: 0.55rem 1.15rem; font-size: 0.82rem; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);" onclick="window.triggerPWAInstall()">
+              <i class="fa-solid fa-laptop"></i> 1-Click Install on Laptop
             </button>
             <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadWindowsShortcut()">
-              <i class="fa-solid fa-arrow-down"></i> Desktop Shortcut (.url)
+              <i class="fa-solid fa-arrow-down"></i> Desktop Shortcut (.url with Icon)
             </button>
           </div>
         </div>
 
-        <!-- 4. iOS & iPadOS Home Screen Shortcut -->
+        <!-- 3. Android Home Screen App & APK -->
+        <div class="download-card-tile" data-category="android" style="display: flex; flex-direction: column; gap: 0.85rem; padding: 1.15rem 1.25rem; border-radius: 16px; background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.25);">
+          <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 46px; height: 46px; border-radius: 12px; background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.35); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 1.4rem; flex-shrink: 0;">
+                <i class="fa-brands fa-android"></i>
+              </div>
+              <div>
+                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Android Phone & Tablet App</div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary);">Official Pulse icon on Home Screen • Background Audio & Lock Screen Controls</div>
+              </div>
+            </div>
+            <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; background: rgba(34, 197, 94, 0.15); color: #4ade80; font-weight: 700;">100% Safe</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.06);">
+            <button class="btn-primary-play" style="padding: 0.55rem 1.15rem; font-size: 0.82rem; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); box-shadow: 0 4px 15px rgba(34, 197, 94, 0.35);" onclick="window.triggerPWAInstall()">
+              <i class="fa-brands fa-android"></i> Add to Home Screen (Official)
+            </button>
+            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadAndroidApk()">
+              <i class="fa-solid fa-download"></i> Download APK (.apk)
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. iOS & iPadOS (iPhone & iPad) -->
         <div class="download-card-tile" data-category="ios" style="display: flex; flex-direction: column; gap: 0.85rem; padding: 1.15rem 1.25rem; border-radius: 16px; background: rgba(236, 72, 153, 0.06); border: 1px solid rgba(236, 72, 153, 0.25);">
           <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
             <div style="display: flex; align-items: center; gap: 1rem;">
@@ -763,7 +759,7 @@
               </div>
               <div>
                 <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">iPhone & iPad Home Screen App</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Official Apple PWA • Full-screen experience • Zero warnings</div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary);">Official Apple PWA • Full-Screen Lossless Audio • 0 Warnings</div>
               </div>
             </div>
             <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; background: rgba(236, 72, 153, 0.15); color: #f472b6; font-weight: 700;">Official Apple PWA</span>
