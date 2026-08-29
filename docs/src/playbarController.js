@@ -40,17 +40,20 @@ function getAudio() {
   if (!audio) {
     audio = document.getElementById('fallback-audio-player') || new Audio();
     audio.id = 'fallback-audio-player';
-    audio.volume = currentVolume;
+    audio.volume = currentVolume > 0 ? currentVolume : 0.8;
+    audio.muted = false;
     audio.preload = 'auto';
 
     audio.addEventListener('play', () => {
       isPlaying = true;
+      if (window.pulseState) window.pulseState.isPlaying = true;
       updatePlayPauseUI();
       updateMediaSessionPlaybackState('playing');
     });
 
     audio.addEventListener('pause', () => {
       isPlaying = false;
+      if (window.pulseState) window.pulseState.isPlaying = false;
       updatePlayPauseUI();
       updateMediaSessionPlaybackState('paused');
     });
@@ -88,7 +91,7 @@ function getAudio() {
     });
 
     audio.addEventListener('error', (e) => {
-      console.warn('[Pulse Audio Player] Playback notice:', e);
+      console.warn('[Pulse Audio Player] Native Audio Error Event:', e);
     });
   }
   return audio;
@@ -780,6 +783,8 @@ export async function playOnNativeAudio(track) {
     if (ytTimeInterval) clearInterval(ytTimeInterval);
 
     a.pause();
+    a.muted = false;
+    a.volume = currentVolume > 0 ? currentVolume : 0.8;
     a.src = stream;
     a.load();
     await a.play();
@@ -792,7 +797,17 @@ export async function playOnNativeAudio(track) {
     return true;
   } catch (err) {
     console.warn('[Pulse Engine] Native Audio play notice:', err.message);
-    return false;
+    // If play was rejected due to transient user gesture requirement, try one more time on immediate interaction
+    try {
+      a.muted = false;
+      await a.play();
+      isPlaying = true;
+      if (window.pulseState) window.pulseState.isPlaying = true;
+      updatePlayPauseUI();
+      return true;
+    } catch (retryErr) {
+      return false;
+    }
   }
 }
 

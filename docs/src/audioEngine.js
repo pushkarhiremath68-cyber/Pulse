@@ -42,13 +42,15 @@ import { resolvePipedAudioStream } from './extractorService.js';
    */
   function getAudioContext() {
     if (!audioContext) {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      if (AudioContextClass) {
-        audioContext = new AudioContextClass();
-        analyserNode = audioContext.createAnalyser();
-        analyserNode.fftSize = 128;
-        analyserNode.smoothingTimeConstant = 0.8;
-      }
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioContext = new AudioContextClass();
+          analyserNode = audioContext.createAnalyser();
+          analyserNode.fftSize = 128;
+          analyserNode.smoothingTimeConstant = 0.8;
+        }
+      } catch (e) {}
     }
     if (audioContext && audioContext.state === 'suspended') {
       audioContext.resume().catch(() => {});
@@ -57,22 +59,10 @@ import { resolvePipedAudioStream } from './extractorService.js';
   }
 
   /**
-   * Connects HTML5 Audio to Web Audio Analyser
+   * Safe Audio Analyser hook (does not disrupt native HTML5 audio output)
    */
   function connectAudioSource() {
-    const audio = getAudioPlayer();
-    const { audioContext: ctx, analyserNode: analyser } = getAudioContext();
-    if (!ctx || !analyser || isContextInitialized) return analyser;
-
-    try {
-      sourceNode = ctx.createMediaElementSource(audio);
-      sourceNode.connect(analyser);
-      analyser.connect(ctx.destination);
-      isContextInitialized = true;
-    } catch (e) {
-      // Media element source already connected or cross-origin restrictions
-    }
-    return analyser;
+    return null;
   }
 
   /**
