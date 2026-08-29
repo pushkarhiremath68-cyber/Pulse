@@ -1231,11 +1231,12 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     }
   }
 
+  // Trigger immediate render and bind to lifecycle events
+  initPulseApp();
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initPulseApp);
-  } else {
-    initPulseApp();
   }
+  window.addEventListener('load', initPulseApp);
 
   // ---------------------------------------------------------------------------
   // PROGRESSIVE WEB APP (PWA) SUPPORT
