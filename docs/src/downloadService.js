@@ -177,9 +177,10 @@ export function triggerDirectFileDownload(fileName, label) {
     if (typeof window.showToast === 'function') {
       window.showToast(`Starting ${label || fileName} download... ⚡`, 'info', 3000);
     }
-    const fileUrl = `https://pushkarhiremath68-cyber.github.io/Pulse/downloads/${fileName}`;
+    const fileUrl = `/downloads/${fileName}`;
     const link = document.createElement('a');
     link.href = fileUrl;
+    link.download = fileName;
     link.setAttribute('download', fileName);
     link.setAttribute('target', '_blank');
     link.style.display = 'none';
@@ -192,11 +193,11 @@ export function triggerDirectFileDownload(fileName, label) {
     }, 2000);
 
     if (typeof window.showToast === 'function') {
-      window.showToast(`${label || fileName} downloading! Check your notification bar / Downloads! 📲`, 'success', 5000);
+      window.showToast(`✅ ${label || fileName} downloading! Check your Downloads folder / notification bar! 📲`, 'success', 5000);
     }
   } catch (err) {
     console.error('[Pulse Downloader] Error triggering file download:', err);
-    window.location.href = `https://pushkarhiremath68-cyber.github.io/Pulse/downloads/${fileName}`;
+    window.location.href = `/downloads/${fileName}`;
   }
 }
 
