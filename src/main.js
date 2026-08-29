@@ -619,7 +619,6 @@ window.addEventListener('error', function(e) {
             <div style="font-size: 0.75rem; color: var(--text-secondary);">${track.plays || 'Top Release'} plays</div>
           </div>
           <span style="font-size: 0.8rem; color: var(--text-muted);">${Math.floor(track.duration / 60)}:${Math.floor(track.duration % 60).toString().padStart(2, '0')}</span>
-          <button class="btn-player-icon" title="Download Song" onclick="event.stopPropagation(); window.downloadTrack(window.__artistTopTracks[${idx}])"><i class="fa-solid fa-download"></i></button>
           <button class="btn-player-icon" title="Like Track" onclick="event.stopPropagation(); window.toggleFavoriteTrack(window.__artistTopTracks[${idx}])"><i class="fa-regular fa-heart"></i></button>
         </div>
       `).join('');
@@ -738,9 +737,6 @@ window.addEventListener('error', function(e) {
           <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.artist}" onclick="event.stopPropagation(); window.openArtistView('${track.artist.replace(/'/g, "\\'")}')">${track.artist}</p>
         </div>
         <div class="card-actions" onclick="event.stopPropagation()" style="display: flex; gap: 0.5rem; margin-top: 0.75rem; justify-content: flex-end;">
-          <button class="btn-player-icon" title="Download Song (320kbps MP3/M4A)" onclick="window.downloadTrack(window.__searchResults[${idx}])">
-            <i class="fa-solid fa-download"></i>
-          </button>
           <button class="btn-player-icon" title="Add to Favorites" onclick="window.toggleFavoriteTrack(window.__searchResults[${idx}])">
             <i class="fa-regular fa-heart"></i>
           </button>
@@ -795,7 +791,6 @@ window.addEventListener('error', function(e) {
                 <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${track.title}</div>
                 <div style="font-size: 0.75rem; color: var(--text-secondary);">${track.artist}</div>
               </div>
-              <button class="btn-player-icon" title="Download Song" onclick="event.stopPropagation(); window.downloadTrack(window.__userFavorites[${idx}])"><i class="fa-solid fa-download"></i></button>
               <button class="btn-player-icon" title="Remove" onclick="event.stopPropagation(); window.removeFavoriteTrack('${track.id}')"><i class="fa-solid fa-heart" style="color: #ff007a;"></i></button>
             </div>
           `).join('')}
@@ -850,7 +845,7 @@ window.addEventListener('error', function(e) {
                 <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${track.title}</div>
                 <div style="font-size: 0.75rem; color: var(--text-secondary);">${track.artist}</div>
               </div>
-              <button class="btn-player-icon" title="Download Song" onclick="event.stopPropagation(); window.downloadTrack(window.__userHistory[${idx}])"><i class="fa-solid fa-download"></i></button>
+              <button class="btn-player-icon" title="Like Track" onclick="event.stopPropagation(); window.toggleFavoriteTrack(window.__userHistory[${idx}])"><i class="fa-regular fa-heart"></i></button>
             </div>
           `).join('')}
         </div>
