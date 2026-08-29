@@ -125,46 +125,44 @@ import { resolvePipedAudioStream } from './extractorService.js';
       }
     };
 
-    // 1. Local Backend /api/ytm/stream (MOST RELIABLE — bypasses CORS, returns decrypted Saavn CDN URLs)
     const title = (track.title || track.name || '').replace(/\s*\([^)]*\)/g, '').trim();
     const artist = (track.artist || '').split(',')[0].trim();
     const query = `${title} ${artist}`.trim();
     const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
 
-    try {
-      const localUrl = ytId
-        ? `/api/ytm/stream?id=${ytId}`
-        : `/api/ytm/stream?q=${encodeURIComponent(query)}`;
-      const localExtRes = await fetch(localUrl, { signal: AbortSignal.timeout(4000) });
-      if (localExtRes.ok) {
-        const lData = await localExtRes.json();
-        if (lData.streamUrl) {
-          // Proxy saavncdn URLs through our backend
-          let streamUrl = lData.streamUrl;
-          if (streamUrl.includes('saavncdn.com')) {
-            const origin = (typeof window !== 'undefined' && window.location?.origin) || 'http://localhost:5173';
-            streamUrl = `${origin}/api/proxy-stream?url=${encodeURIComponent(streamUrl)}`;
-          }
-          add(streamUrl, 'pulse-server-ytm-stream', lData.codec || 'mp4/aac');
-        }
-      }
-    } catch (e) {}
+    const isLocalBackend = typeof window !== 'undefined' && (
+      window.location?.hostname === 'localhost' || 
+      window.location?.hostname === '127.0.0.1' ||
+      window.location?.port === '3000' ||
+      window.location?.port === '5173' ||
+      window.location?.port === '8000'
+    );
 
-    // 2. Direct explicit streamUrl on track if already verified full-length master
-    if (track.streamUrl && 
-        track.streamUrl.startsWith('http') && 
-        !track.streamUrl.includes('preview') && 
-        !track.streamUrl.includes('audio-ssl.itunes.apple.com') && 
-        !track.streamUrl.includes('mzstatic')) {
-      let streamUrl = track.streamUrl;
-      if (streamUrl.includes('saavncdn.com')) {
-        const origin = (typeof window !== 'undefined' && window.location?.origin) || 'http://localhost:5173';
-        streamUrl = `${origin}/api/proxy-stream?url=${encodeURIComponent(streamUrl)}`;
+    function proxySaavn(url) {
+      if (!url.includes('saavncdn.com')) return url;
+      if (isLocalBackend) {
+        return `${window.location.origin}/api/proxy-stream?url=${encodeURIComponent(url)}`;
       }
-      add(streamUrl, track.source || 'direct-master-audio', 'master');
+      return `https://corsproxy.io/?url=${encodeURIComponent(url)}`;
     }
 
-    // 3. YouTube Piped Opus (often blocked by CORS in browsers)
+    // 1. Local Backend /api/ytm/stream (ONLY when backend is available)
+    if (isLocalBackend) {
+      try {
+        const localUrl = ytId
+          ? `/api/ytm/stream?id=${ytId}`
+          : `/api/ytm/stream?q=${encodeURIComponent(query)}`;
+        const localExtRes = await fetch(localUrl, { signal: AbortSignal.timeout(4000) });
+        if (localExtRes.ok) {
+          const lData = await localExtRes.json();
+          if (lData.streamUrl) {
+            add(proxySaavn(lData.streamUrl), 'pulse-server-ytm-stream', lData.codec || 'mp4/aac');
+          }
+        }
+      } catch (e) {}
+    }
+
+    // 2. YouTube Piped Opus (works everywhere, CORS-friendly)
     if (ytId && ytId.length >= 10) {
       try {
         const ytmResolved = await resolvePipedAudioStream(ytId);
@@ -172,6 +170,15 @@ import { resolvePipedAudioStream } from './extractorService.js';
           add(ytmResolved.streamUrl, `ytm-opus-${ytmResolved.bitrate || '160k'}`, ytmResolved.codec || 'opus');
         }
       } catch (e) {}
+    }
+
+    // 3. Direct explicit streamUrl on track if already verified
+    if (track.streamUrl && 
+        track.streamUrl.startsWith('http') && 
+        !track.streamUrl.includes('preview') && 
+        !track.streamUrl.includes('audio-ssl.itunes.apple.com') && 
+        !track.streamUrl.includes('mzstatic')) {
+      add(proxySaavn(track.streamUrl), track.source || 'direct-master-audio', 'master');
     }
 
     return candidates;

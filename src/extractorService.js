@@ -2,29 +2,53 @@
  * Pulse Music - YouTube Music & Piped Pure Audio Stream Extractor
  * Resolves direct ad-free Opus (~160kbps) and M4A/AAC (~128kbps/256kbps) audio streams
  * with 0 video frames and zero visual container dependencies.
+ * 
+ * NOTE: Piped/Invidious are secondary enrichment sources.
+ * YouTube IFrame API is the PRIMARY guaranteed playback engine.
  */
 
-// Active Verified High-Performance Piped & Invidious Instances (2026 Resilient Fleet)
+// Active Verified High-Performance Piped & Invidious Instances (2026 Resilient Fleet — Refreshed)
 export const PIPED_INSTANCES = [
-  'https://api.piped.projectsegfau.lt',
-  'https://pipedapi.r4fo.com',
-  'https://pipedapi.in.projectsegfau.lt',
   'https://pipedapi.kavin.rocks',
+  'https://pipedapi.r4fo.com',
+  'https://api.piped.projectsegfau.lt',
+  'https://pipedapi.in.projectsegfau.lt',
   'https://pipedapi.leptons.xyz',
   'https://piped-api.lunar.icu'
 ];
 
 export const INVIDIOUS_INSTANCES = [
-  'https://invidious.protokolla.fi',
   'https://inv.nadeko.net',
-  'https://invidious.flokinet.to',
+  'https://invidious.protokolla.fi',
   'https://iv.ggtyler.dev',
+  'https://invidious.flokinet.to',
   'https://invidious.privacyredirect.com',
   'https://yewtu.be'
 ];
 
 let pipedIdx = 0;
 let invidiousIdx = 0;
+
+// Instance Health Tracker — skips dead/slow nodes automatically
+const deadInstances = new Set();
+const DEAD_INSTANCE_COOLDOWN_MS = 5 * 60 * 1000; // 5 minutes before retrying dead instance
+const deadInstanceTimers = new Map();
+
+function markInstanceDead(url) {
+  const origin = new URL(url).origin;
+  deadInstances.add(origin);
+  // Auto-revive after cooldown
+  if (deadInstanceTimers.has(origin)) clearTimeout(deadInstanceTimers.get(origin));
+  deadInstanceTimers.set(origin, setTimeout(() => deadInstances.delete(origin), DEAD_INSTANCE_COOLDOWN_MS));
+}
+
+function isInstanceAlive(baseUrl) {
+  try {
+    return !deadInstances.has(new URL(baseUrl).origin);
+  } catch {
+    return true;
+  }
+}
 
 export function getActivePipedNode() {
   return PIPED_INSTANCES[pipedIdx % PIPED_INSTANCES.length];
@@ -63,10 +87,10 @@ export async function resolvePipedAudioStream(videoId) {
     }
   }
 
-  // 1. Primary: Local / Vite / Python backend stream resolver (0ms instant resolution)
+  // 1. Primary: Local / Vite / Python backend stream resolver (fast resolution)
   try {
     const localUrl = `/api/ytm/stream?id=${cleanId}`;
-    const res = await fetch(localUrl, { signal: AbortSignal.timeout(3000) });
+    const res = await fetch(localUrl, { signal: AbortSignal.timeout(2000) });
     if (res.ok) {
       const json = await res.json();
       if (json.streamUrl) {
@@ -89,17 +113,22 @@ export async function resolvePipedAudioStream(videoId) {
     }
   } catch (e) {}
 
-  // 2. FAST CONCURRENT RACING across top responsive nodes (short timeout for fast YouTube fallback)
+  // 2. FAST CONCURRENT RACING across alive nodes (short timeout — YouTube IFrame is primary fallback)
+  const alivePiped = PIPED_INSTANCES.filter(isInstanceAlive).slice(0, 3);
+  const aliveInvidious = INVIDIOUS_INSTANCES.filter(isInstanceAlive).slice(0, 2);
   const nodesToRace = [
-    ...PIPED_INSTANCES.slice(0, 3).map(n => ({ type: 'piped', url: `${n}/streams/${cleanId}` })),
-    ...INVIDIOUS_INSTANCES.slice(0, 2).map(n => ({ type: 'invidious', url: `${n}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats` }))
+    ...alivePiped.map(n => ({ type: 'piped', url: `${n}/streams/${cleanId}` })),
+    ...aliveInvidious.map(n => ({ type: 'invidious', url: `${n}/api/v1/videos/${cleanId}?fields=title,author,lengthSeconds,formatStreams,adaptiveFormats` }))
   ];
+
+  // If all instances are dead, skip the race entirely — YouTube IFrame will handle it
+  if (nodesToRace.length === 0) return null;
 
   try {
     const fastestResolved = await Promise.any(
       nodesToRace.map(async (node) => {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        const timeoutId = setTimeout(() => controller.abort(), 1500);
         try {
           const res = await fetch(node.url, { signal: controller.signal });
           clearTimeout(timeoutId);
@@ -148,6 +177,7 @@ export async function resolvePipedAudioStream(videoId) {
           throw new Error('No valid streams');
         } catch (e) {
           clearTimeout(timeoutId);
+          markInstanceDead(node.url);
           throw e;
         }
       })

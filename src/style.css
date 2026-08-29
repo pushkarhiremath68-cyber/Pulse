@@ -2189,9 +2189,10 @@ html, body {
   background: #000;
   border: 1px solid var(--border-glass-active);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
-  opacity: 0.05;
+  opacity: 0;
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
 }
 
 .global-yt-dock.active-yt-video {

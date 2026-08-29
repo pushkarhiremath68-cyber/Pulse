@@ -593,29 +593,59 @@ export async function resolveFullAudioStream(track) {
 
   let ytIdToUse = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
 
+  // Detect if we have a local backend (Vite dev server or Python server)
+  const isLocalBackend = typeof window !== 'undefined' && (
+    window.location?.hostname === 'localhost' || 
+    window.location?.hostname === '127.0.0.1' ||
+    window.location?.port === '3000' ||
+    window.location?.port === '5173' ||
+    window.location?.port === '8000'
+  );
+
   // =====================================================================
   // UNIVERSAL RESOLUTION: Try the most reliable source first
   // =====================================================================
   
-  // Tier 1: Local Backend /api/ytm/stream (MOST RELIABLE — bypasses CORS, decrypts Saavn)
-  try {
-    const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
-    const localUrl = ytIdToUse 
-      ? `${localBase}/api/ytm/stream?id=${ytIdToUse}` 
-      : `${localBase}/api/ytm/stream?q=${encodeURIComponent(query)}`;
-    const res = await fetch(localUrl, { signal: AbortSignal.timeout(4000) });
-    if (res.ok) {
-      const json = await res.json();
-      if (json.streamUrl && !json.streamUrl.includes('preview')) {
-        if (!json.title || isSaavnResultMatching({ title: json.title, artist: json.artist || '' }, track)) {
-          finalUrl = json.streamUrl;
-          finalSource = json.source || 'Studio Master Audio (YouTube)';
+  // Tier 1: Local Backend /api/ytm/stream (ONLY when backend is available)
+  if (isLocalBackend) {
+    try {
+      const localBase = window.location.origin;
+      const localUrl = ytIdToUse 
+        ? `${localBase}/api/ytm/stream?id=${ytIdToUse}` 
+        : `${localBase}/api/ytm/stream?q=${encodeURIComponent(query)}`;
+      const res = await fetch(localUrl, { signal: AbortSignal.timeout(2000) });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.streamUrl && !json.streamUrl.includes('preview')) {
+          if (!json.title || isSaavnResultMatching({ title: json.title, artist: json.artist || '' }, track)) {
+            finalUrl = json.streamUrl;
+            finalSource = json.source || 'Studio Master Audio (YouTube)';
+          }
         }
       }
-    }
-  } catch (e) {}
+    } catch (e) {}
+  }
 
-  // Tier 2: JioSaavn Direct (client-side, needs CORS proxy for CDN playback)
+  // FAST PATH: If we have a YouTube ID and local backend failed, return yt-iframe immediately
+  // YouTube IFrame is the most reliable engine — don't waste time on Piped/JioSaavn
+  if (!finalUrl && ytIdToUse && ytIdToUse.length >= 8) {
+    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
+    RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+    return resolved;
+  }
+
+  // Tier 2: YouTube Piped Opus (works everywhere, CORS-friendly)
+  if (!finalUrl && ytIdToUse) {
+    try {
+      const ytm = await resolvePipedAudioStream(ytIdToUse);
+      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
+        finalUrl = ytm.streamUrl;
+        finalSource = 'Studio Master Audio (YouTube)';
+      }
+    } catch (e) {}
+  }
+
+  // Tier 3: JioSaavn Direct (client-side)
   if (!finalUrl && query.length > 1) {
     try {
       const saavnResults = await searchJioSaavnDirect(query, 5);
@@ -633,17 +663,6 @@ export async function resolveFullAudioStream(track) {
             track.coverUrl = verified.coverUrl;
           }
         }
-      }
-    } catch (e) {}
-  }
-
-  // Tier 3: YouTube Piped Opus (often blocked by CORS in browsers)
-  if (!finalUrl && ytIdToUse) {
-    try {
-      const ytm = await resolvePipedAudioStream(ytIdToUse);
-      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
-        finalUrl = ytm.streamUrl;
-        finalSource = 'Studio Master Audio (YouTube)';
       }
     } catch (e) {}
   }
@@ -669,11 +688,16 @@ export async function resolveFullAudioStream(track) {
 
   if (finalUrl) {
     // -----------------------------------------------------------------
-    // CRITICAL PROXY FOR SAAVN CDN (Bypasses Browser 403 Forbidden)
+    // SAAVN CDN PROXY: Use local proxy when backend available, 
+    // otherwise use public CORS proxy for GitHub Pages / static hosts
     // -----------------------------------------------------------------
     if (finalUrl.includes('saavncdn.com')) {
-      const localBaseUrl = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
-      finalUrl = `${localBaseUrl}/api/proxy-stream?url=${encodeURIComponent(finalUrl)}`;
+      if (isLocalBackend) {
+        finalUrl = `${window.location.origin}/api/proxy-stream?url=${encodeURIComponent(finalUrl)}`;
+      } else {
+        // Public CORS proxy for static deployments (GitHub Pages)
+        finalUrl = `https://corsproxy.io/?url=${encodeURIComponent(finalUrl)}`;
+      }
     }
 
     const resolved = {
