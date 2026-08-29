@@ -471,11 +471,10 @@ export function toggleFullscreen(forceState) {
   const fsModal = document.getElementById('fullscreen-player');
   if (!fsModal) return;
 
-  const shouldOpen = typeof forceState === 'boolean' ? forceState : fsModal.classList.contains('hidden');
+  const shouldOpen = typeof forceState === 'boolean' ? forceState : !fsModal.classList.contains('active');
   isMaximized = shouldOpen;
 
   if (shouldOpen) {
-    fsModal.classList.remove('hidden');
     fsModal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
@@ -484,11 +483,13 @@ export function toggleFullscreen(forceState) {
       window.pulseVisualizerInstance.start();
     }
 
-    if (currentTrack && typeof window.loadTrackLyrics === 'function') {
-      window.loadTrackLyrics(currentTrack);
+    if (currentTrack) {
+      updateTrackInfoUI(currentTrack);
+      if (typeof window.loadTrackLyrics === 'function') {
+        window.loadTrackLyrics(currentTrack);
+      }
     }
   } else {
-    fsModal.classList.add('hidden');
     fsModal.classList.remove('active');
     document.body.style.overflow = '';
   }
