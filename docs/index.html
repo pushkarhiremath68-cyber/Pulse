@@ -742,8 +742,11 @@
           </div>
 
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.06);">
-            <button class="btn-primary-play" style="padding: 0.55rem 1.1rem; font-size: 0.82rem; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);" onclick="window.triggerPWAInstall()">
-              <i class="fa-solid fa-laptop"></i> 1-Click Install on Laptop
+            <button class="btn-primary-play" style="padding: 0.55rem 1.1rem; font-size: 0.82rem; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);" onclick="window.downloadWindowsInstaller()">
+              <i class="fa-solid fa-download"></i> Download Windows Setup (.exe)
+            </button>
+            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.triggerPWAInstall()">
+              <i class="fa-solid fa-laptop"></i> 1-Click Install App
             </button>
             <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadWindowsShortcut()">
               <i class="fa-solid fa-arrow-down"></i> Desktop Shortcut (.url)
