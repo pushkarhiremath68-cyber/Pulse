@@ -2347,4 +2347,29 @@ html, body {
   margin-bottom: 2.5rem;
 }
 
+/* PWA Floating Banner & Glow Effects */
+.btn-pulse-glow {
+  animation: pwaPulse 2.8s infinite;
+}
+
+@keyframes pwaPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(139, 92, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .pwa-floating-banner {
+    bottom: 95px !important;
+    width: 94% !important;
+    padding: 0.75rem 0.95rem !important;
+  }
+}
+
 

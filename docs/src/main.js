@@ -1246,15 +1246,40 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   window.addEventListener('load', initPulseApp);
 
   // ---------------------------------------------------------------------------
-  // PROGRESSIVE WEB APP (PWA) SUPPORT
+  // PROGRESSIVE WEB APP (PWA) SUPPORT & SMART INSTALL ENGINE
   // ---------------------------------------------------------------------------
-  let deferredPrompt;
+  let deferredPrompt = null;
+  const isPWAInstalled = window.matchMedia('(display-mode: standalone)').matches || 
+                         window.navigator.standalone === true || 
+                         window.location.search.includes('source=pwa');
+
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
+    
+    // Show floating smart install banner if not already installed and not dismissed in this session
+    if (!isPWAInstalled && !sessionStorage.getItem('pulse_pwa_dismissed')) {
+      setTimeout(() => {
+        const banner = document.getElementById('pwa-floating-banner');
+        if (banner && !isPWAInstalled) {
+          banner.classList.remove('hidden');
+        }
+      }, 3000);
+    }
   });
 
+  window.dismissPWABanner = function() {
+    const banner = document.getElementById('pwa-floating-banner');
+    if (banner) {
+      banner.classList.add('hidden');
+      sessionStorage.setItem('pulse_pwa_dismissed', 'true');
+    }
+  };
+
   window.triggerPWAInstall = async function() {
+    const banner = document.getElementById('pwa-floating-banner');
+    if (banner) banner.classList.add('hidden');
+
     if (deferredPrompt) {
       try {
         deferredPrompt.prompt();
@@ -1262,7 +1287,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         if (outcome === 'accepted') {
           deferredPrompt = null;
           window.closeDownloadModal();
-          window.showToast('Pulse Music installed successfully with Pulse logo!', 'success', 5000);
+          window.showToast('🎉 Pulse Music installed on your device! Check your Home Screen / Taskbar.', 'success', 6000);
           return;
         }
       } catch (err) {
@@ -1270,16 +1295,52 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       }
     }
     
-    // Automatically trigger the correct OS package download or shortcut
-    if (typeof window.downloadAppForDevice === 'function') {
-      window.downloadAppForDevice();
+    // Fallback: If browser does not support beforeinstallprompt (e.g., iOS Safari or already installed)
+    const plat = window.detectUserPlatform ? window.detectUserPlatform() : 'all';
+    if (plat === 'ios') {
+      window.openDownloadModal('ios');
+      window.showToast('iPhone / iPad: Tap Safari Share button [⎋] ➔ "Add to Home Screen" 📲', 'info', 7000);
+    } else {
+      window.openDownloadModal(plat);
     }
   };
+
+  window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    const banner = document.getElementById('pwa-floating-banner');
+    if (banner) banner.classList.add('hidden');
+    const headerBtn = document.getElementById('header-download-btn');
+    if (headerBtn) headerBtn.style.display = 'none';
+    window.showToast('Pulse Music installed successfully! Enjoy your ad-free music 🎵', 'success', 6000);
+  });
+
+  // Hide install button in header if running as standalone app
+  if (isPWAInstalled) {
+    window.addEventListener('DOMContentLoaded', () => {
+      const headerBtn = document.getElementById('header-download-btn');
+      if (headerBtn) headerBtn.style.display = 'none';
+      const sideFooter = document.querySelector('.sidebar-footer');
+      if (sideFooter) sideFooter.style.display = 'none';
+    });
+  }
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Pulse PWA Service Worker registered:', reg.scope))
+        .then(reg => {
+          console.log('Pulse PWA Service Worker registered:', reg.scope);
+          // Check for service worker updates
+          reg.onupdatefound = () => {
+            const installing = reg.installing;
+            if (installing) {
+              installing.onstatechange = () => {
+                if (installing.state === 'installed' && navigator.serviceWorker.controller) {
+                  console.log('New content is available; refreshing...');
+                }
+              };
+            }
+          };
+        })
         .catch(err => console.error('Pulse PWA Service Worker error:', err));
     });
   }

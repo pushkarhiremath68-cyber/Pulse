@@ -8,7 +8,7 @@
   <meta name="google-site-verification" content="JU7ok0hTmcqK6uA_ddeeN0u558cFaRrtH2Ojtc_tn0k" />
   
   <!-- PWA & Multi-Platform Meta Tags -->
-  <link rel="manifest" href="./assets/manifest-C8Gh6R7O.json">
+  <link rel="manifest" href="./assets/manifest-CApwAya8.json">
   <meta name="theme-color" content="#8b5cf6">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -63,8 +63,8 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-BPrjwZwD.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CRczDMeB.css">
+  <script type="module" crossorigin src="./assets/index-Bt9fIVfA.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CKZdyKl4.css">
 </head>
 <body>
 
@@ -172,8 +172,8 @@
           <button id="header-lyrics-btn" class="btn-circle-nav" onclick="window.openLyricsDrawer()" title="Live Lyrics">
             <i class="fa-solid fa-microphone-lines"></i>
           </button>
-          <button id="header-download-btn" class="btn-download-header" onclick="window.openDownloadModal()">
-            <i class="fa-solid fa-cloud-arrow-down"></i> <span>Make Shortcut / Install</span>
+          <button id="header-download-btn" class="btn-download-header btn-pulse-glow" onclick="window.triggerPWAInstall()" style="background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%); border: none; color: #fff; font-weight: 800; box-shadow: 0 4px 15px rgba(139,92,246,0.4);">
+            <i class="fa-solid fa-download"></i> <span>Install App</span>
           </button>
         </div>
       </header>
@@ -895,6 +895,27 @@
       </div>
 
       <div id="gemini-dj-output"></div>
+    </div>
+  </div>
+
+  <!-- FLOATING SMART PWA INSTALL BANNER (Mobile & Desktop) -->
+  <div id="pwa-floating-banner" class="pwa-floating-banner hidden" style="position: fixed; bottom: 105px; left: 50%; transform: translateX(-50%); z-index: 999990; width: 92%; max-width: 480px; background: rgba(15, 17, 26, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(168, 85, 247, 0.45); border-radius: 18px; padding: 0.85rem 1.1rem; box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 25px rgba(168,85,247,0.25); display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);">
+    <div style="display: flex; align-items: center; gap: 0.75rem; min-width: 0;">
+      <div style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(168,85,247,0.35);">
+        <img src="./assets/pulse-logo-CGnkSwwT.png" alt="Pulse" style="width: 32px; height: 32px; object-fit: contain;">
+      </div>
+      <div style="min-width: 0;">
+        <div style="font-weight: 800; font-size: 0.88rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Install Pulse Music</div>
+        <div style="font-size: 0.72rem; color: #c084fc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">1-Tap • Background Audio • 0 MB</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;">
+      <button class="btn-primary-play" style="padding: 0.45rem 0.95rem; font-size: 0.78rem; font-weight: 800; border-radius: 10px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); box-shadow: 0 4px 15px rgba(168,85,247,0.35);" onclick="window.triggerPWAInstall()">
+        <i class="fa-solid fa-download"></i> Install
+      </button>
+      <button class="btn-icon-small" style="width: 28px; height: 28px; font-size: 0.75rem; opacity: 0.7;" onclick="window.dismissPWABanner()" title="Dismiss">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
   </div>
 
