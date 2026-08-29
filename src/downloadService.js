@@ -205,7 +205,14 @@ export function downloadAndroidApk() {
 }
 
 export function downloadWindowsInstaller() {
-  triggerDirectFileDownload('Pulse-Music-Setup-2.4.0.exe', 'Pulse Music for Windows (.exe)');
+  // Windows .exe files are always blocked by SmartScreen without a $400/yr code signing cert.
+  // Instead, trigger the PWA install prompt (which creates a real desktop app with taskbar icon)
+  // or fall back to opening the download modal with Windows-specific options.
+  if (typeof window.triggerPWAInstall === 'function') {
+    window.triggerPWAInstall();
+  } else if (typeof window.downloadWindowsShortcut === 'function') {
+    window.downloadWindowsShortcut();
+  }
 }
 
 export function downloadMacDmg() {
@@ -225,11 +232,25 @@ export function downloadAppForDevice() {
   if (plat === 'android') {
     downloadAndroidApk();
   } else if (plat === 'windows') {
-    downloadWindowsInstaller();
+    // On Windows, open the download modal with Windows tab — never try .exe
+    if (typeof window.openDownloadModal === 'function') {
+      window.openDownloadModal('windows');
+    }
+    if (typeof window.showToast === 'function') {
+      window.showToast('Click "1-Click Install on Laptop" or "Desktop Shortcut (.url)" for zero-warning install! 💻', 'info', 5000);
+    }
   } else if (plat === 'mac') {
-    downloadMacDmg();
+    if (typeof window.downloadMacShortcut === 'function') {
+      window.downloadMacShortcut();
+    } else {
+      downloadMacDmg();
+    }
   } else if (plat === 'linux') {
-    downloadLinuxAppImage();
+    if (typeof window.downloadLinuxDesktopShortcut === 'function') {
+      window.downloadLinuxDesktopShortcut();
+    } else {
+      downloadLinuxAppImage();
+    }
   } else if (plat === 'ios') {
     if (typeof window.openDownloadModal === 'function') {
       window.openDownloadModal('ios');
