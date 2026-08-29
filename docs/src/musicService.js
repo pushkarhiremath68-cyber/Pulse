@@ -371,7 +371,7 @@ export async function searchTracks(query, limit = 50) {
       title: isAppajiDeviKavacham ? 'Devi Kavacham' : 'Devi Kavacham by Appaji',
       artist: isAppajiDeviKavacham ? 'Appaji' : 'YouTube Artist',
       album: isAppajiDeviKavacham ? 'Devi Kavacham' : 'YouTube Master Audio',
-      coverUrl: `https://i.ytimg.com/vi/${directYtId}/maxresdefault.jpg`,
+      coverUrl: isAppajiDeviKavacham ? 'https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg' : `https://i.ytimg.com/vi/${directYtId}/maxresdefault.jpg`,
       duration: isAppajiDeviKavacham ? 840 : 220,
       streamUrl: '',
       previewUrl: '',

@@ -36,11 +36,11 @@ export const CATALOG_CATEGORIES = [
     icon: "fa-om",
     color: "#f59e0b",
     tracks: [
-      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", cover: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840, genre: "Devotional / Sanskrit Stotram" },
-      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", cover: "https://i.ytimg.com/vi/x0rIbgR41Z4/hqdefault.jpg", duration: 1800, genre: "Devotional" },
-      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", cover: "https://i.ytimg.com/vi/Z943lUvW0G4/hqdefault.jpg", duration: 720, genre: "Devotional" },
-      { id: "ytm-tL4w5gZc_jE", ytId: "tL4w5gZc_jE", title: "Hanuman Chalisa", artist: "Hariharan", cover: "https://i.ytimg.com/vi/tL4w5gZc_jE/hqdefault.jpg", duration: 580, genre: "Devotional" },
-      { id: "ytm-U3mQ0v5r3pY", ytId: "U3mQ0v5r3pY", title: "Shiv Tandav Stotram", artist: "Shankar Mahadevan", cover: "https://i.ytimg.com/vi/U3mQ0v5r3pY/hqdefault.jpg", duration: 554, genre: "Devotional" }
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840, genre: "Devotional / Sanskrit Stotram" },
+      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800, genre: "Devotional" },
+      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720, genre: "Devotional" },
+      { id: "ytm-tL4w5gZc_jE", ytId: "tL4w5gZc_jE", title: "Hanuman Chalisa", artist: "Hariharan", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c5/3a/8d/c53a8d9b-23d8-5cc1-ec14-6ed0ce7920a0/8902894137256_cover.jpg/1000x1000bb.jpg", duration: 580, genre: "Devotional" },
+      { id: "ytm-U3mQ0v5r3pY", ytId: "U3mQ0v5r3pY", title: "Shiv Tandav Stotram", artist: "Shankar Mahadevan", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/93/cc/db/93ccdb69-815f-7e02-4450-21a358166970/190374418898.jpg/1000x1000bb.jpg", duration: 554, genre: "Devotional" }
     ]
   },
   {
@@ -239,18 +239,18 @@ export const LANGUAGE_PLAYLISTS = [
     id: "lang-devotional",
     meta: { title: "Sacred Devotional Chants & Stotrams", icon: "fa-om", color: "#f59e0b", subtitle: "Devi Kavacham by Appaji, Vedic stotrams & divine peace" },
     tracks: [
-      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840 },
-      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/x0rIbgR41Z4/hqdefault.jpg", duration: 1800 },
-      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/Z943lUvW0G4/hqdefault.jpg", duration: 720 },
-      { id: "ytm-tL4w5gZc_jE", ytId: "tL4w5gZc_jE", title: "Hanuman Chalisa", artist: "Hariharan", coverUrl: "https://i.ytimg.com/vi/tL4w5gZc_jE/hqdefault.jpg", duration: 580 },
-      { id: "ytm-U3mQ0v5r3pY", ytId: "U3mQ0v5r3pY", title: "Shiv Tandav Stotram", artist: "Shankar Mahadevan", coverUrl: "https://i.ytimg.com/vi/U3mQ0v5r3pY/hqdefault.jpg", duration: 554 }
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840 },
+      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800 },
+      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720 },
+      { id: "ytm-tL4w5gZc_jE", ytId: "tL4w5gZc_jE", title: "Hanuman Chalisa", artist: "Hariharan", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c5/3a/8d/c53a8d9b-23d8-5cc1-ec14-6ed0ce7920a0/8902894137256_cover.jpg/1000x1000bb.jpg", duration: 580 },
+      { id: "ytm-U3mQ0v5r3pY", ytId: "U3mQ0v5r3pY", title: "Shiv Tandav Stotram", artist: "Shankar Mahadevan", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/93/cc/db/93ccdb69-815f-7e02-4450-21a358166970/190374418898.jpg/1000x1000bb.jpg", duration: 554 }
     ]
   },
   {
     id: "lang-kannada",
     meta: { title: "Kannada Sandalwood & Devotional Sensations", icon: "fa-crown", color: "#8b5cf6", subtitle: "Devi Kavacham by Appaji, KGF, Kantara and chartbusters" },
     tracks: [
-      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840 },
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840 },
       { id: "ytm-d1qgL-Hmsf0", ytId: "d1qgL-Hmsf0", title: "Singara Siriye", artist: "Vijay Prakash, Ananya Bhat", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/08/1e/a0/081ea00b-1dd6-876f-860a-a0add84d317e/8904337278427.jpg/1000x1000bb.jpg", duration: 284 },
       { id: "ytm-e1L1Rydm25c", ytId: "e1L1Rydm25c", title: "Ra Ra Rakkamma", artist: "Nakash Aziz, Sunidhi Chauhan", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f8/e2/e2/f8e2e2e1-16af-34a7-9563-adbc9f9f5664/8903431880192_cover.jpg/1000x1000bb.jpg", duration: 215 },
       { id: "ytm-Yx5V6l9Q-G8", ytId: "Yx5V6l9Q-G8", title: "Neene Neene", artist: "Armaan Malik", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3a/ec/34/3aec34e1-fe78-1078-5946-b7b75844c38f/191018009687.jpg/1000x1000bb.jpg", duration: 200 },
@@ -331,7 +331,7 @@ export const LANGUAGE_PLAYLISTS = [
 
 export const getQuickPicks = (limit = 8) => {
   return [
-    { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840 },
+    { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840 },
     { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
     { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258 },
     { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg", duration: 204 },
@@ -345,7 +345,7 @@ export const getQuickPicks = (limit = 8) => {
 
 export const getFeaturedArtists = () => {
   return [
-    { id: "appaji", name: "Appaji", genre: "Devotional / Spiritual", avatar: "https://i.ytimg.com/vi/b2t2XURj7MU/hqdefault.jpg" },
+    { id: "appaji", name: "Appaji", genre: "Devotional / Spiritual", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg" },
     { name: "The Weeknd", genre: "Pop / R&B", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg" },
     { name: "Taylor Swift", genre: "Pop / Country", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg" },
     { name: "Eminem", genre: "Hip-Hop / Rap", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg" },
@@ -357,9 +357,9 @@ export const getFeaturedArtists = () => {
     { name: "Coldplay", genre: "Alternative Rock", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/c2/79/33c27940-0255-a0d0-4bf6-0eb0393246eb/5099921211459.jpg/1000x1000bb.jpg" },
     { name: "Linkin Park", genre: "Rock / Metal", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg" },
     { name: "Dua Lipa", genre: "Dance Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d5/8b/1a/d58b1a1a-a82f-8700-1c4b-3d9a1758f8b8/190295286101.jpg/1000x1000bb.jpg" },
-    { name: "Arijit Singh", genre: "Bollywood / Soul", avatar: "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg" },
+    { name: "Arijit Singh", genre: "Bollywood / Soul", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg" },
     { name: "Anirudh Ravichander", genre: "Kollywood / EDM", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg" },
-    { name: "AP Dhillon", genre: "Punjabi / Urban", avatar: "https://i.ytimg.com/vi/Ib_eaGBQVNM/hqdefault.jpg" },
+    { name: "AP Dhillon", genre: "Punjabi / Urban", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg" },
     { name: "Bad Bunny", genre: "Latin / Reggaeton", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg" }
   ];
 };
@@ -370,12 +370,12 @@ export const getCuratedPlaylists = () => {
       id: "pl-appaji-devotional",
       title: "Devi Kavacham & Sacred Mantras",
       description: "Devi Kavacham by Appaji, Vedic stotrams, and divine spiritual healing",
-      coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/hqdefault.jpg",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg",
       trackCount: 10,
       tracks: [
-        { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840 },
-        { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/x0rIbgR41Z4/hqdefault.jpg", duration: 1800 },
-        { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/Z943lUvW0G4/hqdefault.jpg", duration: 720 }
+        { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840 },
+        { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800 },
+        { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720 }
       ]
     },
     {
@@ -421,7 +421,7 @@ export const getCuratedPlaylists = () => {
       id: "pl-daily-mix-1",
       title: "Daily Mix 1: Pure Synth & Pop",
       description: "The Weeknd, Ed Sheeran, Harry Styles and Miley Cyrus",
-      coverUrl: "https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg",
       trackCount: 15,
       tracks: [
         { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
@@ -434,7 +434,7 @@ export const getCuratedPlaylists = () => {
       id: "pl-bollywood-heart",
       title: "Bollywood Love Stories",
       description: "The deepest romantic anthems by Arijit Singh & Shreya Ghoshal",
-      coverUrl: "https://i.ytimg.com/vi/Umqb9KENgmk/hqdefault.jpg",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
       trackCount: 20,
       tracks: [
         { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
@@ -447,7 +447,7 @@ export const getCuratedPlaylists = () => {
       id: "pl-punjabi-hype",
       title: "Punjabi Hype & Urban Drill",
       description: "AP Dhillon, Shubh, Sidhu Moose Wala and Gurinder Gill",
-      coverUrl: "https://i.ytimg.com/vi/VNs_cCtdbPc/hqdefault.jpg",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg",
       trackCount: 18,
       tracks: [
         { id: "ytm-VNs_cCtdbPc", ytId: "VNs_cCtdbPc", title: "Brown Munde", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg", duration: 267 },
@@ -459,7 +459,7 @@ export const getCuratedPlaylists = () => {
       id: "pl-lofi-late-night",
       title: "Late Night Chill & Relax",
       description: "Low-fidelity aesthetic beats for deep meditation and dreaming",
-      coverUrl: "https://i.ytimg.com/vi/DWcJFNfaw90/hqdefault.jpg",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/7b/a9/cb7ba903-b5f1-cc21-90db-7a81b7aa0997/724596951057.jpg/1000x1000bb.jpg",
       trackCount: 25,
       tracks: [
         { id: "ytm-DWcJFNfaw90", ytId: "DWcJFNfaw90", title: "Midnight City", artist: "M83", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/7b/a9/cb7ba903-b5f1-cc21-90db-7a81b7aa0997/724596951057.jpg/1000x1000bb.jpg", duration: 243 },
@@ -554,12 +554,12 @@ export const getArtistDetails = (artistName) => {
   if (normalized.includes('appaji') || normalized.includes('ganapathy') || normalized.includes('srimatha') || normalized.includes('kavacham')) {
     monthlyListeners = "12,500,000";
     worldRank = "#1 Devotional";
-    banner = "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg";
     bio = "His Holiness Sri Ganapathy Sachchidananda Swamiji (Appaji) is a globally revered spiritual master, music therapist, and composer renowned worldwide for healing ragas, Devi Kavacham, and sacred Vedic stotrams.";
     tracks = [
-      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840, plays: "45,000,000" },
-      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/x0rIbgR41Z4/hqdefault.jpg", duration: 1800, plays: "38,000,000" },
-      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://i.ytimg.com/vi/Z943lUvW0G4/hqdefault.jpg", duration: 720, plays: "22,000,000" }
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840, plays: "45,000,000" },
+      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800, plays: "38,000,000" },
+      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720, plays: "22,000,000" }
     ];
   } else if (normalized.includes('eminem')) {
     monthlyListeners = "74,200,000";
@@ -633,7 +633,7 @@ export const getArtistDetails = (artistName) => {
   } else if (normalized.includes('arijit')) {
     monthlyListeners = "68,400,000";
     worldRank = "#1 in India";
-    banner = "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg";
+    banner = "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg";
     bio = "Arijit Singh is a celebrated Indian playback singer and music composer, known as the 'King of Playback Singing' in contemporary Bollywood.";
     tracks = [
       { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262, plays: "1,450,000,000" },
