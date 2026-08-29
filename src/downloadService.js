@@ -74,13 +74,8 @@ export async function downloadTrack(track) {
       throw new Error('Direct audio stream not available for this track.');
     }
 
-    // 2. Fetch audio as Blob with CORS support
-    const response = await fetch(streamUrl, {
-      mode: 'cors',
-      headers: {
-        'Accept': 'audio/*, application/octet-stream, */*'
-      }
-    });
+    // 2. Fetch audio as Blob with clean simple GET (Zero CORS preflight blockage)
+    const response = await fetch(streamUrl);
 
     if (!response.ok) {
       throw new Error(`HTTP error ${response.status}`);
@@ -124,15 +119,15 @@ export async function downloadTrack(track) {
     link.click();
 
     setTimeout(() => {
-      document.body.removeChild(link);
+      if (document.body.contains(link)) document.body.removeChild(link);
       window.URL.revokeObjectURL(blobUrl);
-    }, 2000);
+    }, 2500);
 
     if (typeof window.showToast === 'function') {
       window.showToast(`"${cleanTitle}" downloaded successfully! 🎧 (320kbps Master)`, 'success', 4000);
     }
   } catch (err) {
-    console.warn('[Pulse Downloader] Direct blob fetch notice:', err.message);
+    console.warn('[Pulse Downloader] Direct blob fetch fallback:', err.message);
     
     // Fallback: If blob was blocked by browser security, open direct stream link with download prompt
     let fallbackStream = track.streamUrl || PERMANENT_STREAM_MAP[track.title] || '';
@@ -143,10 +138,12 @@ export async function downloadTrack(track) {
       a.download = fileName;
       document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
+      setTimeout(() => {
+        if (document.body.contains(a)) document.body.removeChild(a);
+      }, 1500);
 
       if (typeof window.showToast === 'function') {
-        window.showToast(`Downloading "${cleanTitle}" via direct CDN... ⚡`, 'info', 4000);
+        window.showToast(`Downloading "${cleanTitle}" via direct master CDN... ⚡`, 'info', 4000);
       }
     } else {
       if (typeof window.showToast === 'function') {
@@ -177,7 +174,10 @@ export function downloadCurrentTrack() {
  */
 export function triggerDirectFileDownload(fileName, label) {
   try {
-    const fileUrl = `https://raw.githubusercontent.com/pushkarhiremath68-cyber/Pulse/main/docs/downloads/${fileName}`;
+    if (typeof window.showToast === 'function') {
+      window.showToast(`Starting ${label || fileName} download... ⚡`, 'info', 3000);
+    }
+    const fileUrl = `https://pushkarhiremath68-cyber.github.io/Pulse/downloads/${fileName}`;
     const link = document.createElement('a');
     link.href = fileUrl;
     link.setAttribute('download', fileName);
@@ -189,14 +189,14 @@ export function triggerDirectFileDownload(fileName, label) {
       if (document.body.contains(link)) {
         document.body.removeChild(link);
       }
-    }, 1500);
+    }, 2000);
 
     if (typeof window.showToast === 'function') {
-      window.showToast(`Downloading ${label || fileName}... Check your notification bar / Downloads! 📲`, 'success', 5000);
+      window.showToast(`${label || fileName} downloading! Check your notification bar / Downloads! 📲`, 'success', 5000);
     }
   } catch (err) {
     console.error('[Pulse Downloader] Error triggering file download:', err);
-    window.location.href = `https://raw.githubusercontent.com/pushkarhiremath68-cyber/Pulse/main/docs/downloads/${fileName}`;
+    window.location.href = `https://pushkarhiremath68-cyber.github.io/Pulse/downloads/${fileName}`;
   }
 }
 
