@@ -6,11 +6,41 @@
 
 import { disambiguateQuery } from './geminiService.js';
 import { searchYouTubeMusic, resolvePipedAudioStream, fetchYouTubeMusicCharts } from './extractorService.js';
-import { searchCatalogTracks } from './catalogService.js';
+import { searchCatalogTracks, PERMANENT_STREAM_MAP } from './catalogService.js';
 import CryptoJS from 'crypto-js';
 
 // In-memory LRU stream resolution cache
 const RESOLVED_STREAM_CACHE = new Map();
+
+// LocalStorage Persistent Stream Cache Key
+const PERSISTENT_STREAM_CACHE_KEY = 'pulse_permanent_stream_cache_v2';
+
+function getPersistedStream(key) {
+  try {
+    if (typeof localStorage === 'undefined') return null;
+    const raw = localStorage.getItem(PERSISTENT_STREAM_CACHE_KEY);
+    if (!raw) return null;
+    const map = JSON.parse(raw);
+    return map[key] || null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function savePersistedStream(key, data) {
+  try {
+    if (typeof localStorage === 'undefined' || !key || !data) return;
+    const raw = localStorage.getItem(PERSISTENT_STREAM_CACHE_KEY);
+    const map = raw ? JSON.parse(raw) : {};
+    map[key] = data;
+    // Keep max 500 items in cache
+    const keys = Object.keys(map);
+    if (keys.length > 500) {
+      delete map[keys[0]];
+    }
+    localStorage.setItem(PERSISTENT_STREAM_CACHE_KEY, JSON.stringify(map));
+  } catch (e) {}
+}
 
 /**
  * Pure Client-Side DES Decryption for JioSaavn High-Bitrate Master Streams
@@ -582,12 +612,16 @@ function isSaavnResultMatching(saavnTrack, requestedTrack) {
 export async function resolveFullAudioStream(track) {
   if (!track) return null;
 
-  const cacheKey = `${(track.title || '').trim().toLowerCase()}___${(track.artist || '').trim().toLowerCase()}`;
+  const cleanTitle = (track.title || '').replace(/\(.*?\)|\[.*?\]|ft\..*|feat\..*|Official.*|Video.*/gi, '').trim();
+  const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].split('ft.')[0].trim();
+  const cacheKey = `${cleanTitle.toLowerCase()}___${cleanArtist.toLowerCase()}`;
+
+  // 0A. Check in-memory session cache
   if (RESOLVED_STREAM_CACHE.has(cacheKey)) {
     return RESOLVED_STREAM_CACHE.get(cacheKey);
   }
 
-  // 0. Check if current streamUrl is already a verified full-length master stream
+  // 0B. Check pre-embedded native streamUrl
   if (track.streamUrl && 
       track.streamUrl.startsWith('http') && 
       !track.streamUrl.includes('preview') && 
@@ -598,17 +632,35 @@ export async function resolveFullAudioStream(track) {
     const resolved = {
       streamUrl: track.streamUrl,
       duration: track.duration || 220,
-      source: track.source || 'Studio Master Audio'
+      source: track.source || 'Studio Master Audio (320kbps)'
     };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+    savePersistedStream(cacheKey, resolved);
     return resolved;
   }
 
-  let finalUrl = null;
-  let finalSource = 'Studio Master Audio';
+  // 0C. Check PERMANENT_STREAM_MAP for zero-network instantaneous resolution
+  const permanentDirect = PERMANENT_STREAM_MAP[track.title] || PERMANENT_STREAM_MAP[cleanTitle];
+  if (permanentDirect) {
+    const resolved = {
+      streamUrl: permanentDirect,
+      duration: track.duration || 220,
+      source: 'Studio Master Audio (320kbps)'
+    };
+    RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+    savePersistedStream(cacheKey, resolved);
+    return resolved;
+  }
 
-  const cleanTitle = (track.title || '').replace(/\(.*?\)|\[.*?\]|ft\..*|feat\..*|Official.*|Video.*/gi, '').trim();
-  const cleanArtist = (track.artist || '').split(',')[0].split('&')[0].split('ft.')[0].trim();
+  // 0D. Check LocalStorage Persistent Cache (retained forever across browser sessions & reloads)
+  const persisted = getPersistedStream(cacheKey);
+  if (persisted && persisted.streamUrl && persisted.streamUrl.startsWith('http')) {
+    RESOLVED_STREAM_CACHE.set(cacheKey, persisted);
+    return persisted;
+  }
+
+  let finalUrl = null;
+  let finalSource = 'Studio Master Audio (320kbps)';
   const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
   let ytIdToUse = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
 
@@ -670,6 +722,7 @@ export async function resolveFullAudioStream(track) {
       source: finalSource
     };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+    savePersistedStream(cacheKey, resolved);
     return resolved;
   }
 

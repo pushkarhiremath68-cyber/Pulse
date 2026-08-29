@@ -91,7 +91,17 @@ function getAudio() {
     });
 
     audio.addEventListener('error', (e) => {
-      console.warn('[Pulse Audio Player] Native Audio Error Event:', e);
+      console.warn('[Pulse Audio Player] Native Audio stream error event:', e);
+      if (activeEngine === 'native' && currentTrack && isPlaying) {
+        const ytId = currentTrack.ytId || (currentTrack.id && currentTrack.id.startsWith('ytm-') ? currentTrack.id.replace('ytm-', '') : null);
+        if (ytId) {
+          console.log('[Pulse Audio Player] Auto-recovering via YouTube stream fallback for:', ytId);
+          playOnYouTubeIframe(ytId, currentTrack);
+        } else {
+          const searchQuery = `${currentTrack.title} ${currentTrack.artist}`.trim();
+          playOnYouTubeSearch(searchQuery, currentTrack);
+        }
+      }
     });
   }
   return audio;
@@ -870,12 +880,19 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
               }
             }
           },
-          'onError': (e) => {
+          'onError': async (e) => {
             const errorCode = e?.data;
             console.warn('[Pulse Studio Master] YouTube IFrame error code:', errorCode);
-            if (activeEngine === 'youtube' && isPlaying) {
-              // Error 100 = video not found, 101/150 = restricted/blocked
-              const skipDelay = (errorCode === 100 || errorCode === 101 || errorCode === 150) ? 500 : 1000;
+            if (activeEngine === 'youtube' && isPlaying && currentTrack) {
+              // Error 100 = video not found, 101/150 = embedding restricted by label
+              if ((errorCode === 101 || errorCode === 150 || errorCode === 100) && !currentTrack._hasRetriedAlternative) {
+                currentTrack._hasRetriedAlternative = true;
+                console.log('[Pulse Studio Master] Attempting alternative video embed for:', currentTrack.title);
+                const altQuery = `${currentTrack.title} ${currentTrack.artist} audio lyrics`.trim();
+                const altSuccess = await playOnYouTubeSearch(altQuery, currentTrack);
+                if (altSuccess) return;
+              }
+              const skipDelay = (errorCode === 100 || errorCode === 101 || errorCode === 150) ? 400 : 1000;
               setTimeout(() => {
                 if (activeEngine === 'youtube') playNext();
               }, skipDelay);

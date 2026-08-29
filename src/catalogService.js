@@ -5,6 +5,125 @@
  * 100% Studio Master Audio with Authentic Vocals & Zero 30-Second Limits.
  */
 
+export const PERMANENT_STREAM_MAP = {
+  "295": "https://aac.saavncdn.com/609/852628435c98083dfe217c1cfa731bb5_320.mp4",
+  "Devi Kavacham": "https://aac.saavncdn.com/284/f45425ac116e62dd1043ebc3b544b575_320.mp4",
+  "Blinding Lights": "https://aac.saavncdn.com/077/0b02a92687d1ae3369b6859f44872e52_320.mp4",
+  "Starboy": "https://aac.saavncdn.com/396/b4e570050007b056c662f2a98c9f28ec_320.mp4",
+  "Espresso": "https://aac.saavncdn.com/111/cf81f6eb5b6768fe2e1ddf9335124a5f_320.mp4",
+  "Birds of a Feather": "https://aac.saavncdn.com/707/761fa325ce0600e1463336f0431d82b3_320.mp4",
+  "Die With A Smile": "https://aac.saavncdn.com/060/05bb6ae7a01edcbd8e0d859d2fa1d83d_320.mp4",
+  "Shape of You": "https://aac.saavncdn.com/286/2929d11a5d44a3592ced0383fa6f1977_320.mp4",
+  "Cruel Summer": "https://aac.saavncdn.com/243/cf6b522de1390996fdbe109298873c72_320.mp4",
+  "As It Was": "https://aac.saavncdn.com/798/d05a7404f5bba5c3a8077ad3f36d546a_320.mp4",
+  "Flowers": "https://aac.saavncdn.com/047/985bd26eb8496d9a704c2fbb1bf0b8b7_320.mp4",
+  "Believer": "https://aac.saavncdn.com/248/46944eb7b4b31f5b0abf5eb2e1be2d2a_320.mp4",
+  "Mockingbird": "https://aac.saavncdn.com/857/d211e1efacfa0b0cb188c7c73085cc06_320.mp4",
+  "Chaleya": "https://aac.saavncdn.com/179/1be373323edc90024d93873d85f644ec_320.mp4",
+  "Kesariya": "https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4",
+  "Sri Lalitha Sahasranama Stotram": "https://aac.saavncdn.com/265/7e3f75131eed05ae0a5c706c50325423_320.mp4",
+  "Mahishasura Mardini Stotram": "https://aac.saavncdn.com/230/8d3b13114a1d34f7a859c163079c43ce_320.mp4",
+  "Hanuman Chalisa": "https://aac.saavncdn.com/256/254c18ccf39f955649057ed4426aa7f3_320.mp4",
+  "Shiv Tandav Stotram": "https://aac.saavncdn.com/686/c8f30829eafcaf16941e42c5eaca6151_320.mp4",
+  "Blank Space": "https://aac.saavncdn.com/886/2cff670001153e5468ab9341e20fc0d9_320.mp4",
+  "Please Please Please": "https://aac.saavncdn.com/812/1f3b1c54dda25e953e21b534f0def3cd_320.mp4",
+  "Bad Guy": "https://aac.saavncdn.com/025/3b05d69eea7b4fec5e71c8a8a36007ad_320.mp4",
+  "Levitating": "https://aac.saavncdn.com/665/7790c3b9097592113008eaf1031d6e57_320.mp4",
+  "That's What I Like": "https://aac.saavncdn.com/126/92f8cfeb935049da436424e9ab72faca_320.mp4",
+  "Someone Like You": "https://aac.saavncdn.com/612/ad933d7f01385b30aba7f38973d8aaae_320.mp4",
+  "Rolling in the Deep": "https://aac.saavncdn.com/612/0a27d3542aed0c832072aa077b1d3052_320.mp4",
+  "Sunflower": "https://aac.saavncdn.com/504/b3bc79be82cb12784fd3f8835bd22bf5_320.mp4",
+  "Lose Yourself": "https://aac.saavncdn.com/934/f9eb5732f5c0f0c7a69c35d315f64a08_320.mp4",
+  "Without Me": "https://aac.saavncdn.com/934/c102186cbe0576e0f4bc9d30cfa1b730_320.mp4",
+  "Love The Way You Lie": "https://aac.saavncdn.com/527/a8a2ff57367bf52c6d265d0d19bc8720_320.mp4",
+  "Circles": "https://aac.saavncdn.com/150/6b3ee769db0b03165446cd02bb8acf8e_320.mp4",
+  "Numb / Encore": "https://aac.saavncdn.com/167/5f5a39a9882d87e94e2bcf03c7220036_320.mp4",
+  "Titanium": "https://aac.saavncdn.com/550/d0726c0a7601c4b2c122aa37b1bc040f_320.mp4",
+  "Faded": "https://aac.saavncdn.com/981/ddf4f57d94d268001967dc60725c52ca_320.mp4",
+  "Lean On": "https://aac.saavncdn.com/920/b483831a6f88c754ce7a77e25a1afb3e_320.mp4",
+  "Animals": "https://aac.saavncdn.com/732/a9fc6515144f03571678033fe7b1fd2a_320.mp4",
+  "Levels": "https://aac.saavncdn.com/270/2f1c1d5a023f5db15b5f0509a19800ba_320.mp4",
+  "Wake Me Up": "https://aac.saavncdn.com/537/21bb9a7fb06a20900540c16c88948f50_320.mp4",
+  "Closer": "https://aac.saavncdn.com/054/00363f6aceae57b88fa39f686c5af82e_320.mp4",
+  "Sugar": "https://aac.saavncdn.com/572/424142ed496820f736d44fc88c9278a7_320.mp4",
+  "Bohemian Rhapsody": "https://aac.saavncdn.com/285/d9149bb073b722d5b07e650d37ef574c_320.mp4",
+  "In the End": "https://aac.saavncdn.com/845/c2c837fe52a37ade2595a71f431ddb23_320.mp4",
+  "Numb": "https://aac.saavncdn.com/966/53ddb7952555de25b9d304c362676b2e_320.mp4",
+  "Smells Like Teen Spirit": "https://aac.saavncdn.com/030/7c70c3b4c637fd75162fba4bacfd4939_320.mp4",
+  "Sweet Child O' Mine": "https://aac.saavncdn.com/120/f5fa4526795049b2ed8da352ed81989b_320.mp4",
+  "Thunderstruck": "https://aac.saavncdn.com/137/6a24367bfac481c790a74b03eba4c212_320.mp4",
+  "Viva La Vida": "https://aac.saavncdn.com/150/228516bdb7d5e91d4e32f27453a581b1_320.mp4",
+  "Yellow": "https://aac.saavncdn.com/750/01b4a0d6687da0c55420129d1b0b0cf2_320.mp4",
+  "Perfect": "https://aac.saavncdn.com/286/71bb6cc3391ddf619a4a3f1a1134f1c4_320.mp4",
+  "All of Me": "https://aac.saavncdn.com/041/1387076de04d92b35f71b298c86cd73b_320.mp4",
+  "Someone You Loved": "https://aac.saavncdn.com/695/8b2001760fc6ac2b04e498adeb298180_320.mp4",
+  "Let Her Go": "https://aac.saavncdn.com/154/f159c6e1fc580da6bf82d3abe04212ff_320.mp4",
+  "Fix You": "https://aac.saavncdn.com/659/8a687d0af70dff400c5a391efb065a7f_320.mp4",
+  "Tum Hi Ho": "https://aac.saavncdn.com/430/5c5ea5cc00e3bff45616013226f376fe_320.mp4",
+  "Apna Bana Le": "https://aac.saavncdn.com/195/27f344367a0a19f4aacaa76f9f80059f_320.mp4",
+  "O Maahi": "https://aac.saavncdn.com/139/61036495c7ba45adf72a856b60f054fd_320.mp4",
+  "Lofi Hip Hop Beats": "https://aac.saavncdn.com/945/dadaa35638f4bbcbd4ec9ee176ad3dc3_320.mp4",
+  "Midnight City": "https://aac.saavncdn.com/435/fd6aec8c4809549aa1c98cbec4786217_320.mp4",
+  "Coffee Beats & Rain": "https://aac.saavncdn.com/755/82579e79d1fc6a88c0715ab5a5835f08_320.mp4",
+  "Resonance": "https://aac.saavncdn.com/817/9ad5fdc7e488731955d7af33e1371994_320.mp4",
+  "Warm Nights": "https://aac.saavncdn.com/301/dae0aa618cda4eaa8a24ef2383a9b8d1_320.mp4",
+  "Affection": "https://aac.saavncdn.com/092/628fcf987d152e38ef59b0d45231282b_320.mp4",
+  "Brown Munde": "https://aac.saavncdn.com/973/76216adb3df5ef476f948891b40efb7a_320.mp4",
+  "Despacito": "https://aac.saavncdn.com/417/d5839e906cfe6e4b5fdc9de59b20a48f_320.mp4",
+  "Arabic Kuthu": "https://aac.saavncdn.com/510/9d96fc7ddd4ffadb745f25aed86f7a4e_320.mp4",
+  "Zingaat": "https://aac.saavncdn.com/962/bbbca2679bd9e030d3fe9fa223a88884_320.mp4",
+  "Naatu Naatu": "https://aac.saavncdn.com/683/000ab54759049a8451ffcdc6412a0ef6_320.mp4",
+  "Chogada": "https://aac.saavncdn.com/401/6dee5bf724016e494f2b08bc868824ad_320.mp4",
+  "The Hills": "https://aac.saavncdn.com/396/8a6100060823f664014983c80e58f59f_320.mp4",
+  "Anti-Hero": "https://aac.saavncdn.com/336/d372f6768254c4eed3543aad92fb31f4_320.mp4",
+  "Love Story": "https://aac.saavncdn.com/531/437e4c91a0986b75ea4704bacd693b4b_320.mp4",
+  "Demons": "https://aac.saavncdn.com/210/6878daf1737dcbd57b99677f085952d1_320.mp4",
+  "Bones": "https://aac.saavncdn.com/038/92c34396e8534cf0d0d676cdee4143ce_320.mp4",
+  "Satranga": "https://aac.saavncdn.com/092/86b1368e104225e0bfbc69cda4ab8580_320.mp4",
+  "Heeriye": "https://aac.saavncdn.com/022/a192e8d320ea5630db314d04fedf0aa5_320.mp4",
+  "Pehle Bhi Main": "https://aac.saavncdn.com/092/81b52beea90f186f27cf5c5eead972c8_320.mp4",
+  "Excuses": "https://aac.saavncdn.com/890/a18aabc4681dc6c334d5d29b67e84a0f_320.mp4",
+  "Elevated": "https://aac.saavncdn.com/477/e97849f7ed8c692c4e206bef3e286d45_320.mp4",
+  "We Rollin": "https://aac.saavncdn.com/495/85e93fe63de4dacf828aff38ccb8c0d1_320.mp4",
+  "No Love": "https://aac.saavncdn.com/972/d6b77308db70f7d63f16ddeff68c9a2c_320.mp4",
+  "With You": "https://aac.saavncdn.com/671/50b256cc8e60dc8b0243f5e0767e8467_320.mp4",
+  "Singara Siriye": "https://aac.saavncdn.com/818/5a2c19e7d0b2f16e1234374a02356bd0_320.mp4",
+  "Ra Ra Rakkamma": "https://aac.saavncdn.com/185/1074267ae660c761f7f2557ce0554976_320.mp4",
+  "Neene Neene": "https://aac.saavncdn.com/358/b81cef1383921eae9a90825dcefd9097_320.mp4",
+  "Belageddu": "https://aac.saavncdn.com/757/d677356559549308d13d262f99c18169_320.mp4",
+  "Munjaane Manju": "https://aac.saavncdn.com/571/005f47fd97f50fd10d025a284e21e7dd_320.mp4",
+  "Toofan (KGF 2)": "https://aac.saavncdn.com/146/ffb1d43e335ffb467a8e4428723addd1_320.mp4",
+  "Rowdy Baby": "https://aac.saavncdn.com/276/64b835b4e1829992f8d35f54d6dad5f3_320.mp4",
+  "Enjoy Enjaami": "https://aac.saavncdn.com/940/d9265bc9d27d51d4296ef27de2547ba0_320.mp4",
+  "Naa Ready": "https://aac.saavncdn.com/415/3789bee89b94522160f1e50b2266d2c4_320.mp4",
+  "Vaathi Coming": "https://aac.saavncdn.com/347/c536b256fca6b96aa432322c11c21fbb_320.mp4",
+  "Hukum (Jailer)": "https://aac.saavncdn.com/435/4161a58e6cff0010c02431e6c21728d9_320.mp4",
+  "Samajavaragamana": "https://aac.saavncdn.com/517/339d76dce4db4f43f4721eec2d8f03ef_320.mp4",
+  "Srivalli": "https://aac.saavncdn.com/000/05c5d77f6a8225d6667cf7a1fcaf37d8_320.mp4",
+  "Oo Antava Mava": "https://aac.saavncdn.com/000/c9ec0ef49f6ae298fa57d09a7c852189_320.mp4",
+  "Butta Bomma": "https://aac.saavncdn.com/517/68cc88035f2fbcd5772e6551bf64c111_320.mp4",
+  "Ramuloo Ramulaa": "https://aac.saavncdn.com/517/5702757c42c1ad44b3224a339817c8b0_320.mp4",
+  "Apsara Aali": "https://aac.saavncdn.com/442/82a65b877f3a747eb61c873039873416_320.mp4",
+  "Bring It On": "https://aac.saavncdn.com/076/c9d9261eb0be86aa5c57a78b34675617_320.mp4",
+  "Yad Lagla": "https://aac.saavncdn.com/979/a9ebe67e82ba2899fd0782f4f19a7bcd_320.mp4",
+  "Sairat Zaala Ji": "https://aac.saavncdn.com/998/bd2aa5cde227d8d315d855267f2ddd2f_320.mp4",
+  "Kamariya": "https://aac.saavncdn.com/764/5b7711718e5d7aa92c6e4daa132b344e_320.mp4",
+  "Dholida": "https://aac.saavncdn.com/401/f877ecb847c6241474952b0cda3eafda_320.mp4",
+  "Gori Radha Ne Kalo Kaan": "https://aac.saavncdn.com/712/e48d0d260dac22872ed09593d6732621_320.mp4",
+  "Radha Ne Shyam Mali Jaahe": "https://aac.saavncdn.com/657/dc481925b1ec84caae7d910665344505_320.mp4",
+  "Danza Kuduro": "https://aac.saavncdn.com/552/cab295d6de16f761d8d9d861652c2fdd_320.mp4",
+  "Dakiti": "https://aac.saavncdn.com/201/8cfd8efcd6eb4953d7be69926ebdf66b_320.mp4",
+  "Tusa": "https://aac.saavncdn.com/921/b53b0311b3d69312bbc3ec3ef9b0c768_320.mp4",
+  "Bailando": "https://aac.saavncdn.com/723/91faba2ed1dd79abae7c8175d3f4be83_320.mp4",
+  "Dynamite": "https://aac.saavncdn.com/918/3807a1963a5be3627a52d144ec8b6f1b_320.mp4",
+  "Butter": "https://aac.saavncdn.com/476/1fcf75bd9db61a0b56d4de84f5bc1d4a_320.mp4",
+  "How You Like That": "https://aac.saavncdn.com/756/337b2f38993184fb53da2be17a7897ae_320.mp4",
+  "Cupid (Twin Ver.)": "https://aac.saavncdn.com/870/a9cd3bb0cc6b21f1b0da43e1f7d440ed_320.mp4",
+  "Seven": "https://aac.saavncdn.com/289/edd30ebb57c8c1949bcea754282acc33_320.mp4",
+  "Lovely": "https://aac.saavncdn.com/947/580fe2c0cb03ba147b00a4b2261764d4_320.mp4",
+  "Set Fire to the Rain": "https://aac.saavncdn.com/411/dad392686b6d292f8a38f3de32b7a73f_320.mp4"
+};
+
 export const CATALOG_CATEGORIES = [
   {
     id: "cat-trending",
@@ -469,18 +588,22 @@ export const getCuratedPlaylists = () => {
   ];
 };
 
-export const fetchCategoryTracks = async (categoryId, limit = 25) => {
+export const fetchCategoryTracks = async (categoryId, limit = 20) => {
   const cat = CATALOG_CATEGORIES.find(c => c.id === categoryId);
   if (cat && cat.tracks && cat.tracks.length > 0) {
-    return cat.tracks.map(t => ({
-      id: t.id || (t.ytId ? `ytm-${t.ytId}` : `pulse-${Math.random()}`),
-      ytId: t.ytId,
-      title: t.title,
-      artist: t.artist,
-      coverUrl: t.cover || t.coverUrl || "./pulse-logo.png",
-      duration: t.duration || 220,
-      source: "Studio Master Audio (YouTube)"
-    })).slice(0, limit);
+    return cat.tracks.map(t => {
+      const stream = t.streamUrl || PERMANENT_STREAM_MAP[t.title] || '';
+      return {
+        id: t.id || (t.ytId ? `ytm-${t.ytId}` : `pulse-${Math.random()}`),
+        ytId: t.ytId,
+        title: t.title,
+        artist: t.artist,
+        coverUrl: t.cover || t.coverUrl || "./pulse-logo.png",
+        duration: t.duration || 220,
+        streamUrl: stream,
+        source: stream ? "Studio Master Audio (320kbps)" : "Studio Master Audio (YouTube)"
+      };
+    }).slice(0, limit);
   }
 
   // Fallback search
@@ -510,6 +633,7 @@ export function searchCatalogTracks(query) {
       const key = `${title}___${artist}`;
       if (!seen.has(key)) {
         seen.add(key);
+        const stream = t.streamUrl || PERMANENT_STREAM_MAP[t.title] || '';
         matched.push({
           id: t.id || (t.ytId ? `ytm-${t.ytId}` : `cat-${Math.random()}`),
           ytId: t.ytId,
@@ -518,7 +642,8 @@ export function searchCatalogTracks(query) {
           album: t.album || 'Pulse Master Catalog',
           coverUrl: t.coverUrl || t.cover || './pulse-logo.png',
           duration: t.duration || 220,
-          source: src || 'Studio Master Audio (YouTube)'
+          streamUrl: stream,
+          source: stream ? 'Studio Master Audio (320kbps)' : (src || 'Studio Master Audio (YouTube)')
         });
       }
     }
