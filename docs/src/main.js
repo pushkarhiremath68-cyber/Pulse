@@ -1029,26 +1029,22 @@ window.addEventListener('error', function(e) {
 
   // Client-Side Windows .URL Shortcut Generator
   window.downloadWindowsShortcut = function() {
-    const currentUrl = window.location.href.split('#')[0];
-    const iconUrl = new URL('./icons/icon.ico', window.location.href).href;
-    const urlFileContent = `[InternetShortcut]
-URL=${currentUrl}
-IconFile=${iconUrl}
-IconIndex=0
-HotKey=0
-[{000214A0-0000-0000-C000-000000000046}]
-Prop3=19,0
-`;
-    const blob = new Blob([urlFileContent], { type: 'application/octet-stream' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'Pulse Music.url';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(link.href);
+    try {
+      const link = document.createElement('a');
+      link.href = 'https://pushkarhiremath68-cyber.github.io/Pulse/downloads/Pulse-Music.url';
+      link.download = 'Pulse-Music.url';
+      link.setAttribute('download', 'Pulse-Music.url');
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      setTimeout(() => {
+        if (document.body.contains(link)) document.body.removeChild(link);
+      }, 1500);
 
-    window.showToast('Windows Shortcut with Pulse icon downloaded! Move it to your Desktop or Taskbar.', 'success', 4500);
+      window.showToast('Pulse Music shortcut (.url) downloaded! Double-click to open from Desktop.', 'success', 5000);
+    } catch (e) {
+      window.location.href = 'https://pushkarhiremath68-cyber.github.io/Pulse/downloads/Pulse-Music.url';
+    }
   };
 
   // Client-Side Windows .BAT Fast Launcher Generator
