@@ -1030,18 +1030,21 @@ window.addEventListener('error', function(e) {
   // Client-Side Windows .URL Shortcut Generator
   window.downloadWindowsShortcut = function() {
     try {
-      const link = document.createElement('a');
-      link.href = 'https://pushkarhiremath68-cyber.github.io/Pulse/downloads/Pulse-Music.url';
-      link.download = 'Pulse-Music.url';
-      link.setAttribute('download', 'Pulse-Music.url');
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
+      const urlContent = `[InternetShortcut]\r\nURL=https://pulse-music-app-68.web.app/\r\nIconFile=https://pulse-music-app-68.web.app/icons/icon.ico\r\nIconIndex=0\r\n[{000214A0-0000-0000-C000-000000000046}]\r\nProp3=19,0\r\n`;
+      const blob = new Blob([urlContent], { type: 'application/x-mswinurl;charset=utf-8' });
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = 'Pulse-Music.url';
+      a.setAttribute('download', 'Pulse-Music.url');
+      document.body.appendChild(a);
+      a.click();
       setTimeout(() => {
-        if (document.body.contains(link)) document.body.removeChild(link);
-      }, 1500);
+        if (document.body.contains(a)) document.body.removeChild(a);
+        URL.revokeObjectURL(blobUrl);
+      }, 2000);
 
-      window.showToast('Pulse Music shortcut (.url) downloaded! Double-click to open from Desktop.', 'success', 5000);
+      window.showToast('✅ "Pulse-Music.url" downloaded! Drag it to your desktop.', 'success', 5000);
     } catch (e) {
       window.location.href = 'https://pushkarhiremath68-cyber.github.io/Pulse/downloads/Pulse-Music.url';
     }
@@ -1336,13 +1339,17 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       }
     }
     
-    // Fallback: If browser does not support beforeinstallprompt (e.g., iOS Safari or already installed)
-    const plat = window.detectUserPlatform ? window.detectUserPlatform() : 'all';
-    if (plat === 'ios') {
-      window.openDownloadModal('ios');
-      window.showToast('iPhone / iPad: Tap Safari Share button [⎋] ➔ "Add to Home Screen" 📲', 'info', 7000);
-    } else {
-      window.openDownloadModal(plat);
+    // If native prompt is not available, download the desktop shortcut immediately + show instructions
+    const plat = window.detectUserPlatform ? window.detectUserPlatform() : 'windows';
+    if (plat === 'windows' || plat === 'pwa') {
+      window.downloadWindowsShortcut();
+      window.showToast('💻 Tip: Click the [ 💻↓ Install ] icon in your Chrome address bar or double-click the downloaded shortcut!', 'info', 7000);
+    } else if (plat === 'mac') {
+      window.downloadMacShortcut();
+    } else if (plat === 'android') {
+      window.showToast('📱 Android: Tap Chrome 3 dots (⋮) ➔ "Install app" or "Add to Home screen"', 'info', 7000);
+    } else if (plat === 'ios') {
+      window.showToast('📲 iPhone: Tap Safari Share [⎋] ➔ "Add to Home Screen"', 'info', 7000);
     }
   };
 
