@@ -63,7 +63,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-DGI_Wowl.js"></script>
+  <script type="module" crossorigin src="./assets/index-lxulN_tM.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-CRczDMeB.css">
 </head>
 <body>
@@ -671,12 +671,12 @@
               <i class="fa-solid fa-bolt"></i>
             </div>
             <div>
-              <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">1-Click PWA App & Shortcut</div>
-              <div style="font-size: 0.78rem; color: var(--text-secondary);">Universal 0 MB Install • Works in Chrome, Edge, Safari, Brave & Firefox</div>
+              <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">1-Click Install App (This Device)</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Direct download & install configured for your current OS</div>
             </div>
           </div>
-          <button id="pwa-install-btn" class="btn-primary-play" style="padding: 0.65rem 1.2rem; font-size: 0.84rem; white-space: nowrap;" onclick="window.triggerPWAInstall()">
-            <i class="fa-solid fa-download"></i> Install / Add App
+          <button id="pwa-install-btn" class="btn-primary-play" style="padding: 0.65rem 1.2rem; font-size: 0.84rem; white-space: nowrap;" onclick="window.downloadAppForDevice()">
+            <i class="fa-solid fa-download"></i> Download / Install Now
           </button>
         </div>
 
@@ -688,22 +688,22 @@
                 <i class="fa-brands fa-windows"></i>
               </div>
               <div>
-                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Windows Desktop & Taskbar Shortcut</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Instant desktop shortcut with official Pulse icon • Windows 10 & 11</div>
+                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Windows Desktop App & Installer</div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary);">Standalone Windows setup installer (.exe) & desktop shortcut • Windows 10 & 11</div>
               </div>
             </div>
             <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; background: rgba(14, 165, 233, 0.15); color: #38bdf8; font-weight: 700;">Desktop Ready</span>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.06);">
-            <button class="btn-primary-play" style="padding: 0.55rem 1rem; font-size: 0.8rem; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);" onclick="window.downloadWindowsShortcut()">
-              <i class="fa-solid fa-arrow-down"></i> Download Shortcut (.url)
+            <button class="btn-primary-play" style="padding: 0.55rem 1rem; font-size: 0.8rem; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);" onclick="window.downloadWindowsInstaller()">
+              <i class="fa-solid fa-download"></i> Download Setup (.exe)
+            </button>
+            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadWindowsShortcut()">
+              <i class="fa-solid fa-arrow-down"></i> Shortcut (.url)
             </button>
             <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadWindowsBatLauncher()">
               <i class="fa-solid fa-terminal"></i> Fast Launcher (.bat)
             </button>
-            <a href="./downloads/Pulse-Music-Setup-2.4.0.exe" download="Pulse-Music-Setup-2.4.0.exe" class="btn-secondary-install" style="text-decoration: none; padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.handleDownloadClick('Windows Setup (.exe)', '1.2 MB')">
-              <i class="fa-brands fa-windows"></i> Installer (.exe)
-            </a>
           </div>
         </div>
 
@@ -731,9 +731,9 @@
             </div>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <a href="./downloads/Pulse-iOS.ipa" download="Pulse-iOS.ipa" class="btn-secondary-install" style="text-decoration: none; padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.handleDownloadClick('iOS IPA', '1.1 MB')">
+            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadIosIpa()">
               <i class="fa-brands fa-apple"></i> Download IPA Package
-            </a>
+            </button>
           </div>
         </div>
 
@@ -745,19 +745,19 @@
                 <i class="fa-brands fa-android"></i>
               </div>
               <div>
-                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Android Home Screen Shortcut & APK</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Direct home screen launcher icon & APK with background audio</div>
+                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Android APK & Home Screen Launcher</div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary);">Direct APK installer with background audio & offline downloads</div>
               </div>
             </div>
             <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; background: rgba(34, 197, 94, 0.15); color: #4ade80; font-weight: 700;">Android 8+</span>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.06);">
-            <button class="btn-primary-play" style="padding: 0.55rem 1rem; font-size: 0.8rem; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); box-shadow: 0 4px 15px rgba(34, 197, 94, 0.35);" onclick="window.triggerPWAInstall()">
+            <button class="btn-primary-play" style="padding: 0.55rem 1rem; font-size: 0.8rem; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); box-shadow: 0 4px 15px rgba(34, 197, 94, 0.35);" onclick="window.downloadAndroidApk()">
+              <i class="fa-solid fa-download"></i> Download Android APK
+            </button>
+            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.triggerPWAInstall()">
               <i class="fa-solid fa-plus"></i> Add to Home Screen
             </button>
-            <a href="./downloads/Pulse-Android.apk" download="Pulse-Android.apk" class="btn-secondary-install" style="text-decoration: none; padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.handleDownloadClick('Android APK', '1.9 MB')">
-              <i class="fa-brands fa-android"></i> Download APK (.apk)
-            </a>
           </div>
         </div>
 
@@ -769,19 +769,19 @@
                 <i class="fa-brands fa-apple"></i>
               </div>
               <div>
-                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">macOS Dock & Desktop Shortcut</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Universal for Apple Silicon (M1-M4) & Intel Macs</div>
+                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">macOS App (.dmg) & Dock Shortcut</div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary);">Universal DMG package for Apple Silicon (M1-M4) & Intel Macs</div>
               </div>
             </div>
             <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); color: #fff; font-weight: 700;">macOS</span>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.06);">
-            <button class="btn-primary-play" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadMacShortcut()">
-              <i class="fa-solid fa-arrow-down"></i> Download Mac Shortcut (.webloc)
+            <button class="btn-primary-play" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadMacDmg()">
+              <i class="fa-solid fa-download"></i> Download DMG (.dmg)
             </button>
-            <a href="./downloads/Pulse-Mac.dmg" download="Pulse-Mac.dmg" class="btn-secondary-install" style="text-decoration: none; padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.handleDownloadClick('macOS DMG', '1.1 MB')">
-              <i class="fa-brands fa-apple"></i> Download .DMG
-            </a>
+            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadMacShortcut()">
+              <i class="fa-solid fa-arrow-down"></i> Mac Shortcut (.webloc)
+            </button>
           </div>
         </div>
 
@@ -793,19 +793,19 @@
                 <i class="fa-brands fa-linux"></i>
               </div>
               <div>
-                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Linux Desktop Entry & AppImage</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Standalone .desktop file with Pulse icon for Ubuntu, Debian, Fedora & Arch</div>
+                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Linux AppImage & Desktop Entry</div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary);">Standalone .AppImage & .desktop file for Ubuntu, Debian, Fedora & Arch</div>
               </div>
             </div>
             <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; background: rgba(234, 179, 8, 0.15); color: #facc15; font-weight: 700;">Linux / XDG</span>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.06);">
-            <button class="btn-primary-play" style="padding: 0.55rem 1rem; font-size: 0.8rem; background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); box-shadow: 0 4px 15px rgba(234, 179, 8, 0.35);" onclick="window.downloadLinuxDesktopShortcut()">
-              <i class="fa-solid fa-arrow-down"></i> Download .desktop Launcher
+            <button class="btn-primary-play" style="padding: 0.55rem 1rem; font-size: 0.8rem; background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); box-shadow: 0 4px 15px rgba(234, 179, 8, 0.35);" onclick="window.downloadLinuxAppImage()">
+              <i class="fa-solid fa-download"></i> Download .AppImage
             </button>
-            <a href="./downloads/Pulse-Linux.AppImage" download="Pulse-Linux.AppImage" class="btn-secondary-install" style="text-decoration: none; padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.handleDownloadClick('Linux AppImage', '1.1 MB')">
-              <i class="fa-brands fa-linux"></i> Download .AppImage
-            </a>
+            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadLinuxDesktopShortcut()">
+              <i class="fa-solid fa-arrow-down"></i> .desktop Launcher
+            </button>
           </div>
         </div>
 

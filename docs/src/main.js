@@ -27,7 +27,18 @@ import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist
 import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
 import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 import { askGeminiDJ } from './geminiService.js';
-import { downloadTrack, downloadCurrentTrack, detectUserPlatform } from './downloadService.js';
+import {
+  downloadTrack,
+  downloadCurrentTrack,
+  detectUserPlatform,
+  triggerDirectFileDownload,
+  downloadAndroidApk,
+  downloadWindowsInstaller,
+  downloadMacDmg,
+  downloadLinuxAppImage,
+  downloadIosIpa,
+  downloadAppForDevice
+} from './downloadService.js';
 
 // Global error handler to catch broken images and provide progressive fallback
 window.addEventListener('error', function(e) {
@@ -1256,26 +1267,16 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
           deferredPrompt = null;
           window.closeDownloadModal();
           window.showToast('Pulse Music installed successfully with Pulse logo!', 'success', 5000);
+          return;
         }
       } catch (err) {
         console.warn('PWA prompt error:', err);
       }
-    } else {
-      const plat = window.detectUserPlatform();
-      if (plat === 'ios') {
-        window.openDownloadModal('ios');
-        window.showToast('On iOS: Tap Safari Share button then "Add to Home Screen" 📲', 'info', 6000);
-      } else if (plat === 'android') {
-        window.showToast('On Android: Tap Chrome menu (⋮) -> "Add to Home screen" / "Install app" 📲', 'info', 6000);
-      } else if (plat === 'windows') {
-        window.downloadWindowsShortcut();
-      } else if (plat === 'mac') {
-        window.downloadMacShortcut();
-      } else if (plat === 'linux') {
-        window.downloadLinuxDesktopShortcut();
-      } else {
-        window.showToast('Install Pulse: Use your browser address bar install icon or menu ⚡', 'info', 5000);
-      }
+    }
+    
+    // Automatically trigger the correct OS package download or shortcut
+    if (typeof window.downloadAppForDevice === 'function') {
+      window.downloadAppForDevice();
     }
   };
 

@@ -172,14 +172,101 @@ export function downloadCurrentTrack() {
   }
 }
 
+/**
+ * Universal App & Package Downloader (Bypasses Service Worker & Browser blocks)
+ */
+export function triggerDirectFileDownload(fileName, label) {
+  try {
+    const fileUrl = new URL(`./downloads/${fileName}`, window.location.href).href;
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.setAttribute('download', fileName);
+    link.setAttribute('target', '_blank');
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(() => {
+      if (document.body.contains(link)) {
+        document.body.removeChild(link);
+      }
+    }, 1500);
+
+    if (typeof window.showToast === 'function') {
+      window.showToast(`Downloading ${label || fileName}... Check your notification bar / Downloads! 📲`, 'success', 5000);
+    }
+  } catch (err) {
+    console.error('[Pulse Downloader] Error triggering file download:', err);
+    window.location.href = `./downloads/${fileName}`;
+  }
+}
+
+export function downloadAndroidApk() {
+  triggerDirectFileDownload('Pulse-Android.apk', 'Pulse Music for Android (APK)');
+}
+
+export function downloadWindowsInstaller() {
+  triggerDirectFileDownload('Pulse-Music-Setup-2.4.0.exe', 'Pulse Music for Windows (.exe)');
+}
+
+export function downloadMacDmg() {
+  triggerDirectFileDownload('Pulse-Mac.dmg', 'Pulse Music for macOS (.dmg)');
+}
+
+export function downloadLinuxAppImage() {
+  triggerDirectFileDownload('Pulse-Linux.AppImage', 'Pulse Music for Linux (.AppImage)');
+}
+
+export function downloadIosIpa() {
+  triggerDirectFileDownload('Pulse-iOS.ipa', 'Pulse Music for iOS (.ipa)');
+}
+
+export function downloadAppForDevice() {
+  const plat = detectUserPlatform();
+  if (plat === 'android') {
+    downloadAndroidApk();
+  } else if (plat === 'windows') {
+    downloadWindowsInstaller();
+  } else if (plat === 'mac') {
+    downloadMacDmg();
+  } else if (plat === 'linux') {
+    downloadLinuxAppImage();
+  } else if (plat === 'ios') {
+    if (typeof window.openDownloadModal === 'function') {
+      window.openDownloadModal('ios');
+    }
+    if (typeof window.showToast === 'function') {
+      window.showToast('iPhone/iPad: Tap Safari Share button -> "Add to Home Screen" 📲', 'info', 6000);
+    }
+  } else {
+    if (typeof window.openDownloadModal === 'function') {
+      window.openDownloadModal('all');
+    }
+  }
+}
+
 // Global exposure
 if (typeof window !== 'undefined') {
   window.downloadTrack = downloadTrack;
   window.downloadCurrentTrack = downloadCurrentTrack;
+  window.triggerDirectFileDownload = triggerDirectFileDownload;
+  window.downloadAndroidApk = downloadAndroidApk;
+  window.downloadWindowsInstaller = downloadWindowsInstaller;
+  window.downloadMacDmg = downloadMacDmg;
+  window.downloadLinuxAppImage = downloadLinuxAppImage;
+  window.downloadIosIpa = downloadIosIpa;
+  window.downloadAppForDevice = downloadAppForDevice;
 }
 
 export default {
   downloadTrack,
   downloadCurrentTrack,
-  detectUserPlatform
+  detectUserPlatform,
+  triggerDirectFileDownload,
+  downloadAndroidApk,
+  downloadWindowsInstaller,
+  downloadMacDmg,
+  downloadLinuxAppImage,
+  downloadIosIpa,
+  downloadAppForDevice
 };
+
