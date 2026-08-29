@@ -2372,4 +2372,12 @@ html, body {
   }
 }
 
+/* Standalone PWA UI Cleanup */
+body.is-pwa-standalone #header-download-btn,
+body.is-pwa-standalone #pwa-floating-banner,
+body.is-pwa-standalone .sidebar-footer,
+body.is-pwa-standalone .app-download-card {
+  display: none !important;
+}
+
 

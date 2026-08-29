@@ -1190,18 +1190,50 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   };
 
   // ---------------------------------------------------------------------------
-  // INITIALIZATION ON DOM READY
+  // INITIALIZATION ON DOM READY & PWA COLD-START
   // ---------------------------------------------------------------------------
+  function applyPWAUIState() {
+    const isPWA = window.matchMedia('(display-mode: standalone)').matches ||
+                  window.matchMedia('(display-mode: fullscreen)').matches ||
+                  window.matchMedia('(display-mode: minimal-ui)').matches ||
+                  window.navigator.standalone === true ||
+                  window.location.search.includes('source=pwa') ||
+                  document.referrer.includes('android-app://');
+    
+    if (isPWA) {
+      document.body.classList.add('is-pwa-standalone');
+      const banner = document.getElementById('pwa-floating-banner');
+      if (banner) {
+        banner.classList.add('hidden');
+        banner.style.display = 'none';
+      }
+      const headerBtn = document.getElementById('header-download-btn');
+      if (headerBtn) headerBtn.style.display = 'none';
+      const sideFooter = document.querySelector('.sidebar-footer');
+      if (sideFooter) sideFooter.style.display = 'none';
+    }
+  }
+
   function initPulseApp() {
-    // Render Home Feed Discovery immediately
+    // 1. Hide install UI if running inside PWA
+    applyPWAUIState();
+
+    // 2. Ensure Home view is active
+    const activeView = document.querySelector('.app-view.active-view');
+    if (!activeView) {
+      const homeView = document.getElementById('view-home');
+      if (homeView) homeView.classList.add('active-view');
+    }
+
+    // 3. Render Home Feed Discovery immediately
     if (typeof window.renderHomeDiscovery === 'function') {
       window.renderHomeDiscovery();
     }
 
-    // Initial Auth State Sync
+    // 4. Initial Auth State Sync
     onAuthStateChanged(() => {});
 
-    // Realtime Library Updates
+    // 5. Realtime Library Updates
     onFavoritesChanged(() => {
       if (window.pulseState.activeLibraryTab === 'favorites') {
         window.renderLibraryView();
@@ -1220,7 +1252,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       }
     });
 
-    // Search Input Binding
+    // 6. Search Input Binding
     const searchInput = document.getElementById('global-search-input');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
@@ -1238,8 +1270,11 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     }
   }
 
-  // Trigger immediate render and bind to lifecycle events
+  // Multi-pass initialization to guarantee song rendering across all devices & PWA launches
   initPulseApp();
+  setTimeout(initPulseApp, 100);
+  setTimeout(initPulseApp, 500);
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initPulseApp);
   }
@@ -1249,20 +1284,22 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   // PROGRESSIVE WEB APP (PWA) SUPPORT & SMART INSTALL ENGINE
   // ---------------------------------------------------------------------------
   let deferredPrompt = null;
-  const isPWAInstalled = window.matchMedia('(display-mode: standalone)').matches || 
-                         window.navigator.standalone === true || 
-                         window.location.search.includes('source=pwa');
 
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     
-    // Show floating smart install banner if not already installed and not dismissed in this session
-    if (!isPWAInstalled && !sessionStorage.getItem('pulse_pwa_dismissed')) {
+    const isPWA = window.matchMedia('(display-mode: standalone)').matches || 
+                  window.navigator.standalone === true || 
+                  window.location.search.includes('source=pwa');
+
+    // Show floating smart install banner ONLY if running inside browser (never in standalone PWA)
+    if (!isPWA && !sessionStorage.getItem('pulse_pwa_dismissed')) {
       setTimeout(() => {
         const banner = document.getElementById('pwa-floating-banner');
-        if (banner && !isPWAInstalled) {
+        if (banner && !document.body.classList.contains('is-pwa-standalone')) {
           banner.classList.remove('hidden');
+          banner.style.display = 'flex';
         }
       }, 3000);
     }
@@ -1272,13 +1309,17 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     const banner = document.getElementById('pwa-floating-banner');
     if (banner) {
       banner.classList.add('hidden');
+      banner.style.display = 'none';
       sessionStorage.setItem('pulse_pwa_dismissed', 'true');
     }
   };
 
   window.triggerPWAInstall = async function() {
     const banner = document.getElementById('pwa-floating-banner');
-    if (banner) banner.classList.add('hidden');
+    if (banner) {
+      banner.classList.add('hidden');
+      banner.style.display = 'none';
+    }
 
     if (deferredPrompt) {
       try {
@@ -1307,22 +1348,9 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
   window.addEventListener('appinstalled', () => {
     deferredPrompt = null;
-    const banner = document.getElementById('pwa-floating-banner');
-    if (banner) banner.classList.add('hidden');
-    const headerBtn = document.getElementById('header-download-btn');
-    if (headerBtn) headerBtn.style.display = 'none';
+    applyPWAUIState();
     window.showToast('Pulse Music installed successfully! Enjoy your ad-free music 🎵', 'success', 6000);
   });
-
-  // Hide install button in header if running as standalone app
-  if (isPWAInstalled) {
-    window.addEventListener('DOMContentLoaded', () => {
-      const headerBtn = document.getElementById('header-download-btn');
-      if (headerBtn) headerBtn.style.display = 'none';
-      const sideFooter = document.querySelector('.sidebar-footer');
-      if (sideFooter) sideFooter.style.display = 'none';
-    });
-  }
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
