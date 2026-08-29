@@ -231,17 +231,14 @@ export async function playTrack(track, queue = null) {
   // Dynamic High-Resolution Official Album Cover Enhancer
   ensureOriginalAlbumCover(track);
 
-  // Ensure YouTube IFrame is ready for fast playback
+  // Ensure YouTube IFrame is ready as fallback
   ensureYouTubeReady();
 
-  // Detect YouTube ID
-  let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
-
   // =========================================================================
-  // YOUTUBE-FIRST STUDIO MASTER PLAYBACK STRATEGY
+  // BULLETPROOF STUDIO MASTER PLAYBACK ENGINE
   // =========================================================================
 
-  // 1. FAST PATH: If track has a verified full-length native stream (non-YouTube), try it first
+  // 1. FAST PATH: If track already has verified full-length native streamUrl, play immediately
   if (track.streamUrl && 
       track.streamUrl.startsWith('http') && 
       !track.streamUrl.includes('preview') && 
@@ -251,85 +248,53 @@ export async function playTrack(track, queue = null) {
       (track.duration || 0) > 40) {
     const nativeSuccess = await playOnNativeAudio(track);
     if (nativeSuccess) {
-      console.log('[Pulse Studio Master] Playing via native stream:', track.source || 'Direct');
+      console.log('[Pulse Studio Master] Playing via pre-verified native stream:', track.source || 'Direct');
       return;
     }
   }
 
-  // 2. YOUTUBE IFRAME — PRIMARY ENGINE (instant, guaranteed playback)
-  if (ytId && ytId.length >= 8) {
-    const ytSuccess = await playOnYouTubeIframe(ytId, track);
-    if (ytSuccess) {
-      console.log('[Pulse Studio Master] Playing via YouTube IFrame:', ytId);
-      // Background: try to find higher-quality native audio stream
-      backgroundUpgradeToNativeAudio(track, sessionId);
-      return;
-    }
-  }
-
-  // 3. Resolve audio stream (JioSaavn/Piped/Backend) for tracks without ytId
+  // 2. PRIMARY TIER: Resolve High-Bitrate Studio Master Stream (320kbps / 160kbps AAC)
   try {
     const resolved = await resolveFullAudioStream(track);
     if (sessionId !== activePlaySessionId) return;
 
-    if (resolved) {
-      if (resolved.streamUrl === 'yt-iframe') {
-        const resolvedYtId = resolved.ytId || track.ytId;
-        if (resolvedYtId) {
-          const ytSuccess = await playOnYouTubeIframe(resolvedYtId, track);
-          if (ytSuccess) return;
-        }
-      } else if (resolved.streamUrl && resolved.streamUrl.startsWith('http') && !resolved.streamUrl.includes('preview')) {
-        track.streamUrl = resolved.streamUrl;
-        track.source = resolved.source || 'Studio Master Audio (YouTube)';
-        const played = await playOnNativeAudio(track);
-        if (played) return;
+    if (resolved && resolved.streamUrl && resolved.streamUrl.startsWith('http') && !resolved.streamUrl.includes('preview') && resolved.streamUrl !== 'yt-iframe') {
+      track.streamUrl = resolved.streamUrl;
+      track.source = resolved.source || 'Studio Master Audio (320kbps)';
+      if (resolved.duration) track.duration = resolved.duration;
+      const played = await playOnNativeAudio(track);
+      if (played) {
+        console.log('[Pulse Studio Master] Successfully playing native master stream:', resolved.source);
+        return;
       }
     }
-  } catch (e) {}
+  } catch (e) {
+    console.warn('[Pulse Studio Master] Stream resolution notice:', e);
+  }
 
-  // 4. Search YouTube for the track and play via IFrame
+  if (sessionId !== activePlaySessionId) return;
+
+  // 3. SECONDARY TIER: YouTube IFrame playback (if track has ytId or resolved ytId)
+  let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+  if (ytId && ytId.length >= 8) {
+    console.log('[Pulse Studio Master] Attempting YouTube IFrame playback for:', ytId);
+    const ytSuccess = await playOnYouTubeIframe(ytId, track);
+    if (ytSuccess) return;
+  }
+
+  // 4. TERTIARY TIER: Search YouTube for the track and play via IFrame
   const searchQuery = `${track.title} ${track.artist}`.trim();
   if (sessionId === activePlaySessionId) {
-    if (typeof window.showToast === 'function') {
-      window.showToast(`Searching YouTube for "${track.title}"...`, 'info', 2000);
-    }
     const searchSuccess = await playOnYouTubeSearch(searchQuery, track);
     if (searchSuccess) return;
   }
 
-  // 5. If absolutely everything failed, show a toast and try next
+  // 5. If absolutely everything failed, notify user and auto-skip to next
   if (sessionId === activePlaySessionId && typeof window.showToast === 'function') {
     window.showToast(`Unable to stream "${track.title}" right now. Trying next...`, 'warning', 2500);
     setTimeout(() => {
       if (sessionId === activePlaySessionId && playQueue.length > 1) playNext();
     }, 1500);
-  }
-}
-
-/**
- * Background quality upgrade: while YouTube IFrame plays, try to find a higher-quality
- * native audio stream (JioSaavn 320k, Piped Opus, etc.) and seamlessly switch.
- */
-async function backgroundUpgradeToNativeAudio(track, sessionId) {
-  try {
-    const resolved = await resolveFullAudioStream(track);
-    if (sessionId !== activePlaySessionId) return; // User already moved on
-    if (!resolved || resolved.streamUrl === 'yt-iframe') return; // No better source found
-    if (!resolved.streamUrl || !resolved.streamUrl.startsWith('http') || resolved.streamUrl.includes('preview')) return;
-
-    // Only upgrade if we're still playing the same track via YouTube
-    if (activeEngine === 'youtube' && currentTrack && 
-        (currentTrack.id === track.id || currentTrack.title === track.title)) {
-      track.streamUrl = resolved.streamUrl;
-      track.source = resolved.source || 'Studio Master Audio (YouTube)';
-      const played = await playOnNativeAudio(track);
-      if (played) {
-        console.log('[Pulse Studio Master] Upgraded to native high-bitrate stream:', resolved.source);
-      }
-    }
-  } catch (e) {
-    // Background upgrade is best-effort, don't interrupt YouTube playback
   }
 }
 

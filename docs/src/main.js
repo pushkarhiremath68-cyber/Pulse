@@ -21,21 +21,31 @@ import './catalogService.js';
 import './visualizer.js';
 import './geminiService.js';
 
-// Global error handler to catch broken images and provide the Pulse icon fallback
-window.addEventListener('error', function(e) {
-  if (e.target && e.target.tagName === 'IMG') {
-    if (!e.target.dataset.pulseFallback) {
-      e.target.dataset.pulseFallback = 'true';
-      e.target.src = './pulse-logo.png';
-    }
-  }
-}, true);
-
 import { getStoredUser, onAuthStateChanged } from './firebaseAuthService.js';
 import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
 import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
 import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 import { askGeminiDJ } from './geminiService.js';
+
+// Global error handler to catch broken images and provide progressive fallback
+window.addEventListener('error', function(e) {
+  if (e.target && e.target.tagName === 'IMG') {
+    // Clear inline onerror to prevent it from overriding our progressive fallback
+    e.target.onerror = null;
+    
+    const src = e.target.src || '';
+    if (src.includes('maxresdefault.jpg') && e.target.dataset.fallbackLevel !== 'hq') {
+      e.target.dataset.fallbackLevel = 'hq';
+      e.target.src = src.replace('maxresdefault.jpg', 'hqdefault.jpg');
+    } else if (src.includes('hqdefault.jpg') && e.target.dataset.fallbackLevel !== 'mq') {
+      e.target.dataset.fallbackLevel = 'mq';
+      e.target.src = src.replace('hqdefault.jpg', 'mqdefault.jpg');
+    } else if (!e.target.dataset.pulseFallback) {
+      e.target.dataset.pulseFallback = 'true';
+      e.target.src = './pulse-logo.png';
+    }
+  }
+}, true);
 
 (function() {
   'use strict';
@@ -293,13 +303,13 @@ import { askGeminiDJ } from './geminiService.js';
   };
 
   /**
-   * 3-Way Mode Switcher for Fullscreen Player: 'art' | 'video' | 'lyrics'
+   * 2-Way Pure Audio Mode Switcher for Fullscreen Player: 'art' | 'lyrics'
    */
   window.switchFullscreenView = function(viewMode) {
+    if (viewMode === 'video') viewMode = 'art'; // Automatically redirect any video triggers to album art
     const fsModal = document.getElementById('fullscreen-player');
     const content = document.getElementById('fs-content-container');
     const artSec = document.getElementById('fs-album-section');
-    const ytSec = document.getElementById('fs-yt-section');
     const lyricsSec = document.getElementById('fs-lyrics-panel');
 
     if (!fsModal || fsModal.classList.contains('hidden')) {
@@ -318,7 +328,6 @@ import { askGeminiDJ } from './geminiService.js';
     }
 
     if (artSec) artSec.classList.toggle('hidden-view', viewMode !== 'art');
-    if (ytSec) ytSec.classList.toggle('hidden-view', viewMode !== 'video');
     if (lyricsSec) lyricsSec.classList.toggle('hidden-view', viewMode !== 'lyrics');
 
     const toggleBtn = document.getElementById('fs-toggle-lyrics-btn');
@@ -418,7 +427,7 @@ import { askGeminiDJ } from './geminiService.js';
                   <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
                     <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
                   </div>
-                  <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${cat.color}; padding: 2px 6px; border-radius: 6px;">Ad-Free</span>
+                  <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${cat.color}; padding: 2px 6px; border-radius: 6px;">Studio Master Audio</span>
                 </div>
                 <div class="card-meta">
                   <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
@@ -454,7 +463,7 @@ import { askGeminiDJ } from './geminiService.js';
                   <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
                     <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
                   </div>
-                  <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${lang.meta.color}; padding: 2px 6px; border-radius: 6px;">Master</span>
+                  <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${lang.meta.color}; padding: 2px 6px; border-radius: 6px;">Studio Master Audio</span>
                 </div>
                 <div class="card-meta">
                   <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${track.title}</div>
@@ -477,18 +486,18 @@ import { askGeminiDJ } from './geminiService.js';
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.cover || `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg`,
+        coverUrl: t.cover || t.coverUrl || './pulse-logo.png',
         duration: t.duration || 220,
-        source: "Catalog Master"
+        source: "Studio Master Audio (YouTube)"
       };
       const queue = category.tracks.map(item => ({
         id: item.id || (item.ytId ? `ytm-${item.ytId}` : `pulse-${Math.random()}`),
         ytId: item.ytId,
         title: item.title,
         artist: item.artist,
-        coverUrl: item.cover || `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`,
+        coverUrl: item.cover || item.coverUrl || './pulse-logo.png',
         duration: item.duration || 220,
-        source: "Catalog Master"
+        source: "Studio Master Audio (YouTube)"
       }));
       window.playTrackDirect(normalizedTrack, queue);
     }
@@ -503,18 +512,18 @@ import { askGeminiDJ } from './geminiService.js';
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.coverUrl || `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg`,
+        coverUrl: t.coverUrl || t.cover || './pulse-logo.png',
         duration: t.duration || 220,
-        source: lang.meta.title
+        source: "Studio Master Audio (YouTube)"
       };
       const queue = lang.tracks.map(item => ({
         id: item.id || (item.ytId ? `ytm-${item.ytId}` : `pulse-${Math.random()}`),
         ytId: item.ytId,
         title: item.title,
         artist: item.artist,
-        coverUrl: item.coverUrl || `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`,
+        coverUrl: item.coverUrl || item.cover || './pulse-logo.png',
         duration: item.duration || 220,
-        source: lang.meta.title
+        source: "Studio Master Audio (YouTube)"
       }));
       window.playTrackDirect(normalizedTrack, queue);
     }
@@ -534,21 +543,32 @@ import { askGeminiDJ } from './geminiService.js';
 
     if (genreKey === 'all') {
       document.querySelectorAll('.music-shelf-section').forEach(s => s.style.display = 'block');
+      const qpSection = document.querySelector('.quick-picks-section');
+      if (qpSection) qpSection.style.display = 'block';
     } else {
+      let matchedCount = 0;
       document.querySelectorAll('.music-shelf-section').forEach(s => {
         const id = (s.id || '').toLowerCase();
-        if (id.includes(genreKey)) {
+        if (id.includes(genreKey.toLowerCase())) {
           s.style.display = 'block';
+          matchedCount++;
         } else {
           s.style.display = 'none';
         }
       });
+      const qpSection = document.querySelector('.quick-picks-section');
+      if (qpSection) {
+        qpSection.style.display = (genreKey === 'all' || genreKey === 'trending') ? 'block' : 'none';
+      }
+      if (matchedCount === 0) {
+        window.playPresetQuery(genreKey);
+      }
     }
   };
 
   window.filterByGenre = function(catId) {
     window.switchView('home');
-    const el = document.getElementById(`shelf-${catId}`);
+    const el = document.getElementById(`shelf-${catId}`) || document.getElementById(`lang-shelf-${catId}`);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -631,11 +651,14 @@ import { askGeminiDJ } from './geminiService.js';
     const input = document.getElementById('global-search-input');
     if (input) input.value = query;
     
+    const label = document.getElementById('search-query-label');
     const count = document.getElementById('search-count');
-    if (count) count.textContent = 'Searching YouTube & high-fidelity streams...';
+    if (label) label.textContent = query;
+    if (count) count.textContent = 'Searching worldwide & multilingual catalogs...';
     
     try {
-      const results = await window.musicService.searchTracks(query, 30);
+      const results = await window.musicService.searchTracks(query, 50);
+      if (count) count.textContent = `${results.length} songs found worldwide`;
       renderSearchResults(results);
       if (results && results.length > 0) {
         window.playTrackDirect(results[0], results);
@@ -656,7 +679,7 @@ import { askGeminiDJ } from './geminiService.js';
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(async () => {
       if (count) count.textContent = 'Searching worldwide & multilingual catalogs...';
-      const results = await window.musicService.searchTracks(query, 40);
+      const results = await window.musicService.searchTracks(query, 80);
       if (count) count.textContent = `${results.length} songs found worldwide`;
       renderSearchResults(results);
     }, isTyping ? 250 : 0);
@@ -910,12 +933,55 @@ import { askGeminiDJ } from './geminiService.js';
     }
   };
 
-  window.openDownloadModal = function() {
-    const modal = document.getElementById('download-app-modal');
-    if (modal) {
-      modal.classList.remove('hidden');
-      modal.classList.add('active-modal');
+  // ---------------------------------------------------------------------------
+  // 5. UNIVERSAL MULTI-PLATFORM SHORTCUT & DOWNLOAD CONTROLLERS
+  // ---------------------------------------------------------------------------
+  window.detectUserPlatform = function() {
+    const ua = (navigator.userAgent || navigator.vendor || window.opera || '').toLowerCase();
+    const plat = (navigator.platform || '').toLowerCase();
+
+    if (/ipad|iphone|ipod/.test(ua) || (plat === 'macintel' && navigator.maxTouchPoints > 1)) {
+      return 'ios';
     }
+    if (/android/.test(ua)) {
+      return 'android';
+    }
+    if (/win/.test(ua) || /win/.test(plat)) {
+      return 'windows';
+    }
+    if (/mac/.test(ua) || /mac/.test(plat)) {
+      return 'mac';
+    }
+    if (/linux/.test(ua) || /linux/.test(plat)) {
+      return 'linux';
+    }
+    return 'pwa';
+  };
+
+  window.openDownloadModal = function(preferredCategory) {
+    const modal = document.getElementById('download-app-modal');
+    if (!modal) return;
+
+    const detected = window.detectUserPlatform();
+    const badge = document.getElementById('detected-device-badge');
+    
+    if (badge) {
+      const labels = {
+        windows: '<i class="fa-brands fa-windows"></i> Detected: Windows PC',
+        ios: '<i class="fa-brands fa-apple"></i> Detected: iPhone / iPad',
+        android: '<i class="fa-brands fa-android"></i> Detected: Android Device',
+        mac: '<i class="fa-brands fa-apple"></i> Detected: macOS System',
+        linux: '<i class="fa-brands fa-linux"></i> Detected: Linux Desktop',
+        pwa: '<i class="fa-solid fa-globe"></i> Detected: Web Browser'
+      };
+      badge.innerHTML = labels[detected] || labels.pwa;
+    }
+
+    const activeTab = preferredCategory || (detected === 'pwa' ? 'all' : detected);
+    window.switchDownloadTab(activeTab);
+
+    modal.classList.remove('hidden');
+    modal.classList.add('active-modal');
   };
 
   window.closeDownloadModal = function() {
@@ -928,17 +994,116 @@ import { askGeminiDJ } from './geminiService.js';
 
   window.switchDownloadTab = function(category) {
     document.querySelectorAll('.download-tab-btn').forEach(btn => {
-      btn.classList.toggle('active-pill', btn.getAttribute('data-category') === category);
+      const btnCat = btn.getAttribute('data-category');
+      btn.classList.toggle('active-pill', btnCat === category);
     });
 
     document.querySelectorAll('.download-card-tile').forEach(card => {
       const cardCat = card.getAttribute('data-category');
-      if (category === 'all' || cardCat === category) {
+      if (category === 'all' || cardCat === category || cardCat === 'pwa') {
         card.style.display = 'flex';
       } else {
         card.style.display = 'none';
       }
     });
+  };
+
+  // Client-Side Windows .URL Shortcut Generator
+  window.downloadWindowsShortcut = function() {
+    const currentUrl = window.location.href.split('#')[0];
+    const iconUrl = new URL('./icons/icon.ico', window.location.href).href;
+    const urlFileContent = `[InternetShortcut]
+URL=${currentUrl}
+IconFile=${iconUrl}
+IconIndex=0
+HotKey=0
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,0
+`;
+    const blob = new Blob([urlFileContent], { type: 'application/octet-stream' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Pulse Music.url';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+
+    window.showToast('Windows Shortcut with Pulse icon downloaded! Move it to your Desktop or Taskbar.', 'success', 4500);
+  };
+
+  // Client-Side Windows .BAT Fast Launcher Generator
+  window.downloadWindowsBatLauncher = function() {
+    const currentUrl = window.location.href.split('#')[0];
+    const batContent = `@echo off
+title Pulse Music Launcher
+echo Starting Pulse Music with Master Audio...
+start "" "${currentUrl}"
+exit
+`;
+    const blob = new Blob([batContent], { type: 'application/x-bat' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Launch-Pulse-Music.bat';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+
+    window.showToast('Windows Launcher script (.bat) downloaded!', 'success', 3500);
+  };
+
+  // Client-Side macOS .webloc Shortcut Generator
+  window.downloadMacShortcut = function() {
+    const currentUrl = window.location.href.split('#')[0];
+    const plistContent = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>URL</key>
+	<string>${currentUrl}</string>
+</dict>
+</plist>
+`;
+    const blob = new Blob([plistContent], { type: 'application/x-apple-webloc' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Pulse Music.webloc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+
+    window.showToast('macOS Web Shortcut downloaded! Drag it to your Dock or Desktop.', 'success', 4500);
+  };
+
+  // Client-Side Linux .desktop Launcher Generator
+  window.downloadLinuxDesktopShortcut = function() {
+    const currentUrl = window.location.href.split('#')[0];
+    const iconUrl = new URL('./icons/icon-512.png', window.location.href).href;
+    const desktopContent = `[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pulse Music
+GenericName=Lossless Music Player
+Comment=High-Fidelity Global Music Streaming & Synced Lyrics
+Exec=xdg-open "${currentUrl}"
+Icon=${iconUrl}
+Terminal=false
+StartupNotify=true
+Categories=AudioVideo;Audio;Player;Music;
+Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
+`;
+    const blob = new Blob([desktopContent], { type: 'application/x-desktop' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Pulse-Music.desktop';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+
+    window.showToast('Linux .desktop launcher downloaded! Use chmod +x to make executable.', 'success', 4500);
   };
 
   window.handleDownloadClick = function(platformName, fileSize) {
@@ -1075,22 +1240,43 @@ import { askGeminiDJ } from './geminiService.js';
 
   window.triggerPWAInstall = async function() {
     if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        deferredPrompt = null;
-        window.closeDownloadModal();
-        window.showToast('App installed successfully!', 'success');
+      try {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          deferredPrompt = null;
+          window.closeDownloadModal();
+          window.showToast('Pulse Music installed successfully with Pulse logo!', 'success', 5000);
+        }
+      } catch (err) {
+        console.warn('PWA prompt error:', err);
       }
     } else {
-      window.showToast('PWA installation is not supported or already installed', 'warning');
+      const plat = window.detectUserPlatform();
+      if (plat === 'ios') {
+        window.openDownloadModal('ios');
+        window.showToast('On iOS: Tap Safari Share button then "Add to Home Screen" 📲', 'info', 6000);
+      } else if (plat === 'android') {
+        window.showToast('On Android: Tap Chrome menu (⋮) -> "Add to Home screen" / "Install app" 📲', 'info', 6000);
+      } else if (plat === 'windows') {
+        window.downloadWindowsShortcut();
+      } else if (plat === 'mac') {
+        window.downloadMacShortcut();
+      } else if (plat === 'linux') {
+        window.downloadLinuxDesktopShortcut();
+      } else {
+        window.showToast('Install Pulse: Use your browser address bar install icon or menu ⚡', 'info', 5000);
+      }
     }
   };
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('Pulse PWA Service Worker registered:', reg.scope))
-      .catch(err => console.error('Pulse PWA Service Worker error:', err));
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Pulse PWA Service Worker registered:', reg.scope))
+        .catch(err => console.error('Pulse PWA Service Worker error:', err));
+    });
   }
 
 })();
+

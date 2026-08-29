@@ -53,6 +53,22 @@ export const SMART_KNOWLEDGE_BASE = {
   ],
   'naatu naatu': [
     { title: 'Naatu Naatu', artist: 'Rahul Sipligunj, Kaala Bhairava', query: 'Naatu Naatu RRR' }
+  ],
+  'devi kavacham': [
+    { title: 'Devi Kavacham', artist: 'Appaji', query: 'Devi Kavacham Appaji' },
+    { title: 'Devi Kavacham', artist: 'Appaji', query: 'Devi Kavacham Jai Srimatha Appaji' },
+    { title: 'Devi Kavacham', artist: 'Appaji', query: 'b2t2XURj7MU' }
+  ],
+  'devi kavacham by appaji': [
+    { title: 'Devi Kavacham', artist: 'Appaji', query: 'Devi Kavacham Appaji' },
+    { title: 'Devi Kavacham', artist: 'Appaji', query: 'b2t2XURj7MU' }
+  ],
+  'appaji': [
+    { title: 'Devi Kavacham', artist: 'Appaji', query: 'Devi Kavacham Appaji' },
+    { title: 'Sri Lalitha Sahasranama Stotram', artist: 'Appaji', query: 'Sri Lalitha Sahasranama Appaji' }
+  ],
+  'b2t2xurj7mu': [
+    { title: 'Devi Kavacham', artist: 'Appaji', query: 'Devi Kavacham Appaji' }
   ]
 };
 
@@ -97,7 +113,7 @@ export function disambiguateQuery(rawQuery) {
  * Resolves user query using Gemini AI to identify exact YouTube title & artist
  */
 export async function resolveQueryWithGemini(userQuery, apiKey = null) {
-  const key = apiKey || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
+  const key = apiKey || (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
   
   if (!key || !userQuery) {
     return disambiguateQuery(userQuery);
@@ -147,7 +163,7 @@ export async function askGeminiDJ(userPrompt, apiKey = null) {
     throw new Error('Please enter a mood, artist, or vibe for Gemini DJ.');
   }
 
-  const key = apiKey || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
+  const key = apiKey || (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
 
   if (key) {
     try {

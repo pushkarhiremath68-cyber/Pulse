@@ -6,12 +6,12 @@
 
 // Environment-driven Firebase Configuration with fallback to dummy strings for development
 export const DEFAULT_FIREBASE_CONFIG = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyPulseMusicAdFreeExtractor2026Key",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "pulse-music-app-streaming.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "pulse-music-app-streaming",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "pulse-music-app-streaming.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "109876543210",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:109876543210:web:abcdef1234567890pulse"
+  apiKey: (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_FIREBASE_API_KEY) || "AIzaSyPulseMusicAdFreeExtractor2026Key",
+  authDomain: (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_FIREBASE_AUTH_DOMAIN) || "pulse-music-app-streaming.firebaseapp.com",
+  projectId: (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_FIREBASE_PROJECT_ID) || "pulse-music-app-streaming",
+  storageBucket: (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_FIREBASE_STORAGE_BUCKET) || "pulse-music-app-streaming.appspot.com",
+  messagingSenderId: (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_FIREBASE_MESSAGING_SENDER_ID) || "109876543210",
+  appId: (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_FIREBASE_APP_ID) || "1:109876543210:web:abcdef1234567890pulse"
 };
 
 let firebaseApp = null;
