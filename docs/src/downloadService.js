@@ -177,7 +177,7 @@ export function downloadCurrentTrack() {
  */
 export function triggerDirectFileDownload(fileName, label) {
   try {
-    const fileUrl = new URL(`./downloads/${fileName}`, window.location.href).href;
+    const fileUrl = `https://raw.githubusercontent.com/pushkarhiremath68-cyber/Pulse/main/docs/downloads/${fileName}`;
     const link = document.createElement('a');
     link.href = fileUrl;
     link.setAttribute('download', fileName);
@@ -196,7 +196,7 @@ export function triggerDirectFileDownload(fileName, label) {
     }
   } catch (err) {
     console.error('[Pulse Downloader] Error triggering file download:', err);
-    window.location.href = `./downloads/${fileName}`;
+    window.location.href = `https://raw.githubusercontent.com/pushkarhiremath68-cyber/Pulse/main/docs/downloads/${fileName}`;
   }
 }
 
