@@ -18,6 +18,7 @@ import './audioEngine.js';
 import './playbarController.js';
 import './lyricsService.js';
 import './catalogService.js';
+import './recommendationService.js';
 import './visualizer.js';
 import './geminiService.js';
 import './downloadService.js';
@@ -315,8 +316,50 @@ window.addEventListener('error', function(e) {
     }
   };
 
+  // ---------------------------------------------------------------------------
+  // UP NEXT & SIMILAR TRACKS DRAWER CONTROLLER
+  // ---------------------------------------------------------------------------
+  window.openQueueDrawer = function() {
+    const modal = document.getElementById('queue-drawer-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('active-modal');
+      
+      const track = window.pulseState.currentTrack || (window.PulsePlaybar && window.PulsePlaybar.getCurrentTrack());
+      if (track) {
+        const npTitle = document.getElementById('drawer-np-title');
+        const npArtist = document.getElementById('drawer-np-artist');
+        const npThumb = document.getElementById('drawer-np-thumb');
+        if (npTitle) npTitle.textContent = track.title || 'Select a Song';
+        if (npArtist) npArtist.textContent = track.artist || 'Pulse Music';
+        if (npThumb) npThumb.src = track.coverUrl || track.cover || './pulse-logo.png';
+      }
+
+      if (window.PulsePlaybar && typeof window.PulsePlaybar.renderQueueAndSuggestionsUI === 'function') {
+        window.PulsePlaybar.renderQueueAndSuggestionsUI();
+      }
+    }
+  };
+
+  window.closeQueueDrawer = function() {
+    const modal = document.getElementById('queue-drawer-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('active-modal');
+    }
+  };
+
+  window.toggleQueueDrawer = function() {
+    const modal = document.getElementById('queue-drawer-modal');
+    if (modal && !modal.classList.contains('hidden')) {
+      window.closeQueueDrawer();
+    } else {
+      window.openQueueDrawer();
+    }
+  };
+
   /**
-   * 2-Way Pure Audio Mode Switcher for Fullscreen Player: 'art' | 'lyrics'
+   * 3-Way Pure Audio Mode Switcher for Fullscreen Player: 'art' | 'lyrics' | 'similar'
    */
   window.switchFullscreenView = function(viewMode) {
     if (viewMode === 'video') viewMode = 'art'; // Automatically redirect any video triggers to album art
@@ -324,6 +367,7 @@ window.addEventListener('error', function(e) {
     const content = document.getElementById('fs-content-container');
     const artSec = document.getElementById('fs-album-section');
     const lyricsSec = document.getElementById('fs-lyrics-panel');
+    const similarSec = document.getElementById('fs-similar-panel');
 
     if (!fsModal || fsModal.classList.contains('hidden')) {
       if (window.PulsePlaybar && typeof window.PulsePlaybar.maximize === 'function') {
@@ -342,10 +386,19 @@ window.addEventListener('error', function(e) {
 
     if (artSec) artSec.classList.toggle('hidden-view', viewMode !== 'art');
     if (lyricsSec) lyricsSec.classList.toggle('hidden-view', viewMode !== 'lyrics');
+    if (similarSec) similarSec.classList.toggle('hidden-view', viewMode !== 'similar');
 
-    const toggleBtn = document.getElementById('fs-toggle-lyrics-btn');
-    if (toggleBtn) {
-      toggleBtn.classList.toggle('active-mode', viewMode === 'lyrics');
+    const toggleLyricsBtn = document.getElementById('fs-toggle-lyrics-btn');
+    if (toggleLyricsBtn) {
+      toggleLyricsBtn.classList.toggle('active-mode', viewMode === 'lyrics');
+    }
+    const toggleSimilarBtn = document.getElementById('fs-toggle-similar-btn');
+    if (toggleSimilarBtn) {
+      toggleSimilarBtn.classList.toggle('active-mode', viewMode === 'similar');
+    }
+
+    if (viewMode === 'similar' && window.PulsePlaybar && typeof window.PulsePlaybar.renderQueueAndSuggestionsUI === 'function') {
+      window.PulsePlaybar.renderQueueAndSuggestionsUI();
     }
   };
 

@@ -8,7 +8,7 @@
   <meta name="google-site-verification" content="JU7ok0hTmcqK6uA_ddeeN0u558cFaRrtH2Ojtc_tn0k" />
   
   <!-- PWA & Multi-Platform Meta Tags -->
-  <link rel="manifest" href="./assets/manifest-CApwAya8.json">
+  <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#8b5cf6">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -20,17 +20,17 @@
   <meta name="msapplication-config" content="none">
 
   <!-- Icons (Multi-Resolution & Platform Specific) -->
-  <link rel="icon" type="image/x-icon" href="./assets/icon-C2qAVmhp.ico">
-  <link rel="shortcut icon" type="image/x-icon" href="./assets/icon-C2qAVmhp.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/icon-32-BFIUze9Z.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/icon-16-D0iZYl6A.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="./assets/icon-192-CNSnG7__.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="./assets/icon-512-CWkU5t6Q.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/icon-180-DyZn9fv5.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="./assets/icon-192-CNSnG7__.png">
-  <link rel="apple-touch-icon" sizes="512x512" href="./assets/icon-512-CWkU5t6Q.png">
-  <link rel="apple-touch-icon" href="./assets/pulse-logo-CGnkSwwT.png">
-  <link rel="mask-icon" href="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%201024'%20width='1024'%20height='1024'%3e%3cdefs%3e%3c!--%20Ultra%20HD%20Purple%20Radial%20Glow%20Background%20--%3e%3cradialGradient%20id='bg-purple-hd'%20cx='50%25'%20cy='50%25'%20r='65%25'%3e%3cstop%20offset='0%25'%20stop-color='%239333ea'/%3e%3cstop%20offset='50%25'%20stop-color='%238b5cf6'/%3e%3cstop%20offset='100%25'%20stop-color='%237c3aed'/%3e%3c/radialGradient%3e%3c!--%20Crisp%20Soft%20Ambient%20Drop%20Shadow%20--%3e%3cfilter%20id='soft-shadow'%20x='-20%25'%20y='-20%25'%20width='140%25'%20height='140%25'%3e%3cfeGaussianBlur%20stdDeviation='12'%20result='blur'/%3e%3cfeOffset%20dx='0'%20dy='8'%20result='offset'/%3e%3cfeComponentTransfer%3e%3cfeFuncA%20type='linear'%20slope='0.25'/%3e%3c/feComponentTransfer%3e%3cfeMerge%3e%3cfeMergeNode/%3e%3cfeMergeNode%20in='SourceGraphic'/%3e%3c/feMerge%3e%3c/filter%3e%3c/defs%3e%3c!--%20High-Res%20Vibrant%20Purple%20Background%20Container%20with%20Smooth%20Rounded%20Corners%20--%3e%3crect%20width='1024'%20height='1024'%20rx='224'%20fill='url(%23bg-purple-hd)'/%3e%3c!--%20Iconic%20Centered%20High-Definition%20Black%20Audio%20Waveform%20Pulse%20--%3e%3cg%20filter='url(%23soft-shadow)'%3e%3cpath%20d='M%20160%20512%20L%20280%20512%20L%20340%20400%20L%20405%20630%20L%20470%20230%20L%20540%20790%20L%20605%20320%20L%20670%20610%20L%20730%20400%20L%20790%20512%20L%20864%20512'%20fill='none'%20stroke='%2309090b'%20stroke-width='54'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/g%3e%3c/svg%3e" color="#8b5cf6">
+  <link rel="icon" type="image/x-icon" href="./icons/icon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="./icons/icon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./icons/icon-16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="./icons/icon-512.png">
+  <link rel="apple-touch-icon" href="./pulse-logo.png">
+  <link rel="mask-icon" href="./pulse-logo.svg" color="#8b5cf6">
 
   <!-- Open Graph & Social Cards -->
   <meta property="og:title" content="Pulse Music - Unlimited Free Music & Live Synced Lyrics">
@@ -49,7 +49,8 @@
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+  
+  <link rel="stylesheet" href="./src/style.css">
   <!-- YouTube IFrame API for Guaranteed Fallback Audio -->
   <script src="https://www.youtube.com/iframe_api"></script>
 
@@ -63,8 +64,6 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-BJ9sfDFL.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DyDdSHYo.css">
 </head>
 <body>
 
@@ -75,7 +74,7 @@
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-logo">
-          <img src="./assets/pulse-logo-CGnkSwwT.png" alt="Pulse Logo" class="brand-logo-img" style="width: 42px; height: 42px; object-fit: contain;">
+          <img src="./pulse-logo.png" alt="Pulse Logo" class="brand-logo-img" style="width: 42px; height: 42px; object-fit: contain;">
         </div>
         <div class="brand-text">
           <span class="brand-name">Pulse</span>
@@ -151,7 +150,7 @@
 
         <!-- Mobile Brand -->
         <div class="mobile-header-brand hidden-desktop" style="align-items: center; gap: 0.5rem; margin-right: 0.5rem; cursor: pointer;" onclick="window.switchView('home')">
-          <img src="./assets/pulse-logo-CGnkSwwT.png" alt="Pulse" style="width: 32px; height: 32px; object-fit: contain;">
+          <img src="./pulse-logo.png" alt="Pulse" style="width: 32px; height: 32px; object-fit: contain;">
           <span style="font-weight: 900; font-size: 1.2rem; letter-spacing: -0.5px; color: #fff;">Pulse</span>
         </div>
 
@@ -193,7 +192,7 @@
             </div>
           </div>
           <div class="hero-image-wrapper">
-            <img id="hero-image" src="./assets/pulse-logo-CGnkSwwT.png" alt="Pulse Music" style="object-fit: contain; padding: 1.5rem; background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%);">
+            <img id="hero-image" src="./pulse-logo.png" alt="Pulse Music" style="object-fit: contain; padding: 1.5rem; background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%);">
           </div>
         </section>
 
@@ -213,6 +212,20 @@
           <button class="filter-pill" onclick="window.filterHomeGenre('rock', this)">Rock</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('spanish', this)">Latin Fiesta</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('kpop', this)">K-Pop</button>
+        </section>
+
+        <!-- DYNAMIC "SIMILAR TO WHAT YOU'RE PLAYING" RECOMMENDED SHELF -->
+        <section class="music-shelf-section" id="home-recommended-shelf" style="display: none; margin-bottom: 2.5rem; animation: fadeIn 0.4s ease;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">
+                <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc; margin-right: 8px;"></i> Recommended For You
+              </h3>
+              <p class="shelf-subtitle" id="home-similar-seed-title" style="font-size: 0.82rem; color: #c084fc; margin: 3px 0 0 0;">Based on what you're streaming right now</p>
+            </div>
+            <button class="btn-see-all" onclick="window.openQueueDrawer()" style="background: none; border: none; color: #c084fc; font-size: 0.82rem; font-weight: 700; cursor: pointer;">View Up Next <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
+          </div>
+          <div class="shelf-carousel" id="home-similar-shelf-tracks" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
         </section>
 
         <!-- SPOTIFY-STYLE HERO QUICK PICKS (6-TILE GRID) -->
@@ -351,7 +364,7 @@
 
       <!-- Left: Track Cover & Info (Clicking toggles Fullscreen) -->
       <div class="player-left" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen()" title="Click to Maximize Player">
-        <img id="player-thumb" src="./assets/pulse-logo-CGnkSwwT.png" alt="Cover" class="player-thumb">
+        <img id="player-thumb" src="./pulse-logo.png" alt="Cover" class="player-thumb">
         <div class="player-info">
           <span id="player-title" class="player-title">Select a Song</span>
           <span id="player-artist" class="player-artist">Pulse Music</span>
@@ -383,12 +396,15 @@
         </div>
       </div>
 
-      <!-- Right: Lyrics, Volume, Maximize -->
+      <!-- Right: Lyrics, Up Next, Volume, Maximize -->
       <div class="player-right">
         <!-- Mobile Playbar Controls -->
         <div class="mobile-playbar-controls">
           <button id="mobile-playbar-lyrics-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.openLyricsDrawer()" title="Live Synced Lyrics">
             <i class="fa-solid fa-microphone-lines"></i>
+          </button>
+          <button id="mobile-playbar-queue-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.openQueueDrawer()" title="Up Next & Similar Songs">
+            <i class="fa-solid fa-list-ul"></i>
           </button>
           <button id="mobile-prev-btn" class="btn-player-icon" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.playPrevious()" title="Previous">
             <i class="fa-solid fa-backward-step"></i>
@@ -406,6 +422,12 @@
 
         <!-- Desktop Playbar Controls -->
         <div class="desktop-playbar-controls">
+          <!-- Up Next & Similar Queue Button -->
+          <button id="playbar-queue-btn" class="btn-player-lyrics" onclick="event.stopPropagation(); window.openQueueDrawer()" title="Up Next & Similar Songs (Q)">
+            <i class="fa-solid fa-list-ul" style="color: #38bdf8;"></i>
+            <span>Up Next</span>
+          </button>
+
           <!-- Dedicated Live Synced Lyrics Button with Badge/Label -->
           <button id="playbar-lyrics-btn" class="btn-player-lyrics" onclick="event.stopPropagation(); window.openLyricsDrawer()" title="Open Live Synced Lyrics (L)">
             <i class="fa-solid fa-microphone-lines"></i>
@@ -462,7 +484,7 @@
           <i class="fa-solid fa-chevron-down"></i>
         </button>
 
-        <!-- 2-Way Pure Audio Mode Switcher: Album Art & Synced Lyrics -->
+        <!-- 3-Way Pure Audio Mode Switcher: Album Art, Synced Lyrics & Up Next Similar -->
         <div class="fs-view-mode-pills">
           <button class="fs-mode-tab-btn active-tab" id="tab-fs-art" data-mode="art" onclick="window.switchFullscreenView('art')">
             <i class="fa-solid fa-compact-disc"></i> <span>Album Art</span>
@@ -470,9 +492,15 @@
           <button class="fs-mode-tab-btn" id="tab-fs-lyrics" data-mode="lyrics" onclick="window.switchFullscreenView('lyrics')">
             <i class="fa-solid fa-microphone-lines" style="color: #c084fc;"></i> <span>Live Lyrics</span>
           </button>
+          <button class="fs-mode-tab-btn" id="tab-fs-similar" data-mode="similar" onclick="window.switchFullscreenView('similar')">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: #38bdf8;"></i> <span>Up Next & Similar</span>
+          </button>
         </div>
 
         <div class="fs-header-actions">
+          <button id="fs-toggle-similar-btn" class="btn-icon-circle-lg" onclick="window.switchFullscreenView('similar')" title="Toggle Up Next & Similar Songs">
+            <i class="fa-solid fa-list-ul"></i>
+          </button>
           <button id="fs-toggle-lyrics-btn" class="btn-icon-circle-lg" onclick="window.switchFullscreenView('lyrics')" title="Toggle Live Lyrics View">
             <i class="fa-solid fa-microphone-lines"></i>
           </button>
@@ -485,7 +513,7 @@
         </div>
       </div>
       
-      <!-- Fullscreen Main Body: Centered Showcase & Live Synced Lyrics -->
+      <!-- Fullscreen Main Body: Centered Showcase, Live Synced Lyrics & Up Next Similar -->
       <div class="fs-content" id="fs-content-container" data-active-view="art">
         
         <!-- View 1: Centered Album Art Showcase, Title, Artist, & Soundwave -->
@@ -528,11 +556,13 @@
               <i class="fa-solid fa-microphone-lines"></i>
               <span>Live Synced Lyrics</span>
             </button>
+            <button id="fs-switch-similar-pill" class="fs-pill-btn" onclick="window.switchFullscreenView('similar')">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Similar Songs Up Next</span>
+            </button>
           </div>
         </div>
 
-        <!-- Fullscreen Soundwave & Live Karaoke Switcher -->
-        
         <!-- View 2: Real-time Live Synchronized Lyrics Panel -->
         <div class="fs-lyrics-panel hidden-view" id="fs-lyrics-panel">
           <div class="fs-lyrics-header">
@@ -541,6 +571,19 @@
           </div>
           <div id="fs-lyrics-scroll-box" class="fs-lyrics-scroll-box">
             <p class="fs-lyric-line fs-lyric-active">Loading live synchronized lyrics...</p>
+          </div>
+        </div>
+
+        <!-- View 3: Up Next Queue & Recommended Similar Songs Panel -->
+        <div class="fs-similar-panel hidden-view" id="fs-similar-panel">
+          <div class="fs-similar-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; width: 100%;">
+            <span class="fs-lyrics-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> UP NEXT & SIMILAR SONGS</span>
+            <button class="btn-secondary-install" onclick="window.PulsePlaybar && window.PulsePlaybar.startRadioForCurrentTrack()" style="padding: 0.35rem 0.85rem; font-size: 0.78rem; border-radius: 999px;">
+              <i class="fa-solid fa-radio"></i> Start Radio
+            </button>
+          </div>
+          <div id="fs-similar-tracks-list" class="fs-similar-scroll-box" style="width: 100%; max-width: 650px; margin: 0 auto; max-height: 52vh; overflow-y: auto; padding: 0.5rem 0.5rem;">
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">Loading similar recommendations...</p>
           </div>
         </div>
       </div>
@@ -615,7 +658,7 @@
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
         <div style="display: flex; align-items: center; gap: 0.85rem;">
           <div style="position: relative; width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(168,85,247,0.4);">
-            <img src="./assets/pulse-logo-CGnkSwwT.png" alt="Pulse Logo" style="width: 38px; height: 38px; object-fit: contain;">
+            <img src="./pulse-logo.png" alt="Pulse Logo" style="width: 38px; height: 38px; object-fit: contain;">
           </div>
           <div>
             <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0;">Pulse Music Everywhere</h3>
@@ -821,6 +864,77 @@
     </div>
   </div>
 
+  <!-- UP NEXT & SIMILAR TRACKS DRAWER MODAL -->
+  <div id="queue-drawer-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeQueueDrawer()">
+    <div class="modal-content queue-drawer-box" style="max-width: 580px; max-height: 88vh; height: 88vh; display: flex; flex-direction: column; background: #0c0e17; border: 1px solid rgba(168,85,247,0.35); border-radius: 24px; padding: 0; box-shadow: 0 20px 60px rgba(0,0,0,0.85); overflow: hidden;">
+      <!-- Header -->
+      <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem;">
+            <i class="fa-solid fa-list-ul"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff; margin: 0;">Up Next &amp; Similar Music</h3>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 2px 0 0 0;">Dynamic queue &amp; intelligent similar track suggestions</p>
+          </div>
+        </div>
+        <button class="btn-icon-small" onclick="window.closeQueueDrawer()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Autoplay Control Bar & Radio Button -->
+      <div style="padding: 0.85rem 1.5rem; background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border-glass); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <label class="switch-toggle-wrap" style="position: relative; display: inline-block; width: 44px; height: 24px; cursor: pointer;">
+            <input type="checkbox" id="autoplay-toggle-checkbox" class="autoplay-similar-switch-checkbox" checked onchange="window.PulsePlaybar && window.PulsePlaybar.toggleAutoplaySimilar(this.checked)" style="opacity: 0; width: 0; height: 0;">
+            <span class="switch-toggle-slider"></span>
+          </label>
+          <div>
+            <span style="font-size: 0.82rem; font-weight: 700; color: #fff;">Autoplay Similar Songs</span>
+            <span style="display: block; font-size: 0.7rem; color: var(--text-muted);">Continuously plays matching tracks</span>
+          </div>
+        </div>
+        <button class="btn-secondary-install" onclick="window.PulsePlaybar && window.PulsePlaybar.startRadioForCurrentTrack()" style="padding: 0.45rem 0.9rem; font-size: 0.78rem; border-radius: 999px;">
+          <i class="fa-solid fa-radio"></i> Start Radio
+        </button>
+      </div>
+
+      <!-- Scrollable Queue & Similar Body -->
+      <div style="flex: 1; overflow-y: auto; padding: 1.25rem 1.5rem;">
+        <!-- Now Playing Card -->
+        <div style="margin-bottom: 1.25rem;">
+          <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-purple); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.5rem;">Now Playing</span>
+          <div id="drawer-now-playing-card" style="display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem; border-radius: 14px; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.35);">
+            <img id="drawer-np-thumb" src="./pulse-logo.png" alt="thumb" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover;">
+            <div style="flex: 1; min-width: 0;">
+              <div id="drawer-np-title" style="font-size: 0.95rem; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Select a Song</div>
+              <div id="drawer-np-artist" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Pulse Music</div>
+            </div>
+            <i class="fa-solid fa-volume-high text-accent" style="margin-right: 0.5rem;"></i>
+          </div>
+        </div>
+
+        <!-- Current Queue Section -->
+        <div style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Current Play Queue</span>
+          </div>
+          <div id="drawer-queue-list"></div>
+        </div>
+
+        <!-- Suggested Similar Tracks Section -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-purple); text-transform: uppercase; letter-spacing: 0.05em;">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Suggested Similar Tracks
+            </span>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">Auto-tuned to your vibe</span>
+          </div>
+          <div id="drawer-similar-tracks-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- LYRICS DRAWER MODAL -->
   <div id="lyrics-drawer-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeLyricsDrawer()">
     <div class="modal-content" style="max-width: 600px; max-height: 85vh; height: 85vh; display: flex; flex-direction: column; background: #0f111a; border: 1px solid var(--border-glass); border-radius: 24px; padding: 0;">
@@ -892,6 +1006,7 @@
   <!-- Native Audio Element -->
   <audio id="fallback-audio-player" preload="auto"></audio>
 
-  <!-- APPLICATION JAVASCRIPT -->
+  <!-- APPLICATION JAVASCRIPT -->
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>

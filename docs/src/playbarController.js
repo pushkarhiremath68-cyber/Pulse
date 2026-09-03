@@ -9,6 +9,7 @@ import { addToHistory, isFavorite, addFavorite, removeFavorite, onFavoritesChang
 import { resolvePipedAudioStream, searchYouTubeMusic } from './extractorService.js';
 import { resolveFullAudioStream } from './musicService.js';
 import { downloadCurrentTrack } from './downloadService.js';
+import { getSimilarTracks, getNextSuggestedTrack, generateSimilarRadioQueue } from './recommendationService.js';
 
 if (typeof window !== 'undefined') {
   window.PulsePlaybar = window.PulsePlaybar || {};
@@ -30,6 +31,11 @@ let isShuffle = false;
 let isRepeat = false;
 let isMaximized = false;
 let activePlaySessionId = 0;
+
+// Smart Similar Songs & Autoplay State
+let currentSimilarTracks = [];
+let isAutoplaySimilar = typeof localStorage !== 'undefined' ? localStorage.getItem('pulse_autoplay_similar') !== 'false' : true;
+let playedHistory = [];
 
 // Hybrid Engine State
 let activeEngine = 'native'; // 'native' | 'youtube'
@@ -230,10 +236,19 @@ export async function playTrack(track, queue = null) {
     queueIndex = playQueue.length - 1;
   }
 
+  // Local Listening History Tracking for Smart Recommendations
+  if (!playedHistory.some(t => t.id === track.id || t.title === track.title)) {
+    playedHistory.push(track);
+    if (playedHistory.length > 50) playedHistory.shift();
+  }
+
   updateTrackInfoUI(track);
   updatePlayPauseUI();
   updateMediaSession(track);
-  renderQueueUI();
+  renderQueueAndSuggestionsUI();
+
+  // Smart Similar Songs Computation & Auto-Queue
+  fetchAndRenderSimilarTracks(track);
 
   // Firestore: Record to Listening History
   addToHistory(track);
@@ -367,14 +382,46 @@ export function resume() {
   updateMediaSessionPlaybackState('playing');
 }
 
-export function playNext() {
-  if (playQueue.length === 0) return;
-  if (isShuffle) {
+export async function playNext() {
+  if (playQueue.length === 0 && !currentTrack) return;
+
+  // 1. Shuffle Mode
+  if (isShuffle && playQueue.length > 1) {
     queueIndex = Math.floor(Math.random() * playQueue.length);
-  } else {
-    queueIndex = (queueIndex + 1) % playQueue.length;
+    playTrack(playQueue[queueIndex], playQueue);
+    return;
   }
-  playTrack(playQueue[queueIndex], playQueue);
+
+  // 2. Explicit Queue Remaining
+  if (queueIndex < playQueue.length - 1) {
+    queueIndex = queueIndex + 1;
+    playTrack(playQueue[queueIndex], playQueue);
+    return;
+  }
+
+  // 3. End of Queue or Single Track: Autoplay Similar Songs
+  if (isAutoplaySimilar && currentTrack) {
+    try {
+      const nextSimilar = await getNextSuggestedTrack(currentTrack, playQueue, playedHistory);
+      if (nextSimilar) {
+        playQueue.push(nextSimilar);
+        queueIndex = playQueue.length - 1;
+        if (typeof window.showToast === 'function') {
+          window.showToast(`✨ Autoplaying similar song: "${nextSimilar.title}"`, 'info', 3000);
+        }
+        playTrack(nextSimilar, playQueue);
+        return;
+      }
+    } catch (e) {
+      console.warn('[Pulse Autoplay] Error fetching similar next track:', e);
+    }
+  }
+
+  // 4. Default Loop Fallback
+  if (playQueue.length > 0) {
+    queueIndex = (queueIndex + 1) % playQueue.length;
+    playTrack(playQueue[queueIndex], playQueue);
+  }
 }
 
 export function playPrevious() {
@@ -634,25 +681,189 @@ export async function toggleCurrentTrackFavorite() {
   updateFavoriteButtonUI(trackId);
 }
 
+export async function fetchAndRenderSimilarTracks(track) {
+  if (!track) return;
+  try {
+    const similar = await getSimilarTracks(track, 15);
+    currentSimilarTracks = similar || [];
+    renderQueueAndSuggestionsUI();
+  } catch (err) {
+    console.warn('[Pulse Recommendations] Failed to fetch similar songs:', err);
+  }
+}
+
+export function toggleAutoplaySimilar(forceVal) {
+  isAutoplaySimilar = typeof forceVal === 'boolean' ? forceVal : !isAutoplaySimilar;
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('pulse_autoplay_similar', isAutoplaySimilar.toString());
+  }
+  updateAutoplaySwitchUI();
+  if (typeof window.showToast === 'function') {
+    window.showToast(`Autoplay Similar Songs is ${isAutoplaySimilar ? 'ON ✨' : 'OFF'}`, 'info', 2000);
+  }
+}
+
+function updateAutoplaySwitchUI() {
+  const switches = document.querySelectorAll('.autoplay-similar-switch-checkbox, #autoplay-toggle-checkbox, #fs-autoplay-checkbox');
+  switches.forEach(s => {
+    s.checked = isAutoplaySimilar;
+  });
+}
+
+export function renderQueueAndSuggestionsUI() {
+  renderQueueUI();
+  renderSimilarTracksUI();
+  updateAutoplaySwitchUI();
+}
+
 function renderQueueUI() {
-  const container = document.getElementById('playbar-queue-list') || document.getElementById('fs-queue-list');
+  const container = document.getElementById('playbar-queue-list') || document.getElementById('fs-queue-list') || document.getElementById('drawer-queue-list');
   if (!container) return;
 
   if (playQueue.length === 0) {
-    container.innerHTML = '<div style="padding: 1.5rem; text-align: center; color: var(--text-muted);">Queue is empty</div>';
+    container.innerHTML = '<div style="padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.88rem;">Queue is empty</div>';
     return;
   }
 
   container.innerHTML = playQueue.map((t, idx) => `
-    <div class="queue-item ${idx === queueIndex ? 'active-queue-item' : ''}" onclick="window.PulsePlaybar.playTrackAtQueueIndex(${idx})">
-      <img src="${t.coverUrl || './pulse-logo.png'}" alt="cover" class="queue-item-thumb">
-      <div class="queue-item-details">
-        <div class="queue-item-title">${t.title}</div>
-        <div class="queue-item-artist">${t.artist}</div>
+    <div class="queue-item ${idx === queueIndex ? 'active-queue-item' : ''}" onclick="window.PulsePlaybar.playTrackAtQueueIndex(${idx})" style="display: flex; align-items: center; gap: 0.85rem; padding: 0.6rem 0.85rem; border-radius: 12px; margin-bottom: 0.4rem; cursor: pointer; transition: all 0.2s ease; background: ${idx === queueIndex ? 'rgba(168,85,247,0.15)' : 'rgba(255,255,255,0.03)'}; border: 1px solid ${idx === queueIndex ? 'rgba(168,85,247,0.4)' : 'rgba(255,255,255,0.06)'};">
+      <span style="font-size: 0.8rem; font-weight: 700; color: ${idx === queueIndex ? 'var(--accent-purple)' : 'var(--text-muted)'}; width: 22px; text-align: center;">${idx === queueIndex ? '<i class="fa-solid fa-volume-high"></i>' : idx + 1}</span>
+      <img src="${t.coverUrl || './pulse-logo.png'}" alt="cover" class="queue-item-thumb" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+      <div class="queue-item-details" style="flex: 1; min-width: 0; overflow: hidden;">
+        <div class="queue-item-title" style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
+        <div class="queue-item-artist" style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.artist}</div>
       </div>
-      ${idx === queueIndex ? '<i class="fa-solid fa-volume-high text-accent"></i>' : ''}
+      <div class="queue-item-actions" onclick="event.stopPropagation()" style="display: flex; gap: 0.4rem;">
+        ${idx !== queueIndex ? `
+          <button class="btn-icon-micro" onclick="window.PulsePlaybar.removeTrackFromQueue(${idx})" title="Remove from queue" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        ` : ''}
+      </div>
     </div>
   `).join('');
+}
+
+function renderSimilarTracksUI() {
+  const drawerSimilarContainer = document.getElementById('drawer-similar-tracks-list');
+  const fsSimilarContainer = document.getElementById('fs-similar-tracks-list') || document.getElementById('fs-similar-panel-content');
+  const homeSimilarContainer = document.getElementById('home-similar-shelf-tracks');
+  const homeShelfSection = document.getElementById('home-recommended-shelf');
+
+  if (homeShelfSection) {
+    if (currentTrack && currentSimilarTracks.length > 0) {
+      homeShelfSection.style.display = 'block';
+      const seedTitleEl = document.getElementById('home-similar-seed-title');
+      if (seedTitleEl) seedTitleEl.textContent = `Similar to "${currentTrack.title}" by ${currentTrack.artist.split(',')[0]}`;
+    } else {
+      homeShelfSection.style.display = 'none';
+    }
+  }
+
+  const itemsHtml = currentSimilarTracks.length === 0 ? `
+    <div style="padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+      <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 1.5rem; color: var(--accent-purple); opacity: 0.5; margin-bottom: 0.5rem;"></i>
+      <p>Analyzing sound style & curating next similar tracks...</p>
+    </div>
+  ` : currentSimilarTracks.map((t, idx) => `
+    <div class="similar-track-item hover-glow" onclick="window.PulsePlaybar.playSimilarTrackAtIndex(${idx})" style="display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.85rem; border-radius: 12px; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); margin-bottom: 0.45rem; cursor: pointer; transition: all 0.25s ease;">
+      <div style="display: flex; align-items: center; gap: 0.85rem; flex: 1; min-width: 0;">
+        <div style="position: relative; width: 44px; height: 44px; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
+          <img src="${t.coverUrl || './pulse-logo.png'}" alt="${t.title}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+          <div class="similar-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
+            <i class="fa-solid fa-play" style="color: #fff; font-size: 0.85rem;"></i>
+          </div>
+        </div>
+        <div style="flex: 1; min-width: 0; overflow: hidden;">
+          <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
+          <div style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${t.artist}</div>
+          <div style="margin-top: 3px; display: flex; align-items: center; gap: 0.35rem;">
+            <span class="similar-badge" style="font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(168,85,247,0.18); color: ${t.matchColor || '#c084fc'}; border: 1px solid rgba(168,85,247,0.3); display: inline-flex; align-items: center; gap: 3px;">
+              <i class="fa-solid ${t.matchIcon || 'fa-sparkles'}" style="font-size: 0.6rem;"></i> ${t.matchBadge || 'Similar Vibe'}
+            </span>
+            <span style="font-size: 0.68rem; color: var(--text-muted);">${t.recommendationReason || ''}</span>
+          </div>
+        </div>
+      </div>
+      <div class="similar-track-actions" onclick="event.stopPropagation()" style="display: flex; align-items: center; gap: 0.4rem; margin-left: 0.75rem;">
+        <button class="btn-player-icon" onclick="window.PulsePlaybar.queueTrackNext(window.PulsePlaybar.getSimilarTracks()[${idx}])" title="Play Next ⏭️" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: #fff; font-size: 0.75rem;">
+          <i class="fa-solid fa-arrow-turn-down-right"></i>
+        </button>
+        <button class="btn-player-icon" onclick="window.PulsePlaybar.addTrackToQueueEnd(window.PulsePlaybar.getSimilarTracks()[${idx}])" title="Add to queue (+)" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: #fff; font-size: 0.75rem;">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+    </div>
+  `).join('');
+
+  if (drawerSimilarContainer) drawerSimilarContainer.innerHTML = itemsHtml;
+  if (fsSimilarContainer) fsSimilarContainer.innerHTML = itemsHtml;
+
+  if (homeSimilarContainer && currentSimilarTracks.length > 0) {
+    homeSimilarContainer.innerHTML = currentSimilarTracks.slice(0, 8).map((t, idx) => `
+      <div class="music-card hover-glow" onclick="window.PulsePlaybar.playSimilarTrackAtIndex(${idx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
+        <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
+          <img src="${t.coverUrl || './pulse-logo.png'}" alt="${t.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+          <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
+            <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
+          </div>
+          <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.85); color: ${t.matchColor || '#c084fc'}; padding: 2px 6px; border-radius: 6px;">${t.matchBadge || 'Similar'}</span>
+        </div>
+        <div class="card-meta">
+          <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
+          <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${t.artist}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+export function playSimilarTrackAtIndex(index) {
+  if (index >= 0 && index < currentSimilarTracks.length) {
+    const track = currentSimilarTracks[index];
+    playTrack(track, [track, ...currentSimilarTracks]);
+  }
+}
+
+export function queueTrackNext(track) {
+  if (!track) return;
+  const insertIdx = queueIndex + 1;
+  playQueue.splice(insertIdx, 0, track);
+  renderQueueAndSuggestionsUI();
+  if (typeof window.showToast === 'function') {
+    window.showToast(`Queued next: "${track.title}" ⏭️`, 'success', 2000);
+  }
+}
+
+export function addTrackToQueueEnd(track) {
+  if (!track) return;
+  playQueue.push(track);
+  renderQueueAndSuggestionsUI();
+  if (typeof window.showToast === 'function') {
+    window.showToast(`Added to queue: "${track.title}" ➕`, 'success', 2000);
+  }
+}
+
+export function removeTrackFromQueue(index) {
+  if (index >= 0 && index < playQueue.length && index !== queueIndex) {
+    const removed = playQueue.splice(index, 1)[0];
+    if (index < queueIndex) queueIndex--;
+    renderQueueAndSuggestionsUI();
+    if (typeof window.showToast === 'function') {
+      window.showToast(`Removed "${removed.title}" from queue`, 'info', 1500);
+    }
+  }
+}
+
+export async function startRadioForCurrentTrack() {
+  if (!currentTrack) return;
+  try {
+    const radioQueue = await generateSimilarRadioQueue(currentTrack, 25);
+    playTrack(currentTrack, radioQueue);
+    if (typeof window.showToast === 'function') {
+      window.showToast(`📻 Started Similar Radio based on "${currentTrack.title}"`, 'success', 3000);
+    }
+  } catch (e) {}
 }
 
 export function playTrackAtQueueIndex(index) {
@@ -747,6 +958,12 @@ function initPlaybarController() {
     } else if (e.key === 'l' || e.key === 'L') {
       if (typeof window.switchFullscreenView === 'function') {
         window.switchFullscreenView('lyrics');
+      }
+    } else if (e.key === 'q' || e.key === 'Q') {
+      if (isMaximized && typeof window.switchFullscreenView === 'function') {
+        window.switchFullscreenView('similar');
+      } else if (typeof window.toggleQueueDrawer === 'function') {
+        window.toggleQueueDrawer();
       }
     }
   });
@@ -1095,7 +1312,16 @@ const playbarController = {
   getCurrentTrack: () => currentTrack,
   getIsPlaying: () => isPlaying,
   getPlayQueue: () => playQueue,
-  getIsMaximized: () => isMaximized
+  getIsMaximized: () => isMaximized,
+  getSimilarTracks: () => currentSimilarTracks,
+  getAutoplaySimilar: () => isAutoplaySimilar,
+  toggleAutoplaySimilar,
+  queueTrackNext,
+  addTrackToQueueEnd,
+  removeTrackFromQueue,
+  playSimilarTrackAtIndex,
+  startRadioForCurrentTrack,
+  renderQueueAndSuggestionsUI
 };
 
 if (typeof window !== 'undefined') {
