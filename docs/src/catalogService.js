@@ -126,6 +126,21 @@ export const PERMANENT_STREAM_MAP = {
 
 export const CATALOG_CATEGORIES = [
   {
+    id: "cat-new-releases",
+    title: "🔥 Fresh New Releases (2026)",
+    subtitle: "Today's hottest newly dropped singles and trending releases",
+    icon: "fa-fire-flame-curved",
+    color: "#f43f5e",
+    tracks: [
+      { id: "rel-die-with-a-smile", ytId: "kPa7bsKwL-c", title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1a/ff/f6/1afff69c-0979-37ea-630e-eefb92c431f2/24UMGIM92429.rgb.jpg/1000x1000bb.jpg", duration: 251, genre: "Pop Ballad" },
+      { id: "rel-espresso", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 175, genre: "Pop / Disco" },
+      { id: "rel-birds-of-a-feather", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg", duration: 196, genre: "Alt Pop" },
+      { id: "rel-chaleya", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1000x1000bb.jpg", duration: 198, genre: "Bollywood Romance" },
+      { id: "rel-please-please-please", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 186, genre: "Pop" },
+      { id: "rel-apna-bana-le", ytId: "ElZfdU54Cp8", title: "Apna Bana Le", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/1000x1000bb.jpg", duration: 261, genre: "Soulful Romantic" }
+    ]
+  },
+  {
     id: "cat-trending",
     title: "Global Viral & Trending Now",
     subtitle: "The hottest streamable anthems dominating worldwide charts",
@@ -838,6 +853,14 @@ export const getArtistDetails = (artistName) => {
   };
 };
 
+export const getNewReleasesShelf = () => {
+  if (typeof window !== 'undefined' && window.newReleasesService && typeof window.newReleasesService.getCachedNewReleases === 'function') {
+    return window.newReleasesService.getCachedNewReleases();
+  }
+  const cat = CATALOG_CATEGORIES.find(c => c.id === 'cat-new-releases');
+  return cat ? cat.tracks : [];
+};
+
 const catalogService = {
   CATALOG_CATEGORIES,
   LANGUAGE_PLAYLISTS,
@@ -846,7 +869,8 @@ const catalogService = {
   getCuratedPlaylists,
   fetchCategoryTracks,
   getArtistDetails,
-  searchCatalogTracks
+  searchCatalogTracks,
+  getNewReleasesShelf
 };
 
 if (typeof window !== 'undefined') {

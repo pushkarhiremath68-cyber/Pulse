@@ -1,0 +1,54 @@
+name: Automated New Releases Ingestion & Auto-Deploy
+
+on:
+  schedule:
+    # Runs every 12 hours automatically
+    - cron: '0 */12 * * *'
+  workflow_dispatch: # Allows manual one-click run in GitHub Actions UI
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/update_new_releases.js'
+      - '.github/workflows/auto_new_releases.yml'
+
+jobs:
+  auto_update_releases:
+    name: Ingest New Releases, Verify Lyrics & Auto-Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: 📦 Install Project Dependencies
+        run: npm ci || npm install
+
+      - name: 🚀 Run New Releases Ingestion Pipeline
+        run: node scripts/update_new_releases.js
+
+      - name: 💾 Commit & Push Updated Catalogs to Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add public/data/new_releases.json docs/public/data/new_releases.json || true
+          git commit -m "chore(catalog): auto-update fresh new releases and verified lyrics" || echo "No catalog changes to commit"
+          git push origin HEAD || true
+
+      - name: ☁️ Auto-Deploy to Firebase Hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          if [ -n "$FIREBASE_TOKEN" ]; then
+            npx -y firebase-tools@latest deploy --only hosting --project pulse-music-app-68 --token "$FIREBASE_TOKEN" --non-interactive
+          else
+            echo "FIREBASE_TOKEN secret not set, skipping remote CLI deploy step."
+          fi

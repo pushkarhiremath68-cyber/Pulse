@@ -19,9 +19,12 @@ import './playbarController.js';
 import './lyricsService.js';
 import './catalogService.js';
 import './recommendationService.js';
+import './newReleasesService.js';
 import './visualizer.js';
 import './geminiService.js';
 import './downloadService.js';
+
+import { fetchFreshNewReleases, getCachedNewReleases } from './newReleasesService.js';
 
 import { getStoredUser, onAuthStateChanged } from './firebaseAuthService.js';
 import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
@@ -412,7 +415,61 @@ window.addEventListener('error', function(e) {
   // 2. MAIN SCREEN CATALOGUES & DISCOVERY SHELVES
   // ---------------------------------------------------------------------------
 
+  window.renderNewReleasesShelf = async function(forceRefresh = false) {
+    const container = document.getElementById('home-new-releases-container');
+    if (!container) return;
+
+    // Fast initial render from cached/verified drops
+    let tracks = getCachedNewReleases();
+    window.__freshNewReleases = tracks;
+    renderReleaseCards(container, tracks);
+
+    // Asynchronously fetch real-time fresh drops from Apple Music / YouTube RSS
+    try {
+      const fresh = await fetchFreshNewReleases(24);
+      if (Array.isArray(fresh) && fresh.length > 0) {
+        window.__freshNewReleases = fresh;
+        renderReleaseCards(container, fresh);
+      }
+    } catch (e) {
+      console.warn('[Pulse] Live new release fetch notice:', e);
+    }
+  };
+
+  function renderReleaseCards(container, tracks) {
+    if (!container || !Array.isArray(tracks) || tracks.length === 0) return;
+    container.innerHTML = tracks.map((track, idx) => `
+      <div class="music-card hover-glow" onclick="window.playTrackDirect(window.__freshNewReleases[${idx}], window.__freshNewReleases)" style="min-width: 175px; width: 175px; flex-shrink: 0; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); padding: 0.85rem; border-radius: 16px; cursor: pointer; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);">
+        <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; margin-bottom: 0.65rem; box-shadow: 0 8px 20px rgba(0,0,0,0.5);">
+          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+          <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
+            <button class="btn-card-play" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.5);"><i class="fa-solid fa-play"></i></button>
+          </div>
+          <span style="position: absolute; top: 8px; left: 8px; font-size: 0.65rem; font-weight: 800; background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%); color: #fff; padding: 2px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); letter-spacing: 0.05em;">NEW</span>
+          <span style="position: absolute; bottom: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.85); color: #38bdf8; padding: 2px 6px; border-radius: 6px;">${track.genre || 'Single'}</span>
+        </div>
+        <div class="card-meta">
+          <div style="font-size: 0.92rem; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.title}">${track.title}</div>
+          <div style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 3px;" title="${track.artist}">${track.artist}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  window.refreshNewReleasesLive = function() {
+    if (typeof window.showToast === 'function') {
+      window.showToast('Checking for latest music releases worldwide... 🎵', 'info', 2000);
+    }
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem('pulse_cached_new_releases_v2');
+    }
+    window.renderNewReleasesShelf(true);
+  };
+
   window.renderHomeDiscovery = function() {
+    // 0. Live Fresh New Releases (Auto-Updated Daily)
+    window.renderNewReleasesShelf();
+
     // 1. Quick Picks 6-Tile Grid
     const qpContainer = document.getElementById('home-quick-picks-container');
     if (qpContainer) {

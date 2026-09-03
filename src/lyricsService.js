@@ -16,6 +16,7 @@ const memoryCache = new Map();
 export function cleanSearchTerm(text) {
   if (!text) return '';
   return text
+    .replace(/\s*-\s*(?:single|ep|edit|remastered|deluxe|explicit)$/gi, '')
     .replace(/\s*\([^)]*(?:feat|ft|official|remix|bonus|audio|video|soundtrack|version|live|deluxe|from|original)[^)]*\)/gi, '')
     .replace(/\s*\[[^\]]*(?:feat|ft|official|remix|bonus|audio|video|soundtrack|version|live|deluxe|from|original)[^\]]*\]/gi, '')
     .replace(/\s*-\s*(?:official|audio|video|lyric|remix|song|soundtrack).*/gi, '')

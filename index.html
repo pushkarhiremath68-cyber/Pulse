@@ -199,6 +199,7 @@
         <!-- CATEGORY FILTER PILLS -->
         <section class="filter-pills-bar" style="margin-bottom: 2rem; display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 0.5rem;">
           <button class="filter-pill active-pill pill-cyan" onclick="window.filterHomeGenre('all', this)">All</button>
+          <button class="filter-pill" onclick="window.filterHomeGenre('new-releases', this)"><i class="fa-solid fa-sparkles" style="color: #f43f5e;"></i> New Releases</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('trending', this)"><i class="fa-solid fa-fire text-accent"></i> Trending</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('devotional', this)"><i class="fa-solid fa-om" style="color: #f59e0b;"></i> Devotional</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('kannada', this)">Kannada</button>
@@ -212,6 +213,29 @@
           <button class="filter-pill" onclick="window.filterHomeGenre('rock', this)">Rock</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('spanish', this)">Latin Fiesta</button>
           <button class="filter-pill" onclick="window.filterHomeGenre('kpop', this)">K-Pop</button>
+        </section>
+
+        <!-- DYNAMIC "FRESH NEW RELEASES" SHELF -->
+        <section class="music-shelf-section" id="home-new-releases-shelf" style="margin-bottom: 2.5rem; animation: fadeIn 0.4s ease;">
+          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-fire-flame-curved" style="color: #f43f5e;"></i> Fresh New Releases &amp; Drops
+                <span class="live-auto-pill" style="font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: rgba(244, 63, 94, 0.2); border: 1px solid rgba(244, 63, 94, 0.4); color: #fb7185; letter-spacing: 0.05em; text-transform: uppercase;">
+                  <i class="fa-solid fa-circle" style="font-size: 0.5rem; color: #f43f5e; margin-right: 3px; animation: pulse 1.5s infinite;"></i> AUTO-UPDATED
+                </span>
+              </h3>
+              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin: 3px 0 0 0;">
+                Today's newly released tracks with full studio audio &amp; live synced karaoke lyrics
+              </p>
+            </div>
+            <button class="btn-secondary-install" onclick="window.refreshNewReleasesLive && window.refreshNewReleasesLive()" title="Check for newest releases right now" style="padding: 0.35rem 0.8rem; font-size: 0.75rem; border-radius: 999px;">
+              <i class="fa-solid fa-arrows-rotate"></i> Refresh
+            </button>
+          </div>
+          <div class="shelf-carousel" id="home-new-releases-container" style="display: flex; gap: 1.1rem; overflow-x: auto; padding-bottom: 0.85rem;">
+            <div style="padding: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">Loading newest releases...</div>
+          </div>
         </section>
 
         <!-- DYNAMIC "SIMILAR TO WHAT YOU'RE PLAYING" RECOMMENDED SHELF -->
