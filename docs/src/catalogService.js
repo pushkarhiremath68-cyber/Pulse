@@ -147,7 +147,6 @@ export const CATALOG_CATEGORIES = [
     icon: "fa-fire-flame-curved",
     color: "#f43f5e",
     tracks: [
-      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", cover: "https://i.ytimg.com/vi/b2t2XURj7MU/maxresdefault.jpg", duration: 840, genre: "Devotional / Sanskrit" },
       { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200, genre: "Pop / Synthwave" },
       { id: "ytm-34Na4j8HLws", ytId: "34Na4j8HLws", title: "Starboy", artist: "The Weeknd ft. Daft Punk", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg", duration: 230, genre: "Pop / R&B" },
       { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 175, genre: "Pop / Disco" },
@@ -161,20 +160,6 @@ export const CATALOG_CATEGORIES = [
       { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258, genre: "Hip-Hop" },
       { id: "ytm-VAdGW7QDJiU", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1000x1000bb.jpg", duration: 198, genre: "Bollywood" },
       { id: "ytm-BddP6PYo2gs", ytId: "BddP6PYo2gs", title: "Kesariya", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg", duration: 268, genre: "Bollywood" }
-    ]
-  },
-  {
-    id: "cat-devotional",
-    title: "Devotional & Sacred Stotrams",
-    subtitle: "Spiritual chants, sacred mantras, healing stotrams and divine peace",
-    icon: "fa-om",
-    color: "#f59e0b",
-    tracks: [
-      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840, genre: "Devotional / Sanskrit Stotram" },
-      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800, genre: "Devotional" },
-      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720, genre: "Devotional" },
-      { id: "ytm-tL4w5gZc_jE", ytId: "tL4w5gZc_jE", title: "Hanuman Chalisa", artist: "Hariharan", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c5/3a/8d/c53a8d9b-23d8-5cc1-ec14-6ed0ce7920a0/8902894137256_cover.jpg/1000x1000bb.jpg", duration: 580, genre: "Devotional" },
-      { id: "ytm-U3mQ0v5r3pY", ytId: "U3mQ0v5r3pY", title: "Shiv Tandav Stotram", artist: "Shankar Mahadevan", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/93/cc/db/93ccdb69-815f-7e02-4450-21a358166970/190374418898.jpg/1000x1000bb.jpg", duration: 554, genre: "Devotional" }
     ]
   },
   {
@@ -292,6 +277,20 @@ export const CATALOG_CATEGORIES = [
       { id: "ytm-99e_0_Z-Bw0", ytId: "99e_0_Z-Bw0", title: "Zingaat", artist: "Ajay-Atul", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/66/5a/e8/665ae8ad-1aab-5d0c-3ca9-4fa062b1606c/8718857670711.png/1000x1000bb.jpg", duration: 230, genre: "Marathi Dance" },
       { id: "ytm-OsU0CGZoV8E", ytId: "OsU0CGZoV8E", title: "Naatu Naatu", artist: "Rahul Sipligunj, Kaala Bhairava", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/dd/39/14/dd3914e5-a2f3-b355-51f3-9a1f0e3ca246/8903431853592_cover.jpg/1000x1000bb.jpg", duration: 215, genre: "Tollywood Dance" },
       { id: "ytm-d4OsvFi6mms", ytId: "d4OsvFi6mms", title: "Chogada", artist: "Darshan Raval", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/af/69/79/af697907-7447-e35b-5446-40d3cb3e1f64/8903431684981_cover.jpg/1000x1000bb.jpg", duration: 247, genre: "Gujarati Garba" }
+    ]
+  },
+  {
+    id: "cat-devotional",
+    title: "Devotional & Sacred Stotrams",
+    subtitle: "Spiritual chants, sacred mantras, healing stotrams and divine peace",
+    icon: "fa-om",
+    color: "#f59e0b",
+    tracks: [
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840, genre: "Devotional / Sanskrit Stotram" },
+      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800, genre: "Devotional" },
+      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720, genre: "Devotional" },
+      { id: "ytm-tL4w5gZc_jE", ytId: "tL4w5gZc_jE", title: "Hanuman Chalisa", artist: "Hariharan", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c5/3a/8d/c53a8d9b-23d8-5cc1-ec14-6ed0ce7920a0/8902894137256_cover.jpg/1000x1000bb.jpg", duration: 580, genre: "Devotional" },
+      { id: "ytm-U3mQ0v5r3pY", ytId: "U3mQ0v5r3pY", title: "Shiv Tandav Stotram", artist: "Shankar Mahadevan", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/93/cc/db/93ccdb69-815f-7e02-4450-21a358166970/190374418898.jpg/1000x1000bb.jpg", duration: 554, genre: "Devotional" }
     ]
   }
 ];
@@ -465,12 +464,12 @@ export const LANGUAGE_PLAYLISTS = [
 
 export const getQuickPicks = (limit = 8) => {
   return [
-    { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840 },
+    { id: "rel-die-with-a-smile", ytId: "kPa7bsKwL-c", title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1a/ff/f6/1afff69c-0979-37ea-630e-eefb92c431f2/24UMGIM92429.rgb.jpg/1000x1000bb.jpg", duration: 251 },
     { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
-    { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258 },
-    { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg", duration: 204 },
     { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg", duration: 175 },
     { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg", duration: 196 },
+    { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg", duration: 258 },
+    { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg", duration: 204 },
     { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
     { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233 },
     { id: "ytm-BddP6PYo2gs", ytId: "BddP6PYo2gs", title: "Kesariya", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg", duration: 268 }
@@ -479,9 +478,9 @@ export const getQuickPicks = (limit = 8) => {
 
 export const getFeaturedArtists = () => {
   return [
-    { id: "appaji", name: "Appaji", genre: "Devotional / Spiritual", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg" },
     { name: "The Weeknd", genre: "Pop / R&B", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg" },
     { name: "Taylor Swift", genre: "Pop / Country", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg" },
+    { name: "Arijit Singh", genre: "Bollywood / Soul", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg" },
     { name: "Eminem", genre: "Hip-Hop / Rap", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/d3/df/d5d3dfb5-b778-5ca8-0a0e-26f55447b9eb/00602498829449.rgb.jpg/1000x1000bb.jpg" },
     { id: "imagine-dragons", name: "Imagine Dragons", genre: "Alt Rock", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/09/cf/a409cf90-0d33-4318-7b96-7a718b52f1e6/17UMGIM86295.rgb.jpg/1000x1000bb.jpg" },
     { name: "Billie Eilish", genre: "Alt Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg" },
@@ -491,10 +490,10 @@ export const getFeaturedArtists = () => {
     { name: "Coldplay", genre: "Alternative Rock", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/c2/79/33c27940-0255-a0d0-4bf6-0eb0393246eb/5099921211459.jpg/1000x1000bb.jpg" },
     { name: "Linkin Park", genre: "Rock / Metal", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg" },
     { name: "Dua Lipa", genre: "Dance Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d5/8b/1a/d58b1a1a-a82f-8700-1c4b-3d9a1758f8b8/190295286101.jpg/1000x1000bb.jpg" },
-    { name: "Arijit Singh", genre: "Bollywood / Soul", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg" },
     { name: "Anirudh Ravichander", genre: "Kollywood / EDM", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg" },
     { name: "AP Dhillon", genre: "Punjabi / Urban", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg" },
-    { name: "Bad Bunny", genre: "Latin / Reggaeton", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg" }
+    { name: "Bad Bunny", genre: "Latin / Reggaeton", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg" },
+    { id: "appaji", name: "Appaji", genre: "Devotional / Spiritual", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg" }
   ];
 };
 
