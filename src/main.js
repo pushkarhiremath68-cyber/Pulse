@@ -1229,6 +1229,55 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     window.showToast('Linux .desktop launcher downloaded! Use chmod +x to make executable.', 'success', 4500);
   };
 
+  // Client-Side Apple WebClip Configuration Profile (.mobileconfig) for iOS
+  window.downloadIosWebClipProfile = function() {
+    try {
+      window.showToast('📲 Downloading iOS Configuration Profile... Tap "Allow", then go to Settings ➔ "Profile Downloaded" to install Pulse!', 'info', 7000);
+      const link = document.createElement('a');
+      link.href = './downloads/Pulse-Music.mobileconfig';
+      link.download = 'Pulse-Music.mobileconfig';
+      link.setAttribute('download', 'Pulse-Music.mobileconfig');
+      link.setAttribute('target', '_blank');
+      document.body.appendChild(link);
+      link.click();
+      setTimeout(() => {
+        if (document.body.contains(link)) document.body.removeChild(link);
+      }, 2000);
+    } catch (e) {
+      window.location.href = './downloads/Pulse-Music.mobileconfig';
+    }
+  };
+
+  // Apple Shortcuts App Trigger
+  window.openIosAppleShortcut = function() {
+    const currentUrl = window.location.href.split('#')[0];
+    const createUri = `shortcuts://create-shortcut?name=Pulse%20Music&url=${encodeURIComponent(currentUrl)}`;
+    window.showToast('⚡ Opening Apple Shortcuts app...', 'info', 3500);
+    window.location.href = createUri;
+    setTimeout(() => {
+      window.showIosAddHomeGuide();
+    }, 1500);
+  };
+
+  // Dedicated iOS "Add to Home Screen" Visual Guide
+  window.showIosAddHomeGuide = function() {
+    const guide = document.getElementById('ios-install-guide-modal');
+    if (guide) {
+      guide.classList.remove('hidden');
+      guide.classList.add('active-modal');
+    } else {
+      window.openDownloadModal('ios');
+    }
+  };
+
+  window.closeIosAddHomeGuide = function() {
+    const guide = document.getElementById('ios-install-guide-modal');
+    if (guide) {
+      guide.classList.add('hidden');
+      guide.classList.remove('active-modal');
+    }
+  };
+
   window.handleDownloadClick = function(platformName, fileSize) {
     if (typeof window.showToast === 'function') {
       window.showToast(`Starting ${platformName} download (${fileSize || 'Instant'})... ⚡`, 'success', 3000);
@@ -1454,7 +1503,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     } else if (plat === 'android') {
       window.showToast('📱 Android: Tap Chrome 3 dots (⋮) ➔ "Install app" or "Add to Home screen"', 'info', 7000);
     } else if (plat === 'ios') {
-      window.showToast('📲 iPhone: Tap Safari Share [⎋] ➔ "Add to Home Screen"', 'info', 7000);
+      window.showIosAddHomeGuide();
     }
   };
 

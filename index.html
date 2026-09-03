@@ -130,9 +130,13 @@
       </nav>
 
       <!-- SIDEBAR FOOTER -->
-      <div class="sidebar-footer" style="padding: 1rem; border-top: 1px solid var(--border-glass);">
-        <div style="display: flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.75rem 0.85rem;">
-          <div style="width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; flex-shrink: 0;">
+      <div class="sidebar-footer" style="padding: 1rem; border-top: 1px solid var(--border-glass); display: flex; flex-direction: column; gap: 0.65rem;">
+        <button onclick="window.openDownloadModal()" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 0.6rem 0.75rem; color: #fff; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+          <i class="fa-solid fa-mobile-screen-button" style="color: #c084fc;"></i>
+          <span>Install App &amp; Shortcuts</span>
+        </button>
+        <div style="display: flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.65rem 0.85rem;">
+          <div style="width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; flex-shrink: 0;">
             <i class="fa-solid fa-bolt"></i>
           </div>
           <div>
@@ -166,6 +170,9 @@
         </div>
 
         <div class="header-actions">
+          <button id="header-install-btn" class="btn-download-header" onclick="window.openDownloadModal()" title="Install App or Download Shortcut" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #fff; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 0.85rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+            <i class="fa-solid fa-arrow-down-to-bracket" style="color: #38bdf8;"></i> <span>Install App</span>
+          </button>
           <button id="header-gemini-btn" class="btn-download-header" onclick="window.openGeminiDJModal()" style="background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); border: none; color: #fff; font-weight: 700;">
             <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Ask Gemini AI</span>
           </button>
@@ -823,6 +830,15 @@
             </div>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn-primary-play" style="padding: 0.55rem 1.15rem; font-size: 0.82rem; background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); box-shadow: 0 4px 15px rgba(236, 72, 153, 0.35);" onclick="window.showIosAddHomeGuide()">
+              <i class="fa-solid fa-square-plus"></i> Add Shortcut to Home Screen
+            </button>
+            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem; background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.4); color: #fff;" onclick="window.downloadIosWebClipProfile()" title="Install standalone web clip icon via iOS Settings">
+              <i class="fa-solid fa-download"></i> Download iOS Profile (.mobileconfig)
+            </button>
+            <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.openIosAppleShortcut()">
+              <i class="fa-solid fa-bolt"></i> Apple Shortcuts App
+            </button>
             <button class="btn-secondary-install" style="padding: 0.55rem 1rem; font-size: 0.8rem;" onclick="window.downloadIosIpa()">
               <i class="fa-brands fa-apple"></i> Download IPA Package
             </button>
@@ -884,6 +900,78 @@
           All shortcuts and packages include the official Pulse icon. Built by Pushkar Hiremath.
         </p>
       </div>
+    </div>
+  </div>
+
+  <!-- DEDICATED IOS SHORTCUT & ADD TO HOME SCREEN MODAL -->
+  <div id="ios-install-guide-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closeIosAddHomeGuide()">
+    <div class="modal-content ios-guide-box" style="max-width: 480px; width: 92%; background: #0c0e17; border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 24px; padding: 1.75rem; box-shadow: 0 25px 70px rgba(0,0,0,0.9); text-align: center; position: relative;">
+      
+      <!-- Close Button -->
+      <button class="btn-icon-small" onclick="window.closeIosAddHomeGuide()" style="position: absolute; top: 1.25rem; right: 1.25rem;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Pulse App Icon Preview -->
+      <div style="width: 72px; height: 72px; margin: 0 auto 1rem auto; border-radius: 18px; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(168, 85, 247, 0.45); padding: 6px;">
+        <img src="./pulse-logo.png" alt="Pulse Music" style="width: 100%; height: 100%; object-fit: contain;">
+      </div>
+
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 0.35rem;">Install Pulse on iPhone &amp; iPad</h3>
+      <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+        Pin the Pulse app icon to your iOS Home Screen for instant 1-tap playback &amp; fullscreen lyrics.
+      </p>
+
+      <!-- Method 1: Safari Add to Home Screen (Official Recommended) -->
+      <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1.15rem; margin-bottom: 1rem; text-align: left;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <span style="background: #ec4899; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px;">RECOMMENDED</span>
+          <strong style="font-size: 0.88rem; color: #fff;">Add to Home Screen in Safari</strong>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.82rem; color: #e2e8f0; line-height: 1.4;">
+          <div style="display: flex; align-items: flex-start; gap: 0.65rem;">
+            <span style="width: 22px; height: 22px; border-radius: 50%; background: rgba(56, 189, 248, 0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.75rem;">1</span>
+            <div>Tap the <strong>Share</strong> icon <i class="fa-solid fa-arrow-up-from-bracket" style="color: #38bdf8; padding: 0 2px;"></i> in Safari's bottom toolbar.</div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.65rem;">
+            <span style="width: 22px; height: 22px; border-radius: 50%; background: rgba(236, 72, 153, 0.2); color: #ec4899; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.75rem;">2</span>
+            <div>Scroll down and tap <strong>"Add to Home Screen"</strong> <i class="fa-solid fa-square-plus" style="color: #ec4899; padding: 0 2px;"></i>.</div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 0.65rem;">
+            <span style="width: 22px; height: 22px; border-radius: 50%; background: rgba(34, 197, 94, 0.2); color: #4ade80; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.75rem;">3</span>
+            <div>Tap <strong>"Add"</strong> in the top-right corner. The Pulse icon appears on your home screen!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Method 2: Direct Apple Configuration Profile (.mobileconfig) -->
+      <div style="background: rgba(236, 72, 153, 0.06); border: 1px solid rgba(236, 72, 153, 0.28); border-radius: 16px; padding: 1.15rem; margin-bottom: 1.25rem; text-align: left;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+          <span style="background: #a855f7; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px;">DIRECT PROFILE</span>
+          <strong style="font-size: 0.88rem; color: #fff;">Download WebClip Profile (.mobileconfig)</strong>
+        </div>
+        <p style="font-size: 0.76rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.35;">
+          Installs a standalone WebClip profile with the official Pulse Music icon directly via Settings:
+        </p>
+        <button class="btn-primary-play" style="width: 100%; justify-content: center; padding: 0.65rem 1rem; font-size: 0.84rem; background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);" onclick="window.downloadIosWebClipProfile()">
+          <i class="fa-solid fa-download"></i> Download iOS WebClip Profile (.mobileconfig)
+        </button>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+        <button class="btn-secondary-install" style="font-size: 0.78rem; padding: 0.45rem 0.85rem;" onclick="window.openIosAppleShortcut()">
+          <i class="fa-solid fa-bolt"></i> Apple Shortcuts App
+        </button>
+        <button class="btn-secondary-install" style="font-size: 0.78rem; padding: 0.45rem 0.85rem;" onclick="navigator.clipboard.writeText(window.location.href.split('#')[0]); window.showToast('App link copied! Open in Safari 🌐', 'success', 3000);">
+          <i class="fa-regular fa-copy"></i> Copy Link
+        </button>
+        <button class="btn-secondary-install" style="font-size: 0.78rem; padding: 0.45rem 0.85rem;" onclick="window.closeIosAddHomeGuide()">
+          Close
+        </button>
+      </div>
+
     </div>
   </div>
 

@@ -228,6 +228,77 @@ export function downloadIosIpa() {
   triggerDirectFileDownload('Pulse-iOS.ipa', 'Pulse Music for iOS (.ipa)');
 }
 
+/**
+ * Downloads Apple WebClip Configuration Profile (.mobileconfig) for iOS
+ * Automatically installs Pulse Music as a standalone Home Screen web app icon via iOS Settings
+ */
+export function downloadIosWebClipProfile() {
+  try {
+    if (typeof window.showToast === 'function') {
+      window.showToast('📲 Downloading iOS Profile... Tap "Allow", then go to Settings ➔ "Profile Downloaded" to install!', 'info', 7000);
+    }
+    const link = document.createElement('a');
+    link.href = '/downloads/Pulse-Music.mobileconfig';
+    link.download = 'Pulse-Music.mobileconfig';
+    link.setAttribute('download', 'Pulse-Music.mobileconfig');
+    link.setAttribute('target', '_blank');
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(() => {
+      if (document.body.contains(link)) document.body.removeChild(link);
+    }, 2000);
+  } catch (err) {
+    console.warn('[Pulse Downloader] MobileConfig direct download fallback:', err);
+    window.location.href = '/downloads/Pulse-Music.mobileconfig';
+  }
+}
+
+/**
+ * Opens Apple Shortcuts app or triggers Siri Shortcuts deep-link
+ */
+export function openIosAppleShortcut() {
+  const currentUrl = window.location.href.split('#')[0];
+  const createUri = `shortcuts://create-shortcut?name=Pulse%20Music&url=${encodeURIComponent(currentUrl)}`;
+
+  if (typeof window.showToast === 'function') {
+    window.showToast('⚡ Opening Apple Shortcuts to create Pulse Music shortcut...', 'info', 4000);
+  }
+
+  // Attempt to open Shortcuts app URL scheme
+  window.location.href = createUri;
+  setTimeout(() => {
+    // If browser couldn't launch Shortcuts scheme, show the interactive guide
+    showIosAddHomeGuide();
+  }, 1500);
+}
+
+/**
+ * Shows the dedicated iOS Add to Home Screen interactive visual guide
+ */
+export function showIosAddHomeGuide() {
+  const modal = document.getElementById('ios-install-guide-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('active-modal');
+  } else if (typeof window.openDownloadModal === 'function') {
+    window.openDownloadModal('ios');
+  }
+}
+
+export function closeIosAddHomeGuide() {
+  const modal = document.getElementById('ios-install-guide-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('active-modal');
+  }
+}
+
+export function isInAppBrowser() {
+  if (typeof navigator === 'undefined') return false;
+  const ua = (navigator.userAgent || navigator.vendor || window.opera || '').toLowerCase();
+  return /fbav|instagram|fban|line|micromessenger|snapchat|twitter|tiktok|bytedance/i.test(ua);
+}
+
 export function downloadAppForDevice() {
   const plat = detectUserPlatform();
   if (plat === 'android') {
@@ -253,12 +324,7 @@ export function downloadAppForDevice() {
       downloadLinuxAppImage();
     }
   } else if (plat === 'ios') {
-    if (typeof window.openDownloadModal === 'function') {
-      window.openDownloadModal('ios');
-    }
-    if (typeof window.showToast === 'function') {
-      window.showToast('iPhone/iPad: Tap Safari Share button -> "Add to Home Screen" 📲', 'info', 6000);
-    }
+    showIosAddHomeGuide();
   } else {
     if (typeof window.openDownloadModal === 'function') {
       window.openDownloadModal('all');
@@ -276,6 +342,11 @@ if (typeof window !== 'undefined') {
   window.downloadMacDmg = downloadMacDmg;
   window.downloadLinuxAppImage = downloadLinuxAppImage;
   window.downloadIosIpa = downloadIosIpa;
+  window.downloadIosWebClipProfile = downloadIosWebClipProfile;
+  window.openIosAppleShortcut = openIosAppleShortcut;
+  window.showIosAddHomeGuide = showIosAddHomeGuide;
+  window.closeIosAddHomeGuide = closeIosAddHomeGuide;
+  window.isInAppBrowser = isInAppBrowser;
   window.downloadAppForDevice = downloadAppForDevice;
 }
 
@@ -289,6 +360,11 @@ export default {
   downloadMacDmg,
   downloadLinuxAppImage,
   downloadIosIpa,
+  downloadIosWebClipProfile,
+  openIosAppleShortcut,
+  showIosAddHomeGuide,
+  closeIosAddHomeGuide,
+  isInAppBrowser,
   downloadAppForDevice
 };
 
