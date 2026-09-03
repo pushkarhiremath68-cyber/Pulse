@@ -51,7 +51,7 @@ def deploy_to_gh_pages():
             print("Changes detected on gh-pages branch. Committing...")
             subprocess.run('git commit -m "deploy: update live site with Spotify discovery, artist details, and synced karaoke lyrics"', cwd=cwd, shell=True, check=True)
             print("Pushing to origin gh-pages...")
-            subprocess.run("git push origin gh-pages", cwd=cwd, shell=True, check=True)
+            subprocess.run("git push --force origin gh-pages", cwd=cwd, shell=True, check=True)
             print("Successfully deployed to origin/gh-pages!")
         else:
             print("gh-pages is already up to date with latest build.")
