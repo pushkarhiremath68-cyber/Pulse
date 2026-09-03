@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-03T15:48:26.524Z",
+  "updatedAt": "2026-09-03T15:49:47.776Z",
   "totalCount": 57,
   "tracks": [
     {
@@ -124,7 +124,8 @@
       "isNewRelease": true,
       "releaseBadge": "✨ New Release",
       "region": "India",
-      "source": "Studio Master Audio (YouTube)"
+      "source": "Studio Master Audio (YouTube)",
+      "hasLiveLyrics": true
     },
     {
       "id": "rel-raga-of-revenge-anirudh-ravicha",
@@ -137,8 +138,7 @@
       "isNewRelease": true,
       "releaseBadge": "✨ New Release",
       "region": "India",
-      "source": "Studio Master Audio (YouTube)",
-      "hasLiveLyrics": true
+      "source": "Studio Master Audio (YouTube)"
     },
     {
       "id": "rel-shambhu-stuti--trance-edition--vaayu",
@@ -151,8 +151,7 @@
       "isNewRelease": true,
       "releaseBadge": "✨ New Release",
       "region": "India",
-      "source": "Studio Master Audio (YouTube)",
-      "hasLiveLyrics": true
+      "source": "Studio Master Audio (YouTube)"
     },
     {
       "id": "rel-iphone-ringtone--special-trans-remix-arr-----------",
