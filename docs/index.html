@@ -491,13 +491,9 @@
         <i class="fa-solid fa-bookmark"></i>
         <span>Library</span>
       </a>
-      <a href="javascript:void(0)" class="mobile-nav-item" onclick="window.openGeminiDJModal()">
+      <a href="javascript:void(0)" class="mobile-nav-item" onclick="window.openGeminiDJModal()" title="Gemini 3.6 AI Music DJ">
         <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
         <span>AI DJ</span>
-      </a>
-      <a href="javascript:void(0)" class="mobile-nav-item" onclick="window.openGeminiDJModal()">
-        <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
-        <span>Ask AI</span>
       </a>
     </nav>
 
@@ -509,35 +505,33 @@
     <div class="fs-overlay">
       <!-- Fullscreen Top Header -->
       <div class="fs-header">
-        <button id="btn-fs-minimize" class="btn-icon-circle-lg" onclick="window.PulsePlaybar && window.PulsePlaybar.minimize()" title="Minimize Player (Esc)">
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-
-        <!-- 3-Way Pure Audio Mode Switcher: Album Art, Synced Lyrics & Up Next Similar -->
-        <div class="fs-view-mode-pills">
-          <button class="fs-mode-tab-btn active-tab" id="tab-fs-art" data-mode="art" onclick="window.switchFullscreenView('art')">
-            <i class="fa-solid fa-compact-disc"></i> <span>Album Art</span>
-          </button>
-          <button class="fs-mode-tab-btn" id="tab-fs-lyrics" data-mode="lyrics" onclick="window.switchFullscreenView('lyrics')">
-            <i class="fa-solid fa-microphone-lines" style="color: #c084fc;"></i> <span>Live Lyrics</span>
-          </button>
-          <button class="fs-mode-tab-btn" id="tab-fs-similar" data-mode="similar" onclick="window.switchFullscreenView('similar')">
-            <i class="fa-solid fa-wand-magic-sparkles" style="color: #38bdf8;"></i> <span>Up Next & Similar</span>
+        <div class="fs-header-left">
+          <button id="btn-fs-minimize" class="btn-icon-circle-lg" onclick="window.PulsePlaybar && window.PulsePlaybar.minimize()" title="Minimize Player (Esc)">
+            <i class="fa-solid fa-chevron-down"></i>
           </button>
         </div>
 
+        <!-- 3-Way Pure Audio Mode Switcher: Album Art, Synced Lyrics & Up Next Similar -->
+        <div class="fs-header-center">
+          <div class="fs-view-mode-pills">
+            <button class="fs-mode-tab-btn active-tab" id="tab-fs-art" data-mode="art" onclick="window.switchFullscreenView('art')" title="Album Art Showcase">
+              <i class="fa-solid fa-compact-disc"></i> <span>Album Art</span>
+            </button>
+            <button class="fs-mode-tab-btn" id="tab-fs-lyrics" data-mode="lyrics" onclick="window.switchFullscreenView('lyrics')" title="Live Synced Lyrics">
+              <i class="fa-solid fa-microphone-lines" style="color: #c084fc;"></i> <span>Live Lyrics</span>
+            </button>
+            <button class="fs-mode-tab-btn" id="tab-fs-similar" data-mode="similar" onclick="window.switchFullscreenView('similar')" title="Up Next & Similar Songs">
+              <i class="fa-solid fa-wand-magic-sparkles" style="color: #38bdf8;"></i> <span>Up Next</span>
+            </button>
+          </div>
+        </div>
+
         <div class="fs-header-actions">
-          <button id="fs-toggle-similar-btn" class="btn-icon-circle-lg" onclick="window.switchFullscreenView('similar')" title="Toggle Up Next & Similar Songs">
-            <i class="fa-solid fa-list-ul"></i>
-          </button>
-          <button id="fs-toggle-lyrics-btn" class="btn-icon-circle-lg" onclick="window.switchFullscreenView('lyrics')" title="Toggle Live Lyrics View">
-            <i class="fa-solid fa-microphone-lines"></i>
-          </button>
           <button id="fs-btn-like" class="btn-icon-circle-lg" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleCurrentTrackFavorite()" title="Like Track">
             <i class="fa-regular fa-heart"></i>
           </button>
-          <button class="btn-icon-circle-lg" onclick="window.PulsePlaybar && window.PulsePlaybar.addCurrentToPlaylist()" title="Add to Playlist">
-            <i class="fa-solid fa-list-plus"></i>
+          <button id="fs-btn-add-playlist" class="btn-icon-circle-lg" onclick="window.PulsePlaybar && window.PulsePlaybar.addCurrentToPlaylist()" title="Add to Playlist">
+            <i class="fa-solid fa-plus"></i>
           </button>
         </div>
       </div>
