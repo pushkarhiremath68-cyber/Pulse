@@ -1,9 +1,4 @@
-/**
- * Pulse Music - Firebase Authentication & User Session Engine
- * Supports Email/Password, Google OAuth, Guest/Anonymous Mode, and Phone Number Auth.
- */
-
-import { initFirebase } from './firebase.js';
+import { initFirebase, firebase } from './firebase.js';
 
 const STORAGE_KEY = 'pulse_user_session';
 
@@ -135,41 +130,38 @@ export async function signInWithEmail(email, password) {
   return user;
 }
 
-// 3. Google Sign-In Flow
+// 3. Google Sign-In Flow (Real Firebase OAuth — no fake fallback)
 export async function signInWithGoogle() {
   const { auth } = initFirebase();
-  if (auth && window.firebase && window.firebase.auth) {
-    try {
-      const provider = new window.firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      const res = await auth.signInWithPopup(provider);
-      const user = {
-        id: res.user.uid,
-        uid: res.user.uid,
-        name: res.user.displayName || 'Google Listener',
-        email: res.user.email,
-        avatar: res.user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(res.user.displayName || 'User')}&backgroundColor=8b5cf6`,
-        provider: 'google'
-      };
-      setStoredUser(user);
-      return user;
-    } catch (e) {
-      console.warn('[FirebaseAuth] Google SDK popup fallback:', e.message);
-    }
+  if (!auth) {
+    throw new Error('Firebase is not initialized. Please check your configuration.');
   }
 
-  // Demo / local fallback Google account
-  const user = {
-    id: `google-${Date.now()}`,
-    uid: `google-${Date.now()}`,
-    name: 'Google Listener',
-    email: 'listener@gmail.com',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-    provider: 'google'
-  };
-  setStoredUser(user);
-  return user;
+  try {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    const res = await auth.signInWithPopup(provider);
+    const user = {
+      id: res.user.uid,
+      uid: res.user.uid,
+      name: res.user.displayName || 'Google User',
+      email: res.user.email,
+      avatar: res.user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(res.user.displayName || 'User')}&backgroundColor=8b5cf6`,
+      provider: 'google'
+    };
+    setStoredUser(user);
+    return user;
+  } catch (e) {
+    if (e.code === 'auth/popup-closed-by-user') {
+      throw new Error('Sign-in cancelled. You closed the Google popup.');
+    }
+    if (e.code === 'auth/popup-blocked') {
+      throw new Error('Popup was blocked by your browser. Please allow popups for this site.');
+    }
+    console.error('[FirebaseAuth] Google sign-in error:', e.code, e.message);
+    throw new Error(e.message || 'Google sign-in failed. Please try again.');
+  }
 }
 
 // 4. Guest / Anonymous Mode Sign In
@@ -207,11 +199,61 @@ export async function signInAnonymously() {
 }
 
 // 5. Sign Out
-export function signOut() {
-  setStoredUser(null);
+export async function signOut() {
   const { auth } = initFirebase();
   if (auth && auth.signOut) {
-    auth.signOut().catch(() => {});
+    try {
+      await auth.signOut();
+    } catch (e) {
+      console.warn('[FirebaseAuth] Sign out notice:', e.message);
+    }
+  }
+  setStoredUser(null);
+  return getStoredUser();
+}
+
+// Native Firebase Auth state observer to sync cross-tab and session persistence
+export function setupNativeAuthSync() {
+  const { auth, db } = initFirebase();
+  if (auth && auth.onAuthStateChanged) {
+    auth.onAuthStateChanged(async (firebaseUser) => {
+      if (firebaseUser) {
+        const isGoogle = firebaseUser.providerData?.some(p => p.providerId === 'google.com');
+        const user = {
+          id: firebaseUser.uid,
+          uid: firebaseUser.uid,
+          name: firebaseUser.displayName || (isGoogle ? 'Google Listener' : 'Listener'),
+          email: firebaseUser.email || 'user@pulse.app',
+          avatar: firebaseUser.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(firebaseUser.displayName || firebaseUser.email || 'User')}&backgroundColor=8b5cf6`,
+          provider: isGoogle ? 'google' : (firebaseUser.isAnonymous ? 'anonymous' : 'email')
+        };
+        setStoredUser(user);
+
+        // Sync user profile to Firestore
+        if (db && !firebaseUser.isAnonymous) {
+          try {
+            await db.collection('users').doc(firebaseUser.uid).set({
+              uid: firebaseUser.uid,
+              name: user.name,
+              email: user.email,
+              avatar: user.avatar,
+              provider: user.provider,
+              lastLoginAt: Date.now()
+            }, { merge: true });
+          } catch (err) {
+            console.warn('[Firestore] User document sync notice:', err.message);
+          }
+        }
+      }
+    });
+  }
+}
+
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setupNativeAuthSync());
+  } else {
+    setupNativeAuthSync();
   }
 }
 
@@ -223,7 +265,8 @@ const authService = {
   signInWithGoogle,
   signInAnonymously,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  setupNativeAuthSync
 };
 
 if (typeof window !== 'undefined') {

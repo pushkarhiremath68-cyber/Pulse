@@ -38,7 +38,7 @@ export const VERIFIED_FRESH_RELEASES = [
     title: "Die With A Smile",
     artist: "Lady Gaga & Bruno Mars",
     album: "Global Hit Single",
-    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1a/ff/f6/1afff69c-0979-37ea-630e-eefb92c431f2/24UMGIM92429.rgb.jpg/1000x1000bb.jpg",
+    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/ae/f2/11aef294-f57c-bab9-c9fc-529162984e62/24UMGIM85348.rgb.jpg/600x600bb.jpg",
     duration: 251,
     genre: "Pop Ballad",
     isNewRelease: true,
@@ -52,7 +52,7 @@ export const VERIFIED_FRESH_RELEASES = [
     title: "Espresso",
     artist: "Sabrina Carpenter",
     album: "Short n' Sweet",
-    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg",
+    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
     duration: 175,
     genre: "Pop / Disco",
     isNewRelease: true,
@@ -66,7 +66,7 @@ export const VERIFIED_FRESH_RELEASES = [
     title: "Birds of a Feather",
     artist: "Billie Eilish",
     album: "HIT ME HARD AND SOFT",
-    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/c2/f7/33c2f7ff-5a9a-b44c-7832-68c3ef0545f9/24UMGIM39281.rgb.jpg/1000x1000bb.jpg",
+    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
     duration: 196,
     genre: "Alt Pop",
     isNewRelease: true,
@@ -94,7 +94,7 @@ export const VERIFIED_FRESH_RELEASES = [
     title: "Please Please Please",
     artist: "Sabrina Carpenter",
     album: "Short n' Sweet",
-    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/e0/a3/16e0a35a-ae18-f2b3-5778-98e3b526d113/24UMGIM41849.rgb.jpg/1000x1000bb.jpg",
+    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
     duration: 186,
     genre: "Pop",
     isNewRelease: true,
@@ -129,13 +129,13 @@ function parseRssEntry(entry, region = 'Global') {
     const artist = entry['im:artist']?.label || 'Popular Artist';
     
     // Artwork enhancement: extract highest resolution
-    let coverUrl = './pulse-logo.png';
+    let coverUrl = './music-cover.svg';
     if (Array.isArray(entry['im:image']) && entry['im:image'].length > 0) {
       const highest = entry['im:image'][entry['im:image'].length - 1]?.label || '';
       coverUrl = highest
-        .replace(/170x170bb\.(png|jpg)/, '1000x1000bb.jpg')
-        .replace(/100x100bb\.(png|jpg)/, '1000x1000bb.jpg')
-        .replace(/55x55bb\.(png|jpg)/, '1000x1000bb.jpg');
+        .replace(/170x170bb\.(png|jpg)/, '600x600bb.jpg')
+        .replace(/100x100bb\.(png|jpg)/, '600x600bb.jpg')
+        .replace(/55x55bb\.(png|jpg)/, '600x600bb.jpg');
     }
 
     const genre = entry.category?.attributes?.label || (region === 'India' ? 'Indian Release' : 'Global Pop');

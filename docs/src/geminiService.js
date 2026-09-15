@@ -4,6 +4,8 @@
  * Resolves exact song titles, regional lyrics, artist vocals, and audio streams.
  */
 
+import { sanitizeObject } from './security.js';
+
 const GEMINI_MODEL = 'gemini-3.6-flash';
 
 // Comprehensive Smart Knowledge Base for Instant Zero-Latency Resolution
@@ -69,6 +71,42 @@ export const SMART_KNOWLEDGE_BASE = {
   ],
   'b2t2xurj7mu': [
     { title: 'Devi Kavacham', artist: 'Appaji', query: 'Devi Kavacham Appaji' }
+  ],
+  'wishes': [
+    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem Umair Talwiinder' }
+  ],
+  'wishes hasan raheem': [
+    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem Umair Talwiinder' }
+  ],
+  'hasan raheem': [
+    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem Umair Talwiinder' },
+    { title: 'Peechay Hutt', artist: 'Hasan Raheem, Justin Bibis, Talal Qureshi', query: 'Peechay Hutt Coke Studio Hasan Raheem' }
+  ],
+  'pakistani': [
+    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem' },
+    { title: 'Pasoori', artist: 'Ali Sethi, Shae Gill', query: 'Pasoori Coke Studio Ali Sethi Shae Gill' },
+    { title: 'Kahani Suno 2.0', artist: 'Kaifi Khalil', query: 'Kahani Suno 2.0 Kaifi Khalil' },
+    { title: 'Aadat', artist: 'Atif Aslam, Jal', query: 'Aadat Atif Aslam Jal' },
+    { title: 'Tajdar E Haram', artist: 'Atif Aslam', query: 'Tajdar E Haram Coke Studio Atif Aslam' }
+  ],
+  'pakistani songs': [
+    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem' },
+    { title: 'Pasoori', artist: 'Ali Sethi, Shae Gill', query: 'Pasoori Coke Studio Ali Sethi Shae Gill' },
+    { title: 'Kahani Suno 2.0', artist: 'Kaifi Khalil', query: 'Kahani Suno 2.0 Kaifi Khalil' },
+    { title: 'Tu Jhoom', artist: 'Abida Parveen, Naseebo Lal', query: 'Tu Jhoom Coke Studio Season 14' },
+    { title: 'Afreen Afreen', artist: 'Rahat Fateh Ali Khan, Momina Mustehsan', query: 'Afreen Afreen Coke Studio' }
+  ],
+  'pasoori': [
+    { title: 'Pasoori', artist: 'Ali Sethi, Shae Gill', query: 'Pasoori Coke Studio Ali Sethi Shae Gill' }
+  ],
+  'kahani suno': [
+    { title: 'Kahani Suno 2.0', artist: 'Kaifi Khalil', query: 'Kahani Suno 2.0 Kaifi Khalil' }
+  ],
+  'atif aslam': [
+    { title: 'Aadat', artist: 'Atif Aslam, Jal', query: 'Aadat Atif Aslam Jal' },
+    { title: 'Tajdar E Haram', artist: 'Atif Aslam', query: 'Tajdar E Haram Coke Studio Atif Aslam' },
+    { title: 'Woh Lamhe Woh Baatein', artist: 'Atif Aslam', query: 'Woh Lamhe Woh Baatein Atif Aslam' },
+    { title: 'Tera Hone Laga Hoon', artist: 'Atif Aslam', query: 'Tera Hone Laga Hoon Atif Aslam' }
   ]
 };
 
@@ -113,16 +151,17 @@ export function disambiguateQuery(rawQuery) {
  * Resolves user query using Gemini AI to identify exact YouTube title & artist
  */
 export async function resolveQueryWithGemini(userQuery, apiKey = null) {
+  const cleanQuery = typeof userQuery === 'string' ? userQuery.trim().slice(0, 150).replace(/[\r\n\t]/g, ' ') : '';
   const key = apiKey || (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
   
-  if (!key || !userQuery) {
+  if (!key || !cleanQuery) {
     return disambiguateQuery(userQuery);
   }
 
   try {
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${key}`;
     const systemPrompt = `You are a YouTube Music Search Intelligence Agent for Pulse Music.
-Given user search input: "${userQuery}" (could be lyrics snippet, misspelled title, movie name, or artist), return a JSON object:
+Given user search input: "${cleanQuery}" (could be lyrics snippet, misspelled title, movie name, or artist), return a JSON object:
 {
   "canonicalTitle": "Official exact song title",
   "artist": "Primary artist",
@@ -144,7 +183,7 @@ ONLY return valid JSON.`;
       const json = await res.json();
       const rawText = json.candidates?.[0]?.content?.parts?.[0]?.text;
       if (rawText) {
-        const parsed = JSON.parse(rawText);
+        const parsed = sanitizeObject(JSON.parse(rawText));
         if (Array.isArray(parsed.searchQueries) && parsed.searchQueries.length > 0) {
           return parsed.searchQueries;
         }
@@ -159,10 +198,11 @@ ONLY return valid JSON.`;
  * Curates a complete high-fidelity YouTube playlist based on user vibe / mood
  */
 export async function askGeminiDJ(userPrompt, apiKey = null) {
-  if (!userPrompt || userPrompt.trim().length === 0) {
+  if (!userPrompt || typeof userPrompt !== 'string' || userPrompt.trim().length === 0) {
     throw new Error('Please enter a mood, artist, or vibe for Gemini DJ.');
   }
 
+  const cleanPrompt = userPrompt.trim().slice(0, 150).replace(/[\r\n\t]/g, ' ');
   const key = apiKey || (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_GEMINI_API_KEY) || (typeof localStorage !== 'undefined' && localStorage.getItem('PULSE_GEMINI_API_KEY'));
 
   if (key) {
@@ -176,7 +216,7 @@ export async function askGeminiDJ(userPrompt, apiKey = null) {
     { "title": "Exact Song Title", "artist": "Official Artist Name", "ytQuery": "Song Artist Official Audio", "reason": "10-word vibe why" }
   ]
 }
-Recommend 6 top acclaimed tracks for: "${userPrompt}". ONLY return valid JSON.`;
+Recommend 6 top acclaimed tracks for: "${cleanPrompt}". ONLY return valid JSON.`;
 
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -191,7 +231,7 @@ Recommend 6 top acclaimed tracks for: "${userPrompt}". ONLY return valid JSON.`;
       if (res.ok) {
         const json = await res.json();
         const rawText = json.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (rawText) return JSON.parse(rawText);
+        if (rawText) return sanitizeObject(JSON.parse(rawText));
       }
     } catch (e) {}
   }

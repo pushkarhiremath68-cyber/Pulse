@@ -126,10 +126,35 @@ if (!gotTheLock) {
       }
     });
 
-    // Open external links in default system browser
+    // Open verified external links in default system browser with protocol validation
     mainWindow.webContents.setWindowOpenHandler(({ url }) => {
-      shell.openExternal(url);
+      try {
+        const parsed = new URL(url);
+        if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+          shell.openExternal(url);
+        } else {
+          console.warn('[Pulse Desktop Security] Blocked dangerous window.open protocol:', parsed.protocol);
+        }
+      } catch (err) {
+        console.warn('[Pulse Desktop Security] Invalid URL in window open handler:', url);
+      }
       return { action: 'deny' };
+    });
+
+    // Prevent top-level navigation away from the local app
+    mainWindow.webContents.on('will-navigate', (event, navigationUrl) => {
+      const isLocalHost = navigationUrl.startsWith('http://localhost:5173') || navigationUrl.startsWith('http://localhost:3000');
+      const isFile = navigationUrl.startsWith('file://');
+      if (!isLocalHost && !isFile) {
+        event.preventDefault();
+        console.warn('[Pulse Desktop Security] Blocked external navigation in main window:', navigationUrl);
+        try {
+          const parsed = new URL(navigationUrl);
+          if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+            shell.openExternal(navigationUrl);
+          }
+        } catch (_) {}
+      }
     });
   }
 
@@ -238,19 +263,24 @@ if (!gotTheLock) {
   });
 
   app.whenReady().then(() => {
-    // Bypass CORS for YouTube Audio Engine and APIs
+    // Safely enable streaming headers strictly for verified media CDN endpoints
+    const TRUSTED_STREAM_DOMAINS = ['youtube.com', 'googlevideo.com', 'saavncdn.com', 'jiosaavn.com', 'apple.com', 'mzstatic.com'];
+
     session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
-      details.requestHeaders['Origin'] = 'https://www.youtube.com';
+      const isTrusted = details.url && TRUSTED_STREAM_DOMAINS.some(domain => details.url.includes(domain));
+      if (isTrusted && details.requestHeaders) {
+        details.requestHeaders['Origin'] = 'https://www.youtube.com';
+      }
       callback({ cancel: false, requestHeaders: details.requestHeaders });
     });
+
     session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-      callback({
-        responseHeaders: {
-          ...details.responseHeaders,
-          'Access-Control-Allow-Origin': ['*'],
-          'Access-Control-Allow-Headers': ['*']
-        }
-      });
+      const isTrusted = details.url && TRUSTED_STREAM_DOMAINS.some(domain => details.url.includes(domain));
+      if (isTrusted && details.responseHeaders) {
+        details.responseHeaders['Access-Control-Allow-Origin'] = ['*'];
+        details.responseHeaders['Access-Control-Allow-Headers'] = ['*'];
+      }
+      callback({ responseHeaders: details.responseHeaders });
     });
 
     createMainWindow();

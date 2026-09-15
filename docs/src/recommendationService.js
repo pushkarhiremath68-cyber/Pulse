@@ -50,6 +50,9 @@ export function detectTrackVibe(track) {
   if (combined.includes('stotram') || combined.includes('kavacham') || combined.includes('chalisa') || combined.includes('devotional') || combined.includes('mantra') || combined.includes('sahasranama') || combined.includes('appaji')) {
     return { vibe: 'Devotional & Spiritual', badge: 'Sacred Chant', color: '#f59e0b', icon: 'fa-om' };
   }
+  if (combined.includes('pakistani') || combined.includes('coke studio') || combined.includes('hasan raheem') || combined.includes('atif') || combined.includes('wishes') || combined.includes('pasoori') || combined.includes('kaifi') || combined.includes('umair') || combined.includes('talha anjum') || combined.includes('abdul hannan') || combined.includes('urdu')) {
+    return { vibe: 'Pakistani & Coke Studio Hits', badge: 'Pakistani Soul', color: '#10b981', icon: 'fa-music' };
+  }
   if (combined.includes('lofi') || combined.includes('lo-fi') || combined.includes('chill') || combined.includes('beats') || combined.includes('rain') || combined.includes('study')) {
     return { vibe: 'Aesthetic Lo-Fi', badge: 'Lo-Fi Chill', color: '#a855f7', icon: 'fa-headphones' };
   }
@@ -96,7 +99,7 @@ function getAllCatalogTracks() {
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.coverUrl || t.cover || './pulse-logo.png',
+        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
         duration: t.duration || 220,
         genre: t.genre || extraCategory || 'Global Hit',
         source: t.source || 'Studio Master Audio (YouTube)'
@@ -223,7 +226,7 @@ export async function getSimilarTracks(seedTrack, limit = 12) {
               ytId: t.ytId,
               title: t.title,
               artist: t.artist || seedTrack.artist,
-              coverUrl: t.coverUrl || t.cover || seedTrack.coverUrl || './pulse-logo.png',
+              coverUrl: t.coverUrl || t.cover || seedTrack.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
               duration: t.duration || 220,
               genre: seedTrack.genre || 'Top Hit',
               source: 'Studio Master Audio (YouTube)'

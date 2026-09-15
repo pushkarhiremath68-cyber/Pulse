@@ -23,10 +23,11 @@ import './newReleasesService.js';
 import './visualizer.js';
 import './geminiService.js';
 import './downloadService.js';
+import { escapeHtml, sanitizeUrl } from './security.js';
 
 import { fetchFreshNewReleases, getCachedNewReleases } from './newReleasesService.js';
 
-import { getStoredUser, onAuthStateChanged } from './firebaseAuthService.js';
+import { getStoredUser, onAuthStateChanged, signInWithGoogle, signOut } from './firebaseAuthService.js';
 import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
 import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
 import { getLyrics, getActiveLineIndex } from './lyricsService.js';
@@ -59,7 +60,11 @@ window.addEventListener('error', function(e) {
       e.target.src = src.replace('hqdefault.jpg', 'mqdefault.jpg');
     } else if (!e.target.dataset.pulseFallback) {
       e.target.dataset.pulseFallback = 'true';
-      e.target.src = './pulse-logo.png';
+      if (e.target.classList.contains('brand-logo-img') || e.target.classList.contains('auth-gate-logo')) {
+        e.target.src = './pulse-logo.png';
+      } else {
+        e.target.src = './music-cover.svg';
+      }
     }
   }
 }, true);
@@ -130,6 +135,12 @@ window.addEventListener('error', function(e) {
       window.PulsePlaybar.playTrack(track, queue);
       window.loadTrackLyrics(track);
     }
+    const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
+    const appWallpaper = document.getElementById('app-dynamic-wallpaper');
+    if (appWallpaper) {
+      appWallpaper.style.backgroundImage = `url('${coverUrl}')`;
+      appWallpaper.classList.add('active-wallpaper');
+    }
   };
 
   // ---------------------------------------------------------------------------
@@ -179,14 +190,14 @@ window.addEventListener('error', function(e) {
         const clickableClass = line.time !== null ? 'lyric-clickable' : '';
         return `
           <p class="fs-lyric-line lyric-line ${clickableClass}" id="lyric-line-${idx}" ${timeAttr} ${seekHandler} title="${line.time !== null ? `Click to jump to ${Math.floor(line.time / 60)}:${Math.floor(line.time % 60).toString().padStart(2, '0')}` : ''}" style="margin: 0.75rem 0; font-size: 1.15rem; font-weight: 700; color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.25s ease; border-radius: 8px; padding: 4px 8px;">
-            ${line.text}
+            ${escapeHtml(line.text)}
           </p>
         `;
       }).join('');
 
       if (drawerContent) {
         drawerContent.innerHTML = `
-          <div class="lyrics-mode-badge" style="font-size: 0.8rem; font-weight: 700; color: #c084fc; margin-bottom: 1rem; text-align: center;">${lyricsData.isSynced ? '⚡ Real-Time Synchronized Karaoke' : '📄 Plain Lyrics'} • ${lyricsData.source}</div>
+          <div class="lyrics-mode-badge" style="font-size: 0.8rem; font-weight: 700; color: #c084fc; margin-bottom: 1rem; text-align: center;">${lyricsData.isSynced ? '⚡ Real-Time Synchronized Karaoke' : '📄 Plain Lyrics'} • ${escapeHtml(lyricsData.source)}</div>
           <div class="lyrics-lines-wrapper" style="display: flex; flex-direction: column; align-items: center; text-align: center;">${linesHtml}</div>
         `;
       }
@@ -335,7 +346,7 @@ window.addEventListener('error', function(e) {
         const npThumb = document.getElementById('drawer-np-thumb');
         if (npTitle) npTitle.textContent = track.title || 'Select a Song';
         if (npArtist) npArtist.textContent = track.artist || 'Pulse Music';
-        if (npThumb) npThumb.src = track.coverUrl || track.cover || './pulse-logo.png';
+        if (npThumb) npThumb.src = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
       }
 
       if (window.PulsePlaybar && typeof window.PulsePlaybar.renderQueueAndSuggestionsUI === 'function') {
@@ -378,6 +389,10 @@ window.addEventListener('error', function(e) {
       }
     }
 
+    if (fsModal) {
+      fsModal.classList.toggle('fs-wallpaper-mode-active', viewMode === 'wallpaper');
+    }
+
     // Update active tab buttons
     document.querySelectorAll('.fs-mode-tab-btn').forEach(btn => {
       btn.classList.toggle('active-tab', btn.getAttribute('data-mode') === viewMode);
@@ -387,7 +402,7 @@ window.addEventListener('error', function(e) {
       content.setAttribute('data-active-view', viewMode);
     }
 
-    if (artSec) artSec.classList.toggle('hidden-view', viewMode !== 'art');
+    if (artSec) artSec.classList.toggle('hidden-view', viewMode !== 'art' && viewMode !== 'wallpaper');
     if (lyricsSec) lyricsSec.classList.toggle('hidden-view', viewMode !== 'lyrics');
     if (similarSec) similarSec.classList.toggle('hidden-view', viewMode !== 'similar');
 
@@ -409,6 +424,161 @@ window.addEventListener('error', function(e) {
     const content = document.getElementById('fs-content-container');
     const curView = content ? content.getAttribute('data-active-view') : 'art';
     window.switchFullscreenView(curView === 'lyrics' ? 'art' : 'lyrics');
+  };
+
+  // ---------------------------------------------------------------------------
+  // ULTRA-HD SONG WALLPAPER GENERATOR & DOWNLOADER (Phone Lockscreen / Desktop)
+  // ---------------------------------------------------------------------------
+  window.downloadTrackWallpaper = async function(trackToUse) {
+    const track = trackToUse || (window.PulsePlaybar && typeof window.PulsePlaybar.getCurrentTrack === 'function' ? window.PulsePlaybar.getCurrentTrack() : null);
+    if (!track || !track.title) {
+      if (typeof window.showToast === 'function') {
+        window.showToast('Please play or select a song to download its wallpaper!', 'warning', 2500);
+      }
+      return;
+    }
+
+    const cleanTitle = (track.title || 'Song').replace(/[\\/:*?"<>|]/g, '').trim();
+    const cleanArtist = (track.artist || 'Pulse Artist').replace(/[\\/:*?"<>|]/g, '').trim();
+    const rawCover = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
+    
+    // Upscale to ultra high-resolution
+    let hdCover = rawCover
+      .replace('50x50', '1000x1000')
+      .replace('150x150', '1000x1000')
+      .replace('500x500', '1000x1000')
+      .replace('100x100bb', '1000x1000bb')
+      .replace('/mqdefault.jpg', '/maxresdefault.jpg')
+      .replace('/hqdefault.jpg', '/maxresdefault.jpg');
+      
+    if (hdCover.includes('=w') && hdCover.includes('-h')) {
+      hdCover = hdCover.replace(/=w\d+-h\d+-[a-zA-Z0-9-]+/, '=w1200-h1200-l90-rj');
+    }
+
+    if (typeof window.showToast === 'function') {
+      window.showToast(`Generating Ultra-HD wallpaper for "${cleanTitle}"... 🎨`, 'info', 3000);
+    }
+
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1080;
+      canvas.height = 1920;
+      const ctx = canvas.getContext('2d');
+
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+
+      function triggerDirectDownload() {
+        const link = document.createElement('a');
+        link.href = hdCover;
+        link.target = '_blank';
+        link.download = `${cleanTitle} - Cover.jpg`;
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => document.body.removeChild(link), 1500);
+        if (typeof window.showToast === 'function') {
+          window.showToast(`🖼️ Wallpaper downloaded! Set as your Lock Screen 📲`, 'success', 3500);
+        }
+      }
+
+      img.onload = () => {
+        try {
+          // 1. Draw blurred ambient background
+          ctx.save();
+          ctx.filter = 'blur(55px) brightness(0.62) saturate(1.8)';
+          ctx.drawImage(img, -100, -100, canvas.width + 200, canvas.height + 200);
+          ctx.restore();
+
+          // 2. Dark vignette
+          const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+          grad.addColorStop(0, 'rgba(8, 10, 16, 0.45)');
+          grad.addColorStop(0.35, 'rgba(8, 10, 16, 0.25)');
+          grad.addColorStop(0.7, 'rgba(8, 10, 16, 0.65)');
+          grad.addColorStop(1, 'rgba(8, 10, 16, 0.95)');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          // 3. Central Album Art with rounded corners & deep shadow
+          const artSize = 820;
+          const artX = (canvas.width - artSize) / 2;
+          const artY = 360;
+          const radius = 54;
+
+          ctx.save();
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+          ctx.shadowBlur = 60;
+          ctx.shadowOffsetY = 30;
+
+          ctx.beginPath();
+          ctx.moveTo(artX + radius, artY);
+          ctx.lineTo(artX + artSize - radius, artY);
+          ctx.quadraticCurveTo(artX + artSize, artY, artX + artSize, artY + radius);
+          ctx.lineTo(artX + artSize, artY + artSize - radius);
+          ctx.quadraticCurveTo(artX + artSize, artY + artSize, artX + artSize - radius, artY + artSize);
+          ctx.lineTo(artX + radius, artY + artSize);
+          ctx.quadraticCurveTo(artX, artY + artSize, artX, artY + artSize - radius);
+          ctx.lineTo(artX, artY + radius);
+          ctx.quadraticCurveTo(artX, artY, artX + radius, artY);
+          ctx.closePath();
+          ctx.clip();
+          ctx.drawImage(img, artX, artY, artSize, artSize);
+          ctx.restore();
+
+          // 4. Song Info
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 56px Inter, sans-serif';
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+          ctx.shadowBlur = 25;
+          const displayTitle = cleanTitle.length > 26 ? cleanTitle.slice(0, 24) + '...' : cleanTitle;
+          ctx.fillText(displayTitle, canvas.width / 2, 1280);
+
+          ctx.fillStyle = '#c084fc';
+          ctx.font = '600 38px Inter, sans-serif';
+          const displayArtist = cleanArtist.length > 32 ? cleanArtist.slice(0, 30) + '...' : cleanArtist;
+          ctx.fillText(displayArtist, canvas.width / 2, 1350);
+
+          // 5. Pulse Logo Branding at bottom
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+          ctx.font = '700 24px Inter, sans-serif';
+          ctx.fillText('PULSE MUSIC • 320KBPS MASTER AUDIO', canvas.width / 2, 1800);
+          ctx.restore();
+
+          canvas.toBlob((blob) => {
+            if (!blob) throw new Error('Canvas blob failed');
+            const link = document.createElement('a');
+            const fileName = `${cleanTitle} - Pulse Wallpaper.jpg`;
+            const blobUrl = URL.createObjectURL(blob);
+            link.href = blobUrl;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => {
+              document.body.removeChild(link);
+              URL.revokeObjectURL(blobUrl);
+            }, 2000);
+            if (typeof window.showToast === 'function') {
+              window.showToast(`🖼️ HD Wallpaper saved! Perfect for Phone & Desktop 📲`, 'success', 5000);
+            }
+          }, 'image/jpeg', 0.95);
+        } catch (canvasErr) {
+          triggerDirectDownload();
+        }
+      };
+
+      img.onerror = () => {
+        triggerDirectDownload();
+      };
+
+      img.src = hdCover;
+    } catch (e) {
+      window.open(sanitizeUrl(hdCover), '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  window.downloadCurrentTrackWallpaper = function() {
+    window.downloadTrackWallpaper();
   };
 
   // ---------------------------------------------------------------------------
@@ -441,16 +611,17 @@ window.addEventListener('error', function(e) {
     container.innerHTML = tracks.map((track, idx) => `
       <div class="music-card hover-glow" onclick="window.playTrackDirect(window.__freshNewReleases[${idx}], window.__freshNewReleases)" style="min-width: 175px; width: 175px; flex-shrink: 0; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); padding: 0.85rem; border-radius: 16px; cursor: pointer; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);">
         <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; margin-bottom: 0.65rem; box-shadow: 0 8px 20px rgba(0,0,0,0.5);">
-          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
-          <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
+          <img src="${track.coverUrl || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; gap: 8px; opacity: 0; transition: opacity 0.2s;">
             <button class="btn-card-play" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.5);"><i class="fa-solid fa-play"></i></button>
+            <button onclick="event.stopPropagation(); window.downloadTrackWallpaper(window.__freshNewReleases[${idx}])" title="Download HD Song Wallpaper" style="width: 36px; height: 36px; border-radius: 50%; background: rgba(15,17,25,0.85); border: 1px solid rgba(255,255,255,0.25); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5);"><i class="fa-solid fa-image" style="font-size: 0.9rem; color: #38bdf8;"></i></button>
           </div>
           <span style="position: absolute; top: 8px; left: 8px; font-size: 0.65rem; font-weight: 800; background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%); color: #fff; padding: 2px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); letter-spacing: 0.05em;">NEW</span>
-          <span style="position: absolute; bottom: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.85); color: #38bdf8; padding: 2px 6px; border-radius: 6px;">${track.genre || 'Single'}</span>
+          <span style="position: absolute; bottom: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.85); color: #38bdf8; padding: 2px 6px; border-radius: 6px;">${escapeHtml(track.genre || 'Single')}</span>
         </div>
         <div class="card-meta">
-          <div style="font-size: 0.92rem; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.title}">${track.title}</div>
-          <div style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 3px;" title="${track.artist}">${track.artist}</div>
+          <div style="font-size: 0.92rem; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</div>
+          <div style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 3px;" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</div>
         </div>
       </div>
     `).join('');
@@ -477,10 +648,10 @@ window.addEventListener('error', function(e) {
       window.__quickPicks = qpList;
       qpContainer.innerHTML = qpList.map((track, idx) => `
         <div class="quick-pick-tile hover-glow" onclick="window.playTrackDirect(window.__quickPicks[${idx}], window.__quickPicks)" style="cursor: pointer; display: flex; align-items: center; gap: 0.85rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.5rem; transition: all 0.25s ease;">
-          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" class="qp-thumb" style="width: 54px; height: 54px; border-radius: 8px; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+          <img src="${track.coverUrl || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" class="qp-thumb" style="width: 54px; height: 54px; border-radius: 8px; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
           <div class="qp-info" style="flex: 1; overflow: hidden;">
-            <div class="qp-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.title}">${track.title}</div>
-            <div class="qp-artist" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.artist}">${track.artist}</div>
+            <div class="qp-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</div>
+            <div class="qp-artist" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</div>
           </div>
           <button class="qp-play-btn btn-circle-play" style="width: 38px; height: 38px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-right: 0.5rem;" title="Play Now">
             <i class="fa-solid fa-play" style="font-size: 0.85rem;"></i>
@@ -497,13 +668,13 @@ window.addEventListener('error', function(e) {
       artContainer.innerHTML = artists.map((art) => `
         <div class="artist-card-item hover-glow" onclick="window.openArtistView('${art.name.replace(/'/g, "\\'")}')" style="min-width: 140px; text-align: center; cursor: pointer; flex-shrink: 0;">
           <div class="artist-avatar-wrap" style="position: relative; width: 120px; height: 120px; margin: 0 auto 0.75rem auto; border-radius: 50%; overflow: hidden; border: 2px solid var(--border-glass);">
-            <img src="${art.avatar || './pulse-logo.png'}" alt="${art.name}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+            <img src="${art.avatar || './music-cover.svg'}" alt="${escapeHtml(art.name)}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
             <div class="artist-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
               <i class="fa-solid fa-play" style="color: #fff; font-size: 1.5rem;"></i>
             </div>
           </div>
-          <div class="artist-card-name" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${art.name}</div>
-          <div class="artist-card-role" style="font-size: 0.75rem; color: #c084fc; margin-top: 2px;"><i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 0.65rem;"></i> ${art.genre.split('/')[0]}</div>
+          <div class="artist-card-name" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(art.name)}</div>
+          <div class="artist-card-role" style="font-size: 0.75rem; color: #c084fc; margin-top: 2px;"><i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 0.65rem;"></i> ${escapeHtml(art.genre.split('/')[0])}</div>
         </div>
       `).join('');
     }
@@ -516,12 +687,12 @@ window.addEventListener('error', function(e) {
       plContainer.innerHTML = playlists.map((pl, idx) => `
         <div class="curated-playlist-card hover-glow" onclick="window.playCuratedPlaylist(${idx})" style="min-width: 200px; width: 200px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1rem; cursor: pointer; transition: all 0.25s ease;">
           <div class="curated-cover-wrap" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; margin-bottom: 0.75rem;">
-            <img src="${pl.coverUrl || './pulse-logo.png'}" alt="${pl.title}" class="curated-cover-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+            <img src="${pl.coverUrl || './music-cover.svg'}" alt="${escapeHtml(pl.title)}" class="curated-cover-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
             <span class="curated-badge" style="position: absolute; top: 8px; right: 8px; font-size: 0.7rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 8px; border-radius: 12px;">${pl.trackCount} Tracks</span>
           </div>
           <div class="curated-meta">
-            <h4 class="curated-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${pl.title}</h4>
-            <p class="curated-desc" style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${pl.description}</p>
+            <h4 class="curated-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(pl.title)}</h4>
+            <p class="curated-desc" style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${escapeHtml(pl.description)}</p>
           </div>
         </div>
       `).join('');
@@ -546,15 +717,15 @@ window.addEventListener('error', function(e) {
             ${cat.tracks.map((t, tIdx) => `
               <div class="music-card hover-glow" onclick="window.playCatalogTrack(${cIdx}, ${tIdx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
                 <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
-                  <img src="${t.cover || './pulse-logo.png'}" alt="${t.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+                  <img src="${t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(t.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
                   <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
                     <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
                   </div>
                   <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${cat.color}; padding: 2px 6px; border-radius: 6px;">Studio Master Audio</span>
                 </div>
                 <div class="card-meta">
-                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
-                  <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${t.artist}</div>
+                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.title)}</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${escapeHtml(t.artist)}</div>
                 </div>
               </div>
             `).join('')}
@@ -572,9 +743,9 @@ window.addEventListener('error', function(e) {
           <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div>
               <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
-                <i class="fa-solid ${lang.meta.icon}" style="color: ${lang.meta.color}; margin-right: 8px;"></i> ${lang.meta.title}
+                <i class="fa-solid ${lang.meta.icon}" style="color: ${lang.meta.color}; margin-right: 8px;"></i> ${escapeHtml(lang.meta.title)}
               </h3>
-              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">${lang.meta.subtitle}</p>
+              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">${escapeHtml(lang.meta.subtitle)}</p>
             </div>
             <button class="btn-see-all" onclick="window.playPresetQuery('${lang.meta.title}')" style="background: none; border: none; color: #c084fc; font-size: 0.82rem; font-weight: 700; cursor: pointer;">See All <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
           </div>
@@ -582,15 +753,15 @@ window.addEventListener('error', function(e) {
             ${lang.tracks.map((track, tIdx) => `
               <div class="music-card hover-glow" onclick="window.playLanguageTrack(${lIdx}, ${tIdx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
                 <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
-                  <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+                  <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
                   <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
                     <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
                   </div>
                   <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${lang.meta.color}; padding: 2px 6px; border-radius: 6px;">Studio Master Audio</span>
                 </div>
                 <div class="card-meta">
-                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${track.title}</div>
-                  <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${track.artist}</div>
+                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(track.title)}</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${escapeHtml(track.artist)}</div>
                 </div>
               </div>
             `).join('')}
@@ -609,7 +780,7 @@ window.addEventListener('error', function(e) {
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.cover || t.coverUrl || './pulse-logo.png',
+        coverUrl: t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
         duration: t.duration || 220,
         source: "Studio Master Audio (YouTube)"
       };
@@ -618,7 +789,7 @@ window.addEventListener('error', function(e) {
         ytId: item.ytId,
         title: item.title,
         artist: item.artist,
-        coverUrl: item.cover || item.coverUrl || './pulse-logo.png',
+        coverUrl: item.cover || item.coverUrl || (item.ytId ? `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg` : './music-cover.svg'),
         duration: item.duration || 220,
         source: "Studio Master Audio (YouTube)"
       }));
@@ -635,7 +806,7 @@ window.addEventListener('error', function(e) {
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.coverUrl || t.cover || './pulse-logo.png',
+        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
         duration: t.duration || 220,
         source: "Studio Master Audio (YouTube)"
       };
@@ -644,7 +815,7 @@ window.addEventListener('error', function(e) {
         ytId: item.ytId,
         title: item.title,
         artist: item.artist,
-        coverUrl: item.coverUrl || item.cover || './pulse-logo.png',
+        coverUrl: item.coverUrl || item.cover || (item.ytId ? `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg` : './music-cover.svg'),
         duration: item.duration || 220,
         source: "Studio Master Audio (YouTube)"
       }));
@@ -723,10 +894,10 @@ window.addEventListener('error', function(e) {
       topTracksList.innerHTML = artist.topTracks.map((track, idx) => `
         <div class="artist-track-row hover-glow" onclick="window.playTrackDirect(window.__artistTopTracks[${idx}], window.__artistTopTracks)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
           <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
-          <img src="${track.coverUrl}" alt="${track.title}" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;" loading="lazy">
+          <img src="${track.coverUrl}" alt="${escapeHtml(track.title)}" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;" loading="lazy">
           <div style="flex: 1;">
-            <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${track.title}</div>
-            <div style="font-size: 0.75rem; color: var(--text-secondary);">${track.plays || 'Top Release'} plays</div>
+            <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${escapeHtml(track.title)}</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary);">${escapeHtml(track.plays || 'Top Release')} plays</div>
           </div>
           <span style="font-size: 0.8rem; color: var(--text-muted);">${Math.floor(track.duration / 60)}:${Math.floor(track.duration % 60).toString().padStart(2, '0')}</span>
           <button class="btn-player-icon" title="Like Track" onclick="event.stopPropagation(); window.toggleFavoriteTrack(window.__artistTopTracks[${idx}])"><i class="fa-regular fa-heart"></i></button>
@@ -738,7 +909,7 @@ window.addEventListener('error', function(e) {
     if (aboutBox) {
       aboutBox.innerHTML = `
         <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1.5rem;">
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">${artist.bio}</p>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">${escapeHtml(artist.bio)}</p>
         </div>
       `;
     }
@@ -834,19 +1005,22 @@ window.addEventListener('error', function(e) {
     container.innerHTML = tracks.map((track, idx) => `
       <div class="track-card glass-card hover-glow" onclick="window.playSearchTrack(${idx})" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 14px; padding: 0.85rem; cursor: pointer; transition: all 0.25s ease;">
         <div class="card-cover-wrap" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 10px; overflow: hidden; margin-bottom: 0.75rem;">
-          <img src="${track.coverUrl || './pulse-logo.png'}" alt="${track.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+          <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
           <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
             <button class="btn-play-hover" style="width: 44px; height: 44px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer;" title="Play Audio">
               <i class="fa-solid fa-play"></i>
             </button>
           </div>
-          <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 6px; border-radius: 6px;">${track.source || 'Global Track'}</span>
+          <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 6px; border-radius: 6px;">${escapeHtml(track.source || 'Global Track')}</span>
         </div>
         <div class="card-info">
-          <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 0.25rem 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.title}">${track.title}</h4>
-          <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${track.artist}" onclick="event.stopPropagation(); window.openArtistView('${track.artist.replace(/'/g, "\\'")}')">${track.artist}</p>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 0.25rem 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.artist)}" onclick="event.stopPropagation(); window.openArtistView('${track.artist.replace(/'/g, "\\'")}')">${escapeHtml(track.artist)}</p>
         </div>
         <div class="card-actions" onclick="event.stopPropagation()" style="display: flex; gap: 0.5rem; margin-top: 0.75rem; justify-content: flex-end;">
+          <button class="btn-player-icon" title="Download HD Song Wallpaper" onclick="window.downloadTrackWallpaper(window.__searchResults[${idx}])">
+            <i class="fa-solid fa-image"></i>
+          </button>
           <button class="btn-player-icon" title="Add to Favorites" onclick="window.toggleFavoriteTrack(window.__searchResults[${idx}])">
             <i class="fa-regular fa-heart"></i>
           </button>
@@ -896,10 +1070,10 @@ window.addEventListener('error', function(e) {
           ${favorites.map((track, idx) => `
             <div class="library-track-row hover-glow" onclick="window.playTrackDirect(window.__userFavorites[${idx}], window.__userFavorites)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
               <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
-              <img src="${track.coverUrl || './pulse-logo.png'}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
+              <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
               <div style="flex: 1;">
-                <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${track.title}</div>
-                <div style="font-size: 0.75rem; color: var(--text-secondary);">${track.artist}</div>
+                <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${escapeHtml(track.title)}</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">${escapeHtml(track.artist)}</div>
               </div>
               <button class="btn-player-icon" title="Remove" onclick="event.stopPropagation(); window.removeFavoriteTrack('${track.id}')"><i class="fa-solid fa-heart" style="color: #ff007a;"></i></button>
             </div>
@@ -924,8 +1098,8 @@ window.addEventListener('error', function(e) {
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
           ${playlists.map(pl => `
             <div class="playlist-card hover-glow" onclick="window.playPlaylistDirect('${pl.id}')" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1rem; cursor: pointer;">
-              <img src="${pl.coverUrl || './pulse-logo.png'}" alt="playlist" style="width: 100%; aspect-ratio: 1; border-radius: 12px; object-fit: cover; margin-bottom: 0.75rem;">
-              <h4 style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">${pl.name}</h4>
+              <img src="${pl.coverUrl || './music-cover.svg'}" alt="playlist" style="width: 100%; aspect-ratio: 1; border-radius: 12px; object-fit: cover; margin-bottom: 0.75rem;">
+              <h4 style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">${escapeHtml(pl.name)}</h4>
               <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">${pl.tracks ? pl.tracks.length : 0} tracks</p>
             </div>
           `).join('')}
@@ -950,10 +1124,10 @@ window.addEventListener('error', function(e) {
           ${history.map((track, idx) => `
             <div class="library-track-row hover-glow" onclick="window.playTrackDirect(window.__userHistory[${idx}], window.__userHistory)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
               <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
-              <img src="${track.coverUrl || './pulse-logo.png'}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
+              <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
               <div style="flex: 1;">
-                <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${track.title}</div>
-                <div style="font-size: 0.75rem; color: var(--text-secondary);">${track.artist}</div>
+                <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${escapeHtml(track.title)}</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">${escapeHtml(track.artist)}</div>
               </div>
               <button class="btn-player-icon" title="Like Track" onclick="event.stopPropagation(); window.toggleFavoriteTrack(window.__userHistory[${idx}])"><i class="fa-regular fa-heart"></i></button>
             </div>
@@ -1031,7 +1205,7 @@ window.addEventListener('error', function(e) {
       listEl.innerHTML = playlists.map(pl => `
         <div class="playlist-picker-item hover-glow" onclick="window.confirmAddTrackToPlaylist('${pl.id}')" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border-radius: 10px; background: rgba(255,255,255,0.05); cursor: pointer;">
           <i class="fa-solid fa-list-check text-accent"></i>
-          <span style="font-weight: 600; color: #fff;">${pl.name}</span>
+          <span style="font-weight: 600; color: #fff;">${escapeHtml(pl.name)}</span>
           <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">${pl.tracks ? pl.tracks.length : 0} tracks</span>
         </div>
       `).join('');
@@ -1319,17 +1493,26 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       const res = await askGeminiDJ(prompt);
       if (spinner) spinner.classList.add('hidden');
       if (output && res && res.tracks) {
+        window.__geminiCuratedTracks = res.tracks;
+        window.playGeminiTrack = function(index) {
+          if (!window.__geminiCuratedTracks || !window.__geminiCuratedTracks[index]) return;
+          const trk = window.__geminiCuratedTracks[index];
+          const query = trk.ytQuery || `${trk.title} ${trk.artist}`;
+          window.playPresetQuery(query);
+          window.closeGeminiDJModal();
+        };
+
         output.innerHTML = `
           <div style="margin-top: 1rem; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
-            <div style="font-size: 1.1rem; font-weight: 800; color: #c084fc; margin-bottom: 0.25rem;">${res.djTitle}</div>
-            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">${res.vibe}</p>
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c084fc; margin-bottom: 0.25rem;">${escapeHtml(res.djTitle)}</div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">${escapeHtml(res.vibe)}</p>
             <div style="display: flex; flex-direction: column; gap: 0.6rem; max-height: 280px; overflow-y: auto;">
-              ${res.tracks.map((t) => `
-                <div class="hover-glow" onclick="window.playPresetQuery('${(t.ytQuery || `${t.title} ${t.artist}`).replace(/'/g, "\\'")}'); window.closeGeminiDJModal();" style="display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.85rem; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); cursor: pointer;">
+              ${res.tracks.map((t, idx) => `
+                <div class="hover-glow" onclick="window.playGeminiTrack(${idx})" style="display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.85rem; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); cursor: pointer;">
                   <div>
-                    <div style="font-size: 0.92rem; font-weight: 700; color: #fff;">${t.title}</div>
-                    <div style="font-size: 0.78rem; color: #c084fc;">${t.artist}</div>
-                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">${t.reason || 'AI Match'}</div>
+                    <div style="font-size: 0.92rem; font-weight: 700; color: #fff;">${escapeHtml(t.title)}</div>
+                    <div style="font-size: 0.78rem; color: #c084fc;">${escapeHtml(t.artist)}</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">${escapeHtml(t.reason || 'AI Match')}</div>
                   </div>
                   <button class="btn-primary-play" style="padding: 0.4rem 0.75rem; font-size: 0.75rem; border-radius: 8px;">
                     <i class="fa-solid fa-play"></i> Play
@@ -1349,31 +1532,71 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   // ---------------------------------------------------------------------------
   // INITIALIZATION ON DOM READY & PWA COLD-START
   // ---------------------------------------------------------------------------
+  // INITIALIZATION ON DOM READY & PWA COLD-START
+  // ---------------------------------------------------------------------------
   function applyPWAUIState() {
-    const isPWA = window.matchMedia('(display-mode: standalone)').matches ||
-                  window.matchMedia('(display-mode: fullscreen)').matches ||
-                  window.matchMedia('(display-mode: minimal-ui)').matches ||
-                  window.navigator.standalone === true ||
-                  window.location.search.includes('source=pwa') ||
-                  document.referrer.includes('android-app://');
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+                         window.matchMedia('(display-mode: fullscreen)').matches ||
+                         window.matchMedia('(display-mode: minimal-ui)').matches ||
+                         window.navigator.standalone === true ||
+                         window.location.search.includes('source=pwa') ||
+                         document.referrer.includes('android-app://') ||
+                         Boolean(window.electronAPI && window.electronAPI.isElectron);
     
-    if (isPWA) {
+    if (isStandalone) {
       document.body.classList.add('is-pwa-standalone');
+      try { localStorage.setItem('pulse_app_installed', 'true'); } catch (e) {}
+    }
+
+    const isInstalled = isStandalone || (function() {
+      try { return localStorage.getItem('pulse_app_installed') === 'true'; } catch (e) { return false; }
+    })();
+
+    if (isInstalled) {
+      document.body.classList.add('is-pwa-installed');
+      
+      // 1. Hide the top header Install App button
+      const headerInstallBtn = document.getElementById('header-install-btn');
+      if (headerInstallBtn) headerInstallBtn.style.display = 'none';
+      const headerDownloadBtn = document.getElementById('header-download-btn');
+      if (headerDownloadBtn) headerDownloadBtn.style.display = 'none';
+
+      // 2. Hide floating smart install banner
       const banner = document.getElementById('pwa-floating-banner');
       if (banner) {
         banner.classList.add('hidden');
         banner.style.display = 'none';
       }
-      const headerBtn = document.getElementById('header-download-btn');
-      if (headerBtn) headerBtn.style.display = 'none';
-      const sideFooter = document.querySelector('.sidebar-footer');
-      if (sideFooter) sideFooter.style.display = 'none';
+
+      // 3. Hide the sidebar install button
+      const sideInstallBtn = document.querySelector('.sidebar-footer button[onclick*="openDownloadModal"]');
+      if (sideInstallBtn) sideInstallBtn.style.display = 'none';
+
+      // 4. Update the 1-Click install button in the download modal if opened
+      const pwaModalBtn = document.getElementById('pwa-install-btn');
+      if (pwaModalBtn) {
+        pwaModalBtn.innerHTML = '<i class="fa-solid fa-circle-check" style="color: #4ade80;"></i> Installed';
+        pwaModalBtn.classList.remove('btn-primary-play');
+        pwaModalBtn.classList.add('btn-secondary-install');
+        pwaModalBtn.style.pointerEvents = 'none';
+        pwaModalBtn.style.opacity = '0.75';
+      }
     }
   }
 
   function initPulseApp() {
-    // 1. Hide install UI if running inside PWA
+    // 1. Hide install UI if running inside PWA or previously installed
     applyPWAUIState();
+
+    // Query OS/Chromium if app is already installed on this device
+    if ('getInstalledRelatedApps' in navigator) {
+      navigator.getInstalledRelatedApps().then(apps => {
+        if (apps && apps.length > 0) {
+          try { localStorage.setItem('pulse_app_installed', 'true'); } catch (e) {}
+          applyPWAUIState();
+        }
+      }).catch(() => {});
+    }
 
     // 2. Ensure Home view is active
     const activeView = document.querySelector('.app-view.active-view');
@@ -1386,6 +1609,23 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     if (typeof window.renderHomeDiscovery === 'function') {
       window.renderHomeDiscovery();
     }
+
+    // Initialize Dynamic Ambient Wallpaper across app
+    try {
+      const qp = getQuickPicks();
+      if (qp && qp.length > 0 && qp[0].cover) {
+        const initialCover = qp[0].cover;
+        const appWallpaper = document.getElementById('app-dynamic-wallpaper');
+        if (appWallpaper) {
+          appWallpaper.style.backgroundImage = `url('${initialCover}')`;
+          appWallpaper.classList.add('active-wallpaper');
+        }
+        const fsBg = document.getElementById('fs-bg-blur');
+        if (fsBg && !fsBg.style.backgroundImage) {
+          fsBg.style.backgroundImage = `url('${initialCover}')`;
+        }
+      }
+    } catch (e) {}
 
     // 4. Initial Auth State Sync
     onAuthStateChanged(() => {});
@@ -1446,15 +1686,17 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     e.preventDefault();
     deferredPrompt = e;
     
-    const isPWA = window.matchMedia('(display-mode: standalone)').matches || 
-                  window.navigator.standalone === true || 
-                  window.location.search.includes('source=pwa');
+    const isInstalled = document.body.classList.contains('is-pwa-standalone') || 
+                        document.body.classList.contains('is-pwa-installed') ||
+                        (function() {
+                          try { return localStorage.getItem('pulse_app_installed') === 'true'; } catch (err) { return false; }
+                        })();
 
-    // Show floating smart install banner ONLY if running inside browser (never in standalone PWA)
-    if (!isPWA && !sessionStorage.getItem('pulse_pwa_dismissed')) {
+    // Show floating smart install banner ONLY if running inside browser and not installed
+    if (!isInstalled && !sessionStorage.getItem('pulse_pwa_dismissed')) {
       setTimeout(() => {
         const banner = document.getElementById('pwa-floating-banner');
-        if (banner && !document.body.classList.contains('is-pwa-standalone')) {
+        if (banner && !document.body.classList.contains('is-pwa-standalone') && !document.body.classList.contains('is-pwa-installed')) {
           banner.classList.remove('hidden');
           banner.style.display = 'flex';
         }
@@ -1484,6 +1726,8 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         const { outcome } = await deferredPrompt.userChoice;
         if (outcome === 'accepted') {
           deferredPrompt = null;
+          try { localStorage.setItem('pulse_app_installed', 'true'); } catch (e) {}
+          applyPWAUIState();
           window.closeDownloadModal();
           window.showToast('🎉 Pulse Music installed on your device! Check your Home Screen / Taskbar.', 'success', 6000);
           return;
@@ -1509,6 +1753,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
   window.addEventListener('appinstalled', () => {
     deferredPrompt = null;
+    try { localStorage.setItem('pulse_app_installed', 'true'); } catch (e) {}
     applyPWAUIState();
     window.showToast('Pulse Music installed successfully! Enjoy your ad-free music 🎵', 'success', 6000);
   });
@@ -1532,6 +1777,213 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         })
         .catch(err => console.error('Pulse PWA Service Worker error:', err));
     });
+  }
+
+  // ---------------------------------------------------------------------------
+  // AUTH GATE SCREEN & GOOGLE SIGN-IN CONTROLLER
+  // Ensures Google Sign-In is presented first before Pulse starts
+  // ---------------------------------------------------------------------------
+  function checkAuthGateState(user = null) {
+    const activeUser = user || getStoredUser();
+    const gate = document.getElementById('auth-gate-screen');
+    const app = document.getElementById('app');
+    if (!gate) return;
+
+    if (activeUser && activeUser.provider === 'google') {
+      // Authenticated with Google -> unlock Pulse
+      gate.classList.add('gate-unlocked');
+      setTimeout(() => {
+        if (gate.classList.contains('gate-unlocked')) {
+          gate.style.display = 'none';
+        }
+      }, 450);
+      if (app) app.classList.remove('auth-gate-locked');
+    } else {
+      // Not authenticated -> show Google Sign-In Gate first
+      gate.style.display = 'flex';
+      gate.classList.remove('gate-unlocked');
+      if (app) app.classList.add('auth-gate-locked');
+    }
+  }
+
+  window.handleGateGoogleSignIn = async function() {
+    const btn = document.getElementById('gate-google-signin-btn');
+    const originalHtml = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 8px;"></i> Signing in with Google...';
+    }
+
+    try {
+      const user = await signInWithGoogle();
+      const gate = document.getElementById('auth-gate-screen');
+      const app = document.getElementById('app');
+
+      if (gate) {
+        gate.classList.add('gate-unlocked');
+        setTimeout(() => { gate.style.display = 'none'; }, 450);
+      }
+      if (app) app.classList.remove('auth-gate-locked');
+
+      if (window.showToast) {
+        window.showToast(`🎉 Welcome to Pulse Music, ${user.name}! Cloud sync active.`, 'success', 5000);
+      }
+
+      // Auto-refresh user playlists & favorites from Firestore
+      if (window.PulseFirestore && window.PulseFirestore.getFavorites) {
+        window.PulseFirestore.getFavorites();
+      }
+      if (window.PulseFirestore && window.PulseFirestore.getPlaylists) {
+        window.PulseFirestore.getPlaylists();
+      }
+    } catch (err) {
+      if (window.showToast) {
+        window.showToast(err.message || 'Google Sign-In cancelled. Please sign in with Google to start.', 'info', 5000);
+      }
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalHtml;
+      }
+      checkAuthGateState();
+    }
+  };
+
+  window.handleGateGuestContinue = function() {
+    const gate = document.getElementById('auth-gate-screen');
+    const app = document.getElementById('app');
+    if (gate) {
+      gate.classList.add('gate-unlocked');
+      setTimeout(() => { gate.style.display = 'none'; }, 450);
+    }
+    if (app) app.classList.remove('auth-gate-locked');
+    if (window.showToast) {
+      window.showToast('Continuing as Guest listener (offline mode).', 'info', 4000);
+    }
+  };
+
+  window.openAuthModal = function() {
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      updateAuthModalContent();
+    }
+  };
+
+  window.closeAuthModal = function() {
+    const modal = document.getElementById('auth-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+
+  function updateAuthModalContent() {
+    const user = getStoredUser();
+    const guestBox = document.getElementById('auth-guest-view');
+    const userBox = document.getElementById('auth-user-view');
+    if (!guestBox || !userBox) return;
+
+    if (user && user.provider === 'google') {
+      guestBox.style.display = 'none';
+      userBox.style.display = 'block';
+      const avatarEl = document.getElementById('auth-user-avatar');
+      const nameEl = document.getElementById('auth-user-name');
+      const emailEl = document.getElementById('auth-user-email');
+      if (avatarEl) avatarEl.src = user.avatar || './pulse-logo.png';
+      if (nameEl) nameEl.textContent = user.name || 'Google Listener';
+      if (emailEl) emailEl.textContent = user.email || '';
+    } else {
+      guestBox.style.display = 'block';
+      userBox.style.display = 'none';
+    }
+  }
+
+  function renderHeaderAuthButton(user) {
+    const btn = document.getElementById('header-auth-btn');
+    if (!btn) return;
+
+    if (user && user.provider === 'google') {
+      const firstName = (user.name || 'User').split(' ')[0];
+      btn.innerHTML = `
+        <img src="${user.avatar || './pulse-logo.png'}" alt="Profile" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 1.5px solid #a855f7;">
+        <span style="max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(firstName)}</span>
+      `;
+      btn.title = `Signed in as ${user.name} (${user.email}) - Click for Account`;
+      btn.style.borderColor = 'rgba(168, 85, 247, 0.6)';
+      btn.style.background = 'rgba(168, 85, 247, 0.15)';
+    } else {
+      btn.innerHTML = `
+        <i class="fa-brands fa-google" style="color: #4285F4;"></i>
+        <span>Sign In</span>
+      `;
+      btn.title = "Sign in with Google";
+      btn.style.borderColor = 'rgba(255, 255, 255, 0.18)';
+      btn.style.background = 'rgba(255, 255, 255, 0.08)';
+    }
+  }
+
+  window.handleGoogleSignIn = async function() {
+    const btn = document.getElementById('google-signin-btn');
+    const originalHtml = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 8px;"></i> Opening Google Sign-In...';
+    }
+
+    try {
+      const user = await signInWithGoogle();
+      if (window.showToast) {
+        window.showToast(`🎉 Signed in as ${user.name}! Cloud Firestore sync active.`, 'success', 5000);
+      }
+      window.closeAuthModal();
+      checkAuthGateState(user);
+      // Auto refresh favorites & playlists for signed in user
+      if (window.PulseFirestore && window.PulseFirestore.getFavorites) {
+        window.PulseFirestore.getFavorites();
+      }
+      if (window.PulseFirestore && window.PulseFirestore.getPlaylists) {
+        window.PulseFirestore.getPlaylists();
+      }
+    } catch (err) {
+      if (window.showToast) {
+        window.showToast(err.message || 'Google Sign-In cancelled or failed', 'info', 5000);
+      }
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalHtml;
+      }
+      updateAuthModalContent();
+    }
+  };
+
+  window.handleSignOut = async function() {
+    try {
+      // Pause playback if running
+      if (window.PulsePlaybar && window.PulsePlaybar.pause) {
+        window.PulsePlaybar.pause();
+      }
+      await signOut();
+      if (window.showToast) {
+        window.showToast('Signed out. Sign in with Google to start Pulse.', 'info', 5000);
+      }
+      window.closeAuthModal();
+      checkAuthGateState();
+    } catch (err) {
+      console.warn('Sign out notice:', err);
+    }
+  };
+
+  // Sync auth state changes to header button, modal, and gate screen
+  onAuthStateChanged((user) => {
+    renderHeaderAuthButton(user);
+    updateAuthModalContent();
+    checkAuthGateState(user);
+  });
+
+  // Check gate screen initially on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => checkAuthGateState());
+  } else {
+    checkAuthGateState();
   }
 
 })();

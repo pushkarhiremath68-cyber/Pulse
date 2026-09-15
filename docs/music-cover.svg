@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f111a"/>
+      <stop offset="50%" stop-color="#181329"/>
+      <stop offset="100%" stop-color="#090a10"/>
+    </linearGradient>
+
+    <radialGradient id="vinylGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#242633"/>
+      <stop offset="25%" stop-color="#14151e"/>
+      <stop offset="50%" stop-color="#1b1c26"/>
+      <stop offset="75%" stop-color="#101118"/>
+      <stop offset="96%" stop-color="#181a24"/>
+      <stop offset="100%" stop-color="#08080c"/>
+    </radialGradient>
+
+    <linearGradient id="labelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="50%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.08)"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.06)"/>
+    </linearGradient>
+
+    <filter id="musicGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="discShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base Canvas -->
+  <rect width="512" height="512" rx="32" fill="url(#bgGrad)"/>
+  <rect width="510" height="510" x="1" y="1" rx="31" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+
+  <!-- Vinyl Record Body -->
+  <g filter="url(#discShadow)">
+    <circle cx="256" cy="256" r="216" fill="url(#vinylGrad)" stroke="#2b2d3d" stroke-width="3"/>
+
+    <!-- Concentric Grooves -->
+    <circle cx="256" cy="256" r="202" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1.5"/>
+    <circle cx="256" cy="256" r="188" fill="none" stroke="rgba(255,255,255,0.045)" stroke-width="1"/>
+    <circle cx="256" cy="256" r="174" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"/>
+    <circle cx="256" cy="256" r="160" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <circle cx="256" cy="256" r="146" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1.5"/>
+    <circle cx="256" cy="256" r="132" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <circle cx="256" cy="256" r="118" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1.5"/>
+    <circle cx="256" cy="256" r="104" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+    <!-- Vinyl Light Reflection Cones (Sheen) -->
+    <path d="M 256 256 L 105 75 A 216 216 0 0 1 200 44 Z" fill="url(#sheen)"/>
+    <path d="M 256 256 L 407 437 A 216 216 0 0 1 312 468 Z" fill="url(#sheen)"/>
+    <path d="M 256 256 L 437 105 A 216 216 0 0 1 468 200 Z" fill="url(#sheen)"/>
+    <path d="M 256 256 L 75 407 A 216 216 0 0 1 44 312 Z" fill="url(#sheen)"/>
+
+    <!-- Center Label Area -->
+    <circle cx="256" cy="256" r="82" fill="url(#labelGrad)" stroke="#1a1a24" stroke-width="3"/>
+    <circle cx="256" cy="256" r="76" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
+
+    <!-- Musical Note Centerpiece -->
+    <g filter="url(#musicGlow)" fill="#ffffff">
+      <!-- High Quality Musical Double Note Path -->
+      <path d="M 242 222 
+               L 242 278 
+               A 18 15 0 1 1 226 265 
+               A 16 13 0 0 1 242 276 
+               L 242 208 
+               L 294 195 
+               L 294 266 
+               A 18 15 0 1 1 278 253 
+               A 16 13 0 0 1 294 264 
+               L 294 207 
+               Z"/>
+      <polygon points="242,208 294,195 294,209 242,222"/>
+    </g>
+
+    <!-- Sound Wave Equalizer Arcs -->
+    <path d="M 196 256 A 60 60 0 0 1 208 220" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 316 256 A 60 60 0 0 1 304 292" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Spindle Hole -->
+    <circle cx="256" cy="256" r="16" fill="#090a10" stroke="#f1f5f9" stroke-width="2.5"/>
+    <circle cx="256" cy="256" r="9" fill="#050608"/>
+  </g>
+</svg>

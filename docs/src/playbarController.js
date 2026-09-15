@@ -10,6 +10,7 @@ import { resolvePipedAudioStream, searchYouTubeMusic } from './extractorService.
 import { resolveFullAudioStream } from './musicService.js';
 import { downloadCurrentTrack } from './downloadService.js';
 import { getSimilarTracks, getNextSuggestedTrack, generateSimilarRadioQueue } from './recommendationService.js';
+import { escapeHtml } from './security.js';
 
 if (typeof window !== 'undefined') {
   window.PulsePlaybar = window.PulsePlaybar || {};
@@ -122,7 +123,7 @@ function getAudio() {
 function updateMediaSession(track) {
   if (!('mediaSession' in navigator) || !track) return;
 
-  const artworkUrl = track.coverUrl || track.cover || './pulse-logo.png';
+  const artworkUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
   navigator.mediaSession.metadata = new MediaMetadata({
     title: track.title || 'Untitled Track',
     artist: track.artist || 'Pulse Artist',
@@ -615,14 +616,14 @@ function updateTrackInfoUI(track) {
   const coverEls = document.querySelectorAll('#player-thumb, #playbar-cover, #fullscreen-cover-img, #fullscreen-album-art, #fs-album-art');
   const badgeEls = document.querySelectorAll('#player-source-badge, #playbar-source-badge, #fs-source-badge');
 
-  const coverUrl = track.coverUrl || track.cover || './pulse-logo.png';
+  const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
 
   titleEls.forEach(el => { el.textContent = track.title || 'Untitled Track'; });
   artistEls.forEach(el => { el.textContent = track.artist || 'Pulse Artist'; });
   coverEls.forEach(el => {
     if (el.tagName === 'IMG') {
       el.src = coverUrl;
-      el.onerror = function() { this.onerror = null; this.src = './pulse-logo.png'; };
+      el.onerror = function() { this.onerror = null; this.src = './music-cover.svg'; };
     } else {
       el.style.backgroundImage = `url('${coverUrl}')`;
     }
@@ -633,11 +634,23 @@ function updateTrackInfoUI(track) {
     bgBlur.style.backgroundImage = `url('${coverUrl}')`;
   }
 
+  const appWallpaper = document.getElementById('app-dynamic-wallpaper');
+  if (appWallpaper) {
+    appWallpaper.style.backgroundImage = `url('${coverUrl}')`;
+    appWallpaper.classList.add('active-wallpaper');
+  }
+
   badgeEls.forEach(el => {
     el.textContent = track.source || 'Ad-Free Opus Pure Audio';
   });
 
   updateFavoriteButtonUI(track.id);
+}
+
+export function downloadCurrentTrackWallpaper() {
+  if (typeof window !== 'undefined' && typeof window.downloadTrackWallpaper === 'function') {
+    window.downloadTrackWallpaper(currentTrack);
+  }
 }
 
 export function updateFavoriteButtonUI(trackId) {
@@ -728,10 +741,10 @@ function renderQueueUI() {
   container.innerHTML = playQueue.map((t, idx) => `
     <div class="queue-item ${idx === queueIndex ? 'active-queue-item' : ''}" onclick="window.PulsePlaybar.playTrackAtQueueIndex(${idx})" style="display: flex; align-items: center; gap: 0.85rem; padding: 0.6rem 0.85rem; border-radius: 12px; margin-bottom: 0.4rem; cursor: pointer; transition: all 0.2s ease; background: ${idx === queueIndex ? 'rgba(168,85,247,0.15)' : 'rgba(255,255,255,0.03)'}; border: 1px solid ${idx === queueIndex ? 'rgba(168,85,247,0.4)' : 'rgba(255,255,255,0.06)'};">
       <span style="font-size: 0.8rem; font-weight: 700; color: ${idx === queueIndex ? 'var(--accent-purple)' : 'var(--text-muted)'}; width: 22px; text-align: center;">${idx === queueIndex ? '<i class="fa-solid fa-volume-high"></i>' : idx + 1}</span>
-      <img src="${t.coverUrl || './pulse-logo.png'}" alt="cover" class="queue-item-thumb" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+      <img src="${t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="cover" class="queue-item-thumb" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;" onerror="this.onerror=null; this.src='./music-cover.svg';">
       <div class="queue-item-details" style="flex: 1; min-width: 0; overflow: hidden;">
-        <div class="queue-item-title" style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
-        <div class="queue-item-artist" style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.artist}</div>
+        <div class="queue-item-title" style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.title)}</div>
+        <div class="queue-item-artist" style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.artist)}</div>
       </div>
       <div class="queue-item-actions" onclick="event.stopPropagation()" style="display: flex; gap: 0.4rem;">
         ${idx !== queueIndex ? `
@@ -769,19 +782,19 @@ function renderSimilarTracksUI() {
     <div class="similar-track-item hover-glow" onclick="window.PulsePlaybar.playSimilarTrackAtIndex(${idx})" style="display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.85rem; border-radius: 12px; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); margin-bottom: 0.45rem; cursor: pointer; transition: all 0.25s ease;">
       <div style="display: flex; align-items: center; gap: 0.85rem; flex: 1; min-width: 0;">
         <div style="position: relative; width: 44px; height: 44px; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
-          <img src="${t.coverUrl || './pulse-logo.png'}" alt="${t.title}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+          <img src="${t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(t.title)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='./music-cover.svg';">
           <div class="similar-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
             <i class="fa-solid fa-play" style="color: #fff; font-size: 0.85rem;"></i>
           </div>
         </div>
         <div style="flex: 1; min-width: 0; overflow: hidden;">
-          <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
-          <div style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${t.artist}</div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.title)}</div>
+          <div style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${escapeHtml(t.artist)}</div>
           <div style="margin-top: 3px; display: flex; align-items: center; gap: 0.35rem;">
             <span class="similar-badge" style="font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(168,85,247,0.18); color: ${t.matchColor || '#c084fc'}; border: 1px solid rgba(168,85,247,0.3); display: inline-flex; align-items: center; gap: 3px;">
-              <i class="fa-solid ${t.matchIcon || 'fa-sparkles'}" style="font-size: 0.6rem;"></i> ${t.matchBadge || 'Similar Vibe'}
+              <i class="fa-solid ${t.matchIcon || 'fa-sparkles'}" style="font-size: 0.6rem;"></i> ${escapeHtml(t.matchBadge || 'Similar Vibe')}
             </span>
-            <span style="font-size: 0.68rem; color: var(--text-muted);">${t.recommendationReason || ''}</span>
+            <span style="font-size: 0.68rem; color: var(--text-muted);">${escapeHtml(t.recommendationReason || '')}</span>
           </div>
         </div>
       </div>
@@ -803,15 +816,15 @@ function renderSimilarTracksUI() {
     homeSimilarContainer.innerHTML = currentSimilarTracks.slice(0, 8).map((t, idx) => `
       <div class="music-card hover-glow" onclick="window.PulsePlaybar.playSimilarTrackAtIndex(${idx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
         <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
-          <img src="${t.coverUrl || './pulse-logo.png'}" alt="${t.title}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./pulse-logo.png';">
+          <img src="${t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(t.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
           <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
             <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
           </div>
-          <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.85); color: ${t.matchColor || '#c084fc'}; padding: 2px 6px; border-radius: 6px;">${t.matchBadge || 'Similar'}</span>
+          <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.85); color: ${t.matchColor || '#c084fc'}; padding: 2px 6px; border-radius: 6px;">${escapeHtml(t.matchBadge || 'Similar')}</span>
         </div>
         <div class="card-meta">
-          <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.title}</div>
-          <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${t.artist}</div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.title)}</div>
+          <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${escapeHtml(t.artist)}</div>
         </div>
       </div>
     `).join('');
@@ -1307,6 +1320,7 @@ const playbarController = {
   addCurrentToPlaylist,
   downloadCurrentTrack,
   downloadTrack,
+  downloadCurrentTrackWallpaper,
   playTrackAtQueueIndex,
   getAudio,
   getCurrentTrack: () => currentTrack,

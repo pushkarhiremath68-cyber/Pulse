@@ -91,7 +91,7 @@ export default function BottomPlaybar() {
         {/* LEFT: Cover & Track Info (Click to Expand Fullscreen) */}
         <div className="player-left" style={{ display: 'flex', alignItems: 'center', gap: '1rem', cursor: 'pointer' }} onClick={() => setFullscreen(true)}>
           <div className="player-thumb-wrapper" style={{ width: '56px', height: '56px', borderRadius: '8px', overflow: 'hidden' }}>
-            <img src={currentTrack.cover || './pulse-logo.png'} alt={currentTrack.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src={currentTrack.cover || './music-cover.svg'} alt={currentTrack.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
           <div className="player-track-info" style={{ overflow: 'hidden' }}>
             <h4 style={{ margin: 0, fontSize: '0.92rem', fontWeight: 700, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
@@ -191,7 +191,7 @@ export default function BottomPlaybar() {
             style={{
               position: 'absolute',
               inset: 0,
-              backgroundImage: `url("${currentTrack.cover || './pulse-logo.png'}")`,
+              backgroundImage: `url("${currentTrack.cover || './music-cover.svg'}")`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               filter: 'blur(80px) brightness(0.25)',
@@ -215,7 +215,7 @@ export default function BottomPlaybar() {
           <div className="fs-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', maxWidth: '600px', margin: '0 auto', width: '100%' }}>
             <div className="fs-album-art-wrapper" style={{ width: '280px', height: '280px', borderRadius: '50%', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(168,85,247,0.4)', border: '4px solid rgba(255,255,255,0.1)', marginBottom: '2rem' }}>
               <img
-                src={currentTrack.cover || './pulse-logo.png'}
+                src={currentTrack.cover || './music-cover.svg'}
                 alt={currentTrack.title}
                 className="spin-disc"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', animationPlayState: isPlaying ? 'running' : 'paused' }}

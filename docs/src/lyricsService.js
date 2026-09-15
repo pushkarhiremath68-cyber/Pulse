@@ -7,6 +7,9 @@
  * - High-performance binary search for active lyric line index (60fps synced)
  */
 
+import { PAKISTANI_LYRICS_REGISTRY } from './pakistaniLyrics.js';
+import { escapeHtml } from './security.js';
+
 const LRCLIB_BASE = 'https://lrclib.net/api';
 const memoryCache = new Map();
 
@@ -57,7 +60,7 @@ export function parseLrc(lrcText) {
         const msStr = match[3] || '0';
         const ms = msStr.length === 2 ? parseInt(msStr, 10) / 100 : (msStr.length === 3 ? parseInt(msStr, 10) / 1000 : parseFloat(`0.${msStr}`));
         const totalSeconds = parseFloat((min * 60 + sec + ms).toFixed(3));
-        parsed.push({ time: totalSeconds, text: text || '♪' });
+        parsed.push({ time: totalSeconds, text: escapeHtml(text || '♪') });
       });
     }
   }
@@ -76,7 +79,7 @@ export function parsePlainLyrics(plainText) {
     .split('\n')
     .map(line => line.trim())
     .filter(line => line.length > 0)
-    .map(text => ({ time: null, text }));
+    .map(text => ({ time: null, text: escapeHtml(text) }));
 }
 
 /**
@@ -99,6 +102,13 @@ export async function getLyrics(trackOrTitle, optArtist = '', optDuration = 0) {
   const cacheKey = `${cleanTitle.toLowerCase()}___${cleanArtist.toLowerCase()}`;
   if (memoryCache.has(cacheKey)) {
     return memoryCache.get(cacheKey);
+  }
+
+  // Check verified local & Pakistani registry first for instant 0-latency live lyrics
+  const localVerified = getVerifiedLocalLyrics(cleanTitle, cleanArtist);
+  if (localVerified) {
+    memoryCache.set(cacheKey, localVerified);
+    return localVerified;
   }
 
   const reqHeaders = {
@@ -191,6 +201,24 @@ export async function getLyrics(trackOrTitle, optArtist = '', optDuration = 0) {
  */
 function getVerifiedLocalLyrics(cleanTitle, cleanArtist) {
   const t = cleanTitle.toLowerCase();
+
+  // 1. Check Pakistani Hits & Coke Studio Registry
+  if (typeof PAKISTANI_LYRICS_REGISTRY === 'object' && PAKISTANI_LYRICS_REGISTRY) {
+    for (const [key, val] of Object.entries(PAKISTANI_LYRICS_REGISTRY)) {
+      if (t.includes(key) || key.includes(t)) {
+        const lines = val.isSynced ? parseLrc(val.raw) : parsePlainLyrics(val.raw);
+        return {
+          title: cleanTitle,
+          artist: cleanArtist,
+          isSynced: val.isSynced,
+          lines,
+          rawPlain: lines.map(l => l.text).join('\n'),
+          source: 'Pakistani Synced Registry (LRC)',
+          notFound: false
+        };
+      }
+    }
+  }
 
   const REGISTRY = {
     'starboy': {

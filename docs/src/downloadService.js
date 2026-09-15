@@ -65,7 +65,7 @@ export async function downloadTrack(track) {
     if (!streamUrl || !streamUrl.startsWith('http') || streamUrl === 'yt-iframe') {
       const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
       if (ytId) {
-        window.open(`https://www.youtube.com/watch?v=${ytId}`, '_blank');
+        window.open(`https://www.youtube.com/watch?v=${ytId}`, '_blank', 'noopener,noreferrer');
         if (typeof window.showToast === 'function') {
           window.showToast(`Opening YouTube audio page for "${cleanTitle}"...`, 'info', 3500);
         }

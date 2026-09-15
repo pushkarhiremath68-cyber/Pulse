@@ -8,8 +8,7 @@ const ids = [
   'dynamic-home-shelves',
   'language-shelves-container',
   'home-curated-playlists-container',
-  'pwa-floating-banner',
-  'header-download-btn'
+  'header-install-btn'
 ];
 
 ids.forEach(id => {

@@ -44,7 +44,7 @@ export async function addFavorite(track) {
     title: track.title || 'Untitled Track',
     artist: track.artist || 'Unknown Artist',
     album: track.album || 'Full Album',
-    coverUrl: track.coverUrl || './pulse-logo.png',
+    coverUrl: track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg'),
     duration: track.duration || 220,
     streamUrl: track.streamUrl || '',
     source: track.source || 'Ad-Free Pure Audio',

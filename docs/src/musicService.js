@@ -116,9 +116,8 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
       .replace('150x150', '500x500')
       .replace('100x100', '1000x1000')
       .replace('100x100bb', '1000x1000bb')
-      .replace('/default.jpg', '/maxresdefault.jpg')
-      .replace('/mqdefault.jpg', '/maxresdefault.jpg')
-      .replace('/hqdefault.jpg', '/maxresdefault.jpg');
+      .replace('/default.jpg', '/hqdefault.jpg')
+      .replace('/mqdefault.jpg', '/hqdefault.jpg');
     
     // YouTube Music specific high-res upgrade (=w120-h120...)
     if (cover.includes('=w') && cover.includes('-h')) {
@@ -126,10 +125,10 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
     }
   }
   if (!cover && raw.ytId) {
-    cover = `https://i.ytimg.com/vi/${raw.ytId}/maxresdefault.jpg`;
+    cover = `https://i.ytimg.com/vi/${raw.ytId}/hqdefault.jpg`;
   }
-  if (!cover) {
-    cover = './pulse-logo.png';
+  if (!cover || cover === './pulse-logo.png') {
+    cover = './music-cover.svg';
   }
 
   let stream = raw.streamUrl || raw.audio || raw.audiodownload || raw.downloadUrl || raw.stream || '';
@@ -218,7 +217,7 @@ export async function searchJioSaavnDirect(query, limit = 25) {
         title,
         artist,
         album,
-        coverUrl: cover || './pulse-logo.png',
+        coverUrl: cover || (item.ytId ? `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg` : './music-cover.svg'),
         duration: parseInt(item.duration, 10) || 220,
         streamUrl: streamUrl,
         previewUrl: '',
@@ -332,7 +331,7 @@ export async function searchITunesUniversal(query, limit = 40) {
               title: item.trackName || 'Untitled Song',
               artist: item.artistName || 'Various Artists',
               album: item.collectionName || 'Single Release',
-              coverUrl: item.artworkUrl100 ? item.artworkUrl100.replace('100x100bb', '1000x1000bb') : './pulse-logo.png',
+              coverUrl: item.artworkUrl100 ? item.artworkUrl100.replace('100x100bb', '600x600bb') : './music-cover.svg',
               duration: item.trackTimeMillis ? Math.round(item.trackTimeMillis / 1000) : 220,
               streamUrl: '', // NO 30s preview
               previewUrl: '',
@@ -485,10 +484,10 @@ export async function fetchTrendingTracks(limit = 40) {
         data.feed.entry.forEach(entry => {
           const title = entry['im:name']?.label || 'Trending Song';
           const artist = entry['im:artist']?.label || 'Trending Artist';
-          let cover = './pulse-logo.png';
+          let cover = './music-cover.svg';
           if (entry['im:image'] && entry['im:image'].length > 0) {
             cover = entry['im:image'][entry['im:image'].length - 1].label;
-            cover = cover.replace(/\/\d+x\d+bb/g, '/1000x1000bb');
+            cover = cover.replace(/\/\d+x\d+bb/g, '/600x600bb');
           }
           addUnique({
             id: `itunes-trending-${Math.random().toString(36).substr(2, 6)}`,
