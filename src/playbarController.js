@@ -6,7 +6,7 @@
  */
 
 import { addToHistory, isFavorite, addFavorite, removeFavorite, onFavoritesChanged } from './firestoreService.js';
-import { resolvePipedAudioStream, searchYouTubeMusic } from './extractorService.js';
+import { resolvePipedAudioStream, searchYouTubeMusic, resolveYouTubeVideoId } from './extractorService.js';
 import { resolveFullAudioStream } from './musicService.js';
 import { downloadCurrentTrack } from './downloadService.js';
 import { getSimilarTracks, getNextSuggestedTrack, generateSimilarRadioQueue } from './recommendationService.js';
@@ -289,14 +289,26 @@ export async function playTrack(track, queue = null) {
     const resolved = await resolveFullAudioStream(track);
     if (sessionId !== activePlaySessionId) return;
 
-    if (resolved && resolved.streamUrl && resolved.streamUrl.startsWith('http') && !resolved.streamUrl.includes('preview') && resolved.streamUrl !== 'yt-iframe') {
-      track.streamUrl = resolved.streamUrl;
-      track.source = resolved.source || 'Studio Master Audio (320kbps)';
-      if (resolved.duration) track.duration = resolved.duration;
-      const played = await playOnNativeAudio(track);
-      if (played) {
-        console.log('[Pulse Studio Master] Successfully playing native master stream:', resolved.source);
-        return;
+    if (resolved && resolved.streamUrl) {
+      // 2A. Direct native audio stream (JioSaavn CDN / Piped Opus)
+      if (resolved.streamUrl.startsWith('http') && !resolved.streamUrl.includes('preview') && resolved.streamUrl !== 'yt-iframe') {
+        track.streamUrl = resolved.streamUrl;
+        track.source = resolved.source || 'Studio Master Audio (320kbps)';
+        if (resolved.duration) track.duration = resolved.duration;
+        const played = await playOnNativeAudio(track);
+        if (played) {
+          console.log('[Pulse Studio Master] Successfully playing native master stream:', resolved.source);
+          return;
+        }
+      }
+
+      // 2B. resolveFullAudioStream resolved to yt-iframe — play via YouTube IFrame directly
+      if (resolved.streamUrl === 'yt-iframe' && resolved.ytId) {
+        track.ytId = resolved.ytId;
+        track.source = 'Studio Master Audio (YouTube)';
+        console.log('[Pulse Studio Master] Playing via YouTube IFrame (resolved):', resolved.ytId);
+        const ytSuccess = await playOnYouTubeIframe(resolved.ytId, track);
+        if (ytSuccess) return;
       }
     }
   } catch (e) {
@@ -307,6 +319,19 @@ export async function playTrack(track, queue = null) {
 
   // 3. SECONDARY TIER: YouTube IFrame playback (if track has ytId or resolved ytId)
   let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+
+  // 3A. If no ytId, resolve one on-demand
+  if (!ytId || ytId.length < 8) {
+    try {
+      const foundId = await resolveYouTubeVideoId(track.title, track.artist);
+      if (foundId) {
+        ytId = foundId;
+        track.ytId = foundId;
+        console.log('[Pulse Studio Master] On-demand YouTube ID resolved:', foundId);
+      }
+    } catch (e) {}
+  }
+
   if (ytId && ytId.length >= 8) {
     console.log('[Pulse Studio Master] Attempting YouTube IFrame playback for:', ytId);
     const ytSuccess = await playOnYouTubeIframe(ytId, track);
@@ -314,7 +339,7 @@ export async function playTrack(track, queue = null) {
   }
 
   // 4. TERTIARY TIER: Search YouTube for the track and play via IFrame
-  const searchQuery = `${track.title} ${track.artist}`.trim();
+  const searchQuery = `${track.title} ${track.artist} audio`.trim();
   if (sessionId === activePlaySessionId) {
     const searchSuccess = await playOnYouTubeSearch(searchQuery, track);
     if (searchSuccess) return;

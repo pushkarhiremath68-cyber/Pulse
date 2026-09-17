@@ -14,7 +14,9 @@ export const PIPED_INSTANCES = [
   'https://api.piped.projectsegfau.lt',
   'https://pipedapi.in.projectsegfau.lt',
   'https://pipedapi.leptons.xyz',
-  'https://piped-api.lunar.icu'
+  'https://piped-api.lunar.icu',
+  'https://pipedapi.adminforge.de',
+  'https://pipedapi.darkness.services'
 ];
 
 export const INVIDIOUS_INSTANCES = [
@@ -23,8 +25,13 @@ export const INVIDIOUS_INSTANCES = [
   'https://iv.ggtyler.dev',
   'https://invidious.flokinet.to',
   'https://invidious.privacyredirect.com',
-  'https://yewtu.be'
+  'https://yewtu.be',
+  'https://inv.tux.pizza',
+  'https://invidious.perennialte.ch'
 ];
+
+// YouTube Video ID Resolution Cache
+const YT_ID_CACHE = new Map();
 
 let pipedIdx = 0;
 let invidiousIdx = 0;
@@ -340,10 +347,121 @@ export async function fetchYouTubeMusicCharts(country = 'GLOBAL', limit = 30) {
   return results.slice(0, limit);
 }
 
+/**
+ * Resolves a YouTube Video ID for ANY track given its title and artist.
+ * Uses multiple strategies: Piped search, Invidious search, and direct YouTube scraping.
+ * Returns a YouTube Video ID string or null.
+ */
+export async function resolveYouTubeVideoId(title, artist) {
+  if (!title) return null;
+  const cleanTitle = (title || '').replace(/\(.*?\)|\[.*?\]|ft\..*|feat\..*|Official.*|Video.*/gi, '').trim();
+  const cleanArtist = (artist || '').split(',')[0].split('&')[0].split('ft.')[0].trim();
+  const query = `${cleanTitle} ${cleanArtist}`.trim();
+  if (!query || query.length < 2) return null;
+
+  // Check cache first
+  const cacheKey = query.toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (YT_ID_CACHE.has(cacheKey)) {
+    return YT_ID_CACHE.get(cacheKey);
+  }
+
+  // Strategy 1: Piped search (fast, no CORS issues)
+  const aliveNodes = PIPED_INSTANCES.filter(isInstanceAlive).slice(0, 3);
+  for (const node of aliveNodes) {
+    try {
+      const res = await fetch(`${node}/search?q=${encodeURIComponent(query)}&filter=music_songs`, { signal: AbortSignal.timeout(2500) });
+      if (res.ok) {
+        const json = await res.json();
+        const items = Array.isArray(json) ? json : (json.items || []);
+        for (const item of items) {
+          let videoId = item.videoId || '';
+          if (!videoId && item.url) {
+            videoId = item.url.replace('/watch?v=', '').replace('/streams/', '').trim();
+          }
+          if (videoId && videoId.length >= 8 && videoId.length <= 12) {
+            YT_ID_CACHE.set(cacheKey, videoId);
+            return videoId;
+          }
+        }
+      }
+    } catch (e) {
+      markInstanceDead(node);
+    }
+  }
+
+  // Strategy 2: Invidious search
+  const aliveInv = INVIDIOUS_INSTANCES.filter(isInstanceAlive).slice(0, 2);
+  for (const node of aliveInv) {
+    try {
+      const res = await fetch(`${node}/api/v1/search?q=${encodeURIComponent(query)}&type=video`, { signal: AbortSignal.timeout(2500) });
+      if (res.ok) {
+        const items = await res.json();
+        if (Array.isArray(items)) {
+          for (const item of items) {
+            if (item.videoId && item.videoId.length >= 8) {
+              YT_ID_CACHE.set(cacheKey, item.videoId);
+              return item.videoId;
+            }
+          }
+        }
+      }
+    } catch (e) {
+      markInstanceDead(node);
+    }
+  }
+
+  // Strategy 3: Backend search endpoint (works in dev via Vite middleware)
+  try {
+    const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
+    const res = await fetch(`${localBase}/api/yt/search?q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(3000) });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data.results) && data.results.length > 0 && data.results[0].ytId) {
+        YT_ID_CACHE.set(cacheKey, data.results[0].ytId);
+        return data.results[0].ytId;
+      }
+    }
+  } catch (e) {}
+
+  return null;
+}
+
+/**
+ * Batch-enriches an array of tracks with YouTube Video IDs.
+ * Only enriches tracks that are missing a ytId.
+ * Processes in parallel with concurrency limit for performance.
+ */
+export async function enrichTracksWithYouTubeIds(tracks, concurrency = 4) {
+  if (!Array.isArray(tracks) || tracks.length === 0) return tracks;
+
+  const needsEnrichment = tracks.filter(t => !t.ytId && !(t.id && t.id.startsWith('ytm-')));
+  if (needsEnrichment.length === 0) return tracks;
+
+  // Process in batches for controlled concurrency
+  for (let i = 0; i < needsEnrichment.length; i += concurrency) {
+    const batch = needsEnrichment.slice(i, i + concurrency);
+    const results = await Promise.allSettled(
+      batch.map(async (track) => {
+        const ytId = await resolveYouTubeVideoId(track.title, track.artist);
+        if (ytId) {
+          track.ytId = ytId;
+          if (!track.id || (!track.id.startsWith('ytm-') && !track.id.startsWith('saavn-'))) {
+            track.id = `ytm-${ytId}`;
+          }
+        }
+      })
+    );
+  }
+
+  return tracks;
+}
+
 const extractorService = {
   resolvePipedAudioStream,
   searchYouTubeMusic,
   fetchYouTubeMusicCharts,
+  resolveYouTubeVideoId,
+  enrichTracksWithYouTubeIds,
   getActivePipedNode,
   rotatePipedNode,
   getActiveInvidiousNode,
@@ -356,4 +474,3 @@ if (typeof window !== 'undefined') {
 }
 
 export default extractorService;
-

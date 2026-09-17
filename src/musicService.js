@@ -5,7 +5,7 @@
  */
 
 import { disambiguateQuery } from './geminiService.js';
-import { searchYouTubeMusic, resolvePipedAudioStream, fetchYouTubeMusicCharts } from './extractorService.js';
+import { searchYouTubeMusic, resolvePipedAudioStream, fetchYouTubeMusicCharts, resolveYouTubeVideoId, enrichTracksWithYouTubeIds } from './extractorService.js';
 import { searchCatalogTracks, PERMANENT_STREAM_MAP } from './catalogService.js';
 import CryptoJS from 'crypto-js';
 
@@ -456,6 +456,23 @@ export async function searchTracks(query, limit = 50) {
       }
     } catch (e) {}
   }
+  // 4. Enrich tracks missing YouTube IDs — guarantees YouTube IFrame fallback for every track
+  const tracksWithoutYtId = results.filter(t => !t.ytId && !(t.id && t.id.startsWith('ytm-')));
+  if (tracksWithoutYtId.length > 0) {
+    // Enrich top 12 tracks without ytId (user is most likely to play these first)
+    const toEnrich = tracksWithoutYtId.slice(0, 12);
+    try {
+      await enrichTracksWithYouTubeIds(toEnrich, 4);
+    } catch (e) {
+      console.warn('[Pulse Search] YouTube ID enrichment notice:', e);
+    }
+
+    // Enrich remaining tracks in the background (non-blocking)
+    const remaining = tracksWithoutYtId.slice(12);
+    if (remaining.length > 0) {
+      enrichTracksWithYouTubeIds(remaining, 3).catch(() => {});
+    }
+  }
 
   return results.slice(0, limit);
 }
@@ -714,6 +731,29 @@ export async function resolveFullAudioStream(track) {
     } catch (e) {}
   }
 
+  // TIER 4: Search YouTube for a video ID if none exists yet
+  if (!ytIdToUse) {
+    try {
+      const foundYtId = await resolveYouTubeVideoId(cleanTitle, cleanArtist);
+      if (foundYtId) {
+        ytIdToUse = foundYtId;
+        track.ytId = foundYtId;
+        console.log('[Pulse Stream Resolver] Resolved YouTube ID for:', cleanTitle, '->', foundYtId);
+      }
+    } catch (e) {}
+  }
+
+  // TIER 4B: Try Piped audio stream with newly resolved ytId
+  if (!finalUrl && ytIdToUse) {
+    try {
+      const ytm = await resolvePipedAudioStream(ytIdToUse);
+      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
+        finalUrl = ytm.streamUrl;
+        finalSource = 'Studio Master Opus (YouTube)';
+      }
+    } catch (e) {}
+  }
+
   if (finalUrl) {
     const resolved = {
       streamUrl: finalUrl,
@@ -725,17 +765,18 @@ export async function resolveFullAudioStream(track) {
     return resolved;
   }
 
-  // TIER 4: Official YouTube IFrame Embed (guaranteed backup)
+  // TIER 5: Official YouTube IFrame Embed (guaranteed backup)
   if (ytIdToUse) {
     const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'YouTube Audio', duration: track.duration || 220 };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }
 
-  // TIER 5: Final Fallback — YouTube Search
+  // TIER 6: Final Fallback — YouTube keyword search
   try {
     const fallbackSearch = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 1);
     if (fallbackSearch && fallbackSearch.length > 0 && fallbackSearch[0].ytId) {
+      track.ytId = fallbackSearch[0].ytId;
       const resolved = { streamUrl: 'yt-iframe', ytId: fallbackSearch[0].ytId, source: 'YouTube Audio', duration: track.duration || 220 };
       RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
       return resolved;
