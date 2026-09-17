@@ -618,7 +618,23 @@ function updatePlayPauseUI() {
     }
   });
 
-  const disks = document.querySelectorAll('#fullscreen-album-art, #fs-album-art, #player-thumb');
+  const playerBar = document.getElementById('player-bar');
+  if (playerBar) {
+    playerBar.classList.toggle('is-playing', isPlaying);
+  }
+
+  const eqWaves = document.querySelectorAll('#playbar-eq-wave, .playbar-eq-wave');
+  eqWaves.forEach(wave => {
+    if (isPlaying) wave.classList.remove('hidden');
+    else wave.classList.add('hidden');
+  });
+
+  const fsPlayer = document.getElementById('fullscreen-player');
+  if (fsPlayer) {
+    fsPlayer.classList.toggle('playing', isPlaying);
+  }
+
+  const disks = document.querySelectorAll('#fullscreen-album-art, #fs-album-art');
   disks.forEach(disk => {
     if (isPlaying) disk.classList.add('playing-spin');
     else disk.classList.remove('playing-spin');
@@ -980,9 +996,31 @@ function initPlaybarController() {
     });
   });
 
-  // Keyboard Shortcuts: Space, Arrows, Escape, M, L
+  // Keyboard Shortcuts: Space, Arrows, Escape, M, L, Q, Ctrl+K, /
   window.addEventListener('keydown', (e) => {
+    // Global Ctrl+K / Cmd+K works from anywhere
+    if ((e.key === 'k' || e.key === 'K') && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      const sInput = document.getElementById('global-search-input');
+      if (sInput) {
+        if (typeof window.switchView === 'function') window.switchView('search-view');
+        sInput.focus();
+        sInput.select();
+      }
+      return;
+    }
+
     if (['input', 'textarea'].includes(e.target.tagName.toLowerCase())) return;
+
+    if (e.key === '/') {
+      e.preventDefault();
+      const sInput = document.getElementById('global-search-input');
+      if (sInput) {
+        if (typeof window.switchView === 'function') window.switchView('search-view');
+        sInput.focus();
+      }
+      return;
+    }
 
     if (e.code === 'Space') {
       e.preventDefault();

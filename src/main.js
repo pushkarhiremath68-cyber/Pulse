@@ -609,19 +609,19 @@ window.addEventListener('error', function(e) {
   function renderReleaseCards(container, tracks) {
     if (!container || !Array.isArray(tracks) || tracks.length === 0) return;
     container.innerHTML = tracks.map((track, idx) => `
-      <div class="music-card hover-glow" onclick="window.playTrackDirect(window.__freshNewReleases[${idx}], window.__freshNewReleases)" style="min-width: 175px; width: 175px; flex-shrink: 0; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); padding: 0.85rem; border-radius: 16px; cursor: pointer; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);">
-        <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; margin-bottom: 0.65rem; box-shadow: 0 8px 20px rgba(0,0,0,0.5);">
-          <img src="${track.coverUrl || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-          <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; gap: 8px; opacity: 0; transition: opacity 0.2s;">
-            <button class="btn-card-play" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.5);"><i class="fa-solid fa-play"></i></button>
-            <button onclick="event.stopPropagation(); window.downloadTrackWallpaper(window.__freshNewReleases[${idx}])" title="Download HD Song Wallpaper" style="width: 36px; height: 36px; border-radius: 50%; background: rgba(15,17,25,0.85); border: 1px solid rgba(255,255,255,0.25); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5);"><i class="fa-solid fa-image" style="font-size: 0.9rem; color: #38bdf8;"></i></button>
+      <div class="music-card hover-glow" onclick="window.playTrackDirect(window.__freshNewReleases[${idx}], window.__freshNewReleases)" style="min-width: 175px; width: 175px; flex-shrink: 0;">
+        <div class="card-image-wrapper">
+          <img src="${track.coverUrl || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <div class="card-play-overlay">
+            <button class="btn-card-play" title="Play Track"><i class="fa-solid fa-play"></i></button>
+            <button onclick="event.stopPropagation(); window.downloadTrackWallpaper(window.__freshNewReleases[${idx}])" title="Download HD Song Wallpaper" class="btn-player-icon" style="background: rgba(15,17,25,0.85); border: 1px solid rgba(255,255,255,0.25); color: #fff; width: 38px; height: 38px;"><i class="fa-solid fa-image" style="font-size: 0.9rem; color: #38bdf8;"></i></button>
           </div>
           <span style="position: absolute; top: 8px; left: 8px; font-size: 0.65rem; font-weight: 800; background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%); color: #fff; padding: 2px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); letter-spacing: 0.05em;">NEW</span>
-          <span style="position: absolute; bottom: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.85); color: #38bdf8; padding: 2px 6px; border-radius: 6px;">${escapeHtml(track.genre || 'Single')}</span>
+          <span style="position: absolute; bottom: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); color: #38bdf8; padding: 2px 6px; border-radius: 6px;">${escapeHtml(track.genre || 'Single')}</span>
         </div>
         <div class="card-meta">
-          <div style="font-size: 0.92rem; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</div>
-          <div style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 3px;" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</div>
+          <div class="card-title" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</div>
+          <div class="card-artist" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</div>
         </div>
       </div>
     `).join('');
@@ -715,17 +715,17 @@ window.addEventListener('error', function(e) {
           </div>
           <div class="shelf-carousel" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;">
             ${cat.tracks.map((t, tIdx) => `
-              <div class="music-card hover-glow" onclick="window.playCatalogTrack(${cIdx}, ${tIdx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
-                <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
-                  <img src="${t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(t.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-                  <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
-                    <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
+              <div class="music-card hover-glow" onclick="window.playCatalogTrack(${cIdx}, ${tIdx})" style="min-width: 165px; width: 165px; flex-shrink: 0;">
+                <div class="card-image-wrapper">
+                  <img src="${t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(t.title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Track"><i class="fa-solid fa-play"></i></button>
                   </div>
-                  <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${cat.color}; padding: 2px 6px; border-radius: 6px;">Studio Master Audio</span>
+                  <span style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 800; background: rgba(8,10,16,0.85); backdrop-filter: blur(6px); color: ${cat.color}; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 6px;">Studio Master</span>
                 </div>
                 <div class="card-meta">
-                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.title)}</div>
-                  <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${escapeHtml(t.artist)}</div>
+                  <div class="card-title" title="${escapeHtml(t.title)}">${escapeHtml(t.title)}</div>
+                  <div class="card-artist" title="${escapeHtml(t.artist)}">${escapeHtml(t.artist)}</div>
                 </div>
               </div>
             `).join('')}
@@ -751,17 +751,17 @@ window.addEventListener('error', function(e) {
           </div>
           <div class="shelf-carousel" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;">
             ${lang.tracks.map((track, tIdx) => `
-              <div class="music-card hover-glow" onclick="window.playLanguageTrack(${lIdx}, ${tIdx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
-                <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
-                  <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-                  <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
-                    <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
+              <div class="music-card hover-glow" onclick="window.playLanguageTrack(${lIdx}, ${tIdx})" style="min-width: 165px; width: 165px; flex-shrink: 0;">
+                <div class="card-image-wrapper">
+                  <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+                  <div class="card-play-overlay">
+                    <button class="btn-card-play" title="Play Track"><i class="fa-solid fa-play"></i></button>
                   </div>
-                  <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: ${lang.meta.color}; padding: 2px 6px; border-radius: 6px;">Studio Master Audio</span>
+                  <span style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 800; background: rgba(8,10,16,0.85); backdrop-filter: blur(6px); color: ${lang.meta.color}; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 6px;">Studio Master</span>
                 </div>
                 <div class="card-meta">
-                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(track.title)}</div>
-                  <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">${escapeHtml(track.artist)}</div>
+                  <div class="card-title" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</div>
+                  <div class="card-artist" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</div>
                 </div>
               </div>
             `).join('')}
@@ -1003,29 +1003,29 @@ window.addEventListener('error', function(e) {
     };
 
     container.innerHTML = tracks.map((track, idx) => `
-      <div class="track-card glass-card hover-glow" onclick="window.playSearchTrack(${idx})" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 14px; padding: 0.85rem; cursor: pointer; transition: all 0.25s ease;">
-        <div class="card-cover-wrap" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 10px; overflow: hidden; margin-bottom: 0.75rem;">
-          <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-          <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
-            <button class="btn-play-hover" style="width: 44px; height: 44px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer;" title="Play Audio">
+      <div class="track-card hover-glow" onclick="window.playSearchTrack(${idx})">
+        <div class="card-cover-wrap">
+          <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" class="card-cover" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <div class="card-play-overlay">
+            <button class="btn-card-play" title="Play Track">
               <i class="fa-solid fa-play"></i>
             </button>
           </div>
-          <span style="position: absolute; top: 6px; right: 6px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 6px; border-radius: 6px;">${escapeHtml(track.source || 'Global Track')}</span>
+          <span style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 800; background: rgba(8,10,16,0.85); backdrop-filter: blur(8px); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); padding: 2px 7px; border-radius: 6px; letter-spacing: 0.03em;">${escapeHtml(track.source || '320kbps Master')}</span>
         </div>
         <div class="card-info">
-          <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 0.25rem 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</h4>
-          <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.artist)}" onclick="event.stopPropagation(); window.openArtistView('${track.artist.replace(/'/g, "\\'")}')">${escapeHtml(track.artist)}</p>
+          <h4 class="card-title" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</h4>
+          <p class="card-artist" title="${escapeHtml(track.artist)}" onclick="event.stopPropagation(); window.openArtistView('${track.artist.replace(/'/g, "\\'")}')">${escapeHtml(track.artist)}</p>
         </div>
-        <div class="card-actions" onclick="event.stopPropagation()" style="display: flex; gap: 0.5rem; margin-top: 0.75rem; justify-content: flex-end;">
+        <div class="card-actions" onclick="event.stopPropagation()" style="display: flex; gap: 0.35rem; margin-top: 0.75rem; justify-content: flex-end;">
           <button class="btn-player-icon" title="Download HD Song Wallpaper" onclick="window.downloadTrackWallpaper(window.__searchResults[${idx}])">
-            <i class="fa-solid fa-image"></i>
+            <i class="fa-solid fa-image" style="font-size: 0.9rem;"></i>
           </button>
           <button class="btn-player-icon" title="Add to Favorites" onclick="window.toggleFavoriteTrack(window.__searchResults[${idx}])">
-            <i class="fa-regular fa-heart"></i>
+            <i class="fa-regular fa-heart" style="font-size: 0.9rem;"></i>
           </button>
           <button class="btn-player-icon" title="Add to Playlist" onclick="window.openAddToPlaylistModal(window.__searchResults[${idx}])">
-            <i class="fa-solid fa-list-plus"></i>
+            <i class="fa-solid fa-list-plus" style="font-size: 0.9rem;"></i>
           </button>
         </div>
       </div>

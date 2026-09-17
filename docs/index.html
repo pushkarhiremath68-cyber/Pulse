@@ -83,8 +83,8 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-BRmGZAuA.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DoQB9RGw.css">
+  <script type="module" crossorigin src="./assets/index-CVi5E5Um.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-xgnnHmHu.css">
 </head>
 <body>
 
@@ -248,20 +248,21 @@
         <div class="search-box-container">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
           <input type="text" id="global-search-input" placeholder="Search any song in any language (Kannada, Hindi, English, Punjabi, Spanish...)" autocomplete="off" oninput="window.executeSearch(this.value, true)">
+          <span class="search-kbd-pill" title="Press Ctrl+K or / to search"><kbd>Ctrl</kbd><kbd>K</kbd></span>
           <button id="clear-search-btn" class="clear-search hidden" onclick="const i=document.getElementById('global-search-input'); if(i) i.value=''; window.executeSearch('', false);"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
         <div class="header-actions">
-          <button id="header-install-btn" class="btn-download-header" onclick="window.openDownloadModal()" title="Install App or Download Shortcut" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #fff; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 0.85rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+          <button id="header-install-btn" class="btn-download-header" onclick="window.openDownloadModal()" title="Install App or Download Shortcut">
             <i class="fa-solid fa-arrow-down-to-bracket" style="color: #38bdf8;"></i> <span>Install App</span>
           </button>
-          <button id="header-gemini-btn" class="btn-download-header" onclick="window.openGeminiDJModal()" style="background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); border: none; color: #fff; font-weight: 700;">
+          <button id="header-gemini-btn" class="btn-download-header" onclick="window.openGeminiDJModal()" style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #06b6d4 100%); border: none; color: #fff; font-weight: 700; box-shadow: 0 4px 18px rgba(168, 85, 247, 0.4);">
             <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Ask Gemini AI</span>
           </button>
-          <button id="header-lyrics-btn" class="btn-circle-nav" onclick="window.openLyricsDrawer()" title="Live Lyrics">
-            <i class="fa-solid fa-microphone-lines"></i>
+          <button id="header-lyrics-btn" class="btn-circle-nav" onclick="window.openLyricsDrawer()" title="Live Synced Lyrics">
+            <i class="fa-solid fa-microphone-lines" style="color: #c084fc;"></i>
           </button>
-          <button id="header-auth-btn" class="btn-download-header" onclick="window.openAuthModal()" title="Sign in with Google" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #fff; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 0.85rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+          <button id="header-auth-btn" class="btn-download-header" onclick="window.openAuthModal()" title="Sign in with Google">
             <i class="fa-brands fa-google" style="color: #4285F4;"></i> <span>Sign In</span>
           </button>
         </div>
@@ -275,7 +276,10 @@
         <section class="hero-banner" id="hero-banner">
           <div class="hero-bg-overlay"></div>
           <div class="hero-content">
-            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> HIGH-FIDELITY YOUTUBE AUDIO ENGINE</div>
+            <div class="hero-badge">
+              <span class="hero-live-dot"></span>
+              <i class="fa-solid fa-bolt"></i> HIGH-FIDELITY AUDIO PLATFORM
+            </div>
             <h2 id="hero-title" class="hero-title">Unlimited Free Music & Live Synced Lyrics</h2>
             <p id="hero-subtitle" class="hero-subtitle">Search, discover, and stream any track from YouTube with real-time multi-source streaming and karaoke lyric synchronization.</p>
             <div class="hero-actions">
@@ -288,7 +292,7 @@
             </div>
           </div>
           <div class="hero-image-wrapper">
-            <img id="hero-image" src="./assets/music-cover-MfJ9DAMu.svg" alt="Now Playing Album" style="object-fit: cover; border-radius: 20px; box-shadow: 0 12px 36px rgba(0,0,0,0.6);">
+            <img id="hero-image" src="./assets/music-cover-MfJ9DAMu.svg" alt="Now Playing Album">
           </div>
         </section>
 
@@ -492,7 +496,15 @@
       <div class="player-left" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen()" title="Click to Maximize Player">
         <img id="player-thumb" src="./assets/music-cover-MfJ9DAMu.svg" alt="Cover" class="player-thumb">
         <div class="player-info">
-          <span id="player-title" class="player-title">Select a Song</span>
+          <div style="display: flex; align-items: center; gap: 6px; min-width: 0;">
+            <span id="player-title" class="player-title">Select a Song</span>
+            <div id="playbar-eq-wave" class="playbar-eq-wave hidden" title="Playing Lossless Audio">
+              <span class="eq-bar eq-b1"></span>
+              <span class="eq-bar eq-b2"></span>
+              <span class="eq-bar eq-b3"></span>
+              <span class="eq-bar eq-b4"></span>
+            </div>
+          </div>
           <span id="player-artist" class="player-artist">Pulse Music</span>
         </div>
         <div class="player-track-actions">
@@ -623,7 +635,7 @@
             <button class="fs-mode-tab-btn" id="tab-fs-wallpaper" data-mode="wallpaper" onclick="window.switchFullscreenView('wallpaper')" title="Cinematic Wallpaper Mode">
               <i class="fa-solid fa-image" style="color: #38bdf8;"></i> <span>Wallpaper</span>
             </button>
-            <button class="fs-mode-tab-btn" id="tab-fs-lyrics" data-mode="lyrics" onclick="window.switchFullscreenView('lyrics')" title="Live Synced Lyrics">
+            <button class="fs-mode-tab-btn" id="fs-toggle-lyrics-btn" data-mode="lyrics" onclick="window.switchFullscreenView('lyrics')" title="Live Synced Lyrics">
               <i class="fa-solid fa-microphone-lines" style="color: #c084fc;"></i> <span>Live Lyrics</span>
             </button>
             <button class="fs-mode-tab-btn" id="tab-fs-similar" data-mode="similar" onclick="window.switchFullscreenView('similar')" title="Up Next & Similar Songs">
