@@ -260,6 +260,12 @@
           <span style="font-weight: 900; font-size: 1.2rem; letter-spacing: -0.5px; color: #fff;">Pulse</span>
         </div>
 
+        <!-- Personalized Greeting Capsule -->
+        <div class="header-greeting-wrap hidden-mobile">
+          <span id="header-greeting" class="header-greeting-title"><i class="fa-solid fa-moon" style="color: #818cf8; font-size: 0.95rem;"></i> Good evening</span>
+          <span id="header-greeting-sub" class="header-greeting-sub">Welcome back to Pulse Midnight</span>
+        </div>
+
         <!-- Search Bar -->
         <div class="search-box-container">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -269,17 +275,21 @@
         </div>
 
         <div class="header-actions">
+          <button id="header-notif-btn" class="btn-header-notif" onclick="window.showNotificationToast && window.showNotificationToast()" title="Pulse Status: Studio Master Audio Online">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notif-dot"></span>
+          </button>
           <button id="header-install-btn" class="btn-download-header" onclick="window.openDownloadModal()" title="Install App or Download Shortcut">
             <i class="fa-solid fa-arrow-down-to-bracket" style="color: #38bdf8;"></i> <span>Install App</span>
           </button>
-          <button id="header-gemini-btn" class="btn-download-header" onclick="window.openGeminiDJModal()" style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #06b6d4 100%); border: none; color: #fff; font-weight: 700; box-shadow: 0 4px 18px rgba(168, 85, 247, 0.4);">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Ask Gemini AI</span>
+          <button id="header-gemini-btn" class="btn-download-header" onclick="window.openGeminiDJModal()" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #38bdf8 100%); border: none; color: #fff; font-weight: 700; box-shadow: 0 4px 18px rgba(99, 102, 241, 0.4);">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Ask AI</span>
           </button>
           <button id="header-lyrics-btn" class="btn-circle-nav" onclick="window.openLyricsDrawer()" title="Live Synced Lyrics">
-            <i class="fa-solid fa-microphone-lines" style="color: #c084fc;"></i>
+            <i class="fa-solid fa-microphone-lines" style="color: #a5b4fc;"></i>
           </button>
-          <button id="header-auth-btn" class="btn-download-header" onclick="window.openAuthModal()" title="Sign in with Google">
-            <i class="fa-brands fa-google" style="color: #4285F4;"></i> <span>Sign In</span>
+          <button id="header-auth-btn" class="btn-download-header" onclick="window.openAuthModal()" title="View Profile & Settings">
+            <i class="fa-solid fa-circle-user" style="color: #818cf8;"></i> <span id="header-user-name">Profile</span>
           </button>
         </div>
       </header>
@@ -290,25 +300,30 @@
       <div id="view-home" class="app-view active-view">
         <!-- FEATURED HERO BANNER -->
         <section class="hero-banner" id="hero-banner">
-          <div class="hero-bg-overlay"></div>
+          <div class="hero-bg-artwork" id="hero-bg-artwork" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg');"></div>
+          <div class="hero-bg-overlay" id="hero-bg-overlay"></div>
           <div class="hero-content">
             <div class="hero-badge">
               <span class="hero-live-dot"></span>
               <i class="fa-solid fa-bolt"></i> HIGH-FIDELITY AUDIO PLATFORM
             </div>
-            <h2 id="hero-title" class="hero-title">Unlimited Free Music & Live Synced Lyrics</h2>
+            <h2 id="hero-title" class="hero-title">Unlimited Free Music &amp; Live Synced Lyrics</h2>
+            <div id="hero-artist-tag" class="hero-artist-tag"><i class="fa-solid fa-circle-check" style="font-size: 0.8rem;"></i> <span id="hero-artist-name">The Weeknd</span> • Featured Global Anthem</div>
             <p id="hero-subtitle" class="hero-subtitle">Search, discover, and stream any track from YouTube with real-time multi-source streaming and karaoke lyric synchronization.</p>
             <div class="hero-actions">
               <button id="hero-play-btn" class="btn-primary-play" onclick="window.playPresetQuery('Blinding Lights The Weeknd')">
                 <i class="fa-solid fa-play"></i> Play Top Hit
               </button>
-              <button id="hero-explore-btn" class="btn-secondary-install" onclick="window.scrollTo({ top: 460, behavior: 'smooth' })">
-                <i class="fa-solid fa-compass"></i> Explore Discoveries
+              <button id="hero-favorite-btn" class="btn-hero-secondary" onclick="window.favoriteFeaturedTrack && window.favoriteFeaturedTrack()" title="Save Featured Track to Library">
+                <i class="fa-regular fa-heart"></i> Save to Favorites
+              </button>
+              <button id="hero-radio-btn" class="btn-hero-secondary" onclick="window.startFeaturedRadio && window.startFeaturedRadio()" title="Start Radio for Featured Track">
+                <i class="fa-solid fa-radio"></i> Artist Radio
               </button>
             </div>
           </div>
           <div class="hero-image-wrapper">
-            <img id="hero-image" src="./music-cover.svg" alt="Now Playing Album">
+            <img id="hero-image" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg" alt="Featured Album Artwork" onerror="this.onerror=null; this.src='./music-cover.svg';">
           </div>
         </section>
 
@@ -333,80 +348,110 @@
           <button class="filter-pill" onclick="window.filterHomeGenre('devotional', this)"><i class="fa-solid fa-om" style="color: #f59e0b;"></i> Devotional</button>
         </section>
 
-        <!-- DYNAMIC "FRESH NEW RELEASES" SHELF -->
-        <section class="music-shelf-section" id="home-new-releases-shelf" style="margin-bottom: 2.5rem; animation: fadeIn 0.4s ease;">
-          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <!-- 1. RECENTLY PLAYED SHELF -->
+        <section class="music-shelf-section" id="home-recently-played-shelf" style="display: none; animation: fadeIn 0.4s ease;">
+          <div class="shelf-header">
             <div>
-              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-fire-flame-curved" style="color: #f43f5e;"></i> Fresh New Releases &amp; Drops
-                <span class="live-auto-pill" style="font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: rgba(244, 63, 94, 0.2); border: 1px solid rgba(244, 63, 94, 0.4); color: #fb7185; letter-spacing: 0.05em; text-transform: uppercase;">
-                  <i class="fa-solid fa-circle" style="font-size: 0.5rem; color: #f43f5e; margin-right: 3px; animation: pulse 1.5s infinite;"></i> AUTO-UPDATED
-                </span>
+              <h3 class="shelf-title">
+                <i class="fa-solid fa-clock-rotate-left" style="color: #818cf8;"></i> Recently Played
               </h3>
-              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin: 3px 0 0 0;">
-                Today's newly released tracks with full studio audio &amp; live synced karaoke lyrics
-              </p>
+              <p class="shelf-subtitle">Pick up right where you left off</p>
             </div>
-            <button class="btn-secondary-install" onclick="window.refreshNewReleasesLive && window.refreshNewReleasesLive()" title="Check for newest releases right now" style="padding: 0.35rem 0.8rem; font-size: 0.75rem; border-radius: 999px;">
-              <i class="fa-solid fa-arrows-rotate"></i> Refresh
+            <button class="btn-see-all" onclick="window.switchView('library'); window.switchLibraryTab && window.switchLibraryTab('history')">
+              View All History <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i>
             </button>
           </div>
-          <div class="shelf-carousel" id="home-new-releases-container" style="display: flex; gap: 1.1rem; overflow-x: auto; padding-bottom: 0.85rem;">
-            <div style="padding: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">Loading newest releases...</div>
-          </div>
+          <div class="shelf-carousel" id="home-recently-played-container"></div>
         </section>
 
-        <!-- DYNAMIC "SIMILAR TO WHAT YOU'RE PLAYING" RECOMMENDED SHELF -->
-        <section class="music-shelf-section" id="home-recommended-shelf" style="display: none; margin-bottom: 2.5rem; animation: fadeIn 0.4s ease;">
-          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <!-- 2. TRENDING NOW SHELF -->
+        <section class="music-shelf-section" id="home-trending-shelf" style="animation: fadeIn 0.4s ease;">
+          <div class="shelf-header">
             <div>
-              <h3 class="shelf-title" style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">
-                <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc; margin-right: 8px;"></i> Recommended For You
+              <h3 class="shelf-title">
+                <i class="fa-solid fa-fire-flame-curved" style="color: #f43f5e;"></i> Trending Now
               </h3>
-              <p class="shelf-subtitle" id="home-similar-seed-title" style="font-size: 0.82rem; color: #c084fc; margin: 3px 0 0 0;">Based on what you're streaming right now</p>
+              <p class="shelf-subtitle">The hottest streamable anthems dominating worldwide charts</p>
             </div>
-            <button class="btn-see-all" onclick="window.openQueueDrawer()" style="background: none; border: none; color: #c084fc; font-size: 0.82rem; font-weight: 700; cursor: pointer;">View Up Next <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
+            <button class="btn-see-all" onclick="window.filterByGenre('cat-trending')">
+              Explore All <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i>
+            </button>
           </div>
-          <div class="shelf-carousel" id="home-similar-shelf-tracks" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+          <div class="shelf-carousel" id="home-trending-container"></div>
         </section>
 
-        <!-- SPOTIFY-STYLE HERO QUICK PICKS (6-TILE GRID) -->
-        <section class="quick-picks-section" style="margin-bottom: 2.5rem;">
-          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <!-- 3. POPULAR SONGS (SPOTIFY-STYLE QUICK PICKS & HEAVY ROTATION) -->
+        <section class="quick-picks-section" id="home-popular-songs-shelf" style="margin-bottom: 2.75rem;">
+          <div class="shelf-header">
             <div>
-              <h3 class="shelf-title" style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0;">
-                <i class="fa-solid fa-bolt" style="color: #06b6d4; margin-right: 8px;"></i> Quick Picks &amp; Heavy Rotation
+              <h3 class="shelf-title">
+                <i class="fa-solid fa-bolt" style="color: #38bdf8;"></i> Popular Songs &amp; Heavy Rotation
               </h3>
-              <p class="shelf-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin: 4px 0 0 0;">Jump right into your high-fidelity queue</p>
+              <p class="shelf-subtitle">Jump right into your high-fidelity queue</p>
             </div>
           </div>
           <div class="quick-picks-grid" id="home-quick-picks-container"></div>
         </section>
 
-        <!-- FEATURED ARTISTS SHELF -->
-        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
-          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <!-- 4. POPULAR ARTISTS SHELF -->
+        <section class="music-shelf-section" id="home-popular-artists-shelf">
+          <div class="shelf-header">
             <div>
-              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
-                <i class="fa-solid fa-star" style="color: #f59e0b; margin-right: 8px;"></i> Featured Verified Artists
+              <h3 class="shelf-title">
+                <i class="fa-solid fa-star" style="color: #f59e0b;"></i> Popular Artists
               </h3>
-              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Explore top artist discographies &amp; popular releases</p>
+              <p class="shelf-subtitle">Explore top artist discographies &amp; popular releases</p>
             </div>
           </div>
-          <div class="artists-carousel" id="home-featured-artists-container" style="display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+          <div class="artists-carousel" id="home-featured-artists-container"></div>
+        </section>
+
+        <!-- 5. FRESH NEW RELEASES SHELF -->
+        <section class="music-shelf-section" id="home-new-releases-shelf" style="animation: fadeIn 0.4s ease;">
+          <div class="shelf-header">
+            <div>
+              <h3 class="shelf-title">
+                <i class="fa-solid fa-sparkles" style="color: #ec4899;"></i> New Releases &amp; Fresh Drops
+                <span class="live-auto-pill" style="font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: rgba(244, 63, 94, 0.2); border: 1px solid rgba(244, 63, 94, 0.4); color: #fb7185; letter-spacing: 0.05em; text-transform: uppercase;">
+                  <i class="fa-solid fa-circle" style="font-size: 0.5rem; color: #f43f5e; margin-right: 3px; animation: pulse 1.5s infinite;"></i> AUTO-UPDATED
+                </span>
+              </h3>
+              <p class="shelf-subtitle">Today's newly released tracks with studio master audio &amp; live synced lyrics</p>
+            </div>
+            <button class="btn-secondary-install" onclick="window.refreshNewReleasesLive && window.refreshNewReleasesLive()" title="Check for newest releases right now" style="padding: 0.35rem 0.8rem; font-size: 0.75rem; border-radius: 999px;">
+              <i class="fa-solid fa-arrows-rotate"></i> Refresh
+            </button>
+          </div>
+          <div class="shelf-carousel" id="home-new-releases-container">
+            <div style="padding: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">Loading newest releases...</div>
+          </div>
+        </section>
+
+        <!-- 6. RECOMMENDED FOR YOU SHELF -->
+        <section class="music-shelf-section" id="home-recommended-shelf" style="animation: fadeIn 0.4s ease;">
+          <div class="shelf-header">
+            <div>
+              <h3 class="shelf-title">
+                <i class="fa-solid fa-wand-magic-sparkles" style="color: #a855f7;"></i> Recommended For You
+              </h3>
+              <p class="shelf-subtitle" id="home-similar-seed-title">Based on your listening taste and top picks</p>
+            </div>
+            <button class="btn-see-all" onclick="window.openQueueDrawer()">View Up Next <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
+          </div>
+          <div class="shelf-carousel" id="home-similar-shelf-tracks"></div>
         </section>
 
         <!-- CURATED PLAYLISTS SHELF -->
-        <section class="music-shelf-section" style="margin-bottom: 2.5rem;">
-          <div class="shelf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <section class="music-shelf-section">
+          <div class="shelf-header">
             <div>
-              <h3 class="shelf-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
-                <i class="fa-solid fa-record-vinyl" style="color: #a855f7; margin-right: 8px;"></i> Handcrafted Playlists &amp; Mixes
+              <h3 class="shelf-title">
+                <i class="fa-solid fa-record-vinyl" style="color: #818cf8;"></i> Handcrafted Playlists &amp; Mixes
               </h3>
-              <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">Sonic atmospheres curated for every mood and vibe</p>
+              <p class="shelf-subtitle">Sonic atmospheres curated for every mood and vibe</p>
             </div>
           </div>
-          <div class="curated-playlists-carousel" id="home-curated-playlists-container" style="display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 0.85rem;"></div>
+          <div class="curated-playlists-carousel" id="home-curated-playlists-container"></div>
         </section>
 
         <!-- DYNAMIC CATALOG GENRE & MOOD SHELVES -->
@@ -1555,6 +1600,9 @@
 
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="pulse-toast-container" class="toast-container" style="position: fixed; bottom: 100px; right: 24px; z-index: 999999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
+
+  <!-- FLOATING CARD CONTEXT MENU -->
+  <div id="card-context-menu" class="card-context-menu hidden"></div>
 
   <!-- Global YouTube IFrame Audio Host (Always in DOM for instant YouTube initialization) -->
   <div id="global-yt-host" class="global-yt-dock" style="position: fixed; bottom: 0; right: 0; width: 240px; height: 135px; z-index: -1; opacity: 0.01; pointer-events: none; overflow: hidden;">

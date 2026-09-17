@@ -42,7 +42,7 @@ import {
   exportUserData,
   clearUserCache
 } from './firebaseAuthService.js';
-import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
+import { getFavorites, removeFavorite, addFavorite, isFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
 import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
 import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 import { askGeminiDJ } from './geminiService.js';
@@ -154,6 +154,10 @@ window.addEventListener('error', function(e) {
     if (appWallpaper) {
       appWallpaper.style.backgroundImage = `url('${coverUrl}')`;
       appWallpaper.classList.add('active-wallpaper');
+    }
+    const heroBg = document.getElementById('hero-bg-artwork');
+    if (heroBg) {
+      heroBg.style.backgroundImage = `url('${coverUrl}')`;
     }
   };
 
@@ -620,25 +624,314 @@ window.addEventListener('error', function(e) {
     }
   };
 
-  function renderReleaseCards(container, tracks) {
-    if (!container || !Array.isArray(tracks) || tracks.length === 0) return;
-    container.innerHTML = tracks.map((track, idx) => `
-      <div class="music-card hover-glow" onclick="window.playTrackDirect(window.__freshNewReleases[${idx}], window.__freshNewReleases)" style="min-width: 175px; width: 175px; flex-shrink: 0;">
+  window.renderPersonalizedGreeting = function() {
+    const greetingEl = document.getElementById('header-greeting');
+    const greetingSub = document.getElementById('header-greeting-sub');
+    if (!greetingEl) return;
+
+    const now = new Date();
+    const hour = now.getHours();
+    let timeGreeting = 'Good evening';
+    let timeIcon = 'fa-moon';
+    let timeColor = '#818cf8';
+
+    if (hour >= 5 && hour < 12) {
+      timeGreeting = 'Good morning';
+      timeIcon = 'fa-sun';
+      timeColor = '#f59e0b';
+    } else if (hour >= 12 && hour < 17) {
+      timeGreeting = 'Good afternoon';
+      timeIcon = 'fa-sun-cloud';
+      timeColor = '#38bdf8';
+    }
+
+    let userName = 'Music Lover';
+    try {
+      const userSession = JSON.parse(localStorage.getItem('pulse_user_session') || '{}');
+      if (userSession && userSession.displayName) {
+        userName = userSession.displayName.split(' ')[0];
+      }
+    } catch(e) {}
+
+    greetingEl.innerHTML = `<i class="fa-solid ${timeIcon}" style="color: ${timeColor}; font-size: 0.95rem;"></i> ${timeGreeting}, ${escapeHtml(userName)}`;
+    if (greetingSub) {
+      greetingSub.textContent = 'Welcome back to Pulse Midnight';
+    }
+
+    const headerUserName = document.getElementById('header-user-name');
+    if (headerUserName) {
+      headerUserName.textContent = userName !== 'Music Lover' ? userName : 'Profile';
+    }
+  };
+
+  window.showNotificationToast = function() {
+    if (typeof window.showToast === 'function') {
+      window.showToast('Pulse Midnight Engine: 320kbps Studio Audio Online • Real-Time Synced Lyrics Connected', 'success', 3500);
+    }
+  };
+
+  window.favoriteFeaturedTrack = function() {
+    const topTrack = {
+      id: "ytm-4NRXx6U8ABQ",
+      ytId: "4NRXx6U8ABQ",
+      title: "Blinding Lights",
+      artist: "The Weeknd",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg",
+      duration: 200,
+      source: "Studio Master Audio (YouTube)"
+    };
+    const favBtn = document.getElementById('hero-favorite-btn');
+    if (isFavorite(topTrack.id)) {
+      removeFavorite(topTrack.id);
+      if (favBtn) favBtn.innerHTML = '<i class="fa-regular fa-heart"></i> Save to Favorites';
+      if (typeof window.showToast === 'function') window.showToast('Removed from Liked Songs', 'info', 2000);
+    } else {
+      addFavorite(topTrack);
+      if (favBtn) favBtn.innerHTML = '<i class="fa-solid fa-heart" style="color: #f43f5e;"></i> Saved in Library';
+      if (typeof window.showToast === 'function') window.showToast('Saved to Liked Songs ❤️', 'success', 2000);
+    }
+  };
+
+  window.startFeaturedRadio = function() {
+    if (window.PulsePlaybar && typeof window.PulsePlaybar.startRadioForCurrentTrack === 'function') {
+      window.playPresetQuery('Blinding Lights The Weeknd');
+      setTimeout(() => {
+        if (window.PulsePlaybar && typeof window.PulsePlaybar.startRadioForCurrentTrack === 'function') {
+          window.PulsePlaybar.startRadioForCurrentTrack();
+        }
+      }, 750);
+    } else {
+      window.playPresetQuery('The Weeknd');
+    }
+  };
+
+  // Standardized Pulse Midnight Song Card Renderer
+  window.renderSongCard = function(track, index, listGlobalKey, options = {}) {
+    if (!track) return '';
+    const trackId = track.id || (track.ytId ? `ytm-${track.ytId}` : `pulse-${index}`);
+    const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : '');
+    const coverUrl = track.coverUrl || track.cover || (ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : './music-cover.svg');
+    const title = track.title || 'Untitled Track';
+    const artist = track.artist || 'Pulse Artist';
+    const badge = options.badge || (options.showBadge ? (track.genre || 'Master') : null);
+
+    const current = window.pulseState && window.pulseState.currentTrack;
+    const isPlaying = window.pulseState && window.pulseState.isPlaying;
+    const isCurrentActive = current && (
+      current.id === trackId ||
+      (ytId && current.ytId === ytId) ||
+      (current.title === title && current.artist === artist)
+    );
+    const isFav = isFavorite(trackId);
+
+    return `
+      <div class="music-card hover-glow ${isCurrentActive && isPlaying ? 'card-active-playing' : ''}"
+           data-track-id="${escapeHtml(trackId)}"
+           data-yt-id="${escapeHtml(ytId)}"
+           onclick="window.playTrackDirect(${listGlobalKey}[${index}], ${listGlobalKey})">
         <div class="card-image-wrapper">
-          <img src="${track.coverUrl || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-          <div class="card-play-overlay">
-            <button class="btn-card-play" title="Play Track"><i class="fa-solid fa-play"></i></button>
-            <button onclick="event.stopPropagation(); window.downloadTrackWallpaper(window.__freshNewReleases[${idx}])" title="Download HD Song Wallpaper" class="btn-player-icon" style="background: rgba(15,17,25,0.85); border: 1px solid rgba(255,255,255,0.25); color: #fff; width: 38px; height: 38px;"><i class="fa-solid fa-image" style="font-size: 0.9rem; color: #38bdf8;"></i></button>
+          <img src="${coverUrl}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          
+          <!-- Corner Action Buttons: Favorite & More Options -->
+          <div class="card-corner-actions" onclick="event.stopPropagation()">
+            <button class="btn-card-action btn-card-fav ${isFav ? 'is-favorited' : ''}" 
+                    title="${isFav ? 'Remove Favorite' : 'Save to Favorites'}" 
+                    onclick="window.toggleCardFavorite(event, ${listGlobalKey}[${index}])">
+              <i class="${isFav ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}"></i>
+            </button>
+            <button class="btn-card-action btn-card-more" 
+                    title="More Options" 
+                    onclick="window.toggleCardContextMenu(event, ${listGlobalKey}[${index}])">
+              <i class="fa-solid fa-ellipsis"></i>
+            </button>
           </div>
-          <span style="position: absolute; top: 8px; left: 8px; font-size: 0.65rem; font-weight: 800; background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%); color: #fff; padding: 2px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); letter-spacing: 0.05em;">NEW</span>
-          <span style="position: absolute; bottom: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); color: #38bdf8; padding: 2px 6px; border-radius: 6px;">${escapeHtml(track.genre || 'Single')}</span>
+
+          <!-- Animated Equalizer Waveform when Playing -->
+          <div class="card-playing-indicator ${isCurrentActive && isPlaying ? '' : 'hidden'}" title="Now Playing">
+            <div class="card-eq-bars">
+              <span class="eq-mini-bar eq-b1"></span>
+              <span class="eq-mini-bar eq-b2"></span>
+              <span class="eq-mini-bar eq-b3"></span>
+              <span class="eq-mini-bar eq-b4"></span>
+            </div>
+          </div>
+
+          <!-- Floating Play/Pause Overlay -->
+          <div class="card-play-overlay">
+            <button class="btn-card-play" title="Play Track">
+              <i class="${isCurrentActive && isPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play'}"></i>
+            </button>
+          </div>
+
+          ${badge ? `<span style="position: absolute; bottom: 8px; right: 8px; font-size: 0.65rem; font-weight: 700; background: rgba(7,8,11,0.88); backdrop-filter: blur(6px); color: #38bdf8; padding: 2px 7px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);">${escapeHtml(badge)}</span>` : ''}
         </div>
         <div class="card-meta">
-          <div class="card-title" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</div>
-          <div class="card-artist" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</div>
+          <div class="card-title" title="${escapeHtml(title)}">${escapeHtml(title)}</div>
+          <div class="card-artist" title="${escapeHtml(artist)}">${escapeHtml(artist)}</div>
         </div>
       </div>
-    `).join('');
+    `;
+  };
+
+  window.toggleCardFavorite = function(event, track) {
+    event.stopPropagation();
+    if (!track) return;
+    const trackId = track.id || (track.ytId ? `ytm-${track.ytId}` : null);
+    if (!trackId) return;
+
+    const btn = event.currentTarget;
+    const icon = btn ? btn.querySelector('i') : null;
+
+    if (isFavorite(trackId)) {
+      removeFavorite(trackId);
+      if (btn) btn.classList.remove('is-favorited');
+      if (icon) icon.className = 'fa-regular fa-heart';
+      if (typeof window.showToast === 'function') window.showToast('Removed from Liked Songs', 'info', 1800);
+    } else {
+      addFavorite(track);
+      if (btn) btn.classList.add('is-favorited');
+      if (icon) icon.className = 'fa-solid fa-heart';
+      if (typeof window.showToast === 'function') window.showToast('Saved to Liked Songs ❤️', 'success', 1800);
+    }
+  };
+
+  window.toggleCardContextMenu = function(event, track) {
+    event.stopPropagation();
+    const menu = document.getElementById('card-context-menu');
+    if (!menu || !track) return;
+
+    window.__activeContextTrack = track;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    menu.style.top = `${Math.min(rect.bottom + 6, window.innerHeight - 240)}px`;
+    menu.style.left = `${Math.min(rect.left - 130, window.innerWidth - 210)}px`;
+
+    menu.innerHTML = `
+      <button class="context-menu-item" onclick="window.playTrackDirect(window.__activeContextTrack); window.closeCardContextMenu();">
+        <i class="fa-solid fa-play" style="color: #38bdf8;"></i> Play Now
+      </button>
+      <button class="context-menu-item" onclick="window.queueTrackNext(window.__activeContextTrack); window.closeCardContextMenu();">
+        <i class="fa-solid fa-forward-step" style="color: #818cf8;"></i> Play Next
+      </button>
+      <button class="context-menu-item" onclick="window.addToPlayQueue(window.__activeContextTrack); window.closeCardContextMenu();">
+        <i class="fa-solid fa-list-ul" style="color: #a855f7;"></i> Add to Queue
+      </button>
+      <button class="context-menu-item" onclick="window.openAddToPlaylistModal(window.__activeContextTrack); window.closeCardContextMenu();">
+        <i class="fa-solid fa-folder-plus" style="color: #ec4899;"></i> Add to Playlist
+      </button>
+      <div class="context-menu-divider"></div>
+      <button class="context-menu-item" onclick="window.downloadTrackWallpaper(window.__activeContextTrack); window.closeCardContextMenu();">
+        <i class="fa-solid fa-image" style="color: #38bdf8;"></i> Save HD Wallpaper
+      </button>
+      <button class="context-menu-item" onclick="window.openArtistView('${(track.artist || '').replace(/'/g, "\\'")}'); window.closeCardContextMenu();">
+        <i class="fa-solid fa-user" style="color: #f59e0b;"></i> Artist Discography
+      </button>
+    `;
+
+    menu.classList.remove('hidden');
+
+    const closeHandler = () => {
+      window.closeCardContextMenu();
+      document.removeEventListener('click', closeHandler);
+    };
+    setTimeout(() => {
+      document.addEventListener('click', closeHandler);
+    }, 50);
+  };
+
+  window.closeCardContextMenu = function() {
+    const menu = document.getElementById('card-context-menu');
+    if (menu) menu.classList.add('hidden');
+  };
+
+  window.queueTrackNext = function(track) {
+    if (window.PulsePlaybar && typeof window.PulsePlaybar.addNext === 'function') {
+      window.PulsePlaybar.addNext(track);
+    } else if (typeof window.showToast === 'function') {
+      window.showToast(`"${track.title}" will play next 🎵`, 'info', 2000);
+    }
+  };
+
+  window.addToPlayQueue = function(track) {
+    if (window.PulsePlaybar && typeof window.PulsePlaybar.addToQueue === 'function') {
+      window.PulsePlaybar.addToQueue(track);
+    } else if (typeof window.showToast === 'function') {
+      window.showToast(`Added "${track.title}" to Queue 🎶`, 'success', 2000);
+    }
+  };
+
+  window.updateActiveCardStates = function(currentTrack, isPlaying) {
+    const cards = document.querySelectorAll('.music-card, .track-card');
+    cards.forEach(card => {
+      const cardId = card.getAttribute('data-track-id');
+      const cardYtId = card.getAttribute('data-yt-id');
+      const titleEl = card.querySelector('.card-title');
+      const cardTitle = titleEl ? titleEl.textContent.trim() : '';
+      const isMatch = currentTrack && (
+        (cardId && cardId === currentTrack.id) ||
+        (cardYtId && currentTrack.ytId && cardYtId === currentTrack.ytId) ||
+        (cardYtId && currentTrack.id && currentTrack.id.includes(cardYtId)) ||
+        (cardTitle && currentTrack.title && cardTitle === currentTrack.title.trim())
+      );
+
+      const indicator = card.querySelector('.card-playing-indicator');
+      const playIcon = card.querySelector('.btn-card-play i, .btn-play-hover i');
+
+      if (isMatch && isPlaying) {
+        card.classList.add('card-active-playing');
+        if (indicator) indicator.classList.remove('hidden');
+        if (playIcon) playIcon.className = 'fa-solid fa-pause';
+      } else {
+        card.classList.remove('card-active-playing');
+        if (indicator) indicator.classList.add('hidden');
+        if (playIcon) playIcon.className = 'fa-solid fa-play';
+      }
+    });
+  };
+
+  // 1. RECENTLY PLAYED SHELF
+  window.renderRecentlyPlayedShelf = async function() {
+    const shelf = document.getElementById('home-recently-played-shelf');
+    const container = document.getElementById('home-recently-played-container');
+    if (!shelf || !container) return;
+
+    try {
+      const history = await getHistory(15);
+      if (Array.isArray(history) && history.length > 0) {
+        window.__recentlyPlayedHistory = history;
+        shelf.style.display = 'block';
+        container.innerHTML = history.map((track, idx) => 
+          window.renderSongCard(track, idx, 'window.__recentlyPlayedHistory', { badge: 'Recent' })
+        ).join('');
+      } else {
+        shelf.style.display = 'none';
+      }
+    } catch(e) {
+      shelf.style.display = 'none';
+    }
+  };
+
+  // 2. TRENDING NOW SHELF
+  window.renderTrendingShelf = function() {
+    const container = document.getElementById('home-trending-container');
+    if (!container) return;
+
+    const trendingCat = CATALOG_CATEGORIES.find(c => c.id === 'cat-trending');
+    const tracks = trendingCat ? trendingCat.tracks : [];
+    window.__trendingTracks = tracks;
+
+    container.innerHTML = tracks.map((track, idx) => 
+      window.renderSongCard(track, idx, 'window.__trendingTracks', { badge: 'Trending' })
+    ).join('');
+  };
+
+  // 5. NEW RELEASES SHELF
+  function renderReleaseCards(container, tracks) {
+    if (!container || !Array.isArray(tracks) || tracks.length === 0) return;
+    window.__freshNewReleases = tracks;
+    container.innerHTML = tracks.map((track, idx) => 
+      window.renderSongCard(track, idx, 'window.__freshNewReleases', { badge: 'New Drop' })
+    ).join('');
   }
 
   window.refreshNewReleasesLive = function() {
@@ -652,48 +945,68 @@ window.addEventListener('error', function(e) {
   };
 
   window.renderHomeDiscovery = function() {
-    // 0. Live Fresh New Releases (Auto-Updated Daily)
-    window.renderNewReleasesShelf();
+    // Top Greeting
+    window.renderPersonalizedGreeting();
 
-    // 1. Quick Picks 6-Tile Grid
+    // 1. Recently Played
+    window.renderRecentlyPlayedShelf();
+
+    // 2. Trending Now
+    window.renderTrendingShelf();
+
+    // 3. Popular Songs (Quick Picks Grid)
     const qpContainer = document.getElementById('home-quick-picks-container');
     if (qpContainer) {
       const qpList = getQuickPicks(6);
       window.__quickPicks = qpList;
       qpContainer.innerHTML = qpList.map((track, idx) => `
-        <div class="quick-pick-tile hover-glow" onclick="window.playTrackDirect(window.__quickPicks[${idx}], window.__quickPicks)" style="cursor: pointer; display: flex; align-items: center; gap: 0.85rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.5rem; transition: all 0.25s ease;">
+        <div class="quick-pick-tile hover-glow" onclick="window.playTrackDirect(window.__quickPicks[${idx}], window.__quickPicks)" style="cursor: pointer; display: flex; align-items: center; gap: 0.85rem; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.5rem; transition: all 0.25s ease;">
           <img src="${track.coverUrl || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" class="qp-thumb" style="width: 54px; height: 54px; border-radius: 8px; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
           <div class="qp-info" style="flex: 1; overflow: hidden;">
             <div class="qp-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</div>
             <div class="qp-artist" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</div>
           </div>
-          <button class="qp-play-btn btn-circle-play" style="width: 38px; height: 38px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-right: 0.5rem;" title="Play Now">
+          <button class="qp-play-btn btn-circle-play" style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-right: 0.5rem;" title="Play Now">
             <i class="fa-solid fa-play" style="font-size: 0.85rem;"></i>
           </button>
         </div>
       `).join('');
     }
 
-    // 2. Featured Artists Carousel
+    // 4. Popular Artists
     const artContainer = document.getElementById('home-featured-artists-container');
     if (artContainer) {
       const artists = getFeaturedArtists();
       window.__featuredArtists = artists;
       artContainer.innerHTML = artists.map((art) => `
         <div class="artist-card-item hover-glow" onclick="window.openArtistView('${art.name.replace(/'/g, "\\'")}')" style="min-width: 140px; text-align: center; cursor: pointer; flex-shrink: 0;">
-          <div class="artist-avatar-wrap" style="position: relative; width: 120px; height: 120px; margin: 0 auto 0.75rem auto; border-radius: 50%; overflow: hidden; border: 2px solid var(--border-glass);">
+          <div class="artist-avatar-wrap" style="position: relative; width: 120px; height: 120px; margin: 0 auto 0.75rem auto; border-radius: 50%; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
             <img src="${art.avatar || './music-cover.svg'}" alt="${escapeHtml(art.name)}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
             <div class="artist-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
               <i class="fa-solid fa-play" style="color: #fff; font-size: 1.5rem;"></i>
             </div>
           </div>
           <div class="artist-card-name" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(art.name)}</div>
-          <div class="artist-card-role" style="font-size: 0.75rem; color: #c084fc; margin-top: 2px;"><i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 0.65rem;"></i> ${escapeHtml(art.genre.split('/')[0])}</div>
+          <div class="artist-card-role" style="font-size: 0.75rem; color: #a5b4fc; margin-top: 2px;"><i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 0.65rem;"></i> ${escapeHtml(art.genre.split('/')[0])}</div>
         </div>
       `).join('');
     }
 
-    // 3. Curated Playlists Carousel
+    // 5. New Releases Shelf
+    window.renderNewReleasesShelf();
+
+    // 6. Recommended For You (Smart Seed)
+    const recContainer = document.getElementById('home-similar-shelf-tracks');
+    if (recContainer) {
+      const popCat = CATALOG_CATEGORIES.find(c => c.id === 'cat-english-pop') || CATALOG_CATEGORIES[0];
+      const recTracks = popCat ? popCat.tracks : [];
+      window.__homeRecTracks = recTracks;
+      recContainer.innerHTML = recTracks.map((track, idx) => 
+        window.renderSongCard(track, idx, 'window.__homeRecTracks', { badge: 'Recommended' })
+      ).join('');
+    }
+
+    // 7. Curated Playlists Carousel
     const plContainer = document.getElementById('home-curated-playlists-container');
     if (plContainer) {
       const playlists = getCuratedPlaylists();
@@ -712,7 +1025,7 @@ window.addEventListener('error', function(e) {
       `).join('');
     }
 
-    // 4. Dynamic Genre & Mood Shelves
+    // 8. Dynamic Genre & Mood Shelves
     const shelvesContainer = document.getElementById('dynamic-home-shelves');
     if (shelvesContainer && CATALOG_CATEGORIES && CATALOG_CATEGORIES.length > 0) {
       window.__catalogCategories = CATALOG_CATEGORIES;
@@ -725,30 +1038,18 @@ window.addEventListener('error', function(e) {
               </h3>
               <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">${cat.subtitle}</p>
             </div>
-            <button class="btn-see-all" onclick="window.playPresetQuery('${cat.title}')" style="background: none; border: none; color: #c084fc; font-size: 0.82rem; font-weight: 700; cursor: pointer;">Explore All <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
+            <button class="btn-see-all" onclick="window.playPresetQuery('${cat.title}')" style="background: none; border: none; color: #818cf8; font-size: 0.82rem; font-weight: 700; cursor: pointer;">Explore All <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
           </div>
           <div class="shelf-carousel" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;">
-            ${cat.tracks.map((t, tIdx) => `
-              <div class="music-card hover-glow" onclick="window.playCatalogTrack(${cIdx}, ${tIdx})" style="min-width: 165px; width: 165px; flex-shrink: 0;">
-                <div class="card-image-wrapper">
-                  <img src="${t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(t.title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Track"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                  <span style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 800; background: rgba(8,10,16,0.85); backdrop-filter: blur(6px); color: ${cat.color}; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 6px;">Studio Master</span>
-                </div>
-                <div class="card-meta">
-                  <div class="card-title" title="${escapeHtml(t.title)}">${escapeHtml(t.title)}</div>
-                  <div class="card-artist" title="${escapeHtml(t.artist)}">${escapeHtml(t.artist)}</div>
-                </div>
-              </div>
-            `).join('')}
+            ${cat.tracks.map((t, tIdx) => 
+              window.renderSongCard(t, tIdx, `window.__catalogCategories[${cIdx}].tracks`, { badge: 'Studio Master' })
+            ).join('')}
           </div>
         </section>
       `).join('');
     }
 
-    // 5. Regional Language Hubs
+    // 9. Regional Language Hubs
     const langContainer = document.getElementById('language-shelves-container');
     if (langContainer && LANGUAGE_PLAYLISTS && LANGUAGE_PLAYLISTS.length > 0) {
       window.__langPlaylists = LANGUAGE_PLAYLISTS;
@@ -761,24 +1062,12 @@ window.addEventListener('error', function(e) {
               </h3>
               <p class="shelf-subtitle" style="font-size: 0.8rem; color: #b3b3b3; margin-top: 2px;">${escapeHtml(lang.meta.subtitle)}</p>
             </div>
-            <button class="btn-see-all" onclick="window.playPresetQuery('${lang.meta.title}')" style="background: none; border: none; color: #c084fc; font-size: 0.82rem; font-weight: 700; cursor: pointer;">See All <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
+            <button class="btn-see-all" onclick="window.playPresetQuery('${lang.meta.title}')" style="background: none; border: none; color: #818cf8; font-size: 0.82rem; font-weight: 700; cursor: pointer;">See All <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></button>
           </div>
           <div class="shelf-carousel" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.85rem;">
-            ${lang.tracks.map((track, tIdx) => `
-              <div class="music-card hover-glow" onclick="window.playLanguageTrack(${lIdx}, ${tIdx})" style="min-width: 165px; width: 165px; flex-shrink: 0;">
-                <div class="card-image-wrapper">
-                  <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-                  <div class="card-play-overlay">
-                    <button class="btn-card-play" title="Play Track"><i class="fa-solid fa-play"></i></button>
-                  </div>
-                  <span style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 800; background: rgba(8,10,16,0.85); backdrop-filter: blur(6px); color: ${lang.meta.color}; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 6px;">Studio Master</span>
-                </div>
-                <div class="card-meta">
-                  <div class="card-title" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</div>
-                  <div class="card-artist" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</div>
-                </div>
-              </div>
-            `).join('')}
+            ${lang.tracks.map((track, tIdx) => 
+              window.renderSongCard(track, tIdx, `window.__langPlaylists[${lIdx}].tracks`, { badge: 'Studio Master' })
+            ).join('')}
           </div>
         </section>
       `).join('');
@@ -1016,34 +1305,9 @@ window.addEventListener('error', function(e) {
       window.playTrackDirect(track, window.__searchResults);
     };
 
-    container.innerHTML = tracks.map((track, idx) => `
-      <div class="track-card hover-glow" onclick="window.playSearchTrack(${idx})">
-        <div class="card-cover-wrap">
-          <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" class="card-cover" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-          <div class="card-play-overlay">
-            <button class="btn-card-play" title="Play Track">
-              <i class="fa-solid fa-play"></i>
-            </button>
-          </div>
-          <span style="position: absolute; top: 8px; right: 8px; font-size: 0.65rem; font-weight: 800; background: rgba(8,10,16,0.85); backdrop-filter: blur(8px); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); padding: 2px 7px; border-radius: 6px; letter-spacing: 0.03em;">${escapeHtml(track.source || '320kbps Master')}</span>
-        </div>
-        <div class="card-info">
-          <h4 class="card-title" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</h4>
-          <p class="card-artist" title="${escapeHtml(track.artist)}" onclick="event.stopPropagation(); window.openArtistView('${track.artist.replace(/'/g, "\\'")}')">${escapeHtml(track.artist)}</p>
-        </div>
-        <div class="card-actions" onclick="event.stopPropagation()" style="display: flex; gap: 0.35rem; margin-top: 0.75rem; justify-content: flex-end;">
-          <button class="btn-player-icon" title="Download HD Song Wallpaper" onclick="window.downloadTrackWallpaper(window.__searchResults[${idx}])">
-            <i class="fa-solid fa-image" style="font-size: 0.9rem;"></i>
-          </button>
-          <button class="btn-player-icon" title="Add to Favorites" onclick="window.toggleFavoriteTrack(window.__searchResults[${idx}])">
-            <i class="fa-regular fa-heart" style="font-size: 0.9rem;"></i>
-          </button>
-          <button class="btn-player-icon" title="Add to Playlist" onclick="window.openAddToPlaylistModal(window.__searchResults[${idx}])">
-            <i class="fa-solid fa-list-plus" style="font-size: 0.9rem;"></i>
-          </button>
-        </div>
-      </div>
-    `).join('');
+    container.innerHTML = tracks.map((track, idx) => 
+      window.renderSongCard(track, idx, 'window.__searchResults', { badge: track.source || '320kbps Master' })
+    ).join('');
   }
 
   // ---------------------------------------------------------------------------

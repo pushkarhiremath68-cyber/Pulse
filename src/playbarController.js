@@ -639,6 +639,10 @@ function updatePlayPauseUI() {
     if (isPlaying) disk.classList.add('playing-spin');
     else disk.classList.remove('playing-spin');
   });
+
+  if (typeof window !== 'undefined' && typeof window.updateActiveCardStates === 'function') {
+    window.updateActiveCardStates(currentTrack, isPlaying);
+  }
 }
 
 function updateVolumeUI() {
@@ -696,6 +700,10 @@ function updateTrackInfoUI(track) {
   });
 
   updateFavoriteButtonUI(track.id);
+
+  if (typeof window !== 'undefined' && typeof window.updateActiveCardStates === 'function') {
+    window.updateActiveCardStates(track, isPlaying);
+  }
 }
 
 export function downloadCurrentTrackWallpaper() {
