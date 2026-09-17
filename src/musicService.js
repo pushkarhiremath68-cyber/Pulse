@@ -237,9 +237,9 @@ export async function searchJioSaavnDirect(query, limit = 25) {
     }
   };
 
-  // 1. Primary: High-speed live JioSaavn API endpoint (Instant <400ms direct 320k stream resolution)
+  // 1. Primary: High-speed live JioSaavn API endpoint
   try {
-    const liveApiUrl = `https://saavn-api-seven.vercel.app/api/search/songs?query=${encodeURIComponent(cleanQ)}`;
+    const liveApiUrl = `https://jiosaavn-api.vercel.app/search?query=${encodeURIComponent(cleanQ)}`;
     const liveRes = await fetch(liveApiUrl, { signal: AbortSignal.timeout(3000) });
     if (liveRes.ok) {
       const data = await liveRes.json();
@@ -675,113 +675,54 @@ export async function resolveFullAudioStream(track) {
     return persisted;
   }
 
-  let finalUrl = null;
-  let finalSource = 'Studio Master Audio (320kbps)';
-  const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
   let ytIdToUse = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
 
-  // =====================================================================
-  // TIER 1: HIGH-BITRATE STUDIO MASTER AUDIO (Direct 320k/160k AAC stream)
-  // Plays directly on HTML5 Native Audio — 100% reliable across all browsers
-  // =====================================================================
-  if (query.length > 1) {
-    try {
-      const saavnResults = await searchJioSaavnDirect(query, 5);
-      if (saavnResults && saavnResults.length > 0) {
-        const verified = saavnResults.find(s => 
-          s.streamUrl && 
-          s.streamUrl.startsWith('http') && 
-          !s.streamUrl.includes('preview') &&
-          isSaavnResultMatching(s, track)
-        ) || saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http'));
-
-        if (verified) {
-          finalUrl = verified.streamUrl;
-          finalSource = 'Studio Master Audio (320kbps)';
-          if (!track.coverUrl || track.coverUrl.includes('pulse-logo')) {
-            track.coverUrl = verified.coverUrl;
-          }
-        }
-      }
-    } catch (e) {}
-  }
-
-  // TIER 2: Title-only JioSaavn search fallback (if artist name had variations)
-  if (!finalUrl && cleanTitle.length > 1) {
-    try {
-      const titleResults = await searchJioSaavnDirect(cleanTitle, 3);
-      if (titleResults && titleResults.length > 0) {
-        const verified = titleResults.find(s => s.streamUrl && s.streamUrl.startsWith('http'));
-        if (verified) {
-          finalUrl = verified.streamUrl;
-          finalSource = 'Studio Master Audio (320kbps)';
-        }
-      }
-    } catch (e) {}
-  }
-
-  // TIER 3: YouTube Piped Opus Direct Audio Stream
-  if (!finalUrl && ytIdToUse) {
-    try {
-      const ytm = await resolvePipedAudioStream(ytIdToUse);
-      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
-        finalUrl = ytm.streamUrl;
-        finalSource = 'Studio Master Opus (YouTube)';
-      }
-    } catch (e) {}
-  }
-
-  // TIER 4: Search YouTube for a video ID if none exists yet
-  if (!ytIdToUse) {
-    try {
-      const foundYtId = await resolveYouTubeVideoId(cleanTitle, cleanArtist);
-      if (foundYtId) {
-        ytIdToUse = foundYtId;
-        track.ytId = foundYtId;
-        console.log('[Pulse Stream Resolver] Resolved YouTube ID for:', cleanTitle, '->', foundYtId);
-      }
-    } catch (e) {}
-  }
-
-  // TIER 4B: Try Piped audio stream with newly resolved ytId
-  if (!finalUrl && ytIdToUse) {
-    try {
-      const ytm = await resolvePipedAudioStream(ytIdToUse);
-      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
-        finalUrl = ytm.streamUrl;
-        finalSource = 'Studio Master Opus (YouTube)';
-      }
-    } catch (e) {}
-  }
-
-  if (finalUrl) {
-    const resolved = {
-      streamUrl: finalUrl,
-      duration: track.duration || 220,
-      source: finalSource
-    };
-    RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
-    savePersistedStream(cacheKey, resolved);
-    return resolved;
-  }
-
-  // TIER 5: Official YouTube IFrame Embed (guaranteed backup)
-  if (ytIdToUse) {
-    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'YouTube Audio', duration: track.duration || 220 };
+  // 1. FASTEST TIER: If track already has a verified YouTube ID, play via YouTube IFrame immediately (0ms!)
+  if (ytIdToUse && ytIdToUse.length >= 8) {
+    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }
 
-  // TIER 6: Final Fallback — YouTube keyword search
+  // 2. TIER 2: Fast on-demand YouTube ID resolution using active Invidious/Piped fleet (<400ms)
   try {
-    const fallbackSearch = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 1);
-    if (fallbackSearch && fallbackSearch.length > 0 && fallbackSearch[0].ytId) {
-      track.ytId = fallbackSearch[0].ytId;
-      const resolved = { streamUrl: 'yt-iframe', ytId: fallbackSearch[0].ytId, source: 'YouTube Audio', duration: track.duration || 220 };
+    const foundYtId = await resolveYouTubeVideoId(cleanTitle, cleanArtist);
+    if (foundYtId && foundYtId.length >= 8) {
+      ytIdToUse = foundYtId;
+      track.ytId = foundYtId;
+      const resolved = { streamUrl: 'yt-iframe', ytId: foundYtId, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
       RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
       return resolved;
     }
   } catch (e) {}
+
+  // 3. TIER 3: YouTube Music search fallback
+  try {
+    const fallbackSearch = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 2);
+    if (fallbackSearch && fallbackSearch.length > 0 && fallbackSearch[0].ytId) {
+      track.ytId = fallbackSearch[0].ytId;
+      const resolved = { streamUrl: 'yt-iframe', ytId: fallbackSearch[0].ytId, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
+      RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+      return resolved;
+    }
+  } catch (e) {}
+
+  // 4. TIER 4: Try JioSaavn search if title exists
+  const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
+  if (query.length > 1) {
+    try {
+      const saavnResults = await searchJioSaavnDirect(query, 3);
+      if (saavnResults && saavnResults.length > 0) {
+        const verified = saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http') && !s.streamUrl.includes('preview'));
+        if (verified) {
+          const resolved = { streamUrl: verified.streamUrl, duration: track.duration || 220, source: 'Studio Master Audio (320kbps)' };
+          RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+          savePersistedStream(cacheKey, resolved);
+          return resolved;
+        }
+      }
+    } catch (e) {}
+  }
 
   return null;
 }

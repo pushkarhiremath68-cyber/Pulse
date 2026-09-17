@@ -9,26 +9,44 @@
 
 // Active Verified High-Performance Piped & Invidious Instances (2026 Resilient Fleet — Refreshed)
 export const PIPED_INSTANCES = [
+  'https://pipedapi.ducks.party',
+  'https://piped.mha.fi',
   'https://pipedapi.kavin.rocks',
-  'https://pipedapi.r4fo.com',
-  'https://api.piped.projectsegfau.lt',
-  'https://pipedapi.in.projectsegfau.lt',
-  'https://pipedapi.leptons.xyz',
-  'https://piped-api.lunar.icu',
-  'https://pipedapi.adminforge.de',
-  'https://pipedapi.darkness.services'
+  'https://api.piped.projectsegfau.lt'
 ];
 
 export const INVIDIOUS_INSTANCES = [
-  'https://inv.nadeko.net',
-  'https://invidious.protokolla.fi',
-  'https://iv.ggtyler.dev',
+  'https://invidious.f5.si',
   'https://invidious.flokinet.to',
-  'https://invidious.privacyredirect.com',
-  'https://yewtu.be',
-  'https://inv.tux.pizza',
-  'https://invidious.perennialte.ch'
+  'https://invidious.private.coffee',
+  'https://inv.nadeko.net'
 ];
+
+// Dynamic Invidious health cache
+let dynamicInstancesCache = null;
+let dynamicInstancesTime = 0;
+
+export async function getHealthyInvidiousInstances() {
+  if (dynamicInstancesCache && (Date.now() - dynamicInstancesTime < 15 * 60 * 1000)) {
+    return dynamicInstancesCache;
+  }
+  try {
+    const res = await fetch('https://api.invidious.io/instances.json?sort_by=health', { signal: AbortSignal.timeout(3000) });
+    if (res.ok) {
+      const list = await res.json();
+      const corsHealthy = list
+        .filter(i => i[1]?.type === 'https' && i[1]?.cors === true && i[1]?.api === true)
+        .map(i => i[1]?.uri)
+        .filter(Boolean);
+      if (corsHealthy.length > 0) {
+        dynamicInstancesCache = corsHealthy;
+        dynamicInstancesTime = Date.now();
+        return corsHealthy;
+      }
+    }
+  } catch (e) {}
+  return [];
+}
 
 // YouTube Video ID Resolution Cache
 const YT_ID_CACHE = new Map();
@@ -230,11 +248,11 @@ export async function searchYouTubeMusic(query, limit = 30) {
     }
   } catch (e) {}
 
-  // 2. Secondary: Fallback to active Piped & Invidious nodes
+  // 2. Secondary: Fallback to active Invidious & Piped nodes
   const nodesToRace = [
-    { type: 'piped', url: `${PIPED_INSTANCES[0]}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` },
-    { type: 'piped', url: `${PIPED_INSTANCES[1]}/search?q=${encodeURIComponent(cleanQ)}&filter=all` },
     { type: 'invidious', url: `${INVIDIOUS_INSTANCES[0]}/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` },
+    { type: 'piped', url: `${PIPED_INSTANCES[0]}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` },
+    { type: 'piped', url: `${PIPED_INSTANCES[1]}/search?q=${encodeURIComponent(cleanQ)}&filter=music_songs` },
     { type: 'invidious', url: `${INVIDIOUS_INSTANCES[1]}/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video` }
   ];
 
@@ -242,7 +260,7 @@ export async function searchYouTubeMusic(query, limit = 30) {
     const responses = await Promise.allSettled(
       nodesToRace.map(async (node) => {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2500);
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
         try {
           const res = await fetch(node.url, { signal: controller.signal });
           clearTimeout(timeoutId);
@@ -261,14 +279,9 @@ export async function searchYouTubeMusic(query, limit = 30) {
     for (const r of responses) {
       if (r.status === 'fulfilled' && Array.isArray(r.value)) {
         for (const item of r.value) {
-          let videoId = '';
-          if (item.videoId) {
-            videoId = item.videoId;
-          } else if (item.url) {
-            videoId = item.url.replace('/watch?v=', '').replace('/streams/', '').trim();
-          }
+          let videoId = (item.videoId || item.url || '').replace('/watch?v=', '').replace('/streams/', '').split('&')[0].split('?')[0].trim();
 
-          if (videoId && !seenIds.has(videoId) && videoId.length >= 8) {
+          if (videoId && !seenIds.has(videoId) && videoId.length >= 8 && videoId.length <= 15) {
             seenIds.add(videoId);
             results.push({
               id: `ytm-${videoId}`,
@@ -287,6 +300,42 @@ export async function searchYouTubeMusic(query, limit = 30) {
       }
     }
   } catch (e) {}
+
+  // 3. Tertiary: If static nodes returned 0 results, discover healthy Invidious instance dynamically
+  if (results.length === 0) {
+    try {
+      const dynamicInstances = await getHealthyInvidiousInstances();
+      for (const instance of dynamicInstances.slice(0, 2)) {
+        try {
+          const dRes = await fetch(`${instance}/api/v1/search?q=${encodeURIComponent(cleanQ)}&type=video`, { signal: AbortSignal.timeout(3000) });
+          if (dRes.ok) {
+            const items = await dRes.json();
+            if (Array.isArray(items)) {
+              for (const item of items) {
+                const videoId = (item.videoId || item.url || '').replace('/watch?v=', '').replace('/streams/', '').split('&')[0].split('?')[0].trim();
+                if (videoId && !seenIds.has(videoId) && videoId.length >= 8 && videoId.length <= 15) {
+                  seenIds.add(videoId);
+                  results.push({
+                    id: `ytm-${videoId}`,
+                    ytId: videoId,
+                    title: item.title || 'Untitled Track',
+                    artist: item.author || item.artist || 'YouTube Artist',
+                    album: 'YouTube Release',
+                    coverUrl: item.thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+                    duration: parseInt(item.lengthSeconds, 10) || 220,
+                    streamUrl: '',
+                    source: 'Studio Master Audio (YouTube)'
+                  });
+                }
+                if (results.length >= limit) break;
+              }
+            }
+          }
+          if (results.length > 0) break;
+        } catch (e) {}
+      }
+    } catch (e) {}
+  }
 
   if (results.length > 0) {
     SEARCH_CACHE.set(cleanQ, results.slice(0, limit));
@@ -349,7 +398,7 @@ export async function fetchYouTubeMusicCharts(country = 'GLOBAL', limit = 30) {
 
 /**
  * Resolves a YouTube Video ID for ANY track given its title and artist.
- * Uses multiple strategies: Piped search, Invidious search, and direct YouTube scraping.
+ * Uses multiple strategies: Invidious search, Piped search, dynamic discovery, and local backend.
  * Returns a YouTube Video ID string or null.
  */
 export async function resolveYouTubeVideoId(title, artist) {
@@ -365,8 +414,30 @@ export async function resolveYouTubeVideoId(title, artist) {
     return YT_ID_CACHE.get(cacheKey);
   }
 
-  // Strategy 1: Piped search (fast, no CORS issues)
-  const aliveNodes = PIPED_INSTANCES.filter(isInstanceAlive).slice(0, 3);
+  // Strategy 1: Invidious search (fastest, full CORS support)
+  const aliveInv = INVIDIOUS_INSTANCES.filter(isInstanceAlive).slice(0, 3);
+  for (const node of aliveInv) {
+    try {
+      const res = await fetch(`${node}/api/v1/search?q=${encodeURIComponent(query)}&type=video`, { signal: AbortSignal.timeout(2500) });
+      if (res.ok) {
+        const items = await res.json();
+        if (Array.isArray(items)) {
+          for (const item of items) {
+            const videoId = (item.videoId || item.url || '').replace('/watch?v=', '').replace('/streams/', '').split('&')[0].split('?')[0].trim();
+            if (videoId && videoId.length >= 8 && videoId.length <= 15) {
+              YT_ID_CACHE.set(cacheKey, videoId);
+              return videoId;
+            }
+          }
+        }
+      }
+    } catch (e) {
+      markInstanceDead(node);
+    }
+  }
+
+  // Strategy 2: Piped search (high accuracy)
+  const aliveNodes = PIPED_INSTANCES.filter(isInstanceAlive).slice(0, 2);
   for (const node of aliveNodes) {
     try {
       const res = await fetch(`${node}/search?q=${encodeURIComponent(query)}&filter=music_songs`, { signal: AbortSignal.timeout(2500) });
@@ -374,11 +445,8 @@ export async function resolveYouTubeVideoId(title, artist) {
         const json = await res.json();
         const items = Array.isArray(json) ? json : (json.items || []);
         for (const item of items) {
-          let videoId = item.videoId || '';
-          if (!videoId && item.url) {
-            videoId = item.url.replace('/watch?v=', '').replace('/streams/', '').trim();
-          }
-          if (videoId && videoId.length >= 8 && videoId.length <= 12) {
+          const videoId = (item.videoId || item.url || '').replace('/watch?v=', '').replace('/streams/', '').split('&')[0].split('?')[0].trim();
+          if (videoId && videoId.length >= 8 && videoId.length <= 15) {
             YT_ID_CACHE.set(cacheKey, videoId);
             return videoId;
           }
@@ -389,28 +457,29 @@ export async function resolveYouTubeVideoId(title, artist) {
     }
   }
 
-  // Strategy 2: Invidious search
-  const aliveInv = INVIDIOUS_INSTANCES.filter(isInstanceAlive).slice(0, 2);
-  for (const node of aliveInv) {
-    try {
-      const res = await fetch(`${node}/api/v1/search?q=${encodeURIComponent(query)}&type=video`, { signal: AbortSignal.timeout(2500) });
-      if (res.ok) {
-        const items = await res.json();
-        if (Array.isArray(items)) {
-          for (const item of items) {
-            if (item.videoId && item.videoId.length >= 8) {
-              YT_ID_CACHE.set(cacheKey, item.videoId);
-              return item.videoId;
+  // Strategy 3: Dynamic Invidious auto-discovery
+  try {
+    const dynamicInstances = await getHealthyInvidiousInstances();
+    for (const node of dynamicInstances.slice(0, 2)) {
+      try {
+        const res = await fetch(`${node}/api/v1/search?q=${encodeURIComponent(query)}&type=video`, { signal: AbortSignal.timeout(2500) });
+        if (res.ok) {
+          const items = await res.json();
+          if (Array.isArray(items)) {
+            for (const item of items) {
+              const videoId = (item.videoId || item.url || '').replace('/watch?v=', '').replace('/streams/', '').split('&')[0].split('?')[0].trim();
+              if (videoId && videoId.length >= 8 && videoId.length <= 15) {
+                YT_ID_CACHE.set(cacheKey, videoId);
+                return videoId;
+              }
             }
           }
         }
-      }
-    } catch (e) {
-      markInstanceDead(node);
+      } catch (e) {}
     }
-  }
+  } catch (e) {}
 
-  // Strategy 3: Backend search endpoint (works in dev via Vite middleware)
+  // Strategy 4: Backend search endpoint (works in dev via Vite middleware)
   try {
     const localBase = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : 'http://localhost:5173';
     const res = await fetch(`${localBase}/api/yt/search?q=${encodeURIComponent(query)}`, { signal: AbortSignal.timeout(3000) });

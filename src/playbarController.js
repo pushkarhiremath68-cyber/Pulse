@@ -42,6 +42,8 @@ let playedHistory = [];
 let activeEngine = 'native'; // 'native' | 'youtube'
 let ytPlayer = null;
 let ytPlayerReady = false;
+let ytInitializing = false;
+let pendingYtQueue = [];
 let ytTimeInterval = null;
 
 // Initialize Native HTML5 Pure Audio Element
@@ -101,7 +103,7 @@ function getAudio() {
 
     audio.addEventListener('error', (e) => {
       console.warn('[Pulse Audio Player] Native Audio stream error event:', e);
-      if (activeEngine === 'native' && currentTrack && isPlaying) {
+      if (activeEngine === 'native' && currentTrack) {
         const ytId = currentTrack.ytId || (currentTrack.id && currentTrack.id.startsWith('ytm-') ? currentTrack.id.replace('ytm-', '') : null);
         if (ytId) {
           console.log('[Pulse Audio Player] Auto-recovering via YouTube stream fallback for:', ytId);
@@ -282,6 +284,14 @@ export async function playTrack(track, queue = null) {
       console.log('[Pulse Studio Master] Playing via pre-verified native stream:', track.source || 'Direct');
       return;
     }
+  }
+
+  // 1B. FAST PATH: If track already has verified YouTube ID (from search, catalog, or enrichment), play immediately via YouTube IFrame
+  const knownYtId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+  if (knownYtId && knownYtId.length >= 8) {
+    console.log('[Pulse Studio Master] Fast-path immediate YouTube IFrame playback for:', knownYtId);
+    const ytSuccess = await playOnYouTubeIframe(knownYtId, track);
+    if (ytSuccess) return;
   }
 
   // 2. PRIMARY TIER: Resolve High-Bitrate Studio Master Stream (320kbps / 160kbps AAC)
@@ -1083,13 +1093,16 @@ export async function playOnNativeAudio(track) {
 // INITIALIZE YOUTUBE IFRAME API & HYBRID PLAYBACK RESOLVER
 // -----------------------------------------------------------------------------
 function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
-  if (ytPlayer && ytPlayerReady) return;
+  if (ytPlayerReady || ytInitializing || ytPlayer) return;
+  ytInitializing = true;
+
   let container = document.getElementById('yt-player-container');
   if (!container) {
     let host = document.getElementById('global-yt-host');
     if (!host) {
       host = document.createElement('div');
       host.id = 'global-yt-host';
+      host.className = 'global-yt-dock';
       host.style.cssText = 'position: fixed; bottom: 0; right: 0; width: 240px; height: 135px; z-index: -1; opacity: 0.01; pointer-events: none; overflow: hidden;';
       document.body.appendChild(host);
     }
@@ -1114,10 +1127,20 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
         events: {
           'onReady': (event) => {
             ytPlayerReady = true;
+            ytInitializing = false;
             try {
               ytPlayer.setVolume(currentVolume * 100);
             } catch (e) {}
             console.log('[Pulse Studio Master] YouTube IFrame API Ready — Primary engine online.');
+            // Instantly execute any queued play requests
+            while (pendingYtQueue.length > 0) {
+              const item = pendingYtQueue.shift();
+              if (item && item.videoId && item.track) {
+                playOnYouTubeIframe(item.videoId, item.track).then(res => {
+                  if (typeof item.resolve === 'function') item.resolve(res);
+                });
+              }
+            }
           },
           'onStateChange': (event) => {
             if (activeEngine !== 'youtube') return;
@@ -1159,6 +1182,7 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
         }
       });
     } catch (e) {
+      ytInitializing = false;
       console.warn('[Pulse Studio Master] Error instantiating YT Player:', e);
       // Retry up to 3 times with increasing delay
       if (retryCount < 3) {
@@ -1178,6 +1202,8 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
         }, 1000 * (retryCount + 1));
       }
     }
+  } else {
+    ytInitializing = false;
   }
 }
 
@@ -1215,7 +1241,7 @@ function ensureYouTubeReady() {
       clearInterval(ytPollInterval);
       console.warn('[Pulse] YouTube IFrame API did not load after 10s');
     }
-  }, 200);
+  }, 100);
 }
 
 export async function playOnYouTubeIframe(videoId, track) {
@@ -1263,23 +1289,29 @@ export async function playOnYouTubeIframe(videoId, track) {
       }
     }
 
-    if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === 'function') {
+    if (ytPlayer && (ytPlayerReady || typeof ytPlayer.loadVideoById === 'function')) {
       executePlay();
     } else {
-      // Ensure YouTube is initializing
+      pendingYtQueue.push({ videoId: cleanId, track, resolve });
       ensureYouTubeReady();
       let attempts = 0;
       const interval = setInterval(() => {
         attempts++;
-        if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === 'function') {
+        if (ytPlayer && (ytPlayerReady || typeof ytPlayer.loadVideoById === 'function')) {
           clearInterval(interval);
-          executePlay();
+          const idx = pendingYtQueue.findIndex(p => p.videoId === cleanId);
+          if (idx !== -1) {
+            pendingYtQueue.splice(idx, 1);
+            executePlay();
+          }
         } else if (attempts > 50) {
           clearInterval(interval);
+          const idx = pendingYtQueue.findIndex(p => p.videoId === cleanId);
+          if (idx !== -1) pendingYtQueue.splice(idx, 1);
           console.warn('[Pulse Studio Master] YouTube IFrame failed to become ready after 10s');
           resolve(false);
         }
-      }, 200);
+      }, 100);
     }
   });
 }

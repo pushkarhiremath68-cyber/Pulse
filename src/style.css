@@ -2857,5 +2857,16 @@ input:checked + .switch-toggle-slider:before {
   user-select: none;
 }
 
-
-
+/* Global YouTube IFrame Background Engine Host */
+.global-yt-dock,
+#global-yt-host {
+  position: fixed !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  width: 240px !important;
+  height: 135px !important;
+  z-index: -1 !important;
+  opacity: 0.01 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
