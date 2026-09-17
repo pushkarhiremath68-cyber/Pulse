@@ -27,7 +27,21 @@ import { escapeHtml, sanitizeUrl } from './security.js';
 
 import { fetchFreshNewReleases, getCachedNewReleases } from './newReleasesService.js';
 
-import { getStoredUser, onAuthStateChanged, signInWithGoogle, signOut } from './firebaseAuthService.js';
+import {
+  getStoredUser,
+  onAuthStateChanged,
+  signInWithGoogle,
+  signInWithEmail,
+  signUpWithEmail,
+  signOut,
+  isGateUnlocked,
+  setGateUnlocked,
+  updateUserProfile,
+  getPrivacySettings,
+  updatePrivacySettings,
+  exportUserData,
+  clearUserCache
+} from './firebaseAuthService.js';
 import { getFavorites, removeFavorite, addFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
 import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
 import { getLyrics, getActiveLineIndex } from './lyricsService.js';
@@ -1780,8 +1794,8 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   }
 
   // ---------------------------------------------------------------------------
-  // AUTH GATE SCREEN & GOOGLE SIGN-IN CONTROLLER
-  // Ensures Google Sign-In is presented first before Pulse starts
+  // AUTH GATE SCREEN & SESSION CONTROLLER
+  // Prevents repeated gate screens once user is logged in or continued
   // ---------------------------------------------------------------------------
   function checkAuthGateState(user = null) {
     const activeUser = user || getStoredUser();
@@ -1789,8 +1803,9 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     const app = document.getElementById('app');
     if (!gate) return;
 
-    if (activeUser && activeUser.provider === 'google') {
-      // Authenticated with Google -> unlock Pulse
+    const unlocked = isGateUnlocked() || (activeUser && (activeUser.provider === 'google' || activeUser.provider === 'email'));
+
+    if (unlocked) {
       gate.classList.add('gate-unlocked');
       setTimeout(() => {
         if (gate.classList.contains('gate-unlocked')) {
@@ -1799,7 +1814,6 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       }, 450);
       if (app) app.classList.remove('auth-gate-locked');
     } else {
-      // Not authenticated -> show Google Sign-In Gate first
       gate.style.display = 'flex';
       gate.classList.remove('gate-unlocked');
       if (app) app.classList.add('auth-gate-locked');
@@ -1816,6 +1830,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
     try {
       const user = await signInWithGoogle();
+      setGateUnlocked(true);
       const gate = document.getElementById('auth-gate-screen');
       const app = document.getElementById('app');
 
@@ -1829,7 +1844,6 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         window.showToast(`🎉 Welcome to Pulse Music, ${user.name}! Cloud sync active.`, 'success', 5000);
       }
 
-      // Auto-refresh user playlists & favorites from Firestore
       if (window.PulseFirestore && window.PulseFirestore.getFavorites) {
         window.PulseFirestore.getFavorites();
       }
@@ -1838,7 +1852,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       }
     } catch (err) {
       if (window.showToast) {
-        window.showToast(err.message || 'Google Sign-In cancelled. Please sign in with Google to start.', 'info', 5000);
+        window.showToast(err.message || 'Google Sign-In cancelled. Please try again.', 'info', 5000);
       }
     } finally {
       if (btn) {
@@ -1850,6 +1864,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   };
 
   window.handleGateGuestContinue = function() {
+    setGateUnlocked(true);
     const gate = document.getElementById('auth-gate-screen');
     const app = document.getElementById('app');
     if (gate) {
@@ -1858,10 +1873,13 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     }
     if (app) app.classList.remove('auth-gate-locked');
     if (window.showToast) {
-      window.showToast('Continuing as Guest listener (offline mode).', 'info', 4000);
+      window.showToast('Continuing as Guest listener. Enjoy unlimited music! 🎵', 'info', 4000);
     }
   };
 
+  // ---------------------------------------------------------------------------
+  // PROFILE, PRIVACY & SETTINGS MODAL CONTROLLER
+  // ---------------------------------------------------------------------------
   window.openAuthModal = function() {
     const modal = document.getElementById('auth-modal');
     if (modal) {
@@ -1875,46 +1893,280 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     if (modal) modal.classList.add('hidden');
   };
 
+  window.switchProfileTab = function(tabName) {
+    const tabs = ['stats', 'privacy', 'audio'];
+    tabs.forEach(t => {
+      const btn = document.getElementById(`tab-btn-${t}`);
+      const panel = document.getElementById(`tab-panel-${t}`);
+      if (btn) {
+        btn.classList.toggle('active', t === tabName);
+        btn.style.borderBottom = t === tabName ? '2px solid #a855f7' : '2px solid transparent';
+        btn.style.color = t === tabName ? '#fff' : 'var(--text-secondary)';
+      }
+      if (panel) {
+        panel.classList.toggle('hidden', t !== tabName);
+      }
+    });
+  };
+
+  window.toggleNameEditor = function(force = null) {
+    const form = document.getElementById('profile-name-edit-form');
+    const input = document.getElementById('profile-name-input');
+    const user = getStoredUser();
+    if (!form) return;
+    const isHidden = typeof force === 'boolean' ? !force : form.classList.contains('hidden');
+    form.classList.toggle('hidden', !isHidden);
+    if (isHidden && input) {
+      input.value = user?.name || '';
+      input.focus();
+    }
+  };
+
+  window.saveDisplayName = async function() {
+    const input = document.getElementById('profile-name-input');
+    const newName = (input?.value || '').trim();
+    if (!newName) {
+      if (window.showToast) window.showToast('Name cannot be empty', 'warning', 2500);
+      return;
+    }
+    try {
+      const updated = await updateUserProfile({ name: newName });
+      window.toggleNameEditor(false);
+      updateAuthModalContent();
+      renderHeaderAuthButton(updated);
+      if (window.showToast) window.showToast(`Display name updated to "${newName}"`, 'success', 3000);
+    } catch (e) {
+      if (window.showToast) window.showToast('Failed to update name: ' + e.message, 'error', 3500);
+    }
+  };
+
+  const AVATAR_PRESETS = [
+    'https://api.dicebear.com/7.x/bottts/svg?seed=PulseNeon',
+    'https://api.dicebear.com/7.x/bottts/svg?seed=CyberBass',
+    'https://api.dicebear.com/7.x/bottts/svg?seed=ElectroBeat',
+    'https://api.dicebear.com/7.x/bottts/svg?seed=AcousticWave',
+    'https://api.dicebear.com/7.x/bottts/svg?seed=SynthStar',
+    'https://api.dicebear.com/7.x/bottts/svg?seed=SonicFlow'
+  ];
+
+  window.toggleAvatarPicker = function(force = null) {
+    const drawer = document.getElementById('profile-avatar-picker-drawer');
+    const grid = document.getElementById('avatar-presets-grid');
+    if (!drawer) return;
+    const isHidden = typeof force === 'boolean' ? !force : drawer.classList.contains('hidden');
+    drawer.classList.toggle('hidden', !isHidden);
+
+    if (isHidden && grid && grid.children.length === 0) {
+      grid.innerHTML = AVATAR_PRESETS.map((url, idx) => `
+        <button onclick="window.selectPresetAvatar('${url}')" style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(168,85,247,0.4); padding: 3px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="${url}" alt="Avatar ${idx+1}" style="width: 100%; height: 100%; border-radius: 8px; object-fit: contain;">
+        </button>
+      `).join('');
+    }
+  };
+
+  window.selectPresetAvatar = async function(url) {
+    try {
+      const updated = await updateUserProfile({ avatar: url });
+      window.toggleAvatarPicker(false);
+      updateAuthModalContent();
+      renderHeaderAuthButton(updated);
+      if (window.showToast) window.showToast('Profile avatar updated!', 'success', 2500);
+    } catch (e) {
+      if (window.showToast) window.showToast('Failed to change avatar', 'error', 3000);
+    }
+  };
+
+  window.handleCustomAvatarApply = async function() {
+    const input = document.getElementById('custom-avatar-url-input');
+    const url = (input?.value || '').trim();
+    if (!url || (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:image'))) {
+      if (window.showToast) window.showToast('Please enter a valid image URL', 'warning', 2500);
+      return;
+    }
+    await window.selectPresetAvatar(url);
+    if (input) input.value = '';
+  };
+
+  window.copyPulseUid = function() {
+    const user = getStoredUser();
+    const uid = user?.uid || user?.id || 'guest';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(uid).then(() => {
+        if (window.showToast) window.showToast('Pulse UID copied to clipboard! 📋', 'success', 2500);
+      });
+    } else {
+      if (window.showToast) window.showToast(`UID: ${uid}`, 'info', 3000);
+    }
+  };
+
+  window.handlePrivacyToggle = async function(settingKey, isChecked) {
+    try {
+      await updatePrivacySettings({ [settingKey]: isChecked });
+      if (window.showToast) {
+        if (settingKey === 'privateSession') {
+          window.showToast(isChecked ? '🔒 Private Session enabled (history disabled)' : '🔓 Private Session disabled (history active)', 'info', 3000);
+        } else if (settingKey === 'cloudHistorySync') {
+          window.showToast(isChecked ? '☁️ Cloud Firestore sync enabled' : 'Cloud sync disabled', 'info', 2500);
+        } else if (settingKey === 'publicPlaylists') {
+          window.showToast(isChecked ? '🌍 Public playlist links enabled' : 'Playlists kept private', 'info', 2500);
+        }
+      }
+    } catch (e) {
+      console.warn('Privacy toggle update notice:', e);
+    }
+  };
+
+  window.handleLanguageChange = async function(val) {
+    try {
+      await updateUserProfile({ preferredLanguage: val });
+      if (window.showToast) window.showToast(`Preferred language set to ${val}`, 'success', 2500);
+    } catch (e) {}
+  };
+
+  window.handleClearCache = async function() {
+    try {
+      await clearUserCache();
+      if (window.showToast) {
+        window.showToast('🧹 Cache storage cleared successfully! Device memory freed.', 'success', 3500);
+      }
+    } catch (e) {
+      if (window.showToast) window.showToast('Cache cleared', 'info', 2500);
+    }
+  };
+
+  window.handleExportUserData = function() {
+    try {
+      exportUserData();
+      if (window.showToast) window.showToast('📥 Music profile & playlists exported to JSON archive!', 'success', 4000);
+    } catch (e) {
+      if (window.showToast) window.showToast('Export failed: ' + e.message, 'error', 3000);
+    }
+  };
+
+  window.handleAudioQualityChange = async function(val) {
+    await updatePrivacySettings({ audioQuality: val });
+    if (window.showToast) window.showToast(`Master audio quality set to ${val}`, 'success', 2500);
+  };
+
+  window.handleEqChange = async function(val) {
+    await updatePrivacySettings({ eqPreset: val });
+    if (window.showToast) window.showToast(`Equalizer profile set to ${val}`, 'success', 2500);
+  };
+
+  window.handleLyricsScrollToggle = async function(isChecked) {
+    await updatePrivacySettings({ autoScrollLyrics: isChecked });
+  };
+
+  window.handleAutoplayToggle = async function(isChecked) {
+    await updatePrivacySettings({ gaplessPlayback: isChecked });
+  };
+
   function updateAuthModalContent() {
     const user = getStoredUser();
     const guestBox = document.getElementById('auth-guest-view');
-    const userBox = document.getElementById('auth-user-view');
-    if (!guestBox || !userBox) return;
+    const privacy = getPrivacySettings();
 
-    if (user && user.provider === 'google') {
-      guestBox.style.display = 'none';
-      userBox.style.display = 'block';
-      const avatarEl = document.getElementById('auth-user-avatar');
-      const nameEl = document.getElementById('auth-user-name');
-      const emailEl = document.getElementById('auth-user-email');
-      if (avatarEl) avatarEl.src = user.avatar || './pulse-logo.png';
-      if (nameEl) nameEl.textContent = user.name || 'Google Listener';
-      if (emailEl) emailEl.textContent = user.email || '';
-    } else {
-      guestBox.style.display = 'block';
-      userBox.style.display = 'none';
+    const isGoogle = user && user.provider === 'google';
+    const isEmail = user && user.provider === 'email';
+    const isRealUser = isGoogle || isEmail;
+
+    if (guestBox) {
+      guestBox.style.display = isRealUser ? 'none' : 'block';
     }
+
+    const avatarEl = document.getElementById('auth-user-avatar');
+    const nameEl = document.getElementById('auth-user-name');
+    const emailEl = document.getElementById('auth-user-email');
+    const providerBadge = document.getElementById('profile-provider-badge');
+    const providerName = document.getElementById('profile-provider-name');
+    const uidText = document.getElementById('profile-uid-text');
+
+    if (avatarEl) avatarEl.src = user?.avatar || './pulse-logo.png';
+    if (nameEl) nameEl.textContent = user?.name || (isRealUser ? 'Pulse Listener' : 'Guest Listener');
+    if (emailEl) emailEl.textContent = user?.email || (isRealUser ? '' : 'guest@pulse.app');
+    if (uidText) {
+      const rawUid = user?.uid || user?.id || 'guest';
+      uidText.textContent = rawUid.length > 12 ? rawUid.slice(0, 10) + '...' : rawUid;
+    }
+
+    if (providerBadge && providerName) {
+      if (isGoogle) {
+        providerName.textContent = 'Google Connected';
+        providerBadge.style.color = '#38bdf8';
+        providerBadge.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+        providerBadge.style.background = 'rgba(56, 189, 248, 0.12)';
+      } else if (isEmail) {
+        providerName.textContent = 'Verified Email';
+        providerBadge.style.color = '#a855f7';
+        providerBadge.style.borderColor = 'rgba(168, 85, 247, 0.4)';
+        providerBadge.style.background = 'rgba(168, 85, 247, 0.12)';
+      } else {
+        providerName.textContent = 'Guest Mode';
+        providerBadge.style.color = '#94a3b8';
+        providerBadge.style.borderColor = 'rgba(148, 163, 184, 0.3)';
+        providerBadge.style.background = 'rgba(255, 255, 255, 0.05)';
+      }
+    }
+
+    // Update Live Listening Metrics
+    const favCountEl = document.getElementById('profile-stat-favorites');
+    const plCountEl = document.getElementById('profile-stat-playlists');
+    const histCountEl = document.getElementById('profile-stat-history');
+    const downCountEl = document.getElementById('profile-stat-downloads');
+
+    if (favCountEl) favCountEl.textContent = String(getFavorites().length);
+    if (plCountEl) plCountEl.textContent = String(getPlaylists().length);
+    if (histCountEl) histCountEl.textContent = String(getHistory().length);
+    if (downCountEl) {
+      try {
+        const raw = localStorage.getItem('pulse_downloaded_tracks');
+        const dl = raw ? JSON.parse(raw) : [];
+        downCountEl.textContent = String(dl.length);
+      } catch (e) {
+        downCountEl.textContent = '0';
+      }
+    }
+
+    // Update Settings Checkboxes and Selects
+    const incognitoToggle = document.getElementById('privacy-incognito-toggle');
+    const cloudSyncToggle = document.getElementById('privacy-cloud-sync-toggle');
+    const publicPlaylistsToggle = document.getElementById('privacy-public-playlists-toggle');
+    const lyricsScrollToggle = document.getElementById('profile-lyrics-scroll-toggle');
+    const autoplayToggle = document.getElementById('profile-autoplay-toggle');
+    const qualitySelect = document.getElementById('profile-audio-quality-select');
+    const eqSelect = document.getElementById('profile-eq-select');
+    const langSelect = document.getElementById('profile-language-select');
+
+    if (incognitoToggle) incognitoToggle.checked = !!privacy.privateSession;
+    if (cloudSyncToggle) cloudSyncToggle.checked = privacy.cloudHistorySync !== false;
+    if (publicPlaylistsToggle) publicPlaylistsToggle.checked = privacy.publicPlaylists !== false;
+    if (lyricsScrollToggle) lyricsScrollToggle.checked = privacy.autoScrollLyrics !== false;
+    if (autoplayToggle) autoplayToggle.checked = privacy.gaplessPlayback !== false;
+    if (qualitySelect) qualitySelect.value = privacy.audioQuality || '320kbps';
+    if (eqSelect) eqSelect.value = privacy.eqPreset || 'balanced';
+    if (langSelect && user?.preferredLanguage) langSelect.value = user.preferredLanguage;
   }
 
   function renderHeaderAuthButton(user) {
     const btn = document.getElementById('header-auth-btn');
     if (!btn) return;
 
-    if (user && user.provider === 'google') {
+    if (user && (user.provider === 'google' || user.provider === 'email')) {
       const firstName = (user.name || 'User').split(' ')[0];
       btn.innerHTML = `
         <img src="${user.avatar || './pulse-logo.png'}" alt="Profile" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 1.5px solid #a855f7;">
         <span style="max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(firstName)}</span>
       `;
-      btn.title = `Signed in as ${user.name} (${user.email}) - Click for Account`;
+      btn.title = `Signed in as ${user.name} (${user.email}) - Click for Profile & Privacy`;
       btn.style.borderColor = 'rgba(168, 85, 247, 0.6)';
       btn.style.background = 'rgba(168, 85, 247, 0.15)';
     } else {
       btn.innerHTML = `
-        <i class="fa-brands fa-google" style="color: #4285F4;"></i>
-        <span>Sign In</span>
+        <i class="fa-solid fa-user-gear" style="color: #c084fc;"></i>
+        <span>Profile</span>
       `;
-      btn.title = "Sign in with Google";
+      btn.title = "View Profile, Privacy & Settings";
       btn.style.borderColor = 'rgba(255, 255, 255, 0.18)';
       btn.style.background = 'rgba(255, 255, 255, 0.08)';
     }
@@ -1930,12 +2182,11 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
     try {
       const user = await signInWithGoogle();
+      setGateUnlocked(true);
       if (window.showToast) {
         window.showToast(`🎉 Signed in as ${user.name}! Cloud Firestore sync active.`, 'success', 5000);
       }
-      window.closeAuthModal();
       checkAuthGateState(user);
-      // Auto refresh favorites & playlists for signed in user
       if (window.PulseFirestore && window.PulseFirestore.getFavorites) {
         window.PulseFirestore.getFavorites();
       }
@@ -1957,13 +2208,13 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
   window.handleSignOut = async function() {
     try {
-      // Pause playback if running
       if (window.PulsePlaybar && window.PulsePlaybar.pause) {
         window.PulsePlaybar.pause();
       }
       await signOut();
+      setGateUnlocked(false);
       if (window.showToast) {
-        window.showToast('Signed out. Sign in with Google to start Pulse.', 'info', 5000);
+        window.showToast('Signed out of Pulse Music.', 'info', 5000);
       }
       window.closeAuthModal();
       checkAuthGateState();

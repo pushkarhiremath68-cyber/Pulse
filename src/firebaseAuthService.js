@@ -23,6 +23,9 @@ export function getStoredUser() {
 export function setStoredUser(user) {
   if (user) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+    if (user.provider === 'google' || user.provider === 'email') {
+      setGateUnlocked(true);
+    }
   } else {
     localStorage.removeItem(STORAGE_KEY);
   }
@@ -198,6 +201,31 @@ export async function signInAnonymously() {
   return user;
 }
 
+const GATE_UNLOCKED_KEY = 'pulse_gate_unlocked';
+const PRIVACY_SETTINGS_KEY = 'pulse_privacy_settings';
+
+export function isGateUnlocked() {
+  try {
+    if (localStorage.getItem(GATE_UNLOCKED_KEY) === 'true') return true;
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const u = JSON.parse(stored);
+      if (u && (u.provider === 'google' || u.provider === 'email')) return true;
+    }
+  } catch (e) {}
+  return false;
+}
+
+export function setGateUnlocked(unlocked = true) {
+  try {
+    if (unlocked) {
+      localStorage.setItem(GATE_UNLOCKED_KEY, 'true');
+    } else {
+      localStorage.removeItem(GATE_UNLOCKED_KEY);
+    }
+  } catch (e) {}
+}
+
 // 5. Sign Out
 export async function signOut() {
   const { auth } = initFirebase();
@@ -208,8 +236,169 @@ export async function signOut() {
       console.warn('[FirebaseAuth] Sign out notice:', e.message);
     }
   }
+  setGateUnlocked(false);
   setStoredUser(null);
   return getStoredUser();
+}
+
+// 6. User Profile Update
+export async function updateUserProfile(updates = {}) {
+  const current = getStoredUser();
+  const updatedUser = {
+    ...current,
+    ...updates,
+    updatedAt: Date.now()
+  };
+  setStoredUser(updatedUser);
+
+  const { auth, db } = initFirebase();
+  if (auth && auth.currentUser && updates.name && auth.currentUser.updateProfile) {
+    try {
+      await auth.currentUser.updateProfile({
+        displayName: updates.name,
+        photoURL: updates.avatar || auth.currentUser.photoURL
+      });
+    } catch (e) {
+      console.warn('[FirebaseAuth] Profile update error:', e.message);
+    }
+  }
+
+  if (db && updatedUser.uid && updatedUser.provider !== 'anonymous') {
+    try {
+      await db.collection('users').doc(updatedUser.uid).set({
+        name: updatedUser.name,
+        avatar: updatedUser.avatar,
+        preferredLanguage: updatedUser.preferredLanguage || 'Global',
+        updatedAt: Date.now()
+      }, { merge: true });
+    } catch (err) {
+      console.warn('[Firestore] Profile sync warning:', err.message);
+    }
+  }
+
+  return updatedUser;
+}
+
+// 7. Privacy Settings Management
+export function getPrivacySettings() {
+  const defaults = {
+    privateSession: false,
+    cloudHistorySync: true,
+    publicPlaylists: true,
+    audioQuality: '320kbps',
+    autoScrollLyrics: true,
+    gaplessPlayback: true,
+    eqPreset: 'balanced'
+  };
+
+  try {
+    const raw = localStorage.getItem(PRIVACY_SETTINGS_KEY);
+    if (raw) return { ...defaults, ...JSON.parse(raw) };
+  } catch (e) {}
+  return defaults;
+}
+
+export async function updatePrivacySettings(newSettings = {}) {
+  const current = getPrivacySettings();
+  const merged = { ...current, ...newSettings };
+  try {
+    localStorage.setItem(PRIVACY_SETTINGS_KEY, JSON.stringify(merged));
+  } catch (e) {}
+
+  const user = getStoredUser();
+  const { db } = initFirebase();
+  if (db && user && user.provider !== 'anonymous' && user.uid) {
+    try {
+      await db.collection('users').doc(user.uid).set({
+        privacySettings: merged
+      }, { merge: true });
+    } catch (e) {}
+  }
+
+  return merged;
+}
+
+// 8. User Data Export (GDPR / Privacy Compliance)
+export function exportUserData() {
+  const user = getStoredUser();
+  const privacy = getPrivacySettings();
+  let favorites = [];
+  let playlists = [];
+  let history = [];
+
+  if (window.PulseFirestore) {
+    favorites = window.PulseFirestore.getFavorites ? window.PulseFirestore.getFavorites() : [];
+    playlists = window.PulseFirestore.getPlaylists ? window.PulseFirestore.getPlaylists() : [];
+    history = window.PulseFirestore.getHistory ? window.PulseFirestore.getHistory() : [];
+  }
+
+  const exportPayload = {
+    app: 'Pulse Music',
+    version: '2.5.0',
+    exportedAt: new Date().toISOString(),
+    user: {
+      id: user.id || user.uid,
+      name: user.name,
+      email: user.email,
+      provider: user.provider,
+      avatar: user.avatar
+    },
+    privacySettings: privacy,
+    statistics: {
+      totalFavorites: favorites.length,
+      totalPlaylists: playlists.length,
+      totalHistoryItems: history.length
+    },
+    favorites,
+    playlists,
+    history
+  };
+
+  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(exportPayload, null, 2));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute('href', dataStr);
+  downloadAnchor.setAttribute('download', `pulse_music_backup_${Date.now()}.json`);
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+
+  return exportPayload;
+}
+
+// 9. Cache Cleaner
+export async function clearUserCache() {
+  let clearedCount = 0;
+  if ('caches' in window) {
+    try {
+      const keys = await caches.keys();
+      for (const k of keys) {
+        if (k.includes('pulse') || k.includes('audio') || k.includes('track')) {
+          await caches.delete(k);
+          clearedCount++;
+        }
+      }
+    } catch (e) {}
+  }
+
+  // Clear non-critical local caches
+  const preserveKeys = new Set([
+    STORAGE_KEY,
+    GATE_UNLOCKED_KEY,
+    PRIVACY_SETTINGS_KEY,
+    'pulse_favorites_data_' + (getStoredUser()?.uid || ''),
+    'pulse_playlists_data_' + (getStoredUser()?.uid || '')
+  ]);
+
+  try {
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const key = localStorage.key(i);
+      if (key && !preserveKeys.has(key) && (key.startsWith('pulse_cache_') || key.startsWith('pulse_temp_'))) {
+        localStorage.removeItem(key);
+      }
+    }
+  } catch (e) {}
+
+  return { clearedCaches: clearedCount, success: true };
 }
 
 // Native Firebase Auth state observer to sync cross-tab and session persistence
@@ -218,6 +407,7 @@ export function setupNativeAuthSync() {
   if (auth && auth.onAuthStateChanged) {
     auth.onAuthStateChanged(async (firebaseUser) => {
       if (firebaseUser) {
+        setGateUnlocked(true);
         const isGoogle = firebaseUser.providerData?.some(p => p.providerId === 'google.com');
         const user = {
           id: firebaseUser.uid,
@@ -260,11 +450,18 @@ if (typeof window !== 'undefined') {
 const authService = {
   getStoredUser,
   setStoredUser,
+  isGateUnlocked,
+  setGateUnlocked,
   signUpWithEmail,
   signInWithEmail,
   signInWithGoogle,
   signInAnonymously,
   signOut,
+  updateUserProfile,
+  getPrivacySettings,
+  updatePrivacySettings,
+  exportUserData,
+  clearUserCache,
   onAuthStateChanged,
   setupNativeAuthSync
 };

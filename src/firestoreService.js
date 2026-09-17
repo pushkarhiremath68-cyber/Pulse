@@ -264,6 +264,16 @@ export async function getPlaylists() {
 
 export async function addToHistory(track) {
   if (!track || !track.id) return;
+
+  // Private Session Check: Never save or sync history when in Incognito/Private Session
+  try {
+    const raw = localStorage.getItem('pulse_privacy_settings');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.privateSession) return;
+    }
+  } catch (e) {}
+
   const uid = getCurrentUserId();
   const historyEntry = {
     id: track.id,

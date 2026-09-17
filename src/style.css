@@ -2963,10 +2963,12 @@ input:checked + .switch-toggle-slider:before {
   overflow-y: auto;
 }
 
-.auth-gate-overlay.gate-unlocked {
+.auth-gate-overlay.gate-unlocked,
+html.gate-already-unlocked .auth-gate-overlay {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
+  display: none !important;
 }
 
 .auth-gate-backdrop {
@@ -3188,4 +3190,104 @@ input:checked + .switch-toggle-slider:before {
   opacity: 0.01 !important;
   pointer-events: none !important;
   overflow: hidden !important;
+}
+
+/* ==========================================================================
+   PULSE PROFILE & PRIVACY CENTER SUITE
+   ========================================================================== */
+.pulse-profile-modal-box {
+  animation: modalScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(168, 85, 247, 0.4) transparent;
+}
+
+.pulse-profile-modal-box::-webkit-scrollbar {
+  width: 6px;
+}
+.pulse-profile-modal-box::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 6px;
+}
+
+.profile-tab-btn {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.profile-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 8px 8px 0 0;
+  color: #ffffff !important;
+}
+
+/* Toggle Switches */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 24px !important;
+}
+
+.toggle-switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.toggle-switch input:checked + .slider {
+  background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%) !important;
+  border-color: #a855f7;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+}
+
+.toggle-switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.btn-signout-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #f87171;
+  padding: 0.65rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-signout-danger:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px);
 }
