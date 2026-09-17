@@ -282,8 +282,8 @@
           <button id="header-install-btn" class="btn-download-header" onclick="window.openDownloadModal()" title="Install App or Download Shortcut">
             <i class="fa-solid fa-arrow-down-to-bracket" style="color: #38bdf8;"></i> <span>Install App</span>
           </button>
-          <button id="header-gemini-btn" class="btn-download-header" onclick="window.openGeminiDJModal()" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #38bdf8 100%); border: none; color: #fff; font-weight: 700; box-shadow: 0 4px 18px rgba(99, 102, 241, 0.4);">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Ask AI</span>
+          <button id="header-gemini-btn" class="btn-download-header" onclick="window.openGeminiDJModal()" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #38bdf8 100%); border: none; color: #fff; font-weight: 700; box-shadow: 0 4px 18px rgba(99, 102, 241, 0.4);" title="Pulse AI Music Assistant">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Pulse AI</span>
           </button>
           <button id="header-lyrics-btn" class="btn-circle-nav" onclick="window.openLyricsDrawer()" title="Live Synced Lyrics">
             <i class="fa-solid fa-microphone-lines" style="color: #a5b4fc;"></i>
@@ -666,9 +666,9 @@
         <i class="fa-solid fa-bookmark"></i>
         <span>Library</span>
       </a>
-      <a href="javascript:void(0)" class="mobile-nav-item" onclick="window.openGeminiDJModal()" title="Gemini 3.6 AI Music DJ">
+      <a href="javascript:void(0)" class="mobile-nav-item" onclick="window.openGeminiDJModal()" title="Pulse AI Music Assistant">
         <i class="fa-solid fa-wand-magic-sparkles" style="color: #c084fc;"></i>
-        <span>AI DJ</span>
+        <span>Pulse AI</span>
       </a>
     </nav>
 
@@ -1250,15 +1250,15 @@
             <i class="fa-solid fa-wand-magic-sparkles"></i>
           </div>
           <div>
-            <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Gemini AI Music Assistant</h3>
-            <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 2px 0 0 0;">Add & stream any song from YouTube with Gemini</p>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Pulse AI Music Assistant</h3>
+            <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 2px 0 0 0;">Add & stream any song from YouTube with Pulse AI</p>
           </div>
         </div>
         <button class="btn-icon-small" onclick="window.closeGeminiDJModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
       <div style="margin-bottom: 1.25rem;">
-        <label style="display: block; font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 600;">Ask Gemini for songs, artists, genres, or vibes:</label>
+        <label style="display: block; font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 600;">Ask Pulse AI for songs, artists, genres, or vibes:</label>
         <div style="display: flex; gap: 0.5rem;">
           <input type="text" id="gemini-prompt-input" placeholder="e.g. Top 90s Bollywood romance or high-energy workout..." style="flex: 1; padding: 0.85rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: #fff; font-size: 0.9rem;" onkeypress="if(event.key==='Enter') window.handleAskGeminiDJ()">
           <button class="btn-primary-play" onclick="window.handleAskGeminiDJ()" style="padding: 0.85rem 1.25rem; font-weight: 700;">
@@ -1278,7 +1278,7 @@
 
       <div id="gemini-loading-spinner" class="hidden" style="text-align: center; padding: 2rem; color: #c084fc;">
         <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
-        <p style="font-size: 0.85rem; margin: 0;">Gemini 3.6 Flash is curating YouTube tracks...</p>
+        <p style="font-size: 0.85rem; margin: 0;">Pulse AI is curating YouTube tracks...</p>
       </div>
 
       <div id="gemini-dj-output"></div>

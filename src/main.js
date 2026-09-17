@@ -1737,7 +1737,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   };
 
   // ---------------------------------------------------------------------------
-  // 6. GEMINI AI DJ & SONG DISCOVERY CONTROLLERS
+  // 6. PULSE AI (AI DJ & MUSIC ASSISTANT) CONTROLLERS
   // ---------------------------------------------------------------------------
   window.openGeminiDJModal = function() {
     const modal = document.getElementById('gemini-dj-modal');
@@ -1747,17 +1747,19 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       if (input) input.focus();
     }
   };
+  window.openPulseAIModal = window.openGeminiDJModal;
 
   window.closeGeminiDJModal = function() {
     const modal = document.getElementById('gemini-dj-modal');
     if (modal) modal.classList.add('hidden');
   };
+  window.closePulseAIModal = window.closeGeminiDJModal;
 
   window.handleAskGeminiDJ = async function(presetPrompt) {
     const promptInput = document.getElementById('gemini-prompt-input');
     const prompt = presetPrompt || (promptInput ? promptInput.value : '');
     if (!prompt || !prompt.trim()) {
-      window.showToast('Please enter a vibe or song for Gemini AI', 'warning');
+      window.showToast('Please enter a vibe or song for Pulse AI', 'warning');
       return;
     }
     if (promptInput && presetPrompt) promptInput.value = presetPrompt;
@@ -1779,6 +1781,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
           window.playPresetQuery(query);
           window.closeGeminiDJModal();
         };
+        window.playPulseAITrack = window.playGeminiTrack;
 
         output.innerHTML = `
           <div style="margin-top: 1rem; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
@@ -1803,9 +1806,10 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       }
     } catch (e) {
       if (spinner) spinner.classList.add('hidden');
-      window.showToast('Gemini tracks ready', 'info');
+      window.showToast('Pulse AI tracks ready', 'info');
     }
   };
+  window.handleAskPulseAI = window.handleAskGeminiDJ;
 
   // ---------------------------------------------------------------------------
   // INITIALIZATION ON DOM READY & PWA COLD-START

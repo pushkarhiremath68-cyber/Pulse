@@ -199,7 +199,7 @@ ONLY return valid JSON.`;
  */
 export async function askGeminiDJ(userPrompt, apiKey = null) {
   if (!userPrompt || typeof userPrompt !== 'string' || userPrompt.trim().length === 0) {
-    throw new Error('Please enter a mood, artist, or vibe for Gemini DJ.');
+    throw new Error('Please enter a mood, artist, or vibe for Pulse AI.');
   }
 
   const cleanPrompt = userPrompt.trim().slice(0, 150).replace(/[\r\n\t]/g, ' ');
@@ -208,7 +208,7 @@ export async function askGeminiDJ(userPrompt, apiKey = null) {
   if (key) {
     try {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${key}`;
-      const systemPrompt = `You are Gemini DJ for Pulse Music. Return a JSON object with top real streamable YouTube songs:
+      const systemPrompt = `You are Pulse AI for Pulse Music. Return a JSON object with top real streamable YouTube songs:
 {
   "djTitle": "Catchy short playlist title",
   "vibe": "1-sentence mood summary",
@@ -240,7 +240,7 @@ Recommend 6 top acclaimed tracks for: "${cleanPrompt}". ONLY return valid JSON.`
   const p = userPrompt.toLowerCase();
   if (p.includes('bollywood') || p.includes('hindi') || p.includes('romantic') || p.includes('arijit')) {
     return {
-      djTitle: `Gemini DJ: Bollywood & Soulful Melodies`,
+      djTitle: `Pulse AI: Bollywood & Soulful Melodies`,
       vibe: `Soulful vocals, acoustic guitars and heartfelt romance`,
       tracks: [
         { title: 'Tum Hi Ho', artist: 'Arijit Singh', ytQuery: 'Tum Hi Ho Arijit Singh', reason: 'Timeless romantic anthem' },
@@ -251,7 +251,7 @@ Recommend 6 top acclaimed tracks for: "${cleanPrompt}". ONLY return valid JSON.`
     };
   } else if (p.includes('workout') || p.includes('gym') || p.includes('energy') || p.includes('edm')) {
     return {
-      djTitle: `Gemini DJ: High-Energy Power Surge`,
+      djTitle: `Pulse AI: High-Energy Power Surge`,
       vibe: `Pounding bass, peak BPM and unstoppable adrenaline`,
       tracks: [
         { title: 'Titanium', artist: 'David Guetta ft. Sia', ytQuery: 'Titanium David Guetta Sia', reason: 'Maximum motivational energy' },
@@ -262,7 +262,7 @@ Recommend 6 top acclaimed tracks for: "${cleanPrompt}". ONLY return valid JSON.`
     };
   } else if (p.includes('punjabi') || p.includes('dhillon') || p.includes('shubh')) {
     return {
-      djTitle: `Gemini DJ: Punjabi Urban Drill & Hype`,
+      djTitle: `Pulse AI: Punjabi Urban Drill & Hype`,
       vibe: `Heavy basslines, swagger and viral Punjabi beats`,
       tracks: [
         { title: 'Brown Munde', artist: 'AP Dhillon, Gurinder Gill', ytQuery: 'Brown Munde AP Dhillon', reason: 'Global Punjabi anthem' },
@@ -274,7 +274,7 @@ Recommend 6 top acclaimed tracks for: "${cleanPrompt}". ONLY return valid JSON.`
   }
 
   return {
-    djTitle: `Gemini DJ: ${userPrompt}`,
+    djTitle: `Pulse AI: ${userPrompt}`,
     vibe: `AI curated playlist matching "${userPrompt}"`,
     tracks: [
       { title: 'Blinding Lights', artist: 'The Weeknd', ytQuery: 'Blinding Lights The Weeknd', reason: 'Global synthwave masterpiece' },
@@ -284,6 +284,8 @@ Recommend 6 top acclaimed tracks for: "${cleanPrompt}". ONLY return valid JSON.`
     ]
   };
 }
+
+export const askPulseAI = askGeminiDJ;
 
 const geminiService = {
   disambiguateQuery,
