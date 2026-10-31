@@ -24,10 +24,16 @@
   "android": {
     "allowMixedContent": true,
     "captureInput": true,
-    "webContentsDebuggingEnabled": false
+    "webContentsDebuggingEnabled": false,
+    "backgroundColor": "#050508",
+    "overrideUserAgent": null,
+    "appendUserAgent": "PulseMusic/2.4.0",
+    "initialFocus": true,
+    "loggingBehavior": "none"
   },
   "ios": {
     "contentInset": "automatic",
-    "preferredContentMode": "mobile"
+    "preferredContentMode": "mobile",
+    "allowsLinkPreview": false
   }
 }

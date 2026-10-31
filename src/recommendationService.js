@@ -7,7 +7,7 @@
  * 4. Online Discovery & Radio Seed Generation
  */
 
-import { CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS, getArtistDetails } from './catalogService.js';
+import { CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS, getArtistDetails, getMoviePlaylists, getVibePlaylists } from './catalogService.js';
 import { searchTracks, normalizeTrack } from './musicService.js';
 import { SMART_KNOWLEDGE_BASE } from './geminiService.js';
 
@@ -80,6 +80,27 @@ export function detectTrackVibe(track) {
   if (combined.includes('synthwave') || combined.includes('blinding') || combined.includes('weeknd') || combined.includes('starboy') || combined.includes('pop') || combined.includes('taylor') || combined.includes('sheeran') || combined.includes('sabrina') || combined.includes('billie')) {
     return { vibe: 'Global Pop & Synthwave', badge: 'Chart Anthem', color: '#38bdf8', icon: 'fa-sparkles' };
   }
+  if (combined.includes('korean') || combined.includes('kpop') || combined.includes('bts') || combined.includes('blackpink') || combined.includes('twice') || combined.includes('ive')) {
+    return { vibe: 'K-Pop & Korean Wave', badge: 'K-Pop Hit', color: '#f472b6', icon: 'fa-star' };
+  }
+  if (combined.includes('arabic') || combined.includes('turkish') || combined.includes('middle east')) {
+    return { vibe: 'Arabic & Middle Eastern', badge: 'Arabic Vibes', color: '#fbbf24', icon: 'fa-moon' };
+  }
+  if (combined.includes('classical') || combined.includes('mozart') || combined.includes('beethoven') || combined.includes('raag') || combined.includes('raga') || combined.includes('sitar')) {
+    return { vibe: 'Classical & Instrumental', badge: 'Classical', color: '#a78bfa', icon: 'fa-music' };
+  }
+  if (combined.includes('jazz') || combined.includes('blues') || combined.includes('soul') || combined.includes('motown')) {
+    return { vibe: 'Jazz, Blues & Soul', badge: 'Smooth Jazz', color: '#fcd34d', icon: 'fa-saxophone' };
+  }
+  if (combined.includes('rnb') || combined.includes('r&b') || combined.includes('hip hop') || combined.includes('rap') || combined.includes('drake') || combined.includes('travis') || combined.includes('kendrick')) {
+    return { vibe: 'Hip-Hop & R&B', badge: 'Urban Groove', color: '#fb923c', icon: 'fa-microphone' };
+  }
+  if (combined.includes('latin') || combined.includes('reggaeton') || combined.includes('salsa') || combined.includes('bad bunny') || combined.includes('shakira')) {
+    return { vibe: 'Latin & Reggaeton', badge: 'Latin Heat', color: '#f97316', icon: 'fa-fire-flame-curved' };
+  }
+  if (combined.includes('malayalam') || combined.includes('mohanlal') || combined.includes('mammootty') || combined.includes('sushin')) {
+    return { vibe: 'Malayalam Hits', badge: 'Malayalam Soul', color: '#34d399', icon: 'fa-music' };
+  }
 
   return { vibe: 'Global Hits', badge: 'Matched Vibe', color: '#c084fc', icon: 'fa-music' };
 }
@@ -125,6 +146,24 @@ function getAllCatalogTracks() {
     });
   }
 
+  // Add tracks from MOVIE_PLAYLISTS
+  if (typeof getMoviePlaylists === 'function') {
+    getMoviePlaylists().forEach(pl => {
+      if (Array.isArray(pl.tracks)) {
+        pl.tracks.forEach(t => add(t, `Soundtrack: ${pl.movie || pl.title}`));
+      }
+    });
+  }
+
+  // Add tracks from VIBE_PLAYLISTS
+  if (typeof getVibePlaylists === 'function') {
+    getVibePlaylists().forEach(pl => {
+      if (Array.isArray(pl.tracks)) {
+        pl.tracks.forEach(t => add(t, `Vibe: ${pl.title}`));
+      }
+    });
+  }
+
   return Array.from(map.values());
 }
 
@@ -152,7 +191,7 @@ function calculateSimilarityScore(seedTrack, candidateTrack) {
   // 1. Artist Match Check
   const hasArtistMatch = seedArtists.some(sa => candArtists.some(ca => ca.includes(sa) || sa.includes(ca)));
   if (hasArtistMatch) {
-    score += 65;
+    score += 55;
     matchReason = `More by ${seedTrack.artist.split(',')[0].split('&')[0].trim()}`;
     badge = 'Same Artist';
   }
@@ -162,10 +201,22 @@ function calculateSimilarityScore(seedTrack, candidateTrack) {
   const candVibe = detectTrackVibe(candidateTrack);
 
   if (seedVibe.vibe === candVibe.vibe) {
-    score += 35;
+    score += 50;
     if (!hasArtistMatch) {
       matchReason = seedVibe.vibe;
       badge = seedVibe.badge;
+    }
+  }
+
+  // 2b. Language Awareness Boost — same language/region tracks get a bonus
+  const seedLang = seedVibe.vibe;
+  const candLang = candVibe.vibe;
+  const languageVibes = ['Kannada Hits', 'Tamil Viral Beats', 'Telugu Chartbusters', 'Bollywood Soul & Romance', 'Pakistani & Coke Studio Hits', 'Punjabi Drill & Hype', 'K-Pop & Korean Wave', 'Arabic & Middle Eastern', 'Latin & Reggaeton', 'Malayalam Hits'];
+  if (languageVibes.includes(seedLang) && seedLang === candLang) {
+    score += 40;
+    if (!hasArtistMatch) {
+      badge = seedVibe.badge;
+      matchReason = `Same language: ${seedVibe.vibe}`;
     }
   }
 
@@ -280,7 +331,11 @@ export async function getSimilarTracks(seedTrack, limit = 12) {
   if (sortedResults.length < 6) {
     try {
       const primaryArtist = seedTrack.artist.split(',')[0].split('&')[0].trim();
-      const query = `${primaryArtist} top songs hits`;
+      const seedVibe = detectTrackVibe(seedTrack);
+      const vibeKeywords = seedVibe.vibe !== 'Global Hits' ? seedVibe.vibe : '';
+      const query = vibeKeywords
+        ? `${vibeKeywords} songs like ${seedTrack.title}`
+        : `${primaryArtist} top songs hits`;
       const searchResults = await searchTracks(query, 10);
       
       searchResults.forEach(t => {
@@ -290,9 +345,9 @@ export async function getSimilarTracks(seedTrack, limit = 12) {
             uniqueMap.set(key, true);
             sortedResults.push({
               ...t,
-              recommendationReason: `Related to ${primaryArtist}`,
-              matchBadge: 'Recommended',
-              matchColor: '#38bdf8',
+              recommendationReason: vibeKeywords ? `Similar ${seedVibe.badge}` : `Related to ${primaryArtist}`,
+              matchBadge: vibeKeywords ? seedVibe.badge : 'Recommended',
+              matchColor: vibeKeywords ? seedVibe.color : '#38bdf8',
               matchIcon: 'fa-wand-magic-sparkles'
             });
           }
@@ -300,6 +355,29 @@ export async function getSimilarTracks(seedTrack, limit = 12) {
       });
     } catch (e) {}
   }
+
+  // 4. Diversity enforcement — ensure ≥30% are from different artists
+  const artistCount = new Map();
+  sortedResults.forEach(t => {
+    const a = cleanStr((t.artist || '').split(',')[0]);
+    artistCount.set(a, (artistCount.get(a) || 0) + 1);
+  });
+  const maxPerArtist = Math.max(2, Math.ceil(sortedResults.length * 0.4));
+  const diversified = [];
+  const artistUsed = new Map();
+  sortedResults.forEach(t => {
+    const a = cleanStr((t.artist || '').split(',')[0]);
+    const used = artistUsed.get(a) || 0;
+    if (used < maxPerArtist) {
+      diversified.push(t);
+      artistUsed.set(a, used + 1);
+    }
+  });
+  // Add remaining tracks that were filtered out (in case we need to fill)
+  sortedResults.forEach(t => {
+    if (!diversified.includes(t)) diversified.push(t);
+  });
+  sortedResults = diversified;
 
   RECOMMENDATION_CACHE.set(cacheKey, sortedResults);
   return sortedResults.slice(0, limit);

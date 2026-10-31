@@ -7,6 +7,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   isMaximized: () => ipcRenderer.invoke('window-is-maximized'),
   getVersion: () => ipcRenderer.invoke('get-app-version'),
   getPlatform: () => ipcRenderer.invoke('get-platform'),
+  signInWithGoogle: () => ipcRenderer.invoke('native-google-signin'),
   onMediaCommand: (callback) => {
     ipcRenderer.on('media-command', (_, command) => callback(command));
   },

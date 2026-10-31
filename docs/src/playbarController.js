@@ -6,7 +6,7 @@
  */
 
 import { addToHistory, isFavorite, addFavorite, removeFavorite, onFavoritesChanged } from './firestoreService.js';
-import { resolvePipedAudioStream, searchYouTubeMusic } from './extractorService.js';
+import { resolvePipedAudioStream, searchYouTubeMusic, resolveYouTubeVideoId } from './extractorService.js';
 import { resolveFullAudioStream } from './musicService.js';
 import { downloadCurrentTrack } from './downloadService.js';
 import { getSimilarTracks, getNextSuggestedTrack, generateSimilarRadioQueue } from './recommendationService.js';
@@ -42,6 +42,8 @@ let playedHistory = [];
 let activeEngine = 'native'; // 'native' | 'youtube'
 let ytPlayer = null;
 let ytPlayerReady = false;
+let ytInitializing = false;
+let pendingYtQueue = [];
 let ytTimeInterval = null;
 
 // Initialize Native HTML5 Pure Audio Element
@@ -101,7 +103,7 @@ function getAudio() {
 
     audio.addEventListener('error', (e) => {
       console.warn('[Pulse Audio Player] Native Audio stream error event:', e);
-      if (activeEngine === 'native' && currentTrack && isPlaying) {
+      if (activeEngine === 'native' && currentTrack) {
         const ytId = currentTrack.ytId || (currentTrack.id && currentTrack.id.startsWith('ytm-') ? currentTrack.id.replace('ytm-', '') : null);
         if (ytId) {
           console.log('[Pulse Audio Player] Auto-recovering via YouTube stream fallback for:', ytId);
@@ -284,19 +286,39 @@ export async function playTrack(track, queue = null) {
     }
   }
 
+  // 1B. FAST PATH: If track already has verified YouTube ID (from search, catalog, or enrichment), play immediately via YouTube IFrame
+  const knownYtId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+  if (knownYtId && knownYtId.length >= 8) {
+    console.log('[Pulse Studio Master] Fast-path immediate YouTube IFrame playback for:', knownYtId);
+    const ytSuccess = await playOnYouTubeIframe(knownYtId, track);
+    if (ytSuccess) return;
+  }
+
   // 2. PRIMARY TIER: Resolve High-Bitrate Studio Master Stream (320kbps / 160kbps AAC)
   try {
     const resolved = await resolveFullAudioStream(track);
     if (sessionId !== activePlaySessionId) return;
 
-    if (resolved && resolved.streamUrl && resolved.streamUrl.startsWith('http') && !resolved.streamUrl.includes('preview') && resolved.streamUrl !== 'yt-iframe') {
-      track.streamUrl = resolved.streamUrl;
-      track.source = resolved.source || 'Studio Master Audio (320kbps)';
-      if (resolved.duration) track.duration = resolved.duration;
-      const played = await playOnNativeAudio(track);
-      if (played) {
-        console.log('[Pulse Studio Master] Successfully playing native master stream:', resolved.source);
-        return;
+    if (resolved && resolved.streamUrl) {
+      // 2A. Direct native audio stream (JioSaavn CDN / Piped Opus)
+      if (resolved.streamUrl.startsWith('http') && !resolved.streamUrl.includes('preview') && resolved.streamUrl !== 'yt-iframe') {
+        track.streamUrl = resolved.streamUrl;
+        track.source = resolved.source || 'Studio Master Audio (320kbps)';
+        if (resolved.duration) track.duration = resolved.duration;
+        const played = await playOnNativeAudio(track);
+        if (played) {
+          console.log('[Pulse Studio Master] Successfully playing native master stream:', resolved.source);
+          return;
+        }
+      }
+
+      // 2B. resolveFullAudioStream resolved to yt-iframe — play via YouTube IFrame directly
+      if (resolved.streamUrl === 'yt-iframe' && resolved.ytId) {
+        track.ytId = resolved.ytId;
+        track.source = 'Studio Master Audio (YouTube)';
+        console.log('[Pulse Studio Master] Playing via YouTube IFrame (resolved):', resolved.ytId);
+        const ytSuccess = await playOnYouTubeIframe(resolved.ytId, track);
+        if (ytSuccess) return;
       }
     }
   } catch (e) {
@@ -307,6 +329,19 @@ export async function playTrack(track, queue = null) {
 
   // 3. SECONDARY TIER: YouTube IFrame playback (if track has ytId or resolved ytId)
   let ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+
+  // 3A. If no ytId, resolve one on-demand
+  if (!ytId || ytId.length < 8) {
+    try {
+      const foundId = await resolveYouTubeVideoId(track.title, track.artist);
+      if (foundId) {
+        ytId = foundId;
+        track.ytId = foundId;
+        console.log('[Pulse Studio Master] On-demand YouTube ID resolved:', foundId);
+      }
+    } catch (e) {}
+  }
+
   if (ytId && ytId.length >= 8) {
     console.log('[Pulse Studio Master] Attempting YouTube IFrame playback for:', ytId);
     const ytSuccess = await playOnYouTubeIframe(ytId, track);
@@ -314,7 +349,7 @@ export async function playTrack(track, queue = null) {
   }
 
   // 4. TERTIARY TIER: Search YouTube for the track and play via IFrame
-  const searchQuery = `${track.title} ${track.artist}`.trim();
+  const searchQuery = `${track.title} ${track.artist} audio`.trim();
   if (sessionId === activePlaySessionId) {
     const searchSuccess = await playOnYouTubeSearch(searchQuery, track);
     if (searchSuccess) return;
@@ -569,7 +604,10 @@ function updateTimeUI() {
   const pct = duration > 0 ? (currentTime / duration) * 100 : 0;
   progressBars.forEach(el => { el.style.width = `${pct}%`; });
   if (!isSeeking) {
-    seekers.forEach(el => { el.value = pct; });
+    seekers.forEach(el => {
+      el.value = pct;
+      el.style.background = `linear-gradient(to right, #38bdf8 0%, #a855f7 ${pct}%, #333338 ${pct}%, #333338 100%)`;
+    });
   }
 }
 
@@ -583,11 +621,30 @@ function updatePlayPauseUI() {
     }
   });
 
-  const disks = document.querySelectorAll('#fullscreen-album-art, #fs-album-art, #player-thumb');
-  disks.forEach(disk => {
-    if (isPlaying) disk.classList.add('playing-spin');
-    else disk.classList.remove('playing-spin');
+  const playerBar = document.getElementById('player-bar');
+  if (playerBar) {
+    playerBar.classList.toggle('is-playing', isPlaying);
+  }
+
+  const eqWaves = document.querySelectorAll('#playbar-eq-wave, .playbar-eq-wave');
+  eqWaves.forEach(wave => {
+    if (isPlaying) wave.classList.remove('hidden');
+    else wave.classList.add('hidden');
   });
+
+  const fsPlayer = document.getElementById('fullscreen-player');
+  if (fsPlayer) {
+    fsPlayer.classList.toggle('playing', isPlaying);
+  }
+
+  const disks = document.querySelectorAll('#fullscreen-album-art, #fs-album-art');
+  disks.forEach(disk => {
+    disk.classList.remove('playing-spin');
+  });
+
+  if (typeof window !== 'undefined' && typeof window.updateActiveCardStates === 'function') {
+    window.updateActiveCardStates(currentTrack, isPlaying);
+  }
 }
 
 function updateVolumeUI() {
@@ -645,6 +702,10 @@ function updateTrackInfoUI(track) {
   });
 
   updateFavoriteButtonUI(track.id);
+
+  if (typeof window !== 'undefined' && typeof window.updateActiveCardStates === 'function') {
+    window.updateActiveCardStates(track, isPlaying);
+  }
 }
 
 export function downloadCurrentTrackWallpaper() {
@@ -913,6 +974,30 @@ function initPlaybarController() {
     });
   }
 
+  // Direct click-to-seek on progress-bar-wrapper
+  document.querySelectorAll('.progress-bar-wrapper').forEach(wrapper => {
+    wrapper.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      const rect = wrapper.getBoundingClientRect();
+      const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      if (duration > 0) {
+        seekTo(pos * duration);
+      }
+    });
+  });
+
+  // Direct click on player-bar top edge to seek on mobile & desktop
+  const playerBarEl = document.getElementById('player-bar');
+  if (playerBarEl) {
+    playerBarEl.addEventListener('click', (e) => {
+      const rect = playerBarEl.getBoundingClientRect();
+      if (e.clientY - rect.top <= 10 && duration > 0 && !e.target.closest('button')) {
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        seekTo(pos * duration);
+      }
+    });
+  }
+
   const seekers = document.querySelectorAll('#player-seek-slider, #playbar-seeker, #fs-seek-slider');
   seekers.forEach(seeker => {
     seeker.addEventListener('input', (e) => {
@@ -925,6 +1010,11 @@ function initPlaybarController() {
       });
       document.querySelectorAll('#player-progress-fill, #playbar-progress-fill, #mini-top-progress-fill, #fs-progress-fill').forEach(el => {
         el.style.width = `${pct}%`;
+      });
+      // Synchronous real-time track line gradient fill while dragging
+      seekers.forEach(s => {
+        s.value = pct;
+        s.style.background = `linear-gradient(to right, #38bdf8 0%, #a855f7 ${pct}%, #333338 ${pct}%, #333338 100%)`;
       });
       if (typeof window.syncLiveLyrics === 'function') {
         window.syncLiveLyrics(currentTime);
@@ -945,9 +1035,31 @@ function initPlaybarController() {
     });
   });
 
-  // Keyboard Shortcuts: Space, Arrows, Escape, M, L
+  // Keyboard Shortcuts: Space, Arrows, Escape, M, L, Q, Ctrl+K, /
   window.addEventListener('keydown', (e) => {
+    // Global Ctrl+K / Cmd+K works from anywhere
+    if ((e.key === 'k' || e.key === 'K') && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      const sInput = document.getElementById('global-search-input');
+      if (sInput) {
+        if (typeof window.switchView === 'function') window.switchView('search-view');
+        sInput.focus();
+        sInput.select();
+      }
+      return;
+    }
+
     if (['input', 'textarea'].includes(e.target.tagName.toLowerCase())) return;
+
+    if (e.key === '/') {
+      e.preventDefault();
+      const sInput = document.getElementById('global-search-input');
+      if (sInput) {
+        if (typeof window.switchView === 'function') window.switchView('search-view');
+        sInput.focus();
+      }
+      return;
+    }
 
     if (e.code === 'Space') {
       e.preventDefault();
@@ -1058,13 +1170,16 @@ export async function playOnNativeAudio(track) {
 // INITIALIZE YOUTUBE IFRAME API & HYBRID PLAYBACK RESOLVER
 // -----------------------------------------------------------------------------
 function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
-  if (ytPlayer && ytPlayerReady) return;
+  if (ytPlayerReady || ytInitializing || ytPlayer) return;
+  ytInitializing = true;
+
   let container = document.getElementById('yt-player-container');
   if (!container) {
     let host = document.getElementById('global-yt-host');
     if (!host) {
       host = document.createElement('div');
       host.id = 'global-yt-host';
+      host.className = 'global-yt-dock';
       host.style.cssText = 'position: fixed; bottom: 0; right: 0; width: 240px; height: 135px; z-index: -1; opacity: 0.01; pointer-events: none; overflow: hidden;';
       document.body.appendChild(host);
     }
@@ -1089,10 +1204,20 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
         events: {
           'onReady': (event) => {
             ytPlayerReady = true;
+            ytInitializing = false;
             try {
               ytPlayer.setVolume(currentVolume * 100);
             } catch (e) {}
             console.log('[Pulse Studio Master] YouTube IFrame API Ready — Primary engine online.');
+            // Instantly execute any queued play requests
+            while (pendingYtQueue.length > 0) {
+              const item = pendingYtQueue.shift();
+              if (item && item.videoId && item.track) {
+                playOnYouTubeIframe(item.videoId, item.track).then(res => {
+                  if (typeof item.resolve === 'function') item.resolve(res);
+                });
+              }
+            }
           },
           'onStateChange': (event) => {
             if (activeEngine !== 'youtube') return;
@@ -1134,6 +1259,7 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
         }
       });
     } catch (e) {
+      ytInitializing = false;
       console.warn('[Pulse Studio Master] Error instantiating YT Player:', e);
       // Retry up to 3 times with increasing delay
       if (retryCount < 3) {
@@ -1153,6 +1279,8 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
         }, 1000 * (retryCount + 1));
       }
     }
+  } else {
+    ytInitializing = false;
   }
 }
 
@@ -1190,7 +1318,7 @@ function ensureYouTubeReady() {
       clearInterval(ytPollInterval);
       console.warn('[Pulse] YouTube IFrame API did not load after 10s');
     }
-  }, 200);
+  }, 100);
 }
 
 export async function playOnYouTubeIframe(videoId, track) {
@@ -1238,23 +1366,29 @@ export async function playOnYouTubeIframe(videoId, track) {
       }
     }
 
-    if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === 'function') {
+    if (ytPlayer && (ytPlayerReady || typeof ytPlayer.loadVideoById === 'function')) {
       executePlay();
     } else {
-      // Ensure YouTube is initializing
+      pendingYtQueue.push({ videoId: cleanId, track, resolve });
       ensureYouTubeReady();
       let attempts = 0;
       const interval = setInterval(() => {
         attempts++;
-        if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === 'function') {
+        if (ytPlayer && (ytPlayerReady || typeof ytPlayer.loadVideoById === 'function')) {
           clearInterval(interval);
-          executePlay();
+          const idx = pendingYtQueue.findIndex(p => p.videoId === cleanId);
+          if (idx !== -1) {
+            pendingYtQueue.splice(idx, 1);
+            executePlay();
+          }
         } else if (attempts > 50) {
           clearInterval(interval);
+          const idx = pendingYtQueue.findIndex(p => p.videoId === cleanId);
+          if (idx !== -1) pendingYtQueue.splice(idx, 1);
           console.warn('[Pulse Studio Master] YouTube IFrame failed to become ready after 10s');
           resolve(false);
         }
-      }, 200);
+      }, 100);
     }
   });
 }
@@ -1283,16 +1417,16 @@ if (typeof window !== 'undefined') {
   }
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initPlaybarController();
+      ensureYouTubeReady();
+    });
+  } else {
     initPlaybarController();
-    // Eager YouTube IFrame initialization — pre-warm on page load for instant playback
     ensureYouTubeReady();
-  });
-} else {
-  initPlaybarController();
-  // Eager YouTube IFrame initialization — pre-warm on page load for instant playback
-  ensureYouTubeReady();
+  }
 }
 
 const playbarController = {
@@ -1319,7 +1453,7 @@ const playbarController = {
   toggleCurrentTrackFavorite,
   addCurrentToPlaylist,
   downloadCurrentTrack,
-  downloadTrack,
+  downloadTrack: downloadCurrentTrack,
   downloadCurrentTrackWallpaper,
   playTrackAtQueueIndex,
   getAudio,

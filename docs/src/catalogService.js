@@ -21,6 +21,8 @@ export const PERMANENT_STREAM_MAP = {
   "Mockingbird": "https://aac.saavncdn.com/857/d211e1efacfa0b0cb188c7c73085cc06_320.mp4",
   "Chaleya": "https://aac.saavncdn.com/179/1be373323edc90024d93873d85f644ec_320.mp4",
   "Kesariya": "https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4",
+  "Kesariya (Brahmāstra)": "https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4",
+  "hero-slide-4": "https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4",
   "Sri Lalitha Sahasranama Stotram": "https://aac.saavncdn.com/265/7e3f75131eed05ae0a5c706c50325423_320.mp4",
   "Mahishasura Mardini Stotram": "https://aac.saavncdn.com/230/8d3b13114a1d34f7a859c163079c43ce_320.mp4",
   "Hanuman Chalisa": "https://aac.saavncdn.com/256/254c18ccf39f955649057ed4426aa7f3_320.mp4",
@@ -155,7 +157,7 @@ export const PERMANENT_STREAM_MAP = {
 export const CATALOG_CATEGORIES = [
   {
     id: "cat-new-releases",
-    title: "🔥 Fresh New Releases (2026)",
+    title: "ðŸ”¥ Fresh New Releases (2026)",
     subtitle: "Today's hottest newly dropped singles and trending releases",
     icon: "fa-fire-flame-curved",
     color: "#f43f5e",
@@ -323,7 +325,7 @@ export const CATALOG_CATEGORIES = [
   },
   {
     id: "cat-pakistani",
-    title: "🇵🇰 Pakistani Hits & Coke Studio",
+    title: "ðŸ‡µðŸ‡° Pakistani Hits & Coke Studio",
     subtitle: "Soulful Sufi, Urdu Hip-Hop, Indie pop & viral chartbusters",
     icon: "fa-music",
     color: "#10b981",
@@ -409,6 +411,7 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-VNs_cCtdbPc", ytId: "VNs_cCtdbPc", title: "Brown Munde", artist: "AP Dhillon, Gurinder Gill", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg", duration: 267 },
       { id: "ytm-vX2cDW8LUWk", ytId: "vX2cDW8LUWk", title: "Excuses", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/47/ac/4747ac85-1658-64ae-bc82-220a4d6213d5/859747478890_cover.jpg/1000x1000bb.jpg", duration: 176 },
       { id: "ytm-qLCHz_qG6zU", ytId: "qLCHz_qG6zU", title: "Elevated", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music117/v4/a3/31/f8/a331f824-3dd1-e8b6-5148-8d016d71fc26/191061761174.jpg/1000x1000bb.jpg", duration: 201 },
+        { id: "ytm-7w0QzF5-dY0", ytId: "7w0QzF5-dY0", title: "Cheques", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f65fe003dc1/197188738362.jpg/1000x1000bb.jpg", duration: 183 },
       { id: "ytm-fukvQcQ3g6U", ytId: "fukvQcQ3g6U", title: "We Rollin", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/56/d7/4e/56d74e0d-207f-d65a-83b6-bb4ab53b6f5b/mzi.xdfimjwb.jpg/1000x1000bb.jpg", duration: 199 },
       { id: "ytm-Zf8q6N4I4Gk", ytId: "Zf8q6N4I4Gk", title: "No Love", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/a7/b3/80/a7b380b9-9e29-1642-566e-d1ca4b920886/196776912972.jpg/1000x1000bb.jpg", duration: 181 },
       { id: "ytm-n_FCrCQ6-9U", ytId: "n_FCrCQ6-9U", title: "295", artist: "Sidhu Moose Wala", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/69/58/976958ae-725e-bd41-6755-f0921c697840/810063889609_cover.jpg/1000x1000bb.jpg", duration: 270 },
@@ -422,6 +425,7 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840 },
       { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800 },
       { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720 },
+        { id: "ytm-k1Bwv4pgsrA", ytId: "k1Bwv4pgsrA", title: "Hanuman Chalisa", artist: "Sri Ganapathy Sachchidananda Swamiji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ee/17/23/ee1723c3-3057-7988-cb94-82a0d922a01d/8903246403272.jpg/1000x1000bb.jpg", duration: 580 },
       { id: "ytm-tL4w5gZc_jE", ytId: "tL4w5gZc_jE", title: "Hanuman Chalisa", artist: "Hariharan", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c5/3a/8d/c53a8d9b-23d8-5cc1-ec14-6ed0ce7920a0/8902894137256_cover.jpg/1000x1000bb.jpg", duration: 580 },
       { id: "ytm-U3mQ0v5r3pY", ytId: "U3mQ0v5r3pY", title: "Shiv Tandav Stotram", artist: "Shankar Mahadevan", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/93/cc/db/93ccdb69-815f-7e02-4450-21a358166970/190374418898.jpg/1000x1000bb.jpg", duration: 554 }
     ]
@@ -592,7 +596,8 @@ export const getCuratedPlaylists = () => {
       tracks: [
         { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840 },
         { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800 },
-        { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720 }
+        { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720 },
+        { id: "ytm-k1Bwv4pgsrA", ytId: "k1Bwv4pgsrA", title: "Hanuman Chalisa", artist: "Sri Ganapathy Sachchidananda Swamiji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ee/17/23/ee1723c3-3057-7988-cb94-82a0d922a01d/8903246403272.jpg/1000x1000bb.jpg", duration: 580 }
       ]
     },
     {
@@ -629,8 +634,8 @@ export const getCuratedPlaylists = () => {
       trackCount: 25,
       tracks: [
         { id: "ytm-fJ9rUzIMcZQ", ytId: "fJ9rUzIMcZQ", title: "Bohemian Rhapsody", artist: "Queen", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 354 },
-        { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216 },
-        { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg", duration: 204 },
+        { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f6/e1/e4/f6e1e479-7dd2-6d24-3408-251f2b6ff8c4/093624853337.jpg/600x600bb.jpg", duration: 216 },
+        { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b9/e6/8b/b9e68b37-9755-d6c5-4710-85f02bc34d54/17UMGIM98210.rgb.jpg/600x600bb.jpg", duration: 204 },
         { id: "ytm-dvgZkm1xWPE", ytId: "dvgZkm1xWPE", title: "Viva La Vida", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg", duration: 242 }
       ]
     },
@@ -669,7 +674,8 @@ export const getCuratedPlaylists = () => {
       tracks: [
         { id: "ytm-VNs_cCtdbPc", ytId: "VNs_cCtdbPc", title: "Brown Munde", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg", duration: 267 },
         { id: "ytm-vX2cDW8LUWk", ytId: "vX2cDW8LUWk", title: "Excuses", artist: "AP Dhillon", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/47/ac/4747ac85-1658-64ae-bc82-220a4d6213d5/859747478890_cover.jpg/1000x1000bb.jpg", duration: 176 },
-        { id: "ytm-qLCHz_qG6zU", ytId: "qLCHz_qG6zU", title: "Elevated", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music117/v4/a3/31/f8/a331f824-3dd1-e8b6-5148-8d016d71fc26/191061761174.jpg/1000x1000bb.jpg", duration: 201 }
+        { id: "ytm-qLCHz_qG6zU", ytId: "qLCHz_qG6zU", title: "Elevated", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music117/v4/a3/31/f8/a331f824-3dd1-e8b6-5148-8d016d71fc26/191061761174.jpg/1000x1000bb.jpg", duration: 201 },
+        { id: "ytm-7w0QzF5-dY0", ytId: "7w0QzF5-dY0", title: "Cheques", artist: "Shubh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f65fe003dc1/197188738362.jpg/1000x1000bb.jpg", duration: 183 }
       ]
     },
     {
@@ -680,11 +686,357 @@ export const getCuratedPlaylists = () => {
       trackCount: 25,
       tracks: [
         { id: "ytm-DWcJFNfaw90", ytId: "DWcJFNfaw90", title: "Midnight City", artist: "M83", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/7b/a9/cb7ba903-b5f1-cc21-90db-7a81b7aa0997/724596951057.jpg/1000x1000bb.jpg", duration: 243 },
-        { id: "ytm-rR4n-0KYeKQ", ytId: "rR4n-0KYeKQ", title: "Resonance", artist: "HOME", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4f/13/65/4f1365b0-e97c-c469-c438-2f7d8f204355/872133025584_cover.jpg/1000x1000bb.jpg", duration: 212 }
+        { id: "ytm-rR4n-0KYeKQ", ytId: "rR4n-0KYeKQ", title: "Resonance", artist: "HOME", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4f/13/65/4f1365b0-e97c-c469-c438-2f7d8f204355/872133025584_cover.jpg/1000x1000bb.jpg", duration: 212 },
+        { id: "ytm-wXhTHyIgQ_U", ytId: "wXhTHyIgQ_U", title: "Circles", artist: "Post Malone", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/1b/1b/7b1b1b0b-7ce2-b223-f9e0-8e36abe51877/19UMGIM78325.rgb.jpg/600x600bb.jpg", duration: 215 },
+        { id: "ytm-RBumgq5yVrA", ytId: "RBumgq5yVrA", title: "Let Her Go", artist: "Passenger", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/a4/0c/b2/a40cb25f-2ff7-a7eb-626a-9bb726715f6f/887158406126.jpg/1000x1000bb.jpg", duration: 252 }
       ]
     }
   ];
 };
+
+export const MOVIE_PLAYLISTS = [
+  {
+    id: "movie-pl-animal",
+    title: "Animal (Original Motion Picture Soundtrack)",
+    movie: "Animal",
+    year: "2023",
+    composer: "Pritam, Harshavardhan Rameshwar & B Praak",
+    badge: "ANIMAL (2023)",
+    description: "Every official blockbuster song from Animal: Arjan Vailly, Satranga, Pehle Bhi Main, Hua Main, Papa Meri Jaan and Saari Duniya Jalaa Denge.",
+    coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg",
+    trackCount: 7,
+    tracks: [
+      { id: "ytm-s7zK9-8pkm0", ytId: "s7zK9-8pkm0", title: "Arjan Vailly", artist: "Bhupinder Babbal", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 182, movie: "Animal" },
+      { id: "ytm-HrnrqYxYrbk", ytId: "HrnrqYxYrbk", title: "Satranga", artist: "Arijit Singh, Shreyas Puranik", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 271, movie: "Animal" },
+      { id: "ytm-2S246U59m4E", ytId: "2S246U59m4E", title: "Pehle Bhi Main", artist: "Vishal Mishra, Raj Shekhar", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 250, movie: "Animal" },
+      { id: "ytm-dZ0fwJojhrs", ytId: "dZ0fwJojhrs", title: "Hua Main", artist: "Raghav Chaitanya, Pritam", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 277, movie: "Animal" },
+      { id: "ytm-p3kYpmsd-Qk", ytId: "p3kYpmsd-Qk", title: "Papa Meri Jaan", artist: "Sonu Nigam, Harshavardhan", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 321, movie: "Animal" },
+      { id: "ytm-cAMj_gC1JEU", ytId: "cAMj_gC1JEU", title: "Saari Duniya Jalaa Denge", artist: "B Praak, Jaani", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 182, movie: "Animal" },
+      { id: "ytm-g1v7n1RfZ2g", ytId: "g1v7n1RfZ2g", title: "Marham (Pehle Bhi Main)", artist: "Vishal Mishra", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 245, movie: "Animal" }
+    ]
+  },
+  {
+    id: "movie-pl-pushpa",
+    title: "Pushpa: The Rule & The Rise",
+    movie: "Pushpa",
+    year: "2024",
+    composer: "Devi Sri Prasad (DSP)",
+    badge: "PUSHPA SAGAS",
+    description: "The complete explosive soundtrack from Sukumar's Pushpa universe: Pushpa Pushpa, Angaaron, Srivalli, Oo Antava and Saami Saami.",
+    coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-tY4b-4q30qA", ytId: "tY4b-4q30qA", title: "Pushpa Pushpa", artist: "Nakash Aziz, Devi Sri Prasad", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 266, movie: "Pushpa" },
+      { id: "ytm-U3dglsE_pXU", ytId: "U3dglsE_pXU", title: "Angaaron (The Couple Song)", artist: "Shreya Ghoshal, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 260, movie: "Pushpa" },
+      { id: "ytm-hcMzwMrr1tE", ytId: "hcMzwMrr1tE", title: "Srivalli", artist: "Sid Sriram, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 224, movie: "Pushpa" },
+      { id: "ytm-f6v_hLp8l64", ytId: "f6v_hLp8l64", title: "Oo Antava Mava", artist: "Indravathi Chauhan, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 228, movie: "Pushpa" },
+      { id: "ytm-1e9y3q19W-4", ytId: "1e9y3q19W-4", title: "Saami Saami", artist: "Sunidhi Chauhan, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 224, movie: "Pushpa" },
+      { id: "ytm-06eA4p_1y3E", ytId: "06eA4p_1y3E", title: "Peelings", artist: "Nakash Aziz, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 215, movie: "Pushpa" }
+    ]
+  },
+  {
+    id: "movie-pl-kgf",
+    title: "K.G.F: Chapter 1 & 2 (Official Album)",
+    movie: "K.G.F",
+    year: "2022",
+    composer: "Ravi Basrur",
+    badge: "KGF 1 & 2",
+    description: "All the thunderous war anthems and emotional melodies from Yash's Rocky Bhai universe composed by Ravi Basrur.",
+    coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-v_43p4x8090", ytId: "v_43p4x8090", title: "Toofan", artist: "Ravi Basrur, Brijesh Shandilya", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 215, movie: "KGF" },
+      { id: "ytm-k4Z3z-m76Lw", ytId: "k4Z3z-m76Lw", title: "Sulthan", artist: "Ravi Basrur, Mohan Krishna", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 228, movie: "KGF" },
+      { id: "ytm-r3g-yL1P_uY", ytId: "r3g-yL1P_uY", title: "Mehabooba", artist: "Ananya Bhat, Ravi Basrur", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 217, movie: "KGF" },
+      { id: "ytm-E_SbwflEwwE", ytId: "E_SbwflEwwE", title: "Salam Rocky Bhai", artist: "Vijay Prakash", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 245, movie: "KGF" },
+      { id: "ytm-9Y-G-m1v6n0", ytId: "9Y-G-m1v6n0", title: "Falak Tu Garaj Tu", artist: "Suchetha Basrur", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 189, movie: "KGF" },
+      { id: "ytm-z8Lq-t3Q97M", ytId: "z8Lq-t3Q97M", title: "Dheera Dheera", artist: "Ananya Bhat", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 222, movie: "KGF" }
+    ]
+  },
+  {
+    id: "movie-pl-yjhd",
+    title: "Yeh Jawaani Hai Deewani (Original Soundtrack)",
+    movie: "Yeh Jawaani Hai Deewani",
+    year: "2013",
+    composer: "Pritam",
+    badge: "YJHD (2013)",
+    description: "The timeless coming-of-age celebration of friendship and love: Kabira, Ilahi, Badtameez Dil, Balam Pichkari and Subhanallah.",
+    coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-jHNNMj5bNQw", ytId: "jHNNMj5bNQw", title: "Kabira", artist: "Arijit Singh, Harshdeep Kaur", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 223, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-fdubeMFwuGs", ytId: "fdubeMFwuGs", title: "Ilahi", artist: "Arijit Singh, Pritam", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 229, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-II2EO3NwUrQ", ytId: "II2EO3NwUrQ", title: "Badtameez Dil", artist: "Benny Dayal, Shefali Alvares", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 252, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-0WtRNGubxJA", ytId: "0WtRNGubxJA", title: "Balam Pichkari", artist: "Vishal Dadlani, Shalmali Kholgade", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 289, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-ib-Qiyklq-Q", ytId: "ib-Qiyklq-Q", title: "Subhanallah", artist: "Sreerama Chandra, Shilpa Rao", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 249, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-1cDoRqPn9mM", ytId: "1cDoRqPn9mM", title: "Dilliwaali Girlfriend", artist: "Arijit Singh, Sunidhi Chauhan", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 260, movie: "Yeh Jawaani Hai Deewani" }
+    ]
+  },
+  {
+    id: "movie-pl-rockstar",
+    title: "Rockstar (Original Motion Picture Soundtrack)",
+    movie: "Rockstar",
+    year: "2011",
+    composer: "A.R. Rahman",
+    badge: "ROCKSTAR (2011)",
+    description: "A.R. Rahman and Mohit Chauhan's magnum opus: Kun Faya Kun, Nadaan Parinde, Sadda Haq, Tum Ho and Phir Se Ud Chala.",
+    coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Javed Ali, Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 473, movie: "Rockstar" },
+      { id: "ytm-ttKXfraJv88", ytId: "ttKXfraJv88", title: "Nadaan Parinde", artist: "A.R. Rahman, Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 386, movie: "Rockstar" },
+      { id: "ytm-p9DQINKFVWE", ytId: "p9DQINKFVWE", title: "Sadda Haq", artist: "Mohit Chauhan, Clinton Cerejo", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 365, movie: "Rockstar" },
+      { id: "ytm-gkCKTuR-ECI", ytId: "gkCKTuR-ECI", title: "Tum Ho", artist: "Mohit Chauhan, Suzanne D'Mello", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 319, movie: "Rockstar" },
+      { id: "ytm-2mWaqUk73H4", ytId: "2mWaqUk73H4", title: "Phir Se Ud Chala", artist: "Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 271, movie: "Rockstar" },
+      { id: "ytm-w_Haezv0v4I", ytId: "w_Haezv0v4I", title: "Jo Bhi Main", artist: "Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 275, movie: "Rockstar" }
+    ]
+  },
+  {
+    id: "movie-pl-jawan",
+    title: "Jawan (Original Soundtrack)",
+    movie: "Jawan",
+    year: "2023",
+    composer: "Anirudh Ravichander",
+    badge: "JAWAN (2023)",
+    description: "High-octane mass cinema audio by Anirudh Ravichander: Chaleya, Zinda Banda, Not Ramaiya Vastavaiya and Faraatta.",
+    coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-VAdGW7QDJiU", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao, Anirudh", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 198, movie: "Jawan" },
+      { id: "ytm-13P_zC4d-08", ytId: "13P_zC4d-08", title: "Zinda Banda", artist: "Anirudh Ravichander, Irshad Kamil", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 264, movie: "Jawan" },
+      { id: "ytm-d3G_o6QvKms", ytId: "d3G_o6QvKms", title: "Not Ramaiya Vastavaiya", artist: "Vishal Dadlani, Anirudh, Shilpa Rao", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 203, movie: "Jawan" },
+      { id: "ytm-xP5F2v2W9t8", ytId: "xP5F2v2W9t8", title: "Faraatta", artist: "Arijit Singh, Jonita Gandhi, Badshah", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 195, movie: "Jawan" },
+      { id: "ytm-3R3f9Jm8WxE", ytId: "3R3f9Jm8WxE", title: "Aararaari Raaro", artist: "Deepthi Suresh, Anirudh", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 278, movie: "Jawan" },
+      { id: "ytm-r_Jj5Ym4n5Q", ytId: "r_Jj5Ym4n5Q", title: "Jawan Title Track", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 185, movie: "Jawan" }
+    ]
+  },
+  {
+    id: "movie-pl-aashiqui2",
+    title: "Aashiqui 2 (The Romance Album)",
+    movie: "Aashiqui 2",
+    year: "2013",
+    composer: "Mithoon, Ankit Tiwari & Jeet Gannguli",
+    badge: "AASHIQUI 2",
+    description: "The gold standard of Hindi romance ballads: Tum Hi Ho, Sunn Raha Hai, Chahun Main Ya Naa, Piya Aaye Na and Bhula Dena.",
+    coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh, Mithoon", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 262, movie: "Aashiqui 2" },
+      { id: "ytm-z3UHfi9vpbc", ytId: "z3UHfi9vpbc", title: "Sunn Raha Hai", artist: "Ankit Tiwari", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 390, movie: "Aashiqui 2" },
+      { id: "ytm-VdyBtGaspss", ytId: "VdyBtGaspss", title: "Chahun Main Ya Naa", artist: "Arijit Singh, Palak Muchhal", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 304, movie: "Aashiqui 2" },
+      { id: "ytm-m_c_s4E9z84", ytId: "m_c_s4E9z84", title: "Piya Aaye Na", artist: "KK, Tulsi Kumar", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 286, movie: "Aashiqui 2" },
+      { id: "ytm-Gz3_W_Y0WkI", ytId: "Gz3_W_Y0WkI", title: "Meri Aashiqui", artist: "Arijit Singh, Palak Muchhal", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 266, movie: "Aashiqui 2" },
+      { id: "ytm-0WvVn7mF7r8", ytId: "0WvVn7mF7r8", title: "Bhula Dena", artist: "Mustafa Zahid", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 240, movie: "Aashiqui 2" }
+    ]
+  },
+  {
+    id: "movie-pl-interstellar",
+    title: "Interstellar (Original Motion Picture Soundtrack)",
+    movie: "Interstellar",
+    year: "2014",
+    composer: "Hans Zimmer",
+    badge: "HANS ZIMMER OST",
+    description: "Hans Zimmer's transcendent cosmic organ score: Cornfield Chase, No Time For Caution, S.T.A.Y., Day One and Mountains.",
+    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-1Vko01D77Fg", ytId: "1Vko01D77Fg", title: "Cornfield Chase", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 127, movie: "Interstellar" },
+      { id: "ytm-m3zvVGJrTP8", ytId: "m3zvVGJrTP8", title: "No Time For Caution", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 246, movie: "Interstellar" },
+      { id: "ytm-RxabLA7UQ9k", ytId: "RxabLA7UQ9k", title: "Time (Inception)", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 275, movie: "Inception" },
+      { id: "ytm-N4b4qUp8Sqw", ytId: "N4b4qUp8Sqw", title: "S.T.A.Y.", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 383, movie: "Interstellar" },
+      { id: "ytm-qC4BvA_1Wk0", ytId: "qC4BvA_1Wk0", title: "Day One", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 200, movie: "Interstellar" },
+      { id: "ytm-o_Ay_iDRAbc", ytId: "o_Ay_iDRAbc", title: "Mountains", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 219, movie: "Interstellar" }
+    ]
+  },
+  {
+    id: "movie-pl-spiderverse",
+    title: "Across the Spider-Verse (Soundtrack)",
+    movie: "Spider-Man: Across the Spider-Verse",
+    year: "2023",
+    composer: "Metro Boomin",
+    badge: "SPIDER-VERSE",
+    description: "Metro Boomin's multidimensional rap and melodic trap soundtrack: Sunflower, Am I Dreaming, Calling, Self Love and Mona Lisa.",
+    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-ApXoWvfEYVU", ytId: "ApXoWvfEYVU", title: "Sunflower", artist: "Post Malone, Swae Lee", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 158, movie: "Spider-Man" },
+      { id: "ytm-r838F5F-iYg", ytId: "r838F5F-iYg", title: "Am I Dreaming", artist: "Metro Boomin, A$AP Rocky, Roisee", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 256, movie: "Spider-Man" },
+      { id: "ytm-t8T7hI6v_20", ytId: "t8T7hI6v_20", title: "Calling", artist: "Metro Boomin, Swae Lee, NAV", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 219, movie: "Spider-Man" },
+      { id: "ytm-N_GfT-k41_E", ytId: "N_GfT-k41_E", title: "Self Love", artist: "Metro Boomin, Coi Leray", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 189, movie: "Spider-Man" },
+      { id: "ytm-O_3U5x4G9fM", ytId: "O_3U5x4G9fM", title: "Annihilate", artist: "Metro Boomin, Swae Lee, Lil Wayne", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 231, movie: "Spider-Man" },
+      { id: "ytm-wR7wWc93T24", ytId: "wR7wWc93T24", title: "Mona Lisa", artist: "Dominic Fike", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 186, movie: "Spider-Man" }
+    ]
+  },
+  {
+    id: "movie-pl-lcu",
+    title: "Leo & Vikram: The LCU Soundtracks",
+    movie: "Leo / Vikram",
+    year: "2023",
+    composer: "Anirudh Ravichander",
+    badge: "LCU (ANIRUDH)",
+    description: "Anirudh Ravichander's roaring adrenaline soundtracks from the Lokesh Cinematic Universe: Badass, Naa Ready, Lokiverse and Vikram.",
+    coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-VbmsXkK5v1E", ytId: "VbmsXkK5v1E", title: "Badass", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 229, movie: "Leo" },
+      { id: "ytm-szvt1vD0Uug", ytId: "szvt1vD0Uug", title: "Naa Ready", artist: "Thalapathy Vijay, Anirudh", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 248, movie: "Leo" },
+      { id: "ytm-5gU6n4_P3Xo", ytId: "5gU6n4_P3Xo", title: "Lokiverse 2.0", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 180, movie: "Leo" },
+      { id: "ytm-u2eR435W4q8", ytId: "u2eR435W4q8", title: "Vikram Title Track", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 216, movie: "Vikram" },
+      { id: "ytm-0U_3G5x6G7E", ytId: "0U_3G5x6G7E", title: "Porkanda Singam", artist: "Anirudh, Ravi G", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 208, movie: "Vikram" },
+      { id: "ytm-g-3_9j3b7YQ", ytId: "g-3_9j3b7YQ", title: "Once Upon a Time", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 144, movie: "Vikram" }
+    ]
+  }
+];
+
+export const getMoviePlaylists = () => MOVIE_PLAYLISTS;
+
+export const VIBE_PLAYLISTS = [
+  {
+    id: "vibe-pl-late-night",
+    title: "Late Night Chill & Lo-Fi",
+    vibeBadge: "MIDNIGHT CHILL",
+    vibeColor: "#818cf8",
+    description: "Mellow bedroom pop, midnight thoughts, and soothing lo-fi textures: Wishes, Kahani Suno 2.0, Circles, Pehle Bhi Main and M83.",
+    coverUrl: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600&auto=format&fit=crop&q=80",
+    trackCount: 7,
+    tracks: [
+      { id: "ytm-oE7lU2qj4rY", ytId: "oE7lU2qj4rY", title: "Wishes", artist: "Hasan Raheem, Talwiinder & Umair", coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", duration: 218 },
+      { id: "ytm-zydG_QW8m68", ytId: "zydG_QW8m68", title: "Kahani Suno 2.0", artist: "Kaifi Khalil", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg", duration: 175 },
+      { id: "ytm-2S246U59m4E", ytId: "2S246U59m4E", title: "Pehle Bhi Main", artist: "Vishal Mishra, Raj Shekhar", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 250 },
+      { id: "ytm-wXhTHyIgQ_U", ytId: "wXhTHyIgQ_U", title: "Circles", artist: "Post Malone", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/1b/1b/7b1b1b0b-7ce2-b223-f9e0-8e36abe51877/19UMGIM78325.rgb.jpg/600x600bb.jpg", duration: 215 },
+      { id: "ytm-DWcJFNfaw90", ytId: "DWcJFNfaw90", title: "Midnight City", artist: "M83", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/7b/a9/cb7ba903-b5f1-cc21-90db-7a81b7aa0997/724596951057.jpg/1000x1000bb.jpg", duration: 243 },
+      { id: "ytm-rR4n-0KYeKQ", ytId: "rR4n-0KYeKQ", title: "Resonance", artist: "HOME", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4f/13/65/4f1365b0-e97c-c469-c438-2f7d8f204355/872133025584_cover.jpg/1000x1000bb.jpg", duration: 212 },
+      { id: "ytm-RBumgq5yVrA", ytId: "RBumgq5yVrA", title: "Let Her Go", artist: "Passenger", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/a4/0c/b2/a40cb25f-2ff7-a7eb-626a-9bb726715f6f/887158406126.jpg/1000x1000bb.jpg", duration: 252 }
+    ]
+  },
+  {
+    id: "vibe-pl-workout",
+    title: "High-Energy Workout & Beast Mode",
+    vibeBadge: "160+ BPM HYPE",
+    vibeColor: "#ef4444",
+    description: "Hard bass drops, rap power, and adrenaline bangers for maximum stamina: Lose Yourself, Believer, Toofan, Badass and Animals.",
+    coverUrl: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80",
+    trackCount: 7,
+    tracks: [
+      { id: "ytm-_Yhyp-_hX2s", ytId: "_Yhyp-_hX2s", title: "Lose Yourself", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg", duration: 326 },
+      { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg", duration: 204 },
+      { id: "ytm-v_43p4x8090", ytId: "v_43p4x8090", title: "Toofan", artist: "Ravi Basrur, Brijesh Shandilya", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 215 },
+      { id: "ytm-VbmsXkK5v1E", ytId: "VbmsXkK5v1E", title: "Badass", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 229 },
+      { id: "ytm-gCYcHz2k5x0", ytId: "gCYcHz2k5x0", title: "Animals", artist: "Martin Garrix", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 176 },
+      { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216 },
+      { id: "ytm-13P_zC4d-08", ytId: "13P_zC4d-08", title: "Zinda Banda", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 264 }
+    ]
+  },
+  {
+    id: "vibe-pl-heartbreak",
+    title: "Heartbreak & Melancholy Soul",
+    vibeBadge: "DEEP SOUL",
+    vibeColor: "#f43f5e",
+    description: "Tearful acoustic ballads, haunting vocals, and cathartic piano chords: Tum Hi Ho, Satranga, Someone You Loved, Adele and Kabira.",
+    coverUrl: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80",
+    trackCount: 7,
+    tracks: [
+      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh, Mithoon", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 262 },
+      { id: "ytm-HrnrqYxYrbk", ytId: "HrnrqYxYrbk", title: "Satranga", artist: "Arijit Singh, Shreyas Puranik", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 271 },
+      { id: "ytm-zABLecsR5UE", ytId: "zABLecsR5UE", title: "Someone You Loved", artist: "Lewis Capaldi", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/9f/fa/919ffaf9-e58f-4ba6-fb69-2f22b7d2bf6a/19UMGIM07335.rgb.jpg/1000x1000bb.jpg", duration: 182 },
+      { id: "ytm-hLQl3WQQoQ0", ytId: "hLQl3WQQoQ0", title: "Someone Like You", artist: "Adele", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/2c/3f/052c3f81-591d-ae67-f703-9bb52fef9bc7/634904052028.png/1000x1000bb.jpg", duration: 285 },
+      { id: "ytm-VdyBtGaspss", ytId: "VdyBtGaspss", title: "Chahun Main Ya Naa", artist: "Arijit Singh, Palak Muchhal", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 304 },
+      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg", duration: 269 },
+      { id: "ytm-jHNNMj5bNQw", ytId: "jHNNMj5bNQw", title: "Kabira", artist: "Arijit Singh, Harshdeep Kaur", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 223 }
+    ]
+  },
+  {
+    id: "vibe-pl-coffee-acoustic",
+    title: "Warm Morning Coffee & Acoustic",
+    vibeBadge: "COZY ACOUSTIC",
+    vibeColor: "#f59e0b",
+    description: "Sunlit acoustic chords, peaceful morning coffee vibes, and heartwarming melodies: Perfect, Subhanallah, Yellow, Birds of a Feather and Ilahi.",
+    coverUrl: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&auto=format&fit=crop&q=80",
+    trackCount: 7,
+    tracks: [
+      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 263 },
+      { id: "ytm-ib-Qiyklq-Q", ytId: "ib-Qiyklq-Q", title: "Subhanallah", artist: "Sreerama Chandra, Shilpa Rao", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 249 },
+      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg", duration: 269 },
+      { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg", duration: 196 },
+      { id: "ytm-fdubeMFwuGs", ytId: "fdubeMFwuGs", title: "Ilahi", artist: "Arijit Singh, Pritam", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 229 },
+      { id: "ytm-e-ORhEE9VVg", ytId: "e-ORhEE9VVg", title: "Blank Space", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/64/0a/73/640a73aa-e818-f2b7-1c60-a886f45a1985/00843930014026.rgb.jpg/1000x1000bb.jpg", duration: 231 },
+      { id: "ytm-H5v3kku4y6Q", ytId: "H5v3kku4y6Q", title: "As It Was", artist: "Harry Styles", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/1000x1000bb.jpg", duration: 167 }
+    ]
+  },
+  {
+    id: "vibe-pl-dance-euphoria",
+    title: "Pure Euphoria & Dance Club",
+    vibeBadge: "DISCO & DANCE",
+    vibeColor: "#ec4899",
+    description: "Infectious disco rhythms, glittering synthpop euphoria, and peak club energy: Levitating, Blinding Lights, Espresso, Badtameez Dil and Levels.",
+    coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80",
+    trackCount: 7,
+    tracks: [
+      { id: "ytm-TUVcZfQe-Kw", ytId: "TUVcZfQe-Kw", title: "Levitating", artist: "Dua Lipa", coverUrl: "https://i.ytimg.com/vi/TUVcZfQe-Kw/hqdefault.jpg", duration: 203 },
+      { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
+      { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", coverUrl: "https://i.ytimg.com/vi/eVli-tstM5E/hqdefault.jpg", duration: 175 },
+      { id: "ytm-II2EO3NwUrQ", ytId: "II2EO3NwUrQ", title: "Badtameez Dil", artist: "Benny Dayal, Shefali Alvares", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 252 },
+      { id: "ytm-0zGcUoRlhmw", ytId: "0zGcUoRlhmw", title: "Closer", artist: "The Chainsmokers ft. Halsey", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 245 },
+      { id: "ytm-_ovdm2yX4MA", ytId: "_ovdm2yX4MA", title: "Levels", artist: "Avicii", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 198 },
+      { id: "ytm-YqeW9_5kURI", ytId: "YqeW9_5kURI", title: "Lean On", artist: "Major Lazer & DJ Snake", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 176 }
+    ]
+  },
+  {
+    id: "vibe-pl-deep-focus",
+    title: "Deep Focus & Instrumental Flow",
+    vibeBadge: "FLOW STATE",
+    vibeColor: "#06b6d4",
+    description: "Transcendent film scores, cosmic pipe organs, and divine spiritual healing: Cornfield Chase, Time, Devi Kavacham and Hans Zimmer.",
+    coverUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-1Vko01D77Fg", ytId: "1Vko01D77Fg", title: "Cornfield Chase", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 127 },
+      { id: "ytm-RxabLA7UQ9k", ytId: "RxabLA7UQ9k", title: "Time (Inception)", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 275 },
+      { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840 },
+      { id: "ytm-N4b4qUp8Sqw", ytId: "N4b4qUp8Sqw", title: "S.T.A.Y.", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 383 },
+      { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800 },
+      { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720 }
+    ]
+  },
+  {
+    id: "vibe-pl-sunset-drive",
+    title: "Golden Hour & Sunset Road Trip",
+    vibeBadge: "ROAD TRIP",
+    vibeColor: "#10b981",
+    description: "Windows down, sunset breeze, and iconic road trip anthems to sing along to: Sunflower, Shape of You, Starboy, Viva La Vida and Balam Pichkari.",
+    coverUrl: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=80",
+    trackCount: 7,
+    tracks: [
+      { id: "ytm-ApXoWvfEYVU", ytId: "ApXoWvfEYVU", title: "Sunflower", artist: "Post Malone & Swae Lee", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 158 },
+      { id: "ytm-JGwWNGJdvx8", ytId: "JGwWNGJdvx8", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg", duration: 233 },
+      { id: "ytm-34Na4j8AVgA", ytId: "34Na4j8AVgA", title: "Starboy", artist: "The Weeknd ft. Daft Punk", coverUrl: "https://i.ytimg.com/vi/34Na4j8AVgA/hqdefault.jpg", duration: 230 },
+      { id: "ytm-dvgZkm1xWPE", ytId: "dvgZkm1xWPE", title: "Viva La Vida", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg", duration: 242 },
+      { id: "ytm-0WtRNGubxJA", ytId: "0WtRNGubxJA", title: "Balam Pichkari", artist: "Vishal Dadlani, Shalmali Kholgade", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 289 },
+      { id: "ytm-YVkUvmDQ3HY", ytId: "YVkUvmDQ3HY", title: "Without Me", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/dd/5c/e6/dd5ce621-f7d2-f767-7a08-e7a7eaa7870b/00602537526994.rgb.jpg/600x600bb.jpg", duration: 290 },
+      { id: "ytm-1w7OgIMMRc4", ytId: "1w7OgIMMRc4", title: "Sweet Child O' Mine", artist: "Guns N' Roses", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 356 }
+    ]
+  },
+  {
+    id: "vibe-pl-sufi-coke-studio",
+    title: "Coke Studio & Sufi Mystic Soul",
+    vibeBadge: "SUFI & MYSTIC",
+    vibeColor: "#14b8a6",
+    description: "Soul-stirring poetry, divine harmoniums, and transcendent qawwalis: Tu Jhoom, Kun Faya Kun, Pasoori, Tajdar E Haram and Afreen Afreen.",
+    coverUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
+    trackCount: 6,
+    tracks: [
+      { id: "ytm-7D4vNcK6D38", ytId: "7D4vNcK6D38", title: "Tu Jhoom", artist: "Abida Parveen x Naseebo Lal", coverUrl: "https://i.ytimg.com/vi/7D4vNcK6D38/hqdefault.jpg", duration: 399 },
+      { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Javed Ali, Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 473 },
+      { id: "ytm-5Eqb_-j3FDA", ytId: "5Eqb_-j3FDA", title: "Pasoori", artist: "Ali Sethi x Shae Gill", coverUrl: "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg", duration: 224 },
+      { id: "ytm-cM7_7_u0b3A", ytId: "cM7_7_u0b3A", title: "Tajdar E Haram", artist: "Atif Aslam", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg", duration: 628 },
+      { id: "ytm-kw4tT7SCmaY", ytId: "kw4tT7SCmaY", title: "Afreen Afreen", artist: "Rahat Fateh Ali Khan & Momina Mustehsan", coverUrl: "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg", duration: 405 },
+      { id: "ytm-oE7lU2qj4rY", ytId: "oE7lU2qj4rY", title: "Wishes", artist: "Hasan Raheem, Talwiinder & Umair", coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", duration: 218 }
+    ]
+  }
+];
+
+export const getVibePlaylists = () => VIBE_PLAYLISTS;
+
 
 export const fetchCategoryTracks = async (categoryId, limit = 20) => {
   const cat = CATALOG_CATEGORIES.find(c => c.id === categoryId);
@@ -720,16 +1072,51 @@ export const fetchCategoryTracks = async (categoryId, limit = 20) => {
 export function searchCatalogTracks(query) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) return [];
   const q = query.trim().toLowerCase();
+  const cleanQ = q.replace(/!/g, 'i').replace(/\$/g, 's').replace(/@/g, 'a').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  const qTokens = cleanQ.split(' ').filter(w => w.length >= 2);
   const matched = [];
   const seen = new Set();
 
   const add = (t, src) => {
     if (!t || !t.title) return;
-    const title = (t.title || '').toLowerCase();
-    const artist = (t.artist || '').toLowerCase();
-    const genre = (t.genre || '').toLowerCase();
-    const source = (src || '').toLowerCase();
-    if (title.includes(q) || artist.includes(q) || genre.includes(q) || source.includes(q) || q.includes(title) || q.includes(artist)) {
+    const rawT = (t.title || '').toLowerCase();
+    const rawA = (t.artist || '').toLowerCase();
+    const title = rawT.replace(/!/g, 'i').replace(/\$/g, 's').replace(/@/g, 'a').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+    const artist = rawA.replace(/!/g, 'i').replace(/\$/g, 's').replace(/@/g, 'a').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+    const genre = (t.genre || '').toLowerCase().trim();
+    const source = (src || '').toLowerCase().trim();
+
+    // Check title match
+    const titleMatch = title.includes(cleanQ) || (cleanQ.length >= 3 && cleanQ.includes(title));
+    
+    // Check artist match
+    const artistMatch = artist.includes(cleanQ) || (cleanQ.length >= 3 && cleanQ.includes(artist));
+    
+    // Token overlap
+    const tokensInTitle = qTokens.filter(tok => title.includes(tok)).length;
+    const tokensInArtist = qTokens.filter(tok => artist.includes(tok)).length;
+    const totalTokensInTrack = qTokens.filter(tok => title.includes(tok) || artist.includes(tok)).length;
+
+    // Strict multi-word matching: if query has multiple words, only match if title matches OR (artist matches and title tokens match)
+    let isMatch = false;
+    if (qTokens.length <= 1) {
+      isMatch = titleMatch || artistMatch || genre === cleanQ || source === cleanQ;
+    } else {
+      if (titleMatch) {
+        isMatch = true;
+      } else if (artistMatch && tokensInTitle > 0) {
+        isMatch = true;
+      } else if (cleanQ.includes(artist) && tokensInTitle > 0) {
+        isMatch = true;
+      } else if (tokensInTitle >= Math.min(qTokens.length, 2)) {
+        isMatch = true;
+      } else if (cleanQ.length <= artist.length + 3 && cleanQ.includes(artist)) {
+        // Query is essentially just the artist name with minor filler
+        isMatch = true;
+      }
+    }
+
+    if (isMatch) {
       const key = `${title}___${artist}`;
       if (!seen.has(key)) {
         seen.add(key);
@@ -762,6 +1149,12 @@ export function searchCatalogTracks(query) {
   // 3. Search in Quick Picks & Curated Playlists
   getQuickPicks(30).forEach(t => add(t, 'Quick Picks'));
   getCuratedPlaylists().forEach(pl => {
+    (pl.tracks || []).forEach(t => add(t, pl.title));
+  });
+  getMoviePlaylists().forEach(pl => {
+    (pl.tracks || []).forEach(t => add(t, pl.title));
+  });
+  getVibePlaylists().forEach(pl => {
     (pl.tracks || []).forEach(t => add(t, pl.title));
   });
 
@@ -965,12 +1358,142 @@ export const getNewReleasesShelf = () => {
   return cat ? cat.tracks : [];
 };
 
+export const HERO_SLIDES = [
+  {
+    id: "hero-slide-1",
+    title: "Blinding Lights",
+    artist: "The Weeknd",
+    artistRole: "Featured Global Anthem",
+    subtitle: "Experience the record-breaking synthwave anthem that conquered global charts with over 4 Billion streams and pure studio master audio.",
+    badgeText: "GLOBAL #1 ANTHEM",
+    badgeIcon: "fa-solid fa-bolt",
+    badgeColor: "#f59e0b",
+    query: "Blinding Lights The Weeknd",
+    coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg",
+    videoYtId: "4NRXx6U8ABQ",
+    ytId: "4NRXx6U8ABQ",
+    streamUrl: "https://aac.saavncdn.com/077/0b02a92687d1ae3369b6859f44872e52_320.mp4",
+    previewStart: 28,
+    accentGradient: "linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(245, 158, 11, 0.18) 45%, rgba(15, 17, 26, 0.95) 100%)"
+  },
+  {
+    id: "hero-slide-2",
+    title: "Espresso",
+    artist: "Sabrina Carpenter",
+    artistRole: "Viral Summer Sensation",
+    subtitle: "The caffeinated pop obsession with witty retro glamour, sparkling disco basslines, and synchronized live karaoke lyrics.",
+    badgeText: "VIRAL POP SENSATION",
+    badgeIcon: "fa-solid fa-fire-flame-curved",
+    badgeColor: "#f43f5e",
+    query: "Espresso Sabrina Carpenter",
+    coverUrl: "https://i.ytimg.com/vi/eVli-tstM5E/hqdefault.jpg",
+    videoYtId: "eVli-tstM5E",
+    ytId: "eVli-tstM5E",
+    streamUrl: "https://aac.saavncdn.com/111/cf81f6eb5b6768fe2e1ddf9335124a5f_320.mp4",
+    previewStart: 22,
+    accentGradient: "linear-gradient(135deg, rgba(244, 63, 94, 0.25) 0%, rgba(251, 146, 60, 0.18) 45%, rgba(15, 17, 26, 0.95) 100%)"
+  },
+  {
+    id: "hero-slide-3",
+    title: "Levitating",
+    artist: "Dua Lipa",
+    artistRole: "Future Nostalgia Queen",
+    subtitle: "Intergalactic roller-disco magic with pulsating funk basslines, electrifying vocals, and authentic lossless studio fidelity.",
+    badgeText: "STUDIO MASTER DISCO",
+    badgeIcon: "fa-solid fa-sparkles",
+    badgeColor: "#c084fc",
+    query: "Levitating Dua Lipa",
+    coverUrl: "https://i.ytimg.com/vi/TUVcZfQe-Kw/hqdefault.jpg",
+    videoYtId: "TUVcZfQe-Kw",
+    ytId: "TUVcZfQe-Kw",
+    streamUrl: "https://aac.saavncdn.com/665/7790c3b9097592113008eaf1031d6e57_320.mp4",
+    previewStart: 24,
+    accentGradient: "linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(236, 72, 153, 0.18) 45%, rgba(15, 17, 26, 0.95) 100%)"
+  },
+  {
+    id: "hero-slide-4",
+    title: "Kesariya (Brahmāstra)",
+    artist: "Arijit Singh & Pritam",
+    artistRole: "Bollywood Soul Masterpiece",
+    subtitle: "The iconic romantic melody that captured hearts across Varanasi's glowing riverbanks with Arijit Singh's timeless vocals.",
+    badgeText: "ROMANTIC MASTERPIECE",
+    badgeIcon: "fa-solid fa-heart",
+    badgeColor: "#f97316",
+    query: "Kesariya Arijit Singh Brahmastra",
+    coverUrl: "https://c.saavncdn.com/871/Brahmastra-Original-Motion-Picture-Soundtrack-Hindi-2022-20221006155213-500x500.webp",
+    videoYtId: "BddP6PYo2gs",
+    ytId: "BddP6PYo2gs",
+    streamUrl: "https://aac.saavncdn.com/871/c2febd353f3a076a406fa37510f31f9f_320.mp4",
+    previewStart: 50,
+    accentGradient: "linear-gradient(135deg, rgba(249, 115, 22, 0.25) 0%, rgba(234, 179, 8, 0.18) 45%, rgba(15, 17, 26, 0.95) 100%)"
+  },
+  {
+    id: "hero-slide-5",
+    title: "Faded",
+    artist: "Alan Walker",
+    artistRole: "Electronic Anthem",
+    subtitle: "The legendary electro-house phenomenon with haunting piano chords, atmospheric drops, and over 3.5 Billion video views worldwide.",
+    badgeText: "GLOBAL EDM PHENOMENON",
+    badgeIcon: "fa-solid fa-bolt",
+    badgeColor: "#06b6d4",
+    query: "Faded Alan Walker",
+    coverUrl: "https://i.ytimg.com/vi/60ItHLz5WEA/hqdefault.jpg",
+    videoYtId: "60ItHLz5WEA",
+    ytId: "60ItHLz5WEA",
+    streamUrl: "https://aac.saavncdn.com/981/ddf4f57d94d268001967dc60725c52ca_320.mp4",
+    previewStart: 38,
+    accentGradient: "linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(59, 130, 246, 0.18) 45%, rgba(15, 17, 26, 0.95) 100%)"
+  },
+  {
+    id: "hero-slide-6",
+    title: "Starboy",
+    artist: "The Weeknd ft. Daft Punk",
+    artistRole: "Electro-R&B Collaboration",
+    subtitle: "Electrifying futuristic collaboration featuring Daft Punk's robotic talkbox rhythms, dark synth swagger, and diamond status.",
+    badgeText: "ICONIC DUAL ANTHEM",
+    badgeIcon: "fa-solid fa-star",
+    badgeColor: "#eab308",
+    query: "Starboy The Weeknd Daft Punk",
+    coverUrl: "https://i.ytimg.com/vi/34Na4j8AVgA/hqdefault.jpg",
+    videoYtId: "34Na4j8AVgA",
+    ytId: "34Na4j8AVgA",
+    streamUrl: "https://aac.saavncdn.com/396/b4e570050007b056c662f2a98c9f28ec_320.mp4",
+    previewStart: 36,
+    accentGradient: "linear-gradient(135deg, rgba(234, 179, 8, 0.25) 0%, rgba(168, 85, 247, 0.18) 45%, rgba(15, 17, 26, 0.95) 100%)"
+  },
+  {
+    id: "hero-slide-7",
+    title: "Shape of You",
+    artist: "Ed Sheeran",
+    artistRole: "Diamond Worldwide Hit",
+    subtitle: "The ultimate tropical-pop dance anthem with over 6 Billion official views, rhythmic marimba hooks, and irresistible global groove.",
+    badgeText: "DIAMOND CERTIFIED HIT",
+    badgeIcon: "fa-solid fa-earth-americas",
+    badgeColor: "#38bdf8",
+    query: "Shape of You Ed Sheeran",
+    coverUrl: "https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg",
+    videoYtId: "JGwWNGJdvx8",
+    ytId: "JGwWNGJdvx8",
+    streamUrl: "https://aac.saavncdn.com/286/2929d11a5d44a3592ced0383fa6f1977_320.mp4",
+    previewStart: 26,
+    accentGradient: "linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(168, 85, 247, 0.18) 45%, rgba(15, 17, 26, 0.95) 100%)"
+  }
+];
+
+export const getHeroSlides = () => HERO_SLIDES;
+
 const catalogService = {
   CATALOG_CATEGORIES,
   LANGUAGE_PLAYLISTS,
+  HERO_SLIDES,
+  getHeroSlides,
   getQuickPicks,
   getFeaturedArtists,
   getCuratedPlaylists,
+  MOVIE_PLAYLISTS,
+  getMoviePlaylists,
+  VIBE_PLAYLISTS,
+  getVibePlaylists,
   fetchCategoryTracks,
   getArtistDetails,
   searchCatalogTracks,
@@ -982,3 +1505,4 @@ if (typeof window !== 'undefined') {
 }
 
 export default catalogService;
+

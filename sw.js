@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pulse-music-v4.2.0';
+const CACHE_NAME = 'pulse-music-v4.5.0';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -7,7 +7,11 @@ const STATIC_ASSETS = [
   '/pulse-logo.svg',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
-  '/icons/icon.ico'
+  '/icons/icon.ico',
+  '/vendor/fontawesome/css/all.min.css',
+  '/vendor/fontawesome/webfonts/fa-solid-900.woff2',
+  '/vendor/fontawesome/webfonts/fa-regular-400.woff2',
+  '/vendor/fontawesome/webfonts/fa-brands-400.woff2'
 ];
 
 self.addEventListener('install', (event) => {
@@ -27,6 +31,7 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         keys.map((key) => {
           if (key !== CACHE_NAME) {
+            console.log('[Pulse SW] Purging old cache:', key);
             return caches.delete(key);
           }
         })
@@ -40,15 +45,17 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
 
-  // Do not intercept external streaming/API audio requests
+  // Strictly only cache local same-origin static assets; never intercept external requests or Firebase/Google auth
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+
+  // Do not intercept auth handlers or internal API endpoints
   if (
     url.pathname.startsWith('/api/') ||
-    url.hostname.includes('saavn') ||
-    url.hostname.includes('youtube') ||
-    url.hostname.includes('googlevideo') ||
-    url.hostname.includes('audius') ||
-    url.hostname.includes('jamendo') ||
-    url.hostname.includes('lrclib')
+    url.pathname.startsWith('/__/auth/') ||
+    url.pathname.includes('googleapis') ||
+    url.pathname.includes('google.com')
   ) {
     return;
   }

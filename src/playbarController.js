@@ -604,7 +604,10 @@ function updateTimeUI() {
   const pct = duration > 0 ? (currentTime / duration) * 100 : 0;
   progressBars.forEach(el => { el.style.width = `${pct}%`; });
   if (!isSeeking) {
-    seekers.forEach(el => { el.value = pct; });
+    seekers.forEach(el => {
+      el.value = pct;
+      el.style.background = `linear-gradient(to right, #38bdf8 0%, #a855f7 ${pct}%, #333338 ${pct}%, #333338 100%)`;
+    });
   }
 }
 
@@ -636,8 +639,7 @@ function updatePlayPauseUI() {
 
   const disks = document.querySelectorAll('#fullscreen-album-art, #fs-album-art');
   disks.forEach(disk => {
-    if (isPlaying) disk.classList.add('playing-spin');
-    else disk.classList.remove('playing-spin');
+    disk.classList.remove('playing-spin');
   });
 
   if (typeof window !== 'undefined' && typeof window.updateActiveCardStates === 'function') {
@@ -972,6 +974,30 @@ function initPlaybarController() {
     });
   }
 
+  // Direct click-to-seek on progress-bar-wrapper
+  document.querySelectorAll('.progress-bar-wrapper').forEach(wrapper => {
+    wrapper.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      const rect = wrapper.getBoundingClientRect();
+      const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      if (duration > 0) {
+        seekTo(pos * duration);
+      }
+    });
+  });
+
+  // Direct click on player-bar top edge to seek on mobile & desktop
+  const playerBarEl = document.getElementById('player-bar');
+  if (playerBarEl) {
+    playerBarEl.addEventListener('click', (e) => {
+      const rect = playerBarEl.getBoundingClientRect();
+      if (e.clientY - rect.top <= 10 && duration > 0 && !e.target.closest('button')) {
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        seekTo(pos * duration);
+      }
+    });
+  }
+
   const seekers = document.querySelectorAll('#player-seek-slider, #playbar-seeker, #fs-seek-slider');
   seekers.forEach(seeker => {
     seeker.addEventListener('input', (e) => {
@@ -984,6 +1010,11 @@ function initPlaybarController() {
       });
       document.querySelectorAll('#player-progress-fill, #playbar-progress-fill, #mini-top-progress-fill, #fs-progress-fill').forEach(el => {
         el.style.width = `${pct}%`;
+      });
+      // Synchronous real-time track line gradient fill while dragging
+      seekers.forEach(s => {
+        s.value = pct;
+        s.style.background = `linear-gradient(to right, #38bdf8 0%, #a855f7 ${pct}%, #333338 ${pct}%, #333338 100%)`;
       });
       if (typeof window.syncLiveLyrics === 'function') {
         window.syncLiveLyrics(currentTime);
@@ -1386,16 +1417,16 @@ if (typeof window !== 'undefined') {
   }
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initPlaybarController();
+      ensureYouTubeReady();
+    });
+  } else {
     initPlaybarController();
-    // Eager YouTube IFrame initialization — pre-warm on page load for instant playback
     ensureYouTubeReady();
-  });
-} else {
-  initPlaybarController();
-  // Eager YouTube IFrame initialization — pre-warm on page load for instant playback
-  ensureYouTubeReady();
+  }
 }
 
 const playbarController = {
@@ -1422,7 +1453,7 @@ const playbarController = {
   toggleCurrentTrackFavorite,
   addCurrentToPlaylist,
   downloadCurrentTrack,
-  downloadTrack,
+  downloadTrack: downloadCurrentTrack,
   downloadCurrentTrackWallpaper,
   playTrackAtQueueIndex,
   getAudio,

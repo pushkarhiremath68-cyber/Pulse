@@ -2,16 +2,51 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Pulse Music Database Rules
-    
-    // Default deny
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: /users/{userId}/{document=**}
+    //   - User private data (profiles, favorites, custom playlists, listening history)
+    //   - Access: Authenticated owner only (request.auth.uid == userId)
+    //
+    // Collection: /sessions/{sessionId}
+    //   - Live Listening Party session state & playback synchronization
+    //   - Access: Read/write permitted for host and guest listeners
+    //
+    // Collection: /listening_sessions/{sessionId}
+    //   - Live Listening Party session state (alternate/legacy collection path)
+    //   - Access: Read/write permitted for host and guest listeners
+    //
+    // Collection: /shared_playlists/{playlistId}
+    //   - Shared public playlists for social sharing and importing
+    //   - Access: Read/write permitted
+    //
+    // ===============================================================
+
+    // Default deny: Block all unmatched reads and writes
     match /{document=**} {
       allow read, write: if false;
     }
-    
+
     // Users can only access their own user document and subcollections (favorites, playlists, history)
     match /users/{userId}/{document=**} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Sessions can be read/written by anyone (allowing both hosts and guest participants to sync playback)
+    match /sessions/{sessionId} {
+      allow read, write: if true;
+    }
+
+    // Listening Sessions (alternate collection for listening parties to ensure full compatibility)
+    match /listening_sessions/{sessionId} {
+      allow read, write: if true;
+    }
+
+    // Shared Playlists can be read by anyone and published by users
+    match /shared_playlists/{playlistId} {
+      allow read, write: if true;
     }
   }
 }

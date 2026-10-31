@@ -39,12 +39,12 @@ function createElementMock(id, tagName = 'div') {
     setAttribute(name, val) { this[name] = val; },
     addEventListener(evt, handler) { this[`on${evt}`] = handler; },
     appendChild(child) { this.children.push(child); },
-    remove() {},
+    remove() { },
     querySelector(sel) { return null; },
     querySelectorAll(sel) { return []; },
     closest(sel) { return null; },
-    focus() {},
-    scrollIntoView() {}
+    focus() { },
+    scrollIntoView() { }
   };
   elementStore.set(id, el);
   return el;
@@ -55,6 +55,12 @@ const requiredIds = [
   'home-quick-picks-container',
   'home-featured-artists-container',
   'home-curated-playlists-container',
+  'home-movie-playlists-container',
+  'home-vibe-playlists-container',
+  'home-current-vibe-tracks',
+  'shelf-current-vibe',
+  'current-vibe-shelf-title',
+  'current-vibe-shelf-subtitle',
   'dynamic-home-shelves',
   'language-shelves-container',
   'search-results-container',
@@ -93,16 +99,22 @@ const documentMock = {
     }
     return elementStore.get(id);
   },
+  querySelector(selector) {
+    if (typeof selector === 'string' && selector.startsWith('#')) {
+      return this.getElementById(selector.slice(1));
+    }
+    return Array.from(elementStore.values())[0] || null;
+  },
   querySelectorAll(selector) {
     return Array.from(elementStore.values());
   },
   createElement(tag) {
     return createElementMock(`mock-${Date.now()}-${Math.random()}`, tag);
   },
-  addEventListener(evt, handler) {},
+  addEventListener(evt, handler) { },
   body: {
     contains: () => false,
-    appendChild: () => {},
+    appendChild: () => { },
     style: {}
   },
   readyState: 'complete'
@@ -110,13 +122,14 @@ const documentMock = {
 
 const windowMock = {
   document: documentMock,
+  matchMedia: () => ({ matches: false }),
   navigator: {
     userAgent: 'Mozilla/5.0 NodeTest',
     mediaSession: {
       metadata: null,
-      setActionHandler: () => {},
+      setActionHandler: () => { },
       playbackState: 'none',
-      setPositionState: () => {}
+      setPositionState: () => { }
     }
   },
   localStorage: {
@@ -132,12 +145,16 @@ const windowMock = {
     removeItem(k) { delete this._data[k]; }
   },
   location: { origin: 'http://localhost:5173' },
-  addEventListener: () => {},
-  scrollTo: () => {},
+  addEventListener: () => { },
+  removeEventListener: () => { },
+  dispatchEvent: () => true,
+  CustomEvent: class { constructor(type, detail) { this.type = type; Object.assign(this, detail); } },
+  scrollTo: () => { },
   requestAnimationFrame: cb => setTimeout(cb, 16),
   cancelAnimationFrame: id => clearTimeout(id),
   MediaMetadata: class { constructor(opts) { Object.assign(this, opts); } }
 };
+globalThis.CustomEvent = windowMock.CustomEvent;
 
 globalThis.window = windowMock;
 globalThis.document = documentMock;
@@ -162,6 +179,12 @@ async function runTests() {
   console.log(`- Quick Picks populated: ${qp.innerHTML.length > 50 ? 'PASS' : 'FAIL'} (${qp.innerHTML.length} chars)`);
   console.log(`- Featured Artists populated: ${artists.innerHTML.length > 50 ? 'PASS' : 'FAIL'} (${artists.innerHTML.length} chars)`);
   console.log(`- Curated Playlists populated: ${playlists.innerHTML.length > 50 ? 'PASS' : 'FAIL'} (${playlists.innerHTML.length} chars)`);
+
+  const moviePl = documentMock.getElementById('home-movie-playlists-container');
+  const vibePl = documentMock.getElementById('home-vibe-playlists-container');
+  console.log(`- Movie Playlists Shelf populated: ${moviePl && moviePl.innerHTML.length > 50 ? 'PASS' : 'FAIL'} (${moviePl?.innerHTML.length || 0} chars)`);
+  console.log(`- Vibe Mixes Shelf populated: ${vibePl && vibePl.innerHTML.length > 50 ? 'PASS' : 'FAIL'} (${vibePl?.innerHTML.length || 0} chars)`);
+
   console.log(`- Genre Shelves populated: ${shelves.innerHTML.length > 50 ? 'PASS' : 'FAIL'} (${shelves.innerHTML.length} chars)`);
   console.log(`- Language Shelves populated: ${langs.innerHTML.length > 50 ? 'PASS' : 'FAIL'} (${langs.innerHTML.length} chars)`);
 

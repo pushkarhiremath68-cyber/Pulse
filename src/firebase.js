@@ -55,7 +55,7 @@ export function initFirebase() {
     // Initialize Auth
     firebaseAuth = firebase.auth();
     try {
-      firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+      firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => {});
     } catch (e) {}
 
     // Initialize Firestore with offline persistence
@@ -80,7 +80,7 @@ export function initFirebase() {
 }
 
 // Auto initialize when module loads
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => initFirebase());
   } else {

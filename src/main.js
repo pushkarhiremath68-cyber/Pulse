@@ -14,6 +14,7 @@ import './firebaseAuthService.js';
 import './firestoreService.js';
 import './extractorService.js';
 import './musicService.js';
+import { fetchDynamicArtistData } from './musicService.js';
 import './audioEngine.js';
 import './playbarController.js';
 import './lyricsService.js';
@@ -33,6 +34,8 @@ import {
   signInWithGoogle,
   signInWithEmail,
   signUpWithEmail,
+  sendPhoneOtp,
+  verifyPhoneOtp,
   signOut,
   isGateUnlocked,
   setGateUnlocked,
@@ -42,8 +45,9 @@ import {
   exportUserData,
   clearUserCache
 } from './firebaseAuthService.js';
-import { getFavorites, removeFavorite, addFavorite, isFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged } from './firestoreService.js';
-import { getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
+import { getFavorites, removeFavorite, addFavorite, isFavorite, getPlaylists, createPlaylist, deletePlaylist, addTrackToPlaylist, removeTrackFromPlaylist, getHistory, clearHistory, onFavoritesChanged, onPlaylistsChanged, onHistoryChanged, getCurrentUserId, createSession, joinSession, leaveSession, updateSessionState, publishSharedPlaylist, getSharedPlaylist, importSharedPlaylist, generateTrackShareUrl, parseTrackShareUrl } from './firestoreService.js';
+import { getHeroSlides, getQuickPicks, getFeaturedArtists, getArtistDetails, getCuratedPlaylists, getMoviePlaylists, getVibePlaylists, CATALOG_CATEGORIES, LANGUAGE_PLAYLISTS } from './catalogService.js';
+import { detectTrackVibe, getSimilarTracks } from './recommendationService.js';
 import { getLyrics, getActiveLineIndex } from './lyricsService.js';
 import { askGeminiDJ } from './geminiService.js';
 import {
@@ -121,6 +125,15 @@ window.addEventListener('error', function(e) {
 
   // View Routing
   window.switchView = function(viewId) {
+    if (viewId === 'library' || viewId === 'playlist') {
+      const uid = getCurrentUserId();
+      if (!uid || uid.startsWith('guest-')) {
+        window.showToast('Please continue with Google to access your library', 'warning');
+        window.signInWithGoogle();
+        return; // prevent switching view
+      }
+    }
+
     document.querySelectorAll('.app-view').forEach(el => el.classList.remove('active-view'));
     const target = document.getElementById(`view-${viewId}`);
     if (target) {
@@ -140,6 +153,18 @@ window.addEventListener('error', function(e) {
       const searchInput = document.getElementById('global-search-input');
       if (searchInput) searchInput.focus();
     }
+
+    if (viewId !== 'home') {
+      if (window.pauseHeroAutoPlay) window.pauseHeroAutoPlay();
+      if (window.toggleSlideVideo && window.__heroSlides) {
+        for (let i = 0; i < window.__heroSlides.length; i++) {
+          const vidBox = document.getElementById(`hero-media-video-${i}`);
+          if (vidBox && vidBox.classList.contains('active-video')) {
+            window.toggleSlideVideo(i, false);
+          }
+        }
+      }
+    }
   };
 
   // Playback Trigger
@@ -150,14 +175,21 @@ window.addEventListener('error', function(e) {
       window.loadTrackLyrics(track);
     }
     const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
-    const appWallpaper = document.getElementById('app-dynamic-wallpaper');
-    if (appWallpaper) {
-      appWallpaper.style.backgroundImage = `url('${coverUrl}')`;
-      appWallpaper.classList.add('active-wallpaper');
+    if (window.PulsePlaybar && typeof window.PulsePlaybar.updateDynamicAppWallpaper === 'function') {
+      window.PulsePlaybar.updateDynamicAppWallpaper(coverUrl);
+    } else {
+      const appWallpaper = document.getElementById('app-dynamic-wallpaper');
+      if (appWallpaper) {
+        appWallpaper.style.backgroundImage = `url('${coverUrl}')`;
+        appWallpaper.classList.add('active-wallpaper');
+      }
     }
     const heroBg = document.getElementById('hero-bg-artwork');
     if (heroBg) {
       heroBg.style.backgroundImage = `url('${coverUrl}')`;
+    }
+    if (typeof window.updateCurrentVibeShelf === 'function') {
+      window.updateCurrentVibeShelf(track);
     }
   };
 
@@ -407,10 +439,6 @@ window.addEventListener('error', function(e) {
       }
     }
 
-    if (fsModal) {
-      fsModal.classList.toggle('fs-wallpaper-mode-active', viewMode === 'wallpaper');
-    }
-
     // Update active tab buttons
     document.querySelectorAll('.fs-mode-tab-btn').forEach(btn => {
       btn.classList.toggle('active-tab', btn.getAttribute('data-mode') === viewMode);
@@ -420,7 +448,7 @@ window.addEventListener('error', function(e) {
       content.setAttribute('data-active-view', viewMode);
     }
 
-    if (artSec) artSec.classList.toggle('hidden-view', viewMode !== 'art' && viewMode !== 'wallpaper');
+    if (artSec) artSec.classList.toggle('hidden-view', viewMode !== 'art');
     if (lyricsSec) lyricsSec.classList.toggle('hidden-view', viewMode !== 'lyrics');
     if (similarSec) similarSec.classList.toggle('hidden-view', viewMode !== 'similar');
 
@@ -495,7 +523,7 @@ window.addEventListener('error', function(e) {
         link.click();
         setTimeout(() => document.body.removeChild(link), 1500);
         if (typeof window.showToast === 'function') {
-          window.showToast(`🖼️ Wallpaper downloaded! Set as your Lock Screen 📲`, 'success', 3500);
+          window.showToast(`🖼️ Wallpaper downloaded! Set as your Lock Screen 📱`, 'success', 3500);
         }
       }
 
@@ -577,7 +605,7 @@ window.addEventListener('error', function(e) {
               URL.revokeObjectURL(blobUrl);
             }, 2000);
             if (typeof window.showToast === 'function') {
-              window.showToast(`🖼️ HD Wallpaper saved! Perfect for Phone & Desktop 📲`, 'success', 5000);
+              window.showToast(`🖼️ HD Wallpaper saved! Perfect for Phone & Desktop 📱`, 'success', 5000);
             }
           }, 'image/jpeg', 0.95);
         } catch (canvasErr) {
@@ -819,13 +847,10 @@ window.addEventListener('error', function(e) {
       <button class="context-menu-item" onclick="window.openAddToPlaylistModal(window.__activeContextTrack); window.closeCardContextMenu();">
         <i class="fa-solid fa-folder-plus" style="color: #ec4899;"></i> Add to Playlist
       </button>
-      <div class="context-menu-divider"></div>
-      <button class="context-menu-item" onclick="window.downloadTrackWallpaper(window.__activeContextTrack); window.closeCardContextMenu();">
-        <i class="fa-solid fa-image" style="color: #38bdf8;"></i> Save HD Wallpaper
+      <button class="context-menu-item" onclick="window.shareTrack(window.__activeContextTrack); window.closeCardContextMenu();">
+        <i class="fa-solid fa-share-nodes" style="color: #10b981;"></i> Share Music Link
       </button>
-      <button class="context-menu-item" onclick="window.openArtistView('${(track.artist || '').replace(/'/g, "\\'")}'); window.closeCardContextMenu();">
-        <i class="fa-solid fa-user" style="color: #f59e0b;"></i> Artist Discography
-      </button>
+
     `;
 
     menu.classList.remove('hidden');
@@ -944,12 +969,463 @@ window.addEventListener('error', function(e) {
     window.renderNewReleasesShelf(true);
   };
 
+  // ---------------------------------------------------------------------------
+  // 4. CINEMATIC HERO SHOWCASE CAROUSEL CONTROLLER (8 Curated Anthems & Strictly Inline 4K Videos)
+  // ---------------------------------------------------------------------------
+  let currentHeroSlideIndex = 0;
+  let heroAutoPlayInterval = null;
+  let isHeroPaused = false;
+  let activeVideoSlideIndex = null;
+  const HERO_SLIDE_DURATION_MS = 6000;
+
+  window.initHeroCarousel = function() {
+    const banner = document.getElementById('hero-banner');
+    const track = document.getElementById('hero-slides-track');
+    const pillsContainer = document.getElementById('hero-carousel-pills');
+    if (!banner || !track || !pillsContainer) return;
+
+    const slides = getHeroSlides();
+    if (!Array.isArray(slides) || slides.length === 0) return;
+    window.__heroSlides = slides;
+
+    // 1. Render Slides Track
+    track.innerHTML = slides.map((slide, idx) => {
+      const isFav = typeof isFavorite === 'function' ? isFavorite(slide.id) : false;
+      const artwork = slide.coverUrl || slide.artwork || './music-cover.svg';
+      const videoYtId = slide.videoYtId || slide.youtubeId || '';
+      const badgeText = slide.badgeText || slide.badge || 'FEATURED ANTHEM';
+      const badgeIcon = slide.badgeIcon || 'fa-solid fa-bolt';
+      const badgeColor = slide.badgeColor || '#38bdf8';
+      const tagline = slide.artistRole || slide.tagline || 'Featured Global Anthem';
+      const description = slide.subtitle || slide.description || '';
+
+      return `
+        <div class="hero-slide ${idx === currentHeroSlideIndex ? 'active-slide' : ''}" data-slide-index="${idx}">
+          <div class="hero-content">
+            <div class="hero-badge" style="border-color: ${badgeColor}33; color: ${badgeColor};">
+              <span class="hero-live-dot" style="background: ${badgeColor};"></span>
+              <i class="${badgeIcon}"></i> ${escapeHtml(badgeText)}
+            </div>
+            <h2 class="hero-title">${escapeHtml(slide.title)}</h2>
+            <div class="hero-artist-tag">
+              <i class="fa-solid fa-circle-check" style="font-size: 0.85rem; color: #38bdf8;"></i>
+              <span>${escapeHtml(slide.artist)}</span> • ${escapeHtml(tagline)}
+            </div>
+            <p class="hero-subtitle">${escapeHtml(description)}</p>
+            <div class="hero-actions">
+              <button class="btn-primary-play" onclick="window.playHeroSlideTrack(${idx})" title="Play Full Anthem in Pulse Audio Engine">
+                <i class="fa-solid fa-play"></i> Play Anthem
+              </button>
+              <button class="btn-hero-video" onclick="window.toggleSlidePreview(${idx}, true)" title="Watch Video Preview strictly inside this slide">
+                <i class="fa-solid fa-film"></i> Video Preview
+              </button>
+              <button class="btn-hero-secondary" onclick="window.toggleFavoriteHeroSlide(${idx})" title="Save to Favorites">
+                <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart" id="hero-fav-icon-${idx}" style="${isFav ? 'color: #f43f5e;' : ''}"></i>
+              </button>
+            </div>
+          </div>
+          <div class="hero-media-wrapper" id="hero-media-wrapper-${idx}">
+            <!-- Artwork Card Mode (Default) -->
+            <div class="hero-media-artwork-box" id="hero-media-artwork-${idx}" onclick="window.toggleSlidePreview(${idx}, true)" title="Click to watch Video Preview">
+              <img src="${artwork}" alt="${escapeHtml(slide.title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+              <div class="hero-artwork-play-overlay">
+                <i class="fa-solid fa-play"></i>
+              </div>
+              <div class="hero-video-badge-pill">
+                <i class="fa-solid fa-film" style="color: #38bdf8;"></i> Video Preview
+              </div>
+            </div>
+            <!-- Strict Inline Video Preview Mode (Pure preview loop, no YouTube player chrome) -->
+            <div class="hero-media-video-box" id="hero-media-video-${idx}"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // 2. Render Navigation Pills
+    pillsContainer.innerHTML = slides.map((slide, idx) => `
+      <div class="hero-pill-dot ${idx === currentHeroSlideIndex ? 'active-pill' : ''}" data-pill-index="${idx}" onclick="window.goToHeroSlide(${idx})" title="${escapeHtml(slide.title)} - ${escapeHtml(slide.artist)}">
+        <div class="hero-pill-progress"></div>
+      </div>
+    `).join('');
+
+    // 3. Set Ambient Backdrop for initial slide
+    window.updateHeroAmbientBackdrop(currentHeroSlideIndex);
+
+    // 4. Setup Auto-Play & Event Listeners once
+    if (!window.__heroListenersAttached) {
+      window.__heroListenersAttached = true;
+
+      // Banner Hover Pause / Resume
+      // Disabled pause on hover per user request
+      // banner.addEventListener('mouseenter', () => window.pauseHeroAutoPlay());
+      // banner.addEventListener('mouseleave', () => window.resumeHeroAutoPlay());
+
+      // Touch Swipe Gesture for Mobile & Tablets
+      let touchStartX = 0;
+      let touchStartY = 0;
+      banner.addEventListener('touchstart', (e) => {
+        if (e.changedTouches && e.changedTouches[0]) {
+          touchStartX = e.changedTouches[0].screenX;
+          touchStartY = e.changedTouches[0].screenY;
+        }
+      }, { passive: true });
+
+      banner.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches[0]) {
+          const deltaX = e.changedTouches[0].screenX - touchStartX;
+          const deltaY = e.changedTouches[0].screenY - touchStartY;
+          if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+            if (deltaX < 0) {
+              window.nextHeroSlide();
+            } else {
+              window.prevHeroSlide();
+            }
+          }
+        }
+      }, { passive: true });
+
+      // Keyboard Arrow Controls
+      document.addEventListener('keydown', (e) => {
+        const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea') return;
+        const homeView = document.getElementById('view-home');
+        if (!homeView || !homeView.classList.contains('active-view')) return;
+        if (e.key === 'ArrowRight') {
+          window.nextHeroSlide();
+        } else if (e.key === 'ArrowLeft') {
+          window.prevHeroSlide();
+        }
+      });
+    }
+
+    // 5. Start Auto-Play Timer
+    window.startHeroAutoPlayTimer();
+  };
+
+  window.updateHeroAmbientBackdrop = function(slideIndex) {
+    const slides = window.__heroSlides || getHeroSlides();
+    const slide = slides[slideIndex];
+    if (!slide) return;
+
+    const artwork = slide.coverUrl || slide.artwork;
+    const bgArt = document.getElementById('hero-bg-artwork');
+    if (bgArt && artwork) {
+      bgArt.style.backgroundImage = `url('${artwork}')`;
+    }
+    const bgOverlay = document.getElementById('hero-bg-overlay');
+    if (bgOverlay) {
+      const accent = slide.badgeColor || slide.accentColor || '#6366f1';
+      bgOverlay.style.background = `radial-gradient(circle at 75% 40%, ${accent}33, transparent 65%), linear-gradient(90deg, rgba(8, 10, 18, 0.96) 0%, rgba(8, 10, 18, 0.72) 55%, rgba(8, 10, 18, 0.88) 100%)`;
+    }
+  };
+
+  window.goToHeroSlide = function(targetIndex) {
+    const slides = window.__heroSlides || getHeroSlides();
+    if (!Array.isArray(slides) || slides.length === 0) return;
+
+    // If a video preview is active in the current slide, close it cleanly before transitioning
+    if (activeVideoSlideIndex !== null) {
+      window.toggleSlidePreview(activeVideoSlideIndex, false);
+    }
+
+    const nextIndex = (targetIndex + slides.length) % slides.length;
+    currentHeroSlideIndex = nextIndex;
+
+    // Update Slide Elements
+    const slideEls = document.querySelectorAll('.hero-slide');
+    slideEls.forEach((el, idx) => {
+      if (idx === nextIndex) {
+        el.classList.add('active-slide');
+      } else {
+        el.classList.remove('active-slide');
+      }
+    });
+
+    // Auto-play the video preview automatically for the new slide
+    setTimeout(() => {
+      window.toggleSlidePreview(nextIndex, true);
+    }, 400);
+
+    // Update Pills and trigger fresh fill animation
+    const pillEls = document.querySelectorAll('.hero-pill-dot');
+    pillEls.forEach((pill, idx) => {
+      const prog = pill.querySelector('.hero-pill-progress');
+      if (idx === nextIndex) {
+        pill.classList.add('active-pill');
+        if (prog) {
+          prog.style.animation = 'none';
+          void prog.offsetWidth; // Trigger browser reflow
+          prog.style.animation = '';
+        }
+      } else {
+        pill.classList.remove('active-pill');
+        if (prog) {
+          prog.style.animation = 'none';
+        }
+      }
+    });
+
+    // Update ambient backdrop
+    window.updateHeroAmbientBackdrop(nextIndex);
+
+    // Restart timer for the fresh slide if not paused
+    if (!isHeroPaused && activeVideoSlideIndex === null) {
+      window.startHeroAutoPlayTimer();
+    }
+  };
+
+  window.nextHeroSlide = function() {
+    window.goToHeroSlide(currentHeroSlideIndex + 1);
+  };
+
+  window.prevHeroSlide = function() {
+    window.goToHeroSlide(currentHeroSlideIndex - 1);
+  };
+
+  window.startHeroAutoPlayTimer = function() {
+    if (heroAutoPlayInterval) {
+      clearInterval(heroAutoPlayInterval);
+    }
+    heroAutoPlayInterval = setInterval(() => {
+      window.nextHeroSlide();
+    }, HERO_SLIDE_DURATION_MS);
+  };
+
+  window.pauseHeroAutoPlay = function() {
+    // Disabled per user request (play continuously)
+  };
+
+  window.resumeHeroAutoPlay = function() {
+    // Disabled per user request
+  };
+
+  // Strictly Inline Video Preview Toggle (Pure Preview Clip, No YouTube Player UI)
+  window.__previewMutedMap = {};
+
+  window.toggleSlidePreview = function(slideIndex, play, event) {
+    if (event && typeof event.stopPropagation === 'function') {
+      event.stopPropagation();
+    }
+
+    const slides = window.__heroSlides || getHeroSlides();
+    const slide = slides[slideIndex];
+    if (!slide) return;
+
+    // If slide is not currently in view, switch to it
+    if (currentHeroSlideIndex !== slideIndex) {
+      window.goToHeroSlide(slideIndex);
+    }
+
+    const artBox = document.getElementById(`hero-media-artwork-${slideIndex}`);
+    const vidBox = document.getElementById(`hero-media-video-${slideIndex}`);
+    if (!artBox || !vidBox) return;
+
+    const videoYtId = slide.videoYtId || slide.youtubeId || '';
+    const previewStart = slide.previewStart || 24;
+
+    if (play) {
+      // 1. Close any other slide preview if active
+      if (activeVideoSlideIndex !== null && activeVideoSlideIndex !== slideIndex) {
+        window.toggleSlidePreview(activeVideoSlideIndex, false);
+      }
+
+      // 2. Pause hero carousel auto-advance while previewing
+      window.pauseHeroAutoPlay();
+      activeVideoSlideIndex = slideIndex;
+      window.__previewMutedMap[slideIndex] = true; // start muted for safe autoplay
+
+      // 3. Hide Artwork Box and Reveal clean looping Preview Box
+      artBox.style.display = 'none';
+      vidBox.classList.add('active-video');
+      vidBox.innerHTML = `
+        <div class="hero-video-preview-inner">
+          <iframe
+            id="hero-preview-iframe-${slideIndex}"
+            src="https://www.youtube-nocookie.com/embed/${videoYtId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoYtId}&start=${previewStart}&modestbranding=1&rel=0&playsinline=1&showinfo=0&disablekb=1&fs=0&iv_load_policy=3&enablejsapi=1"
+            class="hero-preview-iframe"
+            tabindex="-1"
+            loading="lazy"
+            allow="autoplay; encrypted-media">
+          </iframe>
+          <div class="hero-preview-glass-overlay">
+            <div class="preview-top-bar">
+              <div class="preview-badge-pill">
+                <span class="preview-pulse-dot"></span>
+                <i class="fa-solid fa-film"></i> PREVIEW
+              </div>
+              <div class="preview-actions-group">
+                <button class="btn-preview-tool" id="btn-preview-audio-${slideIndex}" onclick="window.togglePreviewMute(${slideIndex}, event)" title="Toggle Sound">
+                  <i class="fa-solid fa-volume-xmark" id="preview-mute-icon-${slideIndex}"></i>
+                </button>
+                <button class="btn-preview-tool close-btn" onclick="window.toggleSlidePreview(${slideIndex}, false, event)" title="Return to Album Artwork">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+            <div class="preview-bottom-bar">
+              <span class="preview-caption-tag">${escapeHtml(slide.title)} • Video Preview</span>
+              <button class="btn-preview-tool" onclick="window.playHeroSlideTrack(${slideIndex})" title="Play Full Anthem in Pulse">
+                <i class="fa-solid fa-play"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      // 1. Destroy iframe immediately to stop all video/audio playback
+      vidBox.innerHTML = '';
+      vidBox.classList.remove('active-video');
+
+      // 2. Restore Artwork Box
+      artBox.style.display = 'flex';
+      activeVideoSlideIndex = null;
+
+      // 3. Resume auto-play
+      window.resumeHeroAutoPlay();
+    }
+  };
+
+  // Alias for backwards compatibility
+  window.toggleSlideVideo = window.toggleSlidePreview;
+
+  // Toggle audio of the video preview (Mute / Unmute)
+  window.togglePreviewMute = function(slideIndex, event) {
+    if (event && typeof event.stopPropagation === 'function') {
+      event.stopPropagation();
+    }
+    const iframe = document.getElementById(`hero-preview-iframe-${slideIndex}`);
+    const icon = document.getElementById(`preview-mute-icon-${slideIndex}`);
+    if (!iframe) return;
+
+    const isCurrentlyMuted = window.__previewMutedMap[slideIndex] !== false; // default true
+    if (isCurrentlyMuted) {
+      // Unmute preview
+      try {
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: '' }), '*');
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [80] }), '*');
+      } catch (e) {}
+      window.__previewMutedMap[slideIndex] = false;
+      if (icon) {
+        icon.className = 'fa-solid fa-volume-high';
+        icon.style.color = '#38bdf8';
+      }
+      // If Pulse background audio is playing, pause it to prevent clash
+      if (window.PulsePlaybar && typeof window.PulsePlaybar.pause === 'function') {
+        window.PulsePlaybar.pause();
+      }
+    } else {
+      // Mute preview
+      try {
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: '' }), '*');
+      } catch (e) {}
+      window.__previewMutedMap[slideIndex] = true;
+      if (icon) {
+        icon.className = 'fa-solid fa-volume-xmark';
+        icon.style.color = '';
+      }
+    }
+  };
+
+  // Play anthem directly inside Pulse Audio Engine
+  window.playHeroSlideTrack = function(slideIndex) {
+    const slides = window.__heroSlides || getHeroSlides();
+    const slide = slides[slideIndex];
+    if (!slide) return;
+
+    // If video was open in this slide, close it
+    if (activeVideoSlideIndex === slideIndex) {
+      window.toggleSlideVideo(slideIndex, false);
+    }
+
+    const artwork = slide.coverUrl || slide.artwork || './music-cover.svg';
+    const videoYtId = slide.videoYtId || slide.youtubeId;
+
+    const track = {
+      id: slide.id,
+      ytId: videoYtId,
+      title: slide.title,
+      artist: slide.artist,
+      coverUrl: artwork,
+      duration: slide.durationSeconds || 200,
+      source: "Featured Showcase Anthem (YouTube)"
+    };
+
+    const queue = slides.map(s => ({
+      id: s.id,
+      ytId: s.videoYtId || s.youtubeId,
+      title: s.title,
+      artist: s.artist,
+      coverUrl: s.coverUrl || s.artwork || './music-cover.svg',
+      duration: s.durationSeconds || 200,
+      source: "Featured Showcase Anthem (YouTube)"
+    }));
+
+    window.playTrackDirect(track, queue);
+  };
+
+  // Toggle favorite for slide track
+  window.toggleFavoriteHeroSlide = async function(slideIndex) {
+    const slides = window.__heroSlides || getHeroSlides();
+    const slide = slides[slideIndex];
+    if (!slide) return;
+
+    const artwork = slide.coverUrl || slide.artwork || './music-cover.svg';
+    const videoYtId = slide.videoYtId || slide.youtubeId;
+
+    const track = {
+      id: slide.id,
+      ytId: videoYtId,
+      title: slide.title,
+      artist: slide.artist,
+      coverUrl: artwork,
+      duration: slide.durationSeconds || 200,
+      source: "Featured Showcase Anthem (YouTube)"
+    };
+
+    const icon = document.getElementById(`hero-fav-icon-${slideIndex}`);
+    const isAlreadyFav = typeof isFavorite === 'function' ? isFavorite(slide.id) : false;
+
+    if (isAlreadyFav) {
+      if (typeof removeFavorite === 'function') await removeFavorite(slide.id);
+      if (icon) {
+        icon.className = 'fa-regular fa-heart';
+        icon.style.color = '';
+      }
+      if (window.showToast) window.showToast(`Removed "${slide.title}" from Favorites.`, 'info', 2500);
+    } else {
+      if (typeof addFavorite === 'function') await addFavorite(track);
+      if (icon) {
+        icon.className = 'fa-solid fa-heart';
+        icon.style.color = '#f43f5e';
+      }
+      if (window.showToast) window.showToast(`❤️ Added "${slide.title}" to Favorites!`, 'success', 2500);
+    }
+  };
+
+  // Backwards compatibility helpers
+  window.favoriteFeaturedTrack = function() {
+    window.toggleFavoriteHeroSlide(currentHeroSlideIndex);
+  };
+
+  window.startFeaturedRadio = function() {
+    window.playHeroSlideTrack(currentHeroSlideIndex);
+  };
+
   window.renderHomeDiscovery = function() {
+    // 0. Initialize Showcase Hero Carousel
+    window.initHeroCarousel();
+
     // Top Greeting
     window.renderPersonalizedGreeting();
 
     // 1. Recently Played
     window.renderRecentlyPlayedShelf();
+    
+    // 1.5 User Playlists
+    if (window.renderUserPlaylistsShelf) {
+      window.renderUserPlaylistsShelf();
+    }
 
     // 2. Trending Now
     window.renderTrendingShelf();
@@ -1006,6 +1482,21 @@ window.addEventListener('error', function(e) {
       ).join('');
     }
 
+    // 6.5 Movie Soundtracks Shelf (Same Movie Songs)
+    if (typeof window.renderMoviePlaylistsShelf === 'function') {
+      window.renderMoviePlaylistsShelf();
+    }
+
+    // 6.6 Pulse Vibe & Mood Mixes Shelf (Same Vibe Songs)
+    if (typeof window.renderVibePlaylistsShelf === 'function') {
+      window.renderVibePlaylistsShelf();
+    }
+
+    // 6.7 Dynamic Same-Vibe Radio Shelf ("Because You Listened To...")
+    if (typeof window.renderCurrentVibeShelf === 'function') {
+      window.renderCurrentVibeShelf();
+    }
+
     // 7. Curated Playlists Carousel
     const plContainer = document.getElementById('home-curated-playlists-container');
     if (plContainer) {
@@ -1014,8 +1505,8 @@ window.addEventListener('error', function(e) {
       plContainer.innerHTML = playlists.map((pl, idx) => `
         <div class="curated-playlist-card hover-glow" onclick="window.playCuratedPlaylist(${idx})" style="min-width: 200px; width: 200px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1rem; cursor: pointer; transition: all 0.25s ease;">
           <div class="curated-cover-wrap" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; margin-bottom: 0.75rem;">
-            <img src="${pl.coverUrl || './music-cover.svg'}" alt="${escapeHtml(pl.title)}" class="curated-cover-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-            <span class="curated-badge" style="position: absolute; top: 8px; right: 8px; font-size: 0.7rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 8px; border-radius: 12px;">${pl.trackCount} Tracks</span>
+            ${window.getPlaylistCoverHtml(pl, false)}
+            <span class="curated-badge" style="position: absolute; top: 8px; right: 8px; font-size: 0.7rem; font-weight: 700; background: rgba(0,0,0,0.8); color: #c084fc; padding: 2px 8px; border-radius: 12px; z-index: 2;">${pl.trackCount} Tracks</span>
           </div>
           <div class="curated-meta">
             <h4 class="curated-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(pl.title)}</h4>
@@ -1128,9 +1619,179 @@ window.addEventListener('error', function(e) {
 
   window.playCuratedPlaylist = function(idx) {
     const pl = window.__curatedPlaylists?.[idx];
+    if (pl) {
+      window.openPlaylistView(pl);
+    }
+  };
+
+  // ---------------------------------------------------------------------------
+  // PULSE MOVIE SOUNDTRACKS & VIBE MIXES SHELVES
+  // ---------------------------------------------------------------------------
+
+  window.renderMoviePlaylistsShelf = function() {
+    const container = document.getElementById('home-movie-playlists-container');
+    if (!container) return;
+    const moviePlaylists = typeof getMoviePlaylists === 'function' ? getMoviePlaylists() : [];
+    window.__moviePlaylists = moviePlaylists;
+
+    container.innerHTML = moviePlaylists.map((pl, idx) => `
+      <div class="pulse-playlist-card hover-glow" onclick="window.openMoviePlaylistView(${idx})" title="View album: ${escapeHtml(pl.title)}" style="cursor: pointer;">
+        <div class="pulse-card-cover-wrap">
+          ${window.getPlaylistCoverHtml(pl, false)}
+          <span class="pulse-card-badge" style="background: rgba(0,0,0,0.78); color: #f59e0b; border-color: rgba(245, 158, 11, 0.35);">
+            <i class="fa-solid fa-film" style="margin-right: 4px;"></i> ${escapeHtml(pl.badge || 'OST')}
+          </span>
+          <button class="pulse-card-play-btn btn-circle-play" onclick="event.stopPropagation(); window.playMoviePlaylist(${idx})" title="Play entire ${escapeHtml(pl.title)} album">
+            <i class="fa-solid fa-play" style="font-size: 1rem; margin-left: 2px;"></i>
+          </button>
+        </div>
+        <div class="pulse-card-title" title="${escapeHtml(pl.title)}">${escapeHtml(pl.title)}</div>
+        <div class="pulse-card-subtitle" title="${escapeHtml(pl.description)}">${escapeHtml(pl.description)}</div>
+        <div class="pulse-card-footer">
+          <span style="color: #cbd5e1;"><i class="fa-solid fa-music" style="color: #f59e0b; margin-right: 4px;"></i> ${pl.tracks?.length || 0} Songs</span>
+          <span style="color: #94a3b8; font-weight: 700;">${escapeHtml(pl.year || '')}</span>
+        </div>
+      </div>
+    `).join('');
+  };
+
+  window.renderVibePlaylistsShelf = function() {
+    const container = document.getElementById('home-vibe-playlists-container');
+    if (!container) return;
+    const vibePlaylists = typeof getVibePlaylists === 'function' ? getVibePlaylists() : [];
+    window.__vibePlaylists = vibePlaylists;
+
+    container.innerHTML = vibePlaylists.map((pl, idx) => `
+      <div class="pulse-playlist-card hover-glow" onclick="window.openVibePlaylistView(${idx})" title="Explore vibe: ${escapeHtml(pl.title)}" style="cursor: pointer;">
+        <div class="pulse-card-cover-wrap">
+          ${window.getPlaylistCoverHtml(pl, false)}
+          <span class="pulse-card-badge" style="background: rgba(0,0,0,0.78); color: ${pl.vibeColor || '#a855f7'}; border-color: ${pl.vibeColor ? pl.vibeColor + '55' : 'rgba(168,85,247,0.35)'};">
+            <i class="fa-solid fa-wave-pulse" style="margin-right: 4px;"></i> ${escapeHtml(pl.vibeBadge || 'VIBE')}
+          </span>
+          <button class="pulse-card-play-btn btn-circle-play" style="background: linear-gradient(135deg, ${pl.vibeColor || '#6366f1'} 0%, #4f46e5 100%);" onclick="event.stopPropagation(); window.playVibePlaylist(${idx})" title="Play ${escapeHtml(pl.title)} mix">
+            <i class="fa-solid fa-play" style="font-size: 1rem; margin-left: 2px;"></i>
+          </button>
+        </div>
+        <div class="pulse-card-title" title="${escapeHtml(pl.title)}">${escapeHtml(pl.title)}</div>
+        <div class="pulse-card-subtitle" title="${escapeHtml(pl.description)}">${escapeHtml(pl.description)}</div>
+        <div class="pulse-card-footer">
+          <span style="color: #cbd5e1;"><i class="fa-solid fa-compact-disc" style="color: ${pl.vibeColor || '#a855f7'}; margin-right: 4px;"></i> ${pl.tracks?.length || 0} Tracks</span>
+          <span style="color: ${pl.vibeColor || '#a855f7'}; font-weight: 700;">Curated</span>
+        </div>
+      </div>
+    `).join('');
+  };
+
+  window.openMoviePlaylistView = function(idx) {
+    const pl = window.__moviePlaylists?.[idx];
+    if (pl) {
+      window.openPlaylistView(pl);
+    }
+  };
+
+  window.playMoviePlaylist = function(idx) {
+    const pl = window.__moviePlaylists?.[idx];
     if (pl && pl.tracks && pl.tracks.length > 0) {
-      window.playTrackDirect(pl.tracks[0], pl.tracks);
-      window.showToast(`Playing "${pl.title}"`, 'info');
+      const queue = pl.tracks.map(t => ({
+        id: t.id || (t.ytId ? `ytm-${t.ytId}` : `pulse-${Math.random()}`),
+        ytId: t.ytId,
+        title: t.title,
+        artist: t.artist,
+        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        duration: t.duration || 220,
+        source: `Soundtrack: ${pl.movie || pl.title}`
+      }));
+      window.playTrackDirect(queue[0], queue);
+      window.showToast(`Playing ${pl.title}...`, 'info');
+    }
+  };
+
+  window.openVibePlaylistView = function(idx) {
+    const pl = window.__vibePlaylists?.[idx];
+    if (pl) {
+      window.openPlaylistView(pl);
+    }
+  };
+
+  window.playVibePlaylist = function(idx) {
+    const pl = window.__vibePlaylists?.[idx];
+    if (pl && pl.tracks && pl.tracks.length > 0) {
+      const queue = pl.tracks.map(t => ({
+        id: t.id || (t.ytId ? `ytm-${t.ytId}` : `pulse-${Math.random()}`),
+        ytId: t.ytId,
+        title: t.title,
+        artist: t.artist,
+        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        duration: t.duration || 220,
+        source: `Vibe Mix: ${pl.title}`
+      }));
+      window.playTrackDirect(queue[0], queue);
+      window.showToast(`Playing ${pl.title}...`, 'info');
+    }
+  };
+
+  window.renderCurrentVibeShelf = async function(seed = null) {
+    const shelfSection = document.getElementById('shelf-current-vibe');
+    const tracksContainer = document.getElementById('home-current-vibe-tracks');
+    const titleEl = document.getElementById('current-vibe-shelf-title');
+    const subtitleEl = document.getElementById('current-vibe-shelf-subtitle');
+    if (!shelfSection || !tracksContainer) return;
+
+    let seedTrack = seed || window.pulseState?.currentTrack;
+    if (!seedTrack && window.__recentlyPlayedHistory && window.__recentlyPlayedHistory.length > 0) {
+      seedTrack = window.__recentlyPlayedHistory[0];
+    }
+    if (!seedTrack && typeof getQuickPicks === 'function') {
+      const qp = getQuickPicks(1);
+      if (qp.length > 0) seedTrack = qp[0];
+    }
+    if (!seedTrack) return;
+
+    const detected = typeof detectTrackVibe === 'function' 
+      ? detectTrackVibe(seedTrack) 
+      : { vibe: 'Global Pop', badge: 'Matched Vibe', color: '#38bdf8' };
+
+    if (titleEl) {
+      titleEl.innerHTML = `${escapeHtml(detected.vibe)} <span style="font-size: 0.75rem; font-weight: 600; color: ${detected.color || '#38bdf8'}; vertical-align: middle; margin-left: 6px;">(${escapeHtml(detected.badge)})</span>`;
+    }
+    if (subtitleEl) {
+      subtitleEl.textContent = `Because you listened to "${seedTrack.title}" — similar rhythm, mood & tempo`;
+    }
+
+    try {
+      let similar = [];
+      if (typeof getSimilarTracks === 'function') {
+        similar = await getSimilarTracks(seedTrack, 10);
+      }
+      if (!similar || similar.length === 0) {
+        const cat = (CATALOG_CATEGORIES || []).find(c => c.tracks && c.tracks.length > 0);
+        similar = cat ? cat.tracks.slice(0, 8) : [];
+      }
+
+      window.__currentVibeTracks = similar;
+      tracksContainer.innerHTML = similar.map((t, idx) => 
+        window.renderSongCard(t, idx, 'window.__currentVibeTracks', { badge: detected.badge || 'Matched Vibe' })
+      ).join('');
+
+      shelfSection.style.display = 'block';
+    } catch (err) {
+      console.warn('Error loading dynamic vibe shelf:', err);
+    }
+  };
+
+  let vibeUpdateDebounce = null;
+  window.updateCurrentVibeShelf = function(track) {
+    if (!track) return;
+    if (vibeUpdateDebounce) clearTimeout(vibeUpdateDebounce);
+    vibeUpdateDebounce = setTimeout(() => {
+      window.renderCurrentVibeShelf(track);
+    }, 600);
+  };
+
+  window.playCurrentVibeRadio = function() {
+    if (window.__currentVibeTracks && window.__currentVibeTracks.length > 0) {
+      window.playTrackDirect(window.__currentVibeTracks[0], window.__currentVibeTracks);
+      window.showToast('Starting Vibe Radio...', 'info');
     }
   };
 
@@ -1174,6 +1835,520 @@ window.addEventListener('error', function(e) {
   // ---------------------------------------------------------------------------
   // 3. IMMERSIVE ARTIST DETAILS PAGE
   // ---------------------------------------------------------------------------
+
+  window.getPlaylistCoverHtml = function(playlist, isBanner = false) {
+    if (!playlist) return '';
+    let covers = [];
+    
+    // Check if album/playlist has 4 or more tracks -> generate 4-cover mixture collage!
+    if (playlist.tracks && playlist.tracks.length >= 4) {
+      covers = playlist.tracks.slice(0, 4).map(t => 
+        t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : '')
+      ).filter(Boolean);
+    } else if (playlist.coverUrl || playlist.cover) {
+      covers = [playlist.coverUrl || playlist.cover];
+    } else if (playlist.tracks && playlist.tracks.length > 0) {
+      const t = playlist.tracks[0];
+      covers = [t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : '')];
+    } else {
+      covers = [''];
+    }
+
+    covers = covers.filter(Boolean);
+
+    // If 4 covers available, render 2x2 album mixture collage!
+    if (covers.length >= 4) {
+      const opacityStyle = isBanner ? 'opacity: 0.8; filter: blur(8px); transform: scale(1.1);' : '';
+      return `
+        <div class="playlist-cover-collage" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; width: 100%; height: 100%; pointer-events: none; overflow: hidden; border-radius: inherit; background: #141622; gap: 1px;">
+          <img src="${covers[0]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <img src="${covers[1]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <img src="${covers[2]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <img src="${covers[3]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+        </div>
+      `;
+    } else if (covers.length > 0) {
+      const opacityStyle = isBanner ? 'opacity: 0.8; filter: blur(8px); transform: scale(1.1);' : '';
+      return `<img src="${covers[0]}" class="playlist-single-cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">`;
+    } else {
+      const hue = Array.from(playlist.name || playlist.title || 'Pulse').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360;
+      const gradient = `linear-gradient(135deg, hsl(${hue}, 80%, 30%), hsl(${(hue + 60) % 360}, 80%, 20%))`;
+      const opacityStyle = isBanner ? 'opacity: 0.8; filter: blur(12px); transform: scale(1.1);' : '';
+      return `
+        <div style="width: 100%; height: 100%; background: ${gradient}; display: flex; align-items: center; justify-content: center; border-radius: inherit; ${opacityStyle}">
+          <i class="fa-solid fa-music" style="font-size: ${isBanner ? '6rem' : '3rem'}; color: rgba(255,255,255,0.3);"></i>
+        </div>
+      `;
+    }
+  };
+
+  window.openPlaylistView = function(playlist) {
+    window.pulseState = window.pulseState || {};
+    window.pulseState.currentPlaylistData = playlist;
+    
+    const heroName = document.getElementById('playlist-hero-name');
+    const heroDesc = document.getElementById('playlist-hero-desc');
+    const heroDescription = document.getElementById('playlist-hero-description');
+    const heroBg = document.getElementById('playlist-hero-bg-container');
+    const creatorBadge = document.getElementById('playlist-hero-creator');
+    const creatorNameEl = document.getElementById('playlist-hero-creator-name');
+    const saveLibBtn = document.getElementById('playlist-save-library-btn');
+    const deleteBtn = document.getElementById('playlist-delete-btn') || document.querySelector('#view-playlist .btn-secondary-install[onclick*="deleteCurrentPlaylist"]');
+    const shareBtn = document.getElementById('playlist-share-btn');
+    
+    if (heroName) heroName.textContent = playlist.name || playlist.title || 'Playlist';
+    if (heroDesc) {
+      const trackCount = playlist.tracks ? playlist.tracks.length : (playlist.trackCount || 0);
+      heroDesc.textContent = `${trackCount} tracks`;
+    }
+    if (heroDescription) {
+      if (playlist.description) {
+        heroDescription.textContent = playlist.description;
+        heroDescription.style.display = 'block';
+      } else {
+        heroDescription.style.display = 'none';
+      }
+    }
+    if (heroBg) {
+      heroBg.innerHTML = window.getPlaylistCoverHtml(playlist, true);
+    }
+
+    // Determine ownership and shared status
+    const currentUid = getCurrentUserId();
+    const isShared = Boolean(playlist.isShared || (playlist.creatorId && currentUid && playlist.creatorId !== currentUid));
+    const isUserOwned = Boolean(playlist.id && String(playlist.id).startsWith('pl-') && !isShared);
+
+    // Creator badge
+    if (creatorBadge) {
+      if (isShared && playlist.creatorName) {
+        if (creatorNameEl) creatorNameEl.textContent = playlist.creatorName;
+        creatorBadge.style.display = 'inline-flex';
+      } else {
+        creatorBadge.style.display = 'none';
+      }
+    }
+
+    // "Save to My Library" button for shared playlists
+    if (saveLibBtn) {
+      saveLibBtn.style.display = isShared ? 'inline-flex' : 'none';
+      saveLibBtn.disabled = false;
+      saveLibBtn.innerHTML = '<i class="fa-solid fa-circle-plus"></i> Save to My Library';
+    }
+
+    // Show/hide delete button based on playlist ownership
+    if (deleteBtn) {
+      deleteBtn.style.display = isUserOwned ? 'inline-flex' : 'none';
+    }
+
+    // Share button
+    if (shareBtn) {
+      shareBtn.style.display = 'inline-flex';
+    }
+    
+    const tracksList = document.getElementById('playlist-tracks-list');
+    if (tracksList) {
+      window.__currentPlaylistTracks = playlist.tracks || [];
+      if (window.__currentPlaylistTracks.length === 0) {
+          tracksList.innerHTML = `<div style="text-align: center; padding: 2rem; color: var(--text-muted);">No tracks in this playlist yet.</div>`;
+      } else {
+          tracksList.innerHTML = window.__currentPlaylistTracks.map((track, idx) => {
+            const trackId = track.id || track.ytId || (track.title + track.artist);
+            const removeBtn = isUserOwned 
+              ? `<button class="btn-player-icon" title="Remove from playlist" onclick="event.stopPropagation(); window.removeTrackFromCurrentPlaylist('${escapeHtml(String(trackId).replace(/'/g, "\\'"))}', ${idx})" style="color: var(--text-muted); transition: color 0.2s;" onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-solid fa-circle-minus"></i></button>`
+              : '';
+            return `
+            <div class="artist-track-row hover-glow" onclick="window.playTrackDirect(window.__currentPlaylistTracks[${idx}], window.__currentPlaylistTracks)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
+              <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
+              <img src="${track.coverUrl || track.cover || (track.ytId ? 'https://i.ytimg.com/vi/'+track.ytId+'/hqdefault.jpg' : './music-cover.svg')}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
+              <div style="flex: 1;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${escapeHtml(track.title)}</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">${escapeHtml(track.artist)}</div>
+              </div>
+              <button class="btn-player-icon" title="Like" onclick="event.stopPropagation(); window.toggleFavoriteTrack(window.__currentPlaylistTracks[${idx}])"><i class="fa-regular fa-heart"></i></button>
+              ${removeBtn}
+            </div>
+          `;
+          }).join('');
+      }
+    }
+    
+    window.switchView('playlist');
+  };
+
+  window.playPlaylistAll = function() {
+    const pl = window.pulseState?.currentPlaylistData;
+    const tracks = pl?.tracks || window.__currentPlaylistTracks;
+    if (tracks && tracks.length > 0) {
+      window.playTrackDirect(tracks[0], tracks);
+      window.showToast(`Playing ${pl?.name || 'playlist'}...`, 'info');
+    } else {
+      window.showToast('Playlist is empty', 'warning');
+    }
+  };
+
+  window.shufflePlayPlaylist = function() {
+    const pl = window.pulseState?.currentPlaylistData;
+    const tracks = [...(pl?.tracks || window.__currentPlaylistTracks || [])];
+    if (tracks.length === 0) {
+      window.showToast('Playlist is empty', 'warning');
+      return;
+    }
+    // Fisher-Yates shuffle
+    for (let i = tracks.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tracks[i], tracks[j]] = [tracks[j], tracks[i]];
+    }
+    window.playTrackDirect(tracks[0], tracks);
+    window.showToast(`Shuffling ${pl?.name || 'playlist'}...`, 'info');
+  };
+
+  window.deleteCurrentPlaylist = async function() {
+    const pl = window.pulseState?.currentPlaylistData;
+    if (!pl || !pl.id) return;
+    if (!confirm(`Delete playlist "${pl.name || 'this playlist'}"? This action cannot be undone.`)) return;
+    try {
+      await deletePlaylist(pl.id);
+      window.showToast(`Playlist "${pl.name}" deleted`, 'info');
+      window.switchView('library');
+      window.switchLibraryTab('playlists');
+    } catch (err) {
+      window.showToast('Error deleting playlist', 'warning');
+    }
+  };
+
+  window.removeTrackFromCurrentPlaylist = async function(trackId, idx) {
+    const pl = window.pulseState?.currentPlaylistData;
+    if (!pl || !pl.id || !trackId) return;
+    const trackTitle = window.__currentPlaylistTracks?.[idx]?.title || 'Track';
+    const removed = await removeTrackFromPlaylist(pl.id, trackId);
+    if (removed) {
+      window.showToast(`Removed "${trackTitle}" from playlist`, 'info', 2000);
+      // Refresh the playlist view with updated data
+      const updatedPlaylists = await getPlaylists();
+      const updatedPl = updatedPlaylists.find(p => p.id === pl.id);
+      if (updatedPl) {
+        window.openPlaylistView(updatedPl);
+      } else {
+        // Playlist was somehow deleted
+        window.switchView('library');
+        window.switchLibraryTab('playlists');
+      }
+    } else {
+      window.showToast('Could not remove track', 'warning');
+    }
+  };
+
+  // ---------------------------------------------------------------------------
+  // PLAYLIST SHARING & CLOUD IMPORT ENGINE
+  // ---------------------------------------------------------------------------
+
+  window.shareCurrentPlaylist = async function(playlistToShare) {
+    const pl = playlistToShare || window.pulseState?.currentPlaylistData;
+    if (!pl) {
+      window.showToast('Please select a playlist to share', 'warning');
+      return;
+    }
+
+    const modal = document.getElementById('share-playlist-modal');
+    if (!modal) return;
+
+    const headingEl = document.getElementById('share-modal-heading');
+    const subheadingEl = document.getElementById('share-modal-subheading');
+    const iconEl = document.getElementById('share-modal-icon');
+    const titleEl = document.getElementById('share-modal-title');
+    const metaEl = document.getElementById('share-modal-meta');
+    const coverEl = document.getElementById('share-modal-cover');
+    const inputEl = document.getElementById('share-playlist-url-input');
+    const copyBtn = document.getElementById('share-modal-copy-btn');
+
+    if (headingEl) headingEl.textContent = 'Share Playlist';
+    if (subheadingEl) subheadingEl.textContent = 'Send to friends or copy shareable link';
+    if (iconEl) iconEl.className = 'fa-solid fa-share-nodes';
+
+    const name = pl.name || pl.title || 'Playlist';
+    const tracks = pl.tracks || [];
+    const cover = pl.coverUrl || pl.cover || (tracks[0]?.coverUrl || tracks[0]?.cover) || (tracks[0]?.ytId ? `https://i.ytimg.com/vi/${tracks[0].ytId}/hqdefault.jpg` : './music-cover.svg');
+
+    if (titleEl) titleEl.textContent = name;
+    if (metaEl) metaEl.textContent = `${tracks.length} tracks • ${pl.creatorName ? 'By ' + pl.creatorName : 'Curated by you'}`;
+    if (coverEl) coverEl.src = cover;
+    if (inputEl) inputEl.value = 'Creating secure share link...';
+    if (copyBtn) {
+      copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
+    }
+
+    modal.classList.remove('hidden');
+
+    try {
+      const shareResult = await publishSharedPlaylist(pl);
+      const shareUrl = shareResult?.shareUrl || window.location.href;
+      if (inputEl) inputEl.value = shareUrl;
+      window.__activeShareData = {
+        type: 'playlist',
+        url: shareUrl,
+        title: name,
+        tracks: tracks.length
+      };
+    } catch (err) {
+      console.error('Error generating share link:', err);
+      if (inputEl) inputEl.value = window.location.href;
+      window.showToast('Generated link using local backup', 'info');
+    }
+  };
+
+  // ---------------------------------------------------------------------------
+  // MUSIC TRACK SHARING ENGINE
+  // ---------------------------------------------------------------------------
+
+  window.shareTrack = function(trackToShare) {
+    const track = trackToShare || window.PulsePlaybar?.getCurrentTrack() || window.pulseState?.currentTrack;
+    if (!track || (!track.title && !track.id)) {
+      window.showToast('Please play a song first to share its link', 'warning');
+      return;
+    }
+
+    const modal = document.getElementById('share-playlist-modal');
+    if (!modal) return;
+
+    const headingEl = document.getElementById('share-modal-heading');
+    const subheadingEl = document.getElementById('share-modal-subheading');
+    const iconEl = document.getElementById('share-modal-icon');
+    const titleEl = document.getElementById('share-modal-title');
+    const metaEl = document.getElementById('share-modal-meta');
+    const coverEl = document.getElementById('share-modal-cover');
+    const inputEl = document.getElementById('share-playlist-url-input');
+    const copyBtn = document.getElementById('share-modal-copy-btn');
+
+    if (headingEl) headingEl.textContent = 'Share Music Link';
+    if (subheadingEl) subheadingEl.textContent = 'Send this song to friends or copy music link';
+    if (iconEl) iconEl.className = 'fa-solid fa-music';
+
+    const title = track.title || 'Untitled Song';
+    const artist = track.artist || 'Pulse Artist';
+    const cover = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
+
+    if (titleEl) titleEl.textContent = title;
+    if (metaEl) metaEl.textContent = `${artist} • Studio Quality Audio`;
+    if (coverEl) coverEl.src = cover;
+    if (copyBtn) copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
+
+    const shareUrl = generateTrackShareUrl(track);
+    if (inputEl) inputEl.value = shareUrl;
+
+    window.__activeShareData = {
+      type: 'track',
+      url: shareUrl,
+      title: title,
+      artist: artist,
+      cover: cover
+    };
+
+    modal.classList.remove('hidden');
+  };
+
+  window.shareCurrentTrack = function() {
+    window.shareTrack();
+  };
+
+  window.copyCurrentMusicLink = async function() {
+    const track = window.PulsePlaybar?.getCurrentTrack() || window.pulseState?.currentTrack;
+    if (!track) {
+      window.showToast('Play a song to copy its music link', 'warning');
+      return;
+    }
+    const shareUrl = generateTrackShareUrl(track);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(shareUrl);
+      } else {
+        const dummy = document.createElement('textarea');
+        dummy.value = shareUrl;
+        document.body.appendChild(dummy);
+        dummy.select();
+        document.execCommand('copy');
+        dummy.remove();
+      }
+      window.showToast(`Music link for "${track.title}" copied! 🎵`, 'success', 2500);
+    } catch (e) {
+      window.shareTrack(track);
+    }
+  };
+
+  window.closeShareModal = function() {
+    const modal = document.getElementById('share-playlist-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+  window.closeSharePlaylistModal = window.closeShareModal;
+
+  window.copyActiveShareLink = async function() {
+    const input = document.getElementById('share-playlist-url-input');
+    const url = input?.value || window.__activeShareData?.url || window.location.href;
+    const copyBtn = document.getElementById('share-modal-copy-btn');
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        if (input) {
+          input.select();
+          document.execCommand('copy');
+        }
+      }
+      if (copyBtn) copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+      setTimeout(() => {
+        if (copyBtn) copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
+      }, 2000);
+      const isTrack = window.__activeShareData?.type === 'track';
+      window.showToast(isTrack ? 'Music link copied to clipboard! 🎵' : 'Playlist link copied to clipboard!', 'info', 2500);
+    } catch (err) {
+      if (input) {
+        input.select();
+        document.execCommand('copy');
+        if (copyBtn) copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        setTimeout(() => {
+          if (copyBtn) copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
+        }, 2000);
+        window.showToast('Link copied to clipboard!', 'info', 2500);
+      }
+    }
+  };
+  window.copySharePlaylistLink = window.copyActiveShareLink;
+
+  window.triggerNativeShareActiveLink = async function() {
+    const data = window.__activeShareData || {};
+    const isTrack = data.type === 'track';
+    const title = data.title || (isTrack ? 'Shared Song on Pulse' : 'Shared Playlist on Pulse');
+    const text = isTrack 
+      ? `Listen to "${title}" by ${data.artist || 'Pulse Artist'} on Pulse Music:`
+      : `Listen to "${title}" (${data.tracks || 0} tracks) on Pulse Music:`;
+    const url = data.url || window.location.href;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, text, url });
+        window.showToast('Shared successfully!', 'info');
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          window.copyActiveShareLink();
+        }
+      }
+    } else {
+      window.copyActiveShareLink();
+    }
+  };
+  window.triggerNativeSharePlaylist = window.triggerNativeShareActiveLink;
+
+  window.shareActiveLinkToWhatsApp = function() {
+    const data = window.__activeShareData || {};
+    const isTrack = data.type === 'track';
+    const title = data.title || (isTrack ? 'Music' : 'Playlist');
+    const url = data.url || window.location.href;
+    const text = isTrack
+      ? `Check out "${title}" by ${data.artist || 'Pulse Artist'} on Pulse Music:\n${url}`
+      : `Check out this playlist "${title}" on Pulse Music:\n${url}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+  };
+  window.sharePlaylistToWhatsApp = window.shareActiveLinkToWhatsApp;
+
+  window.shareActiveLinkToTelegram = function() {
+    const data = window.__activeShareData || {};
+    const isTrack = data.type === 'track';
+    const title = data.title || (isTrack ? 'Music' : 'Playlist');
+    const url = data.url || window.location.href;
+    const text = isTrack
+      ? `Listen to "${title}" by ${data.artist || 'Pulse Artist'} on Pulse Music`
+      : `Check out this playlist "${title}" on Pulse Music`;
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+  };
+  window.sharePlaylistToTelegram = window.shareActiveLinkToTelegram;
+
+  window.saveSharedPlaylistToLibrary = async function() {
+    const pl = window.pulseState?.currentPlaylistData;
+    if (!pl) return;
+    const saveBtn = document.getElementById('playlist-save-library-btn');
+    if (saveBtn) {
+      saveBtn.disabled = true;
+      saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving to Library...';
+    }
+
+    try {
+      const imported = await importSharedPlaylist(pl);
+      if (imported) {
+        window.showToast(`"${imported.name}" saved to your Library!`, 'info', 3000);
+        imported.isShared = false;
+        window.openPlaylistView(imported);
+        if (typeof window.renderLibraryView === 'function') {
+          window.renderLibraryView();
+        }
+      } else {
+        window.showToast('Failed to save playlist to library', 'warning');
+        if (saveBtn) {
+          saveBtn.disabled = false;
+          saveBtn.innerHTML = '<i class="fa-solid fa-circle-plus"></i> Save to My Library';
+        }
+      }
+    } catch (err) {
+      console.error('Error saving shared playlist:', err);
+      window.showToast('Error saving playlist', 'warning');
+      if (saveBtn) {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<i class="fa-solid fa-circle-plus"></i> Save to My Library';
+      }
+    }
+  };
+
+  window.handleSharedPlaylistURL = async function() {
+    try {
+      if (!window.location || !window.location.href) return;
+      const url = new URL(window.location.href);
+      const playlistId = url.searchParams.get('sharedPlaylist') || url.searchParams.get('playlist');
+      const payloadData = url.searchParams.get('data');
+
+      if (!playlistId && !payloadData) return;
+
+      // Clean query parameters from address bar to keep URL sleek
+      const cleanUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+
+      window.showToast('Loading shared playlist...', 'info', 2000);
+      const playlist = await getSharedPlaylist(playlistId, payloadData);
+      if (playlist) {
+        window.openPlaylistView(playlist);
+        window.showToast(`Loaded "${playlist.name || 'Shared Playlist'}" by ${playlist.creatorName || 'a friend'}!`, 'info', 4000);
+      } else {
+        window.showToast('Could not load shared playlist. Link may be expired.', 'warning', 4000);
+      }
+    } catch (err) {
+      console.warn('Error handling shared playlist link:', err);
+    }
+  };
+
+  window.handleSharedMusicURL = async function() {
+    try {
+      if (!window.location || !window.location.href) return;
+      const url = new URL(window.location.href);
+      const trackParam = url.searchParams.get('track') || url.searchParams.get('song');
+      if (!trackParam) return;
+
+      const sharedTrack = parseTrackShareUrl(window.location.href);
+      if (!sharedTrack || !sharedTrack.id) return;
+
+      // Clean query parameter from address bar to keep URL sleek
+      const cleanUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+
+      window.showToast(`🎶 Playing shared track: "${sharedTrack.title}" by ${sharedTrack.artist}`, 'info', 4500);
+
+      // Play the shared track immediately
+      if (typeof window.playTrackDirect === 'function') {
+        window.playTrackDirect(sharedTrack, [sharedTrack]);
+      } else if (window.PulsePlaybar && typeof window.PulsePlaybar.playTrack === 'function') {
+        window.PulsePlaybar.playTrack(sharedTrack, [sharedTrack]);
+      }
+    } catch (e) {
+      console.warn('Error handling shared music link:', e);
+    }
+  };
 
   window.openArtistView = function(artistQuery) {
     const artist = getArtistDetails(artistQuery);
@@ -1228,6 +2403,20 @@ window.addEventListener('error', function(e) {
     }
   };
 
+  window.openTicketBooking = function() {
+    const artist = window.pulseState.currentArtistData;
+    const name = artist ? artist.name : 'Artist';
+    window.showToast(`Checking live tour dates & concert tickets for ${name}... 🎫`, 'info', 3000);
+    window.open(`https://www.google.com/search?q=${encodeURIComponent(name + ' concert tickets tour dates')}`, '_blank', 'noopener,noreferrer');
+  };
+
+  window.openArtistDonation = function() {
+    const artist = window.pulseState.currentArtistData;
+    const name = artist ? artist.name : 'Artist';
+    window.showToast(`Opening official store & artist support for ${name}... ❤️`, 'info', 3000);
+    window.open(`https://www.google.com/search?q=${encodeURIComponent(name + ' official merch store support')}`, '_blank', 'noopener,noreferrer');
+  };
+
   window.toggleFollowArtist = function() {
     const btn = document.getElementById('artist-follow-btn');
     if (btn) {
@@ -1242,6 +2431,7 @@ window.addEventListener('error', function(e) {
   // ---------------------------------------------------------------------------
 
   let searchDebounceTimer = null;
+  let searchGeneration = 0; // Prevents stale results from overwriting newer ones
   window.playPresetQuery = async function(query) {
     if (!query) return;
     window.switchView('search-view');
@@ -1253,8 +2443,10 @@ window.addEventListener('error', function(e) {
     if (label) label.textContent = query;
     if (count) count.textContent = 'Searching worldwide & multilingual catalogs...';
     
+    const gen = ++searchGeneration;
     try {
       const results = await window.musicService.searchTracks(query, 50);
+      if (gen !== searchGeneration) return; // A newer search superseded this one
       if (count) count.textContent = `${results.length} songs found worldwide`;
       renderSearchResults(results);
       if (results && results.length > 0) {
@@ -1263,6 +2455,282 @@ window.addEventListener('error', function(e) {
     } catch (e) {
       window.showToast("Failed to fetch stream.", 'warning');
     }
+  };
+
+  // ---------------------------------------------------------------------------
+  // PULSE INTELLIGENT VOICE ASSISTANT & VOICE SEARCH ENGINE
+  // ---------------------------------------------------------------------------
+
+  function speakVoiceFeedback(text) {
+    if ('speechSynthesis' in window) {
+      try {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.05;
+        utterance.pitch = 1.0;
+        utterance.volume = 0.85;
+        const voices = window.speechSynthesis.getVoices();
+        const bestVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('David')));
+        if (bestVoice) utterance.voice = bestVoice;
+        window.speechSynthesis.speak(utterance);
+      } catch (e) {}
+    }
+  }
+
+  window.handleVoiceInputText = function(text) {
+    if (!text || !text.trim()) return;
+    const statusText = document.getElementById('voice-search-status');
+    const transcriptText = document.getElementById('voice-search-transcript');
+    
+    if (transcriptText) transcriptText.textContent = `"${text}"`;
+    if (statusText) statusText.textContent = 'Processing command...';
+
+    setTimeout(() => {
+      window.stopVoiceSearch();
+      processVoiceAssistantCommand(text);
+    }, 500);
+  };
+
+  function processVoiceAssistantCommand(rawTranscript) {
+    const raw = (rawTranscript || '').trim();
+    if (!raw) return;
+
+    const text = raw.replace(/[.,!?;:]/g, ' ').replace(/\s+/g, ' ').trim();
+    const lower = text.toLowerCase();
+
+    // 1. Playback Controls
+    if (lower === 'pause' || lower === 'pause music' || lower === 'stop' || lower === 'stop music' || lower === 'hold on') {
+      if (window.PulsePlaybar && window.PulsePlaybar.getIsPlaying()) {
+        window.togglePlay();
+        speakVoiceFeedback('Music paused');
+        window.showToast('Voice Assistant: Paused', 'info');
+      }
+      return;
+    }
+
+    if (lower === 'resume' || lower === 'continue' || lower === 'resume music' || lower === 'play' || lower === 'start music') {
+      if (window.PulsePlaybar && !window.PulsePlaybar.getIsPlaying()) {
+        window.togglePlay();
+        speakVoiceFeedback('Resuming playback');
+        window.showToast('Voice Assistant: Resumed', 'info');
+      }
+      return;
+    }
+
+    if (lower === 'next' || lower === 'next song' || lower === 'skip' || lower === 'skip song' || lower === 'skip track' || lower === 'play next') {
+      window.nextSong();
+      speakVoiceFeedback('Skipping to next track');
+      window.showToast('Voice Assistant: Next Track', 'info');
+      return;
+    }
+
+    if (lower === 'previous' || lower === 'previous song' || lower === 'back' || lower === 'last song' || lower === 'play previous') {
+      window.previousSong();
+      speakVoiceFeedback('Playing previous track');
+      window.showToast('Voice Assistant: Previous Track', 'info');
+      return;
+    }
+
+    if (lower === 'mute' || lower === 'mute audio' || lower === 'silence') {
+      if (window.PulsePlaybar && window.PulsePlaybar.setVolume) window.PulsePlaybar.setVolume(0);
+      speakVoiceFeedback('Muted');
+      window.showToast('Voice Assistant: Muted', 'info');
+      return;
+    }
+
+    if (lower.includes('unmute') || lower === 'volume up' || lower === 'louder' || lower === 'increase volume' || lower === 'turn it up') {
+      const audioEl = window.PulsePlaybar && window.PulsePlaybar.getAudio ? window.PulsePlaybar.getAudio() : null;
+      const curVol = audioEl ? audioEl.volume : 0.5;
+      if (window.PulsePlaybar && window.PulsePlaybar.setVolume) window.PulsePlaybar.setVolume(Math.min(1, curVol + 0.25));
+      speakVoiceFeedback('Volume increased');
+      window.showToast('Voice Assistant: Volume Up', 'info');
+      return;
+    }
+
+    if (lower === 'volume down' || lower === 'softer' || lower === 'decrease volume' || lower === 'turn it down' || lower === 'lower volume') {
+      const audioEl2 = window.PulsePlaybar && window.PulsePlaybar.getAudio ? window.PulsePlaybar.getAudio() : null;
+      const curVol = audioEl2 ? audioEl2.volume : 0.5;
+      if (window.PulsePlaybar && window.PulsePlaybar.setVolume) window.PulsePlaybar.setVolume(Math.max(0.1, curVol - 0.25));
+      speakVoiceFeedback('Volume decreased');
+      window.showToast('Voice Assistant: Volume Down', 'info');
+      return;
+    }
+
+    if (lower.includes('show lyrics') || lower.includes('open lyrics') || lower === 'lyrics') {
+      window.openLyricsDrawer();
+      speakVoiceFeedback('Opening live lyrics');
+      window.showToast('Voice Assistant: Live Lyrics Opened', 'info');
+      return;
+    }
+
+    if (lower.includes('recommend') || lower.includes('pulse ai') || lower.includes('curate') || lower.startsWith('suggest')) {
+      const aiPrompt = raw.replace(/^(pulse ai|ai assistant|recommend|curate|suggest)\s*/i, '').trim() || 'Top trending high energy tracks';
+      if (window.openPulseAIModal) {
+        window.openPulseAIModal();
+        const input = document.getElementById('gemini-prompt-input');
+        if (input) input.value = aiPrompt;
+        if (window.handleAskPulseAI) window.handleAskPulseAI(aiPrompt);
+      }
+      speakVoiceFeedback(`Curating ${aiPrompt} with Pulse AI`);
+      return;
+    }
+
+    // 2. "Play <Song/Artist>" command -> Automatically find and play the song directly!
+    const playMatch = lower.match(/^(?:play|stream|listen to|put on)\s+(.+)$/i);
+    if (playMatch && playMatch[1]) {
+      const songQuery = playMatch[1].trim();
+      if (songQuery) {
+        speakVoiceFeedback(`Playing ${songQuery}`);
+        window.showToast(`Voice Assistant: Playing "${songQuery}"`, 'success');
+        const searchInput = document.getElementById('global-search-input');
+        if (searchInput) searchInput.value = songQuery;
+        window.playPresetQuery(songQuery);
+        return;
+      }
+    }
+
+    // 3. Direct song/artist/search query -> Play best match
+    speakVoiceFeedback(`Playing ${raw}`);
+    window.showToast(`Voice Assistant: "${raw}"`, 'success');
+    const searchInput = document.getElementById('global-search-input');
+    if (searchInput) searchInput.value = raw;
+    window.playPresetQuery(raw);
+  }
+
+  window.stopVoiceSearch = function() {
+    if (window._activeRecognition) {
+      try { window._activeRecognition.stop(); } catch(e){}
+      window._activeRecognition = null;
+    }
+    const overlay = document.getElementById('voice-search-overlay');
+    if (overlay) overlay.style.display = 'none';
+    const btn = document.getElementById('voice-search-btn');
+    if (btn) btn.classList.remove('listening');
+    const aiBtn = document.getElementById('pulse-ai-mic-btn');
+    if (aiBtn) aiBtn.style.color = '#c084fc';
+  };
+
+  window.startVoiceSearch = async function(targetContext = 'general') {
+    // If already active, toggle it off
+    if (window._activeRecognition) {
+      window.stopVoiceSearch();
+      return;
+    }
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      window.showToast('Voice search is not supported in this browser. Please use Chrome, Edge, or Safari.', 'warning');
+      return;
+    }
+
+    const overlay = document.getElementById('voice-search-overlay');
+    const statusText = document.getElementById('voice-search-status');
+    const transcriptText = document.getElementById('voice-search-transcript');
+    const btn = document.getElementById('voice-search-btn');
+    if (btn) btn.classList.add('listening');
+
+    if (overlay) {
+      overlay.style.display = 'flex';
+      if (statusText) statusText.textContent = 'Listening...';
+      if (transcriptText) transcriptText.textContent = targetContext === 'pulse-ai' ? 'Speak a prompt or vibe for Pulse AI...' : 'Say a song, artist, or command...';
+    }
+
+    // Proactively verify/prompt microphone permission
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream.getTracks().forEach(t => t.stop());
+      } catch (permErr) {
+        console.warn('Microphone permission error:', permErr);
+        if (permErr.name === 'NotAllowedError' || permErr.name === 'PermissionDeniedError') {
+          window.stopVoiceSearch();
+          window.showToast('Microphone access denied. Please click the padlock or camera icon in your browser URL bar and allow microphone access.', 'warning', 6000);
+          return;
+        }
+      }
+    }
+
+    try {
+      const recognition = new SpeechRecognition();
+      window._activeRecognition = recognition;
+      recognition.lang = 'en-US';
+      recognition.interimResults = true; // Real-time feedback
+      recognition.maxAlternatives = 1;
+      recognition.continuous = false;
+
+      let finalTranscript = '';
+
+      recognition.onstart = () => {
+        if (statusText) statusText.textContent = 'Listening...';
+      };
+
+      recognition.onresult = (event) => {
+        let interim = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          } else {
+            interim += event.results[i][0].transcript;
+          }
+        }
+        const currentSpoken = (finalTranscript || interim).trim();
+        if (transcriptText && currentSpoken) {
+          transcriptText.textContent = `"${currentSpoken}"`;
+        }
+      };
+
+      recognition.onspeechend = () => {
+        if (statusText) statusText.textContent = 'Processing...';
+      };
+
+      recognition.onend = () => {
+        const spoken = finalTranscript.trim();
+        if (spoken) {
+          if (statusText) statusText.textContent = 'Executing...';
+          setTimeout(() => {
+            window.stopVoiceSearch();
+            if (targetContext === 'pulse-ai') {
+              const promptInput = document.getElementById('gemini-prompt-input');
+              if (promptInput) promptInput.value = spoken;
+              if (window.handleAskPulseAI) window.handleAskPulseAI(spoken);
+            } else {
+              processVoiceAssistantCommand(spoken);
+            }
+          }, 350);
+        } else {
+          window.stopVoiceSearch();
+        }
+      };
+
+      recognition.onerror = (event) => {
+        console.warn('SpeechRecognition error:', event.error);
+        if (event.error === 'not-allowed') {
+          if (statusText) statusText.textContent = 'Microphone Blocked';
+          window.showToast('Microphone access blocked. Please allow microphone access in site settings.', 'warning', 5000);
+        } else if (event.error === 'no-speech') {
+          if (statusText) statusText.textContent = "Didn't catch that.";
+        } else if (event.error === 'network') {
+          if (statusText) statusText.textContent = 'Network offline';
+          window.showToast('Speech service network error. Check your internet connection.', 'warning');
+        } else {
+          if (statusText) statusText.textContent = `Error: ${event.error}`;
+        }
+        setTimeout(() => {
+          window.stopVoiceSearch();
+        }, 1200);
+      };
+
+      recognition.start();
+    } catch (err) {
+      console.error('Voice search failed to start:', err);
+      window.stopVoiceSearch();
+      window.showToast('Microphone access could not be initialized.', 'warning');
+    }
+  };
+
+  window.startVoiceAssistant = window.startVoiceSearch;
+  window.startPulseAIVoiceInput = function() {
+    window.startVoiceSearch('pulse-ai');
   };
 
   window.executeSearch = function(query, isTyping = false) {
@@ -1276,10 +2744,12 @@ window.addEventListener('error', function(e) {
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(async () => {
       if (count) count.textContent = 'Searching worldwide & multilingual catalogs...';
-      const results = await window.musicService.searchTracks(query, 80);
+      const gen = ++searchGeneration;
+      const results = await window.musicService.searchTracks(query, 50);
+      if (gen !== searchGeneration) return; // Stale — a newer search is in flight
       if (count) count.textContent = `${results.length} songs found worldwide`;
       renderSearchResults(results);
-    }, isTyping ? 250 : 0);
+    }, isTyping ? 500 : 0);
   };
 
   function renderSearchResults(tracks) {
@@ -1305,9 +2775,11 @@ window.addEventListener('error', function(e) {
       window.playTrackDirect(track, window.__searchResults);
     };
 
-    container.innerHTML = tracks.map((track, idx) => 
-      window.renderSongCard(track, idx, 'window.__searchResults', { badge: track.source || '320kbps Master' })
-    ).join('');
+    container.innerHTML = tracks.map((track, idx) => {
+      const isTopMatch = idx === 0 && (track._relevanceScore !== undefined ? track._relevanceScore >= 140 : true);
+      const badgeText = isTopMatch ? '★ Best Match' : (track.source || '320kbps Master');
+      return window.renderSongCard(track, idx, 'window.__searchResults', { badge: badgeText });
+    }).join('');
   }
 
   // ---------------------------------------------------------------------------
@@ -1372,13 +2844,21 @@ window.addEventListener('error', function(e) {
         return;
       }
 
+      window.__userPlaylists = playlists;
       container.innerHTML = `
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+          <button class="btn-primary-play" onclick="window.openCreatePlaylistModal()" style="display: inline-flex; font-size: 0.85rem; padding: 0.6rem 1.2rem;"><i class="fa-solid fa-plus"></i> New Playlist</button>
+        </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
-          ${playlists.map(pl => `
-            <div class="playlist-card hover-glow" onclick="window.playPlaylistDirect('${pl.id}')" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1rem; cursor: pointer;">
-              <img src="${pl.coverUrl || './music-cover.svg'}" alt="playlist" style="width: 100%; aspect-ratio: 1; border-radius: 12px; object-fit: cover; margin-bottom: 0.75rem;">
-              <h4 style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">${escapeHtml(pl.name)}</h4>
-              <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">${pl.tracks ? pl.tracks.length : 0} tracks</p>
+          ${playlists.map((pl, plIdx) => `
+            <div class="playlist-card hover-glow" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1rem; cursor: pointer; position: relative;">
+              <div onclick="window.playPlaylistDirect('${pl.id}')" style="cursor: pointer;">
+                <div style="width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; margin-bottom: 0.75rem;">${window.getPlaylistCoverHtml(pl, false)}</div>
+                <h4 style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">${escapeHtml(pl.name)}</h4>
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">${pl.tracks ? pl.tracks.length : 0} tracks</p>
+              </div>
+              <button class="btn-player-icon" title="Share playlist" onclick="event.stopPropagation(); window.shareCurrentPlaylist(window.__userPlaylists[${plIdx}])" style="position: absolute; top: 0.75rem; right: 3.25rem; color: #a5b4fc; background: rgba(0,0,0,0.5); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; opacity: 0.8; backdrop-filter: blur(4px);" onmouseover="this.style.color='#38bdf8';this.style.opacity='1'" onmouseout="this.style.color='#a5b4fc';this.style.opacity='0.8'"><i class="fa-solid fa-share-nodes" style="font-size: 0.75rem;"></i></button>
+              <button class="btn-player-icon" title="Delete playlist" onclick="event.stopPropagation(); window.deletePlaylistFromLibrary('${pl.id}', '${escapeHtml(pl.name).replace(/'/g, "\\'")}')" style="position: absolute; top: 0.75rem; right: 0.75rem; color: var(--text-muted); background: rgba(0,0,0,0.5); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; opacity: 0.6; backdrop-filter: blur(4px);" onmouseover="this.style.color='#ef4444';this.style.opacity='1'" onmouseout="this.style.color='var(--text-muted)';this.style.opacity='0.6'"><i class="fa-solid fa-trash-can" style="font-size: 0.75rem;"></i></button>
             </div>
           `).join('')}
         </div>
@@ -1398,6 +2878,9 @@ window.addEventListener('error', function(e) {
 
       window.__userHistory = history;
       container.innerHTML = `
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+          <button class="btn-secondary-install" onclick="window.clearUserHistory()"><i class="fa-solid fa-trash-can"></i> Clear History</button>
+        </div>
         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
           ${history.map((track, idx) => `
             <div class="library-track-row hover-glow" onclick="window.playTrackDirect(window.__userHistory[${idx}], window.__userHistory)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
@@ -1415,6 +2898,15 @@ window.addEventListener('error', function(e) {
     }
   };
 
+  window.clearUserHistory = async function() {
+    if (confirm('Are you sure you want to clear your entire listening history?')) {
+      await clearHistory();
+      window.showToast('History cleared', 'info');
+      window.renderLibraryView();
+      window.renderHomeDiscovery(); // update home recent history if any
+    }
+  };
+
   window.toggleFavoriteTrack = async function(track) {
     if (!track) return;
     const isFav = await addFavorite(track);
@@ -1427,7 +2919,27 @@ window.addEventListener('error', function(e) {
     window.renderLibraryView();
   };
 
+  window.deletePlaylistFromLibrary = async function(playlistId, playlistName) {
+    if (!playlistId) return;
+    if (!confirm(`Delete playlist "${playlistName || 'this playlist'}"? This action cannot be undone.`)) return;
+    try {
+      await deletePlaylist(playlistId);
+      window.showToast(`Playlist "${playlistName}" deleted`, 'info');
+      window.renderLibraryView();
+    } catch (err) {
+      window.showToast('Error deleting playlist', 'warning');
+    }
+  };
+
+  window.createNewPlaylist = window.openCreatePlaylistModal;
+
   window.openCreatePlaylistModal = function() {
+    const uid = getCurrentUserId();
+    if (!uid || uid.startsWith('guest-')) {
+      window.showToast('Please continue with Google to create playlists', 'warning');
+      window.signInWithGoogle();
+      return;
+    }
     const modal = document.getElementById('create-playlist-modal');
     if (modal) modal.classList.remove('hidden');
   };
@@ -1461,16 +2973,22 @@ window.addEventListener('error', function(e) {
   window.playPlaylistDirect = async function(id) {
     const playlists = await getPlaylists();
     const pl = playlists.find(p => p.id === id);
-    if (pl && pl.tracks && pl.tracks.length > 0) {
-      window.playTrackDirect(pl.tracks[0], pl.tracks);
-      window.showToast(`Playing playlist "${pl.name}"`, 'info');
+    if (pl) {
+      window.openPlaylistView(pl);
     } else {
-      window.showToast('Playlist is empty', 'warning');
+      window.showToast('Playlist not found', 'warning');
     }
   };
 
   let trackToAddToPlaylist = null;
   window.openAddToPlaylistModal = async function(track) {
+    const uid = getCurrentUserId();
+    if (!uid || uid.startsWith('guest-')) {
+      window.showToast('Please continue with Google to manage playlists', 'warning');
+      window.signInWithGoogle();
+      return;
+    }
+    
     trackToAddToPlaylist = track;
     const modal = document.getElementById('add-to-playlist-modal');
     const listEl = document.getElementById('user-playlists-picker-list');
@@ -1601,7 +3119,7 @@ window.addEventListener('error', function(e) {
         URL.revokeObjectURL(blobUrl);
       }, 2000);
 
-      window.showToast('✅ "Pulse-Music.url" downloaded! Drag it to your desktop.', 'success', 5000);
+      window.showToast('✓ "Pulse-Music.url" downloaded! Drag it to your desktop.', 'success', 5000);
     } catch (e) {
       window.location.href = 'https://pushkarhiremath68-cyber.github.io/Pulse/downloads/Pulse-Music.url';
     }
@@ -1684,7 +3202,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   // Client-Side Apple WebClip Configuration Profile (.mobileconfig) for iOS
   window.downloadIosWebClipProfile = function() {
     try {
-      window.showToast('📲 Downloading iOS Configuration Profile... Tap "Allow", then go to Settings ➔ "Profile Downloaded" to install Pulse!', 'info', 7000);
+      window.showToast('📱 Downloading iOS Configuration Profile... Tap "Allow", then go to Settings → "Profile Downloaded" to install Pulse!', 'info', 7000);
       const link = document.createElement('a');
       link.href = './downloads/Pulse-Music.mobileconfig';
       link.download = 'Pulse-Music.mobileconfig';
@@ -1817,13 +3335,17 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   // INITIALIZATION ON DOM READY & PWA COLD-START
   // ---------------------------------------------------------------------------
   function applyPWAUIState() {
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
-                         window.matchMedia('(display-mode: fullscreen)').matches ||
-                         window.matchMedia('(display-mode: minimal-ui)').matches ||
-                         window.navigator.standalone === true ||
-                         window.location.search.includes('source=pwa') ||
-                         document.referrer.includes('android-app://') ||
-                         Boolean(window.electronAPI && window.electronAPI.isElectron);
+    const isStandalone = Boolean(
+      (typeof window.matchMedia === 'function' && (
+        window.matchMedia('(display-mode: standalone)').matches ||
+        window.matchMedia('(display-mode: fullscreen)').matches ||
+        window.matchMedia('(display-mode: minimal-ui)').matches
+      )) ||
+      (typeof window.navigator !== 'undefined' && window.navigator.standalone === true) ||
+      (typeof window.location !== 'undefined' && window.location.search && window.location.search.includes('source=pwa')) ||
+      (typeof document !== 'undefined' && document.referrer && document.referrer.includes('android-app://')) ||
+      Boolean(window.electronAPI && window.electronAPI.isElectron)
+    );
     
     if (isStandalone) {
       document.body.classList.add('is-pwa-standalone');
@@ -1866,9 +3388,177 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // LISTENING PARTIES (LIVE SYNC)
+  // ---------------------------------------------------------------------------
+  window.__currentSessionId = null;
+  window.__isSessionHost = false;
+  let sessionSyncInterval = null;
+
+  window.toggleListeningParty = async function() {
+    if (window.__currentSessionId) {
+      // Leave session
+      leaveSession(window.__currentSessionId);
+      window.__currentSessionId = null;
+      window.__isSessionHost = false;
+      if (sessionSyncInterval) clearInterval(sessionSyncInterval);
+      window.showToast('Left listening party', 'info');
+      const btns = ['desktop-party-btn', 'mobile-party-btn'];
+      btns.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.querySelector('i').style.color = '#a855f7';
+      });
+      // Remove party from URL
+      const url = new URL(window.location.href);
+      url.searchParams.delete('party');
+      window.history.replaceState({}, '', url);
+      return;
+    }
+
+    // Create session
+    try {
+      const uid = getCurrentUserId();
+      if (!uid || uid.startsWith('guest-')) {
+        window.showToast('Please continue with Google to host a party', 'warning');
+        window.signInWithGoogle();
+        return;
+      }
+      
+      const currentTrack = window.PulsePlaybar ? window.PulsePlaybar.getCurrentTrack() : null;
+      const sessionId = await createSession(currentTrack);
+      window.__currentSessionId = sessionId;
+      window.__isSessionHost = true;
+      
+      const btns = ['desktop-party-btn', 'mobile-party-btn'];
+      btns.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.querySelector('i').style.color = '#4ade80'; // Green when active
+      });
+      
+      const partyUrl = new URL(window.location.href);
+      partyUrl.searchParams.set('party', sessionId);
+      window.history.replaceState({}, '', partyUrl);
+
+      window.showToast('Listening Party Started! Invite link copied to clipboard.', 'success', 3000);
+      try {
+        await navigator.clipboard.writeText(partyUrl.toString());
+      } catch (e) {}
+
+      // Sync state to Firebase every second
+      sessionSyncInterval = setInterval(() => {
+        if (window.__isSessionHost && window.__currentSessionId && window.PulsePlaybar) {
+          updateSessionState(window.__currentSessionId, {
+            track: window.PulsePlaybar.getCurrentTrack(),
+            isPlaying: window.PulsePlaybar.getIsPlaying(),
+            currentTime: window.PulsePlaybar.getCurrentTime ? window.PulsePlaybar.getCurrentTime() : 0
+          });
+        }
+      }, 1500);
+
+    } catch (err) {
+      console.error('[Listening Party] Error:', err);
+      window.showToast('Could not start party. Please sign in.', 'warning');
+    }
+  };
+
+  window.handleListeningPartyURL = function() {
+    try {
+      if (!window.location || !window.location.href) return;
+      const url = new URL(window.location.href);
+      const partyId = url.searchParams.get('party');
+      if (!partyId) return;
+
+    // Create an explicit interaction modal to bypass Autoplay restrictions
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; backdrop-filter: blur(15px);';
+    overlay.innerHTML = `
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 3rem; border-radius: 24px; text-align: center; max-width: 90vw; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+        <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(56, 189, 248, 0.1); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem auto;">
+          <i class="fa-solid fa-tower-broadcast" style="animation: pulse 2s infinite;"></i>
+        </div>
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; color: #fff;">Listening Party</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1.1rem;">You've been invited to tune in live. Click below to join.</p>
+        <button id="btn-join-party" style="background: linear-gradient(135deg, #38bdf8, #818cf8); color: #fff; border: none; padding: 1rem 3rem; border-radius: 50px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 0 20px rgba(56,189,248,0.4); display: inline-flex; align-items: center; gap: 0.75rem;">
+          <i class="fa-solid fa-headphones"></i> Tune In Live
+        </button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    document.getElementById('btn-join-party').onclick = () => {
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 300);
+      
+      window.showToast(`Joining listening party...`, 'info', 2000);
+      
+      // Join as listener
+      window.__currentSessionId = partyId;
+      window.__isSessionHost = false;
+      
+      const btns = ['desktop-party-btn', 'mobile-party-btn'];
+      btns.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.querySelector('i').style.color = '#38bdf8'; // Blue for listeners
+      });
+      
+      let lastTrackId = null;
+
+      joinSession(partyId, (state) => {
+        if (!state) {
+          window.showToast('Listening Party has ended.', 'warning');
+          window.toggleListeningParty(); // cleanup local state
+          return;
+        }
+        
+        if (!window.PulsePlaybar || window.__isSessionHost) return;
+
+        const pState = state.state;
+        if (!pState) return;
+
+        const track = pState.track;
+        if (track) {
+          const trackId = track.id || track.ytId;
+          // If track changed, play it
+          if (trackId !== lastTrackId) {
+            lastTrackId = trackId;
+            if (window.PulsePlaybar.playTrack) {
+              window.PulsePlaybar.playTrack(track, [track]);
+            }
+          }
+          
+          // Sync time if difference is large (> 3 seconds)
+          if (pState.isPlaying && pState.currentTime > 0) {
+             const timeSinceUpdate = (Date.now() - pState.timestamp) / 1000;
+             const expectedTime = pState.currentTime + timeSinceUpdate;
+             const localTime = window.PulsePlaybar.getCurrentTime ? window.PulsePlaybar.getCurrentTime() : 0;
+             if (window.PulsePlaybar.seekTo && Math.abs(localTime - expectedTime) > 3) {
+               window.PulsePlaybar.seekTo(expectedTime);
+             }
+          }
+          
+          // Sync play/pause
+          const isLocallyPlaying = window.PulsePlaybar.getIsPlaying();
+          if (pState.isPlaying && !isLocallyPlaying) {
+            if (window.PulsePlaybar.resume) window.PulsePlaybar.resume();
+          } else if (!pState.isPlaying && isLocallyPlaying) {
+            if (window.PulsePlaybar.pause) window.PulsePlaybar.pause();
+          }
+        }
+      });
+    };
+    } catch (err) {
+      console.warn('[Listening Party URL] Error:', err);
+    }
+  };
+
+  let _pulseAppInitialized = false;
   function initPulseApp() {
-    // 1. Hide install UI if running inside PWA or previously installed
+    // 1. Hide install UI if running inside PWA or previously installed (always runs — cheap)
     applyPWAUIState();
+
+    // Guard: skip all expensive work if already initialized
+    if (_pulseAppInitialized) return;
+    _pulseAppInitialized = true;
 
     // Query OS/Chromium if app is already installed on this device
     if ('getInstalledRelatedApps' in navigator) {
@@ -1890,6 +3580,21 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     // 3. Render Home Feed Discovery immediately
     if (typeof window.renderHomeDiscovery === 'function') {
       window.renderHomeDiscovery();
+    }
+    
+    // Check for listening party in URL
+    if (typeof window.handleListeningPartyURL === 'function') {
+      window.handleListeningPartyURL();
+    }
+
+    // Check for shared playlist in URL
+    if (typeof window.handleSharedPlaylistURL === 'function') {
+      window.handleSharedPlaylistURL();
+    }
+
+    // Check for shared music track link in URL
+    if (typeof window.handleSharedMusicURL === 'function') {
+      window.handleSharedMusicURL();
     }
 
     // Initialize Dynamic Ambient Wallpaper across app
@@ -1923,6 +3628,9 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       if (window.pulseState.activeLibraryTab === 'playlists') {
         window.renderLibraryView();
       }
+      if (window.renderUserPlaylistsShelf) {
+        window.renderUserPlaylistsShelf();
+      }
     });
 
     onHistoryChanged(() => {
@@ -1934,12 +3642,27 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     // 6. Search Input Binding
     const searchInput = document.getElementById('global-search-input');
     if (searchInput) {
+      const updateSearchPlaceholder = () => {
+        if (window.innerWidth <= 640) {
+          searchInput.placeholder = 'Search any song or artist...';
+        } else if (window.innerWidth <= 1024) {
+          searchInput.placeholder = 'Search songs, artists, lyrics...';
+        } else {
+          searchInput.placeholder = 'Search any song in any language (Kannada, Hindi, English, Punjabi, Spanish...)';
+        }
+      };
+      updateSearchPlaceholder();
+      window.addEventListener('resize', updateSearchPlaceholder);
+
       searchInput.addEventListener('input', (e) => {
         const clearBtn = document.getElementById('clear-search-btn');
         if (clearBtn) {
           clearBtn.classList.toggle('hidden', !e.target.value);
         }
-        window.executeSearch(e.target.value, true);
+        // Only trigger search after at least 2 characters to avoid wasted API calls
+        if (e.target.value.trim().length >= 2) {
+          window.executeSearch(e.target.value, true);
+        }
       });
       searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -1974,16 +3697,8 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
                           try { return localStorage.getItem('pulse_app_installed') === 'true'; } catch (err) { return false; }
                         })();
 
-    // Show floating smart install banner ONLY if running inside browser and not installed
-    if (!isInstalled && !sessionStorage.getItem('pulse_pwa_dismissed')) {
-      setTimeout(() => {
-        const banner = document.getElementById('pwa-floating-banner');
-        if (banner && !document.body.classList.contains('is-pwa-standalone') && !document.body.classList.contains('is-pwa-installed')) {
-          banner.classList.remove('hidden');
-          banner.style.display = 'flex';
-        }
-      }, 3000);
-    }
+    // Do not aggressively pop up install banner on timer; keep available for user action
+    window.__canInstallPWA = true;
   });
 
   window.dismissPWABanner = function() {
@@ -2011,7 +3726,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
           try { localStorage.setItem('pulse_app_installed', 'true'); } catch (e) {}
           applyPWAUIState();
           window.closeDownloadModal();
-          window.showToast('🎉 Pulse Music installed on your device! Check your Home Screen / Taskbar.', 'success', 6000);
+          window.showToast('🚀 Pulse Music installed on your device! Check your Home Screen / Taskbar.', 'success', 6000);
           return;
         }
       } catch (err) {
@@ -2023,13 +3738,11 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     const plat = window.detectUserPlatform ? window.detectUserPlatform() : 'windows';
     if (plat === 'windows' || plat === 'pwa') {
       window.downloadWindowsShortcut();
-      window.showToast('💻 Tip: Click the [ 💻↓ Install ] icon in your Chrome address bar or double-click the downloaded shortcut!', 'info', 7000);
+      window.showToast('💡 Tip: Click the [ ⊕ Install ] icon in your Chrome address bar or double-click the downloaded shortcut!', 'info', 7000);
     } else if (plat === 'mac') {
       window.downloadMacShortcut();
-    } else if (plat === 'android') {
-      window.showToast('📱 Android: Tap Chrome 3 dots (⋮) ➔ "Install app" or "Add to Home screen"', 'info', 7000);
-    } else if (plat === 'ios') {
-      window.showIosAddHomeGuide();
+    } else {
+      window.showToast('To install Pulse, tap the Share/Menu button in your browser and select "Add to Home Screen" 📱', 'info', 6000);
     }
   };
 
@@ -2037,7 +3750,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     deferredPrompt = null;
     try { localStorage.setItem('pulse_app_installed', 'true'); } catch (e) {}
     applyPWAUIState();
-    window.showToast('Pulse Music installed successfully! Enjoy your ad-free music 🎵', 'success', 6000);
+    window.showToast('Pulse Music installed successfully! Enjoy your ad-free music 🎧', 'success', 6000);
   });
 
   if ('serviceWorker' in navigator) {
@@ -2063,32 +3776,29 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
   // ---------------------------------------------------------------------------
   // AUTH GATE SCREEN & SESSION CONTROLLER
-  // Prevents repeated gate screens once user is logged in or continued
+  // Allowed by default: Never block or interrupt listeners
   // ---------------------------------------------------------------------------
   function checkAuthGateState(user = null) {
-    const activeUser = user || getStoredUser();
+    const isUnlocked = isGateUnlocked();
     const gate = document.getElementById('auth-gate-screen');
     const app = document.getElementById('app');
-    if (!gate) return;
-
-    const unlocked = isGateUnlocked() || (activeUser && (activeUser.provider === 'google' || activeUser.provider === 'email'));
-
-    if (unlocked) {
+    if (gate) {
       gate.classList.add('gate-unlocked');
-      setTimeout(() => {
-        if (gate.classList.contains('gate-unlocked')) {
-          gate.style.display = 'none';
-        }
-      }, 450);
-      if (app) app.classList.remove('auth-gate-locked');
-    } else {
-      gate.style.display = 'flex';
-      gate.classList.remove('gate-unlocked');
-      if (app) app.classList.add('auth-gate-locked');
+      gate.style.display = 'none';
+      gate.style.opacity = '0';
+      gate.style.visibility = 'hidden';
+      gate.style.pointerEvents = 'none';
+    }
+    if (app) {
+      app.classList.remove('auth-gate-locked');
     }
   }
 
+  let isGateSignInInProgress = false;
   window.handleGateGoogleSignIn = async function() {
+    if (isGateSignInInProgress) return;
+    isGateSignInInProgress = true;
+
     const btn = document.getElementById('gate-google-signin-btn');
     const originalHtml = btn ? btn.innerHTML : '';
     if (btn) {
@@ -2098,6 +3808,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
     try {
       const user = await signInWithGoogle();
+      if (!user) return; // If redirect was triggered or sign-in in progress
       setGateUnlocked(true);
       const gate = document.getElementById('auth-gate-screen');
       const app = document.getElementById('app');
@@ -2109,7 +3820,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       if (app) app.classList.remove('auth-gate-locked');
 
       if (window.showToast) {
-        window.showToast(`🎉 Welcome to Pulse Music, ${user.name}! Cloud sync active.`, 'success', 5000);
+        window.showToast(`🎉 Welcome to Pulse Music, ${user.name || 'Listener'}! Cloud sync active.`, 'success', 5000);
       }
 
       if (window.PulseFirestore && window.PulseFirestore.getFavorites) {
@@ -2127,6 +3838,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         btn.disabled = false;
         btn.innerHTML = originalHtml;
       }
+      isGateSignInInProgress = false;
       checkAuthGateState();
     }
   };
@@ -2277,7 +3989,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         } else if (settingKey === 'cloudHistorySync') {
           window.showToast(isChecked ? '☁️ Cloud Firestore sync enabled' : 'Cloud sync disabled', 'info', 2500);
         } else if (settingKey === 'publicPlaylists') {
-          window.showToast(isChecked ? '🌍 Public playlist links enabled' : 'Playlists kept private', 'info', 2500);
+          window.showToast(isChecked ? '🔗 Public playlist links enabled' : 'Playlists kept private', 'info', 2500);
         }
       }
     } catch (e) {
@@ -2306,7 +4018,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   window.handleExportUserData = function() {
     try {
       exportUserData();
-      if (window.showToast) window.showToast('📥 Music profile & playlists exported to JSON archive!', 'success', 4000);
+      if (window.showToast) window.showToast('📦 Music profile & playlists exported to JSON archive!', 'success', 4000);
     } catch (e) {
       if (window.showToast) window.showToast('Export failed: ' + e.message, 'error', 3000);
     }
@@ -2330,14 +4042,15 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     await updatePrivacySettings({ gaplessPlayback: isChecked });
   };
 
-  function updateAuthModalContent() {
+  async function updateAuthModalContent() {
     const user = getStoredUser();
     const guestBox = document.getElementById('auth-guest-view');
     const privacy = getPrivacySettings();
 
     const isGoogle = user && user.provider === 'google';
     const isEmail = user && user.provider === 'email';
-    const isRealUser = isGoogle || isEmail;
+    const isPhone = user && user.provider === 'phone';
+    const isRealUser = isGoogle || isEmail || isPhone;
 
     if (guestBox) {
       guestBox.style.display = isRealUser ? 'none' : 'block';
@@ -2352,7 +4065,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
     if (avatarEl) avatarEl.src = user?.avatar || './pulse-logo.png';
     if (nameEl) nameEl.textContent = user?.name || (isRealUser ? 'Pulse Listener' : 'Guest Listener');
-    if (emailEl) emailEl.textContent = user?.email || (isRealUser ? '' : 'guest@pulse.app');
+    if (emailEl) emailEl.textContent = user?.phoneNumber || user?.email || (isRealUser ? '' : 'guest@pulse.app');
     if (uidText) {
       const rawUid = user?.uid || user?.id || 'guest';
       uidText.textContent = rawUid.length > 12 ? rawUid.slice(0, 10) + '...' : rawUid;
@@ -2364,6 +4077,11 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         providerBadge.style.color = '#38bdf8';
         providerBadge.style.borderColor = 'rgba(56, 189, 248, 0.4)';
         providerBadge.style.background = 'rgba(56, 189, 248, 0.12)';
+      } else if (isPhone) {
+        providerName.textContent = 'Phone Verified';
+        providerBadge.style.color = '#34d399';
+        providerBadge.style.borderColor = 'rgba(52, 211, 153, 0.4)';
+        providerBadge.style.background = 'rgba(16, 185, 129, 0.12)';
       } else if (isEmail) {
         providerName.textContent = 'Verified Email';
         providerBadge.style.color = '#a855f7';
@@ -2383,9 +4101,18 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     const histCountEl = document.getElementById('profile-stat-history');
     const downCountEl = document.getElementById('profile-stat-downloads');
 
-    if (favCountEl) favCountEl.textContent = String(getFavorites().length);
-    if (plCountEl) plCountEl.textContent = String(getPlaylists().length);
-    if (histCountEl) histCountEl.textContent = String(getHistory().length);
+    if (favCountEl) {
+      const favs = await getFavorites();
+      favCountEl.textContent = String(favs ? favs.length : 0);
+    }
+    if (plCountEl) {
+      const pls = await getPlaylists();
+      plCountEl.textContent = String(pls ? pls.length : 0);
+    }
+    if (histCountEl) {
+      const hist = await getHistory();
+      histCountEl.textContent = String(hist ? hist.length : 0);
+    }
     if (downCountEl) {
       try {
         const raw = localStorage.getItem('pulse_downloaded_tracks');
@@ -2417,30 +4144,29 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   }
 
   function renderHeaderAuthButton(user) {
-    const btn = document.getElementById('header-auth-btn');
+    const btn = document.getElementById('mobile-header-profile-btn');
     if (!btn) return;
 
     if (user && (user.provider === 'google' || user.provider === 'email')) {
-      const firstName = (user.name || 'User').split(' ')[0];
       btn.innerHTML = `
-        <img src="${user.avatar || './pulse-logo.png'}" alt="Profile" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 1.5px solid #a855f7;">
-        <span style="max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(firstName)}</span>
+        <img src="${user.avatar || './pulse-logo.png'}" alt="Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
       `;
       btn.title = `Signed in as ${user.name} (${user.email}) - Click for Profile & Privacy`;
       btn.style.borderColor = 'rgba(168, 85, 247, 0.6)';
-      btn.style.background = 'rgba(168, 85, 247, 0.15)';
     } else {
       btn.innerHTML = `
-        <i class="fa-solid fa-user-gear" style="color: #c084fc;"></i>
-        <span>Profile</span>
+        <i class="fa-solid fa-circle-user"></i>
       `;
       btn.title = "View Profile, Privacy & Settings";
-      btn.style.borderColor = 'rgba(255, 255, 255, 0.18)';
-      btn.style.background = 'rgba(255, 255, 255, 0.08)';
+      btn.style.borderColor = 'transparent';
     }
   }
 
+  let isModalSignInInProgress = false;
   window.handleGoogleSignIn = async function() {
+    if (isModalSignInInProgress) return;
+    isModalSignInInProgress = true;
+
     const btn = document.getElementById('google-signin-btn');
     const originalHtml = btn ? btn.innerHTML : '';
     if (btn) {
@@ -2450,9 +4176,10 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
     try {
       const user = await signInWithGoogle();
+      if (!user) return; // If redirect was triggered or sign-in in progress
       setGateUnlocked(true);
       if (window.showToast) {
-        window.showToast(`🎉 Signed in as ${user.name}! Cloud Firestore sync active.`, 'success', 5000);
+        window.showToast(`🎉 Signed in as ${user.name || 'Listener'}! Cloud Firestore sync active.`, 'success', 5000);
       }
       checkAuthGateState(user);
       if (window.PulseFirestore && window.PulseFirestore.getFavorites) {
@@ -2463,16 +4190,183 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       }
     } catch (err) {
       if (window.showToast) {
-        window.showToast(err.message || 'Google Sign-In cancelled or failed', 'info', 5000);
+        window.showToast(err.message || 'Google Sign-In was interrupted. Please try again.', 'info', 5000);
       }
     } finally {
       if (btn) {
         btn.disabled = false;
         btn.innerHTML = originalHtml;
       }
+      isModalSignInInProgress = false;
       updateAuthModalContent();
     }
   };
+
+  // ---------------------------------------------------------------------------
+  // PHONE NUMBER AUTHENTICATION CONTROLLER (SMS OTP)
+  // ---------------------------------------------------------------------------
+  let _phoneResendCountdown = 0;
+  let _phoneResendInterval = null;
+
+  window.openPhoneAuthModal = function() {
+    window.openAuthModal();
+    window.togglePhoneAuthView(true);
+    const input = document.getElementById('pulse-phone-input');
+    if (input) setTimeout(() => input.focus(), 200);
+  };
+
+  window.togglePhoneAuthView = function(forceShow = null) {
+    const panel = document.getElementById('phone-auth-panel');
+    const toggleText = document.getElementById('phone-toggle-text');
+    if (!panel) return;
+    const isHidden = typeof forceShow === 'boolean' ? !forceShow : panel.classList.contains('hidden');
+    panel.classList.toggle('hidden', !isHidden);
+    if (toggleText) {
+      toggleText.textContent = isHidden ? 'Hide Phone Login' : 'Sign In with Phone Number (SMS OTP)';
+    }
+    if (isHidden) {
+      window.backToPhoneInput();
+    }
+  };
+
+  window.backToPhoneInput = function() {
+    const step1 = document.getElementById('phone-input-step');
+    const step2 = document.getElementById('phone-otp-step');
+    if (step1) step1.classList.remove('hidden');
+    if (step2) step2.classList.add('hidden');
+    const input = document.getElementById('pulse-phone-input');
+    if (input) input.focus();
+  };
+
+  window.handleSendPhoneOtp = async function() {
+    const countryEl = document.getElementById('phone-country-code');
+    const phoneInput = document.getElementById('pulse-phone-input');
+    const btn = document.getElementById('btn-send-phone-otp');
+
+    const countryCode = (countryEl?.value || '+91').trim();
+    const rawNumber = (phoneInput?.value || '').trim();
+
+    if (!rawNumber || rawNumber.length < 5) {
+      if (window.showToast) window.showToast('Please enter your mobile phone number.', 'warning', 3000);
+      if (phoneInput) phoneInput.focus();
+      return;
+    }
+
+    let fullPhone = rawNumber;
+    if (!fullPhone.startsWith('+')) {
+      const cleanNum = rawNumber.replace(/^0+/, '');
+      fullPhone = `${countryCode}${cleanNum}`;
+    }
+
+    const originalBtnHtml = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending SMS Code...';
+    }
+
+    try {
+      if (window.showToast) window.showToast('Verifying security & sending SMS...', 'info', 3000);
+      const res = await sendPhoneOtp(fullPhone, 'recaptcha-container');
+      
+      const step1 = document.getElementById('phone-input-step');
+      const step2 = document.getElementById('phone-otp-step');
+      const sentToDisplay = document.getElementById('phone-otp-sent-to');
+      const otpInput = document.getElementById('pulse-otp-input');
+
+      if (sentToDisplay) sentToDisplay.textContent = res.phoneNumber || fullPhone;
+      if (step1) step1.classList.add('hidden');
+      if (step2) step2.classList.remove('hidden');
+      if (otpInput) {
+        otpInput.value = '';
+        setTimeout(() => otpInput.focus(), 150);
+      }
+
+      if (window.showToast) {
+        window.showToast(`📩 6-digit code sent to ${res.phoneNumber}! Please enter it below.`, 'success', 5000);
+      }
+
+      startResendCountdown(60);
+    } catch (err) {
+      if (window.showToast) {
+        window.showToast(err.message || 'Failed to send SMS code. Please try again.', 'error', 4500);
+      }
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalBtnHtml;
+      }
+    }
+  };
+
+  window.handleVerifyPhoneOtp = async function() {
+    const otpInput = document.getElementById('pulse-otp-input');
+    const btn = document.getElementById('btn-verify-phone-otp');
+    const code = (otpInput?.value || '').trim();
+
+    if (!code || code.length < 4) {
+      if (window.showToast) window.showToast('Please enter the 6-digit code from SMS.', 'warning', 3000);
+      if (otpInput) otpInput.focus();
+      return;
+    }
+
+    const originalBtnHtml = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verifying Code...';
+    }
+
+    try {
+      const user = await verifyPhoneOtp(code);
+      setGateUnlocked(true);
+      if (window.showToast) {
+        window.showToast(`🎉 Signed in successfully! Welcome, ${user.name}!`, 'success', 5000);
+      }
+      checkAuthGateState(user);
+      updateAuthModalContent();
+      if (window.PulseFirestore && window.PulseFirestore.getFavorites) {
+        window.PulseFirestore.getFavorites();
+      }
+      if (window.PulseFirestore && window.PulseFirestore.getPlaylists) {
+        window.PulseFirestore.getPlaylists();
+      }
+    } catch (err) {
+      if (window.showToast) {
+        window.showToast(err.message || 'Invalid verification code. Please check SMS.', 'error', 4500);
+      }
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalBtnHtml;
+      }
+    }
+  };
+
+  window.handleResendPhoneOtp = async function() {
+    if (_phoneResendCountdown > 0) {
+      if (window.showToast) window.showToast(`Please wait ${_phoneResendCountdown}s before requesting a new code.`, 'info', 2500);
+      return;
+    }
+    await window.handleSendPhoneOtp();
+  };
+
+  function startResendCountdown(seconds = 60) {
+    _phoneResendCountdown = seconds;
+    const timerEl = document.getElementById('phone-resend-timer');
+    const resendBtn = document.getElementById('btn-resend-phone-otp');
+    if (_phoneResendInterval) clearInterval(_phoneResendInterval);
+
+    if (resendBtn) resendBtn.style.opacity = '0.5';
+
+    _phoneResendInterval = setInterval(() => {
+      _phoneResendCountdown--;
+      if (timerEl) timerEl.textContent = `(${_phoneResendCountdown}s)`;
+      if (_phoneResendCountdown <= 0) {
+        clearInterval(_phoneResendInterval);
+        if (timerEl) timerEl.textContent = '';
+        if (resendBtn) resendBtn.style.opacity = '1';
+      }
+    }, 1000);
+  }
 
   window.handleSignOut = async function() {
     try {
@@ -2480,9 +4374,8 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         window.PulsePlaybar.pause();
       }
       await signOut();
-      setGateUnlocked(false);
       if (window.showToast) {
-        window.showToast('Signed out of Pulse Music.', 'info', 5000);
+        window.showToast('Signed out of Pulse Music. You are now listening in Guest mode.', 'info', 4000);
       }
       window.closeAuthModal();
       checkAuthGateState();
@@ -2496,14 +4389,30 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     renderHeaderAuthButton(user);
     updateAuthModalContent();
     checkAuthGateState(user);
+    if (window.renderUserPlaylistsShelf) {
+      window.renderUserPlaylistsShelf();
+    }
   });
+
+  // Remove category filter pills from home screen if present
+  function removeFilterPillsBar() {
+    document.querySelectorAll('section.filter-pills-bar, #view-home .filter-pills-bar').forEach(el => el.remove());
+  }
+  removeFilterPillsBar();
 
   // Check gate screen initially on DOM ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => checkAuthGateState());
+    document.addEventListener('DOMContentLoaded', () => {
+      removeFilterPillsBar();
+      checkAuthGateState();
+    });
   } else {
     checkAuthGateState();
   }
 
 })();
+
+
+
+
 

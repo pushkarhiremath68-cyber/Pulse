@@ -5,7 +5,7 @@
  */
 
 import { disambiguateQuery } from './geminiService.js';
-import { searchYouTubeMusic, resolvePipedAudioStream, fetchYouTubeMusicCharts } from './extractorService.js';
+import { searchYouTubeMusic, resolvePipedAudioStream, fetchYouTubeMusicCharts, resolveYouTubeVideoId, enrichTracksWithYouTubeIds } from './extractorService.js';
 import { searchCatalogTracks, PERMANENT_STREAM_MAP } from './catalogService.js';
 import CryptoJS from 'crypto-js';
 
@@ -237,9 +237,9 @@ export async function searchJioSaavnDirect(query, limit = 25) {
     }
   };
 
-  // 1. Primary: High-speed live JioSaavn API endpoint (Instant <400ms direct 320k stream resolution)
+  // 1. Primary: High-speed live JioSaavn API endpoint
   try {
-    const liveApiUrl = `https://saavn-api-seven.vercel.app/api/search/songs?query=${encodeURIComponent(cleanQ)}`;
+    const liveApiUrl = `https://jiosaavn-api.vercel.app/search?query=${encodeURIComponent(cleanQ)}`;
     const liveRes = await fetch(liveApiUrl, { signal: AbortSignal.timeout(3000) });
     if (liveRes.ok) {
       const data = await liveRes.json();
@@ -348,9 +348,184 @@ export async function searchITunesUniversal(query, limit = 40) {
 }
 
 /**
+ * Normalizes text for search matching:
+ * - lowercase
+ * - strips diacritics
+ * - maps stylized characters (! -> i, $ -> s, @ -> a, 0 -> o) so FE!N matches fein, Ke$ha matches kesha
+ * - strips non-alphanumerics
+ */
+export function normalizeSearchText(str) {
+  if (!str || typeof str !== 'string') return '';
+  return str
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/!/g, 'i')
+    .replace(/\$/g, 's')
+    .replace(/@/g, 'a')
+    .replace(/0/g, 'o')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Extracts base title by removing YouTube prefixes, (Official Video), [Audio], ft./feat., etc.
+ */
+export function extractSearchBaseTitle(title) {
+  if (!title || typeof title !== 'string') return '';
+  let base = title
+    .replace(/^[^-–—]+[-–—]\s*/, '')
+    .replace(/\s*[([{\u3010].*?(?:official|audio|video|lyrics?|visualizer|hd|4k|mv|music video|full song).*?[)\]}\u3011]/gi, '')
+    .replace(/\s*(?:ft\.?|feat\.?|featuring)\s+.+$/i, '')
+    .trim();
+  const norm = normalizeSearchText(base);
+  return norm.length >= 2 ? norm : normalizeSearchText(title);
+}
+
+/**
+ * High-Precision Search Relevance Scoring Engine
+ * Evaluates exact title match, query containing song+artist, token coverage, official releases,
+ * and heavily penalizes unwanted derivative content (sped up, slowed+reverb, lofi, remix, techno, karaoke, instrumentals)
+ * unless explicitly queried by the user.
+ */
+export function calculateTrackRelevance(track, rawQuery) {
+  if (!track || !rawQuery) return 0;
+
+  const q = rawQuery.trim().toLowerCase();
+  const qNorm = normalizeSearchText(q);
+  if (!qNorm) return 0;
+
+  const qTokens = qNorm.split(' ').filter(w => w.length >= 2);
+  const totalTokens = qTokens.length;
+
+  const rawTitle = track.title || '';
+  const rawArtist = track.artist || '';
+  const rawAlbum = track.album || '';
+  const combinedRaw = `${rawTitle} ${rawArtist} ${rawAlbum}`.toLowerCase();
+
+  const titleNorm = normalizeSearchText(rawTitle);
+  const artistNorm = normalizeSearchText(rawArtist);
+  let baseTitle = extractSearchBaseTitle(rawTitle);
+  if (baseTitle.length < 2) baseTitle = titleNorm;
+
+  const qCompact = q.replace(/!/g, 'i').replace(/\$/g, 's').replace(/@/g, 'a').replace(/[^a-z0-9]/g, '');
+  const titleCompact = rawTitle.replace(/!/g, 'i').replace(/\$/g, 's').replace(/@/g, 'a').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const baseTitleCompact = baseTitle.replace(/[^a-z0-9]/g, '');
+  const artistCompact = rawArtist.replace(/!/g, 'i').replace(/\$/g, 's').replace(/@/g, 'a').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  let score = 0;
+
+  // 1. Check if user explicitly requested derivative keywords
+  const wantsRemix = /\b(remix|re-mix|mix|mashup|bootleg)\b/i.test(q);
+  const wantsSlowed = /\b(slowed|reverb|slow)\b/i.test(q);
+  const wantsSpedUp = /\b(sped\s*up|speed\s*up|speedup|nightcore)\b/i.test(q);
+  const wantsTechno = /\b(techno|hardstyle|psytrance|bass\s*boosted|8d|phonk|drill)\b/i.test(q);
+  const wantsInstrumental = /\b(instrumental|karaoke|backing\s*track|minus\s*one|acoustic|piano)\b/i.test(q);
+  const wantsCover = /\b(cover|tribute)\b/i.test(q);
+  const wantsLofi = /\b(lofi|lo-fi)\b/i.test(q);
+
+  // 2. Heavy Penalties for Unwanted Derivatives / Junk (aggressive filtering)
+  if (!wantsSpedUp && /\b(sped\s*up|speed\s*up|nightcore)\b/i.test(combinedRaw)) score -= 200;
+  if (!wantsSlowed && /\b(slowed|reverb|slowed\s*\+\s*reverb|slow\s*reverb)\b/i.test(combinedRaw)) score -= 200;
+  if (!wantsTechno && /\b(techno|acid\s*techno|hardstyle|psytrance|bass\s*boosted|8d\s*audio|phonk)\b/i.test(combinedRaw)) score -= 200;
+  if (!wantsInstrumental && /\b(instrumental|karaoke|backing\s*track|minus\s*one|off\s*vocal)\b/i.test(combinedRaw)) score -= 220;
+  if (!wantsLofi && /\b(lofi\s*flip|lo-fi\s*flip|lofi\s*remix|chill\s*mix)\b/i.test(combinedRaw)) score -= 180;
+  if (!wantsRemix && /\b(remix|re-mix|club\s*mix|extended\s*mix|dj\s*remix|mashup|bootleg)\b/i.test(combinedRaw)) score -= 200;
+  if (!wantsCover && /\b(tribute\s*to|in\s*the\s*style\s*of|originally\s*performed\s*by|cover\s*version)\b/i.test(combinedRaw)) score -= 200;
+  if (/\b(1\s*hour\s*loop|10\s*hours|ringtone|preview\s*only|compilation|megamix)\b/i.test(combinedRaw)) score -= 220;
+
+  // Penalize unofficial translation channels / sub tags if user didn't request translations
+  if (!/\b(和訳|subtitul|traduc|translation)\b/i.test(q) && /【和訳】|\[和訳\]|\b(subtitulada|traducida)\b/i.test(combinedRaw)) {
+    score -= 180;
+  }
+
+  // 3. Exact Title Matching (Spaced or Compact) — heavily boosted
+  if (titleNorm === qNorm || titleCompact === qCompact) {
+    score += 300;
+  } else if (baseTitle === qNorm || baseTitleCompact === qCompact) {
+    score += 260;
+  }
+
+  // 3b. Raw Title Prefix Super-Bonus (raw title starts with the exact query)
+  const rawTitleLower = rawTitle.toLowerCase().trim();
+  if (rawTitleLower.startsWith(q) || rawTitleLower === q) {
+    score += 50;
+  }
+
+  // 4. Query is "Song Name Artist" or "Artist Song Name"
+  const titleInQuery = (baseTitle.length >= 2 && qNorm.includes(baseTitle)) || 
+                       (titleNorm.length >= 2 && qNorm.includes(titleNorm)) ||
+                       (baseTitleCompact.length >= 2 && qCompact.includes(baseTitleCompact));
+
+  const artistInQuery = (artistNorm.length >= 2 && (qNorm.includes(artistNorm) || artistNorm.split(' ').some(a => a.length >= 3 && qNorm.includes(a)))) ||
+                        (artistCompact.length >= 3 && qCompact.includes(artistCompact));
+
+  if (titleInQuery && artistInQuery) {
+    score += 460; // Peak relevance: query has both song and artist, candidate matches both!
+  } else if (titleInQuery) {
+    score += 150;
+  } else if (artistInQuery && (titleNorm === qNorm || baseTitle === qNorm || baseTitleCompact === qCompact)) {
+    score += 260;
+  }
+
+  // 5. Prefix matching
+  if (titleNorm.startsWith(qNorm) || baseTitle.startsWith(qNorm)) {
+    score += 110;
+  } else if (titleNorm.includes(qNorm)) {
+    score += 80;
+  }
+
+  // 6. Token Coverage & Multi-Word Discipline
+  if (totalTokens > 0) {
+    const tokensInTitle = qTokens.filter(t => titleNorm.includes(t) || baseTitle.includes(t)).length;
+    const tokensInArtist = qTokens.filter(t => artistNorm.includes(t)).length;
+    const tokensInTrack = qTokens.filter(t => titleNorm.includes(t) || baseTitle.includes(t) || artistNorm.includes(t) || rawAlbum.toLowerCase().includes(t)).length;
+
+    score += Math.round((tokensInTrack / totalTokens) * 90);
+    if (tokensInTrack === totalTokens) score += 70;
+    score += Math.round((tokensInTitle / totalTokens) * 60);
+
+    // If query specified a multi-word song title and candidate title has 0 tokens matching, penalize
+    if (totalTokens >= 3 && tokensInTitle === 0 && !titleInQuery) {
+      score -= 80;
+    }
+  }
+
+  // 7. Pure Artist Searches
+  if (artistNorm === qNorm || artistCompact === qCompact) {
+    score += 180;
+  } else if (artistNorm.startsWith(qNorm)) {
+    score += 140;
+  } else if (artistNorm.includes(qNorm)) {
+    score += 90;
+  }
+
+  // 8. Quality, Master Audio & Authenticity Signals
+  if (track.streamUrl && !track.streamUrl.includes('preview')) {
+    score += 35;
+    if (track.source && track.source.includes('320kbps')) score += 20;
+  }
+  if (track.source && (track.source.includes('Official') || track.source.includes('Master'))) score += 20;
+  if (combinedRaw.includes('official audio') || combinedRaw.includes('official music video') || combinedRaw.includes('official lyric video')) score += 25;
+  if (!/\b(tribute|karaoke|study\s*time|clavier|piano|instrumental|fast\s*basston|chill\s*darling)\b/i.test(artistNorm)) score += 15;
+  if (track.coverUrl && (track.coverUrl.includes('mzstatic') || track.coverUrl.includes('500x500') || track.coverUrl.includes('maxresdefault'))) score += 10;
+
+  // 9. VEVO / Official Channel Bonus
+  if (/vevo$/i.test(rawArtist) || /official/i.test(rawArtist)) score += 30;
+
+  // 10. Duration Sanity Filter — penalize previews (<30s) and compilations (>1h)
+  const trackDuration = track.duration || 0;
+  if (trackDuration > 0 && trackDuration < 30) score -= 80;
+  if (trackDuration > 3600) score -= 80;
+
+  return score;
+}
+
+/**
  * Master Global Search: Unified Multi-Source Discovery
  * Searches Local Multilingual Catalog, Direct JioSaavn Master Engine, iTunes Universal & YouTube
- * Guarantees that any song in ANY language is found with full master streaming audio.
+ * Guarantees that any song in ANY language is found with full master streaming audio,
+ * ranked by high-precision relevance scoring with the official track at #1.
  */
 export async function searchTracks(query, limit = 50) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
@@ -365,10 +540,13 @@ export async function searchTracks(query, limit = 50) {
     if (!t || !t.title) return;
     const cleanT = (t.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     const cleanA = (t.artist || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const baseT = extractSearchBaseTitle(t.title).replace(/[^a-z0-9]/g, '');
     const key = `${cleanT}___${cleanA}`;
+    const baseKey = baseT.length >= 3 ? `${baseT}___${cleanA}` : null;
     
-    if (trackMap.has(key)) {
-      const existing = trackMap.get(key);
+    let existing = trackMap.get(key) || (baseKey ? trackMap.get(baseKey) : null);
+    
+    if (existing) {
       // Upgrade streamUrl if candidate has full high-bitrate master audio
       if (!existing.streamUrl && t.streamUrl && !t.streamUrl.includes('preview')) {
         existing.streamUrl = t.streamUrl;
@@ -383,8 +561,13 @@ export async function searchTracks(query, limit = 50) {
       if (t.coverUrl && (t.coverUrl.includes('mzstatic.com') || t.coverUrl.includes('500x500')) && !existing.coverUrl.includes('mzstatic.com')) {
         existing.coverUrl = t.coverUrl;
       }
+      // Upgrade title if candidate title is cleaner (studio title without YouTube video noise)
+      if (t.title && t.title.length < existing.title.length && !t.title.includes('(') && existing.title.includes('-')) {
+        existing.title = t.title;
+      }
     } else if (cleanT.length > 0) {
       trackMap.set(key, t);
+      if (baseKey) trackMap.set(baseKey, t);
       results.push(t);
     }
   };
@@ -457,7 +640,45 @@ export async function searchTracks(query, limit = 50) {
     } catch (e) {}
   }
 
-  return results.slice(0, limit);
+  // 4. Score and Rank Results by Precision Relevance Engine
+  results.forEach(t => {
+    t._relevanceScore = calculateTrackRelevance(t, cleanQuery);
+  });
+
+  results.sort((a, b) => {
+    if (b._relevanceScore !== a._relevanceScore) {
+      return b._relevanceScore - a._relevanceScore;
+    }
+    // Prefer direct 320kbps master streamUrl
+    const aHasStream = a.streamUrl && !a.streamUrl.includes('preview') ? 1 : 0;
+    const bHasStream = b.streamUrl && !b.streamUrl.includes('preview') ? 1 : 0;
+    if (bHasStream !== aHasStream) return bHasStream - aHasStream;
+
+    // Prefer tracks with ytId
+    const aHasYt = a.ytId ? 1 : 0;
+    const bHasYt = b.ytId ? 1 : 0;
+    return bHasYt - aHasYt;
+  });
+
+  const topResults = results.slice(0, limit);
+
+  // 5. Enrich top tracks missing YouTube IDs — guarantees YouTube IFrame fallback for every track
+  const tracksWithoutYtId = topResults.filter(t => !t.ytId && !(t.id && t.id.startsWith('ytm-')));
+  if (tracksWithoutYtId.length > 0) {
+    const toEnrich = tracksWithoutYtId.slice(0, 10);
+    try {
+      await enrichTracksWithYouTubeIds(toEnrich, 4);
+    } catch (e) {
+      console.warn('[Pulse Search] YouTube ID enrichment notice:', e);
+    }
+
+    const remaining = tracksWithoutYtId.slice(10);
+    if (remaining.length > 0) {
+      enrichTracksWithYouTubeIds(remaining, 3).catch(() => {});
+    }
+  }
+
+  return topResults;
 }
 
 /**
@@ -658,89 +879,54 @@ export async function resolveFullAudioStream(track) {
     return persisted;
   }
 
-  let finalUrl = null;
-  let finalSource = 'Studio Master Audio (320kbps)';
-  const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
   let ytIdToUse = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
 
-  // =====================================================================
-  // TIER 1: HIGH-BITRATE STUDIO MASTER AUDIO (Direct 320k/160k AAC stream)
-  // Plays directly on HTML5 Native Audio — 100% reliable across all browsers
-  // =====================================================================
-  if (query.length > 1) {
-    try {
-      const saavnResults = await searchJioSaavnDirect(query, 5);
-      if (saavnResults && saavnResults.length > 0) {
-        const verified = saavnResults.find(s => 
-          s.streamUrl && 
-          s.streamUrl.startsWith('http') && 
-          !s.streamUrl.includes('preview') &&
-          isSaavnResultMatching(s, track)
-        ) || saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http'));
-
-        if (verified) {
-          finalUrl = verified.streamUrl;
-          finalSource = 'Studio Master Audio (320kbps)';
-          if (!track.coverUrl || track.coverUrl.includes('pulse-logo')) {
-            track.coverUrl = verified.coverUrl;
-          }
-        }
-      }
-    } catch (e) {}
-  }
-
-  // TIER 2: Title-only JioSaavn search fallback (if artist name had variations)
-  if (!finalUrl && cleanTitle.length > 1) {
-    try {
-      const titleResults = await searchJioSaavnDirect(cleanTitle, 3);
-      if (titleResults && titleResults.length > 0) {
-        const verified = titleResults.find(s => s.streamUrl && s.streamUrl.startsWith('http'));
-        if (verified) {
-          finalUrl = verified.streamUrl;
-          finalSource = 'Studio Master Audio (320kbps)';
-        }
-      }
-    } catch (e) {}
-  }
-
-  // TIER 3: YouTube Piped Opus Direct Audio Stream
-  if (!finalUrl && ytIdToUse) {
-    try {
-      const ytm = await resolvePipedAudioStream(ytIdToUse);
-      if (ytm && ytm.streamUrl && !ytm.streamUrl.includes('preview')) {
-        finalUrl = ytm.streamUrl;
-        finalSource = 'Studio Master Opus (YouTube)';
-      }
-    } catch (e) {}
-  }
-
-  if (finalUrl) {
-    const resolved = {
-      streamUrl: finalUrl,
-      duration: track.duration || 220,
-      source: finalSource
-    };
-    RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
-    savePersistedStream(cacheKey, resolved);
-    return resolved;
-  }
-
-  // TIER 4: Official YouTube IFrame Embed (guaranteed backup)
-  if (ytIdToUse) {
-    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'YouTube Audio', duration: track.duration || 220 };
+  // 1. FASTEST TIER: If track already has a verified YouTube ID, play via YouTube IFrame immediately (0ms!)
+  if (ytIdToUse && ytIdToUse.length >= 8) {
+    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }
 
-  // TIER 5: Final Fallback — YouTube Search
+  // 2. TIER 2: Fast on-demand YouTube ID resolution using active Invidious/Piped fleet (<400ms)
   try {
-    const fallbackSearch = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 1);
-    if (fallbackSearch && fallbackSearch.length > 0 && fallbackSearch[0].ytId) {
-      const resolved = { streamUrl: 'yt-iframe', ytId: fallbackSearch[0].ytId, source: 'YouTube Audio', duration: track.duration || 220 };
+    const foundYtId = await resolveYouTubeVideoId(cleanTitle, cleanArtist);
+    if (foundYtId && foundYtId.length >= 8) {
+      ytIdToUse = foundYtId;
+      track.ytId = foundYtId;
+      const resolved = { streamUrl: 'yt-iframe', ytId: foundYtId, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
       RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
       return resolved;
     }
   } catch (e) {}
+
+  // 3. TIER 3: YouTube Music search fallback
+  try {
+    const fallbackSearch = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 2);
+    if (fallbackSearch && fallbackSearch.length > 0 && fallbackSearch[0].ytId) {
+      track.ytId = fallbackSearch[0].ytId;
+      const resolved = { streamUrl: 'yt-iframe', ytId: fallbackSearch[0].ytId, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
+      RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+      return resolved;
+    }
+  } catch (e) {}
+
+  // 4. TIER 4: Try JioSaavn search if title exists
+  const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
+  if (query.length > 1) {
+    try {
+      const saavnResults = await searchJioSaavnDirect(query, 3);
+      if (saavnResults && saavnResults.length > 0) {
+        const verified = saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http') && !s.streamUrl.includes('preview'));
+        if (verified) {
+          const resolved = { streamUrl: verified.streamUrl, duration: track.duration || 220, source: 'Studio Master Audio (320kbps)' };
+          RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+          savePersistedStream(cacheKey, resolved);
+          return resolved;
+        }
+      }
+    } catch (e) {}
+  }
 
   return null;
 }
@@ -761,7 +947,10 @@ const musicService = {
   normalizeTrack,
   decryptSaavnMediaUrl,
   resolveFullAudioStream,
-  resolveExactTrackStream
+  resolveExactTrackStream,
+  calculateTrackRelevance,
+  normalizeSearchText,
+  extractSearchBaseTitle
 };
 
 if (typeof window !== 'undefined') {
