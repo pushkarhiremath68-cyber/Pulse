@@ -73,3 +73,4 @@ if (css.includes(oldTrackCss)) {
 }
 
 fs.writeFileSync('src/style.css', css, 'utf8');
+

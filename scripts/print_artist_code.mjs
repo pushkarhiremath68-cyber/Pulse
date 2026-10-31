@@ -11,3 +11,4 @@ const dbIdx = content.indexOf('export const getArtistDetails = (artistName) => {
 const dbEndIdx = content.indexOf('return {', dbIdx);
 console.log('\nGET ARTIST DETAILS (START):');
 console.log(content.substring(dbIdx, dbIdx + 500));
+

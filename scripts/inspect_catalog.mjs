@@ -19,3 +19,4 @@ sections.forEach(s => {
   const idx = content.indexOf(s);
   console.log(`Section ${s}: found at index ${idx}`);
 });
+

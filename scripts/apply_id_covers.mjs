@@ -42,3 +42,4 @@ content = content.replace(/(\{\s*id:\s*['"]rel-please-please-please['"][^}]+?cov
 
 console.log(`Updated ${count} track cover occurrences.`);
 fs.writeFileSync('src/catalogService.js', content, 'utf8');
+

@@ -24,3 +24,4 @@ console.log('Synced dist/ to docs/');
 // 2. Copy src/ to docs/src/
 copyDirRecursive('src', 'docs/src');
 console.log('Synced src/ to docs/src/');
+

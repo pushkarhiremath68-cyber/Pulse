@@ -10,3 +10,4 @@ if (match) {
   const idx = content.indexOf('getFeaturedArtists');
   console.log(content.substring(idx, idx + 1000));
 }
+

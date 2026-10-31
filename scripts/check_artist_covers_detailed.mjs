@@ -17,3 +17,4 @@ featured.forEach(a => {
     console.log(`     Cover: ${t.coverUrl}`);
   });
 });
+

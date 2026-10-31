@@ -36,3 +36,4 @@ if (regexPauseResume.test(js)) {
 }
 
 fs.writeFileSync('src/main.js', js, 'utf8');
+

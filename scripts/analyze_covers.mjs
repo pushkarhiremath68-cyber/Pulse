@@ -17,3 +17,4 @@ console.log('Number of URLs appearing more than once:', duplicates.length);
 duplicates.forEach(([url, count]) => {
   console.log(`${count} times: ${url.substring(0, 90)}`);
 });
+

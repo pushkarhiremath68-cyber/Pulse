@@ -4,3 +4,4 @@ const content = fs.readFileSync('src/catalogService.js', 'utf8');
 
 const idx = content.indexOf('return {', content.indexOf('getArtistDetails'));
 console.log(content.substring(idx, idx + 1200));
+

@@ -28,3 +28,4 @@ if (phoneSectionRegex.test(html)) {
 
 fs.writeFileSync('index.html', html, 'utf8');
 console.log('Updated index.html!');
+

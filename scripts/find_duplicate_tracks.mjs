@@ -35,3 +35,4 @@ coverMap.forEach((trackList, url) => {
     trackList.forEach(t => console.log(`  - [${t.id}] "${t.title}" by ${t.artist} (ytId: ${t.ytId})`));
   }
 });
+

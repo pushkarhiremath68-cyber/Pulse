@@ -122,3 +122,4 @@ fixes.forEach(f => {
 
 console.log(`Applied ${applied} out of ${fixes.length} track cover fixes!`);
 fs.writeFileSync('src/catalogService.js', content, 'utf8');
+

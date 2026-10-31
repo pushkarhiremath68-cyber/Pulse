@@ -9,3 +9,4 @@ const dbText = content.substring(dbIdx + 11, dbEndIdx);
 // Find all top-level keys in db
 const keyMatches = dbText.match(/^\s*"([a-z0-9\-]+)":\s*\{/gm);
 console.log('Keys in db:', keyMatches);
+

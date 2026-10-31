@@ -15,3 +15,4 @@ featured.forEach(a => {
     console.log(`  NO DETAILS RETURNED`);
   }
 });
+

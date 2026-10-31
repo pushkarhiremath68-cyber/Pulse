@@ -1418,6 +1418,9 @@ window.addEventListener('error', function(e) {
   };
 
   window.renderHomeDiscovery = function() {
+    // Render followed artists in sidebar
+    if (window.renderSidebarFollowedArtists) window.renderSidebarFollowedArtists();
+
     // 0. Initialize Showcase Hero Carousel
     window.initHeroCarousel();
 
@@ -2373,6 +2376,48 @@ window.addEventListener('error', function(e) {
     return list.some(a => a.toLowerCase().trim() === artistName.toLowerCase().trim());
   };
 
+  window.renderSidebarFollowedArtists = function() {
+    const container = document.getElementById('sidebar-followed-list');
+    const badge = document.getElementById('sidebar-followed-badge');
+    if (!container) return;
+
+    const followed = window.getFollowedArtists();
+    if (badge) badge.textContent = followed.length;
+
+    if (followed.length === 0) {
+      container.innerHTML = `
+        <div style="padding: 0.75rem 0.5rem; text-align: center; color: var(--text-muted); font-size: 0.75rem; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px dashed var(--border-glass);">
+          <i class="fa-regular fa-heart" style="color: #a855f7; margin-bottom: 4px; display: block; font-size: 1rem;"></i>
+          <span>Follow artists to see them here!</span>
+          <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+            <button onclick="window.toggleFollowArtist('Arijit Singh')" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); color: #c084fc; border-radius: 8px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between;">
+              <span>Arijit Singh</span> <span style="font-weight: 800;">+ Follow</span>
+            </button>
+            <button onclick="window.toggleFollowArtist('The Weeknd')" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); color: #c084fc; border-radius: 8px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between;">
+              <span>The Weeknd</span> <span style="font-weight: 800;">+ Follow</span>
+            </button>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = followed.map(name => {
+      const details = window.catalogService ? window.catalogService.getArtistDetails(name) : null;
+      const avatar = details?.avatar || details?.banner || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}&backgroundColor=8b5cf6`;
+      const safeName = name.replace(/'/g, "\\'");
+      return `
+        <div class="sidebar-artist-item hover-glow" onclick="window.openArtistView('${safeName}')" style="display: flex; align-items: center; gap: 0.65rem; padding: 0.45rem 0.6rem; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; background: rgba(255,255,255,0.02); border: 1px solid transparent;">
+          <img src="${avatar}" alt="${escapeHtml(name)}" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1.5px solid rgba(168,85,247,0.5);" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}&backgroundColor=8b5cf6';">
+          <span style="flex: 1; font-size: 0.82rem; font-weight: 600; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(name)}</span>
+          <button onclick="event.stopPropagation(); window.toggleFollowArtist('${safeName}')" title="Unfollow" style="background: none; border: none; color: #10b981; font-size: 0.75rem; cursor: pointer; padding: 2px 4px; opacity: 0.8; transition: opacity 0.2s;" onmouseenter="this.style.color='#f43f5e'; this.innerHTML='<i class=\\'fa-solid fa-xmark\\'></i>'" onmouseleave="this.style.color='#10b981'; this.innerHTML='<i class=\\'fa-solid fa-check\\'></i>'">
+            <i class="fa-solid fa-check"></i>
+          </button>
+        </div>
+      `;
+    }).join('');
+  };
+
   window.toggleFollowArtist = function(targetName) {
     const artist = window.pulseState.currentArtistData;
     const name = targetName || (artist ? artist.name : '');
@@ -2400,6 +2445,24 @@ window.addEventListener('error', function(e) {
     }
 
     window.updateArtistFollowButton(name, isNowFollowing);
+    if (typeof window.renderSidebarFollowedArtists === 'function') {
+      window.renderSidebarFollowedArtists();
+    }
+
+    // Update all matching search artist follow buttons
+    document.querySelectorAll('.search-artist-follow-btn').forEach(btn => {
+      if ((btn.getAttribute('data-artist-name') || '').toLowerCase().trim() === norm) {
+        if (isNowFollowing) {
+          btn.innerHTML = '<i class="fa-solid fa-check"></i> Following';
+          btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+          btn.style.color = '#ffffff';
+        } else {
+          btn.innerHTML = '<i class="fa-solid fa-plus"></i> Follow';
+          btn.style.background = 'rgba(168, 85, 247, 0.15)';
+          btn.style.color = '#c084fc';
+        }
+      }
+    });
   };
 
   window.updateArtistFollowButton = function(name, isFollowing) {
@@ -2881,18 +2944,58 @@ window.addEventListener('error', function(e) {
     searchDebounceTimer = setTimeout(async () => {
       if (count) count.textContent = 'Searching worldwide & multilingual catalogs...';
       const gen = ++searchGeneration;
+      const matchingArtists = window.catalogService && typeof window.catalogService.searchArtists === 'function'
+        ? window.catalogService.searchArtists(query)
+        : [];
       const results = await window.musicService.searchTracks(query, 50);
-      if (gen !== searchGeneration) return; // Stale — a newer search is in flight
-      if (count) count.textContent = `${results.length} songs found worldwide`;
-      renderSearchResults(results);
+      if (gen !== searchGeneration) return; // Stale search
+      if (count) {
+        if (matchingArtists.length > 0) {
+          count.textContent = `${matchingArtists.length} artist${matchingArtists.length > 1 ? 's' : ''} & ${results.length} songs found`;
+        } else {
+          count.textContent = `${results.length} songs found worldwide`;
+        }
+      }
+      renderSearchResults(results, matchingArtists);
     }, isTyping ? 500 : 0);
   };
 
-  function renderSearchResults(tracks) {
+  function renderSearchResults(tracks, matchingArtists = []) {
     const container = document.getElementById('search-results-container');
+    const artistsSection = document.getElementById('search-artists-section');
+    const artistsContainer = document.getElementById('search-artists-container');
     if (!container) return;
 
-    if (tracks.length === 0) {
+    // Render Matching Artists if found
+    if (artistsSection && artistsContainer) {
+      if (matchingArtists && matchingArtists.length > 0) {
+        artistsSection.style.display = 'block';
+        artistsContainer.innerHTML = matchingArtists.map(art => {
+          const isFollowing = window.isArtistFollowed(art.name);
+          const safeName = art.name.replace(/'/g, "\\'");
+          return `
+            <div class="search-artist-card hover-glow" onclick="window.openArtistView('${safeName}')" style="display: flex; align-items: center; gap: 0.9rem; padding: 0.75rem 1.15rem; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); border-radius: 16px; cursor: pointer; min-width: 260px; max-width: 320px; flex-shrink: 0; transition: all 0.25s ease;">
+              <img src="${art.avatar || './music-cover.svg'}" alt="${escapeHtml(art.name)}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(168,85,247,0.5);" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(art.name)}&backgroundColor=8b5cf6';">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                  <span style="font-weight: 800; font-size: 0.95rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(art.name)}</span>
+                  <i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 0.75rem;" title="Verified Artist"></i>
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(art.genre || 'Master Artist')} &bull; ${escapeHtml(art.followersCount || '10M+')}</div>
+              </div>
+              <button class="search-artist-follow-btn" data-artist-name="${escapeHtml(art.name)}" onclick="event.stopPropagation(); window.toggleFollowArtist('${safeName}')" style="padding: 0.4rem 0.8rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; cursor: pointer; border: 1px solid rgba(168,85,247,0.4); flex-shrink: 0; transition: all 0.2s ease; ${isFollowing ? 'background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff;' : 'background: rgba(168, 85, 247, 0.15); color: #c084fc;'}">
+                ${isFollowing ? '<i class="fa-solid fa-check"></i> Following' : '<i class="fa-solid fa-plus"></i> Follow'}
+              </button>
+            </div>
+          `;
+        }).join('');
+      } else {
+        artistsSection.style.display = 'none';
+        artistsContainer.innerHTML = '';
+      }
+    }
+
+    if ((!tracks || tracks.length === 0) && (!matchingArtists || matchingArtists.length === 0)) {
       container.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
           <i class="fa-solid fa-compact-disc" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; color: var(--accent-primary);"></i>
@@ -2911,7 +3014,7 @@ window.addEventListener('error', function(e) {
       window.playTrackDirect(track, window.__searchResults);
     };
 
-    container.innerHTML = tracks.map((track, idx) => {
+    container.innerHTML = (tracks || []).map((track, idx) => {
       const isTopMatch = idx === 0 && (track._relevanceScore !== undefined ? track._relevanceScore >= 140 : true);
       const badgeText = isTopMatch ? '★ Best Match' : (track.source || '320kbps Master');
       return window.renderSongCard(track, idx, 'window.__searchResults', { badge: badgeText });
@@ -4376,6 +4479,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     document.addEventListener('DOMContentLoaded', () => {
       removeFilterPillsBar();
       checkAuthGateState();
+      if (window.renderSidebarFollowedArtists) window.renderSidebarFollowedArtists();
     });
   } else {
     checkAuthGateState();

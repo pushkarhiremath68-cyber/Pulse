@@ -74,3 +74,4 @@ js = js.replace(/const isRealUser = isGoogle \|\| isEmail \|\| isPhone;/g, 'cons
 
 fs.writeFileSync('src/main.js', js, 'utf8');
 console.log('src/main.js updated successfully!');
+

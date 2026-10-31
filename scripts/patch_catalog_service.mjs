@@ -87,3 +87,4 @@ code = code.replace(/(\{\s*id:\s*['"]ytm-([^'"]+)['"],\s*ytId:\s*['"]([^'"]+)['"
 // Specifically, if a track has a valid ytId, ensure it uses its official video cover
 fs.writeFileSync('src/catalogService.js', code, 'utf8');
 console.log('Successfully patched src/catalogService.js!');
+
