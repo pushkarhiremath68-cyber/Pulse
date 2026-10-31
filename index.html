@@ -159,11 +159,6 @@
         <span>Continue with Google</span>
       </button>
 
-      <button id="gate-phone-signin-btn" class="btn-gate-phone" onclick="window.openPhoneAuthModal()">
-        <i class="fa-solid fa-mobile-screen-button"></i>
-        <span>Sign In with Phone Number</span>
-      </button>
-
       <button id="gate-guest-btn" class="btn-gate-guest" onclick="window.handleGateGuestContinue()">
         Or continue as Guest listener (Offline Mode)
       </button>
@@ -1538,90 +1533,7 @@
           </svg>
           <span>Continue with Google</span>
         </button>
-
-        <div class="auth-method-divider">
-          <span>OR</span>
-        </div>
-
-        <!-- Phone Auth Toggle Section -->
-        <button id="btn-toggle-phone-login" onclick="window.togglePhoneAuthView()" style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; width: 100%; padding: 0.75rem 1.25rem; background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 12px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease;">
-          <i class="fa-solid fa-mobile-screen-button"></i>
-          <span id="phone-toggle-text">Sign In with Phone Number (SMS OTP)</span>
-        </button>
-
-        <!-- Phone Auth Panel -->
-        <div id="phone-auth-panel" class="phone-auth-card hidden">
-          <!-- Step 1: Input Phone Number -->
-          <div id="phone-input-step">
-            <label style="font-size: 0.8rem; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 0.25rem;">
-              Mobile Phone Number
-            </label>
-            <div class="phone-input-row">
-              <select id="phone-country-code" class="country-code-select">
-                <option value="+91" selected>🇮🇳 +91 (IN)</option>
-                <option value="+1">🇺🇸 +1 (US)</option>
-                <option value="+44">🇬🇧 +44 (UK)</option>
-                <option value="+61">🇦🇺 +61 (AU)</option>
-                <option value="+971">🇦🇪 +971 (AE)</option>
-                <option value="+81">🇯🇵 +81 (JP)</option>
-                <option value="+49">🇩🇪 +49 (DE)</option>
-                <option value="+33">🇫🇷 +33 (FR)</option>
-                <option value="+65">🇸🇬 +65 (SG)</option>
-                <option value="+60">🇲🇾 +60 (MY)</option>
-                <option value="+62">🇮🇩 +62 (ID)</option>
-                <option value="+92">🇵🇰 +92 (PK)</option>
-                <option value="+880">🇧🇩 +880 (BD)</option>
-                <option value="+94">🇱🇰 +94 (LK)</option>
-                <option value="+977">🇳🇵 +977 (NP)</option>
-                <option value="+966">🇸🇦 +966 (SA)</option>
-                <option value="+55">🇧🇷 +55 (BR)</option>
-                <option value="+27">🇿🇦 +27 (ZA)</option>
-              </select>
-              <input type="tel" id="pulse-phone-input" class="phone-number-field" placeholder="Mobile Number (e.g. 9876543210)" maxlength="15" autocomplete="tel">
-            </div>
-
-            <!-- Invisible Recaptcha container -->
-            <div id="recaptcha-container" style="margin-top: 0.5rem;"></div>
-
-            <button id="btn-send-phone-otp" class="btn-send-otp" onclick="window.handleSendPhoneOtp()">
-              <i class="fa-solid fa-paper-plane"></i>
-              <span>Send Verification Code</span>
-            </button>
-            <p style="font-size: 0.72rem; color: #64748b; margin-top: 0.5rem; text-align: center;">
-              Firebase will send a 6-digit SMS verification code to this phone number.
-            </p>
-          </div>
-
-          <!-- Step 2: Verify OTP -->
-          <div id="phone-otp-step" class="hidden">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-              <span style="font-size: 0.82rem; font-weight: 700; color: #cbd5e1;">Enter 6-Digit SMS Code</span>
-              <button onclick="window.backToPhoneInput()" style="background: none; border: none; color: #38bdf8; font-size: 0.75rem; font-weight: 600; cursor: pointer;">
-                <i class="fa-solid fa-arrow-left"></i> Change
-              </button>
-            </div>
-            <p style="font-size: 0.75rem; color: #94a3b8; margin: 0 0 0.5rem 0;">
-              Sent to: <strong id="phone-otp-sent-to" style="color: #34d399;"></strong>
-            </p>
-
-            <input type="text" id="pulse-otp-input" class="phone-otp-field" placeholder="1 2 3 4 5 6" maxlength="6" inputmode="numeric" autocomplete="one-time-code">
-
-            <button id="btn-verify-phone-otp" class="btn-verify-otp" onclick="window.handleVerifyPhoneOtp()">
-              <i class="fa-solid fa-shield-check"></i>
-              <span>Verify & Sign In</span>
-            </button>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.65rem;">
-              <button id="btn-resend-phone-otp" onclick="window.handleResendPhoneOtp()" style="background: none; border: none; color: #94a3b8; font-size: 0.75rem; font-weight: 600; cursor: pointer; text-decoration: underline;">
-                Didn't receive code? Resend SMS
-              </button>
-              <span id="phone-resend-timer" style="font-size: 0.72rem; color: #64748b;"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- VIEW B: PROFILE TABS (STATS, PRIVACY, AUDIO PREFERENCES) -->
+      </div><!-- VIEW B: PROFILE TABS (STATS, PRIVACY, AUDIO PREFERENCES) -->
       <div id="auth-user-view" style="display: block;">
         
         <!-- Navigation Tabs -->

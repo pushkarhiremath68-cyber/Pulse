@@ -957,5 +957,50 @@ if (typeof window !== 'undefined') {
   window.musicService = musicService;
 }
 
-export default musicService;
+export async function fetchDynamicArtistData(artistName) {
+  try {
+    const res = await fetch(`https://saavn.me/search/artists?query=${encodeURIComponent(artistName)}`);
+    const data = await res.json();
+    if (data && data.success && data.data && data.data.results && data.data.results.length > 0) {
+      const artist = data.data.results[0];
+      
+      let topSongs = [];
+      try {
+        const detailsRes = await fetch(`https://saavn.me/artists?id=${artist.id}`);
+        const detailsData = await detailsRes.json();
+        if (detailsData && detailsData.success && detailsData.data && detailsData.data.topSongs) {
+          topSongs = detailsData.data.topSongs.map(s => ({
+            id: s.id,
+            title: s.name,
+            artist: s.primaryArtists,
+            coverUrl: s.image && s.image.length > 0 ? s.image[s.image.length - 1].link : '',
+            ytId: ''
+          }));
+        }
+      } catch (e) {
+        console.warn('Failed to fetch top songs for artist:', artistName);
+      }
+      
+      return {
+        id: artist.id,
+        name: artist.name || artistName,
+        image: (artist.image && artist.image.length > 0) ? artist.image[artist.image.length - 1].link : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(artistName) + '&background=0D8BFF&color=fff',
+        description: artist.description || 'Verified Artist',
+        url: artist.url,
+        role: artist.role || 'Singer',
+        topSongs: topSongs
+      };
+    }
+  } catch (error) {
+    console.error('Error fetching artist data:', error);
+  }
+  return {
+    id: 'id-' + Date.now(),
+    name: artistName,
+    image: 'https://ui-avatars.com/api/?name=' + encodeURIComponent(artistName) + '&background=0D8BFF&color=fff',
+    description: 'Verified Artist',
+    topSongs: []
+  };
+}
 
+export default musicService;

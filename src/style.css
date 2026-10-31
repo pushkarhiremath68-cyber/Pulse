@@ -895,11 +895,15 @@ body::after {
   position: relative;
   width: 100%;
   min-height: 280px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
 }
 
 .hero-slide {
-  position: absolute;
-  inset: 0;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -907,16 +911,17 @@ body::after {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: scale(0.97) translateX(25px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
+  transform: translateX(18px);
+  transition: opacity 0.45s ease-in-out, transform 0.45s ease-out, visibility 0.45s ease;
+  will-change: opacity, transform;
 }
 
 .hero-slide.active-slide {
-  position: relative;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: scale(1) translateX(0);
+  transform: translateX(0);
+  z-index: 2;
 }
 
 .hero-content {

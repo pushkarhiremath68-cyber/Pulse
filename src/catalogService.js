@@ -166,7 +166,7 @@ export const CATALOG_CATEGORIES = [
       { id: "rel-espresso", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg", duration: 175, genre: "Pop / Disco" },
       { id: "rel-birds-of-a-feather", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg", duration: 196, genre: "Alt Pop" },
       { id: "rel-chaleya", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1000x1000bb.jpg", duration: 198, genre: "Bollywood Romance" },
-      { id: "rel-please-please-please", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg", duration: 186, genre: "Pop" },
+      { id: "rel-please-please-please", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", cover: "https://i.ytimg.com/vi/cF1Na4AIecM/hqdefault.jpg", duration: 186, genre: "Pop" },
       { id: "rel-apna-bana-le", ytId: "ElZfdU54Cp8", title: "Apna Bana Le", artist: "Arijit Singh", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/1000x1000bb.jpg", duration: 261, genre: "Soulful Romantic" }
     ]
   },
@@ -203,13 +203,13 @@ export const CATALOG_CATEGORIES = [
       { id: "ytm-ic8j13piAhQ", ytId: "ic8j13piAhQ", title: "Cruel Summer", artist: "Taylor Swift", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg", duration: 178, genre: "Pop" },
       { id: "ytm-e-ORhEE9VVg", ytId: "e-ORhEE9VVg", title: "Blank Space", artist: "Taylor Swift", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a7/98/d8/a798d867-344d-2bf2-fbfe-d2d1412dcef8/14UMDIM03793.rgb.jpg/1000x1000bb.jpg", duration: 231, genre: "Pop" },
       { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg", duration: 175, genre: "Pop" },
-      { id: "ytm-cF1Na4AIecM", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg", duration: 186, genre: "Pop" },
+      { id: "ytm-cF1Na4AIecM", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", cover: "https://i.ytimg.com/vi/cF1Na4AIecM/hqdefault.jpg", duration: 186, genre: "Pop" },
       { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg", duration: 196, genre: "Alt Pop" },
       { id: "ytm-DyDfgMOUjCI", ytId: "DyDfgMOUjCI", title: "Bad Guy", artist: "Billie Eilish", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/600x600bb.jpg", duration: 194, genre: "Electropop" },
       { id: "ytm-TUVcZfQe-Kw", ytId: "TUVcZfQe-Kw", title: "Levitating", artist: "Dua Lipa", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg", duration: 203, genre: "Disco Pop" },
       { id: "ytm-PMivT7MJ41M", ytId: "PMivT7MJ41M", title: "That's What I Like", artist: "Bruno Mars", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e3/47/a0/e347a0cc-87ce-5d05-d560-176c7d48f66e/075679904119.jpg/600x600bb.jpg", duration: 206, genre: "Funk / R&B" },
       { id: "ytm-hLQl3WQQoQ0", ytId: "hLQl3WQQoQ0", title: "Someone Like You", artist: "Adele", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg", duration: 285, genre: "Ballad" },
-      { id: "ytm-rYEDA3JcQqw", ytId: "rYEDA3JcQqw", title: "Rolling in the Deep", artist: "Adele", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg", duration: 228, genre: "Soul" },
+      { id: "ytm-rYEDA3JcQqw", ytId: "rYEDA3JcQqw", title: "Rolling in the Deep", artist: "Adele", cover: "https://i.ytimg.com/vi/rYEDA3JcQqw/hqdefault.jpg", duration: 228, genre: "Soul" },
       { id: "ytm-ApXoWvfEYVU", ytId: "ApXoWvfEYVU", title: "Sunflower", artist: "Post Malone ft. Swae Lee", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/600x600bb.jpg", duration: 158, genre: "Hip-Hop Pop" }
     ]
   },
@@ -237,7 +237,7 @@ export const CATALOG_CATEGORIES = [
     tracks: [
       { id: "ytm-1_kZ47Lh60s", ytId: "1_kZ47Lh60s", title: "Titanium", artist: "David Guetta ft. Sia", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/1000x1000bb.jpg", duration: 245, genre: "EDM" },
       { id: "ytm-60ItHLz5WEA", ytId: "60ItHLz5WEA", title: "Faded", artist: "Alan Walker", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0d/a3/1a/0da31af7-d0ff-9bee-c427-1b6d0336f6fc/886446321981.jpg/1000x1000bb.jpg", duration: 212, genre: "Electro" },
-      { id: "ytm-YqeW9_5kURI", ytId: "YqeW9_5kURI", title: "Lean On", artist: "Major Lazer & DJ Snake", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/3a/9b/bd/3a9bbdba-5829-91c8-1349-cc04cdaf3423/653738030629_Cover.jpg/1000x1000bb.jpg", duration: 176, genre: "Dance" },
+      { id: "ytm-YqeW9_5kURI", ytId: "YqeW9_5kURI", title: "Lean On", artist: "Major Lazer & DJ Snake", cover: "https://i.ytimg.com/vi/YqeW9_5kURI/hqdefault.jpg", duration: 176, genre: "Dance" },
       { id: "ytm-JRfuAukYTKg", ytId: "JRfuAukYTKg", title: "Animals", artist: "Martin Garrix", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6e/1e/f0/6e1ef055-195a-bb73-d5a8-5926058366a5/8712944577525.png/1000x1000bb.jpg", duration: 185, genre: "Big Room House" },
       { id: "ytm-pAgnJDJN4VA", ytId: "pAgnJDJN4VA", title: "Levels", artist: "Avicii", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/67/38/43/67384338-9ed7-fc68-5927-93f1fcf4705d/11UMGIM36900.rgb.jpg/1000x1000bb.jpg", duration: 220, genre: "EDM" },
       { id: "ytm-IcrbM1l_BoI", ytId: "IcrbM1l_BoI", title: "Wake Me Up", artist: "Avicii", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/5b/1e/185b1ef5-5d97-19d8-aebf-8e29e41874ef/13UAAIM59255.rgb.jpg/1000x1000bb.jpg", duration: 247, genre: "Progressive House" },
@@ -256,10 +256,10 @@ export const CATALOG_CATEGORIES = [
       { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216, genre: "Alternative Rock" },
       { id: "ytm-kXYiU_JCYtU", ytId: "kXYiU_JCYtU", title: "Numb", artist: "Linkin Park", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/13/44/05/134405bd-9e27-a678-8953-b5f724201f95/093624948988.jpg/600x600bb.jpg", duration: 187, genre: "Alternative Rock" },
       { id: "ytm-hTWKbfoikeg", ytId: "hTWKbfoikeg", title: "Smells Like Teen Spirit", artist: "Nirvana", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/fd/b9/95fdb9b2-6d2b-92a6-97f2-51c1a6d77f1a/00602527874609.rgb.jpg/1000x1000bb.jpg", duration: 301, genre: "Grunge" },
-      { id: "ytm-1w7OgIMMRc4", ytId: "1w7OgIMMRc4", title: "Sweet Child O' Mine", artist: "Guns N' Roses", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/56/47/b7/5647b700-6b9d-9e72-ec9f-51140b6d4492/00602567673781.rgb.jpg/1000x1000bb.jpg", duration: 303, genre: "Hard Rock" },
+      { id: "ytm-1w7OgIMMRc4", ytId: "1w7OgIMMRc4", title: "Sweet Child O' Mine", artist: "Guns N' Roses", cover: "https://i.ytimg.com/vi/1w7OgIMMRc4/hqdefault.jpg", duration: 303, genre: "Hard Rock" },
       { id: "ytm-v2AC41dglnM", ytId: "v2AC41dglnM", title: "Thunderstruck", artist: "AC/DC", cover: "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/bb/a2/f0/bba2f0d7-4d9e-c617-d49e-3ae02fd5d440/dj.xbkfgllk.jpg/1000x1000bb.jpg", duration: 292, genre: "Hard Rock" },
       { id: "ytm-dvgZkm1xWPE", ytId: "dvgZkm1xWPE", title: "Viva La Vida", artist: "Coldplay", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg", duration: 242, genre: "Alt Rock" },
-      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f5/93/8c/f5938c49-964c-31d1-4b33-78b634f71fb7/190295978075.jpg/600x600bb.jpg", duration: 269, genre: "Alt Rock" }
+      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", cover: "https://i.ytimg.com/vi/yKNxeF4KMsY/hqdefault.jpg", duration: 269, genre: "Alt Rock" }
     ]
   },
   {
@@ -269,8 +269,8 @@ export const CATALOG_CATEGORIES = [
     icon: "fa-heart",
     color: "#ec4899",
     tracks: [
-      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 263, genre: "Acoustic Pop" },
-      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/71/b9/2271b906-85b3-06ee-e611-489b91df0b73/886444160742.jpg/1000x1000bb.jpg", duration: 269, genre: "Soul / R&B" },
+      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", cover: "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg", duration: 263, genre: "Acoustic Pop" },
+      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", cover: "https://i.ytimg.com/vi/450p7goxZqg/hqdefault.jpg", duration: 269, genre: "Soul / R&B" },
       { id: "ytm-LPn0KStbm9M", ytId: "LPn0KStbm9M", title: "Someone You Loved", artist: "Lewis Capaldi", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/92/d7/8f/92d78fb1-df3d-049e-c81d-7022808b151f/19UMGIM02973.rgb.jpg/1000x1000bb.jpg", duration: 182, genre: "Ballad" },
       { id: "ytm-RBumgq5yVrA", ytId: "RBumgq5yVrA", title: "Let Her Go", artist: "Passenger", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/9b/7e/28/9b7e2896-e049-1663-6791-e0111690ffc1/067003051361.png/600x600bb.jpg", duration: 252, genre: "Folk Pop" },
       { id: "ytm-k4V3Mo61fJM", ytId: "k4V3Mo61fJM", title: "Fix You", artist: "Coldplay", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0c/82/48/0c8248a8-4a5b-d30d-8056-f32d650d2fc9/190295978068.jpg/600x600bb.jpg", duration: 295, genre: "Acoustic" },
@@ -357,7 +357,7 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-b1kbLwvqugk", ytId: "b1kbLwvqugk", title: "Anti-Hero", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/3d/01/f2/3d01f2e5-5a08-835f-3d30-d031720b2b80/22UM1IM07364.rgb.jpg/600x600bb.jpg", duration: 200 },
       { id: "ytm-8xg3vE8Ie_E", ytId: "8xg3vE8Ie_E", title: "Love Story", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c3/d0/1c/c3d01c88-73e7-187e-fd62-e1744de979a6/21UMGIM09915.rgb.jpg/600x600bb.jpg", duration: 235 },
       { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233 },
-      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 263 },
+      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", coverUrl: "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg", duration: 263 },
       { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg", duration: 258 },
       { id: "ytm-_Yhyp-_hX2s", ytId: "_Yhyp-_hX2s", title: "Lose Yourself", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg", duration: 326 },
       { id: "ytm-YVkUvmDQ3HY", ytId: "YVkUvmDQ3HY", title: "Without Me", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/dd/5c/e6/dd5ce621-f7d2-f767-7a08-e7a7eaa7870b/00602537526994.rgb.jpg/600x600bb.jpg", duration: 290 },
@@ -365,20 +365,20 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-mWRsgZuwf_8", ytId: "mWRsgZuwf_8", title: "Demons", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/1f/fa/09/1ffa092f-f52f-4a66-7d10-4cc5982dc747/12UMGIM46901.rgb.jpg/600x600bb.jpg", duration: 177 },
       { id: "ytm-TO-_3tck2tg", ytId: "TO-_3tck2tg", title: "Bones", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/33/87/c8/3387c827-adaa-681d-bd10-ce7d8e888b9c/22UMGIM21054.rgb.jpg/600x600bb.jpg", duration: 165 },
       { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg", duration: 175 },
-      { id: "ytm-cF1Na4AIecM", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg", duration: 186 },
+      { id: "ytm-cF1Na4AIecM", ytId: "cF1Na4AIecM", title: "Please Please Please", artist: "Sabrina Carpenter", coverUrl: "https://i.ytimg.com/vi/cF1Na4AIecM/hqdefault.jpg", duration: 186 },
       { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg", duration: 196 },
       { id: "ytm-DyDfgMOUjCI", ytId: "DyDfgMOUjCI", title: "Bad Guy", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/600x600bb.jpg", duration: 194 },
       { id: "ytm-kPa7bsKwL-c", ytId: "kPa7bsKwL-c", title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/ae/f2/11aef294-f57c-bab9-c9fc-529162984e62/24UMGIM85348.rgb.jpg/600x600bb.jpg", duration: 251 },
       { id: "ytm-PMivT7MJ41M", ytId: "PMivT7MJ41M", title: "That's What I Like", artist: "Bruno Mars", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e3/47/a0/e347a0cc-87ce-5d05-d560-176c7d48f66e/075679904119.jpg/600x600bb.jpg", duration: 206 },
       { id: "ytm-hLQl3WQQoQ0", ytId: "hLQl3WQQoQ0", title: "Someone Like You", artist: "Adele", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg", duration: 285 },
-      { id: "ytm-rYEDA3JcQqw", ytId: "rYEDA3JcQqw", title: "Rolling in the Deep", artist: "Adele", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg", duration: 228 },
+      { id: "ytm-rYEDA3JcQqw", ytId: "rYEDA3JcQqw", title: "Rolling in the Deep", artist: "Adele", coverUrl: "https://i.ytimg.com/vi/rYEDA3JcQqw/hqdefault.jpg", duration: 228 },
       { id: "ytm-H5v3kku4y6Q", ytId: "H5v3kku4y6Q", title: "As It Was", artist: "Harry Styles", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/1000x1000bb.jpg", duration: 167 },
       { id: "ytm-G7KNmW9a75Y", ytId: "G7KNmW9a75Y", title: "Flowers", artist: "Miley Cyrus", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8c/67/ff/8c67ff91-31c3-3fef-1884-ce3ec89f3af4/196589946874.jpg/1000x1000bb.jpg", duration: 199 },
       { id: "ytm-TUVcZfQe-Kw", ytId: "TUVcZfQe-Kw", title: "Levitating", artist: "Dua Lipa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg", duration: 203 },
       { id: "ytm-ApXoWvfEYVU", ytId: "ApXoWvfEYVU", title: "Sunflower", artist: "Post Malone ft. Swae Lee", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/600x600bb.jpg", duration: 158 },
       { id: "ytm-wXhTHyIgQ_U", ytId: "wXhTHyIgQ_U", title: "Circles", artist: "Post Malone", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/1b/1b/7b1b1b0b-7ce2-b223-f9e0-8e36abe51877/19UMGIM78325.rgb.jpg/600x600bb.jpg", duration: 215 },
       { id: "ytm-dvgZkm1xWPE", ytId: "dvgZkm1xWPE", title: "Viva La Vida", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg", duration: 242 },
-      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f5/93/8c/f5938c49-964c-31d1-4b33-78b634f71fb7/190295978075.jpg/600x600bb.jpg", duration: 269 },
+      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", coverUrl: "https://i.ytimg.com/vi/yKNxeF4KMsY/hqdefault.jpg", duration: 269 },
       { id: "ytm-k4V3Mo61fJM", ytId: "k4V3Mo61fJM", title: "Fix You", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0c/82/48/0c8248a8-4a5b-d30d-8056-f32d650d2fc9/190295978068.jpg/600x600bb.jpg", duration: 295 },
       { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216 },
       { id: "ytm-kXYiU_JCYtU", ytId: "kXYiU_JCYtU", title: "Numb", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/13/44/05/134405bd-9e27-a678-8953-b5f724201f95/093624948988.jpg/600x600bb.jpg", duration: 187 },
@@ -386,7 +386,7 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-1_kZ47Lh60s", ytId: "1_kZ47Lh60s", title: "Titanium", artist: "David Guetta ft. Sia", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/1000x1000bb.jpg", duration: 245 },
       { id: "ytm-60ItHLz5WEA", ytId: "60ItHLz5WEA", title: "Faded", artist: "Alan Walker", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0d/a3/1a/0da31af7-d0ff-9bee-c427-1b6d0336f6fc/886446321981.jpg/1000x1000bb.jpg", duration: 212 },
       { id: "ytm-IcrbM1l_BoI", ytId: "IcrbM1l_BoI", title: "Wake Me Up", artist: "Avicii", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/5b/1e/185b1ef5-5d97-19d8-aebf-8e29e41874ef/13UAAIM59255.rgb.jpg/1000x1000bb.jpg", duration: 247 },
-      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/71/b9/2271b906-85b3-06ee-e611-489b91df0b73/886444160742.jpg/1000x1000bb.jpg", duration: 269 },
+      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", coverUrl: "https://i.ytimg.com/vi/450p7goxZqg/hqdefault.jpg", duration: 269 },
       { id: "ytm-LPn0KStbm9M", ytId: "LPn0KStbm9M", title: "Someone You Loved", artist: "Lewis Capaldi", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/92/d7/8f/92d78fb1-df3d-049e-c81d-7022808b151f/19UMGIM02973.rgb.jpg/1000x1000bb.jpg", duration: 182 }
     ]
   },
@@ -401,7 +401,7 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-5mqFmNl11-M", ytId: "5mqFmNl11-M", title: "O Maahi", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cf/cf/af/cfcfaf49-f337-eeab-2351-dd0a137dc740/8902894362139_cover.jpg/1000x1000bb.jpg", duration: 233 },
       { id: "ytm-SbAILuIeFqc", ytId: "SbAILuIeFqc", title: "Satranga", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/ad/5e/dbad5e8b-0bee-d962-92d4-021c90e375ac/8902894362092_cover.jpg/1000x1000bb.jpg", duration: 271 },
       { id: "ytm-8Vnm_uN_3oA", ytId: "8Vnm_uN_3oA", title: "Heeriye", artist: "Jasleen Royal, Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f0/8c/2a/f08c2aeb-3903-8738-d0a5-8c2e4547eed7/5054197711039.jpg/1000x1000bb.jpg", duration: 194 },
-      { id: "ytm-t5MlnGOKGDI", ytId: "t5MlnGOKGDI", title: "Pehle Bhi Main", artist: "Vishal Mishra", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/ad/5e/dbad5e8b-0bee-d962-92d4-021c90e375ac/8902894362092_cover.jpg/1000x1000bb.jpg", duration: 250 }
+      { id: "ytm-t5MlnGOKGDI", ytId: "t5MlnGOKGDI", title: "Pehle Bhi Main", artist: "Vishal Mishra", coverUrl: "https://i.ytimg.com/vi/t5MlnGOKGDI/hqdefault.jpg", duration: 250 }
     ]
   },
   {
@@ -475,7 +475,7 @@ export const LANGUAGE_PLAYLISTS = [
       { id: "ytm-p8gq4I26q7k", ytId: "p8gq4I26q7k", title: "Apsara Aali", artist: "Bela Shende", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c4/d3/61/c4d3615e-b652-e204-026c-827db678a280/8718857704249.png/1000x1000bb.jpg", duration: 245 },
       { id: "ytm-mI60DtyDpsk", ytId: "mI60DtyDpsk", title: "Bring It On", artist: "Ajay-Atul", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0d/a8/4c/0da84c40-989b-90e9-9d86-1b4a33a75643/840214492952.png/1000x1000bb.jpg", duration: 211 },
       { id: "ytm-n-k4iC1F2E0", ytId: "n-k4iC1F2E0", title: "Yad Lagla", artist: "Ajay Gogavale", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/42/27/c742279a-586b-976a-df12-659f8539a788/8718857700166.png/1000x1000bb.jpg", duration: 301 },
-      { id: "ytm-Oq8j5Qz9Q6U", ytId: "Oq8j5Qz9Q6U", title: "Sairat Zaala Ji", artist: "Chinmayi Sripaada", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/42/27/c742279a-586b-976a-df12-659f8539a788/8718857700166.png/1000x1000bb.jpg", duration: 366 }
+      { id: "ytm-Oq8j5Qz9Q6U", ytId: "Oq8j5Qz9Q6U", title: "Sairat Zaala Ji", artist: "Chinmayi Sripaada", coverUrl: "https://i.ytimg.com/vi/Oq8j5Qz9Q6U/hqdefault.jpg", duration: 366 }
     ]
   },
   {
@@ -706,13 +706,13 @@ export const MOVIE_PLAYLISTS = [
     coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg",
     trackCount: 7,
     tracks: [
-      { id: "ytm-s7zK9-8pkm0", ytId: "s7zK9-8pkm0", title: "Arjan Vailly", artist: "Bhupinder Babbal", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 182, movie: "Animal" },
-      { id: "ytm-HrnrqYxYrbk", ytId: "HrnrqYxYrbk", title: "Satranga", artist: "Arijit Singh, Shreyas Puranik", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 271, movie: "Animal" },
-      { id: "ytm-2S246U59m4E", ytId: "2S246U59m4E", title: "Pehle Bhi Main", artist: "Vishal Mishra, Raj Shekhar", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 250, movie: "Animal" },
-      { id: "ytm-dZ0fwJojhrs", ytId: "dZ0fwJojhrs", title: "Hua Main", artist: "Raghav Chaitanya, Pritam", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 277, movie: "Animal" },
-      { id: "ytm-p3kYpmsd-Qk", ytId: "p3kYpmsd-Qk", title: "Papa Meri Jaan", artist: "Sonu Nigam, Harshavardhan", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 321, movie: "Animal" },
-      { id: "ytm-cAMj_gC1JEU", ytId: "cAMj_gC1JEU", title: "Saari Duniya Jalaa Denge", artist: "B Praak, Jaani", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 182, movie: "Animal" },
-      { id: "ytm-g1v7n1RfZ2g", ytId: "g1v7n1RfZ2g", title: "Marham (Pehle Bhi Main)", artist: "Vishal Mishra", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 245, movie: "Animal" }
+      { id: "ytm-s7zK9-8pkm0", ytId: "s7zK9-8pkm0", title: "Arjan Vailly", artist: "Bhupinder Babbal", coverUrl: "https://i.ytimg.com/vi/s7zK9-8pkm0/hqdefault.jpg", duration: 182, movie: "Animal" },
+      { id: "ytm-HrnrqYxYrbk", ytId: "HrnrqYxYrbk", title: "Satranga", artist: "Arijit Singh, Shreyas Puranik", coverUrl: "https://i.ytimg.com/vi/HrnrqYxYrbk/hqdefault.jpg", duration: 271, movie: "Animal" },
+      { id: "ytm-2S246U59m4E", ytId: "2S246U59m4E", title: "Pehle Bhi Main", artist: "Vishal Mishra, Raj Shekhar", coverUrl: "https://i.ytimg.com/vi/2S246U59m4E/hqdefault.jpg", duration: 250, movie: "Animal" },
+      { id: "ytm-dZ0fwJojhrs", ytId: "dZ0fwJojhrs", title: "Hua Main", artist: "Raghav Chaitanya, Pritam", coverUrl: "https://i.ytimg.com/vi/dZ0fwJojhrs/hqdefault.jpg", duration: 277, movie: "Animal" },
+      { id: "ytm-p3kYpmsd-Qk", ytId: "p3kYpmsd-Qk", title: "Papa Meri Jaan", artist: "Sonu Nigam, Harshavardhan", coverUrl: "https://i.ytimg.com/vi/p3kYpmsd-Qk/hqdefault.jpg", duration: 321, movie: "Animal" },
+      { id: "ytm-cAMj_gC1JEU", ytId: "cAMj_gC1JEU", title: "Saari Duniya Jalaa Denge", artist: "B Praak, Jaani", coverUrl: "https://i.ytimg.com/vi/cAMj_gC1JEU/hqdefault.jpg", duration: 182, movie: "Animal" },
+      { id: "ytm-g1v7n1RfZ2g", ytId: "g1v7n1RfZ2g", title: "Marham (Pehle Bhi Main)", artist: "Vishal Mishra", coverUrl: "https://i.ytimg.com/vi/g1v7n1RfZ2g/hqdefault.jpg", duration: 245, movie: "Animal" }
     ]
   },
   {
@@ -726,12 +726,12 @@ export const MOVIE_PLAYLISTS = [
     coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg",
     trackCount: 6,
     tracks: [
-      { id: "ytm-tY4b-4q30qA", ytId: "tY4b-4q30qA", title: "Pushpa Pushpa", artist: "Nakash Aziz, Devi Sri Prasad", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 266, movie: "Pushpa" },
-      { id: "ytm-U3dglsE_pXU", ytId: "U3dglsE_pXU", title: "Angaaron (The Couple Song)", artist: "Shreya Ghoshal, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 260, movie: "Pushpa" },
-      { id: "ytm-hcMzwMrr1tE", ytId: "hcMzwMrr1tE", title: "Srivalli", artist: "Sid Sriram, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 224, movie: "Pushpa" },
-      { id: "ytm-f6v_hLp8l64", ytId: "f6v_hLp8l64", title: "Oo Antava Mava", artist: "Indravathi Chauhan, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 228, movie: "Pushpa" },
-      { id: "ytm-1e9y3q19W-4", ytId: "1e9y3q19W-4", title: "Saami Saami", artist: "Sunidhi Chauhan, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 224, movie: "Pushpa" },
-      { id: "ytm-06eA4p_1y3E", ytId: "06eA4p_1y3E", title: "Peelings", artist: "Nakash Aziz, DSP", coverUrl: "https://c.saavncdn.com/973/Pushpa-2-The-Rule-Hindi-2024-20241205093156-500x500.jpg", duration: 215, movie: "Pushpa" }
+      { id: "ytm-tY4b-4q30qA", ytId: "tY4b-4q30qA", title: "Pushpa Pushpa", artist: "Nakash Aziz, Devi Sri Prasad", coverUrl: "https://i.ytimg.com/vi/tY4b-4q30qA/hqdefault.jpg", duration: 266, movie: "Pushpa" },
+      { id: "ytm-U3dglsE_pXU", ytId: "U3dglsE_pXU", title: "Angaaron (The Couple Song)", artist: "Shreya Ghoshal, DSP", coverUrl: "https://i.ytimg.com/vi/U3dglsE_pXU/hqdefault.jpg", duration: 260, movie: "Pushpa" },
+      { id: "ytm-hcMzwMrr1tE", ytId: "hcMzwMrr1tE", title: "Srivalli", artist: "Sid Sriram, DSP", coverUrl: "https://i.ytimg.com/vi/hcMzwMrr1tE/hqdefault.jpg", duration: 224, movie: "Pushpa" },
+      { id: "ytm-f6v_hLp8l64", ytId: "f6v_hLp8l64", title: "Oo Antava Mava", artist: "Indravathi Chauhan, DSP", coverUrl: "https://i.ytimg.com/vi/f6v_hLp8l64/hqdefault.jpg", duration: 228, movie: "Pushpa" },
+      { id: "ytm-1e9y3q19W-4", ytId: "1e9y3q19W-4", title: "Saami Saami", artist: "Sunidhi Chauhan, DSP", coverUrl: "https://i.ytimg.com/vi/1e9y3q19W-4/hqdefault.jpg", duration: 224, movie: "Pushpa" },
+      { id: "ytm-06eA4p_1y3E", ytId: "06eA4p_1y3E", title: "Peelings", artist: "Nakash Aziz, DSP", coverUrl: "https://i.ytimg.com/vi/06eA4p_1y3E/hqdefault.jpg", duration: 215, movie: "Pushpa" }
     ]
   },
   {
@@ -745,12 +745,12 @@ export const MOVIE_PLAYLISTS = [
     coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg",
     trackCount: 6,
     tracks: [
-      { id: "ytm-v_43p4x8090", ytId: "v_43p4x8090", title: "Toofan", artist: "Ravi Basrur, Brijesh Shandilya", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 215, movie: "KGF" },
-      { id: "ytm-k4Z3z-m76Lw", ytId: "k4Z3z-m76Lw", title: "Sulthan", artist: "Ravi Basrur, Mohan Krishna", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 228, movie: "KGF" },
-      { id: "ytm-r3g-yL1P_uY", ytId: "r3g-yL1P_uY", title: "Mehabooba", artist: "Ananya Bhat, Ravi Basrur", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 217, movie: "KGF" },
-      { id: "ytm-E_SbwflEwwE", ytId: "E_SbwflEwwE", title: "Salam Rocky Bhai", artist: "Vijay Prakash", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 245, movie: "KGF" },
-      { id: "ytm-9Y-G-m1v6n0", ytId: "9Y-G-m1v6n0", title: "Falak Tu Garaj Tu", artist: "Suchetha Basrur", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 189, movie: "KGF" },
-      { id: "ytm-z8Lq-t3Q97M", ytId: "z8Lq-t3Q97M", title: "Dheera Dheera", artist: "Ananya Bhat", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 222, movie: "KGF" }
+      { id: "ytm-v_43p4x8090", ytId: "v_43p4x8090", title: "Toofan", artist: "Ravi Basrur, Brijesh Shandilya", coverUrl: "https://i.ytimg.com/vi/v_43p4x8090/hqdefault.jpg", duration: 215, movie: "KGF" },
+      { id: "ytm-k4Z3z-m76Lw", ytId: "k4Z3z-m76Lw", title: "Sulthan", artist: "Ravi Basrur, Mohan Krishna", coverUrl: "https://i.ytimg.com/vi/k4Z3z-m76Lw/hqdefault.jpg", duration: 228, movie: "KGF" },
+      { id: "ytm-r3g-yL1P_uY", ytId: "r3g-yL1P_uY", title: "Mehabooba", artist: "Ananya Bhat, Ravi Basrur", coverUrl: "https://i.ytimg.com/vi/r3g-yL1P_uY/hqdefault.jpg", duration: 217, movie: "KGF" },
+      { id: "ytm-E_SbwflEwwE", ytId: "E_SbwflEwwE", title: "Salam Rocky Bhai", artist: "Vijay Prakash", coverUrl: "https://i.ytimg.com/vi/E_SbwflEwwE/hqdefault.jpg", duration: 245, movie: "KGF" },
+      { id: "ytm-9Y-G-m1v6n0", ytId: "9Y-G-m1v6n0", title: "Falak Tu Garaj Tu", artist: "Suchetha Basrur", coverUrl: "https://i.ytimg.com/vi/9Y-G-m1v6n0/hqdefault.jpg", duration: 189, movie: "KGF" },
+      { id: "ytm-z8Lq-t3Q97M", ytId: "z8Lq-t3Q97M", title: "Dheera Dheera", artist: "Ananya Bhat", coverUrl: "https://i.ytimg.com/vi/z8Lq-t3Q97M/hqdefault.jpg", duration: 222, movie: "KGF" }
     ]
   },
   {
@@ -764,12 +764,12 @@ export const MOVIE_PLAYLISTS = [
     coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg",
     trackCount: 6,
     tracks: [
-      { id: "ytm-jHNNMj5bNQw", ytId: "jHNNMj5bNQw", title: "Kabira", artist: "Arijit Singh, Harshdeep Kaur", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 223, movie: "Yeh Jawaani Hai Deewani" },
-      { id: "ytm-fdubeMFwuGs", ytId: "fdubeMFwuGs", title: "Ilahi", artist: "Arijit Singh, Pritam", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 229, movie: "Yeh Jawaani Hai Deewani" },
-      { id: "ytm-II2EO3NwUrQ", ytId: "II2EO3NwUrQ", title: "Badtameez Dil", artist: "Benny Dayal, Shefali Alvares", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 252, movie: "Yeh Jawaani Hai Deewani" },
-      { id: "ytm-0WtRNGubxJA", ytId: "0WtRNGubxJA", title: "Balam Pichkari", artist: "Vishal Dadlani, Shalmali Kholgade", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 289, movie: "Yeh Jawaani Hai Deewani" },
-      { id: "ytm-ib-Qiyklq-Q", ytId: "ib-Qiyklq-Q", title: "Subhanallah", artist: "Sreerama Chandra, Shilpa Rao", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 249, movie: "Yeh Jawaani Hai Deewani" },
-      { id: "ytm-1cDoRqPn9mM", ytId: "1cDoRqPn9mM", title: "Dilliwaali Girlfriend", artist: "Arijit Singh, Sunidhi Chauhan", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 260, movie: "Yeh Jawaani Hai Deewani" }
+      { id: "ytm-jHNNMj5bNQw", ytId: "jHNNMj5bNQw", title: "Kabira", artist: "Arijit Singh, Harshdeep Kaur", coverUrl: "https://i.ytimg.com/vi/jHNNMj5bNQw/hqdefault.jpg", duration: 223, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-fdubeMFwuGs", ytId: "fdubeMFwuGs", title: "Ilahi", artist: "Arijit Singh, Pritam", coverUrl: "https://i.ytimg.com/vi/fdubeMFwuGs/hqdefault.jpg", duration: 229, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-II2EO3NwUrQ", ytId: "II2EO3NwUrQ", title: "Badtameez Dil", artist: "Benny Dayal, Shefali Alvares", coverUrl: "https://i.ytimg.com/vi/II2EO3NwUrQ/hqdefault.jpg", duration: 252, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-0WtRNGubxJA", ytId: "0WtRNGubxJA", title: "Balam Pichkari", artist: "Vishal Dadlani, Shalmali Kholgade", coverUrl: "https://i.ytimg.com/vi/0WtRNGubxJA/hqdefault.jpg", duration: 289, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-ib-Qiyklq-Q", ytId: "ib-Qiyklq-Q", title: "Subhanallah", artist: "Sreerama Chandra, Shilpa Rao", coverUrl: "https://i.ytimg.com/vi/ib-Qiyklq-Q/hqdefault.jpg", duration: 249, movie: "Yeh Jawaani Hai Deewani" },
+      { id: "ytm-1cDoRqPn9mM", ytId: "1cDoRqPn9mM", title: "Dilliwaali Girlfriend", artist: "Arijit Singh, Sunidhi Chauhan", coverUrl: "https://i.ytimg.com/vi/1cDoRqPn9mM/hqdefault.jpg", duration: 260, movie: "Yeh Jawaani Hai Deewani" }
     ]
   },
   {
@@ -783,12 +783,12 @@ export const MOVIE_PLAYLISTS = [
     coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg",
     trackCount: 6,
     tracks: [
-      { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Javed Ali, Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 473, movie: "Rockstar" },
-      { id: "ytm-ttKXfraJv88", ytId: "ttKXfraJv88", title: "Nadaan Parinde", artist: "A.R. Rahman, Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 386, movie: "Rockstar" },
-      { id: "ytm-p9DQINKFVWE", ytId: "p9DQINKFVWE", title: "Sadda Haq", artist: "Mohit Chauhan, Clinton Cerejo", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 365, movie: "Rockstar" },
+      { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Javed Ali, Mohit Chauhan", coverUrl: "https://i.ytimg.com/vi/T94PHkuydcw/hqdefault.jpg", duration: 473, movie: "Rockstar" },
+      { id: "ytm-ttKXfraJv88", ytId: "ttKXfraJv88", title: "Nadaan Parinde", artist: "A.R. Rahman, Mohit Chauhan", coverUrl: "https://i.ytimg.com/vi/ttKXfraJv88/hqdefault.jpg", duration: 386, movie: "Rockstar" },
+      { id: "ytm-p9DQINKFVWE", ytId: "p9DQINKFVWE", title: "Sadda Haq", artist: "Mohit Chauhan, Clinton Cerejo", coverUrl: "https://i.ytimg.com/vi/p9DQINKFVWE/hqdefault.jpg", duration: 365, movie: "Rockstar" },
       { id: "ytm-gkCKTuR-ECI", ytId: "gkCKTuR-ECI", title: "Tum Ho", artist: "Mohit Chauhan, Suzanne D'Mello", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 319, movie: "Rockstar" },
-      { id: "ytm-2mWaqUk73H4", ytId: "2mWaqUk73H4", title: "Phir Se Ud Chala", artist: "Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 271, movie: "Rockstar" },
-      { id: "ytm-w_Haezv0v4I", ytId: "w_Haezv0v4I", title: "Jo Bhi Main", artist: "Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 275, movie: "Rockstar" }
+      { id: "ytm-2mWaqUk73H4", ytId: "2mWaqUk73H4", title: "Phir Se Ud Chala", artist: "Mohit Chauhan", coverUrl: "https://i.ytimg.com/vi/2mWaqUk73H4/hqdefault.jpg", duration: 271, movie: "Rockstar" },
+      { id: "ytm-w_Haezv0v4I", ytId: "w_Haezv0v4I", title: "Jo Bhi Main", artist: "Mohit Chauhan", coverUrl: "https://i.ytimg.com/vi/w_Haezv0v4I/hqdefault.jpg", duration: 275, movie: "Rockstar" }
     ]
   },
   {
@@ -802,12 +802,12 @@ export const MOVIE_PLAYLISTS = [
     coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg",
     trackCount: 6,
     tracks: [
-      { id: "ytm-VAdGW7QDJiU", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao, Anirudh", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 198, movie: "Jawan" },
-      { id: "ytm-13P_zC4d-08", ytId: "13P_zC4d-08", title: "Zinda Banda", artist: "Anirudh Ravichander, Irshad Kamil", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 264, movie: "Jawan" },
-      { id: "ytm-d3G_o6QvKms", ytId: "d3G_o6QvKms", title: "Not Ramaiya Vastavaiya", artist: "Vishal Dadlani, Anirudh, Shilpa Rao", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 203, movie: "Jawan" },
-      { id: "ytm-xP5F2v2W9t8", ytId: "xP5F2v2W9t8", title: "Faraatta", artist: "Arijit Singh, Jonita Gandhi, Badshah", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 195, movie: "Jawan" },
-      { id: "ytm-3R3f9Jm8WxE", ytId: "3R3f9Jm8WxE", title: "Aararaari Raaro", artist: "Deepthi Suresh, Anirudh", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 278, movie: "Jawan" },
-      { id: "ytm-r_Jj5Ym4n5Q", ytId: "r_Jj5Ym4n5Q", title: "Jawan Title Track", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 185, movie: "Jawan" }
+      { id: "ytm-VAdGW7QDJiU", ytId: "VAdGW7QDJiU", title: "Chaleya", artist: "Arijit Singh, Shilpa Rao, Anirudh", coverUrl: "https://i.ytimg.com/vi/VAdGW7QDJiU/hqdefault.jpg", duration: 198, movie: "Jawan" },
+      { id: "ytm-13P_zC4d-08", ytId: "13P_zC4d-08", title: "Zinda Banda", artist: "Anirudh Ravichander, Irshad Kamil", coverUrl: "https://i.ytimg.com/vi/13P_zC4d-08/hqdefault.jpg", duration: 264, movie: "Jawan" },
+      { id: "ytm-d3G_o6QvKms", ytId: "d3G_o6QvKms", title: "Not Ramaiya Vastavaiya", artist: "Vishal Dadlani, Anirudh, Shilpa Rao", coverUrl: "https://i.ytimg.com/vi/d3G_o6QvKms/hqdefault.jpg", duration: 203, movie: "Jawan" },
+      { id: "ytm-xP5F2v2W9t8", ytId: "xP5F2v2W9t8", title: "Faraatta", artist: "Arijit Singh, Jonita Gandhi, Badshah", coverUrl: "https://i.ytimg.com/vi/xP5F2v2W9t8/hqdefault.jpg", duration: 195, movie: "Jawan" },
+      { id: "ytm-3R3f9Jm8WxE", ytId: "3R3f9Jm8WxE", title: "Aararaari Raaro", artist: "Deepthi Suresh, Anirudh", coverUrl: "https://i.ytimg.com/vi/3R3f9Jm8WxE/hqdefault.jpg", duration: 278, movie: "Jawan" },
+      { id: "ytm-r_Jj5Ym4n5Q", ytId: "r_Jj5Ym4n5Q", title: "Jawan Title Track", artist: "Anirudh Ravichander", coverUrl: "https://i.ytimg.com/vi/r_Jj5Ym4n5Q/hqdefault.jpg", duration: 185, movie: "Jawan" }
     ]
   },
   {
@@ -821,12 +821,12 @@ export const MOVIE_PLAYLISTS = [
     coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg",
     trackCount: 6,
     tracks: [
-      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh, Mithoon", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 262, movie: "Aashiqui 2" },
-      { id: "ytm-z3UHfi9vpbc", ytId: "z3UHfi9vpbc", title: "Sunn Raha Hai", artist: "Ankit Tiwari", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 390, movie: "Aashiqui 2" },
-      { id: "ytm-VdyBtGaspss", ytId: "VdyBtGaspss", title: "Chahun Main Ya Naa", artist: "Arijit Singh, Palak Muchhal", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 304, movie: "Aashiqui 2" },
-      { id: "ytm-m_c_s4E9z84", ytId: "m_c_s4E9z84", title: "Piya Aaye Na", artist: "KK, Tulsi Kumar", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 286, movie: "Aashiqui 2" },
-      { id: "ytm-Gz3_W_Y0WkI", ytId: "Gz3_W_Y0WkI", title: "Meri Aashiqui", artist: "Arijit Singh, Palak Muchhal", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 266, movie: "Aashiqui 2" },
-      { id: "ytm-0WvVn7mF7r8", ytId: "0WvVn7mF7r8", title: "Bhula Dena", artist: "Mustafa Zahid", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 240, movie: "Aashiqui 2" }
+      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh, Mithoon", coverUrl: "https://i.ytimg.com/vi/IJq0ydg105U/hqdefault.jpg", duration: 262, movie: "Aashiqui 2" },
+      { id: "ytm-z3UHfi9vpbc", ytId: "z3UHfi9vpbc", title: "Sunn Raha Hai", artist: "Ankit Tiwari", coverUrl: "https://i.ytimg.com/vi/z3UHfi9vpbc/hqdefault.jpg", duration: 390, movie: "Aashiqui 2" },
+      { id: "ytm-VdyBtGaspss", ytId: "VdyBtGaspss", title: "Chahun Main Ya Naa", artist: "Arijit Singh, Palak Muchhal", coverUrl: "https://i.ytimg.com/vi/VdyBtGaspss/hqdefault.jpg", duration: 304, movie: "Aashiqui 2" },
+      { id: "ytm-m_c_s4E9z84", ytId: "m_c_s4E9z84", title: "Piya Aaye Na", artist: "KK, Tulsi Kumar", coverUrl: "https://i.ytimg.com/vi/m_c_s4E9z84/hqdefault.jpg", duration: 286, movie: "Aashiqui 2" },
+      { id: "ytm-Gz3_W_Y0WkI", ytId: "Gz3_W_Y0WkI", title: "Meri Aashiqui", artist: "Arijit Singh, Palak Muchhal", coverUrl: "https://i.ytimg.com/vi/Gz3_W_Y0WkI/hqdefault.jpg", duration: 266, movie: "Aashiqui 2" },
+      { id: "ytm-0WvVn7mF7r8", ytId: "0WvVn7mF7r8", title: "Bhula Dena", artist: "Mustafa Zahid", coverUrl: "https://i.ytimg.com/vi/0WvVn7mF7r8/hqdefault.jpg", duration: 240, movie: "Aashiqui 2" }
     ]
   },
   {
@@ -841,11 +841,11 @@ export const MOVIE_PLAYLISTS = [
     trackCount: 6,
     tracks: [
       { id: "ytm-1Vko01D77Fg", ytId: "1Vko01D77Fg", title: "Cornfield Chase", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 127, movie: "Interstellar" },
-      { id: "ytm-m3zvVGJrTP8", ytId: "m3zvVGJrTP8", title: "No Time For Caution", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 246, movie: "Interstellar" },
-      { id: "ytm-RxabLA7UQ9k", ytId: "RxabLA7UQ9k", title: "Time (Inception)", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 275, movie: "Inception" },
-      { id: "ytm-N4b4qUp8Sqw", ytId: "N4b4qUp8Sqw", title: "S.T.A.Y.", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 383, movie: "Interstellar" },
-      { id: "ytm-qC4BvA_1Wk0", ytId: "qC4BvA_1Wk0", title: "Day One", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 200, movie: "Interstellar" },
-      { id: "ytm-o_Ay_iDRAbc", ytId: "o_Ay_iDRAbc", title: "Mountains", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 219, movie: "Interstellar" }
+      { id: "ytm-m3zvVGJrTP8", ytId: "m3zvVGJrTP8", title: "No Time For Caution", artist: "Hans Zimmer", coverUrl: "https://i.ytimg.com/vi/m3zvVGJrTP8/hqdefault.jpg", duration: 246, movie: "Interstellar" },
+      { id: "ytm-RxabLA7UQ9k", ytId: "RxabLA7UQ9k", title: "Time (Inception)", artist: "Hans Zimmer", coverUrl: "https://i.ytimg.com/vi/RxabLA7UQ9k/hqdefault.jpg", duration: 275, movie: "Inception" },
+      { id: "ytm-N4b4qUp8Sqw", ytId: "N4b4qUp8Sqw", title: "S.T.A.Y.", artist: "Hans Zimmer", coverUrl: "https://i.ytimg.com/vi/N4b4qUp8Sqw/hqdefault.jpg", duration: 383, movie: "Interstellar" },
+      { id: "ytm-qC4BvA_1Wk0", ytId: "qC4BvA_1Wk0", title: "Day One", artist: "Hans Zimmer", coverUrl: "https://i.ytimg.com/vi/qC4BvA_1Wk0/hqdefault.jpg", duration: 200, movie: "Interstellar" },
+      { id: "ytm-o_Ay_iDRAbc", ytId: "o_Ay_iDRAbc", title: "Mountains", artist: "Hans Zimmer", coverUrl: "https://i.ytimg.com/vi/o_Ay_iDRAbc/hqdefault.jpg", duration: 219, movie: "Interstellar" }
     ]
   },
   {
@@ -860,11 +860,11 @@ export const MOVIE_PLAYLISTS = [
     trackCount: 6,
     tracks: [
       { id: "ytm-ApXoWvfEYVU", ytId: "ApXoWvfEYVU", title: "Sunflower", artist: "Post Malone, Swae Lee", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 158, movie: "Spider-Man" },
-      { id: "ytm-r838F5F-iYg", ytId: "r838F5F-iYg", title: "Am I Dreaming", artist: "Metro Boomin, A$AP Rocky, Roisee", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 256, movie: "Spider-Man" },
-      { id: "ytm-t8T7hI6v_20", ytId: "t8T7hI6v_20", title: "Calling", artist: "Metro Boomin, Swae Lee, NAV", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 219, movie: "Spider-Man" },
-      { id: "ytm-N_GfT-k41_E", ytId: "N_GfT-k41_E", title: "Self Love", artist: "Metro Boomin, Coi Leray", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 189, movie: "Spider-Man" },
-      { id: "ytm-O_3U5x4G9fM", ytId: "O_3U5x4G9fM", title: "Annihilate", artist: "Metro Boomin, Swae Lee, Lil Wayne", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 231, movie: "Spider-Man" },
-      { id: "ytm-wR7wWc93T24", ytId: "wR7wWc93T24", title: "Mona Lisa", artist: "Dominic Fike", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ce/27/b9/ce27b946-b68e-5aa2-7104-e5d0fcb3b64f/23UMGIM56453.rgb.jpg/1000x1000bb.jpg", duration: 186, movie: "Spider-Man" }
+      { id: "ytm-r838F5F-iYg", ytId: "r838F5F-iYg", title: "Am I Dreaming", artist: "Metro Boomin, A$AP Rocky, Roisee", coverUrl: "https://i.ytimg.com/vi/r838F5F-iYg/hqdefault.jpg", duration: 256, movie: "Spider-Man" },
+      { id: "ytm-t8T7hI6v_20", ytId: "t8T7hI6v_20", title: "Calling", artist: "Metro Boomin, Swae Lee, NAV", coverUrl: "https://i.ytimg.com/vi/t8T7hI6v_20/hqdefault.jpg", duration: 219, movie: "Spider-Man" },
+      { id: "ytm-N_GfT-k41_E", ytId: "N_GfT-k41_E", title: "Self Love", artist: "Metro Boomin, Coi Leray", coverUrl: "https://i.ytimg.com/vi/N_GfT-k41_E/hqdefault.jpg", duration: 189, movie: "Spider-Man" },
+      { id: "ytm-O_3U5x4G9fM", ytId: "O_3U5x4G9fM", title: "Annihilate", artist: "Metro Boomin, Swae Lee, Lil Wayne", coverUrl: "https://i.ytimg.com/vi/O_3U5x4G9fM/hqdefault.jpg", duration: 231, movie: "Spider-Man" },
+      { id: "ytm-wR7wWc93T24", ytId: "wR7wWc93T24", title: "Mona Lisa", artist: "Dominic Fike", coverUrl: "https://i.ytimg.com/vi/wR7wWc93T24/hqdefault.jpg", duration: 186, movie: "Spider-Man" }
     ]
   },
   {
@@ -878,12 +878,12 @@ export const MOVIE_PLAYLISTS = [
     coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg",
     trackCount: 6,
     tracks: [
-      { id: "ytm-VbmsXkK5v1E", ytId: "VbmsXkK5v1E", title: "Badass", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 229, movie: "Leo" },
-      { id: "ytm-szvt1vD0Uug", ytId: "szvt1vD0Uug", title: "Naa Ready", artist: "Thalapathy Vijay, Anirudh", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 248, movie: "Leo" },
-      { id: "ytm-5gU6n4_P3Xo", ytId: "5gU6n4_P3Xo", title: "Lokiverse 2.0", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 180, movie: "Leo" },
-      { id: "ytm-u2eR435W4q8", ytId: "u2eR435W4q8", title: "Vikram Title Track", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 216, movie: "Vikram" },
-      { id: "ytm-0U_3G5x6G7E", ytId: "0U_3G5x6G7E", title: "Porkanda Singam", artist: "Anirudh, Ravi G", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 208, movie: "Vikram" },
-      { id: "ytm-g-3_9j3b7YQ", ytId: "g-3_9j3b7YQ", title: "Once Upon a Time", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 144, movie: "Vikram" }
+      { id: "ytm-VbmsXkK5v1E", ytId: "VbmsXkK5v1E", title: "Badass", artist: "Anirudh Ravichander", coverUrl: "https://i.ytimg.com/vi/VbmsXkK5v1E/hqdefault.jpg", duration: 229, movie: "Leo" },
+      { id: "ytm-0a61Q20a_9E", ytId: "0a61Q20a_9E", title: "Naa Ready", artist: "Thalapathy Vijay, Anirudh", coverUrl: "https://i.ytimg.com/vi/0a61Q20a_9E/hqdefault.jpg", duration: 248, movie: "Leo" },
+      { id: "ytm-5gU6n4_P3Xo", ytId: "5gU6n4_P3Xo", title: "Lokiverse 2.0", artist: "Anirudh Ravichander", coverUrl: "https://i.ytimg.com/vi/5gU6n4_P3Xo/hqdefault.jpg", duration: 180, movie: "Leo" },
+      { id: "ytm-u2eR435W4q8", ytId: "u2eR435W4q8", title: "Vikram Title Track", artist: "Anirudh Ravichander", coverUrl: "https://i.ytimg.com/vi/u2eR435W4q8/hqdefault.jpg", duration: 216, movie: "Vikram" },
+      { id: "ytm-0U_3G5x6G7E", ytId: "0U_3G5x6G7E", title: "Porkanda Singam", artist: "Anirudh, Ravi G", coverUrl: "https://i.ytimg.com/vi/0U_3G5x6G7E/hqdefault.jpg", duration: 208, movie: "Vikram" },
+      { id: "ytm-g-3_9j3b7YQ", ytId: "g-3_9j3b7YQ", title: "Once Upon a Time", artist: "Anirudh Ravichander", coverUrl: "https://i.ytimg.com/vi/g-3_9j3b7YQ/hqdefault.jpg", duration: 144, movie: "Vikram" }
     ]
   }
 ];
@@ -902,7 +902,7 @@ export const VIBE_PLAYLISTS = [
     tracks: [
       { id: "ytm-oE7lU2qj4rY", ytId: "oE7lU2qj4rY", title: "Wishes", artist: "Hasan Raheem, Talwiinder & Umair", coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", duration: 218 },
       { id: "ytm-zydG_QW8m68", ytId: "zydG_QW8m68", title: "Kahani Suno 2.0", artist: "Kaifi Khalil", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg", duration: 175 },
-      { id: "ytm-2S246U59m4E", ytId: "2S246U59m4E", title: "Pehle Bhi Main", artist: "Vishal Mishra, Raj Shekhar", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 250 },
+      { id: "ytm-2S246U59m4E", ytId: "2S246U59m4E", title: "Pehle Bhi Main", artist: "Vishal Mishra, Raj Shekhar", coverUrl: "https://i.ytimg.com/vi/2S246U59m4E/hqdefault.jpg", duration: 250 },
       { id: "ytm-wXhTHyIgQ_U", ytId: "wXhTHyIgQ_U", title: "Circles", artist: "Post Malone", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/1b/1b/7b1b1b0b-7ce2-b223-f9e0-8e36abe51877/19UMGIM78325.rgb.jpg/600x600bb.jpg", duration: 215 },
       { id: "ytm-DWcJFNfaw90", ytId: "DWcJFNfaw90", title: "Midnight City", artist: "M83", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/7b/a9/cb7ba903-b5f1-cc21-90db-7a81b7aa0997/724596951057.jpg/1000x1000bb.jpg", duration: 243 },
       { id: "ytm-rR4n-0KYeKQ", ytId: "rR4n-0KYeKQ", title: "Resonance", artist: "HOME", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4f/13/65/4f1365b0-e97c-c469-c438-2f7d8f204355/872133025584_cover.jpg/1000x1000bb.jpg", duration: 212 },
@@ -920,11 +920,11 @@ export const VIBE_PLAYLISTS = [
     tracks: [
       { id: "ytm-_Yhyp-_hX2s", ytId: "_Yhyp-_hX2s", title: "Lose Yourself", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg", duration: 326 },
       { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg", duration: 204 },
-      { id: "ytm-v_43p4x8090", ytId: "v_43p4x8090", title: "Toofan", artist: "Ravi Basrur, Brijesh Shandilya", coverUrl: "https://c.saavncdn.com/034/KGF-Chapter-2-Hindi-2022-20220414195438-500x500.jpg", duration: 215 },
-      { id: "ytm-VbmsXkK5v1E", ytId: "VbmsXkK5v1E", title: "Badass", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/136/Leo-Tamil-2023-20231019173003-500x500.jpg", duration: 229 },
-      { id: "ytm-gCYcHz2k5x0", ytId: "gCYcHz2k5x0", title: "Animals", artist: "Martin Garrix", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 176 },
+      { id: "ytm-v_43p4x8090", ytId: "v_43p4x8090", title: "Toofan", artist: "Ravi Basrur, Brijesh Shandilya", coverUrl: "https://i.ytimg.com/vi/v_43p4x8090/hqdefault.jpg", duration: 215 },
+      { id: "ytm-VbmsXkK5v1E", ytId: "VbmsXkK5v1E", title: "Badass", artist: "Anirudh Ravichander", coverUrl: "https://i.ytimg.com/vi/VbmsXkK5v1E/hqdefault.jpg", duration: 229 },
+      { id: "ytm-gCYcHz2k5x0", ytId: "gCYcHz2k5x0", title: "Animals", artist: "Martin Garrix", coverUrl: "https://i.ytimg.com/vi/gCYcHz2k5x0/hqdefault.jpg", duration: 176 },
       { id: "ytm-eVTXPUF4Oz4", ytId: "eVTXPUF4Oz4", title: "In the End", artist: "Linkin Park", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 216 },
-      { id: "ytm-13P_zC4d-08", ytId: "13P_zC4d-08", title: "Zinda Banda", artist: "Anirudh Ravichander", coverUrl: "https://c.saavncdn.com/026/Jawan-Hindi-2023-20230905091404-500x500.jpg", duration: 264 }
+      { id: "ytm-13P_zC4d-08", ytId: "13P_zC4d-08", title: "Zinda Banda", artist: "Anirudh Ravichander", coverUrl: "https://i.ytimg.com/vi/13P_zC4d-08/hqdefault.jpg", duration: 264 }
     ]
   },
   {
@@ -936,13 +936,13 @@ export const VIBE_PLAYLISTS = [
     coverUrl: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80",
     trackCount: 7,
     tracks: [
-      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh, Mithoon", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 262 },
-      { id: "ytm-HrnrqYxYrbk", ytId: "HrnrqYxYrbk", title: "Satranga", artist: "Arijit Singh, Shreyas Puranik", coverUrl: "https://c.saavncdn.com/092/ANIMAL-Hindi-2023-20231124191339-500x500.jpg", duration: 271 },
+      { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh, Mithoon", coverUrl: "https://i.ytimg.com/vi/IJq0ydg105U/hqdefault.jpg", duration: 262 },
+      { id: "ytm-HrnrqYxYrbk", ytId: "HrnrqYxYrbk", title: "Satranga", artist: "Arijit Singh, Shreyas Puranik", coverUrl: "https://i.ytimg.com/vi/HrnrqYxYrbk/hqdefault.jpg", duration: 271 },
       { id: "ytm-zABLecsR5UE", ytId: "zABLecsR5UE", title: "Someone You Loved", artist: "Lewis Capaldi", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/9f/fa/919ffaf9-e58f-4ba6-fb69-2f22b7d2bf6a/19UMGIM07335.rgb.jpg/1000x1000bb.jpg", duration: 182 },
       { id: "ytm-hLQl3WQQoQ0", ytId: "hLQl3WQQoQ0", title: "Someone Like You", artist: "Adele", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/2c/3f/052c3f81-591d-ae67-f703-9bb52fef9bc7/634904052028.png/1000x1000bb.jpg", duration: 285 },
-      { id: "ytm-VdyBtGaspss", ytId: "VdyBtGaspss", title: "Chahun Main Ya Naa", artist: "Arijit Singh, Palak Muchhal", coverUrl: "https://c.saavncdn.com/450/Aashiqui-2-2013-500x500.jpg", duration: 304 },
-      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg", duration: 269 },
-      { id: "ytm-jHNNMj5bNQw", ytId: "jHNNMj5bNQw", title: "Kabira", artist: "Arijit Singh, Harshdeep Kaur", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 223 }
+      { id: "ytm-VdyBtGaspss", ytId: "VdyBtGaspss", title: "Chahun Main Ya Naa", artist: "Arijit Singh, Palak Muchhal", coverUrl: "https://i.ytimg.com/vi/VdyBtGaspss/hqdefault.jpg", duration: 304 },
+      { id: "ytm-450p7goxZqg", ytId: "450p7goxZqg", title: "All of Me", artist: "John Legend", coverUrl: "https://i.ytimg.com/vi/450p7goxZqg/hqdefault.jpg", duration: 269 },
+      { id: "ytm-jHNNMj5bNQw", ytId: "jHNNMj5bNQw", title: "Kabira", artist: "Arijit Singh, Harshdeep Kaur", coverUrl: "https://i.ytimg.com/vi/jHNNMj5bNQw/hqdefault.jpg", duration: 223 }
     ]
   },
   {
@@ -954,11 +954,11 @@ export const VIBE_PLAYLISTS = [
     coverUrl: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&auto=format&fit=crop&q=80",
     trackCount: 7,
     tracks: [
-      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 263 },
-      { id: "ytm-ib-Qiyklq-Q", ytId: "ib-Qiyklq-Q", title: "Subhanallah", artist: "Sreerama Chandra, Shilpa Rao", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 249 },
-      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg", duration: 269 },
+      { id: "ytm-2Vv-BfVoq4g", ytId: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", coverUrl: "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg", duration: 263 },
+      { id: "ytm-ib-Qiyklq-Q", ytId: "ib-Qiyklq-Q", title: "Subhanallah", artist: "Sreerama Chandra, Shilpa Rao", coverUrl: "https://i.ytimg.com/vi/ib-Qiyklq-Q/hqdefault.jpg", duration: 249 },
+      { id: "ytm-yKNxeF4KMsY", ytId: "yKNxeF4KMsY", title: "Yellow", artist: "Coldplay", coverUrl: "https://i.ytimg.com/vi/yKNxeF4KMsY/hqdefault.jpg", duration: 269 },
       { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg", duration: 196 },
-      { id: "ytm-fdubeMFwuGs", ytId: "fdubeMFwuGs", title: "Ilahi", artist: "Arijit Singh, Pritam", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 229 },
+      { id: "ytm-fdubeMFwuGs", ytId: "fdubeMFwuGs", title: "Ilahi", artist: "Arijit Singh, Pritam", coverUrl: "https://i.ytimg.com/vi/fdubeMFwuGs/hqdefault.jpg", duration: 229 },
       { id: "ytm-e-ORhEE9VVg", ytId: "e-ORhEE9VVg", title: "Blank Space", artist: "Taylor Swift", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/64/0a/73/640a73aa-e818-f2b7-1c60-a886f45a1985/00843930014026.rgb.jpg/1000x1000bb.jpg", duration: 231 },
       { id: "ytm-H5v3kku4y6Q", ytId: "H5v3kku4y6Q", title: "As It Was", artist: "Harry Styles", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/1000x1000bb.jpg", duration: 167 }
     ]
@@ -975,10 +975,10 @@ export const VIBE_PLAYLISTS = [
       { id: "ytm-TUVcZfQe-Kw", ytId: "TUVcZfQe-Kw", title: "Levitating", artist: "Dua Lipa", coverUrl: "https://i.ytimg.com/vi/TUVcZfQe-Kw/hqdefault.jpg", duration: 203 },
       { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
       { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", coverUrl: "https://i.ytimg.com/vi/eVli-tstM5E/hqdefault.jpg", duration: 175 },
-      { id: "ytm-II2EO3NwUrQ", ytId: "II2EO3NwUrQ", title: "Badtameez Dil", artist: "Benny Dayal, Shefali Alvares", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 252 },
-      { id: "ytm-0zGcUoRlhmw", ytId: "0zGcUoRlhmw", title: "Closer", artist: "The Chainsmokers ft. Halsey", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 245 },
-      { id: "ytm-_ovdm2yX4MA", ytId: "_ovdm2yX4MA", title: "Levels", artist: "Avicii", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 198 },
-      { id: "ytm-YqeW9_5kURI", ytId: "YqeW9_5kURI", title: "Lean On", artist: "Major Lazer & DJ Snake", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg", duration: 176 }
+      { id: "ytm-II2EO3NwUrQ", ytId: "II2EO3NwUrQ", title: "Badtameez Dil", artist: "Benny Dayal, Shefali Alvares", coverUrl: "https://i.ytimg.com/vi/II2EO3NwUrQ/hqdefault.jpg", duration: 252 },
+      { id: "ytm-0zGcUoRlhmw", ytId: "0zGcUoRlhmw", title: "Closer", artist: "The Chainsmokers ft. Halsey", coverUrl: "https://i.ytimg.com/vi/0zGcUoRlhmw/hqdefault.jpg", duration: 245 },
+      { id: "ytm-_ovdm2yX4MA", ytId: "_ovdm2yX4MA", title: "Levels", artist: "Avicii", coverUrl: "https://i.ytimg.com/vi/_ovdm2yX4MA/hqdefault.jpg", duration: 198 },
+      { id: "ytm-YqeW9_5kURI", ytId: "YqeW9_5kURI", title: "Lean On", artist: "Major Lazer & DJ Snake", coverUrl: "https://i.ytimg.com/vi/YqeW9_5kURI/hqdefault.jpg", duration: 176 }
     ]
   },
   {
@@ -991,9 +991,9 @@ export const VIBE_PLAYLISTS = [
     trackCount: 6,
     tracks: [
       { id: "ytm-1Vko01D77Fg", ytId: "1Vko01D77Fg", title: "Cornfield Chase", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 127 },
-      { id: "ytm-RxabLA7UQ9k", ytId: "RxabLA7UQ9k", title: "Time (Inception)", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 275 },
+      { id: "ytm-RxabLA7UQ9k", ytId: "RxabLA7UQ9k", title: "Time (Inception)", artist: "Hans Zimmer", coverUrl: "https://i.ytimg.com/vi/RxabLA7UQ9k/hqdefault.jpg", duration: 275 },
       { id: "ytm-b2t2XURj7MU", ytId: "b2t2XURj7MU", title: "Devi Kavacham", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg", duration: 840 },
-      { id: "ytm-N4b4qUp8Sqw", ytId: "N4b4qUp8Sqw", title: "S.T.A.Y.", artist: "Hans Zimmer", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/c0/8b/4ac08b88-1bf9-0414-b0a6-c95610ec1f21/886444855426.jpg/1000x1000bb.jpg", duration: 383 },
+      { id: "ytm-N4b4qUp8Sqw", ytId: "N4b4qUp8Sqw", title: "S.T.A.Y.", artist: "Hans Zimmer", coverUrl: "https://i.ytimg.com/vi/N4b4qUp8Sqw/hqdefault.jpg", duration: 383 },
       { id: "ytm-x0rIbgR41Z4", ytId: "x0rIbgR41Z4", title: "Sri Lalitha Sahasranama Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg", duration: 1800 },
       { id: "ytm-Z943lUvW0G4", ytId: "Z943lUvW0G4", title: "Mahishasura Mardini Stotram", artist: "Appaji", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg", duration: 720 }
     ]
@@ -1011,9 +1011,9 @@ export const VIBE_PLAYLISTS = [
       { id: "ytm-JGwWNGJdvx8", ytId: "JGwWNGJdvx8", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg", duration: 233 },
       { id: "ytm-34Na4j8AVgA", ytId: "34Na4j8AVgA", title: "Starboy", artist: "The Weeknd ft. Daft Punk", coverUrl: "https://i.ytimg.com/vi/34Na4j8AVgA/hqdefault.jpg", duration: 230 },
       { id: "ytm-dvgZkm1xWPE", ytId: "dvgZkm1xWPE", title: "Viva La Vida", artist: "Coldplay", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg", duration: 242 },
-      { id: "ytm-0WtRNGubxJA", ytId: "0WtRNGubxJA", title: "Balam Pichkari", artist: "Vishal Dadlani, Shalmali Kholgade", coverUrl: "https://c.saavncdn.com/129/Yeh-Jawaani-Hai-Deewani-2013-500x500.jpg", duration: 289 },
+      { id: "ytm-0WtRNGubxJA", ytId: "0WtRNGubxJA", title: "Balam Pichkari", artist: "Vishal Dadlani, Shalmali Kholgade", coverUrl: "https://i.ytimg.com/vi/0WtRNGubxJA/hqdefault.jpg", duration: 289 },
       { id: "ytm-YVkUvmDQ3HY", ytId: "YVkUvmDQ3HY", title: "Without Me", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/dd/5c/e6/dd5ce621-f7d2-f767-7a08-e7a7eaa7870b/00602537526994.rgb.jpg/600x600bb.jpg", duration: 290 },
-      { id: "ytm-1w7OgIMMRc4", ytId: "1w7OgIMMRc4", title: "Sweet Child O' Mine", artist: "Guns N' Roses", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/1000x1000bb.jpg", duration: 356 }
+      { id: "ytm-1w7OgIMMRc4", ytId: "1w7OgIMMRc4", title: "Sweet Child O' Mine", artist: "Guns N' Roses", coverUrl: "https://i.ytimg.com/vi/1w7OgIMMRc4/hqdefault.jpg", duration: 356 }
     ]
   },
   {
@@ -1026,7 +1026,7 @@ export const VIBE_PLAYLISTS = [
     trackCount: 6,
     tracks: [
       { id: "ytm-7D4vNcK6D38", ytId: "7D4vNcK6D38", title: "Tu Jhoom", artist: "Abida Parveen x Naseebo Lal", coverUrl: "https://i.ytimg.com/vi/7D4vNcK6D38/hqdefault.jpg", duration: 399 },
-      { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Javed Ali, Mohit Chauhan", coverUrl: "https://c.saavncdn.com/979/Rockstar-2011-500x500.jpg", duration: 473 },
+      { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Javed Ali, Mohit Chauhan", coverUrl: "https://i.ytimg.com/vi/T94PHkuydcw/hqdefault.jpg", duration: 473 },
       { id: "ytm-5Eqb_-j3FDA", ytId: "5Eqb_-j3FDA", title: "Pasoori", artist: "Ali Sethi x Shae Gill", coverUrl: "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg", duration: 224 },
       { id: "ytm-cM7_7_u0b3A", ytId: "cM7_7_u0b3A", title: "Tajdar E Haram", artist: "Atif Aslam", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg", duration: 628 },
       { id: "ytm-kw4tT7SCmaY", ytId: "kw4tT7SCmaY", title: "Afreen Afreen", artist: "Rahat Fateh Ali Khan & Momina Mustehsan", coverUrl: "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg", duration: 405 },
@@ -1190,7 +1190,7 @@ export const getArtistDetails = (artistName) => {
         "title": "Tum Hi Ho",
         "artist": "Arijit Singh",
         "album": "Aashiqui 2",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/IJq0ydg105U/hqdefault.jpg",
         "duration": 262,
         "plays": "1,450,000,000"
       },
@@ -1200,7 +1200,7 @@ export const getArtistDetails = (artistName) => {
         "title": "Kesariya",
         "artist": "Arijit Singh",
         "album": "Brahmastra",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg",
         "duration": 268,
         "plays": "980,000,000"
       },
@@ -1210,7 +1210,7 @@ export const getArtistDetails = (artistName) => {
         "title": "Chaleya",
         "artist": "Arijit Singh, Shilpa Rao",
         "album": "Jawan",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/VAdGW7QDJiU/hqdefault.jpg",
         "duration": 198,
         "plays": "820,000,000"
       },
@@ -1220,19 +1220,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Apna Bana Le",
         "artist": "Arijit Singh",
         "album": "Bhediya",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/35/ee/8635eeea-d38e-1221-2ca6-aabcd481004f/8909024120539.png/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/ElZfdU54Cp8/hqdefault.jpg",
         "duration": 261,
-        "plays": "640,000,000"
-      },
-      {
-        "id": "ytm-5mqFmNl11-M",
-        "ytId": "5mqFmNl11-M",
-        "title": "O Maahi",
-        "artist": "Arijit Singh",
-        "album": "Dunki",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cf/cf/af/cfcfaf49-f337-eeab-2351-dd0a137dc740/8902894362139_cover.jpg/1000x1000bb.jpg",
-        "duration": 233,
-        "plays": "520,000,000"
+        "plays": "750,000,000"
       },
       {
         "id": "ytm-sK79tMps228",
@@ -1240,59 +1230,69 @@ export const getArtistDetails = (artistName) => {
         "title": "Shayad",
         "artist": "Arijit Singh",
         "album": "Love Aaj Kal",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/55/6d/e5/556de542-a36c-ae38-349f-b98f237f394c/8902894356787_cover.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/sK79tMps228/hqdefault.jpg",
         "duration": 247,
-        "plays": "610,000,000"
+        "plays": "690,000,000"
       },
       {
-        "id": "ytm-sAzlW4DYy1M",
-        "ytId": "sAzlW4DYy1M",
-        "title": "Agar Tum Saath Ho",
-        "artist": "Alka Yagnik, Arijit Singh",
-        "album": "Tamasha",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4e/c6/aa/4ec6aa91-e407-3363-222a-89a59b3be238/8902894354929_cover.jpg/1000x1000bb.jpg",
-        "duration": 341,
+        "id": "ytm-HrnrqYxYrbk",
+        "ytId": "HrnrqYxYrbk",
+        "title": "Satranga",
+        "artist": "Arijit Singh, Shreyas Puranik",
+        "album": "Animal",
+        "coverUrl": "https://i.ytimg.com/vi/HrnrqYxYrbk/hqdefault.jpg",
+        "duration": 271,
+        "plays": "580,000,000"
+      },
+      {
+        "id": "ytm-jHNNMj5bNQw",
+        "ytId": "jHNNMj5bNQw",
+        "title": "Kabira (Encore)",
+        "artist": "Arijit Singh, Harshdeep Kaur",
+        "album": "Yeh Jawaani Hai Deewani",
+        "coverUrl": "https://i.ytimg.com/vi/jHNNMj5bNQw/hqdefault.jpg",
+        "duration": 269,
         "plays": "890,000,000"
       },
       {
-        "id": "ytm-qL32aL6LqF0",
-        "ytId": "qL32aL6LqF0",
-        "title": "Satranga",
+        "id": "ytm-hoNb6HuNmU0",
+        "ytId": "hoNb6HuNmU0",
+        "title": "Channa Mereya",
         "artist": "Arijit Singh",
-        "album": "Animal",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b5/14/ae/b514aedb-8c65-0a30-0199-0ee611a9f143/8902894362092_cover.jpg/1000x1000bb.jpg",
-        "duration": 271,
-        "plays": "480,000,000"
+        "album": "Ae Dil Hai Mushkil",
+        "coverUrl": "https://i.ytimg.com/vi/hoNb6HuNmU0/hqdefault.jpg",
+        "duration": 289,
+        "plays": "920,000,000"
       },
       {
-        "id": "ytm-RLzC55ai0eo",
-        "ytId": "RLzC55ai0eo",
-        "title": "Heeriye",
-        "artist": "Jasleen Royal ft. Arijit Singh",
-        "album": "Heeriye Single",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/6c/37/ba/6c37ba84-3c82-f38b-d72b-586b3ec2a8c3/197188764029.jpg/1000x1000bb.jpg",
-        "duration": 194,
-        "plays": "730,000,000"
+        "id": "ytm-6MgsHSAcI9k",
+        "ytId": "6MgsHSAcI9k",
+        "title": "Agar Tum Saath Ho",
+        "artist": "Arijit Singh, Alka Yagnik",
+        "album": "Tamasha",
+        "coverUrl": "https://i.ytimg.com/vi/6MgsHSAcI9k/hqdefault.jpg",
+        "duration": 341,
+        "plays": "1,120,000,000"
       },
       {
-        "id": "ytm-Q1V_zX4-j3g",
-        "ytId": "Q1V_zX4-j3g",
-        "title": "Raabta",
+        "id": "ytm-9-AKLEbgxbI",
+        "ytId": "9-AKLEbgxbI",
+        "title": "Kalank Title Track",
         "artist": "Arijit Singh",
-        "album": "Agent Vinod",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f5/a8/ef/f5a8eff6-3392-4809-f8a1-63cb9f64bfbb/8902894352529_cover.jpg/1000x1000bb.jpg",
-        "duration": 243,
-        "plays": "390,000,000"
+        "album": "Kalank",
+        "coverUrl": "https://i.ytimg.com/vi/9-AKLEbgxbI/hqdefault.jpg",
+        "duration": 311,
+        "plays": "510,000,000"
       }
     ]
   },
   "atif-aslam": {
     "name": "Atif Aslam",
-    "monthlyListeners": "32,000,000",
-    "followersCount": "25,400,000",
-    "worldRank": "#1 in Pakistan",
+    "monthlyListeners": "34,200,000",
+    "followersCount": "28,600,000",
+    "worldRank": "#3 in South Asia",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg",
-    "bio": "Atif Aslam is an internationally acclaimed Pakistani playback singer, songwriter, and composer recognized for his emotive vocal belting, soul-stirring Coke Studio performances, and timeless South Asian romantic ballads. With multiple Lux Style Awards and global concert sell-outs, he remains one of the most beloved voices in modern music.",
+    "bio": "Atif Aslam is an iconic Pakistani playback singer, songwriter, and composer revered across the globe for his emotive vocal delivery, soaring high register, and timeless romantic and spiritual hits in Bollywood, Coke Studio, and Sufi pop.",
     "socials": {
       "instagram": "https://www.instagram.com/atifaslam/",
       "x": "https://x.com/itsaadee",
@@ -1300,10 +1300,10 @@ export const getArtistDetails = (artistName) => {
       "youtube": "https://www.youtube.com/@AtifAslamOfficial"
     },
     "tourInfo": {
-      "tourName": "Atif Aslam Symphony World Tour 2026",
-      "status": "Booking Now",
-      "dates": "Dubai, London, Birmingham, Toronto, Dallas, Chicago",
-      "ticketUrl": "https://www.ticketmaster.com"
+      "tourName": "Atif Aslam Live Arena Tour",
+      "status": "Tickets Live",
+      "dates": "Dubai Coca-Cola Arena, London O2 Arena, Manchester, Birmingham, Dallas, Houston",
+      "ticketUrl": "https://www.ticketmaster.com/atif-aslam-tickets/artist/1449841"
     },
     "topTracks": [
       {
@@ -1312,19 +1312,19 @@ export const getArtistDetails = (artistName) => {
         "title": "Tajdar E Haram",
         "artist": "Atif Aslam",
         "album": "Coke Studio Season 8",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/cM7_7_u0b3A/hqdefault.jpg",
         "duration": 628,
-        "plays": "490,000,000"
+        "plays": "510,000,000"
       },
       {
         "id": "ytm-Q7wPzK5m91c",
         "ytId": "Q7wPzK5m91c",
         "title": "Aadat",
         "artist": "Atif Aslam",
-        "album": "Jal / Kalyug",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/41/48/27414810-2929-aa34-e145-000948a5c8b7/0602465586596.jpg/600x600bb.jpg",
-        "duration": 271,
-        "plays": "280,000,000"
+        "album": "Jal Pari",
+        "coverUrl": "https://i.ytimg.com/vi/Q7wPzK5m91c/hqdefault.jpg",
+        "duration": 268,
+        "plays": "430,000,000"
       },
       {
         "id": "ytm-SAcpESN_Fk4",
@@ -1332,9 +1332,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Dil Diyan Gallan",
         "artist": "Atif Aslam",
         "album": "Tiger Zinda Hai",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/SAcpESN_Fk4/hqdefault.jpg",
         "duration": 260,
-        "plays": "750,000,000"
+        "plays": "820,000,000"
       },
       {
         "id": "ytm-h_fXz_H_hGg",
@@ -1342,9 +1342,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Woh Lamhe Woh Baatein",
         "artist": "Atif Aslam",
         "album": "Zeher",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/41/48/27414810-2929-aa34-e145-000948a5c8b7/0602465586596.jpg/600x600bb.jpg",
-        "duration": 322,
-        "plays": "410,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/h_fXz_H_hGg/hqdefault.jpg",
+        "duration": 321,
+        "plays": "390,000,000"
       },
       {
         "id": "ytm-IlVfL5P-o7E",
@@ -1352,9 +1352,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Tere Sang Yaara",
         "artist": "Atif Aslam",
         "album": "Rustom",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/IlVfL5P-o7E/hqdefault.jpg",
         "duration": 290,
-        "plays": "620,000,000"
+        "plays": "640,000,000"
       },
       {
         "id": "ytm-P8PWN1OmZOA",
@@ -1362,9 +1362,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Tu Jaane Na",
         "artist": "Atif Aslam",
         "album": "Ajab Prem Ki Ghazab Kahani",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/P8PWN1OmZOA/hqdefault.jpg",
         "duration": 341,
-        "plays": "580,000,000"
+        "plays": "590,000,000"
       },
       {
         "id": "ytm-BadBAMnPXtc",
@@ -1372,9 +1372,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Pehli Nazar Mein",
         "artist": "Atif Aslam",
         "album": "Race",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/BadBAMnPXtc/hqdefault.jpg",
         "duration": 314,
-        "plays": "510,000,000"
+        "plays": "470,000,000"
       },
       {
         "id": "ytm-zi-xM_40N-c",
@@ -1382,19 +1382,19 @@ export const getArtistDetails = (artistName) => {
         "title": "Jeena Jeena",
         "artist": "Atif Aslam",
         "album": "Badlapur",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/55/6d/e5/556de542-a36c-ae38-349f-b98f237f394c/8902894356787_cover.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/zi-xM_40N-c/hqdefault.jpg",
         "duration": 229,
-        "plays": "470,000,000"
+        "plays": "510,000,000"
       },
       {
         "id": "ytm-dO3u5M4R0d8",
         "ytId": "dO3u5M4R0d8",
         "title": "Kadi Te Has Bol",
-        "artist": "Atif Aslam",
-        "album": "Velo Sound Station",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg",
-        "duration": 254,
-        "plays": "210,000,000"
+        "artist": "Atif Aslam, Veloce",
+        "album": "Veloce Sound",
+        "coverUrl": "https://i.ytimg.com/vi/dO3u5M4R0d8/hqdefault.jpg",
+        "duration": 236,
+        "plays": "240,000,000"
       },
       {
         "id": "ytm-tLqfn_MfqfM",
@@ -1402,29 +1402,29 @@ export const getArtistDetails = (artistName) => {
         "title": "Kuch Is Tarah",
         "artist": "Atif Aslam",
         "album": "Doorie",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/41/48/27414810-2929-aa34-e145-000948a5c8b7/0602465586596.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/tLqfn_MfqfM/hqdefault.jpg",
         "duration": 313,
-        "plays": "330,000,000"
+        "plays": "310,000,000"
       }
     ]
   },
   "ap-dhillon": {
     "name": "AP Dhillon",
-    "monthlyListeners": "22,500,000",
-    "followersCount": "14,200,000",
-    "worldRank": "#2 in Punjabi Global",
-    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
-    "bio": "Amritpal Singh Dhillon (AP Dhillon) is an Indo-Canadian singer, rapper, and record producer affiliated with Run-Up Records. Innovating Punjabi pop, hip hop, and dark synthesizers, his anthems Brown Munde, Insane, Excuses, and With You have made him a worldwide streaming powerhouse.",
+    "monthlyListeners": "22,800,000",
+    "followersCount": "16,400,000",
+    "worldRank": "#5 in Punjabi Global",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg",
+    "bio": "Amritpal Singh Dhillon, known globally as AP Dhillon, is a Canadian-Indian singer, rapper, and record producer who pioneered the modern global wave of Punjabi trap, synthwave, and drill fusion alongside Run-Up Records.",
     "socials": {
-      "instagram": "https://www.instagram.com/apdhillon/",
+      "instagram": "https://www.instagram.com/ap.dhillxn/",
       "x": "https://x.com/apdhillxn",
-      "facebook": "https://www.facebook.com/apdhillonmusic/",
-      "youtube": "https://www.youtube.com/@RunUpRecords"
+      "facebook": "https://www.facebook.com/apdhillxn/",
+      "youtube": "https://www.youtube.com/@APDHILLON"
     },
     "tourInfo": {
-      "tourName": "The Brownprint Arena Tour 2026",
-      "status": "Filling Fast",
-      "dates": "Vancouver, Toronto, London, Chandigarh, Delhi, Mumbai",
+      "tourName": "AP Dhillon: The Brownprint Tour",
+      "status": "Tickets Live",
+      "dates": "Vancouver, Toronto, New York, Los Angeles, London, Mumbai, Chandigarh, Delhi",
       "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
@@ -1433,110 +1433,110 @@ export const getArtistDetails = (artistName) => {
         "ytId": "VNs_cCtdbPc",
         "title": "Brown Munde",
         "artist": "AP Dhillon, Gurinder Gill, Shinda Kahlon",
-        "album": "Not by Chance",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
+        "album": "Brown Munde",
+        "coverUrl": "https://i.ytimg.com/vi/VNs_cCtdbPc/hqdefault.jpg",
         "duration": 267,
-        "plays": "710,000,000"
+        "plays": "720,000,000"
       },
       {
-        "id": "ytm-vX2cDW8LU21",
-        "ytId": "vX2cDW8LU21",
+        "id": "ytm-armvXvXq39g",
+        "ytId": "armvXvXq39g",
+        "title": "Insane",
+        "artist": "AP Dhillon, Gurinder Gill, Shinda Kahlon",
+        "album": "Hidden Gems",
+        "coverUrl": "https://i.ytimg.com/vi/armvXvXq39g/hqdefault.jpg",
+        "duration": 206,
+        "plays": "580,000,000"
+      },
+      {
+        "id": "ytm-vX2cDW8up28",
+        "ytId": "vX2cDW8up28",
         "title": "Excuses",
         "artist": "AP Dhillon, Gurinder Gill",
-        "album": "Hidden Gems",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
+        "album": "Excuses",
+        "coverUrl": "https://i.ytimg.com/vi/vX2cDW8up28/hqdefault.jpg",
         "duration": 176,
         "plays": "640,000,000"
       },
       {
-        "id": "ytm-cqPdpms7V24",
-        "ytId": "cqPdpms7V24",
-        "title": "Insane",
-        "artist": "AP Dhillon, Shinda Kahlon, Gurinder Gill",
-        "album": "Insane Single",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
-        "duration": 206,
-        "plays": "490,000,000"
+        "id": "ytm-cl04UP_F7pY",
+        "ytId": "cl04UP_F7pY",
+        "title": "Dil Nu",
+        "artist": "AP Dhillon, Shinda Kahlon",
+        "album": "Two Hearts Never Break the Same",
+        "coverUrl": "https://i.ytimg.com/vi/cl04UP_F7pY/hqdefault.jpg",
+        "duration": 232,
+        "plays": "410,000,000"
       },
       {
-        "id": "ytm-aT3K_B_v9l4",
-        "ytId": "aT3K_B_v9l4",
+        "id": "ytm-X8o8Z3Fk7uQ",
+        "ytId": "X8o8Z3Fk7uQ",
         "title": "With You",
         "artist": "AP Dhillon",
-        "album": "Two Hearts Never Break the Same",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
+        "album": "With You",
+        "coverUrl": "https://i.ytimg.com/vi/X8o8Z3Fk7uQ/hqdefault.jpg",
         "duration": 154,
         "plays": "390,000,000"
       },
       {
-        "id": "ytm-j7VfG0948vA",
-        "ytId": "j7VfG0948vA",
+        "id": "ytm-wQ3t1v1A5lE",
+        "ytId": "wQ3t1v1A5lE",
         "title": "Summer High",
         "artist": "AP Dhillon",
-        "album": "Summer High Single",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
+        "album": "Summer High",
+        "coverUrl": "https://i.ytimg.com/vi/wQ3t1v1A5lE/hqdefault.jpg",
         "duration": 177,
-        "plays": "320,000,000"
+        "plays": "360,000,000"
       },
       {
-        "id": "ytm-t64mJbXJgZQ",
-        "ytId": "t64mJbXJgZQ",
-        "title": "Dil Nu",
-        "artist": "AP Dhillon, Shinda Kahlon",
-        "album": "Two Hearts Never Break the Same",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
-        "duration": 219,
-        "plays": "280,000,000"
-      },
-      {
-        "id": "ytm-O3w_9q3r6d0",
-        "ytId": "O3w_9q3r6d0",
-        "title": "Maabelle",
-        "artist": "AP Dhillon, Amari",
-        "album": "Hidden Gems",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
-        "duration": 161,
-        "plays": "230,000,000"
+        "id": "ytm-7c0YjT6b8jI",
+        "ytId": "7c0YjT6b8jI",
+        "title": "Sleepless",
+        "artist": "AP Dhillon",
+        "album": "The Brownprint",
+        "coverUrl": "https://i.ytimg.com/vi/7c0YjT6b8jI/hqdefault.jpg",
+        "duration": 191,
+        "plays": "180,000,000"
       },
       {
         "id": "ytm-d2q8c3h_q2g",
         "ytId": "d2q8c3h_q2g",
-        "title": "Wo Noor",
+        "title": "Saada Pyaar",
         "artist": "AP Dhillon",
-        "album": "Two Hearts",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
-        "duration": 198,
-        "plays": "210,000,000"
+        "album": "Not by Chance",
+        "coverUrl": "https://i.ytimg.com/vi/d2q8c3h_q2g/hqdefault.jpg",
+        "duration": 211,
+        "plays": "290,000,000"
       },
       {
         "id": "ytm-U3x7XqQ8b6o",
         "ytId": "U3x7XqQ8b6o",
         "title": "Majhail",
         "artist": "AP Dhillon, Gurinder Gill",
-        "album": "Majhail Single",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
-        "duration": 207,
-        "plays": "290,000,000"
+        "album": "Majhail",
+        "coverUrl": "https://i.ytimg.com/vi/U3x7XqQ8b6o/hqdefault.jpg",
+        "duration": 203,
+        "plays": "260,000,000"
       },
       {
-        "id": "ytm-Gg9j8n6mK5w",
-        "ytId": "Gg9j8n6mK5w",
+        "id": "ytm-sD_8x6z-rX0",
+        "ytId": "sD_8x6z-rX0",
         "title": "Toxic",
         "artist": "AP Dhillon",
         "album": "Not by Chance",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/91/3c/6e/913c6e99-4d89-8d19-3221-a4773da2d989/197187122189.jpg/1000x1000bb.jpg",
-        "duration": 172,
-        "plays": "190,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/sD_8x6z-rX0/hqdefault.jpg",
+        "duration": 188,
+        "plays": "210,000,000"
       }
     ]
   },
   "diljit-dosanjh": {
     "name": "Diljit Dosanjh",
-    "monthlyListeners": "24,000,000",
-    "followersCount": "19,500,000",
-    "worldRank": "#1 in Punjabi Worldwide",
-    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
-    "bio": "Diljit Dosanjh is a global cultural icon, singer, and actor who made history as the first Indian artist to sell out massive stadiums across North America, Europe, Australia, and perform at Coachella. His Dil-Luminati Tour has smashed worldwide touring records.",
+    "monthlyListeners": "29,400,000",
+    "followersCount": "24,100,000",
+    "worldRank": "#2 in Punjabi Global",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+    "bio": "Diljit Dosanjh is a global cultural icon, singer, songwriter, and actor who made history as the first Indian artist to perform at Coachella. He has conquered arenas from Toronto to London with high-energy Punjabi pop, bhangra, and international chart collaborations.",
     "socials": {
       "instagram": "https://www.instagram.com/diljitdosanjh/",
       "x": "https://x.com/diljitdosanjh",
@@ -1544,121 +1544,121 @@ export const getArtistDetails = (artistName) => {
       "youtube": "https://www.youtube.com/@DiljitDosanjh"
     },
     "tourInfo": {
-      "tourName": "Dil-Luminati World Tour 2026",
-      "status": "Stadiums Selling Out",
-      "dates": "Delhi, Mumbai, Bengaluru, Vancouver, Toronto, London",
+      "tourName": "Dil-Luminati World Stadium Tour",
+      "status": "Tickets Live",
+      "dates": "Vancouver BC Place, Toronto Rogers Centre, Los Angeles, London O2, Delhi JLN Stadium, Mumbai",
       "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
       {
-        "id": "ytm-mH_ELKGvQ7E",
-        "ytId": "mH_ELKGvQ7E",
+        "id": "ytm-K4gT5p9q8n0",
+        "ytId": "K4gT5p9q8n0",
         "title": "Lover",
         "artist": "Diljit Dosanjh",
         "album": "MoonChild Era",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
-        "duration": 191,
-        "plays": "380,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/K4gT5p9q8n0/hqdefault.jpg",
+        "duration": 195,
+        "plays": "420,000,000"
       },
       {
-        "id": "ytm-cl0a3i2wFcc",
-        "ytId": "cl0a3i2wFcc",
+        "id": "ytm-Cl7P8_N5e7A",
+        "ytId": "Cl7P8_N5e7A",
         "title": "G.O.A.T.",
         "artist": "Diljit Dosanjh",
         "album": "G.O.A.T.",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/Cl7P8_N5e7A/hqdefault.jpg",
         "duration": 223,
-        "plays": "460,000,000"
+        "plays": "380,000,000"
       },
       {
-        "id": "ytm-T4_53T6u-qI",
-        "ytId": "T4_53T6u-qI",
+        "id": "ytm-2b8m7w9e0r1",
+        "ytId": "2b8m7w9e0r1",
         "title": "Born to Shine",
         "artist": "Diljit Dosanjh",
         "album": "G.O.A.T.",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
-        "duration": 213,
-        "plays": "390,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/2b8m7w9e0r1/hqdefault.jpg",
+        "duration": 214,
+        "plays": "350,000,000"
       },
       {
-        "id": "ytm-Z0Gq3V7d3_4",
-        "ytId": "Z0Gq3V7d3_4",
-        "title": "Naina",
-        "artist": "Diljit Dosanjh, Badshah",
-        "album": "Crew",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
-        "duration": 180,
+        "id": "ytm-5q7n8m9b0w2",
+        "ytId": "5q7n8m9b0w2",
+        "title": "Kinni Kinni",
+        "artist": "Diljit Dosanjh",
+        "album": "Ghost",
+        "coverUrl": "https://i.ytimg.com/vi/5q7n8m9b0w2/hqdefault.jpg",
+        "duration": 201,
         "plays": "310,000,000"
       },
       {
-        "id": "ytm-1PqG7YjGqHk",
-        "ytId": "1PqG7YjGqHk",
-        "title": "Hass Hass",
-        "artist": "Diljit Dosanjh ft. Sia",
-        "album": "Hass Hass Single",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
-        "duration": 153,
-        "plays": "260,000,000"
-      },
-      {
-        "id": "ytm-p9R3v7m9q0w",
-        "ytId": "p9R3v7m9q0w",
+        "id": "ytm-_o6n7d1o6Gk",
+        "ytId": "_o6n7d1o6Gk",
         "title": "Lemonade",
         "artist": "Diljit Dosanjh",
-        "album": "Drive Thru",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
+        "album": "Drive",
+        "coverUrl": "https://i.ytimg.com/vi/_o6n7d1o6Gk/hqdefault.jpg",
+        "duration": 184,
+        "plays": "240,000,000"
+      },
+      {
+        "id": "ytm-2v8xK5_0M8o",
+        "ytId": "2v8xK5_0M8o",
+        "title": "Naina",
+        "artist": "Diljit Dosanjh, Badshah",
+        "album": "Crew",
+        "coverUrl": "https://i.ytimg.com/vi/2v8xK5_0M8o/hqdefault.jpg",
+        "duration": 180,
+        "plays": "290,000,000"
+      },
+      {
+        "id": "ytm-4rX6wY7X2y4",
+        "ytId": "4rX6wY7X2y4",
+        "title": "Clash",
+        "artist": "Diljit Dosanjh",
+        "album": "G.O.A.T.",
+        "coverUrl": "https://i.ytimg.com/vi/4rX6wY7X2y4/hqdefault.jpg",
         "duration": 172,
         "plays": "220,000,000"
       },
       {
-        "id": "ytm-Gk3M7r_9s3o",
-        "ytId": "Gk3M7r_9s3o",
-        "title": "Clash",
-        "artist": "Diljit Dosanjh",
-        "album": "G.O.A.T.",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
-        "duration": 176,
-        "plays": "240,000,000"
-      },
-      {
-        "id": "ytm-b8q6e2n9p4w",
-        "ytId": "b8q6e2n9p4w",
-        "title": "Peaches",
-        "artist": "Diljit Dosanjh",
-        "album": "Drive Thru",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
-        "duration": 191,
-        "plays": "190,000,000"
-      },
-      {
-        "id": "ytm-d7R3n2q6b1s",
-        "ytId": "d7R3n2q6b1s",
+        "id": "ytm-4p6o8i0u2y4",
+        "ytId": "4p6o8i0u2y4",
         "title": "Case",
         "artist": "Diljit Dosanjh",
-        "album": "Roar",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
-        "duration": 188,
-        "plays": "170,000,000"
+        "album": "Ghost",
+        "coverUrl": "https://i.ytimg.com/vi/4p6o8i0u2y4/hqdefault.jpg",
+        "duration": 198,
+        "plays": "180,000,000"
       },
       {
-        "id": "ytm-34Na4j8AVgA",
-        "ytId": "34Na4j8AVgA",
+        "id": "ytm-7u9i1o3p5a7",
+        "ytId": "7u9i1o3p5a7",
         "title": "Do You Know",
         "artist": "Diljit Dosanjh",
-        "album": "Do You Know Single",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/47/31/d54731d7-2f50-3236-c0c1-ce4330138980/197188737030.jpg/1000x1000bb.jpg",
-        "duration": 221,
-        "plays": "340,000,000"
+        "album": "Do You Know",
+        "coverUrl": "https://i.ytimg.com/vi/7u9i1o3p5a7/hqdefault.jpg",
+        "duration": 231,
+        "plays": "330,000,000"
+      },
+      {
+        "id": "ytm-8a0s2d4f6g8",
+        "ytId": "8a0s2d4f6g8",
+        "title": "Raat Di Gedi",
+        "artist": "Diljit Dosanjh, Neeru Bajwa",
+        "album": "Raat Di Gedi",
+        "coverUrl": "https://i.ytimg.com/vi/8a0s2d4f6g8/hqdefault.jpg",
+        "duration": 254,
+        "plays": "270,000,000"
       }
     ]
   },
   "the-weeknd": {
     "name": "The Weeknd",
-    "monthlyListeners": "112,000,000",
-    "followersCount": "88,500,000",
-    "worldRank": "#1 Globally",
-    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg",
-    "bio": "The Weeknd (Abel Makkonen Tesfaye) is a Canadian singer, songwriter, and record producer known for his sonic versatility, dark lyricism, and cinematic conceptual albums. Holding Guinness World Records for the most popular artist in the world, his megahit 'Blinding Lights' is the #1 Billboard Hot 100 song of all time.",
+    "monthlyListeners": "112,500,000",
+    "followersCount": "86,200,000",
+    "worldRank": "#1 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+    "bio": "Abel Makkonen Tesfaye, professionally known as The Weeknd, is a Canadian singer, songwriter, and record producer widely hailed as one of the most influential pop and R&B artists of modern history, dominating world charts with groundbreaking dark R&B, synthpop, and disco hits.",
     "socials": {
       "instagram": "https://www.instagram.com/theweeknd/",
       "x": "https://x.com/theweeknd",
@@ -1666,10 +1666,10 @@ export const getArtistDetails = (artistName) => {
       "youtube": "https://www.youtube.com/@TheWeeknd"
     },
     "tourInfo": {
-      "tourName": "After Hours Til Dawn Stadium Tour",
-      "status": "Global Stadiums Open",
-      "dates": "Los Angeles, London, Paris, Sydney, Tokyo, Sao Paulo",
-      "ticketUrl": "https://www.ticketmaster.com"
+      "tourName": "After Hours Til Dawn Global Stadium Tour",
+      "status": "Tickets Live",
+      "dates": "London Wembley Stadium, Paris Stade de France, Los Angeles SoFi Stadium, Sydney, Tokyo Dome",
+      "ticketUrl": "https://www.ticketmaster.com/the-weeknd-tickets/artist/1697014"
     },
     "topTracks": [
       {
@@ -1678,9 +1678,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Blinding Lights",
         "artist": "The Weeknd",
         "album": "After Hours",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg",
         "duration": 200,
-        "plays": "4,100,000,000"
+        "plays": "4,120,000,000"
       },
       {
         "id": "ytm-34Na4j8HLws",
@@ -1688,9 +1688,19 @@ export const getArtistDetails = (artistName) => {
         "title": "Starboy",
         "artist": "The Weeknd ft. Daft Punk",
         "album": "Starboy",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/34Na4j8HLws/hqdefault.jpg",
         "duration": 230,
-        "plays": "3,200,000,000"
+        "plays": "3,250,000,000"
+      },
+      {
+        "id": "ytm-XXYlFuWEuKI",
+        "ytId": "XXYlFuWEuKI",
+        "title": "Save Your Tears",
+        "artist": "The Weeknd",
+        "album": "After Hours",
+        "coverUrl": "https://i.ytimg.com/vi/XXYlFuWEuKI/hqdefault.jpg",
+        "duration": 215,
+        "plays": "2,480,000,000"
       },
       {
         "id": "ytm-yzTuBuRdAyA",
@@ -1698,19 +1708,9 @@ export const getArtistDetails = (artistName) => {
         "title": "The Hills",
         "artist": "The Weeknd",
         "album": "Beauty Behind the Madness",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/30/05/1e/30051e57-a63a-3acc-4b30-42568293f5f7/15UMGIM36514.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/yzTuBuRdAyA/hqdefault.jpg",
         "duration": 242,
-        "plays": "2,500,000,000"
-      },
-      {
-        "id": "ytm-XXYlFuWEuKi",
-        "ytId": "XXYlFuWEuKi",
-        "title": "Save Your Tears",
-        "artist": "The Weeknd",
-        "album": "After Hours",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg",
-        "duration": 215,
-        "plays": "2,200,000,000"
+        "plays": "2,190,000,000"
       },
       {
         "id": "ytm-KEI4qS4P-3Y",
@@ -1718,69 +1718,69 @@ export const getArtistDetails = (artistName) => {
         "title": "Can't Feel My Face",
         "artist": "The Weeknd",
         "album": "Beauty Behind the Madness",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/30/05/1e/30051e57-a63a-3acc-4b30-42568293f5f7/15UMGIM36514.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/KEI4qS4P-3Y/hqdefault.jpg",
         "duration": 213,
-        "plays": "1,950,000,000"
+        "plays": "1,870,000,000"
       },
       {
-        "id": "ytm-uPD0QOGChkM",
-        "ytId": "uPD0QOGChkM",
-        "title": "Die For You",
-        "artist": "The Weeknd",
-        "album": "Starboy",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg",
-        "duration": 260,
-        "plays": "2,100,000,000"
-      },
-      {
-        "id": "ytm-r7zJ8r_6o0w",
-        "ytId": "r7zJ8r_6o0w",
-        "title": "Creepin'",
-        "artist": "Metro Boomin, The Weeknd, 21 Savage",
-        "album": "Heroes & Villains",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg",
-        "duration": 221,
-        "plays": "1,600,000,000"
-      },
-      {
-        "id": "ytm-JPIhUaONi88",
-        "ytId": "JPIhUaONi88",
-        "title": "Often",
-        "artist": "The Weeknd",
-        "album": "Beauty Behind the Madness",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/30/05/1e/30051e57-a63a-3acc-4b30-42568293f5f7/15UMGIM36514.rgb.jpg/1000x1000bb.jpg",
-        "duration": 249,
-        "plays": "1,450,000,000"
-      },
-      {
-        "id": "ytm-qFLhGq0060w",
-        "ytId": "qFLhGq0060w",
+        "id": "ytm-O1OTWCd40bo",
+        "ytId": "O1OTWCd40bo",
         "title": "I Feel It Coming",
         "artist": "The Weeknd ft. Daft Punk",
         "album": "Starboy",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/O1OTWCd40bo/hqdefault.jpg",
         "duration": 269,
-        "plays": "1,750,000,000"
+        "plays": "1,640,000,000"
       },
       {
-        "id": "ytm-M4ZoCHID9GI",
-        "ytId": "M4ZoCHID9GI",
+        "id": "ytm-dqt8Z1k0oTQ",
+        "ytId": "dqt8Z1k0oTQ",
         "title": "Call Out My Name",
         "artist": "The Weeknd",
         "album": "My Dear Melancholy,",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/dqt8Z1k0oTQ/hqdefault.jpg",
         "duration": 228,
-        "plays": "1,850,000,000"
+        "plays": "1,520,000,000"
+      },
+      {
+        "id": "ytm-R38PjB458Uo",
+        "ytId": "R38PjB458Uo",
+        "title": "Take My Breath",
+        "artist": "The Weeknd",
+        "album": "Dawn FM",
+        "coverUrl": "https://i.ytimg.com/vi/R38PjB458Uo/hqdefault.jpg",
+        "duration": 220,
+        "plays": "890,000,000"
+      },
+      {
+        "id": "ytm-7_1wV7w1Yzo",
+        "ytId": "7_1wV7w1Yzo",
+        "title": "Out of Time",
+        "artist": "The Weeknd",
+        "album": "Dawn FM",
+        "coverUrl": "https://i.ytimg.com/vi/7_1wV7w1Yzo/hqdefault.jpg",
+        "duration": 214,
+        "plays": "670,000,000"
+      },
+      {
+        "id": "ytm-2g811Eo7K8U",
+        "ytId": "2g811Eo7K8U",
+        "title": "Earned It",
+        "artist": "The Weeknd",
+        "album": "Fifty Shades of Grey",
+        "coverUrl": "https://i.ytimg.com/vi/2g811Eo7K8U/hqdefault.jpg",
+        "duration": 252,
+        "plays": "1,420,000,000"
       }
     ]
   },
   "taylor-swift": {
     "name": "Taylor Swift",
-    "monthlyListeners": "105,000,000",
+    "monthlyListeners": "108,200,000",
     "followersCount": "115,000,000",
-    "worldRank": "#2 Globally",
+    "worldRank": "#2 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Taylor Swift is an American singer-songwriter whose narrative songwriting, genre transformations, and artistic autonomy have cemented her as a defining musical figure of the 21st century. The record-smashing Eras Tour is the highest-grossing concert tour of all time.",
+    "bio": "Taylor Alison Swift is an American singer-songwriter whose narrative songwriting, artistic reinventions, and cultural impact have redefined modern popular music. Winner of 14 Grammy Awards including Album of the Year four times.",
     "socials": {
       "instagram": "https://www.instagram.com/taylorswift/",
       "x": "https://x.com/taylorswift13",
@@ -1788,10 +1788,10 @@ export const getArtistDetails = (artistName) => {
       "youtube": "https://www.youtube.com/@TaylorSwift"
     },
     "tourInfo": {
-      "tourName": "The Eras Tour",
-      "status": "Record-Breaking Arena Run",
-      "dates": "Vancouver, Indianapolis, New Orleans, Miami, London",
-      "ticketUrl": "https://www.ticketmaster.com"
+      "tourName": "The Eras Tour: International Stadiums",
+      "status": "Tickets Live",
+      "dates": "London Wembley Stadium, Tokyo Dome, Sydney Accor Stadium, Singapore National Stadium, Toronto Rogers Centre",
+      "ticketUrl": "https://www.ticketmaster.com/taylor-swift-tickets/artist/1094215"
     },
     "topTracks": [
       {
@@ -1800,19 +1800,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Cruel Summer",
         "artist": "Taylor Swift",
         "album": "Lover",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/ic8j13piAhQ/hqdefault.jpg",
         "duration": 178,
-        "plays": "2,200,000,000"
-      },
-      {
-        "id": "ytm-e-ORhEE9VVg",
-        "ytId": "e-ORhEE9VVg",
-        "title": "Blank Space",
-        "artist": "Taylor Swift",
-        "album": "1989",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a7/98/d8/a798d867-344d-2bf2-fbfe-d2d1412dcef8/14UMDIM03793.rgb.jpg/1000x1000bb.jpg",
-        "duration": 231,
-        "plays": "1,900,000,000"
+        "plays": "2,350,000,000"
       },
       {
         "id": "ytm-b1kbLwvqugk",
@@ -1820,9 +1810,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Anti-Hero",
         "artist": "Taylor Swift",
         "album": "Midnights",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/3d/01/f2/3d01f2e5-5a08-835f-3d30-d031720b2b80/22UM1IM07364.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/b1kbLwvqugk/hqdefault.jpg",
         "duration": 200,
-        "plays": "1,500,000,000"
+        "plays": "1,890,000,000"
       },
       {
         "id": "ytm-nfWlot6h_JM",
@@ -1830,49 +1820,19 @@ export const getArtistDetails = (artistName) => {
         "title": "Shake It Off",
         "artist": "Taylor Swift",
         "album": "1989",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a7/98/d8/a798d867-344d-2bf2-fbfe-d2d1412dcef8/14UMDIM03793.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/nfWlot6h_JM/hqdefault.jpg",
         "duration": 219,
-        "plays": "2,400,000,000"
+        "plays": "3,400,000,000"
       },
       {
-        "id": "ytm-mH_ELKGvQ7E",
-        "ytId": "mH_ELKGvQ7E",
-        "title": "Lover",
-        "artist": "Taylor Swift",
-        "album": "Lover",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg",
-        "duration": 221,
-        "plays": "1,600,000,000"
-      },
-      {
-        "id": "ytm-aXzVF3jMxqw",
-        "ytId": "aXzVF3jMxqw",
-        "title": "Love Story (Taylor's Version)",
-        "artist": "Taylor Swift",
-        "album": "Fearless",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg",
-        "duration": 235,
-        "plays": "1,750,000,000"
-      },
-      {
-        "id": "ytm-K-a8s8OLBSE",
-        "ytId": "K-a8s8OLBSE",
-        "title": "Cardigan",
-        "artist": "Taylor Swift",
-        "album": "Folklore",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg",
-        "duration": 239,
-        "plays": "1,200,000,000"
-      },
-      {
-        "id": "ytm--CmadmM5cOk",
-        "ytId": "-CmadmM5cOk",
-        "title": "Style",
+        "id": "ytm-e-ORhEE9VVg",
+        "ytId": "e-ORhEE9VVg",
+        "title": "Blank Space",
         "artist": "Taylor Swift",
         "album": "1989",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a7/98/d8/a798d867-344d-2bf2-fbfe-d2d1412dcef8/14UMDIM03793.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/e-ORhEE9VVg/hqdefault.jpg",
         "duration": 231,
-        "plays": "1,450,000,000"
+        "plays": "3,350,000,000"
       },
       {
         "id": "ytm-VuNIsY6JdUw",
@@ -1880,17 +1840,57 @@ export const getArtistDetails = (artistName) => {
         "title": "You Belong With Me",
         "artist": "Taylor Swift",
         "album": "Fearless",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/VuNIsY6JdUw/hqdefault.jpg",
         "duration": 231,
-        "plays": "1,650,000,000"
+        "plays": "1,620,000,000"
       },
       {
-        "id": "ytm-q3zkkLckeyM",
-        "ytId": "q3zkkLckeyM",
+        "id": "ytm-8xg3vE8Ie_E",
+        "ytId": "8xg3vE8Ie_E",
+        "title": "Love Story",
+        "artist": "Taylor Swift",
+        "album": "Fearless",
+        "coverUrl": "https://i.ytimg.com/vi/8xg3vE8Ie_E/hqdefault.jpg",
+        "duration": 235,
+        "plays": "1,850,000,000"
+      },
+      {
+        "id": "ytm-WA4iX5D9P64",
+        "ytId": "WA4iX5D9P64",
+        "title": "Cardigan",
+        "artist": "Taylor Swift",
+        "album": "Folklore",
+        "coverUrl": "https://i.ytimg.com/vi/WA4iX5D9P64/hqdefault.jpg",
+        "duration": 239,
+        "plays": "1,240,000,000"
+      },
+      {
+        "id": "ytm-QcIy9NiNbmo",
+        "ytId": "QcIy9NiNbmo",
+        "title": "Bad Blood",
+        "artist": "Taylor Swift ft. Kendrick Lamar",
+        "album": "1989",
+        "coverUrl": "https://i.ytimg.com/vi/QcIy9NiNbmo/hqdefault.jpg",
+        "duration": 211,
+        "plays": "1,680,000,000"
+      },
+      {
+        "id": "ytm-3tmd-ClpJxA",
+        "ytId": "3tmd-ClpJxA",
+        "title": "Look What You Made Me Do",
+        "artist": "Taylor Swift",
+        "album": "Reputation",
+        "coverUrl": "https://i.ytimg.com/vi/3tmd-ClpJxA/hqdefault.jpg",
+        "duration": 255,
+        "plays": "1,530,000,000"
+      },
+      {
+        "id": "ytm-tollGa3S0o8",
+        "ytId": "tollGa3S0o8",
         "title": "Fortnight",
         "artist": "Taylor Swift ft. Post Malone",
         "album": "The Tortured Poets Department",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/tollGa3S0o8/hqdefault.jpg",
         "duration": 228,
         "plays": "980,000,000"
       }
@@ -1898,11 +1898,11 @@ export const getArtistDetails = (artistName) => {
   },
   "billie-eilish": {
     "name": "Billie Eilish",
-    "monthlyListeners": "104,000,000",
-    "followersCount": "94,000,000",
-    "worldRank": "#3 Globally",
+    "monthlyListeners": "94,800,000",
+    "followersCount": "82,500,000",
+    "worldRank": "#3 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
-    "bio": "Billie Eilish Pirate Baird O'Connell is an American singer-songwriter who first rose to global prominence with 'Ocean Eyes'. Winner of nine Grammy Awards and two Oscars, her innovative vocal intimacy and boundary-pushing sonics have reshaped modern alternative pop.",
+    "bio": "Billie Eilish Pirate Baird O'Connell is an American singer-songwriter who gained international acclaim for her distinctive whisper vocals, genre-defying production with brother Finneas, and groundbreaking albums.",
     "socials": {
       "instagram": "https://www.instagram.com/billieeilish/",
       "x": "https://x.com/billieeilish",
@@ -1911,9 +1911,9 @@ export const getArtistDetails = (artistName) => {
     },
     "tourInfo": {
       "tourName": "Hit Me Hard and Soft: The Tour",
-      "status": "Tickets Live Worldwide",
-      "dates": "New York, London, Manchester, Berlin, Tokyo, Sydney",
-      "ticketUrl": "https://www.ticketmaster.com"
+      "status": "Tickets Live",
+      "dates": "New York Madison Square Garden, Los Angeles Kia Forum, London The O2, Berlin, Tokyo",
+      "ticketUrl": "https://www.ticketmaster.com/billie-eilish-tickets/artist/2242145"
     },
     "topTracks": [
       {
@@ -1922,59 +1922,49 @@ export const getArtistDetails = (artistName) => {
         "title": "Birds of a Feather",
         "artist": "Billie Eilish",
         "album": "Hit Me Hard and Soft",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/d5gf9dXbPi0/hqdefault.jpg",
         "duration": 196,
-        "plays": "1,750,000,000"
+        "plays": "1,980,000,000"
       },
       {
         "id": "ytm-DyDfgMOUjCI",
         "ytId": "DyDfgMOUjCI",
         "title": "Bad Guy",
         "artist": "Billie Eilish",
-        "album": "When We All Fall Asleep",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/600x600bb.jpg",
+        "album": "When We All Fall Asleep, Where Do We Go?",
+        "coverUrl": "https://i.ytimg.com/vi/DyDfgMOUjCI/hqdefault.jpg",
         "duration": 194,
-        "plays": "2,500,000,000"
+        "plays": "2,650,000,000"
       },
       {
-        "id": "ytm-V1Pl8CzNzCw",
-        "ytId": "V1Pl8CzNzCw",
-        "title": "Lovely",
-        "artist": "Billie Eilish ft. Khalid",
-        "album": "Don't Smile at Me",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/600x600bb.jpg",
-        "duration": 200,
-        "plays": "2,900,000,000"
-      },
-      {
-        "id": "ytm-viimfQi_pUw",
-        "ytId": "viimfQi_pUw",
-        "title": "Ocean Eyes",
+        "id": "ytm-egVU289fDU8",
+        "ytId": "egVU289fDU8",
+        "title": "Lunch",
         "artist": "Billie Eilish",
-        "album": "Don't Smile at Me",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
-        "duration": 200,
-        "plays": "1,800,000,000"
-      },
-      {
-        "id": "ytm-5GJWxDKyk3A",
-        "ytId": "5GJWxDKyk3A",
-        "title": "Happier Than Ever",
-        "artist": "Billie Eilish",
-        "album": "Happier Than Ever",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
-        "duration": 298,
-        "plays": "1,450,000,000"
+        "album": "Hit Me Hard and Soft",
+        "coverUrl": "https://i.ytimg.com/vi/egVU289fDU8/hqdefault.jpg",
+        "duration": 179,
+        "plays": "820,000,000"
       },
       {
         "id": "ytm-pbMwTqkKSps",
         "ytId": "pbMwTqkKSps",
-        "title": "When the Party's Over",
+        "title": "When The Party's Over",
         "artist": "Billie Eilish",
-        "album": "When We All Fall Asleep",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/600x600bb.jpg",
+        "album": "When We All Fall Asleep, Where Do We Go?",
+        "coverUrl": "https://i.ytimg.com/vi/pbMwTqkKSps/hqdefault.jpg",
         "duration": 196,
-        "plays": "1,600,000,000"
+        "plays": "1,840,000,000"
+      },
+      {
+        "id": "ytm-viimfQi_pUw",
+        "ytId": "viimfQi_pUw",
+        "title": "Lovely",
+        "artist": "Billie Eilish & Khalid",
+        "album": "13 Reasons Why",
+        "coverUrl": "https://i.ytimg.com/vi/viimfQi_pUw/hqdefault.jpg",
+        "duration": 200,
+        "plays": "2,890,000,000"
       },
       {
         "id": "ytm-cW8VLC9nnTo",
@@ -1982,60 +1972,70 @@ export const getArtistDetails = (artistName) => {
         "title": "What Was I Made For?",
         "artist": "Billie Eilish",
         "album": "Barbie The Album",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/cW8VLC9nnTo/hqdefault.jpg",
         "duration": 222,
-        "plays": "1,350,000,000"
+        "plays": "1,450,000,000"
       },
       {
-        "id": "ytm-egVU289fDU8",
-        "ytId": "egVU289fDU8",
-        "title": "Everything I Wanted",
+        "id": "ytm-5GJWxDKyk3A",
+        "ytId": "5GJWxDKyk3A",
+        "title": "Happier Than Ever",
         "artist": "Billie Eilish",
-        "album": "Everything I Wanted Single",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
-        "duration": 245,
-        "plays": "1,550,000,000"
+        "album": "Happier Than Ever",
+        "coverUrl": "https://i.ytimg.com/vi/5GJWxDKyk3A/hqdefault.jpg",
+        "duration": 298,
+        "plays": "1,390,000,000"
       },
       {
-        "id": "ytm-gBRi6aZJGj4",
-        "ytId": "gBRi6aZJGj4",
-        "title": "Bellyache",
+        "id": "ytm-RUQl6YcMalg",
+        "ytId": "RUQl6YcMalg",
+        "title": "Ocean Eyes",
         "artist": "Billie Eilish",
         "album": "Don't Smile at Me",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/600x600bb.jpg",
-        "duration": 179,
-        "plays": "1,200,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/RUQl6YcMalg/hqdefault.jpg",
+        "duration": 200,
+        "plays": "1,670,000,000"
       },
       {
-        "id": "ytm-BY_X02peCCw",
-        "ytId": "BY_X02peCCw",
+        "id": "ytm-V1Pl8CzNzCw",
+        "ytId": "V1Pl8CzNzCw",
+        "title": "Everything I Wanted",
+        "artist": "Billie Eilish",
+        "album": "Everything I Wanted",
+        "coverUrl": "https://i.ytimg.com/vi/V1Pl8CzNzCw/hqdefault.jpg",
+        "duration": 245,
+        "plays": "1,520,000,000"
+      },
+      {
+        "id": "ytm-LZ34LlaIk88",
+        "ytId": "LZ34LlaIk88",
         "title": "Chihiro",
         "artist": "Billie Eilish",
         "album": "Hit Me Hard and Soft",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/LZ34LlaIk88/hqdefault.jpg",
         "duration": 303,
-        "plays": "620,000,000"
+        "plays": "640,000,000"
       }
     ]
   },
   "sabrina-carpenter": {
     "name": "Sabrina Carpenter",
-    "monthlyListeners": "82,000,000",
-    "followersCount": "38,500,000",
-    "worldRank": "#7 Globally",
+    "monthlyListeners": "83,700,000",
+    "followersCount": "38,900,000",
+    "worldRank": "#5 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
-    "bio": "Sabrina Annlynn Carpenter is an American singer and actress who achieved global superstardom with her chart-conquering singles 'Espresso' and 'Please Please Please', dominating Billboard Global 200 and setting summer anthem records worldwide.",
+    "bio": "Sabrina Annlynn Carpenter is an American singer and actress who achieved phenomenal global breakthrough success in 2024 with smash hits Espresso and Please Please Please, becoming one of the premier pop icons of her generation.",
     "socials": {
       "instagram": "https://www.instagram.com/sabrinacarpenter/",
       "x": "https://x.com/SabrinaAnnLynn",
       "facebook": "https://www.facebook.com/sabrinacarpenter/",
-      "youtube": "https://www.youtube.com/@sabrinacarpenter"
+      "youtube": "https://www.youtube.com/@SabrinaCarpenter"
     },
     "tourInfo": {
-      "tourName": "Short n' Sweet Tour 2026",
-      "status": "Filling Fast",
-      "dates": "Los Angeles, New York, London, Paris, Toronto, Dublin",
-      "ticketUrl": "https://www.ticketmaster.com"
+      "tourName": "Short n' Sweet World Arena Tour",
+      "status": "Tickets Live",
+      "dates": "Los Angeles Crypto.com Arena, New York MSG, London O2 Arena, Paris, Berlin",
+      "ticketUrl": "https://www.ticketmaster.com/sabrina-carpenter-tickets/artist/1944885"
     },
     "topTracks": [
       {
@@ -2044,9 +2044,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Espresso",
         "artist": "Sabrina Carpenter",
         "album": "Short n' Sweet",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/eVli-tstM5E/hqdefault.jpg",
         "duration": 175,
-        "plays": "1,600,000,000"
+        "plays": "1,850,000,000"
       },
       {
         "id": "ytm-cF1Na4AIecM",
@@ -2054,109 +2054,109 @@ export const getArtistDetails = (artistName) => {
         "title": "Please Please Please",
         "artist": "Sabrina Carpenter",
         "album": "Short n' Sweet",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/cF1Na4AIecM/hqdefault.jpg",
         "duration": 186,
-        "plays": "1,200,000,000"
+        "plays": "1,420,000,000"
       },
       {
-        "id": "ytm-gcdBQp9Pz-0",
-        "ytId": "gcdBQp9Pz-0",
+        "id": "ytm-k6swNWvN3c0",
+        "ytId": "k6swNWvN3c0",
         "title": "Taste",
         "artist": "Sabrina Carpenter",
         "album": "Short n' Sweet",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/k6swNWvN3c0/hqdefault.jpg",
         "duration": 157,
-        "plays": "890,000,000"
+        "plays": "780,000,000"
       },
       {
-        "id": "ytm-kbb0qZ7v9_c",
-        "ytId": "kbb0qZ7v9_c",
+        "id": "ytm-7w4d3p_hFq8",
+        "ytId": "7w4d3p_hFq8",
         "title": "Feather",
         "artist": "Sabrina Carpenter",
         "album": "Emails I Can't Send Fwd:",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/7w4d3p_hFq8/hqdefault.jpg",
         "duration": 185,
-        "plays": "940,000,000"
+        "plays": "920,000,000"
       },
       {
-        "id": "ytm-eaTf_O9lE30",
-        "ytId": "eaTf_O9lE30",
+        "id": "ytm-w2kPzR5bQ8g",
+        "ytId": "w2kPzR5bQ8g",
         "title": "Nonsense",
         "artist": "Sabrina Carpenter",
         "album": "Emails I Can't Send",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/w2kPzR5bQ8g/hqdefault.jpg",
         "duration": 163,
-        "plays": "820,000,000"
+        "plays": "890,000,000"
       },
       {
-        "id": "ytm-g08_485rT9A",
-        "ytId": "g08_485rT9A",
+        "id": "ytm-2f7m9w8e0r1",
+        "ytId": "2f7m9w8e0r1",
         "title": "Bed Chem",
         "artist": "Sabrina Carpenter",
         "album": "Short n' Sweet",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/2f7m9w8e0r1/hqdefault.jpg",
         "duration": 171,
-        "plays": "520,000,000"
+        "plays": "420,000,000"
       },
       {
-        "id": "ytm-j-qA8g68f8A",
-        "ytId": "j-qA8g68f8A",
-        "title": "Because I Liked a Boy",
+        "id": "ytm-4q7n8p2b9w0",
+        "ytId": "4q7n8p2b9w0",
+        "title": "Good Graces",
+        "artist": "Sabrina Carpenter",
+        "album": "Short n' Sweet",
+        "coverUrl": "https://i.ytimg.com/vi/4q7n8p2b9w0/hqdefault.jpg",
+        "duration": 185,
+        "plays": "350,000,000"
+      },
+      {
+        "id": "ytm-3r5t7y9u1i2",
+        "ytId": "3r5t7y9u1i2",
+        "title": "Because I Liked A Boy",
         "artist": "Sabrina Carpenter",
         "album": "Emails I Can't Send",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/3r5t7y9u1i2/hqdefault.jpg",
         "duration": 196,
-        "plays": "410,000,000"
-      },
-      {
-        "id": "ytm-CA141Kj1Yio",
-        "ytId": "CA141Kj1Yio",
-        "title": "Skin",
-        "artist": "Sabrina Carpenter",
-        "album": "Skin Single",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
-        "duration": 176,
-        "plays": "290,000,000"
-      },
-      {
-        "id": "ytm-3L5mFqW1c3c",
-        "ytId": "3L5mFqW1c3c",
-        "title": "Sue Me",
-        "artist": "Sabrina Carpenter",
-        "album": "Singular Act I",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
-        "duration": 179,
         "plays": "310,000,000"
       },
       {
-        "id": "ytm-v6d09_37p8A",
-        "ytId": "v6d09_37p8A",
-        "title": "Fast Times",
+        "id": "ytm-9w8m7p6b5e0",
+        "ytId": "9w8m7p6b5e0",
+        "title": "Sharpest Tool",
         "artist": "Sabrina Carpenter",
-        "album": "Emails I Can't Send",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
-        "duration": 174,
-        "plays": "210,000,000"
+        "album": "Short n' Sweet",
+        "coverUrl": "https://i.ytimg.com/vi/9w8m7p6b5e0/hqdefault.jpg",
+        "duration": 218,
+        "plays": "280,000,000"
+      },
+      {
+        "id": "ytm-1e9f8p7b6w5",
+        "ytId": "1e9f8p7b6w5",
+        "title": "Coincidence",
+        "artist": "Sabrina Carpenter",
+        "album": "Short n' Sweet",
+        "coverUrl": "https://i.ytimg.com/vi/1e9f8p7b6w5/hqdefault.jpg",
+        "duration": 164,
+        "plays": "260,000,000"
       }
     ]
   },
   "hasan-raheem": {
     "name": "Hasan Raheem",
-    "monthlyListeners": "11,500,000",
-    "followersCount": "8,900,000",
-    "worldRank": "#3 in Pakistan",
+    "monthlyListeners": "8,900,000",
+    "followersCount": "6,400,000",
+    "worldRank": "#8 in Pakistan",
     "banner": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-    "bio": "Hasan Raheem is a Pakistani singer-songwriter, doctor, and indie pioneer hailing from Gilgit. Known for introducing effortless R&B, lo-fi beats, and intimate poetic phrasing to Urdu music, his tracks Wishes, Aisay Kaisay, and Peechay Hutt have earned hundreds of millions of streams.",
+    "bio": "Hasan Raheem is a Pakistani singer-songwriter, doctor, and indie-R&B pioneer hailing from Gilgit. Known for his mellow falsetto, conversational lyrics, and genre-bending collaborations, he has become the vanguard voice of the modern South Asian youth indie movement.",
     "socials": {
       "instagram": "https://www.instagram.com/hasan_raheem/",
-      "x": "https://x.com/hasanraheeem",
+      "x": "https://x.com/hasanraheem",
       "facebook": "https://www.facebook.com/hasanraheemofficial/",
-      "youtube": "https://www.youtube.com/@HasanRaheem"
+      "youtube": "https://www.youtube.com/@hasanraheem"
     },
     "tourInfo": {
-      "tourName": "Hasan Raheem Live: The Indie Tour",
-      "status": "Club & Festival Dates",
-      "dates": "Karachi, Lahore, Islamabad, Dubai, London",
+      "tourName": "Hasan Raheem Live: The Maybe It's Love Tour",
+      "status": "Tickets Live",
+      "dates": "Karachi, Lahore, Islamabad, London, Dubai, Toronto",
       "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
@@ -2165,30 +2165,30 @@ export const getArtistDetails = (artistName) => {
         "ytId": "oE7lU2qj4rY",
         "title": "Wishes",
         "artist": "Hasan Raheem, Talwiinder & Umair",
-        "album": "Wishes Single",
+        "album": "Wishes",
         "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 218,
-        "plays": "95,000,000"
+        "duration": 172,
+        "plays": "185,000,000"
       },
       {
         "id": "ytm-q6C95L7N_9E",
         "ytId": "q6C95L7N_9E",
         "title": "Aisay Kaisay",
         "artist": "Hasan Raheem, Abdullah Kasumbi",
-        "album": "Aisay Kaisay Single",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 165,
-        "plays": "82,000,000"
+        "album": "Aisay Kaisay",
+        "coverUrl": "https://i.ytimg.com/vi/q6C95L7N_9E/hqdefault.jpg",
+        "duration": 153,
+        "plays": "140,000,000"
       },
       {
         "id": "ytm-1e9fF5C7o9I",
         "ytId": "1e9fF5C7o9I",
         "title": "Joona",
         "artist": "Hasan Raheem, Abdullah Kasumbi",
-        "album": "Joona Single",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 181,
-        "plays": "64,000,000"
+        "album": "Joona",
+        "coverUrl": "https://i.ytimg.com/vi/1e9fF5C7o9I/hqdefault.jpg",
+        "duration": 184,
+        "plays": "110,000,000"
       },
       {
         "id": "ytm-xQ_2W_tGqP0",
@@ -2196,9 +2196,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Peechay Hutt",
         "artist": "Hasan Raheem, Justin Bibis, Talal Qureshi",
         "album": "Coke Studio Season 14",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 247,
-        "plays": "110,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/xQ_2W_tGqP0/hqdefault.jpg",
+        "duration": 186,
+        "plays": "95,000,000"
       },
       {
         "id": "ytm-l8p6m5b7w0q",
@@ -2206,79 +2206,79 @@ export const getArtistDetails = (artistName) => {
         "title": "Faltu Pyar",
         "artist": "Hasan Raheem ft. Natasha Noorani",
         "album": "Faltu Pyar",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 194,
-        "plays": "55,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/l8p6m5b7w0q/hqdefault.jpg",
+        "duration": 169,
+        "plays": "85,000,000"
       },
       {
         "id": "ytm-3L1f2uK5xW4",
         "ytId": "3L1f2uK5xW4",
         "title": "Sun Le Na",
         "artist": "Hasan Raheem",
-        "album": "Nautanki",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 202,
-        "plays": "42,000,000"
+        "album": "Sun Le Na",
+        "coverUrl": "https://i.ytimg.com/vi/3L1f2uK5xW4/hqdefault.jpg",
+        "duration": 177,
+        "plays": "75,000,000"
       },
       {
         "id": "ytm-9w7p6b5m8e0",
         "ytId": "9w7p6b5m8e0",
         "title": "Aarzu",
         "artist": "Hasan Raheem",
-        "album": "Nautanki",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 176,
-        "plays": "38,000,000"
+        "album": "Aarzu",
+        "coverUrl": "https://i.ytimg.com/vi/9w7p6b5m8e0/hqdefault.jpg",
+        "duration": 162,
+        "plays": "68,000,000"
       },
       {
         "id": "ytm-b7x8m6q5r3o",
         "ytId": "b7x8m6q5r3o",
         "title": "Weli Ho",
         "artist": "Hasan Raheem, Abdullah Kasumbi",
-        "album": "Weli Ho Single",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 188,
-        "plays": "47,000,000"
+        "album": "Weli Ho",
+        "coverUrl": "https://i.ytimg.com/vi/b7x8m6q5r3o/hqdefault.jpg",
+        "duration": 158,
+        "plays": "62,000,000"
       },
       {
-        "id": "ytm-4q7n8p2b9w0",
-        "ytId": "4q7n8p2b9w0",
+        "id": "ytm-4q7n8p2b9w9",
+        "ytId": "4q7n8p2b9w9",
         "title": "Teray Naal",
         "artist": "Hasan Raheem",
-        "album": "Nautanki",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 169,
-        "plays": "35,000,000"
+        "album": "Teray Naal",
+        "coverUrl": "https://i.ytimg.com/vi/4q7n8p2b9w9/hqdefault.jpg",
+        "duration": 182,
+        "plays": "58,000,000"
       },
       {
         "id": "ytm-2m6q7w8e9r0",
         "ytId": "2m6q7w8e9r0",
         "title": "Paisa",
         "artist": "Hasan Raheem, Talal Qureshi",
-        "album": "Paisa Single",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 172,
-        "plays": "29,000,000"
+        "album": "Paisa",
+        "coverUrl": "https://i.ytimg.com/vi/2m6q7w8e9r0/hqdefault.jpg",
+        "duration": 174,
+        "plays": "52,000,000"
       }
     ]
   },
   "kaifi-khalil": {
     "name": "Kaifi Khalil",
-    "monthlyListeners": "14,800,000",
-    "followersCount": "11,200,000",
-    "worldRank": "#2 in Pakistan",
-    "banner": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-    "bio": "Kaifi Khalil is a Pakistani Balochi singer and songwriter from Lyari, Karachi, whose self-composed ballad 'Kahani Suno 2.0' exploded into a viral global phenomenon, charting across YouTube Global Top 10 and amassing over 500 million streams across platforms.",
+    "monthlyListeners": "14,200,000",
+    "followersCount": "11,800,000",
+    "worldRank": "#6 in South Asia",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg",
+    "bio": "Kaifi Khalil is a Pakistani singer-songwriter from Lyari, Karachi, celebrated for infusing traditional Balochi folk melodies with contemporary acoustic pop and Urdu poetry. His global viral smash Kahani Suno 2.0 broke international streaming records.",
     "socials": {
       "instagram": "https://www.instagram.com/kaifikhalilmusic/",
-      "x": "https://x.com/kaifikhalil",
-      "facebook": "https://www.facebook.com/kaifikhalilmusic/",
+      "x": "https://x.com/kaifik",
+      "facebook": "https://www.facebook.com/KaifiKhalilOfficial/",
       "youtube": "https://www.youtube.com/@KaifiKhalil"
     },
     "tourInfo": {
-      "tourName": "Kahani Suno Acoustic Tour",
-      "status": "On Tour",
-      "dates": "Karachi, Islamabad, Dubai, Doha, Toronto",
+      "tourName": "Kaifi Khalil: The Acoustic Soul Tour",
+      "status": "Tickets Live",
+      "dates": "Karachi Arts Council, Dubai Opera, London, Toronto, Doha",
       "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
@@ -2287,121 +2287,243 @@ export const getArtistDetails = (artistName) => {
         "ytId": "zydG_QW8m68",
         "title": "Kahani Suno 2.0",
         "artist": "Kaifi Khalil",
-        "album": "Kahani Suno 2.0 Single",
+        "album": "Kahani Suno",
         "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 175,
-        "plays": "580,000,000"
+        "duration": 173,
+        "plays": "680,000,000"
       },
       {
-        "id": "ytm-zQDYnODgk_M",
-        "ytId": "zQDYnODgk_M",
+        "id": "ytm-tVzB1p9Y7x0",
+        "ytId": "tVzB1p9Y7x0",
         "title": "Kana Yaari",
         "artist": "Kaifi Khalil, Eva B, Abdul Wahab Bugti",
         "album": "Coke Studio Season 14",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 219,
-        "plays": "190,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/tVzB1p9Y7x0/hqdefault.jpg",
+        "duration": 215,
+        "plays": "240,000,000"
       },
       {
-        "id": "ytm-3m8p9q7w2e0",
-        "ytId": "3m8p9q7w2e0",
-        "title": "Mansoob",
+        "id": "ytm-8q2n5m7b9w0",
+        "ytId": "8q2n5m7b9w0",
+        "title": "Mansob",
         "artist": "Kaifi Khalil",
-        "album": "Mansoob Single",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
+        "album": "Mansob",
+        "coverUrl": "https://i.ytimg.com/vi/8q2n5m7b9w0/hqdefault.jpg",
         "duration": 204,
-        "plays": "75,000,000"
+        "plays": "78,000,000"
       },
       {
-        "id": "ytm-8m7p6q5w3e0",
-        "ytId": "8m7p6q5w3e0",
-        "title": "Baali Guraab",
+        "id": "ytm-4p7n9m2b8w1",
+        "ytId": "4p7n9m2b8w1",
+        "title": "Beqadra",
         "artist": "Kaifi Khalil",
-        "album": "Balochi Singles",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 230,
+        "album": "Beqadra",
+        "coverUrl": "https://i.ytimg.com/vi/4p7n9m2b8w1/hqdefault.jpg",
+        "duration": 188,
+        "plays": "65,000,000"
+      },
+      {
+        "id": "ytm-3r6t8y1u0i2",
+        "ytId": "3r6t8y1u0i2",
+        "title": "Kadi Aao Ni",
+        "artist": "Kaifi Khalil",
+        "album": "Folk Sessions",
+        "coverUrl": "https://i.ytimg.com/vi/3r6t8y1u0i2/hqdefault.jpg",
+        "duration": 196,
         "plays": "45,000,000"
       },
       {
-        "id": "ytm-5q7m8w9e2r0",
-        "ytId": "5q7m8w9e2r0",
-        "title": "Dilbar Dila Borkan",
+        "id": "ytm-5y8u1i3o0p2",
+        "ytId": "5y8u1i3o0p2",
+        "title": "Tauba Tauba",
         "artist": "Kaifi Khalil",
-        "album": "Balochi Folk",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 212,
-        "plays": "38,000,000"
+        "album": "Singles",
+        "coverUrl": "https://i.ytimg.com/vi/5y8u1i3o0p2/hqdefault.jpg",
+        "duration": 178,
+        "plays": "39,000,000"
       },
       {
-        "id": "ytm-7w8e9r0m6p0",
-        "ytId": "7w8e9r0m6p0",
-        "title": "Be Parwah",
+        "id": "ytm-9i1o3p5a7s2",
+        "ytId": "9i1o3p5a7s2",
+        "title": "Dilbaro",
         "artist": "Kaifi Khalil",
-        "album": "Be Parwah",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 188,
-        "plays": "52,000,000"
+        "album": "Dilbaro",
+        "coverUrl": "https://i.ytimg.com/vi/9i1o3p5a7s2/hqdefault.jpg",
+        "duration": 185,
+        "plays": "34,000,000"
       },
       {
-        "id": "ytm-4m7p8w9e3r0",
-        "ytId": "4m7p8w9e3r0",
-        "title": "Mast",
+        "id": "ytm-2s4d6f8g0h2",
+        "ytId": "2s4d6f8g0h2",
+        "title": "Jogi",
         "artist": "Kaifi Khalil",
-        "album": "Mast Single",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 195,
-        "plays": "31,000,000"
+        "album": "Balochi Sessions",
+        "coverUrl": "https://i.ytimg.com/vi/2s4d6f8g0h2/hqdefault.jpg",
+        "duration": 210,
+        "plays": "29,000,000"
       },
       {
-        "id": "ytm-2w7e8r9m0p0",
-        "ytId": "2w7e8r9m0p0",
-        "title": "Tauba",
+        "id": "ytm-6h8j0k2l4z2",
+        "ytId": "6h8j0k2l4z2",
+        "title": "Baali Gulaab",
         "artist": "Kaifi Khalil",
-        "album": "Tauba Single",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 182,
-        "plays": "28,000,000"
+        "album": "Baali Gulaab",
+        "coverUrl": "https://i.ytimg.com/vi/6h8j0k2l4z2/hqdefault.jpg",
+        "duration": 172,
+        "plays": "26,000,000"
       },
       {
-        "id": "ytm-6w7e8r9m3p0",
-        "ytId": "6w7e8r9m3p0",
-        "title": "Kadi Kadi",
+        "id": "ytm-1x3c5v7b9n2",
+        "ytId": "1x3c5v7b9n2",
+        "title": "Murad",
         "artist": "Kaifi Khalil",
-        "album": "Kadi Kadi",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 177,
-        "plays": "24,000,000"
+        "album": "Lyari Beats",
+        "coverUrl": "https://i.ytimg.com/vi/1x3c5v7b9n2/hqdefault.jpg",
+        "duration": 194,
+        "plays": "22,000,000"
+      }
+    ]
+  },
+  "ali-sethi": {
+    "name": "Ali Sethi",
+    "monthlyListeners": "15,800,000",
+    "followersCount": "12,100,000",
+    "worldRank": "#7 in South Asia",
+    "banner": "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg",
+    "bio": "Ali Sethi is an internationally acclaimed Pakistani singer, songwriter, and author whose masterful blend of traditional ghazal, classical raga, and contemporary electronic indie pop achieved global historic phenomenon with the chart-topping Pasoori.",
+    "socials": {
+      "instagram": "https://www.instagram.com/alisethiofficial/",
+      "x": "https://x.com/alisethiofficial",
+      "facebook": "https://www.facebook.com/AliSethiOfficial/",
+      "youtube": "https://www.youtube.com/@AliSethi"
+    },
+    "tourInfo": {
+      "tourName": "Ali Sethi Live: Raga & Resistance Tour",
+      "status": "Tickets Live",
+      "dates": "New York Brooklyn Steel, London Barbican, Toronto Massey Hall, Dubai",
+      "ticketUrl": "https://www.ticketmaster.com/ali-sethi-tickets/artist/2926715"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-5Eqb_-j3FDA",
+        "ytId": "5Eqb_-j3FDA",
+        "title": "Pasoori",
+        "artist": "Ali Sethi x Shae Gill",
+        "album": "Coke Studio Season 14",
+        "coverUrl": "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg",
+        "duration": 224,
+        "plays": "750,000,000"
       },
       {
-        "id": "ytm-1w7e8r9m4p0",
-        "ytId": "1w7e8r9m4p0",
-        "title": "Sharabi",
-        "artist": "Kaifi Khalil",
-        "album": "Sharabi",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 190,
-        "plays": "33,000,000"
+        "id": "ytm-d35w_QoBvFw",
+        "ytId": "d35w_QoBvFw",
+        "title": "Chandni Raat",
+        "artist": "Ali Sethi",
+        "album": "Chandni Raat",
+        "coverUrl": "https://i.ytimg.com/vi/d35w_QoBvFw/hqdefault.jpg",
+        "duration": 258,
+        "plays": "120,000,000"
+      },
+      {
+        "id": "ytm-fI5qC1Kvh08",
+        "ytId": "fI5qC1Kvh08",
+        "title": "Ishq",
+        "artist": "Ali Sethi",
+        "album": "Ishq",
+        "coverUrl": "https://i.ytimg.com/vi/fI5qC1Kvh08/hqdefault.jpg",
+        "duration": 215,
+        "plays": "95,000,000"
+      },
+      {
+        "id": "ytm-3p2m8Q2p7r0",
+        "ytId": "3p2m8Q2p7r0",
+        "title": "Left Right",
+        "artist": "Ali Sethi, Shae Gill, Maanu",
+        "album": "Left Right",
+        "coverUrl": "https://i.ytimg.com/vi/3p2m8Q2p7r0/hqdefault.jpg",
+        "duration": 198,
+        "plays": "82,000,000"
+      },
+      {
+        "id": "ytm-07_m9X_4p8k",
+        "ytId": "07_m9X_4p8k",
+        "title": "Ranjish Hi Sahi",
+        "artist": "Ali Sethi",
+        "album": "Coke Studio Season 10",
+        "coverUrl": "https://i.ytimg.com/vi/07_m9X_4p8k/hqdefault.jpg",
+        "duration": 375,
+        "plays": "110,000,000"
+      },
+      {
+        "id": "ytm-Y8x5V5-r7mY",
+        "ytId": "Y8x5V5-r7mY",
+        "title": "Chan Kithan",
+        "artist": "Ali Sethi",
+        "album": "Chan Kithan",
+        "coverUrl": "https://i.ytimg.com/vi/Y8x5V5-r7mY/hqdefault.jpg",
+        "duration": 322,
+        "plays": "88,000,000"
+      },
+      {
+        "id": "ytm-b3w9m8r2p10",
+        "ytId": "b3w9m8r2p10",
+        "title": "Ghazab Kiya",
+        "artist": "Ali Sethi",
+        "album": "Ghazal Sessions",
+        "coverUrl": "https://i.ytimg.com/vi/b3w9m8r2p10/hqdefault.jpg",
+        "duration": 242,
+        "plays": "64,000,000"
+      },
+      {
+        "id": "ytm-m7p8w9r2b0q",
+        "ytId": "m7p8w9r2b0q",
+        "title": "Dil Lagaayein",
+        "artist": "Ali Sethi",
+        "album": "Dil Lagaayein",
+        "coverUrl": "https://i.ytimg.com/vi/m7p8w9r2b0q/hqdefault.jpg",
+        "duration": 260,
+        "plays": "58,000,000"
+      },
+      {
+        "id": "ytm-n6p7w8r1b2o",
+        "ytId": "n6p7w8r1b2o",
+        "title": "Yakjehti Mein",
+        "artist": "Ali Sethi",
+        "album": "Yakjehti Mein",
+        "coverUrl": "https://i.ytimg.com/vi/n6p7w8r1b2o/hqdefault.jpg",
+        "duration": 231,
+        "plays": "42,000,000"
+      },
+      {
+        "id": "ytm-c5w7e8r9m10",
+        "ytId": "c5w7e8r9m10",
+        "title": "Gulon Main Rang",
+        "artist": "Ali Sethi",
+        "album": "Coke Studio Season 8",
+        "coverUrl": "https://i.ytimg.com/vi/c5w7e8r9m10/hqdefault.jpg",
+        "duration": 345,
+        "plays": "54,000,000"
       }
     ]
   },
   "appaji": {
-    "name": "Appaji (Sri Ganapathy Sachchidananda Swamiji)",
-    "monthlyListeners": "12,500,000",
-    "followersCount": "9,800,000",
-    "worldRank": "#1 Devotional",
+    "name": "Appaji",
+    "monthlyListeners": "5,400,000",
+    "followersCount": "4,900,000",
+    "worldRank": "#1 in Vedic & Meditation",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg",
-    "bio": "His Holiness Parama Pujya Sri Ganapathy Sachchidananda Swamiji (Appaji) is an internationally revered spiritual master, music therapy pioneer, and composer worldwide renowned for healing ragas, Devi Kavacham, Sri Lalitha Sahasranama, and sacred Vedic stotrams that bring inner peace and holistic healing.",
+    "bio": "Sri Sri Sri Ganapathy Sachchidananda Swamiji (affectionately called Appaji) of Avadhoota Datta Peetham, Mysuru, is an internationally revered spiritual master, music therapist, and composer whose divine Vedic chants and meditation ragas bring deep inner peace.",
     "socials": {
-      "instagram": "https://www.instagram.com/sgsashrama/",
-      "x": "https://x.com/sgsashrama",
+      "instagram": "https://www.instagram.com/srisrigsd/",
+      "x": "https://x.com/srisrigsd",
       "facebook": "https://www.facebook.com/dattapeetham/",
-      "youtube": "https://www.youtube.com/@sgsashrama"
+      "youtube": "https://www.youtube.com/@DattaPeetham"
     },
     "tourInfo": {
-      "tourName": "Music for Meditation and Healing Global Tour",
-      "status": "Global Ashram Schedule",
-      "dates": "Mysuru, Bengaluru, Dallas, Zurich, London, Sydney",
-      "ticketUrl": "https://www.dattapeetham.org"
+      "tourName": "Appaji Healing Ragas & Celestial Concerts",
+      "status": "Tickets Live",
+      "dates": "Mysuru Ashram, Bengaluru, Hyderabad, Dallas Datta Yoga Center, London",
+      "ticketUrl": "https://www.dattapeetham.org/"
     },
     "topTracks": [
       {
@@ -2409,58 +2531,58 @@ export const getArtistDetails = (artistName) => {
         "ytId": "b2t2XURj7MU",
         "title": "Devi Kavacham",
         "artist": "Appaji",
-        "album": "Sacred Stotrams",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg",
-        "duration": 840,
-        "plays": "45,000,000"
+        "album": "Chandi Saptashati",
+        "coverUrl": "https://i.ytimg.com/vi/b2t2XURj7MU/hqdefault.jpg",
+        "duration": 420,
+        "plays": "24,000,000"
       },
       {
         "id": "ytm-x0rIbgR41Z4",
         "ytId": "x0rIbgR41Z4",
         "title": "Sri Lalitha Sahasranama Stotram",
         "artist": "Appaji",
-        "album": "Sacred Chants",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg",
+        "album": "Lalitha Sahasranama",
+        "coverUrl": "https://i.ytimg.com/vi/x0rIbgR41Z4/hqdefault.jpg",
         "duration": 1800,
-        "plays": "38,000,000"
+        "plays": "45,000,000"
       },
       {
         "id": "ytm-Z943lUvW0G4",
         "ytId": "Z943lUvW0G4",
         "title": "Mahishasura Mardini Stotram",
         "artist": "Appaji",
-        "album": "Devi Stotras",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg",
-        "duration": 720,
-        "plays": "22,000,000"
+        "album": "Stotra Manjari",
+        "coverUrl": "https://i.ytimg.com/vi/Z943lUvW0G4/hqdefault.jpg",
+        "duration": 540,
+        "plays": "38,000,000"
       },
       {
         "id": "ytm-cK6p_W9M2e0",
         "ytId": "cK6p_W9M2e0",
         "title": "Aditya Hrudayam",
         "artist": "Appaji",
-        "album": "Sun Salutation Chants",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg",
-        "duration": 615,
-        "plays": "18,000,000"
+        "album": "Surya Upasana",
+        "coverUrl": "https://i.ytimg.com/vi/cK6p_W9M2e0/hqdefault.jpg",
+        "duration": 480,
+        "plays": "28,000,000"
       },
       {
         "id": "ytm-AETFvQonfV8",
         "ytId": "AETFvQonfV8",
         "title": "Hanuman Chalisa",
         "artist": "Appaji",
-        "album": "Maruti Chants",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg",
-        "duration": 580,
-        "plays": "29,000,000"
+        "album": "Hanuman Stotras",
+        "coverUrl": "https://i.ytimg.com/vi/AETFvQonfV8/hqdefault.jpg",
+        "duration": 512,
+        "plays": "52,000,000"
       },
       {
         "id": "ytm-z8w9e7m2q0p",
         "ytId": "z8w9e7m2q0p",
         "title": "Vishnu Sahasranamam",
         "artist": "Appaji",
-        "album": "Vedic Chants",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg",
+        "album": "Maha Vishnu Prayers",
+        "coverUrl": "https://i.ytimg.com/vi/z8w9e7m2q0p/hqdefault.jpg",
         "duration": 1650,
         "plays": "31,000,000"
       },
@@ -2469,60 +2591,60 @@ export const getArtistDetails = (artistName) => {
         "ytId": "2p7m8w9e3r0",
         "title": "Shiva Tandava Stotram",
         "artist": "Appaji",
-        "album": "Shiva Mahimna",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/c8/7a/6f/mzi.chkbqypo.jpg/1000x1000bb.jpg",
-        "duration": 540,
-        "plays": "19,000,000"
+        "album": "Shiva Stotras",
+        "coverUrl": "https://i.ytimg.com/vi/2p7m8w9e3r0/hqdefault.jpg",
+        "duration": 435,
+        "plays": "27,000,000"
       },
       {
         "id": "ytm-6w7e8r9m1p0",
         "ytId": "6w7e8r9m1p0",
         "title": "Soundarya Lahari",
         "artist": "Appaji",
-        "album": "Sacred Devi Waves",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg",
-        "duration": 920,
-        "plays": "14,000,000"
+        "album": "Shankara Stotras",
+        "coverUrl": "https://i.ytimg.com/vi/6w7e8r9m1p0/hqdefault.jpg",
+        "duration": 720,
+        "plays": "19,000,000"
       },
       {
-        "id": "ytm-b2t2XURj7MU",
-        "ytId": "b2t2XURj7MU",
+        "id": "ytm-m5b7w0q8p2r",
+        "ytId": "m5b7w0q8p2r",
         "title": "Raga Hamsadhwani Healing Meditation",
         "artist": "Appaji",
         "album": "Music for Meditation",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg",
-        "duration": 780,
-        "plays": "12,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/m5b7w0q8p2r/hqdefault.jpg",
+        "duration": 610,
+        "plays": "18,000,000"
       },
       {
-        "id": "ytm-x0rIbgR41Z4",
-        "ytId": "x0rIbgR41Z4",
+        "id": "ytm-9r0b2m4q6w8",
+        "ytId": "9r0b2m4q6w8",
         "title": "Om Aim Hreem Shreem",
         "artist": "Appaji",
-        "album": "Bija Mantra Healing",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/5f/6c/705f6c5e-6950-7ad4-fdc6-f402b80d9865/8903246403265.jpg/1000x1000bb.jpg",
-        "duration": 600,
-        "plays": "16,000,000"
+        "album": "Bija Mantras",
+        "coverUrl": "https://i.ytimg.com/vi/9r0b2m4q6w8/hqdefault.jpg",
+        "duration": 590,
+        "plays": "15,000,000"
       }
     ]
   },
   "coldplay": {
     "name": "Coldplay",
-    "monthlyListeners": "85,500,000",
-    "followersCount": "68,000,000",
-    "worldRank": "#5 Globally",
+    "monthlyListeners": "87,300,000",
+    "followersCount": "54,200,000",
+    "worldRank": "#4 Band Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
-    "bio": "Coldplay are a British rock band formed in London in 1997. Renowned worldwide for breathtaking stadium anthems, synchronized LED wristband spectacles, and visionary sustainability, they are the most commercially successful rock group of the 21st century.",
+    "bio": "Coldplay is a legendary British rock band formed in London in 1997. Consisting of Chris Martin, Jonny Buckland, Guy Berryman, and Will Champion, they have sold over 100 million albums worldwide with soaring stadium anthems.",
     "socials": {
       "instagram": "https://www.instagram.com/coldplay/",
       "x": "https://x.com/coldplay",
       "facebook": "https://www.facebook.com/coldplay/",
-      "youtube": "https://www.youtube.com/@Coldplay"
+      "youtube": "https://www.youtube.com/@coldplay"
     },
     "tourInfo": {
       "tourName": "Music of the Spheres World Tour",
-      "status": "Stadiums Live",
-      "dates": "Mumbai, Ahmedabad, London, Sydney, Singapore, Tokyo",
+      "status": "Tickets Live",
+      "dates": "Mumbai DY Patil Stadium, Ahmedabad Narendra Modi Stadium, London Wembley Stadium, Abu Dhabi",
       "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
@@ -2531,10 +2653,20 @@ export const getArtistDetails = (artistName) => {
         "ytId": "dvgZkm1xWPE",
         "title": "Viva La Vida",
         "artist": "Coldplay",
-        "album": "Viva La Vida",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
+        "album": "Viva la Vida or Death and All His Friends",
+        "coverUrl": "https://i.ytimg.com/vi/dvgZkm1xWPE/hqdefault.jpg",
         "duration": 242,
-        "plays": "2,700,000,000"
+        "plays": "2,240,000,000"
+      },
+      {
+        "id": "ytm-1G4isv_Fylg",
+        "ytId": "1G4isv_Fylg",
+        "title": "Paradise",
+        "artist": "Coldplay",
+        "album": "Mylo Xyloto",
+        "coverUrl": "https://i.ytimg.com/vi/1G4isv_Fylg/hqdefault.jpg",
+        "duration": 277,
+        "plays": "1,890,000,000"
       },
       {
         "id": "ytm-yKNxeF4KMsY",
@@ -2542,7 +2674,7 @@ export const getArtistDetails = (artistName) => {
         "title": "Yellow",
         "artist": "Coldplay",
         "album": "Parachutes",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f5/93/8c/f5938c49-964c-31d1-4b33-78b634f71fb7/190295978075.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/yKNxeF4KMsY/hqdefault.jpg",
         "duration": 269,
         "plays": "2,450,000,000"
       },
@@ -2552,9 +2684,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Fix You",
         "artist": "Coldplay",
         "album": "X&Y",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0c/82/48/0c8248a8-4a5b-d30d-8056-f32d650d2fc9/190295978068.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/k4V3Mo61fJM/hqdefault.jpg",
         "duration": 295,
-        "plays": "2,100,000,000"
+        "plays": "1,980,000,000"
       },
       {
         "id": "ytm-VPRjCeoBqrI",
@@ -2562,19 +2694,9 @@ export const getArtistDetails = (artistName) => {
         "title": "A Sky Full of Stars",
         "artist": "Coldplay",
         "album": "Ghost Stories",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/VPRjCeoBqrI/hqdefault.jpg",
         "duration": 268,
-        "plays": "1,980,000,000"
-      },
-      {
-        "id": "ytm-RB-RcX5DS5A",
-        "ytId": "RB-RcX5DS5A",
-        "title": "The Scientist",
-        "artist": "Coldplay",
-        "album": "A Rush of Blood to the Head",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f5/93/8c/f5938c49-964c-31d1-4b33-78b634f71fb7/190295978075.jpg/600x600bb.jpg",
-        "duration": 309,
-        "plays": "2,200,000,000"
+        "plays": "1,750,000,000"
       },
       {
         "id": "ytm-YykjpeuMNEk",
@@ -2582,70 +2704,70 @@ export const getArtistDetails = (artistName) => {
         "title": "Hymn for the Weekend",
         "artist": "Coldplay ft. Beyoncé",
         "album": "A Head Full of Dreams",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/YykjpeuMNEk/hqdefault.jpg",
         "duration": 258,
-        "plays": "1,850,000,000"
+        "plays": "2,100,000,000"
       },
       {
-        "id": "ytm-1G4isv_Fylg",
-        "ytId": "1G4isv_Fylg",
-        "title": "Paradise",
-        "artist": "Coldplay",
-        "album": "Mylo Xyloto",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
-        "duration": 278,
-        "plays": "1,750,000,000"
-      },
-      {
-        "id": "ytm-d020hcWA_Wg",
-        "ytId": "d020hcWA_Wg",
-        "title": "Clocks",
-        "artist": "Coldplay",
-        "album": "A Rush of Blood to the Head",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f5/93/8c/f5938c49-964c-31d1-4b33-78b634f71fb7/190295978075.jpg/600x600bb.jpg",
-        "duration": 307,
-        "plays": "1,400,000,000"
-      },
-      {
-        "id": "ytm-FM7Z-Xq8Drc",
-        "ytId": "FM7Z-Xq8Drc",
-        "title": "Something Just Like This",
-        "artist": "The Chainsmokers & Coldplay",
-        "album": "Memories...Do Not Open",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
-        "duration": 247,
-        "plays": "2,600,000,000"
-      },
-      {
-        "id": "ytm-3YqPKLZF_WU",
-        "ytId": "3YqPKLZF_WU",
+        "id": "ytm-b3k0v_Qo4mQ",
+        "ytId": "b3k0v_Qo4mQ",
         "title": "My Universe",
         "artist": "Coldplay x BTS",
         "album": "Music of the Spheres",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/b3k0v_Qo4mQ/hqdefault.jpg",
         "duration": 228,
-        "plays": "1,350,000,000"
+        "plays": "1,450,000,000"
+      },
+      {
+        "id": "ytm-RB-RcX5DS5A",
+        "ytId": "RB-RcX5DS5A",
+        "title": "The Scientist",
+        "artist": "Coldplay",
+        "album": "A Rush of Blood to the Head",
+        "coverUrl": "https://i.ytimg.com/vi/RB-RcX5DS5A/hqdefault.jpg",
+        "duration": 309,
+        "plays": "2,050,000,000"
+      },
+      {
+        "id": "ytm-QtXby3G2XKY",
+        "ytId": "QtXby3G2XKY",
+        "title": "Adventure of a Lifetime",
+        "artist": "Coldplay",
+        "album": "A Head Full of Dreams",
+        "coverUrl": "https://i.ytimg.com/vi/QtXby3G2XKY/hqdefault.jpg",
+        "duration": 263,
+        "plays": "1,520,000,000"
+      },
+      {
+        "id": "ytm-WZXgWJz2y_k",
+        "ytId": "WZXgWJz2y_k",
+        "title": "Clocks",
+        "artist": "Coldplay",
+        "album": "A Rush of Blood to the Head",
+        "coverUrl": "https://i.ytimg.com/vi/WZXgWJz2y_k/hqdefault.jpg",
+        "duration": 307,
+        "plays": "1,380,000,000"
       }
     ]
   },
   "eminem": {
     "name": "Eminem",
-    "monthlyListeners": "74,200,000",
-    "followersCount": "82,000,000",
-    "worldRank": "#8 Globally",
+    "monthlyListeners": "71,500,000",
+    "followersCount": "89,000,000",
+    "worldRank": "#1 in Hip-Hop Legends",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg",
-    "bio": "Eminem (Marshall Mathers) is widely considered one of the greatest rappers of all time, with 15 Grammy Awards and over 220 million records sold worldwide. His sharp storytelling, breathless cadences, and raw emotional vulnerability have influenced entire generations of hip hop.",
+    "bio": "Marshall Bruce Mathers III, known professionally as Eminem, is an American rapper, songwriter, and record producer widely cited as one of the greatest and most influential rappers of all time, with 15 Grammy Awards and an Academy Award.",
     "socials": {
       "instagram": "https://www.instagram.com/eminem/",
       "x": "https://x.com/eminem",
       "facebook": "https://www.facebook.com/eminem/",
-      "youtube": "https://www.youtube.com/@EminemMusic"
+      "youtube": "https://www.youtube.com/@eminem"
     },
     "tourInfo": {
-      "tourName": "The Death of Slim Shady World Tour",
-      "status": "Headlining Stadiums",
-      "dates": "Detroit, London, Melbourne, Tokyo, New York, Riyadh",
-      "ticketUrl": "https://www.ticketmaster.com"
+      "tourName": "The Death of Slim Shady World Stadium Tour",
+      "status": "Tickets Live",
+      "dates": "Detroit Ford Field, London Wembley Stadium, Los Angeles, New York, Tokyo",
+      "ticketUrl": "https://www.ticketmaster.com/eminem-tickets/artist/773530"
     },
     "topTracks": [
       {
@@ -2654,9 +2776,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Mockingbird",
         "artist": "Eminem",
         "album": "Encore",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg",
-        "duration": 258,
-        "plays": "2,100,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/S9bCLPwzSC0/hqdefault.jpg",
+        "duration": 250,
+        "plays": "1,950,000,000"
       },
       {
         "id": "ytm-_Yhyp-_hX2s",
@@ -2664,29 +2786,9 @@ export const getArtistDetails = (artistName) => {
         "title": "Lose Yourself",
         "artist": "Eminem",
         "album": "8 Mile",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/_Yhyp-_hX2s/hqdefault.jpg",
         "duration": 326,
-        "plays": "2,850,000,000"
-      },
-      {
-        "id": "ytm-YVkUvmDQ3HY",
-        "ytId": "YVkUvmDQ3HY",
-        "title": "Without Me",
-        "artist": "Eminem",
-        "album": "The Eminem Show",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/dd/5c/e6/dd5ce621-f7d2-f767-7a08-e7a7eaa7870b/00602537526994.rgb.jpg/600x600bb.jpg",
-        "duration": 290,
-        "plays": "2,400,000,000"
-      },
-      {
-        "id": "ytm-uelHwf8o7_U",
-        "ytId": "uelHwf8o7_U",
-        "title": "Love The Way You Lie",
-        "artist": "Eminem ft. Rihanna",
-        "album": "Recovery",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/95/a4/2c/95a42c0d-f3c8-c70d-3e3a-93cfa4a516d4/00602527394558.rgb.jpg/600x600bb.jpg",
-        "duration": 263,
-        "plays": "2,600,000,000"
+        "plays": "2,650,000,000"
       },
       {
         "id": "ytm-eJO5HU_7_1w",
@@ -2694,19 +2796,39 @@ export const getArtistDetails = (artistName) => {
         "title": "The Real Slim Shady",
         "artist": "Eminem",
         "album": "The Marshall Mathers LP",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/eJO5HU_7_1w/hqdefault.jpg",
         "duration": 284,
+        "plays": "1,890,000,000"
+      },
+      {
+        "id": "ytm-uelHwf8o7_U",
+        "ytId": "uelHwf8o7_U",
+        "title": "Love The Way You Lie",
+        "artist": "Eminem ft. Rihanna",
+        "album": "Recovery",
+        "coverUrl": "https://i.ytimg.com/vi/uelHwf8o7_U/hqdefault.jpg",
+        "duration": 263,
+        "plays": "2,780,000,000"
+      },
+      {
+        "id": "ytm-YVkUvmDQ3HY",
+        "ytId": "YVkUvmDQ3HY",
+        "title": "Without Me",
+        "artist": "Eminem",
+        "album": "The Eminem Show",
+        "coverUrl": "https://i.ytimg.com/vi/YVkUvmDQ3HY/hqdefault.jpg",
+        "duration": 290,
         "plays": "2,150,000,000"
       },
       {
-        "id": "ytm-ytQ5CYE1VZw",
-        "ytId": "ytQ5CYE1VZw",
-        "title": "Till I Collapse",
-        "artist": "Eminem ft. Nate Dogg",
-        "album": "The Eminem Show",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/dd/5c/e6/dd5ce621-f7d2-f767-7a08-e7a7eaa7870b/00602537526994.rgb.jpg/600x600bb.jpg",
-        "duration": 297,
-        "plays": "2,300,000,000"
+        "id": "ytm-j5-x065cXnM",
+        "ytId": "j5-x065cXnM",
+        "title": "Not Afraid",
+        "artist": "Eminem",
+        "album": "Recovery",
+        "coverUrl": "https://i.ytimg.com/vi/j5-x065cXnM/hqdefault.jpg",
+        "duration": 248,
+        "plays": "1,890,000,000"
       },
       {
         "id": "ytm-XbGs_qK2PQA",
@@ -2714,49 +2836,49 @@ export const getArtistDetails = (artistName) => {
         "title": "Rap God",
         "artist": "Eminem",
         "album": "The Marshall Mathers LP 2",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/XbGs_qK2PQA/hqdefault.jpg",
         "duration": 363,
-        "plays": "1,550,000,000"
-      },
-      {
-        "id": "ytm-gOMhN-hfMt8",
-        "ytId": "gOMhN-hfMt8",
-        "title": "Stan",
-        "artist": "Eminem ft. Dido",
-        "album": "The Marshall Mathers LP",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg",
-        "duration": 404,
         "plays": "1,450,000,000"
       },
       {
-        "id": "ytm-22tVWwmTie8",
-        "ytId": "22tVWwmTie8",
+        "id": "ytm-gOMhN-HfMt8",
+        "ytId": "gOMhN-HfMt8",
+        "title": "Stan",
+        "artist": "Eminem ft. Dido",
+        "album": "The Marshall Mathers LP",
+        "coverUrl": "https://i.ytimg.com/vi/gOMhN-HfMt8/hqdefault.jpg",
+        "duration": 404,
+        "plays": "1,250,000,000"
+      },
+      {
+        "id": "ytm-r_0Jj337n5k",
+        "ytId": "r_0Jj337n5k",
+        "title": "Godzilla",
+        "artist": "Eminem ft. Juice WRLD",
+        "album": "Music to Be Murdered By",
+        "coverUrl": "https://i.ytimg.com/vi/r_0Jj337n5k/hqdefault.jpg",
+        "duration": 210,
+        "plays": "1,340,000,000"
+      },
+      {
+        "id": "ytm-22tVWwmTieA",
+        "ytId": "22tVWwmTieA",
         "title": "Houdini",
         "artist": "Eminem",
         "album": "The Death of Slim Shady",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/22tVWwmTieA/hqdefault.jpg",
         "duration": 227,
         "plays": "820,000,000"
-      },
-      {
-        "id": "ytm-j5-z3ocWLcE",
-        "ytId": "j5-z3ocWLcE",
-        "title": "Not Afraid",
-        "artist": "Eminem",
-        "album": "Recovery",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/95/a4/2c/95a42c0d-f3c8-c70d-3e3a-93cfa4a516d4/00602527394558.rgb.jpg/600x600bb.jpg",
-        "duration": 248,
-        "plays": "1,750,000,000"
       }
     ]
   },
   "ed-sheeran": {
     "name": "Ed Sheeran",
-    "monthlyListeners": "84,000,000",
-    "followersCount": "112,000,000",
-    "worldRank": "#6 Globally",
+    "monthlyListeners": "78,900,000",
+    "followersCount": "114,000,000",
+    "worldRank": "#6 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
-    "bio": "Edward Christopher Sheeran MBE is an English singer-songwriter who has sold more than 150 million records worldwide. With four Grammy Awards and the Mathematics Tour breaking records across the globe, his loop pedal performances remain legendary.",
+    "bio": "Edward Christopher Sheeran MBE is an English singer-songwriter who has sold more than 150 million records worldwide. His iconic pop, folk, and acoustic ballads like Shape of You and Perfect hold all-time streaming records.",
     "socials": {
       "instagram": "https://www.instagram.com/teddysphotos/",
       "x": "https://x.com/edsheeran",
@@ -2764,10 +2886,10 @@ export const getArtistDetails = (artistName) => {
       "youtube": "https://www.youtube.com/@EdSheeran"
     },
     "tourInfo": {
-      "tourName": "The Mathematics Tour",
-      "status": "Stadium Run",
-      "dates": "London, Dublin, Mumbai, Tokyo, Sydney, Auckland",
-      "ticketUrl": "https://www.ticketmaster.com"
+      "tourName": "+–=÷× Mathematics World Tour",
+      "status": "Tickets Live",
+      "dates": "London Wembley Stadium, New York MetLife Stadium, Mumbai Mahalaxmi, Tokyo Dome, Sydney",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
       {
@@ -2775,80 +2897,80 @@ export const getArtistDetails = (artistName) => {
         "ytId": "_dK2tDK9grQ",
         "title": "Shape of You",
         "artist": "Ed Sheeran",
-        "album": "Divide",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "album": "÷ (Divide)",
+        "coverUrl": "https://i.ytimg.com/vi/_dK2tDK9grQ/hqdefault.jpg",
         "duration": 233,
-        "plays": "3,800,000,000"
+        "plays": "4,050,000,000"
       },
       {
         "id": "ytm-2Vv-BfVoq4g",
         "ytId": "2Vv-BfVoq4g",
         "title": "Perfect",
         "artist": "Ed Sheeran",
-        "album": "Divide",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "album": "÷ (Divide)",
+        "coverUrl": "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg",
         "duration": 263,
-        "plays": "3,100,000,000"
+        "plays": "3,320,000,000"
       },
       {
         "id": "ytm-orJSJGHjBLI",
         "ytId": "orJSJGHjBLI",
         "title": "Bad Habits",
         "artist": "Ed Sheeran",
-        "album": "Equals",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
-        "duration": 230,
-        "plays": "1,950,000,000"
+        "album": "= (Equals)",
+        "coverUrl": "https://i.ytimg.com/vi/orJSJGHjBLI/hqdefault.jpg",
+        "duration": 231,
+        "plays": "1,890,000,000"
       },
       {
         "id": "ytm-lp-EO5I60KA",
         "ytId": "lp-EO5I60KA",
         "title": "Thinking Out Loud",
         "artist": "Ed Sheeran",
-        "album": "Multiply",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "album": "x (Multiply)",
+        "coverUrl": "https://i.ytimg.com/vi/lp-EO5I60KA/hqdefault.jpg",
         "duration": 281,
-        "plays": "2,500,000,000"
+        "plays": "2,650,000,000"
       },
       {
         "id": "ytm-Il0S8BoucSA",
         "ytId": "Il0S8BoucSA",
         "title": "Shivers",
         "artist": "Ed Sheeran",
-        "album": "Equals",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "album": "= (Equals)",
+        "coverUrl": "https://i.ytimg.com/vi/Il0S8BoucSA/hqdefault.jpg",
         "duration": 207,
-        "plays": "1,650,000,000"
+        "plays": "1,620,000,000"
       },
       {
         "id": "ytm-nSDgHBxUbVQ",
         "ytId": "nSDgHBxUbVQ",
         "title": "Photograph",
         "artist": "Ed Sheeran",
-        "album": "Multiply",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "album": "x (Multiply)",
+        "coverUrl": "https://i.ytimg.com/vi/nSDgHBxUbVQ/hqdefault.jpg",
         "duration": 258,
-        "plays": "2,350,000,000"
+        "plays": "2,420,000,000"
       },
       {
         "id": "ytm-K0ibBPhiaG0",
         "ytId": "K0ibBPhiaG0",
         "title": "Castle on the Hill",
         "artist": "Ed Sheeran",
-        "album": "Divide",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "album": "÷ (Divide)",
+        "coverUrl": "https://i.ytimg.com/vi/K0ibBPhiaG0/hqdefault.jpg",
         "duration": 261,
-        "plays": "1,500,000,000"
+        "plays": "1,520,000,000"
       },
       {
         "id": "ytm-87gWaABqGYs",
         "ytId": "87gWaABqGYs",
         "title": "Galway Girl",
         "artist": "Ed Sheeran",
-        "album": "Divide",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "album": "÷ (Divide)",
+        "coverUrl": "https://i.ytimg.com/vi/87gWaABqGYs/hqdefault.jpg",
         "duration": 170,
-        "plays": "1,400,000,000"
+        "plays": "1,450,000,000"
       },
       {
         "id": "ytm-y83x7MgzWOA",
@@ -2856,111 +2978,131 @@ export const getArtistDetails = (artistName) => {
         "title": "I Don't Care",
         "artist": "Ed Sheeran & Justin Bieber",
         "album": "No.6 Collaborations Project",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/y83x7MgzWOA/hqdefault.jpg",
         "duration": 219,
-        "plays": "1,700,000,000"
+        "plays": "1,780,000,000"
       },
       {
         "id": "ytm-u2DXvNZtG5U",
         "ytId": "u2DXvNZtG5U",
         "title": "Eyes Closed",
         "artist": "Ed Sheeran",
-        "album": "Subtract",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "album": "- (Subtract)",
+        "coverUrl": "https://i.ytimg.com/vi/u2DXvNZtG5U/hqdefault.jpg",
         "duration": 194,
-        "plays": "580,000,000"
+        "plays": "650,000,000"
       }
     ]
   },
   "anirudh-ravichander": {
     "name": "Anirudh Ravichander",
-    "monthlyListeners": "28,000,000",
-    "followersCount": "22,000,000",
-    "worldRank": "#1 in South India",
+    "monthlyListeners": "24,800,000",
+    "followersCount": "19,500,000",
+    "worldRank": "#1 in Tamil / Indian Fusion",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
-    "bio": "Anirudh Ravichander is an acclaimed Indian music composer and singer renowned for transforming contemporary South Indian film music with viral global hits like Arabic Kuthu, Vaathi Coming, Hukum, and Badass.",
+    "bio": "Anirudh Ravichander is an Indian music composer, singer, and producer who revolutionized Kollywood and Indian cinematic music with viral EDM, acoustic melodies, and chart-topping pan-Indian anthems for Jawan, Leo, Vikram, and Jailer.",
     "socials": {
       "instagram": "https://www.instagram.com/anirudhofficial/",
       "x": "https://x.com/anirudhofficial",
-      "facebook": "https://www.facebook.com/AnirudhRavichander/",
-      "youtube": "https://www.youtube.com/@AnirudhOfficial"
+      "facebook": "https://www.facebook.com/AnirudhOfficial/",
+      "youtube": "https://www.youtube.com/@AnirudhRavichanderOfficial"
     },
     "tourInfo": {
       "tourName": "Hukum World Tour 2026",
       "status": "Tickets Live",
-      "dates": "Chennai, Bengaluru, London, Singapore, Dallas, Toronto",
+      "dates": "Chennai YMCA, Bengaluru, Dubai Coca-Cola Arena, London OVO Arena Wembley, Singapore Indoor Stadium",
       "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
       {
-        "id": "ytm-8FAUEv_E_xU",
-        "ytId": "8FAUEv_E_xU",
+        "id": "ytm-KUN5Uf9mOBQ",
+        "ytId": "KUN5Uf9mOBQ",
         "title": "Arabic Kuthu",
-        "artist": "Anirudh Ravichander",
+        "artist": "Anirudh Ravichander, Jonita Gandhi",
         "album": "Beast",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg",
-        "duration": 279,
-        "plays": "750,000,000"
-      },
-      {
-        "id": "ytm-fRD_3vJagOU",
-        "ytId": "fRD_3vJagOU",
-        "title": "Vaathi Coming",
-        "artist": "Anirudh Ravichander",
-        "album": "Master",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a3/f2/dc/a3f2dc29-fc54-07bb-8f9c-2a3936d21a5d/886448363347.jpg/1000x1000bb.jpg",
-        "duration": 230,
-        "plays": "620,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/KUN5Uf9mOBQ/hqdefault.jpg",
+        "duration": 280,
+        "plays": "580,000,000"
       },
       {
         "id": "ytm-1F3hm6MfR1k",
         "ytId": "1F3hm6MfR1k",
         "title": "Hukum - Thalaivar Alappara",
-        "artist": "Anirudh Ravichander",
+        "artist": "Anirudh Ravichander, Super Subu",
         "album": "Jailer",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/1F3hm6MfR1k/hqdefault.jpg",
         "duration": 207,
-        "plays": "420,000,000"
-      },
-      {
-        "id": "ytm-IqwIOlhA30Y",
-        "ytId": "IqwIOlhA30Y",
-        "title": "Badass",
-        "artist": "Anirudh Ravichander",
-        "album": "Leo",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
-        "duration": 229,
         "plays": "390,000,000"
-      },
-      {
-        "id": "ytm-YR12Z84DZVw",
-        "ytId": "YR12Z84DZVw",
-        "title": "Why This Kolaveri Di",
-        "artist": "Dhanush, Anirudh Ravichander",
-        "album": "3",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a3/f2/dc/a3f2dc29-fc54-07bb-8f9c-2a3936d21a5d/886448363347.jpg/1000x1000bb.jpg",
-        "duration": 245,
-        "plays": "450,000,000"
       },
       {
         "id": "ytm-szvt1vD0Uug",
         "ytId": "szvt1vD0Uug",
+        "title": "Badass",
+        "artist": "Anirudh Ravichander",
+        "album": "Leo",
+        "coverUrl": "https://i.ytimg.com/vi/szvt1vD0Uug/hqdefault.jpg",
+        "duration": 229,
+        "plays": "320,000,000"
+      },
+      {
+        "id": "ytm-vxT-A-3aJ8A",
+        "ytId": "vxT-A-3aJ8A",
+        "title": "Vaathi Coming",
+        "artist": "Anirudh Ravichander, Gana Balachandar",
+        "album": "Master",
+        "coverUrl": "https://i.ytimg.com/vi/vxT-A-3aJ8A/hqdefault.jpg",
+        "duration": 230,
+        "plays": "490,000,000"
+      },
+      {
+        "id": "ytm-0a61Q20a_9E",
+        "ytId": "0a61Q20a_9E",
         "title": "Naa Ready",
         "artist": "Thalapathy Vijay, Anirudh Ravichander",
         "album": "Leo",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/0a61Q20a_9E/hqdefault.jpg",
         "duration": 248,
-        "plays": "350,000,000"
+        "plays": "410,000,000"
       },
       {
-        "id": "ytm-lZRAW8FdX7c",
-        "ytId": "lZRAW8FdX7c",
+        "id": "ytm-FM7Z-Xq8Drc",
+        "ytId": "FM7Z-Xq8Drc",
+        "title": "Why This Kolaveri Di",
+        "artist": "Dhanush, Anirudh Ravichander",
+        "album": "3",
+        "coverUrl": "https://i.ytimg.com/vi/FM7Z-Xq8Drc/hqdefault.jpg",
+        "duration": 245,
+        "plays": "450,000,000"
+      },
+      {
+        "id": "ytm-k4yXQ8tGo4s",
+        "ytId": "k4yXQ8tGo4s",
+        "title": "Vikram Title Track",
+        "artist": "Anirudh Ravichander",
+        "album": "Vikram",
+        "coverUrl": "https://i.ytimg.com/vi/k4yXQ8tGo4s/hqdefault.jpg",
+        "duration": 216,
+        "plays": "280,000,000"
+      },
+      {
+        "id": "ytm-8w0q2m4e6r8",
+        "ytId": "8w0q2m4e6r8",
         "title": "Kaavaalaa",
         "artist": "Anirudh Ravichander, Shilpa Rao",
         "album": "Jailer",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
-        "duration": 190,
-        "plays": "410,000,000"
+        "coverUrl": "https://i.ytimg.com/vi/8w0q2m4e6r8/hqdefault.jpg",
+        "duration": 191,
+        "plays": "350,000,000"
+      },
+      {
+        "id": "ytm-7q9w1e3r5t0",
+        "ytId": "7q9w1e3r5t0",
+        "title": "Zinda Banda",
+        "artist": "Anirudh Ravichander",
+        "album": "Jawan",
+        "coverUrl": "https://i.ytimg.com/vi/7q9w1e3r5t0/hqdefault.jpg",
+        "duration": 264,
+        "plays": "290,000,000"
       },
       {
         "id": "ytm-Gg9j8n6mK5w",
@@ -2968,29 +3110,741 @@ export const getArtistDetails = (artistName) => {
         "title": "Chellamma",
         "artist": "Anirudh Ravichander, Jonita Gandhi",
         "album": "Doctor",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a3/f2/dc/a3f2dc29-fc54-07bb-8f9c-2a3936d21a5d/886448363347.jpg/1000x1000bb.jpg",
+        "coverUrl": "https://i.ytimg.com/vi/Gg9j8n6mK5w/hqdefault.jpg",
         "duration": 236,
         "plays": "310,000,000"
+      }
+    ]
+  },
+  "imagine-dragons": {
+    "name": "Imagine Dragons",
+    "monthlyListeners": "67,400,000",
+    "followersCount": "53,800,000",
+    "worldRank": "#2 Band Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg",
+    "bio": "Imagine Dragons is an acclaimed American alternative rock band from Las Vegas, Nevada, consisting of lead singer Dan Reynolds, guitarist Wayne Sermon, bassist Ben McKee, and drummer Daniel Platzman. They hold multiple Diamond-certified global anthems.",
+    "socials": {
+      "instagram": "https://www.instagram.com/imaginedragons/",
+      "x": "https://x.com/imaginedragons",
+      "facebook": "https://www.facebook.com/ImagineDragons/",
+      "youtube": "https://www.youtube.com/@ImagineDragons"
+    },
+    "tourInfo": {
+      "tourName": "LOOM World Arena & Stadium Tour",
+      "status": "Tickets Live",
+      "dates": "Los Angeles Hollywood Bowl, London Tottenham Stadium, Paris, Berlin, Tokyo",
+      "ticketUrl": "https://www.ticketmaster.com/imagine-dragons-tickets/artist/1435919"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-7wtfhZwyrcc",
+        "ytId": "7wtfhZwyrcc",
+        "title": "Believer",
+        "artist": "Imagine Dragons",
+        "album": "Evolve",
+        "coverUrl": "https://i.ytimg.com/vi/7wtfhZwyrcc/hqdefault.jpg",
+        "duration": 204,
+        "plays": "3,150,000,000"
       },
       {
-        "id": "ytm-qX4b7W4qM3g",
-        "ytId": "qX4b7W4qM3g",
-        "title": "Fear Song",
-        "artist": "Anirudh Ravichander",
-        "album": "Devara Part 1",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
-        "duration": 196,
-        "plays": "280,000,000"
+        "id": "ytm-mWRsgZuwf_8",
+        "ytId": "mWRsgZuwf_8",
+        "title": "Demons",
+        "artist": "Imagine Dragons",
+        "album": "Night Visions",
+        "coverUrl": "https://i.ytimg.com/vi/mWRsgZuwf_8/hqdefault.jpg",
+        "duration": 177,
+        "plays": "2,420,000,000"
       },
       {
-        "id": "ytm-VAdGW7QDJiU",
-        "ytId": "VAdGW7QDJiU",
-        "title": "Chaleya (Composer)",
-        "artist": "Anirudh Ravichander, Arijit Singh",
-        "album": "Jawan",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1000x1000bb.jpg",
-        "duration": 198,
+        "id": "ytm-ktvTqknDobU",
+        "ytId": "ktvTqknDobU",
+        "title": "Radioactive",
+        "artist": "Imagine Dragons",
+        "album": "Night Visions",
+        "coverUrl": "https://i.ytimg.com/vi/ktvTqknDobU/hqdefault.jpg",
+        "duration": 187,
+        "plays": "2,190,000,000"
+      },
+      {
+        "id": "ytm-fKopy74weus",
+        "ytId": "fKopy74weus",
+        "title": "Thunder",
+        "artist": "Imagine Dragons",
+        "album": "Evolve",
+        "coverUrl": "https://i.ytimg.com/vi/fKopy74weus/hqdefault.jpg",
+        "duration": 187,
+        "plays": "2,280,000,000"
+      },
+      {
+        "id": "ytm-TO-_3tck2tg",
+        "ytId": "TO-_3tck2tg",
+        "title": "Bones",
+        "artist": "Imagine Dragons",
+        "album": "Mercury - Acts 1 & 2",
+        "coverUrl": "https://i.ytimg.com/vi/TO-_3tck2tg/hqdefault.jpg",
+        "duration": 165,
+        "plays": "1,650,000,000"
+      },
+      {
+        "id": "ytm-D9G1VOjN_84",
+        "ytId": "D9G1VOjN_84",
+        "title": "Enemy",
+        "artist": "Imagine Dragons x J.I.D",
+        "album": "Arcane League of Legends",
+        "coverUrl": "https://i.ytimg.com/vi/D9G1VOjN_84/hqdefault.jpg",
+        "duration": 173,
+        "plays": "1,780,000,000"
+      },
+      {
+        "id": "ytm-0I647GU3Jsc",
+        "ytId": "0I647GU3Jsc",
+        "title": "Natural",
+        "artist": "Imagine Dragons",
+        "album": "Origins",
+        "coverUrl": "https://i.ytimg.com/vi/0I647GU3Jsc/hqdefault.jpg",
+        "duration": 189,
+        "plays": "1,520,000,000"
+      },
+      {
+        "id": "ytm-gOsM-Z34PW0",
+        "ytId": "gOsM-Z34PW0",
+        "title": "Whatever It Takes",
+        "artist": "Imagine Dragons",
+        "album": "Evolve",
+        "coverUrl": "https://i.ytimg.com/vi/gOsM-Z34PW0/hqdefault.jpg",
+        "duration": 201,
+        "plays": "1,420,000,000"
+      },
+      {
+        "id": "ytm-I-QFuKrLkzk",
+        "ytId": "I-QFuKrLkzk",
+        "title": "Bad Liar",
+        "artist": "Imagine Dragons",
+        "album": "Origins",
+        "coverUrl": "https://i.ytimg.com/vi/I-QFuKrLkzk/hqdefault.jpg",
+        "duration": 260,
+        "plays": "1,310,000,000"
+      },
+      {
+        "id": "ytm-1nv9br7Sm7E",
+        "ytId": "1nv9br7Sm7E",
+        "title": "Follow You",
+        "artist": "Imagine Dragons",
+        "album": "Mercury - Act 1",
+        "coverUrl": "https://i.ytimg.com/vi/1nv9br7Sm7E/hqdefault.jpg",
+        "duration": 175,
+        "plays": "780,000,000"
+      }
+    ]
+  },
+  "bruno-mars": {
+    "name": "Bruno Mars",
+    "monthlyListeners": "109,800,000",
+    "followersCount": "62,400,000",
+    "worldRank": "#2 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e3/47/a0/e347a0cc-87ce-5d05-d560-176c7d48f66e/075679904119.jpg/600x600bb.jpg",
+    "bio": "Peter Gene Hernandez, known professionally as Bruno Mars, is an American singer-songwriter, multi-instrumentalist, and record producer known for his stage showmanship, retro show-style performances, and legendary funk, pop, and soul hits.",
+    "socials": {
+      "instagram": "https://www.instagram.com/brunomars/",
+      "x": "https://x.com/brunomars",
+      "facebook": "https://www.facebook.com/brunomars/",
+      "youtube": "https://www.youtube.com/@brunomars"
+    },
+    "tourInfo": {
+      "tourName": "Bruno Mars Live: The Worldwide Arena Tour",
+      "status": "Tickets Live",
+      "dates": "Tokyo Dome, Las Vegas Dolby Live, London Wembley Stadium, Los Angeles",
+      "ticketUrl": "https://www.ticketmaster.com/bruno-mars-tickets/artist/1457193"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-kPa7bsKwL-c",
+        "ytId": "kPa7bsKwL-c",
+        "title": "Die With A Smile",
+        "artist": "Lady Gaga & Bruno Mars",
+        "album": "Die With A Smile",
+        "coverUrl": "https://i.ytimg.com/vi/kPa7bsKwL-c/hqdefault.jpg",
+        "duration": 251,
+        "plays": "1,450,000,000"
+      },
+      {
+        "id": "ytm-OPf0YbXqDm0",
+        "ytId": "OPf0YbXqDm0",
+        "title": "Uptown Funk",
+        "artist": "Mark Ronson ft. Bruno Mars",
+        "album": "Uptown Special",
+        "coverUrl": "https://i.ytimg.com/vi/OPf0YbXqDm0/hqdefault.jpg",
+        "duration": 270,
+        "plays": "5,200,000,000"
+      },
+      {
+        "id": "ytm-PMivT7MJ41M",
+        "ytId": "PMivT7MJ41M",
+        "title": "That's What I Like",
+        "artist": "Bruno Mars",
+        "album": "24K Magic",
+        "coverUrl": "https://i.ytimg.com/vi/PMivT7MJ41M/hqdefault.jpg",
+        "duration": 206,
+        "plays": "2,350,000,000"
+      },
+      {
+        "id": "ytm-LjhCEhWiKXk",
+        "ytId": "LjhCEhWiKXk",
+        "title": "Just the Way You Are",
+        "artist": "Bruno Mars",
+        "album": "Doo-Wops & Hooligans",
+        "coverUrl": "https://i.ytimg.com/vi/LjhCEhWiKXk/hqdefault.jpg",
+        "duration": 220,
+        "plays": "2,190,000,000"
+      },
+      {
+        "id": "ytm-UqyT8IEBkvY",
+        "ytId": "UqyT8IEBkvY",
+        "title": "24K Magic",
+        "artist": "Bruno Mars",
+        "album": "24K Magic",
+        "coverUrl": "https://i.ytimg.com/vi/UqyT8IEBkvY/hqdefault.jpg",
+        "duration": 226,
+        "plays": "1,780,000,000"
+      },
+      {
+        "id": "ytm-SR6iYWJxHqs",
+        "ytId": "SR6iYWJxHqs",
+        "title": "Grenade",
+        "artist": "Bruno Mars",
+        "album": "Doo-Wops & Hooligans",
+        "coverUrl": "https://i.ytimg.com/vi/SR6iYWJxHqs/hqdefault.jpg",
+        "duration": 222,
+        "plays": "1,380,000,000"
+      },
+      {
+        "id": "ytm-ekzHIouo8Q4",
+        "ytId": "ekzHIouo8Q4",
+        "title": "When I Was Your Man",
+        "artist": "Bruno Mars",
+        "album": "Unorthodox Jukebox",
+        "coverUrl": "https://i.ytimg.com/vi/ekzHIouo8Q4/hqdefault.jpg",
+        "duration": 213,
+        "plays": "1,940,000,000"
+      },
+      {
+        "id": "ytm-e-fA-gBCkj0",
+        "ytId": "e-fA-gBCkj0",
+        "title": "Locked Out of Heaven",
+        "artist": "Bruno Mars",
+        "album": "Unorthodox Jukebox",
+        "coverUrl": "https://i.ytimg.com/vi/e-fA-gBCkj0/hqdefault.jpg",
+        "duration": 233,
+        "plays": "1,890,000,000"
+      },
+      {
+        "id": "ytm-fLexgOxsZu0",
+        "ytId": "fLexgOxsZu0",
+        "title": "The Lazy Song",
+        "artist": "Bruno Mars",
+        "album": "Doo-Wops & Hooligans",
+        "coverUrl": "https://i.ytimg.com/vi/fLexgOxsZu0/hqdefault.jpg",
+        "duration": 195,
+        "plays": "2,650,000,000"
+      },
+      {
+        "id": "ytm-adLGH4FaVU8",
+        "ytId": "adLGH4FaVU8",
+        "title": "Leave The Door Open",
+        "artist": "Silk Sonic (Bruno Mars & Anderson .Paak)",
+        "album": "An Evening with Silk Sonic",
+        "coverUrl": "https://i.ytimg.com/vi/adLGH4FaVU8/hqdefault.jpg",
+        "duration": 242,
+        "plays": "1,420,000,000"
+      }
+    ]
+  },
+  "adele": {
+    "name": "Adele",
+    "monthlyListeners": "59,600,000",
+    "followersCount": "61,200,000",
+    "worldRank": "#8 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg",
+    "bio": "Adele Laurie Blue Adkins MBE is an English singer-songwriter whose powerhouse vocals and deeply confessional soul ballads have garnered 16 Grammy Awards, an Oscar, and millions of global fans.",
+    "socials": {
+      "instagram": "https://www.instagram.com/adele/",
+      "x": "https://x.com/adele",
+      "facebook": "https://www.facebook.com/adele/",
+      "youtube": "https://www.youtube.com/@Adele"
+    },
+    "tourInfo": {
+      "tourName": "Adele in Munich & Las Vegas Residency",
+      "status": "Tickets Live",
+      "dates": "Munich Messe Arena, The Colosseum at Caesars Palace Las Vegas",
+      "ticketUrl": "https://www.ticketmaster.com/adele-tickets/artist/1159272"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-rYEDA3JcQqw",
+        "ytId": "rYEDA3JcQqw",
+        "title": "Rolling in the Deep",
+        "artist": "Adele",
+        "album": "21",
+        "coverUrl": "https://i.ytimg.com/vi/rYEDA3JcQqw/hqdefault.jpg",
+        "duration": 228,
+        "plays": "2,450,000,000"
+      },
+      {
+        "id": "ytm-hLQl3WQQoQ0",
+        "ytId": "hLQl3WQQoQ0",
+        "title": "Someone Like You",
+        "artist": "Adele",
+        "album": "21",
+        "coverUrl": "https://i.ytimg.com/vi/hLQl3WQQoQ0/hqdefault.jpg",
+        "duration": 285,
+        "plays": "2,280,000,000"
+      },
+      {
+        "id": "ytm-YQHsXMglC9A",
+        "ytId": "YQHsXMglC9A",
+        "title": "Hello",
+        "artist": "Adele",
+        "album": "25",
+        "coverUrl": "https://i.ytimg.com/vi/YQHsXMglC9A/hqdefault.jpg",
+        "duration": 295,
+        "plays": "3,150,000,000"
+      },
+      {
+        "id": "ytm-FlsBObg-1BQ",
+        "ytId": "FlsBObg-1BQ",
+        "title": "Set Fire to the Rain",
+        "artist": "Adele",
+        "album": "21",
+        "coverUrl": "https://i.ytimg.com/vi/FlsBObg-1BQ/hqdefault.jpg",
+        "duration": 242,
+        "plays": "1,750,000,000"
+      },
+      {
+        "id": "ytm-U3ASj1L6_sY",
+        "ytId": "U3ASj1L6_sY",
+        "title": "Easy On Me",
+        "artist": "Adele",
+        "album": "30",
+        "coverUrl": "https://i.ytimg.com/vi/U3ASj1L6_sY/hqdefault.jpg",
+        "duration": 224,
+        "plays": "1,620,000,000"
+      },
+      {
+        "id": "ytm-DeumyOzKqgI",
+        "ytId": "DeumyOzKqgI",
+        "title": "Skyfall",
+        "artist": "Adele",
+        "album": "Skyfall",
+        "coverUrl": "https://i.ytimg.com/vi/DeumyOzKqgI/hqdefault.jpg",
+        "duration": 286,
+        "plays": "1,520,000,000"
+      },
+      {
+        "id": "ytm-fk4BbF7B29w",
+        "ytId": "fk4BbF7B29w",
+        "title": "Send My Love (To Your New Lover)",
+        "artist": "Adele",
+        "album": "25",
+        "coverUrl": "https://i.ytimg.com/vi/fk4BbF7B29w/hqdefault.jpg",
+        "duration": 223,
+        "plays": "1,220,000,000"
+      },
+      {
+        "id": "ytm-DDWKuo3gXMQ",
+        "ytId": "DDWKuo3gXMQ",
+        "title": "When We Were Young",
+        "artist": "Adele",
+        "album": "25",
+        "coverUrl": "https://i.ytimg.com/vi/DDWKuo3gXMQ/hqdefault.jpg",
+        "duration": 290,
+        "plays": "1,390,000,000"
+      },
+      {
+        "id": "ytm-08Ne2ma3fq8",
+        "ytId": "08Ne2ma3fq8",
+        "title": "Chasing Pavements",
+        "artist": "Adele",
+        "album": "19",
+        "coverUrl": "https://i.ytimg.com/vi/08Ne2ma3fq8/hqdefault.jpg",
+        "duration": 211,
+        "plays": "980,000,000"
+      },
+      {
+        "id": "ytm-b4p8w9r2m10",
+        "ytId": "b4p8w9r2m10",
+        "title": "All I Ask",
+        "artist": "Adele",
+        "album": "25",
+        "coverUrl": "https://i.ytimg.com/vi/b4p8w9r2m10/hqdefault.jpg",
+        "duration": 272,
+        "plays": "850,000,000"
+      }
+    ]
+  },
+  "linkin-park": {
+    "name": "Linkin Park",
+    "monthlyListeners": "54,200,000",
+    "followersCount": "48,900,000",
+    "worldRank": "#1 Nu-Metal / Rock",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg",
+    "bio": "Linkin Park is an American rock band from Agoura Hills, California. Formed in 1996, the band propelled to international stardom with Hybrid Theory, pioneering the alternative metal and nu-metal genre with over 100 million records sold.",
+    "socials": {
+      "instagram": "https://www.instagram.com/linkinpark/",
+      "x": "https://x.com/linkinpark",
+      "facebook": "https://www.facebook.com/linkinpark/",
+      "youtube": "https://www.youtube.com/@linkinpark"
+    },
+    "tourInfo": {
+      "tourName": "From Zero World Arena Tour",
+      "status": "Tickets Live",
+      "dates": "Los Angeles Kia Forum, New York Barclays Center, London The O2, Seoul, Tokyo",
+      "ticketUrl": "https://www.ticketmaster.com/linkin-park-tickets/artist/705703"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-eVTXPUF4Oz4",
+        "ytId": "eVTXPUF4Oz4",
+        "title": "In the End",
+        "artist": "Linkin Park",
+        "album": "Hybrid Theory",
+        "coverUrl": "https://i.ytimg.com/vi/eVTXPUF4Oz4/hqdefault.jpg",
+        "duration": 216,
+        "plays": "2,150,000,000"
+      },
+      {
+        "id": "ytm-kXYiU_JCYtU",
+        "ytId": "kXYiU_JCYtU",
+        "title": "Numb",
+        "artist": "Linkin Park",
+        "album": "Meteora",
+        "coverUrl": "https://i.ytimg.com/vi/kXYiU_JCYtU/hqdefault.jpg",
+        "duration": 187,
+        "plays": "2,380,000,000"
+      },
+      {
+        "id": "ytm-LYU-8IFcDPw",
+        "ytId": "LYU-8IFcDPw",
+        "title": "Faint",
+        "artist": "Linkin Park",
+        "album": "Meteora",
+        "coverUrl": "https://i.ytimg.com/vi/LYU-8IFcDPw/hqdefault.jpg",
+        "duration": 162,
+        "plays": "980,000,000"
+      },
+      {
+        "id": "ytm-Gd9OhYroLN8",
+        "ytId": "Gd9OhYroLN8",
+        "title": "Crawling",
+        "artist": "Linkin Park",
+        "album": "Hybrid Theory",
+        "coverUrl": "https://i.ytimg.com/vi/Gd9OhYroLN8/hqdefault.jpg",
+        "duration": 209,
         "plays": "820,000,000"
+      },
+      {
+        "id": "ytm-4qlCC19Ja4A",
+        "ytId": "4qlCC19Ja4A",
+        "title": "One Step Closer",
+        "artist": "Linkin Park",
+        "album": "Hybrid Theory",
+        "coverUrl": "https://i.ytimg.com/vi/4qlCC19Ja4A/hqdefault.jpg",
+        "duration": 157,
+        "plays": "750,000,000"
+      },
+      {
+        "id": "ytm-v2H4W9057Gk",
+        "ytId": "v2H4W9057Gk",
+        "title": "Breaking the Habit",
+        "artist": "Linkin Park",
+        "album": "Meteora",
+        "coverUrl": "https://i.ytimg.com/vi/v2H4W9057Gk/hqdefault.jpg",
+        "duration": 196,
+        "plays": "690,000,000"
+      },
+      {
+        "id": "ytm-8sgycukafqQ",
+        "ytId": "8sgycukafqQ",
+        "title": "What I've Done",
+        "artist": "Linkin Park",
+        "album": "Minutes to Midnight",
+        "coverUrl": "https://i.ytimg.com/vi/8sgycukafqQ/hqdefault.jpg",
+        "duration": 205,
+        "plays": "1,120,000,000"
+      },
+      {
+        "id": "ytm-OnuuYcqhzCE",
+        "ytId": "OnuuYcqhzCE",
+        "title": "Bleed It Out",
+        "artist": "Linkin Park",
+        "album": "Minutes to Midnight",
+        "coverUrl": "https://i.ytimg.com/vi/OnuuYcqhzCE/hqdefault.jpg",
+        "duration": 164,
+        "plays": "780,000,000"
+      },
+      {
+        "id": "ytm-zsCD5XCu6CM",
+        "ytId": "zsCD5XCu6CM",
+        "title": "Somewhere I Belong",
+        "artist": "Linkin Park",
+        "album": "Meteora",
+        "coverUrl": "https://i.ytimg.com/vi/zsCD5XCu6CM/hqdefault.jpg",
+        "duration": 213,
+        "plays": "640,000,000"
+      },
+      {
+        "id": "ytm-ScNNfyq3d_w",
+        "ytId": "ScNNfyq3d_w",
+        "title": "Castle of Glass",
+        "artist": "Linkin Park",
+        "album": "Living Things",
+        "coverUrl": "https://i.ytimg.com/vi/ScNNfyq3d_w/hqdefault.jpg",
+        "duration": 205,
+        "plays": "620,000,000"
+      }
+    ]
+  },
+  "dua-lipa": {
+    "name": "Dua Lipa",
+    "monthlyListeners": "74,100,000",
+    "followersCount": "46,800,000",
+    "worldRank": "#7 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg",
+    "bio": "Dua Lipa is an English-Albanian singer and songwriter whose disco-infused pop sensibilities and deep mezzo-soprano vocal tone have garnered three Grammy Awards and over a dozen international chart-topping singles.",
+    "socials": {
+      "instagram": "https://www.instagram.com/dualipa/",
+      "x": "https://x.com/DUALIPA",
+      "facebook": "https://www.facebook.com/DuaLipa/",
+      "youtube": "https://www.youtube.com/@dualipa"
+    },
+    "tourInfo": {
+      "tourName": "Radical Optimism World Tour",
+      "status": "Tickets Live",
+      "dates": "London Wembley Stadium, Tokyo Marine Stadium, Singapore, Sydney, New York",
+      "ticketUrl": "https://www.ticketmaster.com/dua-lipa-tickets/artist/2180373"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-TUVcZfQe-Kw",
+        "ytId": "TUVcZfQe-Kw",
+        "title": "Levitating",
+        "artist": "Dua Lipa",
+        "album": "Future Nostalgia",
+        "coverUrl": "https://i.ytimg.com/vi/TUVcZfQe-Kw/hqdefault.jpg",
+        "duration": 203,
+        "plays": "2,420,000,000"
+      },
+      {
+        "id": "ytm-oygrmJFKYZY",
+        "ytId": "oygrmJFKYZY",
+        "title": "Don't Start Now",
+        "artist": "Dua Lipa",
+        "album": "Future Nostalgia",
+        "coverUrl": "https://i.ytimg.com/vi/oygrmJFKYZY/hqdefault.jpg",
+        "duration": 183,
+        "plays": "2,540,000,000"
+      },
+      {
+        "id": "ytm-k2qgadSvNyU",
+        "ytId": "k2qgadSvNyU",
+        "title": "New Rules",
+        "artist": "Dua Lipa",
+        "album": "Dua Lipa",
+        "coverUrl": "https://i.ytimg.com/vi/k2qgadSvNyU/hqdefault.jpg",
+        "duration": 209,
+        "plays": "2,980,000,000"
+      },
+      {
+        "id": "ytm-9HDEHj2yzew",
+        "ytId": "9HDEHj2yzew",
+        "title": "Physical",
+        "artist": "Dua Lipa",
+        "album": "Future Nostalgia",
+        "coverUrl": "https://i.ytimg.com/vi/9HDEHj2yzew/hqdefault.jpg",
+        "duration": 193,
+        "plays": "980,000,000"
+      },
+      {
+        "id": "ytm-Nj2U6rhnucI",
+        "ytId": "Nj2U6rhnucI",
+        "title": "Break My Heart",
+        "artist": "Dua Lipa",
+        "album": "Future Nostalgia",
+        "coverUrl": "https://i.ytimg.com/vi/Nj2U6rhnucI/hqdefault.jpg",
+        "duration": 221,
+        "plays": "1,250,000,000"
+      },
+      {
+        "id": "ytm-OiC1rgCPmUQ",
+        "ytId": "OiC1rgCPmUQ",
+        "title": "Dance The Night",
+        "artist": "Dua Lipa",
+        "album": "Barbie The Album",
+        "coverUrl": "https://i.ytimg.com/vi/OiC1rgCPmUQ/hqdefault.jpg",
+        "duration": 176,
+        "plays": "1,150,000,000"
+      },
+      {
+        "id": "ytm-Mgfe5tIwOj0",
+        "ytId": "Mgfe5tIwOj0",
+        "title": "IDGAF",
+        "artist": "Dua Lipa",
+        "album": "Dua Lipa",
+        "coverUrl": "https://i.ytimg.com/vi/Mgfe5tIwOj0/hqdefault.jpg",
+        "duration": 217,
+        "plays": "1,620,000,000"
+      },
+      {
+        "id": "ytm-DkeiKbqa02g",
+        "ytId": "DkeiKbqa02g",
+        "title": "One Kiss",
+        "artist": "Calvin Harris & Dua Lipa",
+        "album": "One Kiss",
+        "coverUrl": "https://i.ytimg.com/vi/DkeiKbqa02g/hqdefault.jpg",
+        "duration": 214,
+        "plays": "2,190,000,000"
+      },
+      {
+        "id": "ytm-suAR1PYFNYA",
+        "ytId": "suAR1PYFNYA",
+        "title": "Houdini",
+        "artist": "Dua Lipa",
+        "album": "Radical Optimism",
+        "coverUrl": "https://i.ytimg.com/vi/suAR1PYFNYA/hqdefault.jpg",
+        "duration": 185,
+        "plays": "780,000,000"
+      },
+      {
+        "id": "ytm-ZjBZJtL9b4Y",
+        "ytId": "ZjBZJtL9b4Y",
+        "title": "Training Season",
+        "artist": "Dua Lipa",
+        "album": "Radical Optimism",
+        "coverUrl": "https://i.ytimg.com/vi/ZjBZJtL9b4Y/hqdefault.jpg",
+        "duration": 209,
+        "plays": "560,000,000"
+      }
+    ]
+  },
+  "bad-bunny": {
+    "name": "Bad Bunny",
+    "monthlyListeners": "79,400,000",
+    "followersCount": "81,200,000",
+    "worldRank": "#1 in Latin Music",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+    "bio": "Benito Antonio Martínez Ocasio, known professionally as Bad Bunny, is a Puerto Rican rapper, singer, and songwriter hailed as the King of Latin Trap and modern reggaeton. He was Spotify's most-streamed artist in the world for three consecutive years.",
+    "socials": {
+      "instagram": "https://www.instagram.com/badbunnypr/",
+      "x": "https://x.com/sanbenito",
+      "facebook": "https://www.facebook.com/BadBunnyOfficial/",
+      "youtube": "https://www.youtube.com/@BadBunnyPR"
+    },
+    "tourInfo": {
+      "tourName": "Most Wanted Tour",
+      "status": "Tickets Live",
+      "dates": "Miami Kaseya Center, New York Barclays Center, Los Angeles Crypto.com Arena, San Juan",
+      "ticketUrl": "https://www.ticketmaster.com/bad-bunny-tickets/artist/2347917"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-_EjX2jZ9V9M",
+        "ytId": "_EjX2jZ9V9M",
+        "title": "Monaco",
+        "artist": "Bad Bunny",
+        "album": "Nadie Sabe Lo Que Va a Pasar Mañana",
+        "coverUrl": "https://i.ytimg.com/vi/_EjX2jZ9V9M/hqdefault.jpg",
+        "duration": 267,
+        "plays": "1,120,000,000"
+      },
+      {
+        "id": "ytm-Cr8K88UcO0s",
+        "ytId": "Cr8K88UcO0s",
+        "title": "Tití Me Preguntó",
+        "artist": "Bad Bunny",
+        "album": "Un Verano Sin Ti",
+        "coverUrl": "https://i.ytimg.com/vi/Cr8K88UcO0s/hqdefault.jpg",
+        "duration": 243,
+        "plays": "1,890,000,000"
+      },
+      {
+        "id": "ytm-saGYMhApaH8",
+        "ytId": "saGYMhApaH8",
+        "title": "Me Porto Bonito",
+        "artist": "Bad Bunny & Chencho Corleone",
+        "album": "Un Verano Sin Ti",
+        "coverUrl": "https://i.ytimg.com/vi/saGYMhApaH8/hqdefault.jpg",
+        "duration": 178,
+        "plays": "1,980,000,000"
+      },
+      {
+        "id": "ytm-p38WgakuYdo",
+        "ytId": "p38WgakuYdo",
+        "title": "Moscow Mule",
+        "artist": "Bad Bunny",
+        "album": "Un Verano Sin Ti",
+        "coverUrl": "https://i.ytimg.com/vi/p38WgakuYdo/hqdefault.jpg",
+        "duration": 245,
+        "plays": "1,420,000,000"
+      },
+      {
+        "id": "ytm-TmKh7lAwnBI",
+        "ytId": "TmKh7lAwnBI",
+        "title": "Dakiti",
+        "artist": "Bad Bunny & Jhayco",
+        "album": "El Último Tour Del Mundo",
+        "coverUrl": "https://i.ytimg.com/vi/TmKh7lAwnBI/hqdefault.jpg",
+        "duration": 205,
+        "plays": "1,850,000,000"
+      },
+      {
+        "id": "ytm-doLMt10ytHY",
+        "ytId": "doLMt10ytHY",
+        "title": "Yonaguni",
+        "artist": "Bad Bunny",
+        "album": "Yonaguni",
+        "coverUrl": "https://i.ytimg.com/vi/doLMt10ytHY/hqdefault.jpg",
+        "duration": 206,
+        "plays": "1,670,000,000"
+      },
+      {
+        "id": "ytm-10pxKQ_XNx4",
+        "ytId": "10pxKQ_XNx4",
+        "title": "Ojitos Lindos",
+        "artist": "Bad Bunny & Bomba Estéreo",
+        "album": "Un Verano Sin Ti",
+        "coverUrl": "https://i.ytimg.com/vi/10pxKQ_XNx4/hqdefault.jpg",
+        "duration": 258,
+        "plays": "1,520,000,000"
+      },
+      {
+        "id": "ytm-acEOASYioGY",
+        "ytId": "acEOASYioGY",
+        "title": "Callaíta",
+        "artist": "Bad Bunny",
+        "album": "Un Verano Sin Ti",
+        "coverUrl": "https://i.ytimg.com/vi/acEOASYioGY/hqdefault.jpg",
+        "duration": 250,
+        "plays": "1,390,000,000"
+      },
+      {
+        "id": "ytm-W9R2bXz1v2w",
+        "ytId": "W9R2bXz1v2w",
+        "title": "Where She Goes",
+        "artist": "Bad Bunny",
+        "album": "Where She Goes",
+        "coverUrl": "https://i.ytimg.com/vi/W9R2bXz1v2w/hqdefault.jpg",
+        "duration": 231,
+        "plays": "890,000,000"
+      },
+      {
+        "id": "ytm-b2m7q8w9e0r",
+        "ytId": "b2m7q8w9e0r",
+        "title": "Efecto",
+        "artist": "Bad Bunny",
+        "album": "Un Verano Sin Ti",
+        "coverUrl": "https://i.ytimg.com/vi/b2m7q8w9e0r/hqdefault.jpg",
+        "duration": 213,
+        "plays": "950,000,000"
       }
     ]
   }
@@ -3020,6 +3874,13 @@ export const getArtistDetails = (artistName) => {
     else if (normalized.includes('eminem')) foundKey = 'eminem';
     else if (normalized.includes('sheeran')) foundKey = 'ed-sheeran';
     else if (normalized.includes('anirudh')) foundKey = 'anirudh-ravichander';
+    else if (normalized.includes('sethi') || normalized.includes('ali')) foundKey = 'ali-sethi';
+    else if (normalized.includes('imagine') || normalized.includes('dragons')) foundKey = 'imagine-dragons';
+    else if (normalized.includes('bruno') || normalized.includes('mars')) foundKey = 'bruno-mars';
+    else if (normalized.includes('adele')) foundKey = 'adele';
+    else if (normalized.includes('linkin') || normalized.includes('park')) foundKey = 'linkin-park';
+    else if (normalized.includes('dua') || normalized.includes('lipa')) foundKey = 'dua-lipa';
+    else if (normalized.includes('bunny') || normalized.includes('benito')) foundKey = 'bad-bunny';
   }
 
   if (foundKey && db[foundKey]) {

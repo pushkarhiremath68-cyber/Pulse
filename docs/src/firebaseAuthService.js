@@ -23,7 +23,7 @@ export function getStoredUser() {
 export function setStoredUser(user) {
   if (user) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-    if (user.provider === 'google' || user.provider === 'email') {
+    if (user.provider === 'google' || user.provider === 'email' || user.provider === 'phone') {
       setGateUnlocked(true);
     }
   } else {
@@ -349,6 +349,151 @@ export async function signInWithGoogle() {
   }
 }
 
+// 3b. Phone Number Authentication (Firebase SMS OTP)
+export function setupRecaptcha(containerId = 'recaptcha-container', isNormal = false) {
+  const { app, auth } = initFirebase();
+  if (!auth) throw new Error('Firebase is not initialized. Please check your configuration.');
+
+  // If already rendered, clear old verifier
+  if (window.recaptchaVerifier) {
+    try {
+      window.recaptchaVerifier.clear();
+    } catch (e) {}
+    window.recaptchaVerifier = null;
+  }
+
+  const container = document.getElementById(containerId);
+  if (!container) {
+    console.warn(`[FirebaseAuth] Recaptcha container #${containerId} not found, will attach dynamically.`);
+  }
+
+  if (auth && auth.useDeviceLanguage) {
+    try { auth.useDeviceLanguage(); } catch (e) {}
+  }
+
+  const targetApp = app || (firebase.apps && firebase.apps.length ? firebase.app() : null);
+
+  // Note: 3rd parameter must be firebase.app.App, NOT auth instance!
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(containerId, {
+    size: isNormal ? 'normal' : 'invisible',
+    callback: () => {
+      console.log('[FirebaseAuth] reCAPTCHA verified successfully.');
+    },
+    'expired-callback': () => {
+      console.warn('[FirebaseAuth] reCAPTCHA expired.');
+      if (window.showToast) window.showToast('reCAPTCHA expired. Please try again.', 'warning', 3000);
+    }
+  }, targetApp || undefined);
+
+  return window.recaptchaVerifier;
+}
+
+export async function sendPhoneOtp(phoneNumber, containerId = 'recaptcha-container') {
+  if (!phoneNumber || phoneNumber.trim().length < 8) {
+    throw new Error('Please enter a valid mobile number with country code (e.g. +91 9876543210).');
+  }
+
+  // Format to E.164: remove all spaces, dashes, brackets
+  let cleanPhone = phoneNumber.replace(/[\s\-\(\)]/g, '').trim();
+  if (!cleanPhone.startsWith('+')) {
+    cleanPhone = '+' + cleanPhone;
+  }
+
+  const { auth } = initFirebase();
+  if (!auth) throw new Error('Firebase is not initialized.');
+
+  // Ensure any lingering anonymous session is cleanly cleared if needed
+  if (auth.currentUser && auth.currentUser.isAnonymous) {
+    try { await auth.signOut(); } catch (_) {}
+  }
+
+  const appVerifier = setupRecaptcha(containerId);
+
+  try {
+    const confirmationResult = await auth.signInWithPhoneNumber(cleanPhone, appVerifier);
+    window.confirmationResult = confirmationResult;
+    return { success: true, phoneNumber: cleanPhone };
+  } catch (err) {
+    console.error('[FirebaseAuth] sendPhoneOtp error:', err);
+    if (window.recaptchaVerifier) {
+      try {
+        window.recaptchaVerifier.clear();
+      } catch (e) {}
+      window.recaptchaVerifier = null;
+    }
+    const errMsg = err.message || '';
+    if (errMsg.includes('BILLING_NOT_ENABLED') || err.code === 'auth/billing-not-enabled') {
+      throw new Error('Firebase requires Blaze plan (Pay-As-You-Go) for real SMS, or add this number under "Phone numbers for testing" in Firebase Console (Authentication > Sign-in method > Phone).');
+    } else if (err.code === 'auth/invalid-phone-number') {
+      throw new Error('The phone number is not valid. Please verify the country code and number.');
+    } else if (err.code === 'auth/quota-exceeded') {
+      throw new Error('SMS verification quota exceeded for today. Please use Google Sign-In or try again later.');
+    } else if (err.code === 'auth/too-many-requests') {
+      throw new Error('Too many requests. Please wait a few minutes before trying again.');
+    } else if (err.code === 'auth/operation-not-allowed') {
+      throw new Error('Phone sign-in is not enabled in Firebase Authentication console.');
+    } else if (err.code === 'auth/captcha-check-failed') {
+      throw new Error('reCAPTCHA security check failed. Please refresh and try again.');
+    }
+    throw new Error(err.message || 'Failed to send SMS code. Please try again.');
+  }
+}
+
+export async function verifyPhoneOtp(verificationCode) {
+  if (!verificationCode || verificationCode.trim().length < 4) {
+    throw new Error('Please enter the 6-digit code received via SMS.');
+  }
+
+  if (!window.confirmationResult) {
+    throw new Error('No active verification request found. Please request an SMS code first.');
+  }
+
+  const cleanCode = verificationCode.replace(/[\s\-]/g, '').trim();
+
+  try {
+    const result = await window.confirmationResult.confirm(cleanCode);
+    const firebaseUser = result.user;
+
+    const formattedPhone = firebaseUser.phoneNumber || 'Mobile User';
+    const displayName = firebaseUser.displayName || `Listener (${formattedPhone})`;
+    const user = {
+      id: firebaseUser.uid,
+      uid: firebaseUser.uid,
+      name: displayName,
+      email: firebaseUser.email || `${firebaseUser.phoneNumber || firebaseUser.uid}@pulse.app`,
+      phoneNumber: firebaseUser.phoneNumber || '',
+      avatar: firebaseUser.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(formattedPhone)}&backgroundColor=10b981`,
+      provider: 'phone'
+    };
+
+    setStoredUser(user);
+    setGateUnlocked(true);
+
+    const { db } = initFirebase();
+    if (db) {
+      try {
+        await db.collection('users').doc(firebaseUser.uid).set({
+          uid: firebaseUser.uid,
+          name: user.name,
+          phoneNumber: user.phoneNumber,
+          provider: 'phone',
+          lastLoginAt: Date.now()
+        }, { merge: true });
+      } catch (e) {}
+    }
+
+    return user;
+  } catch (err) {
+    console.error('[FirebaseAuth] verifyPhoneOtp error:', err);
+    if (err.code === 'auth/invalid-verification-code') {
+      throw new Error('Invalid code entered. Please check your SMS and try again.');
+    } else if (err.code === 'auth/code-expired') {
+      throw new Error('The SMS code has expired. Please request a new verification code.');
+    }
+    throw new Error(err.message || 'Verification failed. Please try again.');
+  }
+}
+
 // 4. Guest / Anonymous Mode Sign In
 export async function signInAnonymously() {
   const { auth } = initFirebase();
@@ -606,13 +751,19 @@ export function setupNativeAuthSync() {
       if (firebaseUser) {
         setGateUnlocked(true);
         const isGoogle = firebaseUser.providerData?.some(p => p.providerId === 'google.com');
+        const isPhone = firebaseUser.providerData?.some(p => p.providerId === 'phone') || !!firebaseUser.phoneNumber;
+        const provider = isGoogle ? 'google' : (isPhone ? 'phone' : (firebaseUser.isAnonymous ? 'anonymous' : 'email'));
+        const formattedPhone = firebaseUser.phoneNumber || 'Mobile User';
+        const displayName = firebaseUser.displayName || (isPhone ? `Listener (${formattedPhone})` : (isGoogle ? 'Google Listener' : 'Listener'));
+        const email = firebaseUser.email || (firebaseUser.phoneNumber ? `${firebaseUser.phoneNumber}@pulse.app` : 'user@pulse.app');
         const user = {
           id: firebaseUser.uid,
           uid: firebaseUser.uid,
-          name: firebaseUser.displayName || (isGoogle ? 'Google Listener' : 'Listener'),
-          email: firebaseUser.email || 'user@pulse.app',
-          avatar: firebaseUser.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(firebaseUser.displayName || firebaseUser.email || 'User')}&backgroundColor=8b5cf6`,
-          provider: isGoogle ? 'google' : (firebaseUser.isAnonymous ? 'anonymous' : 'email')
+          name: displayName,
+          email: email,
+          phoneNumber: firebaseUser.phoneNumber || '',
+          avatar: firebaseUser.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(displayName)}&backgroundColor=${isPhone ? '10b981' : '8b5cf6'}`,
+          provider: provider
         };
         setStoredUser(user);
 
@@ -623,6 +774,7 @@ export function setupNativeAuthSync() {
               uid: firebaseUser.uid,
               name: user.name,
               email: user.email,
+              phoneNumber: user.phoneNumber,
               avatar: user.avatar,
               provider: user.provider,
               lastLoginAt: Date.now()
@@ -652,6 +804,9 @@ const authService = {
   signUpWithEmail,
   signInWithEmail,
   signInWithGoogle,
+  sendPhoneOtp,
+  verifyPhoneOtp,
+  setupRecaptcha,
   signInAnonymously,
   signOut,
   updateUserProfile,

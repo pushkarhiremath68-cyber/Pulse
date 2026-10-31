@@ -649,7 +649,7 @@ export async function publishSharedPlaylist(playlist) {
 
   // 2. Build resilient deep link (both Firestore ID and encoded payload fallback)
   const encodedData = encodeSharePayload(sharePayload);
-  const origin = (typeof window !== 'undefined' && window.location.origin) ? window.location.origin : '';
+  const origin = (typeof window !== 'undefined' && window.location && window.location.origin && window.location.origin !== 'null') ? window.location.origin : 'https://pulsemusic.web.app';
   const pathname = (typeof window !== 'undefined' && window.location.pathname) ? window.location.pathname : '/';
   
   // Base share link
@@ -736,7 +736,7 @@ export async function importSharedPlaylist(sharedPlaylistOrId, optionalData = nu
 
 export function generateTrackShareUrl(track) {
   if (!track) return (typeof window !== 'undefined' && window.location) ? window.location.href : '';
-  const origin = (typeof window !== 'undefined' && window.location && window.location.origin) ? window.location.origin : '';
+  const origin = (typeof window !== 'undefined' && window.location && window.location.origin && window.location.origin !== 'null') ? window.location.origin : 'https://pulsemusic.web.app';
   const pathname = (typeof window !== 'undefined' && window.location && window.location.pathname) ? window.location.pathname : '/';
 
   const id = track.id || track.ytId || '';

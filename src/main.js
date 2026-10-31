@@ -34,8 +34,6 @@ import {
   signInWithGoogle,
   signInWithEmail,
   signUpWithEmail,
-  sendPhoneOtp,
-  verifyPhoneOtp,
   signOut,
   isGateUnlocked,
   setGateUnlocked,
@@ -1143,9 +1141,7 @@ window.addEventListener('error', function(e) {
     });
 
     // Auto-play the video preview automatically for the new slide
-    setTimeout(() => {
-      window.toggleSlidePreview(nextIndex, true);
-    }, 400);
+    // Video preview only on user click
 
     // Update Pills and trigger fresh fill animation
     const pillEls = document.querySelectorAll('.hero-pill-dot');
@@ -1193,11 +1189,20 @@ window.addEventListener('error', function(e) {
   };
 
   window.pauseHeroAutoPlay = function() {
-    // Disabled per user request (play continuously)
+    isHeroPaused = true;
+    if (heroAutoPlayInterval) {
+      clearInterval(heroAutoPlayInterval);
+      heroAutoPlayInterval = null;
+    }
+    const banner = document.getElementById('hero-banner');
+    if (banner) banner.classList.add('paused');
   };
 
   window.resumeHeroAutoPlay = function() {
-    // Disabled per user request
+    isHeroPaused = false;
+    const banner = document.getElementById('hero-banner');
+    if (banner) banner.classList.remove('paused');
+    window.startHeroAutoPlayTimer();
   };
 
   // Strictly Inline Video Preview Toggle (Pure Preview Clip, No YouTube Player UI)
@@ -4180,8 +4185,8 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
     const isGoogle = user && user.provider === 'google';
     const isEmail = user && user.provider === 'email';
-    const isPhone = user && user.provider === 'phone';
-    const isRealUser = isGoogle || isEmail || isPhone;
+    const isPhone = false;
+    const isRealUser = isGoogle || isEmail;
 
     if (guestBox) {
       guestBox.style.display = isRealUser ? 'none' : 'block';
@@ -4334,171 +4339,6 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   };
 
   // ---------------------------------------------------------------------------
-  // PHONE NUMBER AUTHENTICATION CONTROLLER (SMS OTP)
-  // ---------------------------------------------------------------------------
-  let _phoneResendCountdown = 0;
-  let _phoneResendInterval = null;
-
-  window.openPhoneAuthModal = function() {
-    window.openAuthModal();
-    window.togglePhoneAuthView(true);
-    const input = document.getElementById('pulse-phone-input');
-    if (input) setTimeout(() => input.focus(), 200);
-  };
-
-  window.togglePhoneAuthView = function(forceShow = null) {
-    const panel = document.getElementById('phone-auth-panel');
-    const toggleText = document.getElementById('phone-toggle-text');
-    if (!panel) return;
-    const isHidden = typeof forceShow === 'boolean' ? !forceShow : panel.classList.contains('hidden');
-    panel.classList.toggle('hidden', !isHidden);
-    if (toggleText) {
-      toggleText.textContent = isHidden ? 'Hide Phone Login' : 'Sign In with Phone Number (SMS OTP)';
-    }
-    if (isHidden) {
-      window.backToPhoneInput();
-    }
-  };
-
-  window.backToPhoneInput = function() {
-    const step1 = document.getElementById('phone-input-step');
-    const step2 = document.getElementById('phone-otp-step');
-    if (step1) step1.classList.remove('hidden');
-    if (step2) step2.classList.add('hidden');
-    const input = document.getElementById('pulse-phone-input');
-    if (input) input.focus();
-  };
-
-  window.handleSendPhoneOtp = async function() {
-    const countryEl = document.getElementById('phone-country-code');
-    const phoneInput = document.getElementById('pulse-phone-input');
-    const btn = document.getElementById('btn-send-phone-otp');
-
-    const countryCode = (countryEl?.value || '+91').trim();
-    const rawNumber = (phoneInput?.value || '').trim();
-
-    if (!rawNumber || rawNumber.length < 5) {
-      if (window.showToast) window.showToast('Please enter your mobile phone number.', 'warning', 3000);
-      if (phoneInput) phoneInput.focus();
-      return;
-    }
-
-    let fullPhone = rawNumber;
-    if (!fullPhone.startsWith('+')) {
-      const cleanNum = rawNumber.replace(/^0+/, '');
-      fullPhone = `${countryCode}${cleanNum}`;
-    }
-
-    const originalBtnHtml = btn ? btn.innerHTML : '';
-    if (btn) {
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending SMS Code...';
-    }
-
-    try {
-      if (window.showToast) window.showToast('Verifying security & sending SMS...', 'info', 3000);
-      const res = await sendPhoneOtp(fullPhone, 'recaptcha-container');
-      
-      const step1 = document.getElementById('phone-input-step');
-      const step2 = document.getElementById('phone-otp-step');
-      const sentToDisplay = document.getElementById('phone-otp-sent-to');
-      const otpInput = document.getElementById('pulse-otp-input');
-
-      if (sentToDisplay) sentToDisplay.textContent = res.phoneNumber || fullPhone;
-      if (step1) step1.classList.add('hidden');
-      if (step2) step2.classList.remove('hidden');
-      if (otpInput) {
-        otpInput.value = '';
-        setTimeout(() => otpInput.focus(), 150);
-      }
-
-      if (window.showToast) {
-        window.showToast(`📩 6-digit code sent to ${res.phoneNumber}! Please enter it below.`, 'success', 5000);
-      }
-
-      startResendCountdown(60);
-    } catch (err) {
-      if (window.showToast) {
-        window.showToast(err.message || 'Failed to send SMS code. Please try again.', 'error', 4500);
-      }
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.innerHTML = originalBtnHtml;
-      }
-    }
-  };
-
-  window.handleVerifyPhoneOtp = async function() {
-    const otpInput = document.getElementById('pulse-otp-input');
-    const btn = document.getElementById('btn-verify-phone-otp');
-    const code = (otpInput?.value || '').trim();
-
-    if (!code || code.length < 4) {
-      if (window.showToast) window.showToast('Please enter the 6-digit code from SMS.', 'warning', 3000);
-      if (otpInput) otpInput.focus();
-      return;
-    }
-
-    const originalBtnHtml = btn ? btn.innerHTML : '';
-    if (btn) {
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verifying Code...';
-    }
-
-    try {
-      const user = await verifyPhoneOtp(code);
-      setGateUnlocked(true);
-      if (window.showToast) {
-        window.showToast(`🎉 Signed in successfully! Welcome, ${user.name}!`, 'success', 5000);
-      }
-      checkAuthGateState(user);
-      updateAuthModalContent();
-      if (window.PulseFirestore && window.PulseFirestore.getFavorites) {
-        window.PulseFirestore.getFavorites();
-      }
-      if (window.PulseFirestore && window.PulseFirestore.getPlaylists) {
-        window.PulseFirestore.getPlaylists();
-      }
-    } catch (err) {
-      if (window.showToast) {
-        window.showToast(err.message || 'Invalid verification code. Please check SMS.', 'error', 4500);
-      }
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.innerHTML = originalBtnHtml;
-      }
-    }
-  };
-
-  window.handleResendPhoneOtp = async function() {
-    if (_phoneResendCountdown > 0) {
-      if (window.showToast) window.showToast(`Please wait ${_phoneResendCountdown}s before requesting a new code.`, 'info', 2500);
-      return;
-    }
-    await window.handleSendPhoneOtp();
-  };
-
-  function startResendCountdown(seconds = 60) {
-    _phoneResendCountdown = seconds;
-    const timerEl = document.getElementById('phone-resend-timer');
-    const resendBtn = document.getElementById('btn-resend-phone-otp');
-    if (_phoneResendInterval) clearInterval(_phoneResendInterval);
-
-    if (resendBtn) resendBtn.style.opacity = '0.5';
-
-    _phoneResendInterval = setInterval(() => {
-      _phoneResendCountdown--;
-      if (timerEl) timerEl.textContent = `(${_phoneResendCountdown}s)`;
-      if (_phoneResendCountdown <= 0) {
-        clearInterval(_phoneResendInterval);
-        if (timerEl) timerEl.textContent = '';
-        if (resendBtn) resendBtn.style.opacity = '1';
-      }
-    }, 1000);
-  }
-
   window.handleSignOut = async function() {
     try {
       if (window.PulsePlaybar && window.PulsePlaybar.pause) {

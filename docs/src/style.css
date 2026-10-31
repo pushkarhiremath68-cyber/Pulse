@@ -895,11 +895,15 @@ body::after {
   position: relative;
   width: 100%;
   min-height: 280px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
 }
 
 .hero-slide {
-  position: absolute;
-  inset: 0;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -907,16 +911,17 @@ body::after {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: scale(0.97) translateX(25px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
+  transform: translateX(18px);
+  transition: opacity 0.45s ease-in-out, transform 0.45s ease-out, visibility 0.45s ease;
+  will-change: opacity, transform;
 }
 
 .hero-slide.active-slide {
-  position: relative;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: scale(1) translateX(0);
+  transform: translateX(0);
+  z-index: 2;
 }
 
 .hero-content {
@@ -4985,6 +4990,161 @@ html.gate-already-unlocked .auth-gate-overlay {
   box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
   transform: translateY(-1px);
 }
+
+/* Phone Auth UI Styling */
+.btn-gate-phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1.5px solid rgba(16, 185, 129, 0.35);
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.65rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+}
+
+.btn-gate-phone:hover {
+  background: rgba(16, 185, 129, 0.22);
+  border-color: #10b981;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.25);
+}
+
+.phone-auth-card {
+  margin-top: 0.85rem;
+  padding: 1.15rem;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 16px;
+  text-align: left;
+}
+
+.phone-input-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.country-code-select {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  border-radius: 10px;
+  padding: 0.65rem 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  max-width: 140px;
+}
+
+.country-code-select option {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.phone-number-field {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.phone-number-field:focus,
+.phone-otp-field:focus {
+  border-color: #34d399;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.phone-otp-field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  color: #34d399;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.6rem;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s ease;
+  margin: 0.85rem 0;
+}
+
+.btn-send-otp,
+.btn-verify-otp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  margin-top: 0.75rem;
+}
+
+.btn-send-otp:hover,
+.btn-verify-otp:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+  filter: brightness(1.1);
+}
+
+.btn-send-otp:disabled,
+.btn-verify-otp:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-method-divider {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.auth-method-divider::before,
+.auth-method-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-method-divider span {
+  padding: 0 0.85rem;
+}
+
 
 
 /* ==========================================================================
