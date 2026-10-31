@@ -606,7 +606,7 @@ function updateTimeUI() {
   if (!isSeeking) {
     seekers.forEach(el => {
       el.value = pct;
-      el.style.background = `linear-gradient(to right, #38bdf8 0%, #a855f7 ${pct}%, #333338 ${pct}%, #333338 100%)`;
+      el.style.background = `linear-gradient(to right, #38bdf8 0%, #a855f7 ${pct}%, rgba(255,255,255,0.15) ${pct}%, rgba(255,255,255,0.15) 100%)`;
     });
   }
 }
@@ -998,6 +998,39 @@ function initPlaybarController() {
     });
   }
 
+  // High-precision Playbar Wrapper Click Seeking & Tooltips
+  const progressWrappers = document.querySelectorAll('.progress-bar-wrapper, #playbar-progress-wrapper, #fs-progress-wrapper');
+  progressWrappers.forEach(wrap => {
+    wrap.addEventListener('click', (e) => {
+      if (e.target.tagName && e.target.tagName.toLowerCase() === 'input') return;
+      const rect = wrap.getBoundingClientRect();
+      if (rect.width > 0 && duration > 0) {
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        seekTo(pos * duration);
+        const pct = pos * 100;
+        document.querySelectorAll('#player-progress-fill, #playbar-progress-fill, #mini-top-progress-fill, #fs-progress-fill').forEach(el => {
+          el.style.width = `${pct}%`;
+        });
+      }
+    });
+
+    const tooltip = wrap.querySelector('.seek-hover-tooltip');
+    if (tooltip) {
+      wrap.addEventListener('mousemove', (e) => {
+        const rect = wrap.getBoundingClientRect();
+        if (rect.width > 0 && duration > 0) {
+          const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+          tooltip.textContent = formatTime(pos * duration);
+          tooltip.style.left = `${pos * 100}%`;
+          tooltip.style.opacity = '1';
+        }
+      });
+      wrap.addEventListener('mouseleave', () => {
+        tooltip.style.opacity = '0';
+      });
+    }
+  });
+
   const seekers = document.querySelectorAll('#player-seek-slider, #playbar-seeker, #fs-seek-slider');
   seekers.forEach(seeker => {
     seeker.addEventListener('input', (e) => {
@@ -1014,7 +1047,7 @@ function initPlaybarController() {
       // Synchronous real-time track line gradient fill while dragging
       seekers.forEach(s => {
         s.value = pct;
-        s.style.background = `linear-gradient(to right, #38bdf8 0%, #a855f7 ${pct}%, #333338 ${pct}%, #333338 100%)`;
+        s.style.background = `linear-gradient(to right, #38bdf8 0%, #a855f7 ${pct}%, rgba(255,255,255,0.15) ${pct}%, rgba(255,255,255,0.15) 100%)`;
       });
       if (typeof window.syncLiveLyrics === 'function') {
         window.syncLiveLyrics(currentTime);

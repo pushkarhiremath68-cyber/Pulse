@@ -2350,7 +2350,83 @@ window.addEventListener('error', function(e) {
     }
   };
 
+    // ---------------------------------------------------------------------------
+  // PERSISTENT SINGER FOLLOWING SYSTEM & SOCIALS
+  // ---------------------------------------------------------------------------
+  window.getFollowedArtists = function() {
+    try {
+      const stored = localStorage.getItem('pulse_followed_artists');
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      return [];
+    }
+  };
+
+  window.isArtistFollowed = function(artistName) {
+    if (!artistName) return false;
+    const list = window.getFollowedArtists();
+    return list.some(a => a.toLowerCase().trim() === artistName.toLowerCase().trim());
+  };
+
+  window.toggleFollowArtist = function(targetName) {
+    const artist = window.pulseState.currentArtistData;
+    const name = targetName || (artist ? artist.name : '');
+    if (!name) return;
+
+    let list = window.getFollowedArtists();
+    const norm = name.toLowerCase().trim();
+    const idx = list.findIndex(a => a.toLowerCase().trim() === norm);
+    let isNowFollowing = false;
+
+    if (idx >= 0) {
+      list.splice(idx, 1);
+      isNowFollowing = false;
+      window.showToast(`Unfollowed ${name}`, 'info', 2000);
+    } else {
+      list.push(name);
+      isNowFollowing = true;
+      window.showToast(`Following ${name}! 🎉`, 'success', 2500);
+    }
+
+    try {
+      localStorage.setItem('pulse_followed_artists', JSON.stringify(list));
+    } catch (e) {
+      console.warn('Failed to save pulse_followed_artists', e);
+    }
+
+    window.updateArtistFollowButton(name, isNowFollowing);
+  };
+
+  window.updateArtistFollowButton = function(name, isFollowing) {
+    const btn = document.getElementById('artist-follow-btn');
+    const followersEl = document.getElementById('artist-followers-count');
+    const artist = window.pulseState.currentArtistData;
+
+    if (btn) {
+      if (isFollowing) {
+        btn.classList.add('following');
+        btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        btn.style.borderColor = '#10b981';
+        btn.style.color = '#ffffff';
+        btn.innerHTML = `<i class="fa-solid fa-check"></i> Following`;
+      } else {
+        btn.classList.remove('following');
+        btn.style.background = 'rgba(255, 255, 255, 0.08)';
+        btn.style.borderColor = 'var(--border-glass)';
+        btn.style.color = '#ffffff';
+        btn.innerHTML = `<i class="fa-solid fa-user-plus"></i> Follow`;
+      }
+    }
+
+    if (followersEl && artist) {
+      let baseCount = parseInt((artist.followersCount || '15,000,000').replace(/[^0-9]/g, ''), 10) || 15000000;
+      if (isFollowing) baseCount += 1;
+      followersEl.textContent = baseCount.toLocaleString();
+    }
+  };
+
   window.openArtistView = function(artistQuery) {
+    if (!artistQuery) return;
     const artist = getArtistDetails(artistQuery);
     window.pulseState.currentArtistData = artist;
 
@@ -2358,36 +2434,99 @@ window.addEventListener('error', function(e) {
     const heroListeners = document.getElementById('artist-hero-listeners');
     const heroRank = document.getElementById('artist-world-rank');
     const heroCard = document.getElementById('artist-hero-card');
+    const followersEl = document.getElementById('artist-followers-count');
 
     if (heroName) heroName.textContent = artist.name;
     if (heroListeners) heroListeners.textContent = artist.monthlyListeners;
     if (heroRank) heroRank.textContent = artist.worldRank;
+    if (followersEl) followersEl.textContent = artist.followersCount || '15,000,000';
     if (heroCard) {
-      heroCard.style.backgroundImage = `linear-gradient(180deg, rgba(15,17,26,0.3) 0%, #0f111a 100%), url('${artist.banner}')`;
+      heroCard.style.backgroundImage = `linear-gradient(180deg, rgba(15,17,26,0.35) 0%, #0f111a 100%), url('${artist.banner}')`;
     }
 
+    // Set persistent follow button state
+    const isFollowing = window.isArtistFollowed(artist.name);
+    window.updateArtistFollowButton(artist.name, isFollowing);
+
+    // Render Social Media Badges (Instagram, X, Facebook, YouTube)
+    const socialsContainer = document.getElementById('artist-socials-container');
+    if (socialsContainer && artist.socials) {
+      const xSvg = `<svg style="width: 14px; height: 14px; fill: #ffffff; vertical-align: -2px; margin-right: 5px;" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+      socialsContainer.innerHTML = `
+        <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px;">Connect:</span>
+        <a href="${artist.socials.instagram}" target="_blank" rel="noopener noreferrer" class="artist-social-chip hover-glow" title="Instagram @${escapeHtml(artist.name)}">
+          <i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram
+        </a>
+        <a href="${artist.socials.x}" target="_blank" rel="noopener noreferrer" class="artist-social-chip hover-glow" title="X (Twitter) @${escapeHtml(artist.name)}">
+          ${xSvg} X
+        </a>
+        <a href="${artist.socials.facebook}" target="_blank" rel="noopener noreferrer" class="artist-social-chip hover-glow" title="Facebook @${escapeHtml(artist.name)}">
+          <i class="fa-brands fa-facebook" style="color: #1877f2;"></i> Facebook
+        </a>
+        <a href="${artist.socials.youtube}" target="_blank" rel="noopener noreferrer" class="artist-social-chip hover-glow" title="YouTube @${escapeHtml(artist.name)}">
+          <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> YouTube
+        </a>
+      `;
+    }
+
+    // Render Top 10 Songs List
     const topTracksList = document.getElementById('artist-popular-tracks-list');
     if (topTracksList) {
-      window.__artistTopTracks = artist.topTracks;
-      topTracksList.innerHTML = artist.topTracks.map((track, idx) => `
-        <div class="artist-track-row hover-glow" onclick="window.playTrackDirect(window.__artistTopTracks[${idx}], window.__artistTopTracks)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
-          <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
-          <img src="${track.coverUrl}" alt="${escapeHtml(track.title)}" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;" loading="lazy">
-          <div style="flex: 1;">
-            <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${escapeHtml(track.title)}</div>
-            <div style="font-size: 0.75rem; color: var(--text-secondary);">${escapeHtml(track.plays || 'Top Release')} plays</div>
+      window.__artistTopTracks = artist.topTracks || [];
+      topTracksList.innerHTML = window.__artistTopTracks.map((track, idx) => `
+        <div class="artist-track-row hover-glow" onclick="window.playTrackDirect(window.__artistTopTracks[${idx}], window.__artistTopTracks)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer; transition: all 0.2s ease;">
+          <span style="font-weight: 800; color: ${idx < 3 ? '#38bdf8' : 'var(--text-muted)'}; width: 24px; text-align: center; font-size: 1rem;">#${idx + 1}</span>
+          <img src="${track.coverUrl || './music-cover.svg'}" alt="${escapeHtml(track.title)}" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover; animation: none !important; transform: none !important;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(track.title)}</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 2px;">${escapeHtml(track.plays || 'Top Release')} plays &bull; ${escapeHtml(track.album || 'Studio Master')}</div>
           </div>
-          <span style="font-size: 0.8rem; color: var(--text-muted);">${Math.floor(track.duration / 60)}:${Math.floor(track.duration % 60).toString().padStart(2, '0')}</span>
+          <span style="font-size: 0.82rem; color: var(--text-muted); font-variant-numeric: tabular-nums;">${Math.floor(track.duration / 60)}:${Math.floor(track.duration % 60).toString().padStart(2, '0')}</span>
           <button class="btn-player-icon" title="Like Track" onclick="event.stopPropagation(); window.toggleFavoriteTrack(window.__artistTopTracks[${idx}])"><i class="fa-regular fa-heart"></i></button>
         </div>
       `).join('');
     }
 
+    // Render Tour Dates & Book Tickets Card
+    const tourContainer = document.getElementById('artist-tour-container');
+    if (tourContainer && artist.tourInfo) {
+      tourContainer.innerHTML = `
+        <div style="background: linear-gradient(135deg, rgba(56,189,248,0.08) 0%, rgba(168,85,247,0.12) 100%); border: 1px solid var(--border-glass-top); border-radius: 18px; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; box-shadow: 0 8px 30px rgba(0,0,0,0.3);">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
+              <span style="background: #10b981; color: #000; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">● LIVE TOUR</span>
+              <span style="color: #38bdf8; font-size: 0.85rem; font-weight: 700;">${escapeHtml(artist.tourInfo.tourName)}</span>
+            </div>
+            <h4 style="font-size: 1.25rem; font-weight: 800; color: #fff; margin: 0 0 0.35rem 0;">Catch ${escapeHtml(artist.name)} Live On Stage</h4>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin: 0;"><i class="fa-solid fa-location-dot" style="color: #f43f5e; margin-right: 6px;"></i> ${escapeHtml(artist.tourInfo.dates)}</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <a href="${artist.tourInfo.ticketUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary-play" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); box-shadow: 0 0 16px rgba(244,63,94,0.4);"><i class="fa-solid fa-ticket"></i> Book Tickets Now</a>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render About & Bio Section
     const aboutBox = document.getElementById('artist-about-container');
     if (aboutBox) {
       aboutBox.innerHTML = `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1.5rem;">
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">${escapeHtml(artist.bio)}</p>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 18px; padding: 1.75rem; line-height: 1.7;">
+          <p style="color: #e2e8f0; font-size: 0.95rem; margin: 0 0 1.25rem 0;">${escapeHtml(artist.bio)}</p>
+          <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem;">
+            <div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">World Ranking</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: #38bdf8;">${escapeHtml(artist.worldRank)}</div>
+            </div>
+            <div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Monthly Streams</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: #c084fc;">${escapeHtml(artist.monthlyListeners)}</div>
+            </div>
+            <div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Discography</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: #10b981;">Top 10 Master Singles</div>
+            </div>
+          </div>
         </div>
       `;
     }
@@ -2399,31 +2538,23 @@ window.addEventListener('error', function(e) {
     const artist = window.pulseState.currentArtistData;
     if (artist && artist.topTracks && artist.topTracks.length > 0) {
       window.playTrackDirect(artist.topTracks[0], artist.topTracks);
-      window.showToast(`Playing ${artist.name}'s Top Tracks`, 'info');
+      window.showToast(`Playing ${artist.name}'s Top 10 Songs`, 'info');
     }
   };
 
-  window.openTicketBooking = function() {
+  window.openTicketBooking = function(customUrl) {
     const artist = window.pulseState.currentArtistData;
     const name = artist ? artist.name : 'Artist';
-    window.showToast(`Checking live tour dates & concert tickets for ${name}... 🎫`, 'info', 3000);
-    window.open(`https://www.google.com/search?q=${encodeURIComponent(name + ' concert tickets tour dates')}`, '_blank', 'noopener,noreferrer');
+    const url = customUrl || (artist && artist.tourInfo ? artist.tourInfo.ticketUrl : 'https://in.bookmyshow.com/explore/events');
+    window.showToast(`Opening live concert tickets & tour booking for ${name}... 🎫`, 'info', 3000);
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   window.openArtistDonation = function() {
     const artist = window.pulseState.currentArtistData;
     const name = artist ? artist.name : 'Artist';
     window.showToast(`Opening official store & artist support for ${name}... ❤️`, 'info', 3000);
-    window.open(`https://www.google.com/search?q=${encodeURIComponent(name + ' official merch store support')}`, '_blank', 'noopener,noreferrer');
-  };
-
-  window.toggleFollowArtist = function() {
-    const btn = document.getElementById('artist-follow-btn');
-    if (btn) {
-      const isFollowing = btn.classList.toggle('following');
-      btn.innerHTML = isFollowing ? `<i class="fa-solid fa-check"></i> Following` : `<i class="fa-solid fa-user-plus"></i> Follow`;
-      window.showToast(isFollowing ? `Following artist` : `Unfollowed`, 'info', 1500);
-    }
+    window.open(`https://www.google.com/search?q=${encodeURIComponent(name + ' official merch store tour')}`, '_blank', 'noopener,noreferrer');
   };
 
   // ---------------------------------------------------------------------------

@@ -102,8 +102,8 @@
     })();
   </script>
   
-  <script type="module" crossorigin src="./assets/index-B3iWwbxM.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-B7PcwKN6.css">
+  <script type="module" crossorigin src="./assets/index-CTDt6-jt.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-d02J-gzx.css">
 </head>
 <body>
 
@@ -570,29 +570,53 @@
         </div>
       </div>
 
-      <!-- VIEW 4: ARTIST PAGE -->
+            <!-- VIEW 4: ARTIST PAGE -->
       <div id="view-artist" class="app-view">
-        <div id="artist-hero-card" class="artist-hero-banner" style="position: relative; border-radius: 20px; padding: 3rem 2rem; margin-bottom: 2rem; background-size: cover; background-position: center; border: 1px solid var(--border-glass);">
+        <button onclick="window.history.length > 1 ? window.history.back() : window.switchView('home')" class="artist-back-btn" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.1rem; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass); color: var(--text-secondary); cursor: pointer; margin-bottom: 1.25rem; font-size: 0.85rem; font-weight: 600; transition: all 0.2s ease;">
+          <i class="fa-solid fa-arrow-left"></i> Back to Music
+        </button>
+
+        <div id="artist-hero-card" class="artist-hero-banner" style="position: relative; border-radius: 22px; padding: 3rem 2.25rem; margin-bottom: 2rem; background-size: cover; background-position: center 30%; border: 1px solid var(--border-glass); overflow: hidden; box-shadow: 0 16px 40px rgba(0,0,0,0.5);">
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,17,26,0.35) 0%, rgba(15,17,26,0.92) 100%); z-index: 1;"></div>
           <div style="position: relative; z-index: 2;">
-            <span style="display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(168,85,247,0.3); color: #c084fc; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.75rem;">VERIFIED ARTIST</span>
-            <h1 id="artist-hero-name" style="font-size: 2.75rem; font-weight: 900; margin-bottom: 0.5rem;">Artist Name</h1>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;"><span id="artist-hero-listeners">0</span> monthly listeners  <span id="artist-world-rank">#1</span></p>
-            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-              <button class="btn-primary-play" onclick="window.playArtistTopTracks()"><i class="fa-solid fa-play"></i> Play Top Tracks</button>
-              <button id="artist-follow-btn" class="btn-secondary-install" onclick="window.toggleFollowArtist()"><i class="fa-solid fa-user-plus"></i> Follow</button>
-              <button class="btn-secondary-install" onclick="window.openTicketBooking && window.openTicketBooking()" style="background: rgba(255,255,255,0.1);"><i class="fa-solid fa-ticket"></i> Book Tickets</button>
-              <button class="btn-secondary-install" onclick="window.openArtistDonation && window.openArtistDonation()" style="background: rgba(255,255,255,0.1);"><i class="fa-solid fa-hand-holding-dollar"></i> Support Artist</button>
+            <div style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; background: rgba(168,85,247,0.25); border: 1px solid rgba(168,85,247,0.4); color: #c084fc; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 0.75rem;">
+              <i class="fa-solid fa-circle-check"></i> VERIFIED ARTIST
             </div>
+            <h1 id="artist-hero-name" style="font-size: 2.85rem; font-weight: 900; margin-bottom: 0.5rem; color: #ffffff; letter-spacing: -0.5px; line-height: 1.15;">Artist Name</h1>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span id="artist-hero-listeners">0</span> monthly listeners &bull; <span id="artist-world-rank">#1</span> &bull; <span id="artist-followers-count">0</span> followers
+            </p>
+            <div style="display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+              <button class="btn-primary-play" onclick="window.playArtistTopTracks()"><i class="fa-solid fa-play"></i> Play Top 10</button>
+              <button id="artist-follow-btn" class="btn-secondary-install" onclick="window.toggleFollowArtist()"><i class="fa-solid fa-user-plus"></i> Follow</button>
+              <button id="artist-book-tickets-btn" class="btn-secondary-install" onclick="window.openTicketBooking && window.openTicketBooking()" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); border: none; color: #fff; font-weight: 700; box-shadow: 0 4px 18px rgba(244, 63, 94, 0.35);"><i class="fa-solid fa-ticket"></i> Book Tickets</button>
+              <button class="btn-secondary-install" onclick="window.openArtistDonation && window.openArtistDonation()" style="background: rgba(255,255,255,0.08); border: 1px solid var(--border-glass);"><i class="fa-solid fa-hand-holding-dollar"></i> Support Artist</button>
+            </div>
+            <!-- Social Accounts Bar (Instagram, X, Facebook, YouTube) -->
+            <div id="artist-socials-container" style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);"></div>
           </div>
         </div>
 
+        <!-- Section: Top 10 Songs -->
         <section style="margin-bottom: 2.5rem;">
-          <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem;">Popular Tracks</h3>
-          <div id="artist-popular-tracks-list" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0;">Top 10 Popular Songs</h3>
+              <p style="color: var(--text-secondary); font-size: 0.82rem; margin: 3px 0 0 0;">Highest streaming master tracks across platforms</p>
+            </div>
+            <button class="tag-pill" onclick="window.playArtistTopTracks()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 4px;"><i class="fa-solid fa-play" style="font-size: 0.7rem;"></i> Play All</button>
+          </div>
+          <div id="artist-popular-tracks-list" style="display: flex; flex-direction: column; gap: 0.55rem;"></div>
         </section>
 
+        <!-- Section: Live Tour & Concerts -->
+        <section id="artist-tour-section" style="margin-bottom: 2.5rem;">
+          <div id="artist-tour-container"></div>
+        </section>
+
+        <!-- Section: About & Bio -->
         <section style="margin-bottom: 2.5rem;">
-          <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem;">About the Artist</h3>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">About the Artist</h3>
           <div id="artist-about-container"></div>
         </section>
       </div>
@@ -645,7 +669,7 @@
 
       <!-- Left: Track Cover & Info (Clicking toggles Fullscreen) -->
       <div class="player-left song-info" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen()" title="Click to Maximize Player">
-        <img id="player-thumb" src="./assets/music-cover-MfJ9DAMu.svg" alt="Album Art" class="player-thumb album-art">
+        <img id="player-thumb" src="./assets/music-cover-MfJ9DAMu.svg" alt="Album Art" class="player-thumb album-art" onerror="this.onerror=null; this.src='./music-cover.svg';">
         <div class="player-info song-text">
           <div style="display: flex; align-items: center; gap: 6px; min-width: 0;">
             <span id="player-title" class="player-title song-title">Select a Song</span>
@@ -691,9 +715,9 @@
         </div>
         <div class="progress-container timeline-container">
           <span id="player-time-current" class="time">0:00</span>
-          <div class="progress-bar-wrapper">
-            <input type="range" id="player-seek-slider" class="progress timeline-range-input" min="0" max="100" value="0" step="0.1">
-            <div id="player-progress-fill" class="progress-bar-fill" style="width: 0%; display: none;"></div>
+          <div class="progress-bar-wrapper" id="playbar-progress-wrapper" title="Seek track">
+            <div id="player-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+            <input type="range" id="player-seek-slider" class="progress timeline-range-input" min="0" max="100" value="0" step="0.1" aria-label="Seek track position">
             <div id="player-seek-tooltip" class="seek-hover-tooltip">0:00</div>
           </div>
           <span id="player-time-total" class="time">3:30</span>
@@ -901,9 +925,9 @@
       <div class="fs-controls-section">
         <div class="timeline-container fs-timeline-wrap">
           <span id="fs-time-current" class="fs-time-current">0:00</span>
-          <div class="progress-bar-wrapper fs-progress-bar-wrapper">
+          <div class="progress-bar-wrapper fs-progress-bar-wrapper" id="fs-progress-wrapper" title="Seek track">
             <div id="fs-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
-            <input type="range" id="fs-seek-slider" class="timeline-range-input" min="0" max="100" value="0">
+            <input type="range" id="fs-seek-slider" class="timeline-range-input" min="0" max="100" value="0" step="0.1" aria-label="Seek track position">
             <div id="fs-seek-tooltip" class="seek-hover-tooltip">0:00</div>
           </div>
           <span id="fs-time-total" class="fs-time-total">3:30</span>
