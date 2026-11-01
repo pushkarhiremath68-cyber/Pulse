@@ -2393,8 +2393,14 @@ window.addEventListener('error', function(e) {
             <button onclick="window.toggleFollowArtist('Arijit Singh')" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); color: #c084fc; border-radius: 8px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between;">
               <span>Arijit Singh</span> <span style="font-weight: 800;">+ Follow</span>
             </button>
+            <button onclick="window.toggleFollowArtist('Diljit Dosanjh')" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); color: #c084fc; border-radius: 8px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between;">
+              <span>Diljit Dosanjh</span> <span style="font-weight: 800;">+ Follow</span>
+            </button>
             <button onclick="window.toggleFollowArtist('The Weeknd')" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); color: #c084fc; border-radius: 8px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between;">
               <span>The Weeknd</span> <span style="font-weight: 800;">+ Follow</span>
+            </button>
+            <button onclick="window.toggleFollowArtist('Taylor Swift')" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); color: #c084fc; border-radius: 8px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between;">
+              <span>Taylor Swift</span> <span style="font-weight: 800;">+ Follow</span>
             </button>
           </div>
         </div>
@@ -4483,6 +4489,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     });
   } else {
     checkAuthGateState();
+    if (window.renderSidebarFollowedArtists) window.renderSidebarFollowedArtists();
   }
 
 })();
