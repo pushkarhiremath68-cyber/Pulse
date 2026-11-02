@@ -3232,32 +3232,4924 @@ export const ARTIST_DATABASE = {
         "plays": "950,000,000"
       }
     ]
+  },
+  "shreya-ghoshal": {
+    "name": "Shreya Ghoshal",
+    "monthlyListeners": "38,400,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Female Playback Icon in India",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bf/fb/14/bffb1456-42bb-d86b-722a-283181829cb8/8902894357739_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bf/fb/14/bffb1456-42bb-d86b-722a-283181829cb8/8902894357739_cover.jpg/1000x1000bb.jpg",
+    "bio": "Shreya Ghoshal is universally acclaimed as the Queen of Melody in contemporary Indian music. Winner of five National Film Awards, four Kerala State Film Awards, and seven Filmfare Awards, her ethereal vocal range spans classical, ghazals, Bollywood romantic ballads, and regional masterpieces across over 20 languages. From her historic debut in Devdas at age 16 to global stadium tours, her voice remains the gold standard of Indian melody.",
+    "socials": {
+      "instagram": "https://www.instagram.com/shreyaghoshal/",
+      "x": "https://x.com/shreyaghoshal",
+      "facebook": "https://www.facebook.com/shreyaghoshal/",
+      "youtube": "https://www.youtube.com/@shreyaghoshal"
+    },
+    "tourInfo": {
+      "tourName": "Shreya Ghoshal All Hearts Tour 2026",
+      "status": "Tickets Live",
+      "dates": "Mumbai, Delhi, London, Dubai, Toronto, San Jose",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-inEu2qQuGZ8",
+        "ytId": "inEu2qQuGZ8",
+        "title": "Sunn Raha Hai",
+        "artist": "Shreya Ghoshal",
+        "album": "Aashiqui 2",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg",
+        "duration": 390,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-zRtPUIumXCY",
+        "ytId": "zRtPUIumXCY",
+        "title": "Deewani Mastani",
+        "artist": "Shreya Ghoshal",
+        "album": "Bajirao Mastani",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bf/fb/14/bffb1456-42bb-d86b-722a-283181829cb8/8902894357739_cover.jpg/1000x1000bb.jpg",
+        "duration": 340,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-V_90B_tV6hI",
+        "ytId": "V_90B_tV6hI",
+        "title": "Teri Ore",
+        "artist": "Shreya Ghoshal",
+        "album": "Singh Is Kinng",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 339,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-6cKErCWrb44",
+        "ytId": "6cKErCWrb44",
+        "title": "Ghoomar",
+        "artist": "Shreya Ghoshal",
+        "album": "Padmaavat",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 282,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-6jO_iX3Uf1g",
+        "ytId": "6jO_iX3Uf1g",
+        "title": "Agar Tum Mil Jao",
+        "artist": "Shreya Ghoshal",
+        "album": "Zeher",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/4b/aa/dc4baa30-d326-8c65-2766-3dca376174bb/8902894623094_cover.jpg/1000x1000bb.jpg",
+        "duration": 358,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-d8IT-163M8U",
+        "ytId": "d8IT-163M8U",
+        "title": "Manwa Laage",
+        "artist": "Shreya Ghoshal",
+        "album": "Happy New Year",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/28/fc/21/28fc2142-b9b6-9bb8-4fc7-bce4cce2763f/8902894356497_cover.jpg/1000x1000bb.jpg",
+        "duration": 271,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-72UVTUx551E",
+        "ytId": "72UVTUx551E",
+        "title": "Barso Re",
+        "artist": "Shreya Ghoshal",
+        "album": "Guru",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 329,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-MQM7CNoAsBI",
+        "ytId": "MQM7CNoAsBI",
+        "title": "Chikni Chameli",
+        "artist": "Shreya Ghoshal",
+        "album": "Agneepath",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/71/84/e8/7184e8b0-a544-d890-5807-6ba8a91da58c/886443301054.jpg/1000x1000bb.jpg",
+        "duration": 303,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-yWJy_mS9b-I",
+        "ytId": "yWJy_mS9b-I",
+        "title": "Saibo",
+        "artist": "Shreya Ghoshal",
+        "album": "Shor in the City",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e5/bd/2b/e5bd2bb0-8be2-32b7-a36c-94119853fa77/8902894623193_cover.jpg/1000x1000bb.jpg",
+        "duration": 196,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-nfnc0_hZne8",
+        "ytId": "nfnc0_hZne8",
+        "title": "Param Sundari",
+        "artist": "Shreya Ghoshal",
+        "album": "Mimi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 200,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "sonu-nigam": {
+    "name": "Sonu Nigam",
+    "monthlyListeners": "31,800,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Legendary Playback Singer",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4c/16/13/4c161318-5bf1-ea55-774d-2f55e2361d10/8902894623179_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4c/16/13/4c161318-5bf1-ea55-774d-2f55e2361d10/8902894623179_cover.jpg/1000x1000bb.jpg",
+    "bio": "Sonu Nigam is celebrated as the 'Lord of Chords' and one of the greatest playback vocalists in Indian musical history. Honored with the Padma Shri, National Film Award, and multiple Filmfare trophies, his pristine pitch, unmatched classical versatility, and emotional resonance have shaped the golden era of 90s and 2000s Bollywood. From timeless ghazals to unforgettable cinema anthems, his voice remains immortal.",
+    "socials": {
+      "instagram": "https://www.instagram.com/sonunigamofficial/",
+      "x": "https://x.com/sonunigam",
+      "facebook": "https://www.facebook.com/SonuNigamSpace/",
+      "youtube": "https://www.youtube.com/@sonunigam"
+    },
+    "tourInfo": {
+      "tourName": "Sonu Nigam The Symphony Tour 2026",
+      "status": "Tickets Live",
+      "dates": "London, Dubai, Sydney, New York, Mumbai, Delhi",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-g0eO74UmRBs",
+        "ytId": "g0eO74UmRBs",
+        "title": "Kal Ho Naa Ho",
+        "artist": "Sonu Nigam",
+        "album": "Kal Ho Naa Ho",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4c/16/13/4c161318-5bf1-ea55-774d-2f55e2361d10/8902894623179_cover.jpg/1000x1000bb.jpg",
+        "duration": 321,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-oWKgpB2zpgw",
+        "ytId": "oWKgpB2zpgw",
+        "title": "Abhi Mujh Mein Kahin",
+        "artist": "Sonu Nigam",
+        "album": "Agneepath",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/71/84/e8/7184e8b0-a544-d890-5807-6ba8a91da58c/886443301054.jpg/1000x1000bb.jpg",
+        "duration": 364,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-DAYszemgPxc",
+        "ytId": "DAYszemgPxc",
+        "title": "Main Agar Kahoon",
+        "artist": "Sonu Nigam",
+        "album": "Om Shanti Om",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/21/df/b8/21dfb858-a894-3ee1-f9b9-c6e73ec8b9ba/8902894623126_cover.jpg/1000x1000bb.jpg",
+        "duration": 310,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-L0zKdWZtgZg",
+        "ytId": "L0zKdWZtgZg",
+        "title": "Suraj Hua Maddham",
+        "artist": "Sonu Nigam",
+        "album": "Kabhi Khushi Kabhie Gham",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/97/eb/9197eb20-e4b2-299d-83b6-200922849e79/886443290655.jpg/1000x1000bb.jpg",
+        "duration": 428,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-mXkbWKr5CII",
+        "ytId": "mXkbWKr5CII",
+        "title": "Tumse Milke Dil Ka",
+        "artist": "Sonu Nigam",
+        "album": "Main Hoon Na",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 362,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-B_49H4qZz-0",
+        "ytId": "B_49H4qZz-0",
+        "title": "Sandese Aate Hain",
+        "artist": "Sonu Nigam",
+        "album": "Border",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 620,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-f4o9f8G6yXg",
+        "ytId": "f4o9f8G6yXg",
+        "title": "Saathiya",
+        "artist": "Sonu Nigam",
+        "album": "Saathiya",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 357,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-T7wNnC8R00I",
+        "ytId": "T7wNnC8R00I",
+        "title": "Dil Dooba",
+        "artist": "Sonu Nigam",
+        "album": "Khakee",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/5a/09/25/5a092524-118e-4a4a-0a7b-3dca592cfdf3/8902894623101_cover.jpg/1000x1000bb.jpg",
+        "duration": 230,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-yH8yJ9rD8y8",
+        "ytId": "yH8yJ9rD8y8",
+        "title": "Tanhayee",
+        "artist": "Sonu Nigam",
+        "album": "Dil Chahta Hai",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 370,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-Qp4C_4kL-r8",
+        "ytId": "Qp4C_4kL-r8",
+        "title": "Soniyo",
+        "artist": "Sonu Nigam",
+        "album": "Raaz: The Mystery Continues",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/4b/aa/dc4baa30-d326-8c65-2766-3dca376174bb/8902894623094_cover.jpg/1000x1000bb.jpg",
+        "duration": 329,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "kk": {
+    "name": "KK",
+    "monthlyListeners": "28,900,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Nostalgia & Rock Icon",
+    "banner": "https://i.ytimg.com/vi/8g2e-m6910U/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/8g2e-m6910U/hqdefault.jpg",
+    "bio": "Krishnakumar Kunnath, affectionately known as KK, was the defining voice of love, heartbreak, and youthful nostalgia for an entire generation. With raw vocal power, crystal-clear emotional delivery, and a complete absence of formal classical training, KK created everlasting anthems like 'Pal' and 'Yaaron' that became the soundtrack of millions of lives.",
+    "socials": {
+      "instagram": "https://www.instagram.com/kk_live_now/",
+      "x": "https://x.com/kksings",
+      "facebook": "https://www.facebook.com/KKSingsOfficial/",
+      "youtube": "https://www.youtube.com/@KKMemorialOfficial"
+    },
+    "tourInfo": {
+      "tourName": "KK Forever - Tribute Symphony",
+      "status": "Tickets Live",
+      "dates": "Worldwide Celebration of KK's Musical Legacy",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-ZgIeBq14F30",
+        "ytId": "ZgIeBq14F30",
+        "title": "Yaaron",
+        "artist": "KK",
+        "album": "Pal",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 279,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-y_S_K0m8o-s",
+        "ytId": "y_S_K0m8o-s",
+        "title": "Pal",
+        "artist": "KK",
+        "album": "Pal",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 260,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-5ioX4Oomqoc",
+        "ytId": "5ioX4Oomqoc",
+        "title": "Zara Sa",
+        "artist": "KK",
+        "album": "Jannat",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e9/a3/cf/e9a3cf5e-09c3-3d6b-3bf2-c609475b6543/888880551801.jpg/1000x1000bb.jpg",
+        "duration": 303,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "Labon Ko",
+        "artist": "KK",
+        "album": "Bhool Bhulaiyaa",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 343,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-mX4Z74c-4xI",
+        "ytId": "mX4Z74c-4xI",
+        "title": "Kya Mujhe Pyar Hai",
+        "artist": "KK",
+        "album": "Woh Lamhe",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 273,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-bdbeNfMm0rM",
+        "ytId": "bdbeNfMm0rM",
+        "title": "Aankhon Mein Teri",
+        "artist": "KK",
+        "album": "Om Shanti Om",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/21/df/b8/21dfb858-a894-3ee1-f9b9-c6e73ec8b9ba/8902894623126_cover.jpg/1000x1000bb.jpg",
+        "duration": 242,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-7L_L5wT6j-U",
+        "ytId": "7L_L5wT6j-U",
+        "title": "Tu Hi Meri Shab Hai",
+        "artist": "KK",
+        "album": "Gangster",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/4b/aa/dc4baa30-d326-8c65-2766-3dca376174bb/8902894623094_cover.jpg/1000x1000bb.jpg",
+        "duration": 388,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Dil Ibadat",
+        "artist": "KK",
+        "album": "Tum Mile",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 329,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-5d0rUe8T-20",
+        "ytId": "5d0rUe8T-20",
+        "title": "Alvida",
+        "artist": "KK",
+        "album": "Life in a... Metro",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 339,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-fO_p3_r8jX4",
+        "ytId": "fO_p3_r8jX4",
+        "title": "Zindagi Do Pal Ki",
+        "artist": "KK",
+        "album": "Kites",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 254,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "sid-sriram": {
+    "name": "Sid Sriram",
+    "monthlyListeners": "24,500,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Carnatic & Indie Soul",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+    "bio": "Sid Sriram is an Indian-American vocalist, songwriter, and producer who pioneered the bridge between traditional South Indian Carnatic music and contemporary American soul and R&B. Trained under legendary musicians and championed by A.R. Rahman, his revolutionary vocal stylings have broken records across Tamil, Telugu, Kannada, Malayalam, and Hindi cinema.",
+    "socials": {
+      "instagram": "https://www.instagram.com/sidsriram/",
+      "x": "https://x.com/sidsriram",
+      "facebook": "https://www.facebook.com/sidsrirammusic/",
+      "youtube": "https://www.youtube.com/@sidsriram"
+    },
+    "tourInfo": {
+      "tourName": "Sid Sriram Boundless Tour 2026",
+      "status": "Tickets Live",
+      "dates": "Chennai, Bengaluru, Hyderabad, San Francisco, London",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-hcMzwMrr1tE",
+        "ytId": "hcMzwMrr1tE",
+        "title": "Srivalli",
+        "artist": "Sid Sriram",
+        "album": "Pushpa: The Rise",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/e0/75/a3/e075a3d7-4001-c88c-eec4-d0ae38d017b2/8902894362870_cover.jpg/1000x1000bb.jpg",
+        "duration": 224,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-8j_T_P3E0gY",
+        "ytId": "8j_T_P3E0gY",
+        "title": "Inkem Inkem",
+        "artist": "Sid Sriram",
+        "album": "Geetha Govindam",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+        "duration": 268,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-f0-jC_w8T3U",
+        "ytId": "f0-jC_w8T3U",
+        "title": "Adiga Adiga",
+        "artist": "Sid Sriram",
+        "album": "Ninnu Kori",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+        "duration": 236,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-pe3G_8qS_9c",
+        "ytId": "pe3G_8qS_9c",
+        "title": "Samajavaragamana",
+        "artist": "Sid Sriram",
+        "album": "Ala Vaikunthapurramuloo",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+        "duration": 222,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-r8sL9-p0F1Y",
+        "ytId": "r8sL9-p0F1Y",
+        "title": "Ennodu Nee Irundhaal",
+        "artist": "Sid Sriram",
+        "album": "I",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+        "duration": 350,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-kL_M-wL6X5c",
+        "ytId": "kL_M-wL6X5c",
+        "title": "Kannaana Kanney",
+        "artist": "Sid Sriram",
+        "album": "Viswasam",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+        "duration": 269,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-yO_J7vR9Z6c",
+        "ytId": "yO_J7vR9Z6c",
+        "title": "Maruvaarthai",
+        "artist": "Sid Sriram",
+        "album": "Enai Noki Paayum Thota",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+        "duration": 350,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-eX0gV5m9Qp4",
+        "ytId": "eX0gV5m9Qp4",
+        "title": "Vachindamma",
+        "artist": "Sid Sriram",
+        "album": "Geetha Govindam",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+        "duration": 242,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-IAns4kFshB8",
+        "ytId": "IAns4kFshB8",
+        "title": "Thalli Pogathey",
+        "artist": "Sid Sriram",
+        "album": "Achcham Yenbadhu Madamaiyada",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+        "duration": 270,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-t1Z-P8x7vU4",
+        "ytId": "t1Z-P8x7vU4",
+        "title": "Urike Urike",
+        "artist": "Sid Sriram",
+        "album": "Hit 2",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
+        "duration": 236,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "sidhu-moosewala": {
+    "name": "Sidhu Moosewala",
+    "monthlyListeners": "34,200,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Global Punjabi Hip-Hop Legend",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+    "bio": "Shubhdeep Singh Sidhu, known worldwide as Sidhu Moosewala, was an iconoclastic Punjabi singer, lyricist, and cultural powerhouse who transformed Punjabi music on the world stage. Blending fearless rural folk idioms with explosive West Coast hip-hop beats, he broke onto Billboard Global 200 and UK charts, becoming the voice of defiance, honor, and grassroots pride for millions across the diaspora.",
+    "socials": {
+      "instagram": "https://www.instagram.com/sidhu_moosewala/",
+      "x": "https://x.com/iSidhuMooseWala",
+      "facebook": "https://www.facebook.com/SidhuMooseWalaOfficial/",
+      "youtube": "https://www.youtube.com/@SidhuMooseWalaOfficial"
+    },
+    "tourInfo": {
+      "tourName": "Sidhu Moosewala Immortal Legacy Tour",
+      "status": "Tickets Live",
+      "dates": "Worldwide Celebration of Punjabi Hip-Hop",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-n_FCrCQ6-9U",
+        "ytId": "n_FCrCQ6-9U",
+        "title": "295",
+        "artist": "Sidhu Moosewala",
+        "album": "Moosetape",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 270,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-6xN44Jq4W9g",
+        "ytId": "6xN44Jq4W9g",
+        "title": "The Last Ride",
+        "artist": "Sidhu Moosewala",
+        "album": "No Name",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 254,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-Gg8_N5Z4W-8",
+        "ytId": "Gg8_N5Z4W-8",
+        "title": "So High",
+        "artist": "Sidhu Moosewala",
+        "album": "PBX 1",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 236,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-f0KqX9m6VwI",
+        "ytId": "f0KqX9m6VwI",
+        "title": "Same Beef",
+        "artist": "Sidhu Moosewala",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 276,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-y1T8q_sL0-0",
+        "ytId": "y1T8q_sL0-0",
+        "title": "Old Skool",
+        "artist": "Sidhu Moosewala",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 254,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-w_R8e_xY7t4",
+        "ytId": "w_R8e_xY7t4",
+        "title": "Levels",
+        "artist": "Sidhu Moosewala",
+        "album": "No Name",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 232,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-m1Y8d_gK9-w",
+        "ytId": "m1Y8d_gK9-w",
+        "title": "Bambiha Bole",
+        "artist": "Sidhu Moosewala",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 300,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-x0N3e-cR1y8",
+        "ytId": "x0N3e-cR1y8",
+        "title": "Famous",
+        "artist": "Sidhu Moosewala",
+        "album": "PBX 1",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 247,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-uK8_v7vL4Z8",
+        "ytId": "uK8_v7vL4Z8",
+        "title": "Dollar",
+        "artist": "Sidhu Moosewala",
+        "album": "Dakuaan Da Munda",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 202,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-t2C7s0_qL1E",
+        "ytId": "t2C7s0_qL1E",
+        "title": "Tibeyan Da Putt",
+        "artist": "Sidhu Moosewala",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
+        "duration": 312,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "karan-aujla": {
+    "name": "Karan Aujla",
+    "monthlyListeners": "31,400,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#2 in Punjabi Global Hits",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+    "bio": "Jaskaran Singh Aujla, known universally as Karan Aujla ('Geetan Di Machine'), is a Canadian-based Indian singer, rapper, and songwriter at the pinnacle of modern Punjabi music. Renowned for hyper-creative rhyme schemes, infectious hooks, and mega-hits like 'Tauba Tauba', 'Softly', and 'Winning Speech', Aujla made history by winning the Juno Fan Choice Award and dominating Billboard Canadian Albums.",
+    "socials": {
+      "instagram": "https://www.instagram.com/karanaujla_official/",
+      "x": "https://x.com/GeetanDiMachine",
+      "facebook": "https://www.facebook.com/KaranAujlaOfficial/",
+      "youtube": "https://www.youtube.com/@KaranAujlaOfficial"
+    },
+    "tourInfo": {
+      "tourName": "Karan Aujla It Was All A Dream Tour",
+      "status": "Tickets Live",
+      "dates": "Toronto, Vancouver, London, Chandigarh, Delhi, Mumbai",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-LK7-_dgAVQE",
+        "ytId": "LK7-_dgAVQE",
+        "title": "Tauba Tauba",
+        "artist": "Karan Aujla",
+        "album": "Bad Newz",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4b/3c/6e/4b3c6e94-39f2-2bf2-2287-3d1f3088b284/8902894364409_cover.jpg/1000x1000bb.jpg",
+        "duration": 206,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-cWMxCE2HTag",
+        "ytId": "cWMxCE2HTag",
+        "title": "Softly",
+        "artist": "Karan Aujla",
+        "album": "Making Memories",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+        "duration": 156,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-fn382fN5F1g",
+        "ytId": "fn382fN5F1g",
+        "title": "Winning Speech",
+        "artist": "Karan Aujla",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+        "duration": 221,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "Admirin' You",
+        "artist": "Karan Aujla",
+        "album": "Making Memories",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+        "duration": 215,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-k_O3rW4t2uY",
+        "ytId": "k_O3rW4t2uY",
+        "title": "White Brown Black",
+        "artist": "Karan Aujla",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+        "duration": 178,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-y1W8-x7q5Xg",
+        "ytId": "y1W8-x7q5Xg",
+        "title": "Chithiyaan",
+        "artist": "Karan Aujla",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+        "duration": 254,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-4Z_mP0k-1sI",
+        "ytId": "4Z_mP0k-1sI",
+        "title": "52 Bars",
+        "artist": "Karan Aujla",
+        "album": "Four You",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+        "duration": 211,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-6rD8f_zM2-4",
+        "ytId": "6rD8f_zM2-4",
+        "title": "On Top",
+        "artist": "Karan Aujla",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+        "duration": 188,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-t8X7e_qL3kM",
+        "ytId": "t8X7e_qL3kM",
+        "title": "Don't Look",
+        "artist": "Karan Aujla",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+        "duration": 204,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-m1K7t_xR9uY",
+        "ytId": "m1K7t_xR9uY",
+        "title": "Mexico",
+        "artist": "Karan Aujla",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
+        "duration": 226,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "drake": {
+    "name": "Drake",
+    "monthlyListeners": "86,200,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#3 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+    "bio": "Aubrey Drake Graham is a Canadian rapper, singer, and songwriter credited with popularizing singing and R&B sensibilities in modern hip-hop. Winner of five Grammy Awards and holder of unprecedented Billboard records—including the most charted songs, most top 10 hits, and the most weeks on the Hot 100—Drake has stood at the epicenter of global pop culture for over fifteen consecutive years.",
+    "socials": {
+      "instagram": "https://www.instagram.com/champagnepapi/",
+      "x": "https://x.com/drake",
+      "facebook": "https://www.facebook.com/Drake/",
+      "youtube": "https://www.youtube.com/@DrakeOfficial"
+    },
+    "tourInfo": {
+      "tourName": "It's All A Blur World Tour",
+      "status": "Tickets Live",
+      "dates": "Toronto, Los Angeles, New York, London, Paris",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-xpVfcZ0ZcFM",
+        "ytId": "xpVfcZ0ZcFM",
+        "title": "God's Plan",
+        "artist": "Drake",
+        "album": "Scorpion",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 198,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-qL7zrWcv6XY",
+        "ytId": "qL7zrWcv6XY",
+        "title": "One Dance",
+        "artist": "Drake",
+        "album": "Views",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 173,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-uxpDa-c-4Mc",
+        "ytId": "uxpDa-c-4Mc",
+        "title": "Hotline Bling",
+        "artist": "Drake",
+        "album": "Views",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 267,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-DRS_PpOrUZ4",
+        "ytId": "DRS_PpOrUZ4",
+        "title": "In My Feelings",
+        "artist": "Drake",
+        "album": "Scorpion",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 217,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-78p_k_X0Z7E",
+        "ytId": "78p_k_X0Z7E",
+        "title": "Rich Flex",
+        "artist": "Drake",
+        "album": "Her Loss",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 239,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-COz9lDCFHjw",
+        "ytId": "COz9lDCFHjw",
+        "title": "Passionfruit",
+        "artist": "Drake",
+        "album": "More Life",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 298,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-GxgqpCdOKak",
+        "ytId": "GxgqpCdOKak",
+        "title": "Hold On, We're Going Home",
+        "artist": "Drake",
+        "album": "Nothing Was the Same",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 227,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-XwmrkM_0FvA",
+        "ytId": "XwmrkM_0FvA",
+        "title": "Nonstop",
+        "artist": "Drake",
+        "album": "Scorpion",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 238,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-Xty2gi5cMa8",
+        "ytId": "Xty2gi5cMa8",
+        "title": "First Person Shooter",
+        "artist": "Drake",
+        "album": "For All The Dogs",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 247,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-JFm7YDVlqnI",
+        "ytId": "JFm7YDVlqnI",
+        "title": "Laugh Now Cry Later",
+        "artist": "Drake",
+        "album": "Certified Lover Boy",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
+        "duration": 261,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "kendrick-lamar": {
+    "name": "Kendrick Lamar",
+    "monthlyListeners": "68,900,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Hip-Hop Visionary",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+    "bio": "Kendrick Lamar Duckworth is widely regarded as one of the most influential and technically gifted hip-hop artists in musical history. The only non-classical, non-jazz musician to win the Pulitzer Prize for Music, Lamar has claimed 17 Grammy Awards and widespread cultural reverence for groundbreaking conceptual albums like good kid, m.A.A.d city, To Pimp a Butterfly, and DAMN.",
+    "socials": {
+      "instagram": "https://www.instagram.com/kendricklamar/",
+      "x": "https://x.com/kendricklamar",
+      "facebook": "https://www.facebook.com/kendricklamar/",
+      "youtube": "https://www.youtube.com/@KendrickLamarVEVO"
+    },
+    "tourInfo": {
+      "tourName": "The Big Steppers World Tour",
+      "status": "Tickets Live",
+      "dates": "Los Angeles, London, Paris, Tokyo, Sydney",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-H58vbez_m4E",
+        "ytId": "H58vbez_m4E",
+        "title": "Not Like Us",
+        "artist": "Kendrick Lamar",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/91/9f/bd/919fbd1a-a128-6411-cfdc-8f430635caeb/24UM1IM41857.rgb.jpg/1000x1000bb.jpg",
+        "duration": 274,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-tvTRZJ-4EyI",
+        "ytId": "tvTRZJ-4EyI",
+        "title": "HUMBLE.",
+        "artist": "Kendrick Lamar",
+        "album": "DAMN.",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+        "duration": 177,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-JQbjS0_ZfJ0",
+        "ytId": "JQbjS0_ZfJ0",
+        "title": "All The Stars",
+        "artist": "Kendrick Lamar",
+        "album": "Black Panther",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+        "duration": 232,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-smqhSl0u_WQ",
+        "ytId": "smqhSl0u_WQ",
+        "title": "Money Trees",
+        "artist": "Kendrick Lamar",
+        "album": "good kid, m.A.A.d city",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+        "duration": 386,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-B5YNiCfWC3A",
+        "ytId": "B5YNiCfWC3A",
+        "title": "Swimming Pools (Drank)",
+        "artist": "Kendrick Lamar",
+        "album": "good kid, m.A.A.d city",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+        "duration": 247,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-NLZRYQMLDW4",
+        "ytId": "NLZRYQMLDW4",
+        "title": "DNA.",
+        "artist": "Kendrick Lamar",
+        "album": "DAMN.",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+        "duration": 185,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-Z-48u_uWMHY",
+        "ytId": "Z-48u_uWMHY",
+        "title": "Alright",
+        "artist": "Kendrick Lamar",
+        "album": "To Pimp a Butterfly",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+        "duration": 212,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-ox7RsX1VD34",
+        "ytId": "ox7RsX1VD34",
+        "title": "LOVE.",
+        "artist": "Kendrick Lamar",
+        "album": "DAMN.",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+        "duration": 213,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-hRK7PV4FReE",
+        "ytId": "hRK7PV4FReE",
+        "title": "King Kunta",
+        "artist": "Kendrick Lamar",
+        "album": "To Pimp a Butterfly",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+        "duration": 234,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-GF8aaTu2kg0",
+        "ytId": "GF8aaTu2kg0",
+        "title": "Bitch, Don't Kill My Vibe",
+        "artist": "Kendrick Lamar",
+        "album": "good kid, m.A.A.d city",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
+        "duration": 310,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "post-malone": {
+    "name": "Post Malone",
+    "monthlyListeners": "81,200,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#4 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+    "bio": "Austin Richard Post, known professionally as Post Malone, is an American singer, rapper, and songwriter celebrated for blending genres across hip-hop, pop, country, and grunge rock. With eight RIAA Diamond-certified singles and billions of streams on Spotify, he holds the record for the most diamond certifications in recording history.",
+    "socials": {
+      "instagram": "https://www.instagram.com/postmalone/",
+      "x": "https://x.com/postmalone",
+      "facebook": "https://www.facebook.com/postmalone/",
+      "youtube": "https://www.youtube.com/@PostMalone"
+    },
+    "tourInfo": {
+      "tourName": "F-1 Trillion World Tour 2026",
+      "status": "Tickets Live",
+      "dates": "Dallas, Nashville, New York, London, Tokyo",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-ApXoWvfEYVU",
+        "ytId": "ApXoWvfEYVU",
+        "title": "Sunflower",
+        "artist": "Post Malone",
+        "album": "Spider-Man: Into the Spider-Verse",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 158,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-wXhTHyIgQ_U",
+        "ytId": "wXhTHyIgQ_U",
+        "title": "Circles",
+        "artist": "Post Malone",
+        "album": "Hollywood's Bleeding",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 215,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-UceaB4D0jpo",
+        "ytId": "UceaB4D0jpo",
+        "title": "rockstar",
+        "artist": "Post Malone",
+        "album": "beerbongs & bentleys",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 218,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-SC4xZwuaCjo",
+        "ytId": "SC4xZwuaCjo",
+        "title": "Congratulations",
+        "artist": "Post Malone",
+        "album": "Stoney",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 220,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-o5V3m9QoV-0",
+        "ytId": "o5V3m9QoV-0",
+        "title": "I Had Some Help",
+        "artist": "Post Malone",
+        "album": "F-1 Trillion",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 178,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-UYwF-jdcVjY",
+        "ytId": "UYwF-jdcVjY",
+        "title": "Better Now",
+        "artist": "Post Malone",
+        "album": "beerbongs & bentleys",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 231,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-slit4e3k8vI",
+        "ytId": "slit4e3k8vI",
+        "title": "White Iverson",
+        "artist": "Post Malone",
+        "album": "Stoney",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 256,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-Da4vN5c8T3E",
+        "ytId": "Da4vN5c8T3E",
+        "title": "Chemical",
+        "artist": "Post Malone",
+        "album": "AUSTIN",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 184,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-ba7mB8TupXk",
+        "ytId": "ba7mB8TupXk",
+        "title": "Goodbyes",
+        "artist": "Post Malone",
+        "album": "Hollywood's Bleeding",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 175,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-inW3m1F8f7U",
+        "ytId": "inW3m1F8f7U",
+        "title": "Psycho",
+        "artist": "Post Malone",
+        "album": "beerbongs & bentleys",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
+        "duration": 237,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "justin-bieber": {
+    "name": "Justin Bieber",
+    "monthlyListeners": "76,500,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#7 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+    "bio": "Justin Drew Bieber is a Canadian pop and R&B powerhouse who rose from teenage acoustic phenomenon to one of the best-selling and most awarded artists of all time. Recipient of two Grammys and 33 Guinness World Records, Bieber became the first artist in Spotify history to surpass 90 million monthly listeners, defining the contemporary sound of global pop.",
+    "socials": {
+      "instagram": "https://www.instagram.com/justinbieber/",
+      "x": "https://x.com/justinbieber",
+      "facebook": "https://www.facebook.com/JustinBieber/",
+      "youtube": "https://www.youtube.com/@JustinBieber"
+    },
+    "tourInfo": {
+      "tourName": "Justice World Stadium Tour",
+      "status": "Tickets Live",
+      "dates": "Worldwide Arena Tour",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-kTJczUoc268",
+        "ytId": "kTJczUoc268",
+        "title": "STAY",
+        "artist": "Justin Bieber",
+        "album": "F*CK LOVE 3: OVERKILL",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 141,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-tQ0yjYUFKAE",
+        "ytId": "tQ0yjYUFKAE",
+        "title": "Peaches",
+        "artist": "Justin Bieber",
+        "album": "Justice",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 198,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-Fp8msa5uYsc",
+        "ytId": "Fp8msa5uYsc",
+        "title": "Ghost",
+        "artist": "Justin Bieber",
+        "album": "Justice",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 153,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-fRh_vgS2dFE",
+        "ytId": "fRh_vgS2dFE",
+        "title": "Sorry",
+        "artist": "Justin Bieber",
+        "album": "Purpose",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 200,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-oyEuk8j8imI",
+        "ytId": "oyEuk8j8imI",
+        "title": "Love Yourself",
+        "artist": "Justin Bieber",
+        "album": "Purpose",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 233,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-DK_0jXPuIr0",
+        "ytId": "DK_0jXPuIr0",
+        "title": "What Do You Mean?",
+        "artist": "Justin Bieber",
+        "album": "Purpose",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 205,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-kffacxfA7G4",
+        "ytId": "kffacxfA7G4",
+        "title": "Baby",
+        "artist": "Justin Bieber",
+        "album": "My World 2.0",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 214,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-3AyMjyHu1bA",
+        "ytId": "3AyMjyHu1bA",
+        "title": "Intentions",
+        "artist": "Justin Bieber",
+        "album": "Changes",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 212,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-72UO0v5ESUo",
+        "ytId": "72UO0v5ESUo",
+        "title": "Despacito (Remix)",
+        "artist": "Justin Bieber",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 228,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-LkWnuvN_n8Y",
+        "ytId": "LkWnuvN_n8Y",
+        "title": "Hold On",
+        "artist": "Justin Bieber",
+        "album": "Justice",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
+        "duration": 170,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "ariana-grande": {
+    "name": "Ariana Grande",
+    "monthlyListeners": "82,500,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#6 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+    "bio": "Ariana Grande-Butera is an American pop and R&B powerhouse endowed with a legendary four-octave vocal range and signature whistle register. A two-time Grammy winner and Billboard chart record-holder, her albums Sweetener, Thank U, Next, Positions, and Eternal Sunshine have dominated global streaming, marking her as one of the definitive vocalists of the 21st century.",
+    "socials": {
+      "instagram": "https://www.instagram.com/arianagrande/",
+      "x": "https://x.com/ArianaGrande",
+      "facebook": "https://www.facebook.com/arianagrande/",
+      "youtube": "https://www.youtube.com/@ArianaGrande"
+    },
+    "tourInfo": {
+      "tourName": "Eternal Sunshine Live World Tour",
+      "status": "Tickets Live",
+      "dates": "New York, London, Paris, Tokyo, Los Angeles",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-KNtJGQkC-WI",
+        "ytId": "KNtJGQkC-WI",
+        "title": "we can't be friends (wait for your love)",
+        "artist": "Ariana Grande",
+        "album": "eternal sunshine",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 228,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-QYh6mYIJG2Y",
+        "ytId": "QYh6mYIJG2Y",
+        "title": "7 rings",
+        "artist": "Ariana Grande",
+        "album": "thank u, next",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 178,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-gl1aHhXnN1k",
+        "ytId": "gl1aHhXnN1k",
+        "title": "thank u, next",
+        "artist": "Ariana Grande",
+        "album": "thank u, next",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 207,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-tcYodQoapMg",
+        "ytId": "tcYodQoapMg",
+        "title": "positions",
+        "artist": "Ariana Grande",
+        "album": "Positions",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 172,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-eB6txyhHFG4",
+        "ytId": "eB6txyhHFG4",
+        "title": "yes, and?",
+        "artist": "Ariana Grande",
+        "album": "eternal sunshine",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 214,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-SXiSVQZLje8",
+        "ytId": "SXiSVQZLje8",
+        "title": "Side to Side",
+        "artist": "Ariana Grande",
+        "album": "Dangerous Woman",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 226,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-1ekZEVeXwek",
+        "ytId": "1ekZEVeXwek",
+        "title": "Into You",
+        "artist": "Ariana Grande",
+        "album": "Dangerous Woman",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 244,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-0HDdjwpPM3Y",
+        "ytId": "0HDdjwpPM3Y",
+        "title": "Bang Bang",
+        "artist": "Ariana Grande",
+        "album": "My Everything",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 199,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-ffxKSjUwKdU",
+        "ytId": "ffxKSjUwKdU",
+        "title": "no tears left to cry",
+        "artist": "Ariana Grande",
+        "album": "Sweetener",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 205,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-kHLHSlExFis",
+        "ytId": "kHLHSlExFis",
+        "title": "God is a woman",
+        "artist": "Ariana Grande",
+        "album": "Sweetener",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
+        "duration": 197,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "bts": {
+    "name": "BTS",
+    "monthlyListeners": "36,800,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Global K-Pop Icons",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+    "bio": "BTS (Bangtan Sonyeondan), comprising RM, Jin, SUGA, j-hope, Jimin, V, and Jung Kook, is a Grammy-nominated South Korean group that became a 21st-century cultural titan. The first Korean group to top the US Billboard Hot 100 with 'Dynamite' and 'Butter', BTS has sold over 40 million albums, addressed the United Nations, and fostered a global ARMY of millions with messages of self-love and unity.",
+    "socials": {
+      "instagram": "https://www.instagram.com/bts.bighitofficial/",
+      "x": "https://x.com/bts_bighit",
+      "facebook": "https://www.facebook.com/bangtan.official/",
+      "youtube": "https://www.youtube.com/@BANGTANTV"
+    },
+    "tourInfo": {
+      "tourName": "BTS World Stadium Tour",
+      "status": "Tickets Live",
+      "dates": "Seoul, Los Angeles, Tokyo, London, Singapore",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-gdZLi9oWNZg",
+        "ytId": "gdZLi9oWNZg",
+        "title": "Dynamite",
+        "artist": "BTS",
+        "album": "BE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 199,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-WMweEpGlu_U",
+        "ytId": "WMweEpGlu_U",
+        "title": "Butter",
+        "artist": "BTS",
+        "album": "Butter",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 164,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-XsX3ATc3FbA",
+        "ytId": "XsX3ATc3FbA",
+        "title": "Boy With Luv (feat. Halsey)",
+        "artist": "BTS",
+        "album": "Map of the Soul: Persona",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 229,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-7C2z4GqqS5E",
+        "ytId": "7C2z4GqqS5E",
+        "title": "Fake Love",
+        "artist": "BTS",
+        "album": "Love Yourself: Tear",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 242,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-MBdVXkSdhwU",
+        "ytId": "MBdVXkSdhwU",
+        "title": "DNA",
+        "artist": "BTS",
+        "album": "Love Yourself: Her",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 223,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm--5q5mZbe3V8",
+        "ytId": "-5q5mZbe3V8",
+        "title": "Life Goes On",
+        "artist": "BTS",
+        "album": "BE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 207,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-kTlv5_Bs8aw",
+        "ytId": "kTlv5_Bs8aw",
+        "title": "Mic Drop (Steve Aoki Remix)",
+        "artist": "BTS",
+        "album": "Love Yourself: Answer",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 238,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-pBuZEGYXA6E",
+        "ytId": "pBuZEGYXA6E",
+        "title": "Idol",
+        "artist": "BTS",
+        "album": "Love Yourself: Answer",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 222,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-xEeFrLSkMm8",
+        "ytId": "xEeFrLSkMm8",
+        "title": "Spring Day",
+        "artist": "BTS",
+        "album": "You Never Walk Alone",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 274,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-hmE9f-TEutc",
+        "ytId": "hmE9f-TEutc",
+        "title": "Blood Sweat & Tears",
+        "artist": "BTS",
+        "album": "Wings",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
+        "duration": 217,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "travis-scott": {
+    "name": "Travis Scott",
+    "monthlyListeners": "69,400,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#2 in Trap & Hip-Hop",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+    "bio": "Jacques Bermon Webster II, known professionally as Travis Scott, is a Houston-born rapper, producer, and cultural architect whose cinematic soundscapes, psychedelic auto-tune mastery, and chaotic live energy redefined contemporary trap music. With masterworks Rodeo, ASTROWORLD, and UTOPIA, Scott has amassed multiple Diamond certifications and 10 Grammy nominations.",
+    "socials": {
+      "instagram": "https://www.instagram.com/travisscott/",
+      "x": "https://x.com/trvisXX",
+      "facebook": "https://www.facebook.com/travisscott/",
+      "youtube": "https://www.youtube.com/@TravisScottXX"
+    },
+    "tourInfo": {
+      "tourName": "Circus Maximus Stadium World Tour",
+      "status": "Tickets Live",
+      "dates": "Houston, Chicago, Rome, London, Paris, Tokyo",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-6ONRf7h3Mdk",
+        "ytId": "6ONRf7h3Mdk",
+        "title": "SICKO MODE",
+        "artist": "Travis Scott",
+        "album": "ASTROWORLD",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 312,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-B9synWjqBn8",
+        "ytId": "B9synWjqBn8",
+        "title": "FE!N",
+        "artist": "Travis Scott",
+        "album": "UTOPIA",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 191,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-Dst9gZkq1a8",
+        "ytId": "Dst9gZkq1a8",
+        "title": "Goosebumps",
+        "artist": "Travis Scott",
+        "album": "Birds in the Trap Sing McKnight",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 243,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-tfSS1e3kYeo",
+        "ytId": "tfSS1e3kYeo",
+        "title": "HIGHEST IN THE ROOM",
+        "artist": "Travis Scott",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 175,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-KnZ8h3MRuYg",
+        "ytId": "KnZ8h3MRuYg",
+        "title": "Antidote",
+        "artist": "Travis Scott",
+        "album": "Rodeo",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 262,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-_EyZUTDAgBE",
+        "ytId": "_EyZUTDAgBE",
+        "title": "BUTTERFLY EFFECT",
+        "artist": "Travis Scott",
+        "album": "ASTROWORLD",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 190,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-2a8PgqWrc_4",
+        "ytId": "2a8PgqWrc_4",
+        "title": "STARGAZING",
+        "artist": "Travis Scott",
+        "album": "ASTROWORLD",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 270,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-yWJ0eM5r9z8",
+        "ytId": "yWJ0eM5r9z8",
+        "title": "MY EYES",
+        "artist": "Travis Scott",
+        "album": "UTOPIA",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 251,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-K1p8qX2m9x0",
+        "ytId": "K1p8qX2m9x0",
+        "title": "TELEKINESIS",
+        "artist": "Travis Scott",
+        "album": "UTOPIA",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 353,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-8fL-N0_bWc0",
+        "ytId": "8fL-N0_bWc0",
+        "title": "I KNOW ?",
+        "artist": "Travis Scott",
+        "album": "UTOPIA",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
+        "duration": 211,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "kishore-kumar": {
+    "name": "Kishore Kumar",
+    "monthlyListeners": "22,500,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Golden Era Legend of Indian Cinema",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+    "bio": "Kishore Kumar (Abhas Kumar Ganguly) was a once-in-a-century creative genius: playback singer, actor, composer, and director whose exuberant yodeling, incomparable emotional depth, and peerless comedic timing defined the soundtrack of 20th-century India. Winner of eight Filmfare Best Male Playback Awards, his collaboration with R.D. Burman and Rajesh Khanna produced the greatest catalog in Indian cinema history.",
+    "socials": {
+      "instagram": "https://www.instagram.com/kishorekumarofficial/",
+      "x": "https://x.com/KishoreKumarLegends",
+      "facebook": "https://www.facebook.com/KishoreKumarLegacy/",
+      "youtube": "https://www.youtube.com/@KishoreKumarOfficial"
+    },
+    "tourInfo": {
+      "tourName": "Kishore Kumar Immortal Classics Symphony",
+      "status": "Tickets Live",
+      "dates": "Worldwide Golden Era Retrospective",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-6mU7e0s7k2c",
+        "ytId": "6mU7e0s7k2c",
+        "title": "Yeh Shaam Mastani",
+        "artist": "Kishore Kumar",
+        "album": "Kati Patang",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 279,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-HENak7d_36I",
+        "ytId": "HENak7d_36I",
+        "title": "Roop Tera Mastana",
+        "artist": "Kishore Kumar",
+        "album": "Aradhana",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 225,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-vo1MykK4uG4",
+        "ytId": "vo1MykK4uG4",
+        "title": "Mere Sapno Ki Rani",
+        "artist": "Kishore Kumar",
+        "album": "Aradhana",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 300,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-AMuRRXCuy-4",
+        "ytId": "AMuRRXCuy-4",
+        "title": "Pal Pal Dil Ke Paas",
+        "artist": "Kishore Kumar",
+        "album": "Blackmail",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 329,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-d1nL9NqS7Wk",
+        "ytId": "d1nL9NqS7Wk",
+        "title": "O Mere Dil Ke Chain",
+        "artist": "Kishore Kumar",
+        "album": "Mere Jeevan Saathi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 277,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-J8aX5-u8sI4",
+        "ytId": "J8aX5-u8sI4",
+        "title": "Khaike Paan Banaraswala",
+        "artist": "Kishore Kumar",
+        "album": "Don",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 236,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-h_P3w8L0e8c",
+        "ytId": "h_P3w8L0e8c",
+        "title": "Ek Ladki Bheegi Bhaagi Si",
+        "artist": "Kishore Kumar",
+        "album": "Chalti Ka Naam Gaadi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 240,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-v8L2f-e8k4A",
+        "ytId": "v8L2f-e8k4A",
+        "title": "Humein Tumse Pyar Kitna",
+        "artist": "Kishore Kumar",
+        "album": "Kudrat",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 243,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-c_3kX8e0g1U",
+        "ytId": "c_3kX8e0g1U",
+        "title": "Chala Jata Hoon",
+        "artist": "Kishore Kumar",
+        "album": "Mere Jeevan Saathi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 270,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-k0_1n4E2s1I",
+        "ytId": "k0_1n4E2s1I",
+        "title": "Zindagi Ek Safar Hai Suhana",
+        "artist": "Kishore Kumar",
+        "album": "Andaz",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 254,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "lata-mangeshkar": {
+    "name": "Lata Mangeshkar",
+    "monthlyListeners": "24,800,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Immortal Nightingale of India",
+    "banner": "https://i.ytimg.com/vi/TFr6G5zveS8/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/TFr6G5zveS8/hqdefault.jpg",
+    "bio": "Lata Mangeshkar, the revered 'Nightingale of India' and recipient of the Bharat Ratna (India's highest civilian honor), is the most iconic voice in the history of Indian culture. Spanning a monumental eight-decade career with over 30,000 recorded songs across thirty-six regional languages, her pure tonal devotion brought prime ministers to tears with 'Aye Mere Watan Ke Logo' and defined the soul of the nation.",
+    "socials": {
+      "instagram": "https://www.instagram.com/mangeshkar.lata/",
+      "x": "https://x.com/mangeshkarlata",
+      "facebook": "https://www.facebook.com/LataMangeshkarOfficial/",
+      "youtube": "https://www.youtube.com/@LataMangeshkarLegacy"
+    },
+    "tourInfo": {
+      "tourName": "Lata Mangeshkar Memorial Heritage Symphony",
+      "status": "Tickets Live",
+      "dates": "National & Global Cultural Tribute",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-TFr6G5zveS8",
+        "ytId": "TFr6G5zveS8",
+        "title": "Lag Jaa Gale",
+        "artist": "Lata Mangeshkar",
+        "album": "Woh Kaun Thi?",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 258,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-5jX9Y1Z7c0c",
+        "ytId": "5jX9Y1Z7c0c",
+        "title": "Aap Ki Nazron Ne Samjha",
+        "artist": "Lata Mangeshkar",
+        "album": "Anpadh",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 236,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-cNVtK3oo9Co",
+        "ytId": "cNVtK3oo9Co",
+        "title": "Tujhe Dekha Toh",
+        "artist": "Lata Mangeshkar",
+        "album": "Dilwale Dulhania Le Jayenge",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 304,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-T_p0n4g8jE8",
+        "ytId": "T_p0n4g8jE8",
+        "title": "Tere Bina Zindagi Se",
+        "artist": "Lata Mangeshkar",
+        "album": "Aandhi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 351,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-1p0mR9n3K2I",
+        "ytId": "1p0mR9n3K2I",
+        "title": "Ajeeb Dastan Hai Yeh",
+        "artist": "Lata Mangeshkar",
+        "album": "Dil Apna Aur Preet Parai",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 312,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-X_eYF8x4rI0",
+        "ytId": "X_eYF8x4rI0",
+        "title": "Aye Mere Watan Ke Logo",
+        "artist": "Lata Mangeshkar",
+        "album": "Patriotic Classics",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 374,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-0bM7u_kQ7wE",
+        "ytId": "0bM7u_kQ7wE",
+        "title": "Kora Kagaz Tha Yeh Man Mera",
+        "artist": "Lata Mangeshkar",
+        "album": "Aradhana",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 338,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-k0p9k_r8vI0",
+        "ytId": "k0p9k_r8vI0",
+        "title": "Kabhi Kabhie Mere Dil Mein",
+        "artist": "Lata Mangeshkar",
+        "album": "Kabhi Kabhie",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 288,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-r8sL9-p0F1Y",
+        "ytId": "r8sL9-p0F1Y",
+        "title": "Hothon Mein Aisi Baat",
+        "artist": "Lata Mangeshkar",
+        "album": "Jewel Thief",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 504,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-y6rS8x8s-20",
+        "ytId": "y6rS8x8s-20",
+        "title": "Lukka Chuppi",
+        "artist": "Lata Mangeshkar",
+        "album": "Rang De Basanti",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 396,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "ar-rahman": {
+    "name": "A.R. Rahman",
+    "monthlyListeners": "41,200,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Film Score & Global Music Maestro",
+    "banner": "https://i.ytimg.com/vi/Yc5OyXmHD0w/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/Yc5OyXmHD0w/hqdefault.jpg",
+    "bio": "Allah-Rakha Rahman, revered globally as 'The Mozart of Madras', is an Indian composer, record producer, singer, and songwriter who revolutionized Indian film music. Winner of two Academy Awards, two Grammy Awards, a BAFTA Award, and six National Film Awards, his genre-defying synthesis of Eastern classical traditions with electronic music and Western orchestral grandeur placed Indian music on the global pedestal.",
+    "socials": {
+      "instagram": "https://www.instagram.com/arrahman/",
+      "x": "https://x.com/arrahman",
+      "facebook": "https://www.facebook.com/arrahman/",
+      "youtube": "https://www.youtube.com/@arrahman"
+    },
+    "tourInfo": {
+      "tourName": "A.R. Rahman Wonderment Symphony Tour",
+      "status": "Tickets Live",
+      "dates": "Chennai, London, Dubai, New York, Singapore, Los Angeles",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-xwwAVRyNmgQ",
+        "ytId": "xwwAVRyNmgQ",
+        "title": "Jai Ho",
+        "artist": "A.R. Rahman",
+        "album": "Slumdog Millionaire",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 319,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-T94PHkuydcw",
+        "ytId": "T94PHkuydcw",
+        "title": "Kun Faya Kun",
+        "artist": "A.R. Rahman",
+        "album": "Rockstar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 473,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-jDn2n5N8Uf8",
+        "ytId": "jDn2n5N8Uf8",
+        "title": "Maa Tujhe Salaam",
+        "artist": "A.R. Rahman",
+        "album": "Vande Mataram",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 367,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-PQmrmVs10X8",
+        "ytId": "PQmrmVs10X8",
+        "title": "Chaiyya Chaiyya",
+        "artist": "A.R. Rahman",
+        "album": "Dil Se..",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 395,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-sK7riqg2mr4",
+        "ytId": "sK7riqg2mr4",
+        "title": "Agar Tum Saath Ho",
+        "artist": "A.R. Rahman",
+        "album": "Tamasha",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d5/9c/0b/d59c0b11-b0f3-d022-d7cb-e52ca0a76be5/886445582314.jpg/1000x1000bb.jpg",
+        "duration": 341,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-ttKG4NqD_w4",
+        "ytId": "ttKG4NqD_w4",
+        "title": "Nadaan Parindey",
+        "artist": "A.R. Rahman",
+        "album": "Rockstar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 384,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-i0kK2mR1VvM",
+        "ytId": "i0kK2mR1VvM",
+        "title": "Roja Janeman",
+        "artist": "A.R. Rahman",
+        "album": "Roja",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 304,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-x0Z7p_r1r8c",
+        "ytId": "x0Z7p_r1r8c",
+        "title": "Tere Bina",
+        "artist": "A.R. Rahman",
+        "album": "Guru",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 310,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-5bL_k7vQ_6A",
+        "ytId": "5bL_k7vQ_6A",
+        "title": "Rehna Tu",
+        "artist": "A.R. Rahman",
+        "album": "Delhi-6",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 391,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-a0pGvX8n-0o",
+        "ytId": "a0pGvX8n-0o",
+        "title": "Chinna Chinna Aasai",
+        "artist": "A.R. Rahman",
+        "album": "Roja",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 295,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "badshah": {
+    "name": "Badshah",
+    "monthlyListeners": "31,800,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Indian Party & Rap Hitmaker",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+    "bio": "Aditya Prateek Singh Sisodia, known mononymously as Badshah, is an Indian rapper, singer, music producer, and entrepreneur whose mega-viral club bangers have collected billions of YouTube and streaming plays. Recognized as the undisputed king of Indian party and commercial rap, his record-shattering anthems like 'Genda Phool', 'Jugnu', and 'Garmi' dominate dancefloors worldwide.",
+    "socials": {
+      "instagram": "https://www.instagram.com/badboyshah/",
+      "x": "https://x.com/Its_Badshah",
+      "facebook": "https://www.facebook.com/OfficialBadshah/",
+      "youtube": "https://www.youtube.com/@Badshah"
+    },
+    "tourInfo": {
+      "tourName": "The Paagal Tour 2026",
+      "status": "Tickets Live",
+      "dates": "Mumbai, Delhi, London, Dubai, Toronto",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-SD4Z8z4sR4s",
+        "ytId": "SD4Z8z4sR4s",
+        "title": "Genda Phool",
+        "artist": "Badshah",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 172,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-V_90B_tV6hI",
+        "ytId": "V_90B_tV6hI",
+        "title": "Jugnu",
+        "artist": "Badshah",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 230,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-k4yXQkGLeAk",
+        "ytId": "k4yXQkGLeAk",
+        "title": "Kala Chashma",
+        "artist": "Badshah",
+        "album": "Baar Baar Dekho",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 187,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Garmi",
+        "artist": "Badshah",
+        "album": "Street Dancer 3D",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 184,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-89_K-HZyC-4",
+        "ytId": "89_K-HZyC-4",
+        "title": "Abhi Toh Party Shuru Hui Hai",
+        "artist": "Badshah",
+        "album": "Khoobsurat",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 180,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-NTHz9e-Nqzk",
+        "ytId": "NTHz9e-Nqzk",
+        "title": "Kar Gayi Chull",
+        "artist": "Badshah",
+        "album": "Kapoor & Sons",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 187,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-OpeP03P1XvY",
+        "ytId": "OpeP03P1XvY",
+        "title": "DJ Waley Babu",
+        "artist": "Badshah",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 165,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-tZp5k8N9r_M",
+        "ytId": "tZp5k8N9r_M",
+        "title": "Proper Patola",
+        "artist": "Badshah",
+        "album": "Namaste England",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 178,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-3t-cK_k9v_8",
+        "ytId": "3t-cK_k9v_8",
+        "title": "Soulmate",
+        "artist": "Badshah",
+        "album": "Ek Tha Raja",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 213,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-Jyst8oIHOAY",
+        "ytId": "Jyst8oIHOAY",
+        "title": "Mercy",
+        "artist": "Badshah",
+        "album": "O.N.E.",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
+        "duration": 162,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "honey-singh": {
+    "name": "Yo Yo Honey Singh",
+    "monthlyListeners": "27,400,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Commercial Desi Hip-Hop Pioneer",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+    "bio": "Hirdesh Singh, known across the globe as Yo Yo Honey Singh, is the trailblazing music director, rapper, and pop sensation who brought commercial hip-hop into mainstream Indian cinema. His debut independent album International Villager became the highest-selling Punjabi album of all time, igniting an era of high-octane club anthems across the globe.",
+    "socials": {
+      "instagram": "https://www.instagram.com/yoyohoneysingh/",
+      "x": "https://x.com/asliyoyo",
+      "facebook": "https://www.facebook.com/YoyoMahiofficial/",
+      "youtube": "https://www.youtube.com/@YoYoHoneySingh"
+    },
+    "tourInfo": {
+      "tourName": "Honey 3.0 Glory Arena World Tour",
+      "status": "Tickets Live",
+      "dates": "Dubai, Delhi, Mumbai, London, Toronto, Sydney",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "Dope Shope",
+        "artist": "Yo Yo Honey Singh",
+        "album": "International Villager",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 191,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-NbyHNASFi6U",
+        "ytId": "NbyHNASFi6U",
+        "title": "Blue Eyes",
+        "artist": "Yo Yo Honey Singh",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 220,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-TvngY4unnL4",
+        "ytId": "TvngY4unnL4",
+        "title": "Love Dose",
+        "artist": "Yo Yo Honey Singh",
+        "album": "Desi Kalakaar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 228,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-69CEiHfS_mc",
+        "ytId": "69CEiHfS_mc",
+        "title": "Lungi Dance",
+        "artist": "Yo Yo Honey Singh",
+        "album": "Chennai Express",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 275,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-KhnVcACrwFE",
+        "ytId": "KhnVcACrwFE",
+        "title": "Desi Kalakaar",
+        "artist": "Yo Yo Honey Singh",
+        "album": "Desi Kalakaar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 259,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-PqFMFVcCZgI",
+        "ytId": "PqFMFVcCZgI",
+        "title": "Brown Rang",
+        "artist": "Yo Yo Honey Singh",
+        "album": "International Villager",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 179,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-f0-jC_w8T3U",
+        "ytId": "f0-jC_w8T3U",
+        "title": "Angreji Beat",
+        "artist": "Yo Yo Honey Singh",
+        "album": "International Villager",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 210,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "High Heels Te Nachche",
+        "artist": "Yo Yo Honey Singh",
+        "album": "Ki & Ka",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 212,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-HqUeS9v8t6s",
+        "ytId": "HqUeS9v8t6s",
+        "title": "Makhna",
+        "artist": "Yo Yo Honey Singh",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 183,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-t2C7s0_qL1E",
+        "ytId": "t2C7s0_qL1E",
+        "title": "Payal",
+        "artist": "Yo Yo Honey Singh",
+        "album": "Glory",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
+        "duration": 188,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "neha-kakkar": {
+    "name": "Neha Kakkar",
+    "monthlyListeners": "33,500,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#2 Female Vocalist in India",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+    "bio": "Neha Kakkar is one of the most followed and streamed Indian female vocalists of all time, acclaimed for her infectious energy, signature husky tone, and chart-topping dance numbers. Rising from religious jagran performances to winning India's heart on national television, she has become an unstoppable hitmaker with billions of streams.",
+    "socials": {
+      "instagram": "https://www.instagram.com/nehakakkar/",
+      "x": "https://x.com/iAmNehaKakkar",
+      "facebook": "https://www.facebook.com/NehaKakkarOfficial/",
+      "youtube": "https://www.youtube.com/@NehaKakkarOfficial"
+    },
+    "tourInfo": {
+      "tourName": "Neha Kakkar Live In Concert",
+      "status": "Tickets Live",
+      "dates": "Mumbai, Delhi, London, Dubai, Toronto",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-N2-HsIYd0Go",
+        "ytId": "N2-HsIYd0Go",
+        "title": "Mile Ho Tum",
+        "artist": "Neha Kakkar",
+        "album": "Fever",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 264,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-n2u814n3u6g",
+        "ytId": "n2u814n3u6g",
+        "title": "Dilbar",
+        "artist": "Neha Kakkar",
+        "album": "Satyameva Jayate",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 184,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-_KhQT-LGb-4",
+        "ytId": "_KhQT-LGb-4",
+        "title": "Aankh Marey",
+        "artist": "Neha Kakkar",
+        "album": "Simmba",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 213,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-_u-K8w0-8c0",
+        "ytId": "_u-K8w0-8c0",
+        "title": "O Saki Saki",
+        "artist": "Neha Kakkar",
+        "album": "Batla House",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 191,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Garmi",
+        "artist": "Neha Kakkar",
+        "album": "Street Dancer 3D",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 184,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-k4yXQkGLeAk",
+        "ytId": "k4yXQkGLeAk",
+        "title": "Kala Chashma",
+        "artist": "Neha Kakkar",
+        "album": "Baar Baar Dekho",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 187,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-NTHz9e-Nqzk",
+        "ytId": "NTHz9e-Nqzk",
+        "title": "Kar Gayi Chull",
+        "artist": "Neha Kakkar",
+        "album": "Kapoor & Sons",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 187,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-0bM7u_kQ7wE",
+        "ytId": "0bM7u_kQ7wE",
+        "title": "Coca Cola",
+        "artist": "Neha Kakkar",
+        "album": "Luka Chuppi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 179,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-fO_p3_r8jX4",
+        "ytId": "fO_p3_r8jX4",
+        "title": "Chamma Chamma",
+        "artist": "Neha Kakkar",
+        "album": "Fraud Saiyaan",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 194,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-y1T8q_sL0-0",
+        "ytId": "y1T8q_sL0-0",
+        "title": "Yaad Piya Ki Aane Lagi",
+        "artist": "Neha Kakkar",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
+        "duration": 257,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "sunidhi-chauhan": {
+    "name": "Sunidhi Chauhan",
+    "monthlyListeners": "26,200,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Live Vocal Powerhouse",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+    "bio": "Sunidhi Chauhan is universally regarded as the fiercest vocal powerhouse in modern Indian music. Renowned for raw stage intensity, astonishing dynamic range, and electrifying versatility, she has recorded thousands of songs across Hindi, Tamil, Telugu, and Punjabi cinema, earning multiple Filmfare Awards and headlining global arena spectacles.",
+    "socials": {
+      "instagram": "https://www.instagram.com/sunidhichauhan5/",
+      "x": "https://x.com/SunidhiChauhan5",
+      "facebook": "https://www.facebook.com/sunidhi.chauhan/",
+      "youtube": "https://www.youtube.com/@SunidhiChauhanOfficial"
+    },
+    "tourInfo": {
+      "tourName": "I Am Home Live Arena Tour",
+      "status": "Tickets Live",
+      "dates": "Mumbai, Bengaluru, Delhi, London, Dubai, Toronto",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-C8kSrkz8Hz8",
+        "ytId": "C8kSrkz8Hz8",
+        "title": "Kamli",
+        "artist": "Sunidhi Chauhan",
+        "album": "Dhoom:3",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 312,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-ZTmF2v59CtI",
+        "ytId": "ZTmF2v59CtI",
+        "title": "Sheila Ki Jawani",
+        "artist": "Sunidhi Chauhan",
+        "album": "Tees Maar Khan",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 284,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-sK7riqg2mr4",
+        "ytId": "sK7riqg2mr4",
+        "title": "Dhoom Machale",
+        "artist": "Sunidhi Chauhan",
+        "album": "Dhoom",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 374,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Crazy Kiya Re",
+        "artist": "Sunidhi Chauhan",
+        "album": "Dhoom:2",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 295,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-MQM7CNoAsBI",
+        "ytId": "MQM7CNoAsBI",
+        "title": "Desi Girl",
+        "artist": "Sunidhi Chauhan",
+        "album": "Dostana",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 307,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-v8L2f-e8k4A",
+        "ytId": "v8L2f-e8k4A",
+        "title": "Beedi",
+        "artist": "Sunidhi Chauhan",
+        "album": "Omkara",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 304,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-6jO_iX3Uf1g",
+        "ytId": "6jO_iX3Uf1g",
+        "title": "Saaki",
+        "artist": "Sunidhi Chauhan",
+        "album": "Musafir",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 326,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-pBuZEGYXA6E",
+        "ytId": "pBuZEGYXA6E",
+        "title": "Ainvayi Ainvayi",
+        "artist": "Sunidhi Chauhan",
+        "album": "Band Baaja Baaraat",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 265,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-yWJy_mS9b-I",
+        "ytId": "yWJy_mS9b-I",
+        "title": "Dance Pe Chance",
+        "artist": "Sunidhi Chauhan",
+        "album": "Rab Ne Bana Di Jodi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 262,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-d8IT-163M8U",
+        "ytId": "d8IT-163M8U",
+        "title": "The Disco Song",
+        "artist": "Sunidhi Chauhan",
+        "album": "Student of the Year",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
+        "duration": 334,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "jubin-nautiyal": {
+    "name": "Jubin Nautiyal",
+    "monthlyListeners": "32,100,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#2 Soulful Balladeer in India",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+    "bio": "Jubin Nautiyal is an Indian playback singer and performer revered for rich baritone warmth, heartfelt acoustic renditions, and blockbuster romantic ballads. Winner of IIFA and Filmfare honors for 'Raataan Lambiyan' from Shershaah, his songs regularly cross hundreds of millions of views, making him one of the most bankable romantic voices of the modern streaming era.",
+    "socials": {
+      "instagram": "https://www.instagram.com/jubin_nautiyal/",
+      "x": "https://x.com/JubinNautiyal",
+      "facebook": "https://www.facebook.com/JubinNautiyalOfficial/",
+      "youtube": "https://www.youtube.com/@JubinNautiyal"
+    },
+    "tourInfo": {
+      "tourName": "Jubin Nautiyal Live In Concert",
+      "status": "Tickets Live",
+      "dates": "Dehradun, Delhi, Mumbai, London, Dubai",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-gvyUuxdRdR4",
+        "ytId": "gvyUuxdRdR4",
+        "title": "Raataan Lambiyan",
+        "artist": "Jubin Nautiyal",
+        "album": "Shershaah",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 230,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-sCbbMZ-q4-I",
+        "ytId": "sCbbMZ-q4-I",
+        "title": "Lut Gaye",
+        "artist": "Jubin Nautiyal",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 228,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-tLqtnGLfm4Q",
+        "ytId": "tLqtnGLfm4Q",
+        "title": "Tum Hi Aana",
+        "artist": "Jubin Nautiyal",
+        "album": "Marjaavaan",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 249,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-N2-HsIYd0Go",
+        "ytId": "N2-HsIYd0Go",
+        "title": "Humnava Mere",
+        "artist": "Jubin Nautiyal",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 334,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-2a8PgqWrc_4",
+        "ytId": "2a8PgqWrc_4",
+        "title": "Tujhe Kitna Chahein Aur",
+        "artist": "Jubin Nautiyal",
+        "album": "Kabir Singh",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 276,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-LK7-_dgAVQE",
+        "ytId": "LK7-_dgAVQE",
+        "title": "Kinna Sona",
+        "artist": "Jubin Nautiyal",
+        "album": "Marjaavaan",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 273,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-0bM7u_kQ7wE",
+        "ytId": "0bM7u_kQ7wE",
+        "title": "Bawara Mann",
+        "artist": "Jubin Nautiyal",
+        "album": "Jolly LLB 2",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 213,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-w_R8e_xY7t4",
+        "ytId": "w_R8e_xY7t4",
+        "title": "Taaron Ke Shehar",
+        "artist": "Jubin Nautiyal",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 239,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "Dil Galti Kar Baitha Hai",
+        "artist": "Jubin Nautiyal",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 260,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-y1W8-x7q5Xg",
+        "ytId": "y1W8-x7q5Xg",
+        "title": "Kuch Baatein",
+        "artist": "Jubin Nautiyal",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
+        "duration": 276,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "nusrat-fateh-ali-khan": {
+    "name": "Nusrat Fateh Ali Khan",
+    "monthlyListeners": "29,800,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Shahenshah-e-Qawwali Worldwide",
+    "banner": "https://i.ytimg.com/vi/h9wB5t12oK0/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/h9wB5t12oK0/hqdefault.jpg",
+    "bio": "Ustad Nusrat Fateh Ali Khan, universally revered as 'Shahenshah-e-Qawwali' (The King of Kings of Qawwali), possessed one of the most transcendent, powerful, and acrobatic vocal instruments in the recorded history of humankind. Introducing the mystical ecstatic ecstasy of 700-year-old Sufi qawwali to world stages from WOMAD to Peter Gabriel and Eddie Vedder, his voice remains an eternal spiritual conduit.",
+    "socials": {
+      "instagram": "https://www.instagram.com/nusrat_fateh_ali_khan_legacy/",
+      "x": "https://x.com/NFAKLegacy",
+      "facebook": "https://www.facebook.com/NusratFatehAliKhanOfficial/",
+      "youtube": "https://www.youtube.com/@NFAKOfficial"
+    },
+    "tourInfo": {
+      "tourName": "Nusrat Fateh Ali Khan Eternal Spiritual Heritage",
+      "status": "Tickets Live",
+      "dates": "Worldwide Sufi Tribute & Heritage Symphony",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-B7T8s5j0s_g",
+        "ytId": "B7T8s5j0s_g",
+        "title": "Yeh Jo Halka Halka Suroor Hai",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Qawwali Masters",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 960,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-OpeP03P1XvY",
+        "ytId": "OpeP03P1XvY",
+        "title": "Afreen Afreen",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Sangam",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 384,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "Sanu Ik Pal Chain Na Aave",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Qawwali Classics",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 420,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Mere Rashke Qamar",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Qawwali Masters",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 512,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-LK7-_dgAVQE",
+        "ytId": "LK7-_dgAVQE",
+        "title": "Kinna Sohna Tainu",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Qawwali Classics",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 480,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "Dum Mast Qalandar",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Mustt Mustt",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 340,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-fn382fN5F1g",
+        "ytId": "fn382fN5F1g",
+        "title": "Tumhe Dillagi Bhool Jaani Padegi",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Qawwali Masters",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 720,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-cWMxCE2HTag",
+        "ytId": "cWMxCE2HTag",
+        "title": "Mustt Mustt (Lost in His Work)",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Mustt Mustt",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 315,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-SD4Z8z4sR4s",
+        "ytId": "SD4Z8z4sR4s",
+        "title": "Piya Re Piya Re",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Sangam",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 360,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-0bM7u_kQ7wE",
+        "ytId": "0bM7u_kQ7wE",
+        "title": "Allah Hoo",
+        "artist": "Nusrat Fateh Ali Khan",
+        "album": "Day, Night, Dawn, Dusk",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 480,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "rahat-fateh-ali-khan": {
+    "name": "Rahat Fateh Ali Khan",
+    "monthlyListeners": "30,500,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Sufi & Bollywood Playback King",
+    "banner": "https://i.ytimg.com/vi/kw4tT7SCmaY/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg",
+    "bio": "Ustad Rahat Fateh Ali Khan is a world-renowned Pakistani musician and playback singer belonging to the 600-year-old Qawwal Bachhon gharana. Trained directly by his uncle Nusrat Fateh Ali Khan, Rahat has conquered both Bollywood and international concert halls, earning Filmfare Awards and headlining the Nobel Peace Prize concert with timeless masterpieces like 'O Re Piya' and 'Afreen Afreen'.",
+    "socials": {
+      "instagram": "https://www.instagram.com/officialrfakworld/",
+      "x": "https://x.com/RFAKWorld",
+      "facebook": "https://www.facebook.com/RahatFatehAliKhanOfficial/",
+      "youtube": "https://www.youtube.com/@RahatFatehAliKhanOfficial"
+    },
+    "tourInfo": {
+      "tourName": "Just Qawwali Live World Tour 2026",
+      "status": "Tickets Live",
+      "dates": "London, Dubai, Chicago, Birmingham, Toronto",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-kw4tT7SCmaY",
+        "ytId": "kw4tT7SCmaY",
+        "title": "Afreen Afreen",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "Coke Studio Season 9",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 405,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-MyM-p2x_v3Q",
+        "ytId": "MyM-p2x_v3Q",
+        "title": "O Re Piya",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "Aaja Nachle",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 379,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-K9sO-p_bK3g",
+        "ytId": "K9sO-p_bK3g",
+        "title": "Tere Mast Mast Do Nain",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "Dabangg",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 359,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-t1Z-P8x7vU4",
+        "ytId": "t1Z-P8x7vU4",
+        "title": "Jag Ghoomeya",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "Sultan",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 281,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-y1W8-x7q5Xg",
+        "ytId": "y1W8-x7q5Xg",
+        "title": "Main Jahaan Rahoon",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "Namastey London",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 331,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-cWMxCE2HTag",
+        "ytId": "cWMxCE2HTag",
+        "title": "Bol Na Halke Halke",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "Jhoom Barabar Jhoom",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 307,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-6-n_szx2XRE",
+        "ytId": "6-n_szx2XRE",
+        "title": "Zaroori Tha",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "Back 2 Love",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 316,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Jiya Dhadak Dhadak Jaye",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "Kalyug",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 319,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "Sajdaa",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "My Name Is Khan",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 367,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-fn382fN5F1g",
+        "ytId": "fn382fN5F1g",
+        "title": "Dagabaaz Re",
+        "artist": "Rahat Fateh Ali Khan",
+        "album": "Dabangg 2",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
+        "duration": 289,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "blackpink": {
+    "name": "BLACKPINK",
+    "monthlyListeners": "31,800,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Global K-Pop Female Group",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+    "bio": "BLACKPINK (Jisoo, Jennie, Rosé, and Lisa) is the most successful Korean girl group internationally, crowned as the 'biggest girl group in the world'. The highest-charting female Korean act on the US Billboard Hot 100 and Billboard 200, BLACKPINK made history as the first Korean group to headline Coachella, collecting billions of streams with revolutionary girl-crush anthems.",
+    "socials": {
+      "instagram": "https://www.instagram.com/blackpinkofficial/",
+      "x": "https://x.com/BLACKPINK",
+      "facebook": "https://www.facebook.com/BLACKPINKOFFICIAL/",
+      "youtube": "https://www.youtube.com/@BLACKPINKOFFICIAL"
+    },
+    "tourInfo": {
+      "tourName": "BORN PINK World Stadium Tour",
+      "status": "Tickets Live",
+      "dates": "Seoul, Los Angeles, London, Tokyo, Bangkok",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-ioNng23DkIM",
+        "ytId": "ioNng23DkIM",
+        "title": "How You Like That",
+        "artist": "BLACKPINK",
+        "album": "THE ALBUM",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 181,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-2S24-y0Ij3Y",
+        "ytId": "2S24-y0Ij3Y",
+        "title": "Kill This Love",
+        "artist": "BLACKPINK",
+        "album": "KILL THIS LOVE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 189,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-IHNzOHi8sJQ",
+        "ytId": "IHNzOHi8sJQ",
+        "title": "DDU-DU DDU-DU",
+        "artist": "BLACKPINK",
+        "album": "SQUARE UP",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 209,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-gQlMMD8auMs",
+        "ytId": "gQlMMD8auMs",
+        "title": "Pink Venom",
+        "artist": "BLACKPINK",
+        "album": "BORN PINK",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 186,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-POe9SOEKotk",
+        "ytId": "POe9SOEKotk",
+        "title": "Shut Down",
+        "artist": "BLACKPINK",
+        "album": "BORN PINK",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 175,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-Amq-qlqbjYA",
+        "ytId": "Amq-qlqbjYA",
+        "title": "As If It's Your Last",
+        "artist": "BLACKPINK",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 213,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-bwmSjVeLBFU",
+        "ytId": "bwmSjVeLBFU",
+        "title": "BOOMBAYAH",
+        "artist": "BLACKPINK",
+        "album": "SQUARE ONE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 240,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-dyRsYk0LyA8",
+        "ytId": "dyRsYk0LyA8",
+        "title": "Lovesick Girls",
+        "artist": "BLACKPINK",
+        "album": "THE ALBUM",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 192,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-vRXZj0DzXIA",
+        "ytId": "vRXZj0DzXIA",
+        "title": "Ice Cream (with Selena Gomez)",
+        "artist": "BLACKPINK",
+        "album": "THE ALBUM",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 175,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-dISNgvVpWlo",
+        "ytId": "dISNgvVpWlo",
+        "title": "WHISTLE",
+        "artist": "BLACKPINK",
+        "album": "SQUARE ONE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
+        "duration": 211,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "harry-styles": {
+    "name": "Harry Styles",
+    "monthlyListeners": "56,400,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#8 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+    "bio": "Harry Edward Styles is an English singer, songwriter, and actor whose charismatic glam-rock and vintage pop aesthetic earned him Album of the Year at the Grammy Awards for Harry's House. His record-shattering anthem 'As It Was' became the longest-running solo number-one on the Billboard Hot 100, solidifying his role as a generation-defining rock and pop icon.",
+    "socials": {
+      "instagram": "https://www.instagram.com/harrystyles/",
+      "x": "https://x.com/Harry_Styles",
+      "facebook": "https://www.facebook.com/harrystyles/",
+      "youtube": "https://www.youtube.com/@HarryStyles"
+    },
+    "tourInfo": {
+      "tourName": "Love On Tour Stadium Retrospective",
+      "status": "Tickets Live",
+      "dates": "London, New York, Tokyo, Sydney",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-H5v3kOT4y68",
+        "ytId": "H5v3kOT4y68",
+        "title": "As It Was",
+        "artist": "Harry Styles",
+        "album": "Harry's House",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 167,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-E07s5ZYyg4m",
+        "ytId": "E07s5ZYyg4m",
+        "title": "Watermelon Sugar",
+        "artist": "Harry Styles",
+        "album": "Fine Line",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 174,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-qN4ooNx77u0",
+        "ytId": "qN4ooNx77u0",
+        "title": "Sign of the Times",
+        "artist": "Harry Styles",
+        "album": "Harry Styles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 340,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-VF-r5TtlT9w",
+        "ytId": "VF-r5TtlT9w",
+        "title": "Adore You",
+        "artist": "Harry Styles",
+        "album": "Fine Line",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 207,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-P3cffdsEXXw",
+        "ytId": "P3cffdsEXXw",
+        "title": "Golden",
+        "artist": "Harry Styles",
+        "album": "Fine Line",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 208,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-4VqC1k3g6Q0",
+        "ytId": "4VqC1k3g6Q0",
+        "title": "Late Night Talking",
+        "artist": "Harry Styles",
+        "album": "Harry's House",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 177,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-olGSAVOkkTI",
+        "ytId": "olGSAVOkkTI",
+        "title": "Falling",
+        "artist": "Harry Styles",
+        "album": "Fine Line",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 240,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "Music For a Sushi Restaurant",
+        "artist": "Harry Styles",
+        "album": "Harry's House",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 193,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "Matilda",
+        "artist": "Harry Styles",
+        "album": "Harry's House",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 245,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-9NZvM1918_E",
+        "ytId": "9NZvM1918_E",
+        "title": "Lights Up",
+        "artist": "Harry Styles",
+        "album": "Fine Line",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
+        "duration": 172,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "olivia-rodrigo": {
+    "name": "Olivia Rodrigo",
+    "monthlyListeners": "58,200,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#2 in Alt-Pop / Rock",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+    "bio": "Olivia Isabel Rodrigo is an American singer-songwriter who ignited a global pop-punk renaissance with her 3x Grammy-winning debut SOUR and critically lauded sophomore album GUTS. Bursting onto the scene with 'drivers license'—which shattered Spotify single-day streaming records—her sharp lyricism and visceral teenage angst have resonated across generations.",
+    "socials": {
+      "instagram": "https://www.instagram.com/oliviarodrigo/",
+      "x": "https://x.com/oliviarodrigo",
+      "facebook": "https://www.facebook.com/OliviaRodrigoOfficial/",
+      "youtube": "https://www.youtube.com/@OliviaRodrigo"
+    },
+    "tourInfo": {
+      "tourName": "GUTS World Arena Tour",
+      "status": "Tickets Live",
+      "dates": "Los Angeles, New York, London, Paris, Sydney",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-RlPNh_PBZb4",
+        "ytId": "RlPNh_PBZb4",
+        "title": "vampire",
+        "artist": "Olivia Rodrigo",
+        "album": "GUTS",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 219,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-ZmDBbnmKpqQ",
+        "ytId": "ZmDBbnmKpqQ",
+        "title": "drivers license",
+        "artist": "Olivia Rodrigo",
+        "album": "SOUR",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 242,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-gNi_6U5Pm_o",
+        "ytId": "gNi_6U5Pm_o",
+        "title": "good 4 u",
+        "artist": "Olivia Rodrigo",
+        "album": "SOUR",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 178,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-cii6ruuyc5k",
+        "ytId": "cii6ruuyc5k",
+        "title": "deja vu",
+        "artist": "Olivia Rodrigo",
+        "album": "SOUR",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 215,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-Dj9q8gYmK8w",
+        "ytId": "Dj9q8gYmK8w",
+        "title": "bad idea right?",
+        "artist": "Olivia Rodrigo",
+        "album": "GUTS",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 184,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-ZSJPrTrTz-g",
+        "ytId": "ZSJPrTrTz-g",
+        "title": "get him back!",
+        "artist": "Olivia Rodrigo",
+        "album": "GUTS",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 211,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-CRrf3h9vhp8",
+        "ytId": "CRrf3h9vhp8",
+        "title": "traitor",
+        "artist": "Olivia Rodrigo",
+        "album": "SOUR",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 229,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "all-american bitch",
+        "artist": "Olivia Rodrigo",
+        "album": "GUTS",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 165,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-OGUX0XPEi_A",
+        "ytId": "OGUX0XPEi_A",
+        "title": "brutal",
+        "artist": "Olivia Rodrigo",
+        "album": "SOUR",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 143,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-LK7-_dgAVQE",
+        "ytId": "LK7-_dgAVQE",
+        "title": "obsessed",
+        "artist": "Olivia Rodrigo",
+        "album": "GUTS (spilled)",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
+        "duration": 170,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "lady-gaga": {
+    "name": "Lady Gaga",
+    "monthlyListeners": "95,400,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#2 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+    "bio": "Stefani Joanne Angelina Germanotta, known as Lady Gaga, is an American pop icon, songwriter, and Oscar-winning actress renowned for boundary-pushing musical reinvention and operatic vocal power. With 13 Grammy Awards, an Academy Award, and mega-hits like 'Bad Romance', 'Shallow', and 'Die With A Smile' (with Bruno Mars), Gaga stands among the most celebrated artists in entertainment history.",
+    "socials": {
+      "instagram": "https://www.instagram.com/ladygaga/",
+      "x": "https://x.com/ladygaga",
+      "facebook": "https://www.facebook.com/ladygaga/",
+      "youtube": "https://www.youtube.com/@LadyGaga"
+    },
+    "tourInfo": {
+      "tourName": "The Chromatica Ball / Jazz & Piano",
+      "status": "Tickets Live",
+      "dates": "Las Vegas, Paris, London, Tokyo, New York",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-kPa7bsKwL-c",
+        "ytId": "kPa7bsKwL-c",
+        "title": "Die With A Smile",
+        "artist": "Lady Gaga",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 251,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-qrO4YZeyl0I",
+        "ytId": "qrO4YZeyl0I",
+        "title": "Bad Romance",
+        "artist": "Lady Gaga",
+        "album": "The Fame Monster",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 294,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-bESGLojNYSo",
+        "ytId": "bESGLojNYSo",
+        "title": "Poker Face",
+        "artist": "Lady Gaga",
+        "album": "The Fame",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 238,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-bo_efYhYU2A",
+        "ytId": "bo_efYhYU2A",
+        "title": "Shallow",
+        "artist": "Lady Gaga",
+        "album": "A Star Is Born",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 216,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-2Abk1jAONjw",
+        "ytId": "2Abk1jAONjw",
+        "title": "Just Dance",
+        "artist": "Lady Gaga",
+        "album": "The Fame",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 242,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-wV1FrqwZyKw",
+        "ytId": "wV1FrqwZyKw",
+        "title": "Born This Way",
+        "artist": "Lady Gaga",
+        "album": "Born This Way",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 260,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-AoAm4om0wTs",
+        "ytId": "AoAm4om0wTs",
+        "title": "Rain On Me (with Ariana Grande)",
+        "artist": "Lady Gaga",
+        "album": "Chromatica",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 182,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-niqrrmev4mA",
+        "ytId": "niqrrmev4mA",
+        "title": "Alejandro",
+        "artist": "Lady Gaga",
+        "album": "The Fame Monster",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 274,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-wagn8Wrmzuc",
+        "ytId": "wagn8Wrmzuc",
+        "title": "Judas",
+        "artist": "Lady Gaga",
+        "album": "Born This Way",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 250,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-5vheNbQlsyU",
+        "ytId": "5vheNbQlsyU",
+        "title": "Always Remember Us This Way",
+        "artist": "Lady Gaga",
+        "album": "A Star Is Born",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
+        "duration": 210,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "charlie-puth": {
+    "name": "Charlie Puth",
+    "monthlyListeners": "44,600,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#10 in Contemporary Pop",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+    "bio": "Charles Otto Puth Jr. is an American singer, songwriter, and record producer renowned for his rare perfect pitch and viral ear for hook construction. His breakout collaboration 'See You Again' with Wiz Khalifa topped the Billboard Hot 100 for 12 weeks, and subsequent albums Voicenotes and CHARLIE cemented his standing as a master pop melody architect.",
+    "socials": {
+      "instagram": "https://www.instagram.com/charlieputh/",
+      "x": "https://x.com/charlieputh",
+      "facebook": "https://www.facebook.com/charlieputh/",
+      "youtube": "https://www.youtube.com/@CharliePuth"
+    },
+    "tourInfo": {
+      "tourName": "The Charlie Live Experience",
+      "status": "Tickets Live",
+      "dates": "New York, Los Angeles, Seoul, London",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-nfs8NYg7yQM",
+        "ytId": "nfs8NYg7yQM",
+        "title": "Attention",
+        "artist": "Charlie Puth",
+        "album": "Voicenotes",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 208,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-3AtDnEC4zak",
+        "ytId": "3AtDnEC4zak",
+        "title": "We Don't Talk Anymore (feat. Selena Gomez)",
+        "artist": "Charlie Puth",
+        "album": "Nine Track Mind",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 217,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-RgKAFK5djSk",
+        "ytId": "RgKAFK5djSk",
+        "title": "See You Again (feat. Charlie Puth)",
+        "artist": "Charlie Puth",
+        "album": "Furious 7",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 229,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-a7GITgqwDVg",
+        "ytId": "a7GITgqwDVg",
+        "title": "Left and Right (feat. Jung Kook of BTS)",
+        "artist": "Charlie Puth",
+        "album": "CHARLIE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 154,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-WFsA8n4vK3E",
+        "ytId": "WFsA8n4vK3E",
+        "title": "Light Switch",
+        "artist": "Charlie Puth",
+        "album": "CHARLIE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 185,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-BzxveZ6M0P0",
+        "ytId": "BzxveZ6M0P0",
+        "title": "One Call Away",
+        "artist": "Charlie Puth",
+        "album": "Nine Track Mind",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 240,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-CwfoyVa980U",
+        "ytId": "CwfoyVa980U",
+        "title": "How Long",
+        "artist": "Charlie Puth",
+        "album": "Voicenotes",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 198,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-TBXQu8ORnBQ",
+        "ytId": "TBXQu8ORnBQ",
+        "title": "Dangerously",
+        "artist": "Charlie Puth",
+        "album": "Nine Track Mind",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 199,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "That's Hilarious",
+        "artist": "Charlie Puth",
+        "album": "CHARLIE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 144,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-JaHfZ_P-P3U",
+        "ytId": "JaHfZ_P-P3U",
+        "title": "Done For Me (feat. Kehlani)",
+        "artist": "Charlie Puth",
+        "album": "Voicenotes",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 180,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "darshan-raval": {
+    "name": "Darshan Raval",
+    "monthlyListeners": "23,600,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Monsoon & Romantic Pop Idol",
+    "banner": "https://i.ytimg.com/vi/k9iX_99lI4s/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/k9iX_99lI4s/hqdefault.jpg",
+    "bio": "Darshan Raval is an Indian singer, composer, and heartthrob lyricist crowned as the 'Monsoon Romance King'. Emerging from India's Raw Star, his annual monsoon releases, sweet falsetto, and blockbuster Bollywood tracks like 'Chogada' and 'Kamariya' have made him an icon of modern Indian youth romance.",
+    "socials": {
+      "instagram": "https://www.instagram.com/darshanravaldz/",
+      "x": "https://x.com/DarshanRavalDZ",
+      "facebook": "https://www.facebook.com/DarshanRavalDZ/",
+      "youtube": "https://www.youtube.com/@DarshanRavalDZ"
+    },
+    "tourInfo": {
+      "tourName": "Love In The Stars Arena Tour",
+      "status": "Tickets Live",
+      "dates": "Ahmedabad, Mumbai, Pune, Kolkata, Delhi",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-b8-M9g8K-0o",
+        "ytId": "b8-M9g8K-0o",
+        "title": "Tera Zikr",
+        "artist": "Darshan Raval",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 215,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-asYxxtiWUyw",
+        "ytId": "asYxxtiWUyw",
+        "title": "Chogada",
+        "artist": "Darshan Raval",
+        "album": "Loveyatri",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 250,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-1p0mR9n3K2I",
+        "ytId": "1p0mR9n3K2I",
+        "title": "Kamariya",
+        "artist": "Darshan Raval",
+        "album": "Mitron",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 188,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-0bM7u_kQ7wE",
+        "ytId": "0bM7u_kQ7wE",
+        "title": "Ek Ladki Ko Dekha Toh Aisa Laga",
+        "artist": "Darshan Raval",
+        "album": "Title Track",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 155,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "Asal Mein",
+        "artist": "Darshan Raval",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 224,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "Hawa Banke",
+        "artist": "Darshan Raval",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 198,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-LK7-_dgAVQE",
+        "ytId": "LK7-_dgAVQE",
+        "title": "Mehrama",
+        "artist": "Darshan Raval",
+        "album": "Love Aaj Kal",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 249,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Rabba Mehar Kari",
+        "artist": "Darshan Raval",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 218,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-cWMxCE2HTag",
+        "ytId": "cWMxCE2HTag",
+        "title": "Bhula Dunga",
+        "artist": "Darshan Raval",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 242,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-fn382fN5F1g",
+        "ytId": "fn382fN5F1g",
+        "title": "Mahiye Jinna Sohna",
+        "artist": "Darshan Raval",
+        "album": "Dard",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
+        "duration": 180,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "anuv-jain": {
+    "name": "Anuv Jain",
+    "monthlyListeners": "18,400,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Indie Acoustic Poet",
+    "banner": "https://i.ytimg.com/vi/gQL9V4fsN_c/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/gQL9V4fsN_c/hqdefault.jpg",
+    "bio": "Anuv Jain is an Indian singer, songwriter, and acoustic guitarist hailed as the voice of heartfelt indie storytelling. Armored only with a baritone ukulele and poignant lyrics, his viral acoustic gems like 'Baarishein', 'Husn', and 'Alag Aasmaan' have captured millions of hearts, turning indie bedroom recordings into stadium sing-alongs.",
+    "socials": {
+      "instagram": "https://www.instagram.com/anuvjain/",
+      "x": "https://x.com/anuvjain",
+      "facebook": "https://www.facebook.com/anuvjainmusic/",
+      "youtube": "https://www.youtube.com/@AnuvJain"
+    },
+    "tourInfo": {
+      "tourName": "Guldasta Arena India Tour",
+      "status": "Tickets Live",
+      "dates": "Ludhiana, Delhi, Mumbai, Bengaluru, Kolkata",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-gQLMMD8auMs",
+        "ytId": "gQLMMD8auMs",
+        "title": "Husn",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 218,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-BTGY4n_1v3E",
+        "ytId": "BTGY4n_1v3E",
+        "title": "Baarishein",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 207,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-OpeP03P1XvY",
+        "ytId": "OpeP03P1XvY",
+        "title": "Alag Aasmaan",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 212,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-b8-M9g8K-0o",
+        "ytId": "b8-M9g8K-0o",
+        "title": "Mishri",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 218,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-1p0mR9n3K2I",
+        "ytId": "1p0mR9n3K2I",
+        "title": "Gul",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 217,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-asYxxtiWUyw",
+        "ytId": "asYxxtiWUyw",
+        "title": "Riha",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 188,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-0bM7u_kQ7wE",
+        "ytId": "0bM7u_kQ7wE",
+        "title": "Ocean",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 202,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "Maula",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 228,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "Kyun",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 210,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-LK7-_dgAVQE",
+        "ytId": "LK7-_dgAVQE",
+        "title": "Mazaak",
+        "artist": "Anuv Jain",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
+        "duration": 198,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "prateek-kuhad": {
+    "name": "Prateek Kuhad",
+    "monthlyListeners": "16,800,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Global Indie Folk Artist",
+    "banner": "https://i.ytimg.com/vi/Il7Nv270zNk/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/Il7Nv270zNk/hqdefault.jpg",
+    "bio": "Prateek Kuhad is an internationally celebrated singer-songwriter hailed by Barack Obama on his favorite music of the year list for 'cold/mess'. With whisper-soft acoustic intimacy, poetic bilingual songwriting in Hindi and English, and sold-out headline tours from London to Los Angeles, Kuhad defined the rise of global Indian indie folk.",
+    "socials": {
+      "instagram": "https://www.instagram.com/prateekkuhad/",
+      "x": "https://x.com/prateekkuhad",
+      "facebook": "https://www.facebook.com/prateekkuhadmusic/",
+      "youtube": "https://www.youtube.com/@PrateekKuhad"
+    },
+    "tourInfo": {
+      "tourName": "The Way That Too Goes World Tour",
+      "status": "Tickets Live",
+      "dates": "London, New York, Delhi, Mumbai, Singapore",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-Il7nvbQR6yc",
+        "ytId": "Il7nvbQR6yc",
+        "title": "cold/mess",
+        "artist": "Prateek Kuhad",
+        "album": "cold/mess",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 247,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-pBuZEGYXA6E",
+        "ytId": "pBuZEGYXA6E",
+        "title": "Kasoor",
+        "artist": "Prateek Kuhad",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 196,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-k0_1n4E2s1I",
+        "ytId": "k0_1n4E2s1I",
+        "title": "Kho Gaye Hum Kahan",
+        "artist": "Prateek Kuhad",
+        "album": "Baar Baar Dekho",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 213,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "Tum Jab Paas",
+        "artist": "Prateek Kuhad",
+        "album": "In Tokens & Charms",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 236,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-LK7-_dgAVQE",
+        "ytId": "LK7-_dgAVQE",
+        "title": "Co2",
+        "artist": "Prateek Kuhad",
+        "album": "The Way That Lovers Do",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 161,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-0bM7u_kQ7wE",
+        "ytId": "0bM7u_kQ7wE",
+        "title": "Tune Kaha",
+        "artist": "Prateek Kuhad",
+        "album": "Raat Raazi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 184,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "100 Words",
+        "artist": "Prateek Kuhad",
+        "album": "cold/mess",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 202,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-cWMxCE2HTag",
+        "ytId": "cWMxCE2HTag",
+        "title": "Yeh Pal",
+        "artist": "Prateek Kuhad",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 215,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-fn382fN5F1g",
+        "ytId": "fn382fN5F1g",
+        "title": "Dil Beparvah",
+        "artist": "Prateek Kuhad",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 235,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "Just A Word",
+        "artist": "Prateek Kuhad",
+        "album": "The Way That Lovers Do",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 178,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "shawn-mendes": {
+    "name": "Shawn Mendes",
+    "monthlyListeners": "48,200,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#9 in Global Acoustic Pop",
+    "banner": "https://i.ytimg.com/vi/Pkh8UtuejGw/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/Pkh8UtuejGw/hqdefault.jpg",
+    "bio": "Shawn Peter Raul Mendes is a Canadian singer-songwriter who rose from acoustic Vine covers to global arena stardom. With four Billboard 200 #1 albums and multi-platinum smashes like 'Señorita', 'Treat You Better', and 'Stitches', Mendes is celebrated for earnest lyricism, soulful pop-rock arrangements, and world stadium tours.",
+    "socials": {
+      "instagram": "https://www.instagram.com/shawnmendes/",
+      "x": "https://x.com/ShawnMendes",
+      "facebook": "https://www.facebook.com/ShawnMendesOfficial/",
+      "youtube": "https://www.youtube.com/@ShawnMendesOfficial"
+    },
+    "tourInfo": {
+      "tourName": "Wonder World Stadium Tour",
+      "status": "Tickets Live",
+      "dates": "Toronto, New York, London, Paris",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-Pkh8UtuejGw",
+        "ytId": "Pkh8UtuejGw",
+        "title": "Señorita (with Camila Cabello)",
+        "artist": "Shawn Mendes",
+        "album": "Shawn Mendes (Deluxe)",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 190,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-lY2yjAdbvdQ",
+        "ytId": "lY2yjAdbvdQ",
+        "title": "Treat You Better",
+        "artist": "Shawn Mendes",
+        "album": "Illuminate",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 187,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-VbfpW0pbvaU",
+        "ytId": "VbfpW0pbvaU",
+        "title": "Stitches",
+        "artist": "Shawn Mendes",
+        "album": "Handwritten",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 206,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-dT2owtxkU8k",
+        "ytId": "dT2owtxkU8k",
+        "title": "There's Nothing Holdin' Me Back",
+        "artist": "Shawn Mendes",
+        "album": "Illuminate",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 199,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-36tggrpRoTI",
+        "ytId": "36tggrpRoTI",
+        "title": "In My Blood",
+        "artist": "Shawn Mendes",
+        "album": "Shawn Mendes",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 211,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-KkGVmN68ByU",
+        "ytId": "KkGVmN68ByU",
+        "title": "Mercy",
+        "artist": "Shawn Mendes",
+        "album": "Illuminate",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 208,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "It'll Be Okay",
+        "artist": "Shawn Mendes",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 222,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Lost In Japan",
+        "artist": "Shawn Mendes",
+        "album": "Shawn Mendes",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 201,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-MPbUaIZAaeA",
+        "ytId": "MPbUaIZAaeA",
+        "title": "Monster (with Justin Bieber)",
+        "artist": "Shawn Mendes",
+        "album": "Wonder",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 178,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-fHeQemJJQII",
+        "ytId": "fHeQemJJQII",
+        "title": "Wonder",
+        "artist": "Shawn Mendes",
+        "album": "Wonder",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
+        "duration": 172,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "rihanna": {
+    "name": "Rihanna",
+    "monthlyListeners": "79,400,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#5 Worldwide",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+    "bio": "Robyn Rihanna Fenty is a Barbadian singer, businesswoman, and global icon who holds 14 Billboard Hot 100 number-one singles (the third-most in history) and nine Grammy Awards. Known for her chameleon-like reinvention and unmistakable Caribbean swagger, her critically acclaimed masterpiece Anti and record-breaking Super Bowl LVII Halftime show cemented her eternal cultural immortality.",
+    "socials": {
+      "instagram": "https://www.instagram.com/badgalriri/",
+      "x": "https://x.com/rihanna",
+      "facebook": "https://www.facebook.com/rihanna/",
+      "youtube": "https://www.youtube.com/@RihannaVEVO"
+    },
+    "tourInfo": {
+      "tourName": "Anti World Stadium Tour Retrospective",
+      "status": "Tickets Live",
+      "dates": "Bridgetown, Los Angeles, London, Paris",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-lWA2pjMjpBs",
+        "ytId": "lWA2pjMjpBs",
+        "title": "Diamonds",
+        "artist": "Rihanna",
+        "album": "Unapologetic",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 225,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-CvBfHwUxHIk",
+        "ytId": "CvBfHwUxHIk",
+        "title": "Umbrella (feat. JAY-Z)",
+        "artist": "Rihanna",
+        "album": "Good Girl Gone Bad",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 275,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-tg00YEETFzg",
+        "ytId": "tg00YEETFzg",
+        "title": "We Found Love (feat. Calvin Harris)",
+        "artist": "Rihanna",
+        "album": "Talk That Talk",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 215,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-HL1UzIK-flA",
+        "ytId": "HL1UzIK-flA",
+        "title": "Work (feat. Drake)",
+        "artist": "Rihanna",
+        "album": "Anti",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 219,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-JF8BRvqGCNs",
+        "ytId": "JF8BRvqGCNs",
+        "title": "Stay (feat. Mikky Ekko)",
+        "artist": "Rihanna",
+        "album": "Unapologetic",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 240,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-pa14VNsdSYM",
+        "ytId": "pa14VNsdSYM",
+        "title": "Only Girl (In the World)",
+        "artist": "Rihanna",
+        "album": "Loud",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 235,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-0RyInjfgNc4",
+        "ytId": "0RyInjfgNc4",
+        "title": "Love on the Brain",
+        "artist": "Rihanna",
+        "album": "Anti",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 224,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-Mx_OexsUI2M",
+        "ytId": "Mx_OexsUI2M",
+        "title": "Lift Me Up",
+        "artist": "Rihanna",
+        "album": "Black Panther: Wakanda Forever",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 196,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-yd8jh9QYfEs",
+        "ytId": "yd8jh9QYfEs",
+        "title": "Don't Stop The Music",
+        "artist": "Rihanna",
+        "album": "Good Girl Gone Bad",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 267,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-wfN4PVaOU5Q",
+        "ytId": "wfN4PVaOU5Q",
+        "title": "Needed Me",
+        "artist": "Rihanna",
+        "album": "Anti",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
+        "duration": 191,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "beyonce": {
+    "name": "Beyoncé",
+    "monthlyListeners": "68,400,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Most Awarded Artist in Grammy History",
+    "banner": "https://i.ytimg.com/vi/238Z4YaBd-Y/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/238Z4YaBd-Y/hqdefault.jpg",
+    "bio": "Beyoncé Giselle Knowles-Carter is an American singer, songwriter, and cultural matriarch recognized as one of the greatest performers of all time. With 32 Grammy Awards (the most of any individual in history), her genre-redefining cultural works—from Lemonade and Renaissance to Cowboy Carter—have shattered boundaries across R&B, pop, dance, and country.",
+    "socials": {
+      "instagram": "https://www.instagram.com/beyonce/",
+      "x": "https://x.com/Beyonce",
+      "facebook": "https://www.facebook.com/beyonce/",
+      "youtube": "https://www.youtube.com/@Beyonce"
+    },
+    "tourInfo": {
+      "tourName": "Renaissance World Stadium Tour",
+      "status": "Tickets Live",
+      "dates": "Houston, Atlanta, London, Paris, Stockholm",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-238Z4YaAr1g",
+        "ytId": "238Z4YaAr1g",
+        "title": "TEXAS HOLD 'EM",
+        "artist": "Beyoncé",
+        "album": "COWBOY CARTER",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 233,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-bnVUHWCynig",
+        "ytId": "bnVUHWCynig",
+        "title": "Halo",
+        "artist": "Beyoncé",
+        "album": "I Am... Sasha Fierce",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 224,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-ViwtNLUqkMY",
+        "ytId": "ViwtNLUqkMY",
+        "title": "Crazy In Love (feat. JAY-Z)",
+        "artist": "Beyoncé",
+        "album": "Dangerously in Love",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 236,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-yDde5JvF_rI",
+        "ytId": "yDde5JvF_rI",
+        "title": "CUFF IT",
+        "artist": "Beyoncé",
+        "album": "RENAISSANCE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 225,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-4m1EFMoRFvY",
+        "ytId": "4m1EFMoRFvY",
+        "title": "Single Ladies (Put a Ring on It)",
+        "artist": "Beyoncé",
+        "album": "I Am... Sasha Fierce",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 193,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-yjki-9Pth4I",
+        "ytId": "yjki-9Pth4I",
+        "title": "BREAK MY SOUL",
+        "artist": "Beyoncé",
+        "album": "RENAISSANCE",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 278,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-Ob7vObnFUJc",
+        "ytId": "Ob7vObnFUJc",
+        "title": "Love On Top",
+        "artist": "Beyoncé",
+        "album": "4",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 267,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-WDZJPJV__bQ",
+        "ytId": "WDZJPJV__bQ",
+        "title": "Formation",
+        "artist": "Beyoncé",
+        "album": "Lemonade",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 206,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-p1JPKLa-Ofc",
+        "ytId": "p1JPKLa-Ofc",
+        "title": "Drunk in Love (feat. JAY-Z)",
+        "artist": "Beyoncé",
+        "album": "BEYONCÉ",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 323,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "II MOST WANTED (with Miley Cyrus)",
+        "artist": "Beyoncé",
+        "album": "COWBOY CARTER",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
+        "duration": 208,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "shakira": {
+    "name": "Shakira",
+    "monthlyListeners": "64,200,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Queen of Latin Music",
+    "banner": "https://i.ytimg.com/vi/pRpeEdMmmQ0/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/pRpeEdMmmQ0/hqdefault.jpg",
+    "bio": "Shakira Isabel Mebarak Ripoll is a Colombian singer, songwriter, and multi-instrumentalist hailed globally as the 'Queen of Latin Music'. Renowned for signature belly-dance choreography and infectious crossover hits like 'Hips Don't Lie' and the FIFA World Cup anthem 'Waka Waka', she holds three Grammy Awards and over 95 million album sales worldwide.",
+    "socials": {
+      "instagram": "https://www.instagram.com/shakira/",
+      "x": "https://x.com/shakira",
+      "facebook": "https://www.facebook.com/shakira/",
+      "youtube": "https://www.youtube.com/@shakira"
+    },
+    "tourInfo": {
+      "tourName": "Las Mujeres Ya No Lloran World Tour",
+      "status": "Tickets Live",
+      "dates": "Bogotá, Miami, Los Angeles, Madrid, Buenos Aires",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-DUT5rEU6pqM",
+        "ytId": "DUT5rEU6pqM",
+        "title": "Hips Don't Lie (feat. Wyclef Jean)",
+        "artist": "Shakira",
+        "album": "Oral Fixation, Vol. 2",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 218,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-pRpeEdMmmQ0",
+        "ytId": "pRpeEdMmmQ0",
+        "title": "Waka Waka (This Time for Africa)",
+        "artist": "Shakira",
+        "album": "Sale el Sol",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 202,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-weRHy87uQ58",
+        "ytId": "weRHy87uQ58",
+        "title": "Whenever, Wherever",
+        "artist": "Shakira",
+        "album": "Laundry Service",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 196,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-CocEMWdc7Ck",
+        "ytId": "CocEMWdc7Ck",
+        "title": "BZRP Music Sessions, Vol. 53",
+        "artist": "Shakira",
+        "album": "Singles",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 213,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-Dsp_8Lm1eSk",
+        "ytId": "Dsp_8Lm1eSk",
+        "title": "La Tortura (feat. Alejandro Sanz)",
+        "artist": "Shakira",
+        "album": "Fijación Oral, Vol. 1",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 213,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-K1p8qX2m9x0",
+        "ytId": "K1p8qX2m9x0",
+        "title": "Loca (feat. Dizzee Rascal)",
+        "artist": "Shakira",
+        "album": "Sale el Sol",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 193,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-6MgqjaijEqI",
+        "ytId": "6MgqjaijEqI",
+        "title": "Chantaje (feat. Maluma)",
+        "artist": "Shakira",
+        "album": "El Dorado",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 195,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-booKpA4bWpM",
+        "ytId": "booKpA4bWpM",
+        "title": "She Wolf",
+        "artist": "Shakira",
+        "album": "She Wolf",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 188,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "PUNTERÍA (with Cardi B)",
+        "artist": "Shakira",
+        "album": "Las Mujeres Ya No Lloran",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 181,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-bpOSxM0TFez",
+        "ytId": "bpOSxM0TFez",
+        "title": "Underneath Your Clothes",
+        "artist": "Shakira",
+        "album": "Laundry Service",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
+        "duration": 225,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "zayn": {
+    "name": "ZAYN",
+    "monthlyListeners": "38,500,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#2 in Alt R&B / Soul",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+    "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+    "bio": "Zayn Javadd Malik, known mononymously as ZAYN, is an English singer and songwriter acclaimed for his silky falsetto, genre-blurring R&B production, and soulful artistic introspection. With his global debut solo single 'PILLOWTALK', he became the first British male artist to debut at number one on both the US and UK charts simultaneously.",
+    "socials": {
+      "instagram": "https://www.instagram.com/zayn/",
+      "x": "https://x.com/zaynmalik",
+      "facebook": "https://www.facebook.com/zayn/",
+      "youtube": "https://www.youtube.com/@Zayn"
+    },
+    "tourInfo": {
+      "tourName": "Stairway to the Sky Live Tour 2026",
+      "status": "Tickets Live",
+      "dates": "London, Las Vegas, New York, Tokyo",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-C_3d6GntKbk",
+        "ytId": "C_3d6GntKbk",
+        "title": "PILLOWTALK",
+        "artist": "ZAYN",
+        "album": "Mind of Mine",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 202,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-tt2k8PGm-TI",
+        "ytId": "tt2k8PGm-TI",
+        "title": "Dusk Till Dawn (feat. Sia)",
+        "artist": "ZAYN",
+        "album": "Icarus Falls",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 239,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-7F37r50VUTQ",
+        "ytId": "7F37r50VUTQ",
+        "title": "I Don't Wanna Live Forever (with Taylor Swift)",
+        "artist": "ZAYN",
+        "album": "Fifty Shades Darker",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 245,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-rg_zwK_sLEY",
+        "ytId": "rg_zwK_sLEY",
+        "title": "A Whole New World (with Zhavia Ward)",
+        "artist": "ZAYN",
+        "album": "Aladdin",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 242,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-pTazn4h6wEQ",
+        "ytId": "pTazn4h6wEQ",
+        "title": "LIKE I WOULD",
+        "artist": "ZAYN",
+        "album": "Mind of Mine",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 192,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-VSpgaN3HNQQ",
+        "ytId": "VSpgaN3HNQQ",
+        "title": "Vibez",
+        "artist": "ZAYN",
+        "album": "Nobody Is Listening",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 163,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Alienated",
+        "artist": "ZAYN",
+        "album": "ROOM UNDER THE STAIRS",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 248,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "What I Am",
+        "artist": "ZAYN",
+        "album": "ROOM UNDER THE STAIRS",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 211,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-J-dv_DcDD_A",
+        "ytId": "J-dv_DcDD_A",
+        "title": "Let Me",
+        "artist": "ZAYN",
+        "album": "Icarus Falls",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 185,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-u_P8q4L1w9c",
+        "ytId": "u_P8q4L1w9c",
+        "title": "iT's YoU",
+        "artist": "ZAYN",
+        "album": "Mind of Mine",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
+        "duration": 226,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "mohit-chauhan": {
+    "name": "Mohit Chauhan",
+    "monthlyListeners": "24,100,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Indian Folk-Rock & Acoustic Icon",
+    "banner": "https://i.ytimg.com/vi/ttKphvupYFw/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/ttKphvupYFw/hqdefault.jpg",
+    "bio": "Mohit Chauhan is an acclaimed Indian singer, composer, and two-time Filmfare Award winner whose earthy, soulful mountain tone breathed life into the legendary soundtrack of Imtiaz Ali's Rockstar. From founding the 90s indie-pop band Silk Route to voicing timeless road-trip anthems, Chauhan's acoustic folk-rock magic remains peerless.",
+    "socials": {
+      "instagram": "https://www.instagram.com/mohitchauhanofficial/",
+      "x": "https://x.com/_MohitChauhan",
+      "facebook": "https://www.facebook.com/MohitChauhanOfficial/",
+      "youtube": "https://www.youtube.com/@MohitChauhanOfficial"
+    },
+    "tourInfo": {
+      "tourName": "Rockstar Acoustic Symphony Tour",
+      "status": "Tickets Live",
+      "dates": "Shimla, Delhi, Mumbai, Bengaluru, London",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-ttKG4NqD_w4",
+        "ytId": "ttKG4NqD_w4",
+        "title": "Nadaan Parindey",
+        "artist": "Mohit Chauhan",
+        "album": "Rockstar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 384,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-cbTKYfN-w_M",
+        "ytId": "cbTKYfN-w_M",
+        "title": "Tum Se Hi",
+        "artist": "Mohit Chauhan",
+        "album": "Jab We Met",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 323,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-T94PHkuydcw",
+        "ytId": "T94PHkuydcw",
+        "title": "Kun Faya Kun",
+        "artist": "Mohit Chauhan",
+        "album": "Rockstar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 473,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-ZgIeBq14F30",
+        "ytId": "ZgIeBq14F30",
+        "title": "Pee Loon",
+        "artist": "Mohit Chauhan",
+        "album": "Once Upon a Time in Mumbaai",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 288,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-Vbh4p_W3V5s",
+        "ytId": "Vbh4p_W3V5s",
+        "title": "Matargashti",
+        "artist": "Mohit Chauhan",
+        "album": "Tamasha",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 328,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-fdubeMFwuGs",
+        "ytId": "fdubeMFwuGs",
+        "title": "Ilahi",
+        "artist": "Mohit Chauhan",
+        "album": "Yeh Jawaani Hai Deewani",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 229,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-d8IT-163M8U",
+        "ytId": "d8IT-163M8U",
+        "title": "Dooba Dooba",
+        "artist": "Mohit Chauhan",
+        "album": "Boondein (Silk Route)",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 295,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-yWJy_mS9b-I",
+        "ytId": "yWJy_mS9b-I",
+        "title": "Masakali",
+        "artist": "Mohit Chauhan",
+        "album": "Delhi-6",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 334,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-72UVTUx551E",
+        "ytId": "72UVTUx551E",
+        "title": "Jo Bhi Main",
+        "artist": "Mohit Chauhan",
+        "album": "Rockstar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 275,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-f4o9f8G6yXg",
+        "ytId": "f4o9f8G6yXg",
+        "title": "Tujhe Bhula Diya",
+        "artist": "Mohit Chauhan",
+        "album": "Anjaana Anjaani",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+        "duration": 281,
+        "plays": "34,50,00,000"
+      }
+    ]
+  },
+  "pritam": {
+    "name": "Pritam",
+    "monthlyListeners": "45,800,000",
+    "followersCount": "18,500,000",
+    "worldRank": "#1 Bollywood Chart-Topping Composer",
+    "banner": "https://i.ytimg.com/vi/BddP6PYo2gs/maxresdefault.jpg",
+    "avatar": "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg",
+    "bio": "Pritam Chakraborty, known simply as Pritam, is the undisputed architect of 21st-century Bollywood film music. Winner of multiple National Film Awards and six Filmfare Awards for Best Music Director, his timeless compositions across Yeh Jawaani Hai Deewani, Ae Dil Hai Mushkil, Jab We Met, Brahmastra, and Barfi! have shaped the musical subconscious of over a billion people.",
+    "socials": {
+      "instagram": "https://www.instagram.com/ipritamofficial/",
+      "x": "https://x.com/ipritamofficial",
+      "facebook": "https://www.facebook.com/pritam.chakraborty/",
+      "youtube": "https://www.youtube.com/@PritamOfficial"
+    },
+    "tourInfo": {
+      "tourName": "Pritam Jam Room Live Symphony",
+      "status": "Tickets Live",
+      "dates": "Mumbai, Delhi, London, Dubai, Toronto",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-BddP6PYo2gs",
+        "ytId": "BddP6PYo2gs",
+        "title": "Kesariya",
+        "artist": "Pritam",
+        "album": "Brahmastra",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 268,
+        "plays": "1,20,00,00,000"
+      },
+      {
+        "id": "ytm-284VoEWS_84",
+        "ytId": "284VoEWS_84",
+        "title": "Channa Mereya",
+        "artist": "Pritam",
+        "album": "Ae Dil Hai Mushkil",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 289,
+        "plays": "1,10,50,00,000"
+      },
+      {
+        "id": "ytm-y1Z_p8m9vIo",
+        "ytId": "y1Z_p8m9vIo",
+        "title": "Shayad",
+        "artist": "Pritam",
+        "album": "Love Aaj Kal",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 247,
+        "plays": "1,01,00,00,000"
+      },
+      {
+        "id": "ytm-cbTKYfN-w_M",
+        "ytId": "cbTKYfN-w_M",
+        "title": "Tum Se Hi",
+        "artist": "Pritam",
+        "album": "Jab We Met",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 323,
+        "plays": "91,50,00,000"
+      },
+      {
+        "id": "ytm-II2EO3Nw4t0",
+        "ytId": "II2EO3Nw4t0",
+        "title": "Badtameez Dil",
+        "artist": "Pritam",
+        "album": "Yeh Jawaani Hai Deewani",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 252,
+        "plays": "82,00,00,000"
+      },
+      {
+        "id": "ytm-6FURuLYrR_Q",
+        "ytId": "6FURuLYrR_Q",
+        "title": "Ae Dil Hai Mushkil",
+        "artist": "Pritam",
+        "album": "Ae Dil Hai Mushkil",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 269,
+        "plays": "72,50,00,000"
+      },
+      {
+        "id": "ytm-fdubeMFwuGs",
+        "ytId": "fdubeMFwuGs",
+        "title": "Ilahi",
+        "artist": "Pritam",
+        "album": "Yeh Jawaani Hai Deewani",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 229,
+        "plays": "63,00,00,000"
+      },
+      {
+        "id": "ytm-cYOB941gymo",
+        "ytId": "cYOB941gymo",
+        "title": "Hawayein",
+        "artist": "Pritam",
+        "album": "Jab Harry Met Sejal",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 290,
+        "plays": "53,50,00,000"
+      },
+      {
+        "id": "ytm-uO09wP8s8lM",
+        "ytId": "uO09wP8s8lM",
+        "title": "Subhanallah",
+        "artist": "Pritam",
+        "album": "Yeh Jawaani Hai Deewani",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 249,
+        "plays": "44,00,00,000"
+      },
+      {
+        "id": "ytm-c2M_6rB1_gA",
+        "ytId": "c2M_6rB1_gA",
+        "title": "Raabta",
+        "artist": "Pritam",
+        "album": "Agent Vinod",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
+        "duration": 243,
+        "plays": "34,50,00,000"
+      }
+    ]
   }
-};;
+};
 
 export const SIMILAR_ARTIST_MAP = {
-  "arijit-singh": ["atif-aslam", "anirudh-ravichander"],
-  "atif-aslam": ["arijit-singh", "hasan-raheem"],
-  "ap-dhillon": ["diljit-dosanjh", "arijit-singh"],
-  "diljit-dosanjh": ["ap-dhillon", "arijit-singh"],
-  "the-weeknd": ["bruno-mars", "dua-lipa"],
-  "taylor-swift": ["sabrina-carpenter", "billie-eilish"],
-  "billie-eilish": ["taylor-swift", "dua-lipa"],
-  "sabrina-carpenter": ["taylor-swift", "billie-eilish"],
-  "hasan-raheem": ["ali-sethi", "kaifi-khalil"],
-  "kaifi-khalil": ["ali-sethi", "atif-aslam"],
-  "ali-sethi": ["atif-aslam", "kaifi-khalil"],
-  "appaji": ["arijit-singh", "atif-aslam"],
-  "coldplay": ["imagine-dragons", "linkin-park"],
-  "eminem": ["imagine-dragons", "the-weeknd"],
-  "ed-sheeran": ["coldplay", "taylor-swift"],
-  "anirudh-ravichander": ["arijit-singh", "ap-dhillon"],
-  "imagine-dragons": ["coldplay", "linkin-park"],
-  "bruno-mars": ["the-weeknd", "ed-sheeran"],
-  "adele": ["taylor-swift", "ed-sheeran"],
-  "linkin-park": ["imagine-dragons", "coldplay"],
-  "dua-lipa": ["the-weeknd", "taylor-swift"],
-  "bad-bunny": ["the-weeknd", "bruno-mars"]
+  "arijit-singh": [
+    "shreya-ghoshal",
+    "atif-aslam"
+  ],
+  "shreya-ghoshal": [
+    "arijit-singh",
+    "sonu-nigam"
+  ],
+  "sonu-nigam": [
+    "shreya-ghoshal",
+    "kk"
+  ],
+  "kk": [
+    "mohit-chauhan",
+    "sonu-nigam"
+  ],
+  "sid-sriram": [
+    "anirudh-ravichander",
+    "arijit-singh"
+  ],
+  "atif-aslam": [
+    "arijit-singh",
+    "rahat-fateh-ali-khan"
+  ],
+  "ap-dhillon": [
+    "diljit-dosanjh",
+    "sidhu-moosewala"
+  ],
+  "diljit-dosanjh": [
+    "karan-aujla",
+    "ap-dhillon"
+  ],
+  "sidhu-moosewala": [
+    "karan-aujla",
+    "diljit-dosanjh"
+  ],
+  "karan-aujla": [
+    "sidhu-moosewala",
+    "diljit-dosanjh"
+  ],
+  "the-weeknd": [
+    "bruno-mars",
+    "dua-lipa"
+  ],
+  "taylor-swift": [
+    "sabrina-carpenter",
+    "billie-eilish"
+  ],
+  "billie-eilish": [
+    "olivia-rodrigo",
+    "taylor-swift"
+  ],
+  "sabrina-carpenter": [
+    "taylor-swift",
+    "olivia-rodrigo"
+  ],
+  "olivia-rodrigo": [
+    "sabrina-carpenter",
+    "billie-eilish"
+  ],
+  "hasan-raheem": [
+    "ali-sethi",
+    "kaifi-khalil"
+  ],
+  "kaifi-khalil": [
+    "ali-sethi",
+    "atif-aslam"
+  ],
+  "ali-sethi": [
+    "atif-aslam",
+    "kaifi-khalil"
+  ],
+  "appaji": [
+    "arijit-singh",
+    "lata-mangeshkar"
+  ],
+  "coldplay": [
+    "imagine-dragons",
+    "linkin-park"
+  ],
+  "eminem": [
+    "drake",
+    "kendrick-lamar"
+  ],
+  "drake": [
+    "kendrick-lamar",
+    "travis-scott"
+  ],
+  "kendrick-lamar": [
+    "drake",
+    "eminem"
+  ],
+  "travis-scott": [
+    "drake",
+    "post-malone"
+  ],
+  "post-malone": [
+    "justin-bieber",
+    "travis-scott"
+  ],
+  "justin-bieber": [
+    "charlie-puth",
+    "shawn-mendes"
+  ],
+  "shawn-mendes": [
+    "justin-bieber",
+    "charlie-puth"
+  ],
+  "charlie-puth": [
+    "shawn-mendes",
+    "bruno-mars"
+  ],
+  "ariana-grande": [
+    "lady-gaga",
+    "dua-lipa"
+  ],
+  "lady-gaga": [
+    "ariana-grande",
+    "beyonce"
+  ],
+  "rihanna": [
+    "beyonce",
+    "drake"
+  ],
+  "beyonce": [
+    "rihanna",
+    "lady-gaga"
+  ],
+  "shakira": [
+    "bad-bunny",
+    "rihanna"
+  ],
+  "zayn": [
+    "harry-styles",
+    "the-weeknd"
+  ],
+  "harry-styles": [
+    "zayn",
+    "shawn-mendes"
+  ],
+  "bts": [
+    "blackpink",
+    "the-weeknd"
+  ],
+  "blackpink": [
+    "bts",
+    "dua-lipa"
+  ],
+  "ed-sheeran": [
+    "coldplay",
+    "taylor-swift"
+  ],
+  "anirudh-ravichander": [
+    "sid-sriram",
+    "ar-rahman"
+  ],
+  "ar-rahman": [
+    "anirudh-ravichander",
+    "pritam"
+  ],
+  "pritam": [
+    "arijit-singh",
+    "ar-rahman"
+  ],
+  "badshah": [
+    "honey-singh",
+    "karan-aujla"
+  ],
+  "honey-singh": [
+    "badshah",
+    "diljit-dosanjh"
+  ],
+  "neha-kakkar": [
+    "sunidhi-chauhan",
+    "shreya-ghoshal"
+  ],
+  "sunidhi-chauhan": [
+    "neha-kakkar",
+    "shreya-ghoshal"
+  ],
+  "jubin-nautiyal": [
+    "arijit-singh",
+    "darshan-raval"
+  ],
+  "darshan-raval": [
+    "jubin-nautiyal",
+    "anuv-jain"
+  ],
+  "anuv-jain": [
+    "prateek-kuhad",
+    "darshan-raval"
+  ],
+  "prateek-kuhad": [
+    "anuv-jain",
+    "mohit-chauhan"
+  ],
+  "mohit-chauhan": [
+    "kk",
+    "arijit-singh"
+  ],
+  "nusrat-fateh-ali-khan": [
+    "rahat-fateh-ali-khan",
+    "atif-aslam"
+  ],
+  "rahat-fateh-ali-khan": [
+    "nusrat-fateh-ali-khan",
+    "atif-aslam"
+  ],
+  "kishore-kumar": [
+    "mohammed-rafi",
+    "lata-mangeshkar"
+  ],
+  "lata-mangeshkar": [
+    "kishore-kumar",
+    "shreya-ghoshal"
+  ],
+  "imagine-dragons": [
+    "coldplay",
+    "linkin-park"
+  ],
+  "bruno-mars": [
+    "the-weeknd",
+    "ed-sheeran"
+  ],
+  "adele": [
+    "taylor-swift",
+    "ed-sheeran"
+  ],
+  "linkin-park": [
+    "imagine-dragons",
+    "coldplay"
+  ],
+  "dua-lipa": [
+    "the-weeknd",
+    "taylor-swift"
+  ],
+  "bad-bunny": [
+    "the-weeknd",
+    "shakira"
+  ]
 };
 
 export function getCuratedSimilarArtists(artistKey, artistName) {
@@ -3295,30 +8187,16 @@ export function getCuratedSimilarArtists(artistKey, artistName) {
 }
 
 export const getFeaturedArtists = () => {
-  return [
-    { id: "arijit-singh", name: "Arijit Singh", genre: "Bollywood / Soul", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg" },
-    { id: "atif-aslam", name: "Atif Aslam", genre: "Pakistani Rock / Sufi", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg" },
-    { id: "diljit-dosanjh", name: "Diljit Dosanjh", genre: "Punjabi / Global Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg" },
-    { id: "ap-dhillon", name: "AP Dhillon", genre: "Punjabi / Urban", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg" },
-    { id: "the-weeknd", name: "The Weeknd", genre: "Pop / R&B", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg" },
-    { id: "taylor-swift", name: "Taylor Swift", genre: "Pop / Country", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg" },
-    { id: "billie-eilish", name: "Billie Eilish", genre: "Alt Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg" },
-    { id: "sabrina-carpenter", name: "Sabrina Carpenter", genre: "Pop / Disco", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg" },
-    { id: "hasan-raheem", name: "Hasan Raheem", genre: "Pakistani Indie / R&B", avatar: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg" },
-    { id: "kaifi-khalil", name: "Kaifi Khalil", genre: "Pakistani Acoustic / Folk", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg" },
-    { id: "ali-sethi", name: "Ali Sethi", genre: "Coke Studio / Ghazal", avatar: "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg" },
-    { id: "appaji", name: "Appaji", genre: "Devotional / Spiritual", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg" },
-    { id: "coldplay", name: "Coldplay", genre: "Alternative Rock", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg" },
-    { id: "eminem", name: "Eminem", genre: "Hip-Hop / Rap", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg" },
-    { id: "ed-sheeran", name: "Ed Sheeran", genre: "Pop / Acoustic", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg" },
-    { id: "anirudh-ravichander", name: "Anirudh Ravichander", genre: "Kollywood / EDM", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg" },
-    { id: "imagine-dragons", name: "Imagine Dragons", genre: "Alt Rock", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg" },
-    { id: "bruno-mars", name: "Bruno Mars", genre: "Pop / Soul", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e3/47/a0/e347a0cc-87ce-5d05-d560-176c7d48f66e/075679904119.jpg/600x600bb.jpg" },
-    { id: "adele", name: "Adele", genre: "Soul / Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg" },
-    { id: "linkin-park", name: "Linkin Park", genre: "Rock / Metal", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg" },
-    { id: "dua-lipa", name: "Dua Lipa", genre: "Dance Pop", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg" },
-    { id: "bad-bunny", name: "Bad Bunny", genre: "Latin / Reggaeton", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg" }
-  ];
+  if (typeof ARTIST_DATABASE !== 'object' || !ARTIST_DATABASE) return [];
+  return Object.keys(ARTIST_DATABASE).map(k => {
+    const a = ARTIST_DATABASE[k];
+    return {
+      id: k,
+      name: a.name,
+      genre: a.worldRank || 'Verified Artist',
+      avatar: a.avatar || a.banner
+    };
+  });
 };
 
 export const getCuratedPlaylists = () => {
@@ -3827,7 +8705,7 @@ export const fetchCategoryTracks = async (categoryId, limit = 20) => {
 export function searchArtists(query) {
   if (!query || typeof query !== 'string' || !query.trim()) return [];
   const q = query.trim().toLowerCase();
-  const cleanQ = q.replace(/[^a-z0-9s]/g, ' ').replace(/\s+/g, ' ').trim();
+  const cleanQ = q.replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
   const qTokens = cleanQ.split(' ').filter(w => w.length >= 2);
 
   const results = [];
@@ -3840,7 +8718,7 @@ export function searchArtists(query) {
     const key = cleanName.toLowerCase();
     if (seen.has(key)) return;
 
-    const norm = key.replace(/[^a-z0-9s]/g, ' ').replace(/\s+/g, ' ').trim();
+    const norm = key.replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
     let score = 0;
 
     if (norm === cleanQ) {
@@ -3873,6 +8751,23 @@ export function searchArtists(query) {
       });
     }
   };
+
+  // 1b. Search cached dynamic artists from localStorage
+  try {
+    if (typeof localStorage !== 'undefined') {
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith('pulse_artist_')) {
+          try {
+            const cached = JSON.parse(localStorage.getItem(k));
+            if (cached && cached.name) {
+              addCandidate(cached.name, cached.worldRank || 'Verified Artist', cached.avatar || cached.banner, cached.banner, cached.followersCount, cached.worldRank, 25);
+            }
+          } catch (e) {}
+        }
+      }
+    }
+  } catch (e) {}
 
   // 1. Search all verified artists in ARTIST_DATABASE first
   if (typeof ARTIST_DATABASE === 'object' && ARTIST_DATABASE) {
@@ -4028,7 +8923,59 @@ export const getArtistDetails = (artistName) => {
     else if (normalized.includes('linkin') || normalized.includes('park')) foundKey = 'linkin-park';
     else if (normalized.includes('dua') || normalized.includes('lipa')) foundKey = 'dua-lipa';
     else if (normalized.includes('bunny') || normalized.includes('benito')) foundKey = 'bad-bunny';
+    else if (normalized.includes('shreya') || normalized.includes('ghoshal')) foundKey = 'shreya-ghoshal';
+    else if (normalized.includes('sonu') || normalized.includes('nigam')) foundKey = 'sonu-nigam';
+    else if (normalized.includes('kk') || normalized.includes('kay kay') || normalized.includes('krishnakumar')) foundKey = 'kk';
+    else if (normalized.includes('sriram')) foundKey = 'sid-sriram';
+    else if (normalized.includes('moosewala') || normalized.includes('sidhu')) foundKey = 'sidhu-moosewala';
+    else if (normalized.includes('aujla') || normalized.includes('karan')) foundKey = 'karan-aujla';
+    else if (normalized.includes('drake') || normalized.includes('champagnepapi')) foundKey = 'drake';
+    else if (normalized.includes('kendrick') || normalized.includes('lamar') || normalized.includes('kdot')) foundKey = 'kendrick-lamar';
+    else if (normalized.includes('posty') || normalized.includes('post malone')) foundKey = 'post-malone';
+    else if (normalized.includes('bieber') || normalized.includes('justin')) foundKey = 'justin-bieber';
+    else if (normalized.includes('ariana') || normalized.includes('grande')) foundKey = 'ariana-grande';
+    else if (normalized.includes('bts') || normalized.includes('bangtan')) foundKey = 'bts';
+    else if (normalized.includes('travis') || normalized.includes('scott') || normalized.includes('la flame')) foundKey = 'travis-scott';
+    else if (normalized.includes('kishore') || normalized.includes('kumar')) foundKey = 'kishore-kumar';
+    else if (normalized.includes('lata') || normalized.includes('mangeshkar')) foundKey = 'lata-mangeshkar';
+    else if (normalized.includes('rahman') || normalized.includes('ar rahman') || normalized.includes('a.r. rahman')) foundKey = 'a-r-rahman';
+    else if (normalized.includes('badshah')) foundKey = 'badshah';
+    else if (normalized.includes('honey') || normalized.includes('yo yo')) foundKey = 'yo-yo-honey-singh';
+    else if (normalized.includes('neha') || normalized.includes('kakkar')) foundKey = 'neha-kakkar';
+    else if (normalized.includes('sunidhi') || normalized.includes('chauhan')) foundKey = 'sunidhi-chauhan';
+    else if (normalized.includes('jubin') || normalized.includes('nautiyal')) foundKey = 'jubin-nautiyal';
+    else if (normalized.includes('nusrat') || (normalized.includes('khan') && normalized.includes('fateh'))) foundKey = 'nusrat-fateh-ali-khan';
+    else if (normalized.includes('rahat')) foundKey = 'rahat-fateh-ali-khan';
+    else if (normalized.includes('blackpink')) foundKey = 'blackpink';
+    else if (normalized.includes('styles') || normalized.includes('harry')) foundKey = 'harry-styles';
+    else if (normalized.includes('olivia') || normalized.includes('rodrigo')) foundKey = 'olivia-rodrigo';
+    else if (normalized.includes('gaga') || normalized.includes('lady')) foundKey = 'lady-gaga';
+    else if (normalized.includes('puth') || normalized.includes('charlie')) foundKey = 'charlie-puth';
+    else if (normalized.includes('darshan') || normalized.includes('raval')) foundKey = 'darshan-raval';
+    else if (normalized.includes('anuv') || normalized.includes('jain')) foundKey = 'anuv-jain';
+    else if (normalized.includes('kuhad') || normalized.includes('prateek')) foundKey = 'prateek-kuhad';
+    else if (normalized.includes('mendes') || normalized.includes('shawn')) foundKey = 'shawn-mendes';
+    else if (normalized.includes('rihanna') || normalized.includes('riri')) foundKey = 'rihanna';
+    else if (normalized.includes('beyonce') || normalized.includes('beyoncé') || normalized.includes('queen bey')) foundKey = 'beyoncé';
+    else if (normalized.includes('shakira')) foundKey = 'shakira';
+    else if (normalized.includes('zayn') || normalized.includes('malik')) foundKey = 'zayn';
+    else if (normalized.includes('mohit') && normalized.includes('chauhan')) foundKey = 'mohit-chauhan';
+    else if (normalized.includes('pritam')) foundKey = 'pritam';
   }
+
+  // 1B. Check LocalStorage cache for dynamically resolved artist profile
+  try {
+    if (typeof localStorage !== 'undefined') {
+      const cleanKey = normalized.replace(/[^a-z0-9]/g, '-');
+      const cachedStr = localStorage.getItem(`pulse_artist_${cleanKey}`);
+      if (cachedStr) {
+        const cached = JSON.parse(cachedStr);
+        if (cached && cached.topTracks && cached.topTracks.length > 0) {
+          return cached;
+        }
+      }
+    }
+  } catch (e) {}
 
   if (foundKey && db[foundKey]) {
     const data = db[foundKey];
