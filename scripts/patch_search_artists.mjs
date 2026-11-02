@@ -29,3 +29,4 @@ if (targetRegex.test(main)) {
 } else {
   console.error('Target regex did not match.');
 }
+

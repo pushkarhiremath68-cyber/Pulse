@@ -84,3 +84,4 @@ assert(featured.length >= 60, `getFeaturedArtists() returns ${featured.length} a
 
 console.log(`\nTests Completed: ${passed} Passed, ${failed} Failed`);
 if (failed > 0) process.exit(1);
+

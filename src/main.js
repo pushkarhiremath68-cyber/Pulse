@@ -736,7 +736,18 @@ window.addEventListener('error', function(e) {
     if (!track) return '';
     const trackId = track.id || (track.ytId ? `ytm-${track.ytId}` : `pulse-${index}`);
     const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : '');
-    const coverUrl = track.coverUrl || track.cover || (ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : './music-cover.svg');
+    let coverUrl = track.coverUrl || track.cover;
+    if (!coverUrl || coverUrl === './music-cover.svg' || coverUrl.includes('music-cover.svg')) {
+      if (ytId && ytId.length >= 8) {
+        coverUrl = `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`;
+      } else if (window.catalogService && typeof window.catalogService.findCatalogCover === 'function') {
+        const found = window.catalogService.findCatalogCover(track.title, track.artist);
+        if (found) coverUrl = found;
+      }
+    }
+    if (!coverUrl) {
+      coverUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(track.title || 'Track')}&backgroundColor=8b5cf6`;
+    }
     const title = track.title || 'Untitled Track';
     const artist = track.artist || 'Pulse Artist';
     const badge = options.badge || (options.showBadge ? (track.genre || 'Master') : null);
@@ -756,7 +767,7 @@ window.addEventListener('error', function(e) {
            data-yt-id="${escapeHtml(ytId)}"
            onclick="window.playTrackDirect(${listGlobalKey}[${index}], ${listGlobalKey})">
         <div class="card-image-wrapper">
-          <img src="${coverUrl}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <img src="${coverUrl}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
           
           <!-- Corner Action Buttons: Favorite & More Options -->
           <div class="card-corner-actions" onclick="event.stopPropagation()">
@@ -921,6 +932,17 @@ window.addEventListener('error', function(e) {
     try {
       const history = await getHistory(15);
       if (Array.isArray(history) && history.length > 0) {
+        history.forEach(t => {
+          if (!t.coverUrl || t.coverUrl === './music-cover.svg' || t.coverUrl.trim() === '') {
+            if (t.cover && t.cover !== './music-cover.svg') t.coverUrl = t.cover;
+            else if (t.ytId) t.coverUrl = `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg`;
+            else if (t.id && String(t.id).startsWith('ytm-')) t.coverUrl = `https://i.ytimg.com/vi/${String(t.id).replace('ytm-', '')}/hqdefault.jpg`;
+            else if (window.catalogService?.findCatalogCover) {
+              const found = window.catalogService.findCatalogCover(t.title, t.artist);
+              if (found) t.coverUrl = found;
+            }
+          }
+        });
         window.__recentlyPlayedHistory = history;
         shelf.style.display = 'block';
         container.innerHTML = history.map((track, idx) => 
@@ -1445,7 +1467,7 @@ window.addEventListener('error', function(e) {
       window.__quickPicks = qpList;
       qpContainer.innerHTML = qpList.map((track, idx) => `
         <div class="quick-pick-tile hover-glow" onclick="window.playTrackDirect(window.__quickPicks[${idx}], window.__quickPicks)" style="cursor: pointer; display: flex; align-items: center; gap: 0.85rem; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.5rem; transition: all 0.25s ease;">
-          <img src="${track.coverUrl || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(track.title)}" class="qp-thumb" style="width: 54px; height: 54px; border-radius: 8px; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80')}" alt="${escapeHtml(track.title)}" class="qp-thumb" style="width: 54px; height: 54px; border-radius: 8px; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
           <div class="qp-info" style="flex: 1; overflow: hidden;">
             <div class="qp-title" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</div>
             <div class="qp-artist" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</div>
@@ -2977,41 +2999,82 @@ window.addEventListener('error', function(e) {
     if (!query || query.trim().length === 0) return;
     window.switchView('search-view');
 
+    const cleanQ = query.trim();
     const label = document.getElementById('search-query-label');
     const count = document.getElementById('search-count');
-    if (label) label.textContent = query;
+    if (label) label.textContent = cleanQ;
 
+    // STEP 1: ULTRA-FAST 0MS INSTANT LOCAL SEARCH (<10ms first-paint)
+    const instantArtists = window.catalogService && typeof window.catalogService.searchArtists === 'function'
+      ? window.catalogService.searchArtists(cleanQ)
+      : [];
+    const instantTracks = window.catalogService && typeof window.catalogService.searchCatalogTracks === 'function'
+      ? window.catalogService.searchCatalogTracks(cleanQ)
+      : [];
+
+    if (instantTracks.length > 0 || instantArtists.length > 0) {
+      if (count) {
+        count.textContent = `${instantArtists.length > 0 ? instantArtists.length + ' artist' + (instantArtists.length > 1 ? 's' : '') + ' & ' : ''}${instantTracks.length} instant songs found (loading more...)`;
+      }
+      renderSearchResults(instantTracks, instantArtists);
+    } else if (count) {
+      count.textContent = 'Searching worldwide & multilingual catalogs...';
+    }
+
+    // STEP 2: PARALLEL REMOTE STREAM (180ms debounce)
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(async () => {
-      if (count) count.textContent = 'Searching worldwide & multilingual catalogs...';
       const gen = ++searchGeneration;
-      let matchingArtists = window.catalogService && typeof window.catalogService.searchArtists === 'function'
-        ? window.catalogService.searchArtists(query)
-        : [];
 
-      // If fewer than 4 artists found or query has >= 2 letters, query dynamic global artists
-      if (matchingArtists.length < 4 && window.musicService && typeof window.musicService.searchDynamicArtists === 'function') {
-        try {
-          const dynamicCandidates = await window.musicService.searchDynamicArtists(query);
-          for (const cand of dynamicCandidates) {
-            if (!matchingArtists.some(ma => ma.name.toLowerCase() === cand.name.toLowerCase())) {
-              matchingArtists.push(cand);
-            }
+      const tracksPromise = window.musicService ? window.musicService.searchTracks(cleanQ, 50) : Promise.resolve([]);
+      const artistsPromise = (instantArtists.length < 4 && window.musicService && typeof window.musicService.searchDynamicArtists === 'function')
+        ? window.musicService.searchDynamicArtists(cleanQ)
+        : Promise.resolve([]);
+
+      try {
+        const [tracksRes, artistsRes] = await Promise.allSettled([tracksPromise, artistsPromise]);
+        if (gen !== searchGeneration) return; // Stale search superseded by newer keystroke
+
+        const remoteTracks = tracksRes.status === 'fulfilled' && Array.isArray(tracksRes.value) ? tracksRes.value : [];
+        const dynamicArtists = artistsRes.status === 'fulfilled' && Array.isArray(artistsRes.value) ? artistsRes.value : [];
+
+        // Merge matching artists
+        const mergedArtists = [...instantArtists];
+        for (const da of dynamicArtists) {
+          if (!mergedArtists.some(ma => ma.name.toLowerCase() === da.name.toLowerCase())) {
+            mergedArtists.push(da);
           }
-        } catch (e) {}
-      }
-
-      const results = await window.musicService.searchTracks(query, 50);
-      if (gen !== searchGeneration) return; // Stale search
-      if (count) {
-        if (matchingArtists.length > 0) {
-          count.textContent = `${matchingArtists.length} artist${matchingArtists.length > 1 ? 's' : ''} & ${results.length} songs found`;
-        } else {
-          count.textContent = `${results.length} songs found worldwide`;
         }
+
+        // Merge and deduplicate tracks
+        const mergedTracks = [];
+        const seenTrackKeys = new Set();
+        const addMerged = (t) => {
+          if (!t || !t.title) return;
+          const k = `${(t.title || '').toLowerCase().replace(/[^a-z0-9]/g, '')}___${(t.artist || '').toLowerCase().replace(/[^a-z0-9]/g, '')}`;
+          if (!seenTrackKeys.has(k)) {
+            seenTrackKeys.add(k);
+            mergedTracks.push(t);
+          }
+        };
+
+        // Prefer remote tracks with full streams, fall back to local instant tracks
+        remoteTracks.forEach(addMerged);
+        instantTracks.forEach(addMerged);
+
+        if (count) {
+          if (mergedArtists.length > 0) {
+            count.textContent = `${mergedArtists.length} artist${mergedArtists.length > 1 ? 's' : ''} & ${mergedTracks.length} songs found worldwide`;
+          } else {
+            count.textContent = `${mergedTracks.length} songs found worldwide`;
+          }
+        }
+
+        renderSearchResults(mergedTracks, mergedArtists);
+      } catch (err) {
+        console.warn('Search stream error:', err);
       }
-      renderSearchResults(results, matchingArtists);
-    }, isTyping ? 500 : 0);
+    }, isTyping ? 180 : 0);
   };
 
   function renderSearchResults(tracks, matchingArtists = []) {

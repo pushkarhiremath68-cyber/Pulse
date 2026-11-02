@@ -679,3 +679,4 @@ const MERGED_DB = { ...EXISTING_DB, ...NEW_ARTISTS };
 console.log('Total artists in expanded database:', Object.keys(MERGED_DB).length);
 fs.writeFileSync('scripts/merged_artist_db.json', JSON.stringify(MERGED_DB, null, 2), 'utf8');
 console.log('Successfully written scripts/merged_artist_db.json!');
+

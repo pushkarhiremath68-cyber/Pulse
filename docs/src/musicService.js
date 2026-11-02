@@ -1086,37 +1086,39 @@ export async function searchDynamicArtists(query) {
   const q = query.trim().toLowerCase();
   
   try {
-    const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(q)}&entity=musicArtist&limit=3`, { signal: AbortSignal.timeout(3000) });
+    const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(q)}&entity=musicArtist&limit=3`, { signal: AbortSignal.timeout(1500) });
     if (!res.ok) return [];
     const data = await res.json();
-    if (!data || !data.results) return [];
+    if (!data || !Array.isArray(data.results)) return [];
 
-    const candidates = [];
-    for (const art of data.results) {
-      if (!art.artistName) continue;
-      let avatar = '';
-      try {
-        const trackRes = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(art.artistName)}&entity=song&limit=1`, { signal: AbortSignal.timeout(2000) });
-        if (trackRes.ok) {
-          const tData = await trackRes.json();
-          if (tData && tData.results && tData.results[0]?.artworkUrl100) {
-            avatar = tData.results[0].artworkUrl100.replace('100x100bb', '600x600bb');
+    const validArtists = data.results.filter(a => a && a.artistName);
+    const candidates = await Promise.all(
+      validArtists.map(async (art) => {
+        let avatar = '';
+        try {
+          const trackRes = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(art.artistName)}&entity=song&limit=1`, { signal: AbortSignal.timeout(1200) });
+          if (trackRes.ok) {
+            const tData = await trackRes.json();
+            if (tData?.results?.[0]?.artworkUrl100) {
+              avatar = tData.results[0].artworkUrl100.replace('100x100bb', '600x600bb');
+            }
           }
-        }
-      } catch (e) {}
+        } catch (e) {}
 
-      candidates.push({
-        id: art.artistName.toLowerCase().replace(/[^a-z0-9]/g, '-'),
-        name: art.artistName,
-        genre: art.primaryGenreName || 'Verified Artist',
-        avatar: avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(art.artistName)}&backgroundColor=8b5cf6`,
-        banner: avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(art.artistName)}&backgroundColor=8b5cf6`,
-        followersCount: '20,000,000',
-        worldRank: `#1 in ${art.primaryGenreName || 'Music'}`,
-        score: 95
-      });
-    }
-    return candidates;
+        return {
+          id: art.artistName.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+          name: art.artistName,
+          genre: art.primaryGenreName || 'Verified Artist',
+          avatar: avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(art.artistName)}&backgroundColor=8b5cf6`,
+          banner: avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(art.artistName)}&backgroundColor=8b5cf6`,
+          followersCount: '20,000,000',
+          worldRank: `#1 in ${art.primaryGenreName || 'Music'}`,
+          score: 95
+        };
+      })
+    );
+
+    return candidates.filter(Boolean);
   } catch (e) {
     return [];
   }

@@ -103,3 +103,4 @@ catalogContent = catalogContent.slice(0, startIdx) +
 
 fs.writeFileSync('src/catalogService.js', catalogContent, 'utf8');
 console.log('Successfully injected mega artist database into src/catalogService.js!');
+

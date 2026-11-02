@@ -86,3 +86,4 @@ async function resolveDynamicArtist(artistQuery) {
   console.log('Banner:', drake.banner);
   console.log('Top track 1:', drake.topTracks[0].title, 'by', drake.topTracks[0].artist);
 })();
+

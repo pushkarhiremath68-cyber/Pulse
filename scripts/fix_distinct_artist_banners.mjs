@@ -87,3 +87,4 @@ for (const [key, data] of Object.entries(updates)) {
 
 fs.writeFileSync('src/catalogService.js', catalog, 'utf8');
 console.log('Finished updating distinct artist banners!');
+

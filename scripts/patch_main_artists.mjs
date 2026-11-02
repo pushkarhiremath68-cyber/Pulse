@@ -194,3 +194,4 @@ if (main.includes(searchTarget)) {
 
 fs.writeFileSync('src/main.js', main, 'utf8');
 console.log('Successfully updated src/main.js!');
+

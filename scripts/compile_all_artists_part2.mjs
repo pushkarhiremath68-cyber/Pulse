@@ -241,3 +241,4 @@ const FULL_DB = { ...EXISTING_MERGED, ...MORE };
 console.log('Grand total curated artists:', Object.keys(FULL_DB).length);
 fs.writeFileSync('scripts/merged_artist_db.json', JSON.stringify(FULL_DB, null, 2), 'utf8');
 console.log('Updated merged_artist_db.json successfully!');
+

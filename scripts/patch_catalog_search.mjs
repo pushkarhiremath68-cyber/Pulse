@@ -100,3 +100,4 @@ if (!s.includes('foundKey = \'shreya-ghoshal\'')) {
 
 fs.writeFileSync('src/catalogService.js', s, 'utf8');
 console.log('Successfully updated src/catalogService.js!');
+

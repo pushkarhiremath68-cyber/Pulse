@@ -30,3 +30,4 @@ const replacement = `export const getFeaturedArtists = () => {
 content = content.slice(0, startIdx) + replacement + content.slice(endIdx);
 fs.writeFileSync('src/catalogService.js', content, 'utf8');
 console.log('Successfully updated getFeaturedArtists!');
+

@@ -284,13 +284,15 @@ export async function addToHistory(track) {
     }
   } catch (e) {}
 
-  const uid = getCurrentUserId();
+    const uid = getCurrentUserId();
+  const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : (track.id && String(track.id).startsWith('ytm-') ? `https://i.ytimg.com/vi/${String(track.id).replace('ytm-', '')}/hqdefault.jpg` : ''));
   const historyEntry = {
     id: track.id,
+    ytId: track.ytId || (String(track.id).startsWith('ytm-') ? String(track.id).replace('ytm-', '') : ''),
     title: track.title,
     artist: track.artist,
     album: track.album || '',
-    coverUrl: track.coverUrl,
+    coverUrl: coverUrl || './music-cover.svg',
     duration: track.duration,
     streamUrl: track.streamUrl,
     playedAt: Date.now()
@@ -313,7 +315,26 @@ export async function addToHistory(track) {
 
 export async function getHistory(limitCount = 50) {
   const uid = getCurrentUserId();
-  const local = getLocalData(LOCAL_HISTORY_KEY);
+  let local = getLocalData(LOCAL_HISTORY_KEY);
+
+  const healHistoryItem = (item) => {
+    if (!item) return item;
+    if (!item.coverUrl || item.coverUrl === './music-cover.svg' || item.coverUrl.trim() === '') {
+      if (item.cover && item.cover !== './music-cover.svg') {
+        item.coverUrl = item.cover;
+      } else if (item.ytId) {
+        item.coverUrl = `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`;
+      } else if (item.id && String(item.id).startsWith('ytm-')) {
+        item.coverUrl = `https://i.ytimg.com/vi/${String(item.id).replace('ytm-', '')}/hqdefault.jpg`;
+      } else if (typeof window !== 'undefined' && window.catalogService?.findCatalogCover) {
+        const found = window.catalogService.findCatalogCover(item.title, item.artist);
+        if (found) item.coverUrl = found;
+      }
+    }
+    return item;
+  };
+
+  local = local.map(healHistoryItem);
 
   const { db } = initFirebase();
   if (db && uid && !uid.startsWith('guest-')) {
