@@ -25,3 +25,4 @@ if (regex.test(html)) {
 } else {
   console.warn('Could not match regex in index.html');
 }
+

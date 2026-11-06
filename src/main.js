@@ -79,7 +79,7 @@ window.addEventListener('error', function(e) {
       if (e.target.classList.contains('brand-logo-img') || e.target.classList.contains('auth-gate-logo')) {
         e.target.src = './pulse-logo.png';
       } else {
-        e.target.src = './music-cover.svg';
+        e.target.src = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
       }
     }
   }
@@ -172,7 +172,7 @@ window.addEventListener('error', function(e) {
       window.PulsePlaybar.playTrack(track, queue);
       window.loadTrackLyrics(track);
     }
-    const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
+    const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');
     if (window.PulsePlaybar && typeof window.PulsePlaybar.updateDynamicAppWallpaper === 'function') {
       window.PulsePlaybar.updateDynamicAppWallpaper(coverUrl);
     } else {
@@ -394,7 +394,7 @@ window.addEventListener('error', function(e) {
         const npThumb = document.getElementById('drawer-np-thumb');
         if (npTitle) npTitle.textContent = track.title || 'Select a Song';
         if (npArtist) npArtist.textContent = track.artist || 'Pulse Music';
-        if (npThumb) npThumb.src = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
+        if (npThumb) npThumb.src = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');
       }
 
       if (window.PulsePlaybar && typeof window.PulsePlaybar.renderQueueAndSuggestionsUI === 'function') {
@@ -484,7 +484,7 @@ window.addEventListener('error', function(e) {
 
     const cleanTitle = (track.title || 'Song').replace(/[\\/:*?"<>|]/g, '').trim();
     const cleanArtist = (track.artist || 'Pulse Artist').replace(/[\\/:*?"<>|]/g, '').trim();
-    const rawCover = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
+    const rawCover = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');
     
     // Upscale to ultra high-resolution
     let hdCover = rawCover
@@ -737,7 +737,8 @@ window.addEventListener('error', function(e) {
     const trackId = track.id || (track.ytId ? `ytm-${track.ytId}` : `pulse-${index}`);
     const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : '');
     let coverUrl = track.coverUrl || track.cover;
-    if (!coverUrl || coverUrl === './music-cover.svg' || coverUrl.includes('music-cover.svg')) {
+    if (!coverUrl || coverUrl === 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80' || t.coverUrl.includes('music-cover.svg') || coverUrl.includes('music-cover.svg')) {
+      coverUrl = '';
       if (ytId && ytId.length >= 8) {
         coverUrl = `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`;
       } else if (window.catalogService && typeof window.catalogService.findCatalogCover === 'function') {
@@ -745,8 +746,16 @@ window.addEventListener('error', function(e) {
         if (found) coverUrl = found;
       }
     }
-    if (!coverUrl) {
-      coverUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(track.title || 'Track')}&backgroundColor=8b5cf6`;
+    if (!coverUrl || coverUrl.includes('music-cover.svg')) {
+      if (track.artist && window.catalogService?.ARTIST_DATABASE) {
+        const art = Object.values(window.catalogService.ARTIST_DATABASE).find(a => 
+          (a.name || '').toLowerCase() === (track.artist || '').toLowerCase()
+        );
+        if (art && (art.avatar || art.banner)) coverUrl = art.avatar || art.banner;
+      }
+    }
+    if (!coverUrl || coverUrl.includes('music-cover.svg')) {
+      coverUrl = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
     }
     const title = track.title || 'Untitled Track';
     const artist = track.artist || 'Pulse Artist';
@@ -933,8 +942,8 @@ window.addEventListener('error', function(e) {
       const history = await getHistory(15);
       if (Array.isArray(history) && history.length > 0) {
         history.forEach(t => {
-          if (!t.coverUrl || t.coverUrl === './music-cover.svg' || t.coverUrl.trim() === '') {
-            if (t.cover && t.cover !== './music-cover.svg') t.coverUrl = t.cover;
+          if (!t.coverUrl || t.coverUrl === 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80' || t.coverUrl.includes('music-cover.svg') || t.coverUrl.trim() === '') {
+            if (t.cover && t.cover !== 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80' && !t.cover.includes('music-cover.svg')) t.coverUrl = t.cover;
             else if (t.ytId) t.coverUrl = `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg`;
             else if (t.id && String(t.id).startsWith('ytm-')) t.coverUrl = `https://i.ytimg.com/vi/${String(t.id).replace('ytm-', '')}/hqdefault.jpg`;
             else if (window.catalogService?.findCatalogCover) {
@@ -1011,7 +1020,7 @@ window.addEventListener('error', function(e) {
     // 1. Render Slides Track
     track.innerHTML = slides.map((slide, idx) => {
       const isFav = typeof isFavorite === 'function' ? isFavorite(slide.id) : false;
-      const artwork = slide.coverUrl || slide.artwork || './music-cover.svg';
+      const artwork = slide.coverUrl || slide.artwork || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
       const videoYtId = slide.videoYtId || slide.youtubeId || '';
       const badgeText = slide.badgeText || slide.badge || 'FEATURED ANTHEM';
       const badgeIcon = slide.badgeIcon || 'fa-solid fa-bolt';
@@ -1047,7 +1056,7 @@ window.addEventListener('error', function(e) {
           <div class="hero-media-wrapper" id="hero-media-wrapper-${idx}">
             <!-- Artwork Card Mode (Default) -->
             <div class="hero-media-artwork-box" id="hero-media-artwork-${idx}" onclick="window.toggleSlidePreview(${idx}, true)" title="Click to watch Video Preview">
-              <img src="${artwork}" alt="${escapeHtml(slide.title)}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+              <img src="${artwork}" alt="${escapeHtml(slide.title)}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
               <div class="hero-artwork-play-overlay">
                 <i class="fa-solid fa-play"></i>
               </div>
@@ -1365,7 +1374,7 @@ window.addEventListener('error', function(e) {
       window.toggleSlideVideo(slideIndex, false);
     }
 
-    const artwork = slide.coverUrl || slide.artwork || './music-cover.svg';
+    const artwork = slide.coverUrl || slide.artwork || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
     const videoYtId = slide.videoYtId || slide.youtubeId;
 
     const track = {
@@ -1383,7 +1392,7 @@ window.addEventListener('error', function(e) {
       ytId: s.videoYtId || s.youtubeId,
       title: s.title,
       artist: s.artist,
-      coverUrl: s.coverUrl || s.artwork || './music-cover.svg',
+      coverUrl: s.coverUrl || s.artwork || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80',
       duration: s.durationSeconds || 200,
       source: "Featured Showcase Anthem (YouTube)"
     }));
@@ -1397,7 +1406,7 @@ window.addEventListener('error', function(e) {
     const slide = slides[slideIndex];
     if (!slide) return;
 
-    const artwork = slide.coverUrl || slide.artwork || './music-cover.svg';
+    const artwork = slide.coverUrl || slide.artwork || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
     const videoYtId = slide.videoYtId || slide.youtubeId;
 
     const track = {
@@ -1487,7 +1496,7 @@ window.addEventListener('error', function(e) {
       artContainer.innerHTML = artists.map((art) => `
         <div class="artist-card-item hover-glow" onclick="window.openArtistView('${art.name.replace(/'/g, "\\'")}')" style="min-width: 140px; text-align: center; cursor: pointer; flex-shrink: 0;">
           <div class="artist-avatar-wrap" style="position: relative; width: 120px; height: 120px; margin: 0 auto 0.75rem auto; border-radius: 50%; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
-            <img src="${art.avatar || './music-cover.svg'}" alt="${escapeHtml(art.name)}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+            <img src="${art.avatar || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'}" alt="${escapeHtml(art.name)}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
             <div class="artist-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
               <i class="fa-solid fa-play" style="color: #fff; font-size: 1.5rem;"></i>
             </div>
@@ -1604,7 +1613,7 @@ window.addEventListener('error', function(e) {
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         duration: t.duration || 220,
         source: "Studio Master Audio (YouTube)"
       };
@@ -1613,7 +1622,7 @@ window.addEventListener('error', function(e) {
         ytId: item.ytId,
         title: item.title,
         artist: item.artist,
-        coverUrl: item.cover || item.coverUrl || (item.ytId ? `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: item.cover || item.coverUrl || (item.ytId ? `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         duration: item.duration || 220,
         source: "Studio Master Audio (YouTube)"
       }));
@@ -1630,7 +1639,7 @@ window.addEventListener('error', function(e) {
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         duration: t.duration || 220,
         source: "Studio Master Audio (YouTube)"
       };
@@ -1639,7 +1648,7 @@ window.addEventListener('error', function(e) {
         ytId: item.ytId,
         title: item.title,
         artist: item.artist,
-        coverUrl: item.coverUrl || item.cover || (item.ytId ? `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: item.coverUrl || item.cover || (item.ytId ? `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         duration: item.duration || 220,
         source: "Studio Master Audio (YouTube)"
       }));
@@ -1727,7 +1736,7 @@ window.addEventListener('error', function(e) {
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         duration: t.duration || 220,
         source: `Soundtrack: ${pl.movie || pl.title}`
       }));
@@ -1751,7 +1760,7 @@ window.addEventListener('error', function(e) {
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         duration: t.duration || 220,
         source: `Vibe Mix: ${pl.title}`
       }));
@@ -1891,15 +1900,15 @@ window.addEventListener('error', function(e) {
       const opacityStyle = isBanner ? 'opacity: 0.8; filter: blur(8px); transform: scale(1.1);' : '';
       return `
         <div class="playlist-cover-collage" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; width: 100%; height: 100%; pointer-events: none; overflow: hidden; border-radius: inherit; background: #141622; gap: 1px;">
-          <img src="${covers[0]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-          <img src="${covers[1]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-          <img src="${covers[2]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
-          <img src="${covers[3]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <img src="${covers[0]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
+          <img src="${covers[1]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
+          <img src="${covers[2]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
+          <img src="${covers[3]}" style="width: 100%; height: 100%; object-fit: cover; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
         </div>
       `;
     } else if (covers.length > 0) {
       const opacityStyle = isBanner ? 'opacity: 0.8; filter: blur(8px); transform: scale(1.1);' : '';
-      return `<img src="${covers[0]}" class="playlist-single-cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">`;
+      return `<img src="${covers[0]}" class="playlist-single-cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit; ${opacityStyle}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">`;
     } else {
       const hue = Array.from(playlist.name || playlist.title || 'Pulse').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360;
       const gradient = `linear-gradient(135deg, hsl(${hue}, 80%, 30%), hsl(${(hue + 60) % 360}, 80%, 20%))`;
@@ -1989,7 +1998,7 @@ window.addEventListener('error', function(e) {
             return `
             <div class="artist-track-row hover-glow" onclick="window.playTrackDirect(window.__currentPlaylistTracks[${idx}], window.__currentPlaylistTracks)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
               <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
-              <img src="${track.coverUrl || track.cover || (track.ytId ? 'https://i.ytimg.com/vi/'+track.ytId+'/hqdefault.jpg' : './music-cover.svg')}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
+              <img src="${track.coverUrl || track.cover || (track.ytId ? 'https://i.ytimg.com/vi/'+track.ytId+'/hqdefault.jpg' : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80')}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
               <div style="flex: 1;">
                 <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${escapeHtml(track.title)}</div>
                 <div style="font-size: 0.75rem; color: var(--text-secondary);">${escapeHtml(track.artist)}</div>
@@ -2097,7 +2106,7 @@ window.addEventListener('error', function(e) {
 
     const name = pl.name || pl.title || 'Playlist';
     const tracks = pl.tracks || [];
-    const cover = pl.coverUrl || pl.cover || (tracks[0]?.coverUrl || tracks[0]?.cover) || (tracks[0]?.ytId ? `https://i.ytimg.com/vi/${tracks[0].ytId}/hqdefault.jpg` : './music-cover.svg');
+    const cover = pl.coverUrl || pl.cover || (tracks[0]?.coverUrl || tracks[0]?.cover) || (tracks[0]?.ytId ? `https://i.ytimg.com/vi/${tracks[0].ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');
 
     if (titleEl) titleEl.textContent = name;
     if (metaEl) metaEl.textContent = `${tracks.length} tracks • ${pl.creatorName ? 'By ' + pl.creatorName : 'Curated by you'}`;
@@ -2155,7 +2164,7 @@ window.addEventListener('error', function(e) {
 
     const title = track.title || 'Untitled Song';
     const artist = track.artist || 'Pulse Artist';
-    const cover = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
+    const cover = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');
 
     if (titleEl) titleEl.textContent = title;
     if (metaEl) metaEl.textContent = `${artist} • Studio Quality Audio`;
@@ -2553,8 +2562,12 @@ window.addEventListener('error', function(e) {
       const socialsContainer = document.getElementById('artist-socials-container');
       if (socialsContainer && art.socials) {
         const xSvg = `<svg style="width: 14px; height: 14px; fill: #ffffff; vertical-align: -2px; margin-right: 5px;" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+        const spotifyUrl = art.socials.spotify || ('https://open.spotify.com/search/' + encodeURIComponent(art.name));
         socialsContainer.innerHTML = `
           <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px;">Connect:</span>
+          <a href="${spotifyUrl}" target="_blank" rel="noopener noreferrer" class="artist-social-chip hover-glow" title="Spotify Profile @${escapeHtml(art.name)}" style="background: rgba(30, 215, 96, 0.12); border-color: rgba(30, 215, 96, 0.35); color: #1ed760;">
+            <i class="fa-brands fa-spotify" style="color: #1ed760; font-size: 1rem;"></i> Spotify
+          </a>
           <a href="${art.socials.instagram}" target="_blank" rel="noopener noreferrer" class="artist-social-chip hover-glow" title="Instagram @${escapeHtml(art.name)}">
             <i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram
           </a>
@@ -2577,7 +2590,7 @@ window.addEventListener('error', function(e) {
         topTracksList.innerHTML = window.__artistTopTracks.map((track, idx) => `
           <div class="artist-track-row hover-glow" onclick="window.playTrackDirect(window.__artistTopTracks[${idx}], window.__artistTopTracks)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer; transition: all 0.2s ease;">
             <span style="font-weight: 800; color: ${idx < 3 ? '#38bdf8' : 'var(--text-muted)'}; width: 24px; text-align: center; font-size: 1rem;">#${idx + 1}</span>
-            <img src="${track.coverUrl || './music-cover.svg'}" alt="${escapeHtml(track.title)}" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover; animation: none !important; transform: none !important;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+            <img src="${track.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'}" alt="${escapeHtml(track.title)}" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover; animation: none !important; transform: none !important;" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
             <div style="flex: 1; min-width: 0;">
               <div style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(track.title)}</div>
               <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 2px;">${escapeHtml(track.plays || 'Top Release')} plays &bull; ${escapeHtml(track.album || 'Studio Master')}</div>
@@ -2611,35 +2624,55 @@ window.addEventListener('error', function(e) {
       // Render Spotify-Grade About Section
       const aboutBox = document.getElementById('artist-about-container');
       if (aboutBox) {
+        const spotifyUrl = (art.socials && art.socials.spotify) ? art.socials.spotify : ('https://open.spotify.com/search/' + encodeURIComponent(art.name));
+        const originText = art.origin || 'International';
         aboutBox.innerHTML = `
           <div style="background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); border: 1px solid var(--border-glass); border-radius: 20px; padding: 2rem; box-shadow: 0 12px 36px rgba(0,0,0,0.35);">
             <div style="display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap;">
-              <img src="${art.avatar || art.banner}" alt="${escapeHtml(art.name)}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; box-shadow: 0 8px 24px rgba(0,0,0,0.5); border: 2px solid rgba(168,85,247,0.5); flex-shrink: 0;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(art.name)}&backgroundColor=8b5cf6';">
+              <img src="${art.avatar || art.banner}" alt="${escapeHtml(art.name)}" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; box-shadow: 0 8px 24px rgba(0,0,0,0.5); border: 2px solid rgba(168,85,247,0.5); flex-shrink: 0;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(art.name)}&backgroundColor=8b5cf6';">
               <div style="flex: 1; min-width: 250px;">
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.4rem;">
-                  <span style="font-size: 1.4rem; font-weight: 800; color: #fff;">${escapeHtml(art.name)}</span>
-                  <i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 1.1rem;" title="Verified on Spotify & Pulse"></i>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.35rem; flex-wrap: wrap;">
+                  <span style="font-size: 1.5rem; font-weight: 800; color: #fff;">${escapeHtml(art.name)}</span>
+                  <i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 1.15rem;" title="Verified on Spotify & Pulse"></i>
+                  <span style="display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 14px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); color: #38bdf8; font-size: 0.75rem; font-weight: 800;">
+                    ${escapeHtml(art.worldRank || '#1 Verified')}
+                  </span>
                 </div>
-                <div style="font-size: 0.9rem; color: #38bdf8; font-weight: 700; margin-bottom: 0.5rem;">${escapeHtml(art.worldRank || '#1 Verified')}</div>
-                <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.7; margin: 0;">${escapeHtml(art.bio)}</p>
+                <div style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 14px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.25); color: #fb7185; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.65rem;">
+                  <i class="fa-solid fa-location-dot"></i> ${escapeHtml(originText)}
+                </div>
+                <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.75; margin: 0;">${escapeHtml(art.bio)}</p>
+                <div style="margin-top: 1.1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                  <a href="${spotifyUrl}" target="_blank" rel="noopener noreferrer" class="hover-glow" style="display: inline-flex; align-items: center; gap: 8px; background: #1ed760; color: #000; font-weight: 800; padding: 0.5rem 1.25rem; border-radius: 24px; text-decoration: none; box-shadow: 0 4px 14px rgba(30,215,96,0.3); font-size: 0.85rem;">
+                    <i class="fa-brands fa-spotify" style="font-size: 1.1rem; color: #000;"></i> Open on Spotify
+                  </a>
+                  <span style="font-size: 0.78rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 5px;">
+                    <i class="fa-solid fa-bolt" style="color: #10b981;"></i> Studio master audio verified on Pulse
+                  </span>
+                </div>
               </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem;">
               <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.05);">
-                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Monthly Listeners</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Monthly Listeners</div>
                 <div style="font-size: 1.35rem; font-weight: 800; color: #38bdf8; margin-top: 4px;">${escapeHtml(art.monthlyListeners || '25,000,000')}</div>
-                <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">Verified Spotify stream tier</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Verified Spotify stream tier</div>
               </div>
               <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.05);">
-                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Global Followers</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Global Followers</div>
                 <div style="font-size: 1.35rem; font-weight: 800; color: #c084fc; margin-top: 4px;">${escapeHtml(art.followersCount || '18,500,000')}</div>
-                <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">Dedicated fan community</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Dedicated fan community</div>
               </div>
               <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.05);">
-                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Discography</div>
-                <div style="font-size: 1.35rem; font-weight: 800; color: #10b981; margin-top: 4px;">Top 10 Master Singles</div>
-                <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">Full studio audio available</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Origin / Hometown</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: #fb7185; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(originText)}">${escapeHtml(originText)}</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Verified origin</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Discography</div>
+                <div style="font-size: 1.35rem; font-weight: 800; color: #10b981; margin-top: 4px;">Top 10 Master Hits</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Full studio audio available</div>
               </div>
             </div>
           </div>
@@ -3092,7 +3125,7 @@ window.addEventListener('error', function(e) {
           const safeName = art.name.replace(/'/g, "\\'");
           return `
             <div class="search-artist-card hover-glow" onclick="window.openArtistView('${safeName}')" style="display: flex; align-items: center; gap: 0.9rem; padding: 0.75rem 1.15rem; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); border-radius: 16px; cursor: pointer; min-width: 260px; max-width: 320px; flex-shrink: 0; transition: all 0.25s ease;">
-              <img src="${art.avatar || './music-cover.svg'}" alt="${escapeHtml(art.name)}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(168,85,247,0.5);" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(art.name)}&backgroundColor=8b5cf6';">
+              <img src="${art.avatar || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'}" alt="${escapeHtml(art.name)}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(168,85,247,0.5);" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(art.name)}&backgroundColor=8b5cf6';">
               <div style="flex: 1; min-width: 0;">
                 <div style="display: flex; align-items: center; gap: 5px;">
                   <span style="font-weight: 800; font-size: 0.95rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(art.name)}</span>
@@ -3176,7 +3209,7 @@ window.addEventListener('error', function(e) {
           ${favorites.map((track, idx) => `
             <div class="library-track-row hover-glow" onclick="window.playTrackDirect(window.__userFavorites[${idx}], window.__userFavorites)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
               <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
-              <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
+              <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80')}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
               <div style="flex: 1;">
                 <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${escapeHtml(track.title)}</div>
                 <div style="font-size: 0.75rem; color: var(--text-secondary);">${escapeHtml(track.artist)}</div>
@@ -3241,7 +3274,7 @@ window.addEventListener('error', function(e) {
           ${history.map((track, idx) => `
             <div class="library-track-row hover-glow" onclick="window.playTrackDirect(window.__userHistory[${idx}], window.__userHistory)" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer;">
               <span style="font-weight: 800; color: var(--text-muted); width: 20px;">${idx + 1}</span>
-              <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
+              <img src="${track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80')}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
               <div style="flex: 1;">
                 <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">${escapeHtml(track.title)}</div>
                 <div style="font-size: 0.75rem; color: var(--text-secondary);">${escapeHtml(track.artist)}</div>

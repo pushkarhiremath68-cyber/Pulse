@@ -54,7 +54,7 @@ export async function addFavorite(track) {
     title: track.title || 'Untitled Track',
     artist: track.artist || 'Unknown Artist',
     album: track.album || 'Full Album',
-    coverUrl: track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg'),
+    coverUrl: track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
     duration: track.duration || 220,
     streamUrl: track.streamUrl || '',
     source: track.source || 'Ad-Free Pure Audio',
@@ -285,14 +285,27 @@ export async function addToHistory(track) {
   } catch (e) {}
 
     const uid = getCurrentUserId();
-  const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : (track.id && String(track.id).startsWith('ytm-') ? `https://i.ytimg.com/vi/${String(track.id).replace('ytm-', '')}/hqdefault.jpg` : ''));
+  let coverUrl = track.coverUrl || track.cover || '';
+  if (!coverUrl || coverUrl.includes('music-cover.svg')) {
+    coverUrl = '';
+    if (track.ytId) {
+      coverUrl = `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg`;
+    } else if (track.id && String(track.id).startsWith('ytm-')) {
+      coverUrl = `https://i.ytimg.com/vi/${String(track.id).replace('ytm-', '')}/hqdefault.jpg`;
+    } else if (typeof window !== 'undefined' && window.catalogService?.findCatalogCover) {
+      coverUrl = window.catalogService.findCatalogCover(track.title, track.artist) || '';
+    }
+  }
+  if (!coverUrl || coverUrl.includes('music-cover.svg')) {
+    coverUrl = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
+  }
   const historyEntry = {
     id: track.id,
     ytId: track.ytId || (String(track.id).startsWith('ytm-') ? String(track.id).replace('ytm-', '') : ''),
     title: track.title,
     artist: track.artist,
     album: track.album || '',
-    coverUrl: coverUrl || './music-cover.svg',
+    coverUrl: coverUrl,
     duration: track.duration,
     streamUrl: track.streamUrl,
     playedAt: Date.now()
@@ -319,8 +332,9 @@ export async function getHistory(limitCount = 50) {
 
   const healHistoryItem = (item) => {
     if (!item) return item;
-    if (!item.coverUrl || item.coverUrl === './music-cover.svg' || item.coverUrl.trim() === '') {
-      if (item.cover && item.cover !== './music-cover.svg') {
+    if (!item.coverUrl || item.coverUrl === './music-cover.svg' || item.coverUrl.includes('music-cover.svg') || item.coverUrl.trim() === '') {
+      item.coverUrl = '';
+      if (item.cover && !item.cover.includes('music-cover.svg')) {
         item.coverUrl = item.cover;
       } else if (item.ytId) {
         item.coverUrl = `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`;
@@ -330,6 +344,9 @@ export async function getHistory(limitCount = 50) {
         const found = window.catalogService.findCatalogCover(item.title, item.artist);
         if (found) item.coverUrl = found;
       }
+    }
+    if (!item.coverUrl || item.coverUrl.includes('music-cover.svg')) {
+      item.coverUrl = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
     }
     return item;
   };
@@ -619,7 +636,7 @@ export function decodeSharePayload(encodedStr) {
         title: t[0],
         artist: t[1],
         duration: t[3] || 220,
-        coverUrl: t[4] || (t[2] ? `https://i.ytimg.com/vi/${t[2]}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: t[4] || (t[2] ? `https://i.ytimg.com/vi/${t[2]}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         source: 'Shared Playlist Track'
       }))
     };
@@ -648,7 +665,7 @@ export async function publishSharedPlaylist(playlist) {
       title: t.title || 'Untitled',
       artist: t.artist || 'Unknown Artist',
       album: t.album || '',
-      coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+      coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
       duration: t.duration || 220,
       streamUrl: t.streamUrl || ''
     })),
@@ -804,7 +821,7 @@ export function parseTrackShareUrl(urlStr) {
             ytId: ytId,
             title: decoded.t || decoded.title || 'Shared Track',
             artist: decoded.a || decoded.artist || 'Pulse Artist',
-            coverUrl: decoded.c || decoded.coverUrl || (ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : './music-cover.svg'),
+            coverUrl: decoded.c || decoded.coverUrl || (ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
             duration: Number(decoded.d || decoded.duration) || 220,
             source: 'Shared Music Stream'
           };
@@ -815,7 +832,7 @@ export function parseTrackShareUrl(urlStr) {
     const title = url.searchParams.get('title') || 'Shared Track';
     const artist = url.searchParams.get('artist') || 'Pulse Artist';
     const ytId = trackParam.startsWith('ytm-') ? trackParam.replace('ytm-', '') : (trackParam.startsWith('yt-') ? trackParam.replace('yt-', '') : trackParam);
-    const cover = url.searchParams.get('cover') || (ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : './music-cover.svg');
+    const cover = url.searchParams.get('cover') || (ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');
     const dur = Number(url.searchParams.get('dur')) || 220;
 
     return {

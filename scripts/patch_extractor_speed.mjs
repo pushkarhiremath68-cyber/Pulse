@@ -27,3 +27,4 @@ if (oldBlockRegex.test(content)) {
 } else {
   console.warn('Could not match oldBlock in extractorService.js with regex');
 }
+

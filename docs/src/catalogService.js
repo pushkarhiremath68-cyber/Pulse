@@ -555,12 +555,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "42,800,000",
     "worldRank": "#1 in India",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg",
-    "bio": "Arijit Singh is a celebrated Indian playback singer and music composer, universally recognized as the King of Playback Singing in contemporary Indian music. Recipient of two National Film Awards and seven Filmfare Awards, his soul-stirring vocal range has defined Bollywood and Indian independent music for over a decade with timeless chart-toppers.",
+    "bio": "Arijit Singh is universally hailed as the definitive voice of modern Indian music. Rising to national prominence with the cultural phenomenon 'Tum Hi Ho', he has garnered multiple National Film Awards and Filmfare Awards. Across Hindi, Bengali, and regional cinema, his emotive phrasing and acoustic textures have made him the most-streamed Indian artist in Spotify history.",
     "socials": {
       "instagram": "https://www.instagram.com/arijitsingh/",
       "x": "https://x.com/arijitsingh",
       "facebook": "https://www.facebook.com/ArijitSinghMusic/",
-      "youtube": "https://www.youtube.com/@ArijitSingh"
+      "youtube": "https://www.youtube.com/@ArijitSingh",
+      "spotify": "https://open.spotify.com/artist/4YRxDV8wJFPHPTeXepOstw"
     },
     "tourInfo": {
       "tourName": "Arijit Singh Live In Concert 2026",
@@ -669,7 +670,8 @@ export const ARTIST_DATABASE = {
         "duration": 311,
         "plays": "510,000,000"
       }
-    ]
+    ],
+    "origin": "Jiaganj, Murshidabad, West Bengal, India"
   },
   "atif-aslam": {
     "name": "Atif Aslam",
@@ -677,12 +679,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "28,600,000",
     "worldRank": "#3 in South Asia",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg",
-    "bio": "Atif Aslam is an iconic Pakistani playback singer, songwriter, and composer revered across the globe for his emotive vocal delivery, soaring high register, and timeless romantic and spiritual hits in Bollywood, Coke Studio, and Sufi pop.",
+    "bio": "Atif Aslam is an internationally acclaimed Pakistani playback singer and songwriter known for his powerful belting vocals and timeless romantic anthems. From rock breakthroughs with Jal's 'Aadat' to Bollywood chart-toppers like 'Tera Hone Laga Hoon', 'Dil Diyan Gallan', and Coke Studio's 'Tajdar-e-Haram', his cross-border impact is celebrated across the globe.",
     "socials": {
       "instagram": "https://www.instagram.com/atifaslam/",
       "x": "https://x.com/itsaadee",
       "facebook": "https://www.facebook.com/AtifAslamOfficialFanPage/",
-      "youtube": "https://www.youtube.com/@AtifAslamOfficial"
+      "youtube": "https://www.youtube.com/@AtifAslamOfficial",
+      "spotify": "https://open.spotify.com/artist/2oSONSC9zQ4UonDKvlLfu8"
     },
     "tourInfo": {
       "tourName": "Atif Aslam Live Arena Tour",
@@ -791,7 +794,8 @@ export const ARTIST_DATABASE = {
         "duration": 313,
         "plays": "310,000,000"
       }
-    ]
+    ],
+    "origin": "Wazirabad, Punjab, Pakistan"
   },
   "ap-dhillon": {
     "name": "AP Dhillon",
@@ -799,12 +803,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "16,400,000",
     "worldRank": "#5 in Punjabi Global",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/1000x1000bb.jpg",
-    "bio": "Amritpal Singh Dhillon, known globally as AP Dhillon, is a Canadian-Indian singer, rapper, and record producer who pioneered the modern global wave of Punjabi trap, synthwave, and drill fusion alongside Run-Up Records.",
+    "bio": "Amritpal Singh Dhillon, known as AP Dhillon, is an Indo-Canadian singer, rapper, and record producer who transformed global Punjabi music with his genre-bending fusion of retro synthwave, trap, and R&B. Hits like 'Brown Munde', 'Excuses', 'Insane', and 'With You' have made him a worldwide streaming powerhouse.",
     "socials": {
       "instagram": "https://www.instagram.com/ap.dhillxn/",
       "x": "https://x.com/apdhillxn",
       "facebook": "https://www.facebook.com/apdhillxn/",
-      "youtube": "https://www.youtube.com/@APDHILLON"
+      "youtube": "https://www.youtube.com/@APDHILLON",
+      "spotify": "https://open.spotify.com/artist/4PULA4EFzYTrxYvOV5a9Ij"
     },
     "tourInfo": {
       "tourName": "AP Dhillon: The Brownprint Tour",
@@ -913,7 +918,8 @@ export const ARTIST_DATABASE = {
         "duration": 188,
         "plays": "210,000,000"
       }
-    ]
+    ],
+    "origin": "Gurdaspur, Punjab, India"
   },
   "diljit-dosanjh": {
     "name": "Diljit Dosanjh",
@@ -921,12 +927,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "24,100,000",
     "worldRank": "#2 in Punjabi Global",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/5d/79/315d799d-1ca4-3dc3-e62e-3f6567dd8ff0/197188701987.jpg/1000x1000bb.jpg",
-    "bio": "Diljit Dosanjh is a global cultural icon, singer, songwriter, and actor who made history as the first Indian artist to perform at Coachella. He has conquered arenas from Toronto to London with high-energy Punjabi pop, bhangra, and international chart collaborations.",
+    "bio": "Diljit Dosanjh is a global icon, singer, actor, and cultural trailblazer who made historic appearances as the first Punjabi artist to perform at Coachella and sell out stadiums worldwide. With massive anthems like 'Lover', 'Born to Shine', 'G.O.A.T.', and 'Kinni Kinni', Diljit blends traditional Punjabi folk with high-energy modern pop.",
     "socials": {
       "instagram": "https://www.instagram.com/diljitdosanjh/",
       "x": "https://x.com/diljitdosanjh",
       "facebook": "https://www.facebook.com/DiljitDosanjh/",
-      "youtube": "https://www.youtube.com/@DiljitDosanjh"
+      "youtube": "https://www.youtube.com/@DiljitDosanjh",
+      "spotify": "https://open.spotify.com/artist/2FKWNmZWDBCdRs4fHIqZqU"
     },
     "tourInfo": {
       "tourName": "Dil-Luminati World Stadium Tour",
@@ -1035,7 +1042,8 @@ export const ARTIST_DATABASE = {
         "duration": 254,
         "plays": "270,000,000"
       }
-    ]
+    ],
+    "origin": "Dosanjh Kalan, Jalandhar, Punjab, India"
   },
   "the-weeknd": {
     "name": "The Weeknd",
@@ -1043,12 +1051,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "86,200,000",
     "worldRank": "#1 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/aa/b4/2aaab42a-a4cb-a600-4a25-d78961495960/18UMGIM17204.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Abel Makkonen Tesfaye, professionally known as The Weeknd, is a Canadian singer, songwriter, and record producer widely hailed as one of the most influential pop and R&B artists of modern history, dominating world charts with groundbreaking dark R&B, synthpop, and disco hits.",
+    "bio": "Abel Tesfaye, known professionally as The Weeknd, is one of the best-selling music artists of all time. Fusing dark R&B, synth-pop, and new wave, his diamond-certified records 'Blinding Lights' and 'Starboy' shattered all-time Billboard Hot 100 records and Guinness World Records for the most monthly listeners in Spotify history.",
     "socials": {
       "instagram": "https://www.instagram.com/theweeknd/",
       "x": "https://x.com/theweeknd",
       "facebook": "https://www.facebook.com/theweeknd/",
-      "youtube": "https://www.youtube.com/@TheWeeknd"
+      "youtube": "https://www.youtube.com/@TheWeeknd",
+      "spotify": "https://open.spotify.com/artist/1Xyo4u8uXC1ZmMpatF05PJ"
     },
     "tourInfo": {
       "tourName": "After Hours Til Dawn Global Stadium Tour",
@@ -1157,7 +1166,8 @@ export const ARTIST_DATABASE = {
         "duration": 252,
         "plays": "1,420,000,000"
       }
-    ]
+    ],
+    "origin": "Toronto, Ontario, Canada"
   },
   "taylor-swift": {
     "name": "Taylor Swift",
@@ -1165,12 +1175,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "115,000,000",
     "worldRank": "#2 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Taylor Alison Swift is an American singer-songwriter whose narrative songwriting, artistic reinventions, and cultural impact have redefined modern popular music. Winner of 14 Grammy Awards including Album of the Year four times.",
+    "bio": "Taylor Swift is a generational singer-songwriter, cultural phenomenon, and record-shattering titan of modern music. The only artist to win Album of the Year at the Grammy Awards four times, her discography spans country, pop, and indie folk with historic anthems including 'Cruel Summer', 'Blank Space', 'Anti-Hero', and 'Cardigan'.",
     "socials": {
       "instagram": "https://www.instagram.com/taylorswift/",
       "x": "https://x.com/taylorswift13",
       "facebook": "https://www.facebook.com/TaylorSwift/",
-      "youtube": "https://www.youtube.com/@TaylorSwift"
+      "youtube": "https://www.youtube.com/@TaylorSwift",
+      "spotify": "https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02"
     },
     "tourInfo": {
       "tourName": "The Eras Tour: International Stadiums",
@@ -1279,7 +1290,8 @@ export const ARTIST_DATABASE = {
         "duration": 228,
         "plays": "980,000,000"
       }
-    ]
+    ],
+    "origin": "West Reading, Pennsylvania, USA"
   },
   "billie-eilish": {
     "name": "Billie Eilish",
@@ -1287,12 +1299,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "82,500,000",
     "worldRank": "#3 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
-    "bio": "Billie Eilish Pirate Baird O'Connell is an American singer-songwriter who gained international acclaim for her distinctive whisper vocals, genre-defying production with brother Finneas, and groundbreaking albums.",
+    "bio": "Billie Eilish is an Academy Award and multiple Grammy-winning singer-songwriter known for her intimate whisper vocals, subversive alt-pop production, and genre-defining storytelling. Collaborating closely with brother Finneas O'Connell, her breakout records 'Bad Guy', 'Birds of a Feather', and 'Happier Than Ever' have topped charts globally.",
     "socials": {
       "instagram": "https://www.instagram.com/billieeilish/",
       "x": "https://x.com/billieeilish",
       "facebook": "https://www.facebook.com/billieeilish/",
-      "youtube": "https://www.youtube.com/@BillieEilish"
+      "youtube": "https://www.youtube.com/@BillieEilish",
+      "spotify": "https://open.spotify.com/artist/6qqNVTkY8uBg9cP3Jd7DAH"
     },
     "tourInfo": {
       "tourName": "Hit Me Hard and Soft: The Tour",
@@ -1401,7 +1414,8 @@ export const ARTIST_DATABASE = {
         "duration": 303,
         "plays": "640,000,000"
       }
-    ]
+    ],
+    "origin": "Los Angeles, California, USA"
   },
   "sabrina-carpenter": {
     "name": "Sabrina Carpenter",
@@ -1409,12 +1423,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "38,900,000",
     "worldRank": "#5 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg",
-    "bio": "Sabrina Annlynn Carpenter is an American singer and actress who achieved phenomenal global breakthrough success in 2024 with smash hits Espresso and Please Please Please, becoming one of the premier pop icons of her generation.",
+    "bio": "Sabrina Carpenter is an American pop powerhouse, singer, and songwriter celebrated for her sparkling wit, infectious disco-pop hooks, and record-breaking chart runs. Her smashes 'Espresso' and 'Please Please Please' became defining global summer anthems, dominating Spotify's Top 50 Global charts simultaneously.",
     "socials": {
       "instagram": "https://www.instagram.com/sabrinacarpenter/",
       "x": "https://x.com/SabrinaAnnLynn",
       "facebook": "https://www.facebook.com/sabrinacarpenter/",
-      "youtube": "https://www.youtube.com/@SabrinaCarpenter"
+      "youtube": "https://www.youtube.com/@SabrinaCarpenter",
+      "spotify": "https://open.spotify.com/artist/74KM79TiuVKeVCqs8QtB0B"
     },
     "tourInfo": {
       "tourName": "Short n' Sweet World Arena Tour",
@@ -1523,7 +1538,8 @@ export const ARTIST_DATABASE = {
         "duration": 164,
         "plays": "260,000,000"
       }
-    ]
+    ],
+    "origin": "Quakertown, Pennsylvania, USA"
   },
   "hasan-raheem": {
     "name": "Hasan Raheem",
@@ -1531,12 +1547,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "6,400,000",
     "worldRank": "#8 in Pakistan",
     "banner": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-    "bio": "Hasan Raheem is a Pakistani singer-songwriter, doctor, and indie-R&B pioneer hailing from Gilgit. Known for his mellow falsetto, conversational lyrics, and genre-bending collaborations, he has become the vanguard voice of the modern South Asian youth indie movement.",
+    "bio": "Hasan Raheem is a doctor-turned-indie-music icon from Pakistan who pioneered the viral Urdu bedroom-pop and contemporary R&B movement in South Asia. Known for his laid-back cadence, groovy basslines, and viral masterpieces like 'Wishes', 'Aisay Kaisay', 'Faislay', and 'Peechay Hutt', he has won hearts across generations.",
     "socials": {
       "instagram": "https://www.instagram.com/hasan_raheem/",
       "x": "https://x.com/hasanraheem",
       "facebook": "https://www.facebook.com/hasanraheemofficial/",
-      "youtube": "https://www.youtube.com/@hasanraheem"
+      "youtube": "https://www.youtube.com/@hasanraheem",
+      "spotify": "https://open.spotify.com/artist/7LqaK3Zk5e1w9k46Wj0Z34"
     },
     "tourInfo": {
       "tourName": "Hasan Raheem Live: The Maybe It's Love Tour",
@@ -1645,7 +1662,8 @@ export const ARTIST_DATABASE = {
         "duration": 174,
         "plays": "52,000,000"
       }
-    ]
+    ],
+    "origin": "Gilgit, Gilgit-Baltistan, Pakistan"
   },
   "kaifi-khalil": {
     "name": "Kaifi Khalil",
@@ -1653,12 +1671,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "11,800,000",
     "worldRank": "#6 in South Asia",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg",
-    "bio": "Kaifi Khalil is a Pakistani singer-songwriter from Lyari, Karachi, celebrated for infusing traditional Balochi folk melodies with contemporary acoustic pop and Urdu poetry. His global viral smash Kahani Suno 2.0 broke international streaming records.",
+    "bio": "Kaifi Khalil is a Balochi singer, songwriter, and composer whose breakthrough ballad 'Kahani Suno 2.0' became one of the biggest viral musical sensations in Asian music history, earning hundreds of millions of streams. His haunting acoustic melodies blend traditional Balochi folk textures with heartfelt contemporary poetry.",
     "socials": {
       "instagram": "https://www.instagram.com/kaifikhalilmusic/",
       "x": "https://x.com/kaifik",
       "facebook": "https://www.facebook.com/KaifiKhalilOfficial/",
-      "youtube": "https://www.youtube.com/@KaifiKhalil"
+      "youtube": "https://www.youtube.com/@KaifiKhalil",
+      "spotify": "https://open.spotify.com/artist/1r2S2iZg259Wp10rD9MvdP"
     },
     "tourInfo": {
       "tourName": "Kaifi Khalil: The Acoustic Soul Tour",
@@ -1767,7 +1786,8 @@ export const ARTIST_DATABASE = {
         "duration": 194,
         "plays": "22,000,000"
       }
-    ]
+    ],
+    "origin": "Lyari, Karachi, Sindh, Pakistan"
   },
   "ali-sethi": {
     "name": "Ali Sethi",
@@ -1775,12 +1795,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "12,100,000",
     "worldRank": "#7 in South Asia",
     "banner": "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg",
-    "bio": "Ali Sethi is an internationally acclaimed Pakistani singer, songwriter, and author whose masterful blend of traditional ghazal, classical raga, and contemporary electronic indie pop achieved global historic phenomenon with the chart-topping Pasoori.",
+    "bio": "Ali Sethi is an internationally acclaimed singer, writer, and composer recognized for revitalizing classical ghazal and Sufi poetry through modern global pop. His runaway hit 'Pasoori' on Coke Studio topped Spotify's Global Viral charts and became the most searched song on Google globally in 2022.",
     "socials": {
       "instagram": "https://www.instagram.com/alisethiofficial/",
       "x": "https://x.com/alisethiofficial",
       "facebook": "https://www.facebook.com/AliSethiOfficial/",
-      "youtube": "https://www.youtube.com/@AliSethi"
+      "youtube": "https://www.youtube.com/@AliSethi",
+      "spotify": "https://open.spotify.com/artist/3oXy01Z6N9H4Jt67gQ0H34"
     },
     "tourInfo": {
       "tourName": "Ali Sethi Live: Raga & Resistance Tour",
@@ -1889,7 +1910,8 @@ export const ARTIST_DATABASE = {
         "duration": 345,
         "plays": "54,000,000"
       }
-    ]
+    ],
+    "origin": "Lahore, Punjab, Pakistan"
   },
   "appaji": {
     "name": "Appaji",
@@ -1897,12 +1919,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "4,900,000",
     "worldRank": "#1 in Vedic & Meditation",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/ee/09/89/ee09891d-affa-4c21-640e-f67f031ca274/889176709494.jpg/1000x1000bb.jpg",
-    "bio": "Sri Sri Sri Ganapathy Sachchidananda Swamiji (affectionately called Appaji) of Avadhoota Datta Peetham, Mysuru, is an internationally revered spiritual master, music therapist, and composer whose divine Vedic chants and meditation ragas bring deep inner peace.",
+    "bio": "His Holiness Sri Sri Ganapathy Sachchidananda Swamiji (Appaji) is an internationally revered spiritual master, composer, and pioneer of Music Therapy and Raga Ragini Vidya. His divine renditions of Devi Kavacham, Sri Lalitha Sahasranama, and meditation chants have provided peace, solace, and spiritual upliftment to millions worldwide.",
     "socials": {
       "instagram": "https://www.instagram.com/srisrigsd/",
       "x": "https://x.com/srisrigsd",
       "facebook": "https://www.facebook.com/dattapeetham/",
-      "youtube": "https://www.youtube.com/@DattaPeetham"
+      "youtube": "https://www.youtube.com/@DattaPeetham",
+      "spotify": "https://open.spotify.com/artist/0N3qO37Jv7x4Wv6z8V7X0Y"
     },
     "tourInfo": {
       "tourName": "Appaji Healing Ragas & Celestial Concerts",
@@ -2011,7 +2034,8 @@ export const ARTIST_DATABASE = {
         "duration": 590,
         "plays": "15,000,000"
       }
-    ]
+    ],
+    "origin": "Mysuru, Karnataka, India"
   },
   "coldplay": {
     "name": "Coldplay",
@@ -2019,12 +2043,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "54,200,000",
     "worldRank": "#4 Band Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
-    "bio": "Coldplay is a legendary British rock band formed in London in 1997. Consisting of Chris Martin, Jonny Buckland, Guy Berryman, and Will Champion, they have sold over 100 million albums worldwide with soaring stadium anthems.",
+    "bio": "Formed in London in 1997, Coldplay is one of the most successful and beloved rock bands in history. Fronted by Chris Martin, their stadium-shaking anthems 'Yellow', 'Viva La Vida', 'Fix You', 'The Scientist', and 'Something Just Like This' have earned seven Grammy Awards and billions of streams.",
     "socials": {
       "instagram": "https://www.instagram.com/coldplay/",
       "x": "https://x.com/coldplay",
       "facebook": "https://www.facebook.com/coldplay/",
-      "youtube": "https://www.youtube.com/@coldplay"
+      "youtube": "https://www.youtube.com/@coldplay",
+      "spotify": "https://open.spotify.com/artist/4gzpq5DPGxSnKTe4SA8HAU"
     },
     "tourInfo": {
       "tourName": "Music of the Spheres World Tour",
@@ -2133,7 +2158,8 @@ export const ARTIST_DATABASE = {
         "duration": 307,
         "plays": "1,380,000,000"
       }
-    ]
+    ],
+    "origin": "London, England, United Kingdom"
   },
   "eminem": {
     "name": "Eminem",
@@ -2141,12 +2167,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "89,000,000",
     "worldRank": "#1 in Hip-Hop Legends",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg",
-    "bio": "Marshall Bruce Mathers III, known professionally as Eminem, is an American rapper, songwriter, and record producer widely cited as one of the greatest and most influential rappers of all time, with 15 Grammy Awards and an Academy Award.",
+    "bio": "Marshall Mathers, known as Eminem, is universally regarded as one of the greatest rappers of all time. With lightning-fast lyrical dexterity and raw storytelling, he has sold over 220 million records, winning 15 Grammy Awards and an Academy Award. His classics 'Lose Yourself', 'Without Me', 'The Real Slim Shady', and 'Mockingbird' define hip-hop history.",
     "socials": {
       "instagram": "https://www.instagram.com/eminem/",
       "x": "https://x.com/eminem",
       "facebook": "https://www.facebook.com/eminem/",
-      "youtube": "https://www.youtube.com/@eminem"
+      "youtube": "https://www.youtube.com/@eminem",
+      "spotify": "https://open.spotify.com/artist/7dGJo4pcD2V6io4xhFsXRv"
     },
     "tourInfo": {
       "tourName": "The Death of Slim Shady World Stadium Tour",
@@ -2255,7 +2282,8 @@ export const ARTIST_DATABASE = {
         "duration": 227,
         "plays": "820,000,000"
       }
-    ]
+    ],
+    "origin": "Detroit, Michigan, USA"
   },
   "ed-sheeran": {
     "name": "Ed Sheeran",
@@ -2263,12 +2291,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "114,000,000",
     "worldRank": "#6 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
-    "bio": "Edward Christopher Sheeran MBE is an English singer-songwriter who has sold more than 150 million records worldwide. His iconic pop, folk, and acoustic ballads like Shape of You and Perfect hold all-time streaming records.",
+    "bio": "Ed Sheeran is an English singer-songwriter who conquered the world with his loop pedal, acoustic guitar, and storytelling mastery. His megahits 'Shape of You', 'Perfect', 'Photograph', and 'Bad Habits' have achieved multi-diamond certifications and made him one of the most-streamed artists in recorded history.",
     "socials": {
       "instagram": "https://www.instagram.com/teddysphotos/",
       "x": "https://x.com/edsheeran",
       "facebook": "https://www.facebook.com/EdSheeranMusic/",
-      "youtube": "https://www.youtube.com/@EdSheeran"
+      "youtube": "https://www.youtube.com/@EdSheeran",
+      "spotify": "https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"
     },
     "tourInfo": {
       "tourName": "+–=÷× Mathematics World Tour",
@@ -2377,7 +2406,8 @@ export const ARTIST_DATABASE = {
         "duration": 194,
         "plays": "650,000,000"
       }
-    ]
+    ],
+    "origin": "Framlingham, Suffolk, England"
   },
   "anirudh-ravichander": {
     "name": "Anirudh Ravichander",
@@ -2385,12 +2415,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "19,500,000",
     "worldRank": "#1 in Tamil / Indian Fusion",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/df/14/2cdf140e-6d11-a98d-bfbf-bc5e30c3c4a1/197189528187.jpg/1000x1000bb.jpg",
-    "bio": "Anirudh Ravichander is an Indian music composer, singer, and producer who revolutionized Kollywood and Indian cinematic music with viral EDM, acoustic melodies, and chart-topping pan-Indian anthems for Jawan, Leo, Vikram, and Jailer.",
+    "bio": "Anirudh Ravichander is the undisputed musical rockstar of South Indian and Pan-Indian cinema. From his viral debut 'Why This Kolaveri Di' to blockbuster soundtracks for 'Jawan', 'Vikram', 'Leo', 'Jailer', and 'Devara', Anirudh's high-octane electronic production, thumping basslines, and contagious melodies have revolutionized film music.",
     "socials": {
       "instagram": "https://www.instagram.com/anirudhofficial/",
       "x": "https://x.com/anirudhofficial",
       "facebook": "https://www.facebook.com/AnirudhOfficial/",
-      "youtube": "https://www.youtube.com/@AnirudhRavichanderOfficial"
+      "youtube": "https://www.youtube.com/@AnirudhRavichanderOfficial",
+      "spotify": "https://open.spotify.com/artist/4zCH9qm4R2DADamUHMCcrQ"
     },
     "tourInfo": {
       "tourName": "Hukum World Tour 2026",
@@ -2499,7 +2530,8 @@ export const ARTIST_DATABASE = {
         "duration": 236,
         "plays": "310,000,000"
       }
-    ]
+    ],
+    "origin": "Chennai, Tamil Nadu, India"
   },
   "imagine-dragons": {
     "name": "Imagine Dragons",
@@ -2507,12 +2539,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "53,800,000",
     "worldRank": "#2 Band Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg",
-    "bio": "Imagine Dragons is an acclaimed American alternative rock band from Las Vegas, Nevada, consisting of lead singer Dan Reynolds, guitarist Wayne Sermon, bassist Ben McKee, and drummer Daniel Platzman. They hold multiple Diamond-certified global anthems.",
+    "bio": "Imagine Dragons is an American pop-rock titan formed in Las Vegas. Led by Dan Reynolds, the band has dominated global rock charts with arena-filling anthems 'Believer', 'Radioactive', 'Demons', 'Thunder', and 'Bones', becoming the first band in history to have four songs surpass one billion Spotify streams.",
     "socials": {
       "instagram": "https://www.instagram.com/imaginedragons/",
       "x": "https://x.com/imaginedragons",
       "facebook": "https://www.facebook.com/ImagineDragons/",
-      "youtube": "https://www.youtube.com/@ImagineDragons"
+      "youtube": "https://www.youtube.com/@ImagineDragons",
+      "spotify": "https://open.spotify.com/artist/53XhwfbYqKCa1cC15pYq2q"
     },
     "tourInfo": {
       "tourName": "LOOM World Arena & Stadium Tour",
@@ -2621,7 +2654,8 @@ export const ARTIST_DATABASE = {
         "duration": 175,
         "plays": "780,000,000"
       }
-    ]
+    ],
+    "origin": "Las Vegas, Nevada, USA"
   },
   "bruno-mars": {
     "name": "Bruno Mars",
@@ -2629,12 +2663,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "62,400,000",
     "worldRank": "#2 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e3/47/a0/e347a0cc-87ce-5d05-d560-176c7d48f66e/075679904119.jpg/600x600bb.jpg",
-    "bio": "Peter Gene Hernandez, known professionally as Bruno Mars, is an American singer-songwriter, multi-instrumentalist, and record producer known for his stage showmanship, retro show-style performances, and legendary funk, pop, and soul hits.",
+    "bio": "Bruno Mars is a 15-time Grammy-winning singer, songwriter, and showman renowned for his retro funk, soul, and pop mastery. From vintage grooves like 'Uptown Funk' and '24K Magic' to soaring vocal showcases like 'When I Was Your Man' and 'Die With A Smile', Bruno Mars remains a transcendent live performer and recording genius.",
     "socials": {
       "instagram": "https://www.instagram.com/brunomars/",
       "x": "https://x.com/brunomars",
       "facebook": "https://www.facebook.com/brunomars/",
-      "youtube": "https://www.youtube.com/@brunomars"
+      "youtube": "https://www.youtube.com/@brunomars",
+      "spotify": "https://open.spotify.com/artist/0du5cEVh5yTK9QJze8zA0C"
     },
     "tourInfo": {
       "tourName": "Bruno Mars Live: The Worldwide Arena Tour",
@@ -2743,7 +2778,8 @@ export const ARTIST_DATABASE = {
         "duration": 242,
         "plays": "1,420,000,000"
       }
-    ]
+    ],
+    "origin": "Honolulu, Hawaii, USA"
   },
   "adele": {
     "name": "Adele",
@@ -2751,12 +2787,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "61,200,000",
     "worldRank": "#8 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg",
-    "bio": "Adele Laurie Blue Adkins MBE is an English singer-songwriter whose powerhouse vocals and deeply confessional soul ballads have garnered 16 Grammy Awards, an Oscar, and millions of global fans.",
+    "bio": "Adele is an English singer-songwriter possessing one of the most powerful and recognizable voices in music history. Selling over 120 million records, her monumental albums 19, 21, 25, and 30 spawned emotional anthems 'Rolling in the Deep', 'Someone Like You', 'Hello', and 'Easy on Me', earning her 16 Grammy Awards and an Oscar.",
     "socials": {
       "instagram": "https://www.instagram.com/adele/",
       "x": "https://x.com/adele",
       "facebook": "https://www.facebook.com/adele/",
-      "youtube": "https://www.youtube.com/@Adele"
+      "youtube": "https://www.youtube.com/@Adele",
+      "spotify": "https://open.spotify.com/artist/4dpARuHxo5mt93pH8Av4Yq"
     },
     "tourInfo": {
       "tourName": "Adele in Munich & Las Vegas Residency",
@@ -2865,7 +2902,8 @@ export const ARTIST_DATABASE = {
         "duration": 272,
         "plays": "850,000,000"
       }
-    ]
+    ],
+    "origin": "Tottenham, London, England"
   },
   "linkin-park": {
     "name": "Linkin Park",
@@ -2873,12 +2911,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "48,900,000",
     "worldRank": "#1 Nu-Metal / Rock",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/1000x1000bb.jpg",
-    "bio": "Linkin Park is an American rock band from Agoura Hills, California. Formed in 1996, the band propelled to international stardom with Hybrid Theory, pioneering the alternative metal and nu-metal genre with over 100 million records sold.",
+    "bio": "Linkin Park is an iconic American rock band whose pioneering blend of alternative metal, hip-hop, and electronic textures defined an entire generation. Groundbreaking albums 'Hybrid Theory' and 'Meteora' produced monumental anthems 'In the End', 'Numb', 'Faint', and 'Crawling', cementing their legacy in rock history.",
     "socials": {
       "instagram": "https://www.instagram.com/linkinpark/",
       "x": "https://x.com/linkinpark",
       "facebook": "https://www.facebook.com/linkinpark/",
-      "youtube": "https://www.youtube.com/@linkinpark"
+      "youtube": "https://www.youtube.com/@linkinpark",
+      "spotify": "https://open.spotify.com/artist/6XyY86QOPPrYVGvF9ch6wz"
     },
     "tourInfo": {
       "tourName": "From Zero World Arena Tour",
@@ -2987,7 +3026,8 @@ export const ARTIST_DATABASE = {
         "duration": 205,
         "plays": "620,000,000"
       }
-    ]
+    ],
+    "origin": "Agoura Hills, California, USA"
   },
   "dua-lipa": {
     "name": "Dua Lipa",
@@ -2995,12 +3035,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "46,800,000",
     "worldRank": "#7 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg",
-    "bio": "Dua Lipa is an English-Albanian singer and songwriter whose disco-infused pop sensibilities and deep mezzo-soprano vocal tone have garnered three Grammy Awards and over a dozen international chart-topping singles.",
+    "bio": "Dua Lipa is an English-Albanian pop superstar whose modern nu-disco sound revived dance music globally. With critical and commercial juggernauts 'Future Nostalgia' and 'Radical Optimism', she scored multi-billion-stream hits including 'Levitating', 'Don't Start Now', 'New Rules', and 'Houdini', earning three Grammy Awards.",
     "socials": {
       "instagram": "https://www.instagram.com/dualipa/",
       "x": "https://x.com/DUALIPA",
       "facebook": "https://www.facebook.com/DuaLipa/",
-      "youtube": "https://www.youtube.com/@dualipa"
+      "youtube": "https://www.youtube.com/@dualipa",
+      "spotify": "https://open.spotify.com/artist/6M2wZ9GZgrQXHCFfjv46we"
     },
     "tourInfo": {
       "tourName": "Radical Optimism World Tour",
@@ -3109,7 +3150,8 @@ export const ARTIST_DATABASE = {
         "duration": 209,
         "plays": "560,000,000"
       }
-    ]
+    ],
+    "origin": "London, England, United Kingdom"
   },
   "bad-bunny": {
     "name": "Bad Bunny",
@@ -3117,12 +3159,13 @@ export const ARTIST_DATABASE = {
     "followersCount": "81,200,000",
     "worldRank": "#1 in Latin Music",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/70/1c/64701cff-71ed-912f-ce62-71d409f5e6ad/195497640560.jpg/1000x1000bb.jpg",
-    "bio": "Benito Antonio Martínez Ocasio, known professionally as Bad Bunny, is a Puerto Rican rapper, singer, and songwriter hailed as the King of Latin Trap and modern reggaeton. He was Spotify's most-streamed artist in the world for three consecutive years.",
+    "bio": "Benito Antonio Martínez Ocasio, known as Bad Bunny, is the undisputed king of Latin trap and reggaeton. Breaking barrier after barrier, he was Spotify's most-streamed artist globally for three consecutive years with groundbreaking records 'Un Verano Sin Ti', 'Tití Me Preguntó', 'Monaco', and 'Dakiti'.",
     "socials": {
       "instagram": "https://www.instagram.com/badbunnypr/",
       "x": "https://x.com/sanbenito",
       "facebook": "https://www.facebook.com/BadBunnyOfficial/",
-      "youtube": "https://www.youtube.com/@BadBunnyPR"
+      "youtube": "https://www.youtube.com/@BadBunnyPR",
+      "spotify": "https://open.spotify.com/artist/4q3ewBCX7sLwd24euuV69X"
     },
     "tourInfo": {
       "tourName": "Most Wanted Tour",
@@ -3231,7 +3274,8 @@ export const ARTIST_DATABASE = {
         "duration": 213,
         "plays": "950,000,000"
       }
-    ]
+    ],
+    "origin": "Vega Baja, Puerto Rico"
   },
   "shreya-ghoshal": {
     "name": "Shreya Ghoshal",
@@ -3240,12 +3284,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Female Playback Icon in India",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bf/fb/14/bffb1456-42bb-d86b-722a-283181829cb8/8902894357739_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bf/fb/14/bffb1456-42bb-d86b-722a-283181829cb8/8902894357739_cover.jpg/1000x1000bb.jpg",
-    "bio": "Shreya Ghoshal is universally acclaimed as the Queen of Melody in contemporary Indian music. Winner of five National Film Awards, four Kerala State Film Awards, and seven Filmfare Awards, her ethereal vocal range spans classical, ghazals, Bollywood romantic ballads, and regional masterpieces across over 20 languages. From her historic debut in Devdas at age 16 to global stadium tours, her voice remains the gold standard of Indian melody.",
+    "bio": "Shreya Ghoshal is a legendary Indian playback singer revered as the nightingale of 21st-century Indian cinema. Having recorded thousands of songs across Hindi, Bengali, Tamil, Telugu, and Malayalam, she has won five National Film Awards and seven Filmfare Awards for timeless classics like 'Deewani Mastani', 'Sun Raha Hai', and 'Barso Re'.",
     "socials": {
       "instagram": "https://www.instagram.com/shreyaghoshal/",
       "x": "https://x.com/shreyaghoshal",
       "facebook": "https://www.facebook.com/shreyaghoshal/",
-      "youtube": "https://www.youtube.com/@shreyaghoshal"
+      "youtube": "https://www.youtube.com/@shreyaghoshal",
+      "spotify": "https://open.spotify.com/artist/0oOet2C4TQVIudqEAQT0yq"
     },
     "tourInfo": {
       "tourName": "Shreya Ghoshal All Hearts Tour 2026",
@@ -3354,7 +3399,8 @@ export const ARTIST_DATABASE = {
         "duration": 200,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Berhampore, Murshidabad, West Bengal, India"
   },
   "sonu-nigam": {
     "name": "Sonu Nigam",
@@ -3363,12 +3409,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Legendary Playback Singer",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4c/16/13/4c161318-5bf1-ea55-774d-2f55e2361d10/8902894623179_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4c/16/13/4c161318-5bf1-ea55-774d-2f55e2361d10/8902894623179_cover.jpg/1000x1000bb.jpg",
-    "bio": "Sonu Nigam is celebrated as the 'Lord of Chords' and one of the greatest playback vocalists in Indian musical history. Honored with the Padma Shri, National Film Award, and multiple Filmfare trophies, his pristine pitch, unmatched classical versatility, and emotional resonance have shaped the golden era of 90s and 2000s Bollywood. From timeless ghazals to unforgettable cinema anthems, his voice remains immortal.",
+    "bio": "Sonu Nigam is a maestro of Indian playback singing whose vocal dexterity, classical training, and emotional versatility have defined Hindi cinema for three decades. Honored with the Padma Shri and National Film Award, his iconic discography features 'Kal Ho Naa Ho', 'Sandese Aate Hai', 'Abhi Mujh Mein Kahin', and 'Suraj Hua Maddham'.",
     "socials": {
       "instagram": "https://www.instagram.com/sonunigamofficial/",
       "x": "https://x.com/sonunigam",
       "facebook": "https://www.facebook.com/SonuNigamSpace/",
-      "youtube": "https://www.youtube.com/@sonunigam"
+      "youtube": "https://www.youtube.com/@sonunigam",
+      "spotify": "https://open.spotify.com/artist/2GoeZ0qgr1yRDTLoYvIr0Q"
     },
     "tourInfo": {
       "tourName": "Sonu Nigam The Symphony Tour 2026",
@@ -3477,7 +3524,8 @@ export const ARTIST_DATABASE = {
         "duration": 329,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Faridabad, Haryana, India"
   },
   "kk": {
     "name": "KK",
@@ -3486,12 +3534,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Nostalgia & Rock Icon",
     "banner": "https://i.ytimg.com/vi/8g2e-m6910U/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/8g2e-m6910U/hqdefault.jpg",
-    "bio": "Krishnakumar Kunnath, affectionately known as KK, was the defining voice of love, heartbreak, and youthful nostalgia for an entire generation. With raw vocal power, crystal-clear emotional delivery, and a complete absence of formal classical training, KK created everlasting anthems like 'Pal' and 'Yaaron' that became the soundtrack of millions of lives.",
+    "bio": "Krishnakumar Kunnath (KK) was an iconic Indian playback singer whose electrifying rock vocals and soul-stirring ballads soundtracked youth, love, and heartbreak across the country. From youth anthems 'Pal' and 'Yaaron' to Bollywood gems 'Zara Sa', 'Kya Mujhe Pyar Hai', and 'Tu Hi Meri Shab Hai', KK's legacy remains immortal.",
     "socials": {
       "instagram": "https://www.instagram.com/kk_live_now/",
       "x": "https://x.com/kksings",
       "facebook": "https://www.facebook.com/KKSingsOfficial/",
-      "youtube": "https://www.youtube.com/@KKMemorialOfficial"
+      "youtube": "https://www.youtube.com/@KKMemorialOfficial",
+      "spotify": "https://open.spotify.com/artist/4f7KfUB3e1JH7S55hOW4in"
     },
     "tourInfo": {
       "tourName": "KK Forever - Tribute Symphony",
@@ -3600,7 +3649,8 @@ export const ARTIST_DATABASE = {
         "duration": 254,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "New Delhi, India"
   },
   "sid-sriram": {
     "name": "Sid Sriram",
@@ -3609,12 +3659,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Carnatic & Indie Soul",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/38/30/7e3830a6-5776-6ffc-5290-77a834e022f6/8902894358897_cover.jpg/1000x1000bb.jpg",
-    "bio": "Sid Sriram is an Indian-American vocalist, songwriter, and producer who pioneered the bridge between traditional South Indian Carnatic music and contemporary American soul and R&B. Trained under legendary musicians and championed by A.R. Rahman, his revolutionary vocal stylings have broken records across Tamil, Telugu, Kannada, Malayalam, and Hindi cinema.",
+    "bio": "Sid Sriram is a genre-defying Carnatic and contemporary singer-songwriter whose hypnotic voice bridges traditional South Indian classical ragas with Western neo-soul and R&B. His hits 'Inkem Inkem', 'Samajavaragamana', 'Srivalli', and 'Adiye' have made him a towering Pan-Indian musical sensation.",
     "socials": {
       "instagram": "https://www.instagram.com/sidsriram/",
       "x": "https://x.com/sidsriram",
       "facebook": "https://www.facebook.com/sidsrirammusic/",
-      "youtube": "https://www.youtube.com/@sidsriram"
+      "youtube": "https://www.youtube.com/@sidsriram",
+      "spotify": "https://open.spotify.com/artist/7qjJw7BDpgLvqEe0FsvNed"
     },
     "tourInfo": {
       "tourName": "Sid Sriram Boundless Tour 2026",
@@ -3723,7 +3774,8 @@ export const ARTIST_DATABASE = {
         "duration": 236,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Chennai, Tamil Nadu, India / Fremont, California, USA"
   },
   "sidhu-moosewala": {
     "name": "Sidhu Moosewala",
@@ -3732,12 +3784,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Global Punjabi Hip-Hop Legend",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ca/84/f0/ca84f00b-6060-63c3-e290-0081d4a0ea8d/196589083818.jpg/1000x1000bb.jpg",
-    "bio": "Shubhdeep Singh Sidhu, known worldwide as Sidhu Moosewala, was an iconoclastic Punjabi singer, lyricist, and cultural powerhouse who transformed Punjabi music on the world stage. Blending fearless rural folk idioms with explosive West Coast hip-hop beats, he broke onto Billboard Global 200 and UK charts, becoming the voice of defiance, honor, and grassroots pride for millions across the diaspora.",
+    "bio": "Shubhdeep Singh Sidhu, known globally as Sidhu Moosewala, was a revolutionary Punjabi singer, rapper, and lyricist whose hard-hitting rustic storytelling and trap anthems took Punjabi music to international billboards. Hits like '295', 'So High', 'Old Skool', and 'The Last Ride' created a historic global legacy.",
     "socials": {
       "instagram": "https://www.instagram.com/sidhu_moosewala/",
       "x": "https://x.com/iSidhuMooseWala",
       "facebook": "https://www.facebook.com/SidhuMooseWalaOfficial/",
-      "youtube": "https://www.youtube.com/@SidhuMooseWalaOfficial"
+      "youtube": "https://www.youtube.com/@SidhuMooseWalaOfficial",
+      "spotify": "https://open.spotify.com/artist/4IKvdKN1Y5yVbfa152e9Wq"
     },
     "tourInfo": {
       "tourName": "Sidhu Moosewala Immortal Legacy Tour",
@@ -3846,7 +3899,8 @@ export const ARTIST_DATABASE = {
         "duration": 312,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Moosa, Mansa, Punjab, India"
   },
   "karan-aujla": {
     "name": "Karan Aujla",
@@ -3855,12 +3909,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#2 in Punjabi Global Hits",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/3a/02/eb3a0279-b1d5-e51c-ef53-90d1bf3a5f78/5054197779032.jpg/1000x1000bb.jpg",
-    "bio": "Jaskaran Singh Aujla, known universally as Karan Aujla ('Geetan Di Machine'), is a Canadian-based Indian singer, rapper, and songwriter at the pinnacle of modern Punjabi music. Renowned for hyper-creative rhyme schemes, infectious hooks, and mega-hits like 'Tauba Tauba', 'Softly', and 'Winning Speech', Aujla made history by winning the Juno Fan Choice Award and dominating Billboard Canadian Albums.",
+    "bio": "Karan Aujla, known as 'Geetan Di Machine', is a premier Punjabi singer, rapper, and lyricist celebrated for his razor-sharp lyricism, infectious swagger, and global hits. Albums like 'Making Memories' and 'Street Dreams' alongside mega-hits 'Softly', 'White Brown Black', and 'Tauba Tauba' have topped worldwide charts.",
     "socials": {
       "instagram": "https://www.instagram.com/karanaujla_official/",
       "x": "https://x.com/GeetanDiMachine",
       "facebook": "https://www.facebook.com/KaranAujlaOfficial/",
-      "youtube": "https://www.youtube.com/@KaranAujlaOfficial"
+      "youtube": "https://www.youtube.com/@KaranAujlaOfficial",
+      "spotify": "https://open.spotify.com/artist/2auC28zjQyVTsiZKNgPRGs"
     },
     "tourInfo": {
       "tourName": "Karan Aujla It Was All A Dream Tour",
@@ -3969,7 +4024,8 @@ export const ARTIST_DATABASE = {
         "duration": 226,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Ghurala, Ludhiana, Punjab, India"
   },
   "drake": {
     "name": "Drake",
@@ -3978,12 +4034,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#3 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0d/17/28/0d172828-0955-44f3-a442-901e8c75ff74/21UMGIM52358.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Aubrey Drake Graham is a Canadian rapper, singer, and songwriter credited with popularizing singing and R&B sensibilities in modern hip-hop. Winner of five Grammy Awards and holder of unprecedented Billboard records—including the most charted songs, most top 10 hits, and the most weeks on the Hot 100—Drake has stood at the epicenter of global pop culture for over fifteen consecutive years.",
+    "bio": "Aubrey Drake Graham is a Canadian rapper, singer, and cultural icon credited with popularizing the singing-rapping crossover in modern hip-hop. The most-streamed artist in Spotify history with over 90 billion streams, his landmark records include 'God's Plan', 'One Dance', 'Hotline Bling', and 'In My Feelings'.",
     "socials": {
       "instagram": "https://www.instagram.com/champagnepapi/",
       "x": "https://x.com/drake",
       "facebook": "https://www.facebook.com/Drake/",
-      "youtube": "https://www.youtube.com/@DrakeOfficial"
+      "youtube": "https://www.youtube.com/@DrakeOfficial",
+      "spotify": "https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4"
     },
     "tourInfo": {
       "tourName": "It's All A Blur World Tour",
@@ -4092,7 +4149,8 @@ export const ARTIST_DATABASE = {
         "duration": 261,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Toronto, Ontario, Canada"
   },
   "kendrick-lamar": {
     "name": "Kendrick Lamar",
@@ -4101,12 +4159,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Hip-Hop Visionary",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/bc/d0/ea/bcd0ea01-38ee-a63d-4c31-7b00344d5641/22UMGIM41829.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Kendrick Lamar Duckworth is widely regarded as one of the most influential and technically gifted hip-hop artists in musical history. The only non-classical, non-jazz musician to win the Pulitzer Prize for Music, Lamar has claimed 17 Grammy Awards and widespread cultural reverence for groundbreaking conceptual albums like good kid, m.A.A.d city, To Pimp a Butterfly, and DAMN.",
+    "bio": "Kendrick Lamar is a Pulitzer Prize and 17-time Grammy-winning hip-hop visionary regarded as one of the most influential lyricists of his generation. Concept masterpieces 'good kid, m.A.A.d city', 'To Pimp a Butterfly', and 'DAMN.' paired with hits 'HUMBLE.', 'Not Like Us', and 'All the Stars' showcase his unmatched storytelling.",
     "socials": {
       "instagram": "https://www.instagram.com/kendricklamar/",
       "x": "https://x.com/kendricklamar",
       "facebook": "https://www.facebook.com/kendricklamar/",
-      "youtube": "https://www.youtube.com/@KendrickLamarVEVO"
+      "youtube": "https://www.youtube.com/@KendrickLamarVEVO",
+      "spotify": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg"
     },
     "tourInfo": {
       "tourName": "The Big Steppers World Tour",
@@ -4215,7 +4274,8 @@ export const ARTIST_DATABASE = {
         "duration": 310,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Compton, California, USA"
   },
   "post-malone": {
     "name": "Post Malone",
@@ -4224,12 +4284,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#4 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/7f/05/287f05eb-62a2-3f5f-00eb-14b35e076632/23UM1IM11060.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Austin Richard Post, known professionally as Post Malone, is an American singer, rapper, and songwriter celebrated for blending genres across hip-hop, pop, country, and grunge rock. With eight RIAA Diamond-certified singles and billions of streams on Spotify, he holds the record for the most diamond certifications in recording history.",
+    "bio": "Austin Richard Post, known as Post Malone, is an American superstar whose genre-blending sound fuses hip-hop, pop, rock, and country. Holding the record for the most RIAA Diamond-certified singles in history, his catalog includes mega-hits 'Sunflower', 'Circles', 'Rockstar', and 'Congratulations'.",
     "socials": {
       "instagram": "https://www.instagram.com/postmalone/",
       "x": "https://x.com/postmalone",
       "facebook": "https://www.facebook.com/postmalone/",
-      "youtube": "https://www.youtube.com/@PostMalone"
+      "youtube": "https://www.youtube.com/@PostMalone",
+      "spotify": "https://open.spotify.com/artist/246dkjvS1zLTtiykYiqx81"
     },
     "tourInfo": {
       "tourName": "F-1 Trillion World Tour 2026",
@@ -4338,7 +4399,8 @@ export const ARTIST_DATABASE = {
         "duration": 237,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Syracuse, New York, USA"
   },
   "justin-bieber": {
     "name": "Justin Bieber",
@@ -4347,12 +4409,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#7 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/09/a6/7b09a639-66bf-e935-7798-8ec23fbc55fc/21UMGIM13926.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Justin Drew Bieber is a Canadian pop and R&B powerhouse who rose from teenage acoustic phenomenon to one of the best-selling and most awarded artists of all time. Recipient of two Grammys and 33 Guinness World Records, Bieber became the first artist in Spotify history to surpass 90 million monthly listeners, defining the contemporary sound of global pop.",
+    "bio": "Justin Bieber is a Canadian pop sensation who evolved from a teenage prodigy into one of the best-selling music artists of all time. Selling over 150 million records and collecting two Grammy Awards, his era-defining hits include 'Sorry', 'Love Yourself', 'Stay', 'Peaches', and 'Ghost'.",
     "socials": {
       "instagram": "https://www.instagram.com/justinbieber/",
       "x": "https://x.com/justinbieber",
       "facebook": "https://www.facebook.com/JustinBieber/",
-      "youtube": "https://www.youtube.com/@JustinBieber"
+      "youtube": "https://www.youtube.com/@JustinBieber",
+      "spotify": "https://open.spotify.com/artist/1uNFoZAHBGtllmzznpCI3s"
     },
     "tourInfo": {
       "tourName": "Justice World Stadium Tour",
@@ -4461,7 +4524,8 @@ export const ARTIST_DATABASE = {
         "duration": 170,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "London, Ontario, Canada"
   },
   "ariana-grande": {
     "name": "Ariana Grande",
@@ -4470,12 +4534,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#6 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/27/ec/0527ec31-6b94-81d7-2f3b-dc94ad140134/24UMGIM08855.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Ariana Grande-Butera is an American pop and R&B powerhouse endowed with a legendary four-octave vocal range and signature whistle register. A two-time Grammy winner and Billboard chart record-holder, her albums Sweetener, Thank U, Next, Positions, and Eternal Sunshine have dominated global streaming, marking her as one of the definitive vocalists of the 21st century.",
+    "bio": "Ariana Grande is an American pop icon and vocal virtuoso possessing a four-octave vocal range and whistle register. Winner of two Grammy Awards, her blockbuster albums 'Thank U, Next' and 'Positions' produced historic hits '7 rings', 'No Tears Left to Cry', 'we can't be friends', and 'Side to Side'.",
     "socials": {
       "instagram": "https://www.instagram.com/arianagrande/",
       "x": "https://x.com/ArianaGrande",
       "facebook": "https://www.facebook.com/arianagrande/",
-      "youtube": "https://www.youtube.com/@ArianaGrande"
+      "youtube": "https://www.youtube.com/@ArianaGrande",
+      "spotify": "https://open.spotify.com/artist/66CXWjxzNUsdJxJ2JdwvnR"
     },
     "tourInfo": {
       "tourName": "Eternal Sunshine Live World Tour",
@@ -4584,7 +4649,8 @@ export const ARTIST_DATABASE = {
         "duration": 197,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Boca Raton, Florida, USA"
   },
   "bts": {
     "name": "BTS",
@@ -4593,12 +4659,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Global K-Pop Icons",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d4/06/f0/d406f0e4-5778-9e5c-0974-9eb22ee5108d/196589179925.jpg/1000x1000bb.jpg",
-    "bio": "BTS (Bangtan Sonyeondan), comprising RM, Jin, SUGA, j-hope, Jimin, V, and Jung Kook, is a Grammy-nominated South Korean group that became a 21st-century cultural titan. The first Korean group to top the US Billboard Hot 100 with 'Dynamite' and 'Butter', BTS has sold over 40 million albums, addressed the United Nations, and fostered a global ARMY of millions with messages of self-love and unity.",
+    "bio": "BTS (Bangtan Sonyeondan) is a South Korean septet that became a global cultural phenomenon, leading the 21st-century K-pop revolution. Earning multiple Grammy nominations and six Billboard Hot 100 #1 hits, their anthems 'Dynamite', 'Butter', 'Boy With Luv', and 'Spring Day' have united a worldwide fanbase.",
     "socials": {
       "instagram": "https://www.instagram.com/bts.bighitofficial/",
       "x": "https://x.com/bts_bighit",
       "facebook": "https://www.facebook.com/bangtan.official/",
-      "youtube": "https://www.youtube.com/@BANGTANTV"
+      "youtube": "https://www.youtube.com/@BANGTANTV",
+      "spotify": "https://open.spotify.com/artist/3Nrfpe0tUJi4K4DXYWgMUX"
     },
     "tourInfo": {
       "tourName": "BTS World Stadium Tour",
@@ -4707,7 +4774,8 @@ export const ARTIST_DATABASE = {
         "duration": 217,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Seoul, South Korea"
   },
   "travis-scott": {
     "name": "Travis Scott",
@@ -4716,12 +4784,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#2 in Trap & Hip-Hop",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f1/b7/c7/f1b7c7b8-6c84-88aa-324c-208b0a943715/196588239021.jpg/1000x1000bb.jpg",
-    "bio": "Jacques Bermon Webster II, known professionally as Travis Scott, is a Houston-born rapper, producer, and cultural architect whose cinematic soundscapes, psychedelic auto-tune mastery, and chaotic live energy redefined contemporary trap music. With masterworks Rodeo, ASTROWORLD, and UTOPIA, Scott has amassed multiple Diamond certifications and 10 Grammy nominations.",
+    "bio": "Jacques Bermon Webster II, known as Travis Scott, is an American rapper, producer, and fashion icon renowned for his psychedelic trap soundscapes, auto-tuned hooks, and chaotic live energy. Masterpiece album 'ASTROWORLD' and hits 'SICKO MODE', 'FE!N', and 'Goosebumps' headline his streaming supremacy.",
     "socials": {
       "instagram": "https://www.instagram.com/travisscott/",
       "x": "https://x.com/trvisXX",
       "facebook": "https://www.facebook.com/travisscott/",
-      "youtube": "https://www.youtube.com/@TravisScottXX"
+      "youtube": "https://www.youtube.com/@TravisScottXX",
+      "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
     },
     "tourInfo": {
       "tourName": "Circus Maximus Stadium World Tour",
@@ -4830,7 +4899,8 @@ export const ARTIST_DATABASE = {
         "duration": 211,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Houston, Texas, USA"
   },
   "kishore-kumar": {
     "name": "Kishore Kumar",
@@ -4839,12 +4909,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Golden Era Legend of Indian Cinema",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-    "bio": "Kishore Kumar (Abhas Kumar Ganguly) was a once-in-a-century creative genius: playback singer, actor, composer, and director whose exuberant yodeling, incomparable emotional depth, and peerless comedic timing defined the soundtrack of 20th-century India. Winner of eight Filmfare Best Male Playback Awards, his collaboration with R.D. Burman and Rajesh Khanna produced the greatest catalog in Indian cinema history.",
+    "bio": "Kishore Kumar was an incomparable Indian playback singer, actor, and composer whose joyful yodeling, romantic warmth, and deep pathos defined the golden era of Indian cinema. Winner of eight Filmfare Awards, his immortals 'Mere Sapno Ki Rani', 'Pal Pal Dil Ke Paas', 'Roop Tera Mastana', and 'O Saathi Re' remain eternal.",
     "socials": {
       "instagram": "https://www.instagram.com/kishorekumarofficial/",
-      "x": "https://x.com/KishoreKumarLegends",
-      "facebook": "https://www.facebook.com/KishoreKumarLegacy/",
-      "youtube": "https://www.youtube.com/@KishoreKumarOfficial"
+      "x": "https://x.com/SaregamaGlobal",
+      "facebook": "https://www.facebook.com/Saregama/",
+      "youtube": "https://www.youtube.com/@SaregamaMusic",
+      "spotify": "https://open.spotify.com/artist/4fEkbug6kZzzJ8WURZeAw5"
     },
     "tourInfo": {
       "tourName": "Kishore Kumar Immortal Classics Symphony",
@@ -4953,7 +5024,8 @@ export const ARTIST_DATABASE = {
         "duration": 254,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Khandwa, Central Provinces (Madhya Pradesh), India"
   },
   "lata-mangeshkar": {
     "name": "Lata Mangeshkar",
@@ -4962,12 +5034,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Immortal Nightingale of India",
     "banner": "https://i.ytimg.com/vi/TFr6G5zveS8/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/TFr6G5zveS8/hqdefault.jpg",
-    "bio": "Lata Mangeshkar, the revered 'Nightingale of India' and recipient of the Bharat Ratna (India's highest civilian honor), is the most iconic voice in the history of Indian culture. Spanning a monumental eight-decade career with over 30,000 recorded songs across thirty-six regional languages, her pure tonal devotion brought prime ministers to tears with 'Aye Mere Watan Ke Logo' and defined the soul of the nation.",
+    "bio": "Bharat Ratna Lata Mangeshkar was revered as the Queen of Melody and the definitive singing voice of India for over seven decades. Recording tens of thousands of songs across thirty-six languages, her divine renditions 'Aap Ki Nazron Ne Samjha', 'Lag Ja Gale', and 'Tere Bina Zindagi Se' form the bedrock of Indian culture.",
     "socials": {
       "instagram": "https://www.instagram.com/mangeshkar.lata/",
       "x": "https://x.com/mangeshkarlata",
-      "facebook": "https://www.facebook.com/LataMangeshkarOfficial/",
-      "youtube": "https://www.youtube.com/@LataMangeshkarLegacy"
+      "facebook": "https://www.facebook.com/Saregama/",
+      "youtube": "https://www.youtube.com/@SaregamaMusic",
+      "spotify": "https://open.spotify.com/artist/61JrEIqvAzEGgCDlm6pmZL"
     },
     "tourInfo": {
       "tourName": "Lata Mangeshkar Memorial Heritage Symphony",
@@ -5076,7 +5149,8 @@ export const ARTIST_DATABASE = {
         "duration": 396,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Indore, Madhya Pradesh, India"
   },
   "ar-rahman": {
     "name": "A.R. Rahman",
@@ -5085,12 +5159,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Film Score & Global Music Maestro",
     "banner": "https://i.ytimg.com/vi/Yc5OyXmHD0w/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/Yc5OyXmHD0w/hqdefault.jpg",
-    "bio": "Allah-Rakha Rahman, revered globally as 'The Mozart of Madras', is an Indian composer, record producer, singer, and songwriter who revolutionized Indian film music. Winner of two Academy Awards, two Grammy Awards, a BAFTA Award, and six National Film Awards, his genre-defying synthesis of Eastern classical traditions with electronic music and Western orchestral grandeur placed Indian music on the global pedestal.",
+    "bio": "Allah Rakha Rahman is a two-time Academy Award, two-time Grammy, and BAFTA-winning music composer who revolutionized world cinema through his visionary fusion of Indian classical music, electronic textures, and global orchestration. Soundtracks for 'Roja', 'Dil Se', 'Slumdog Millionaire', and 'Rockstar' are modern masterpieces.",
     "socials": {
       "instagram": "https://www.instagram.com/arrahman/",
       "x": "https://x.com/arrahman",
       "facebook": "https://www.facebook.com/arrahman/",
-      "youtube": "https://www.youtube.com/@arrahman"
+      "youtube": "https://www.youtube.com/@arrahman",
+      "spotify": "https://open.spotify.com/artist/1mYsTxn959q0Z4569ENfZU"
     },
     "tourInfo": {
       "tourName": "A.R. Rahman Wonderment Symphony Tour",
@@ -5199,7 +5274,8 @@ export const ARTIST_DATABASE = {
         "duration": 295,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Chennai, Tamil Nadu, India"
   },
   "badshah": {
     "name": "Badshah",
@@ -5208,12 +5284,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Indian Party & Rap Hitmaker",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d5/43/fa/d543fa3d-b4b9-8041-3ef8-278b17a14e10/8902894364003_cover.jpg/1000x1000bb.jpg",
-    "bio": "Aditya Prateek Singh Sisodia, known mononymously as Badshah, is an Indian rapper, singer, music producer, and entrepreneur whose mega-viral club bangers have collected billions of YouTube and streaming plays. Recognized as the undisputed king of Indian party and commercial rap, his record-shattering anthems like 'Genda Phool', 'Jugnu', and 'Garmi' dominate dancefloors worldwide.",
+    "bio": "Aditya Prateek Singh Sisodia, known as Badshah, is an Indian rapper, singer, and music producer whose infectious commercial hip-hop anthems have dominated clubs and parties worldwide. Hits 'Genda Phool', 'Kala Chashma', 'Jugnu', and 'Garmi' have earned billions of YouTube and streaming views.",
     "socials": {
       "instagram": "https://www.instagram.com/badboyshah/",
       "x": "https://x.com/Its_Badshah",
       "facebook": "https://www.facebook.com/OfficialBadshah/",
-      "youtube": "https://www.youtube.com/@Badshah"
+      "youtube": "https://www.youtube.com/@Badshah",
+      "spotify": "https://open.spotify.com/artist/0y59o4v8uw5crbN9M3JiL1"
     },
     "tourInfo": {
       "tourName": "The Paagal Tour 2026",
@@ -5322,7 +5399,8 @@ export const ARTIST_DATABASE = {
         "duration": 162,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Delhi, India"
   },
   "honey-singh": {
     "name": "Yo Yo Honey Singh",
@@ -5331,12 +5409,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Commercial Desi Hip-Hop Pioneer",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/33/27/9d/33279d4f-3765-ca75-8025-a136bfb1d83c/8902894363297_cover.jpg/1000x1000bb.jpg",
-    "bio": "Hirdesh Singh, known across the globe as Yo Yo Honey Singh, is the trailblazing music director, rapper, and pop sensation who brought commercial hip-hop into mainstream Indian cinema. His debut independent album International Villager became the highest-selling Punjabi album of all time, igniting an era of high-octane club anthems across the globe.",
+    "bio": "Hirdesh Singh, known professionally as Yo Yo Honey Singh, is a music director, rapper, and pop pioneer credited with bringing Punjabi and Desi hip-hop into mainstream Indian cinema. Historic tracks 'Blue Eyes', 'Dope Shope', 'Love Dose', and 'Brown Rang' reshaped contemporary Indian pop music.",
     "socials": {
       "instagram": "https://www.instagram.com/yoyohoneysingh/",
       "x": "https://x.com/asliyoyo",
       "facebook": "https://www.facebook.com/YoyoMahiofficial/",
-      "youtube": "https://www.youtube.com/@YoYoHoneySingh"
+      "youtube": "https://www.youtube.com/@YoYoHoneySingh",
+      "spotify": "https://open.spotify.com/artist/7uIbLdzzVZEDhmvTCnYGuf"
     },
     "tourInfo": {
       "tourName": "Honey 3.0 Glory Arena World Tour",
@@ -5445,7 +5524,8 @@ export const ARTIST_DATABASE = {
         "duration": 188,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Hoshiarpur, Punjab, India"
   },
   "neha-kakkar": {
     "name": "Neha Kakkar",
@@ -5454,12 +5534,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#2 Female Vocalist in India",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/8a/8d/1e8a8d05-49e0-cb8f-0925-5e6fca790a35/8902894623124_cover.jpg/1000x1000bb.jpg",
-    "bio": "Neha Kakkar is one of the most followed and streamed Indian female vocalists of all time, acclaimed for her infectious energy, signature husky tone, and chart-topping dance numbers. Rising from religious jagran performances to winning India's heart on national television, she has become an unstoppable hitmaker with billions of streams.",
+    "bio": "Neha Kakkar is one of the most popular and energetic playback singers in India, renowned for her celebratory dance anthems and emotional acoustic melodies. With billions of cumulative views, her party hits 'Aankh Marey', 'Dilbar', 'Garmi', and 'Kala Chashma' are staples of modern Bollywood celebrations.",
     "socials": {
       "instagram": "https://www.instagram.com/nehakakkar/",
       "x": "https://x.com/iAmNehaKakkar",
       "facebook": "https://www.facebook.com/NehaKakkarOfficial/",
-      "youtube": "https://www.youtube.com/@NehaKakkarOfficial"
+      "youtube": "https://www.youtube.com/@NehaKakkarOfficial",
+      "spotify": "https://open.spotify.com/artist/5f4tvdWiqYrf5GhgRPNCvC"
     },
     "tourInfo": {
       "tourName": "Neha Kakkar Live In Concert",
@@ -5568,7 +5649,8 @@ export const ARTIST_DATABASE = {
         "duration": 257,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Rishikesh, Uttarakhand, India"
   },
   "sunidhi-chauhan": {
     "name": "Sunidhi Chauhan",
@@ -5577,12 +5659,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Live Vocal Powerhouse",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1e/18/be/1e18bed8-9842-8c17-6490-67c858dc42ba/8902894623100_cover.jpg/1000x1000bb.jpg",
-    "bio": "Sunidhi Chauhan is universally regarded as the fiercest vocal powerhouse in modern Indian music. Renowned for raw stage intensity, astonishing dynamic range, and electrifying versatility, she has recorded thousands of songs across Hindi, Tamil, Telugu, and Punjabi cinema, earning multiple Filmfare Awards and headlining global arena spectacles.",
+    "bio": "Sunidhi Chauhan is a powerhouse Indian playback singer acclaimed for her dramatic vocal projection, wide dynamic range, and electrifying stage presence. A recipient of multiple Filmfare Awards, her iconic hits include 'Kamli', 'Sheila Ki Jawani', 'Crazy Kiya Re', and 'Beedi Jalaile'.",
     "socials": {
       "instagram": "https://www.instagram.com/sunidhichauhan5/",
       "x": "https://x.com/SunidhiChauhan5",
       "facebook": "https://www.facebook.com/sunidhi.chauhan/",
-      "youtube": "https://www.youtube.com/@SunidhiChauhanOfficial"
+      "youtube": "https://www.youtube.com/@SunidhiChauhanOfficial",
+      "spotify": "https://open.spotify.com/artist/3tIQUA5Yc694qV5pp1AoqL"
     },
     "tourInfo": {
       "tourName": "I Am Home Live Arena Tour",
@@ -5691,7 +5774,8 @@ export const ARTIST_DATABASE = {
         "duration": 334,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "New Delhi, India"
   },
   "jubin-nautiyal": {
     "name": "Jubin Nautiyal",
@@ -5700,12 +5784,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#2 Soulful Balladeer in India",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/62/5d/f4625dc8-5ce0-35e6-ec61-c8a7732db3c1/8902894362146_cover.jpg/1000x1000bb.jpg",
-    "bio": "Jubin Nautiyal is an Indian playback singer and performer revered for rich baritone warmth, heartfelt acoustic renditions, and blockbuster romantic ballads. Winner of IIFA and Filmfare honors for 'Raataan Lambiyan' from Shershaah, his songs regularly cross hundreds of millions of views, making him one of the most bankable romantic voices of the modern streaming era.",
+    "bio": "Jubin Nautiyal is an Indian playback singer and performer celebrated for his velvet romantic timbre and acoustic ballads. Awarded the IIFA Playback Singer award, his signature melodies 'Raataan Lambiyan', 'Lut Gaye', 'Tum Hi Aana', and 'Kuch Toh Bata Zindagi' have touched millions.",
     "socials": {
       "instagram": "https://www.instagram.com/jubin_nautiyal/",
       "x": "https://x.com/JubinNautiyal",
       "facebook": "https://www.facebook.com/JubinNautiyalOfficial/",
-      "youtube": "https://www.youtube.com/@JubinNautiyal"
+      "youtube": "https://www.youtube.com/@JubinNautiyal",
+      "spotify": "https://open.spotify.com/artist/1tq9qg1qPq55F1P4b8t9kG"
     },
     "tourInfo": {
       "tourName": "Jubin Nautiyal Live In Concert",
@@ -5814,7 +5899,8 @@ export const ARTIST_DATABASE = {
         "duration": 276,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Dehradun, Uttarakhand, India"
   },
   "nusrat-fateh-ali-khan": {
     "name": "Nusrat Fateh Ali Khan",
@@ -5823,12 +5909,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Shahenshah-e-Qawwali Worldwide",
     "banner": "https://i.ytimg.com/vi/h9wB5t12oK0/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/h9wB5t12oK0/hqdefault.jpg",
-    "bio": "Ustad Nusrat Fateh Ali Khan, universally revered as 'Shahenshah-e-Qawwali' (The King of Kings of Qawwali), possessed one of the most transcendent, powerful, and acrobatic vocal instruments in the recorded history of humankind. Introducing the mystical ecstatic ecstasy of 700-year-old Sufi qawwali to world stages from WOMAD to Peter Gabriel and Eddie Vedder, his voice remains an eternal spiritual conduit.",
+    "bio": "Ustad Nusrat Fateh Ali Khan was the 'Shahenshah-e-Qawwali' (King of Kings of Qawwali) and one of the greatest vocalists in recorded history. Possessing an extraordinary vocal range and trance-inducing improvisational prowess, his transcendent spiritual qawwalis 'Dam Mast Qalandar', 'Yeh Jo Halka Halka', and 'Afreen Afreen' influenced musicians globally.",
     "socials": {
       "instagram": "https://www.instagram.com/nusrat_fateh_ali_khan_legacy/",
       "x": "https://x.com/NFAKLegacy",
       "facebook": "https://www.facebook.com/NusratFatehAliKhanOfficial/",
-      "youtube": "https://www.youtube.com/@NFAKOfficial"
+      "youtube": "https://www.youtube.com/@NFAKOfficial",
+      "spotify": "https://open.spotify.com/artist/5r3wPya2P91Gsg2209YRyJ"
     },
     "tourInfo": {
       "tourName": "Nusrat Fateh Ali Khan Eternal Spiritual Heritage",
@@ -5937,7 +6024,8 @@ export const ARTIST_DATABASE = {
         "duration": 480,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Faisalabad, Punjab, Pakistan"
   },
   "rahat-fateh-ali-khan": {
     "name": "Rahat Fateh Ali Khan",
@@ -5946,12 +6034,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Sufi & Bollywood Playback King",
     "banner": "https://i.ytimg.com/vi/kw4tT7SCmaY/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg",
-    "bio": "Ustad Rahat Fateh Ali Khan is a world-renowned Pakistani musician and playback singer belonging to the 600-year-old Qawwal Bachhon gharana. Trained directly by his uncle Nusrat Fateh Ali Khan, Rahat has conquered both Bollywood and international concert halls, earning Filmfare Awards and headlining the Nobel Peace Prize concert with timeless masterpieces like 'O Re Piya' and 'Afreen Afreen'.",
+    "bio": "Ustad Rahat Fateh Ali Khan is a world-renowned Pakistani musician and playback singer carryng forward the esteemed Qawwali tradition of the Khan family. His romantic and Sufi contributions to Bollywood including 'O Re Piya', 'Tere Mast Mast Do Nain', 'Afreen Afreen', and 'Jiya Dhadak Dhadak' have earned critical international adoration.",
     "socials": {
       "instagram": "https://www.instagram.com/officialrfakworld/",
       "x": "https://x.com/RFAKWorld",
       "facebook": "https://www.facebook.com/RahatFatehAliKhanOfficial/",
-      "youtube": "https://www.youtube.com/@RahatFatehAliKhanOfficial"
+      "youtube": "https://www.youtube.com/@RahatFatehAliKhanOfficial",
+      "spotify": "https://open.spotify.com/artist/3O9bT7k9l9o71wK2wXpL1P"
     },
     "tourInfo": {
       "tourName": "Just Qawwali Live World Tour 2026",
@@ -6060,7 +6149,8 @@ export const ARTIST_DATABASE = {
         "duration": 289,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Faisalabad, Punjab, Pakistan"
   },
   "blackpink": {
     "name": "BLACKPINK",
@@ -6069,12 +6159,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Global K-Pop Female Group",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c2/f7/a8/c2f7a810-73f1-d07b-cb15-fae5635f639d/22UMGIM89354.rgb.jpg/1000x1000bb.jpg",
-    "bio": "BLACKPINK (Jisoo, Jennie, Rosé, and Lisa) is the most successful Korean girl group internationally, crowned as the 'biggest girl group in the world'. The highest-charting female Korean act on the US Billboard Hot 100 and Billboard 200, BLACKPINK made history as the first Korean group to headline Coachella, collecting billions of streams with revolutionary girl-crush anthems.",
+    "bio": "BLACKPINK is a world-conquering South Korean girl group composed of Jisoo, Jennie, Rosé, and Lisa. Often described as the biggest girl group in the world, their fierce EDM-trap anthems 'DDU-DU DDU-DU', 'Kill This Love', 'Pink Venom', and 'How You Like That' have rewritten global music records.",
     "socials": {
       "instagram": "https://www.instagram.com/blackpinkofficial/",
       "x": "https://x.com/BLACKPINK",
       "facebook": "https://www.facebook.com/BLACKPINKOFFICIAL/",
-      "youtube": "https://www.youtube.com/@BLACKPINKOFFICIAL"
+      "youtube": "https://www.youtube.com/@BLACKPINKOFFICIAL",
+      "spotify": "https://open.spotify.com/artist/41MozSoPIVZ0vd9An09jOT"
     },
     "tourInfo": {
       "tourName": "BORN PINK World Stadium Tour",
@@ -6183,7 +6274,8 @@ export const ARTIST_DATABASE = {
         "duration": 211,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Seoul, South Korea"
   },
   "harry-styles": {
     "name": "Harry Styles",
@@ -6192,12 +6284,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#8 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/20/73/0e/20730eb0-6216-c7fe-a704-569fb2d354c4/886449990263.jpg/1000x1000bb.jpg",
-    "bio": "Harry Edward Styles is an English singer, songwriter, and actor whose charismatic glam-rock and vintage pop aesthetic earned him Album of the Year at the Grammy Awards for Harry's House. His record-shattering anthem 'As It Was' became the longest-running solo number-one on the Billboard Hot 100, solidifying his role as a generation-defining rock and pop icon.",
+    "bio": "Harry Styles is an English singer, songwriter, and fashion trendsetter whose solo music blends sparkling retro pop, rock, and British folk. His Grammy Album of the Year winner 'Harry's House' gave birth to the record-setting global anthem 'As It Was', alongside classics 'Watermelon Sugar' and 'Sign of the Times'.",
     "socials": {
       "instagram": "https://www.instagram.com/harrystyles/",
       "x": "https://x.com/Harry_Styles",
       "facebook": "https://www.facebook.com/harrystyles/",
-      "youtube": "https://www.youtube.com/@HarryStyles"
+      "youtube": "https://www.youtube.com/@HarryStyles",
+      "spotify": "https://open.spotify.com/artist/6KImCVD70vtIoJWnq6nfl3"
     },
     "tourInfo": {
       "tourName": "Love On Tour Stadium Retrospective",
@@ -6306,7 +6399,8 @@ export const ARTIST_DATABASE = {
         "duration": 172,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Redditch, Worcestershire, England"
   },
   "olivia-rodrigo": {
     "name": "Olivia Rodrigo",
@@ -6315,12 +6409,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#2 in Alt-Pop / Rock",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/58/a6/5e/58a65e7d-cb09-c5c2-f19b-648f572a1df7/23UMGIM71089.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Olivia Isabel Rodrigo is an American singer-songwriter who ignited a global pop-punk renaissance with her 3x Grammy-winning debut SOUR and critically lauded sophomore album GUTS. Bursting onto the scene with 'drivers license'—which shattered Spotify single-day streaming records—her sharp lyricism and visceral teenage angst have resonated across generations.",
+    "bio": "Olivia Rodrigo is an American singer-songwriter who ignited a global pop-punk and alt-pop resurgence with her candid songwriting. Her debut single 'Drivers License' shattered worldwide streaming records, followed by critically lauded records 'Good 4 U', 'Deja Vu', and 'Vampire', earning three Grammy Awards.",
     "socials": {
       "instagram": "https://www.instagram.com/oliviarodrigo/",
       "x": "https://x.com/oliviarodrigo",
       "facebook": "https://www.facebook.com/OliviaRodrigoOfficial/",
-      "youtube": "https://www.youtube.com/@OliviaRodrigo"
+      "youtube": "https://www.youtube.com/@OliviaRodrigo",
+      "spotify": "https://open.spotify.com/artist/1McMsnEElThX1knmY4oliG"
     },
     "tourInfo": {
       "tourName": "GUTS World Arena Tour",
@@ -6429,7 +6524,8 @@ export const ARTIST_DATABASE = {
         "duration": 170,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Murrieta, California, USA"
   },
   "lady-gaga": {
     "name": "Lady Gaga",
@@ -6438,12 +6534,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#2 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/64/df/31/64df3158-967b-1178-0cb7-e433436bb535/8902894359672_cover.jpg/1000x1000bb.jpg",
-    "bio": "Stefani Joanne Angelina Germanotta, known as Lady Gaga, is an American pop icon, songwriter, and Oscar-winning actress renowned for boundary-pushing musical reinvention and operatic vocal power. With 13 Grammy Awards, an Academy Award, and mega-hits like 'Bad Romance', 'Shallow', and 'Die With A Smile' (with Bruno Mars), Gaga stands among the most celebrated artists in entertainment history.",
+    "bio": "Stefani Germanotta, known as Lady Gaga, is an American pop icon, songwriter, and actress known for her theatrical visual reinvention and breathtaking vocal power. Winner of 13 Grammy Awards and an Academy Award, her monumental records include 'Bad Romance', 'Shallow', 'Poker Face', and 'Die With A Smile'.",
     "socials": {
       "instagram": "https://www.instagram.com/ladygaga/",
       "x": "https://x.com/ladygaga",
       "facebook": "https://www.facebook.com/ladygaga/",
-      "youtube": "https://www.youtube.com/@LadyGaga"
+      "youtube": "https://www.youtube.com/@LadyGaga",
+      "spotify": "https://open.spotify.com/artist/1HY2Jd0NmPuamShAr6KMms"
     },
     "tourInfo": {
       "tourName": "The Chromatica Ball / Jazz & Piano",
@@ -6552,7 +6649,8 @@ export const ARTIST_DATABASE = {
         "duration": 210,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "New York City, New York, USA"
   },
   "charlie-puth": {
     "name": "Charlie Puth",
@@ -6561,12 +6659,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#10 in Contemporary Pop",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg",
-    "bio": "Charles Otto Puth Jr. is an American singer, songwriter, and record producer renowned for his rare perfect pitch and viral ear for hook construction. His breakout collaboration 'See You Again' with Wiz Khalifa topped the Billboard Hot 100 for 12 weeks, and subsequent albums Voicenotes and CHARLIE cemented his standing as a master pop melody architect.",
+    "bio": "Charlie Puth is an American singer-songwriter and producer famed for his perfect pitch and meticulous pop production. From the emotional tribute 'See You Again' to funky synth-pop gems 'Attention', 'We Don't Talk Anymore', and 'Left and Right', Charlie Puth has created some of modern pop's stickiest melodies.",
     "socials": {
       "instagram": "https://www.instagram.com/charlieputh/",
       "x": "https://x.com/charlieputh",
       "facebook": "https://www.facebook.com/charlieputh/",
-      "youtube": "https://www.youtube.com/@CharliePuth"
+      "youtube": "https://www.youtube.com/@CharliePuth",
+      "spotify": "https://open.spotify.com/artist/6VuMaDnrHyPL1p4EHsyYLi"
     },
     "tourInfo": {
       "tourName": "The Charlie Live Experience",
@@ -6675,7 +6774,8 @@ export const ARTIST_DATABASE = {
         "duration": 180,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Rumson, New Jersey, USA"
   },
   "darshan-raval": {
     "name": "Darshan Raval",
@@ -6684,12 +6784,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Monsoon & Romantic Pop Idol",
     "banner": "https://i.ytimg.com/vi/k9iX_99lI4s/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/k9iX_99lI4s/hqdefault.jpg",
-    "bio": "Darshan Raval is an Indian singer, composer, and heartthrob lyricist crowned as the 'Monsoon Romance King'. Emerging from India's Raw Star, his annual monsoon releases, sweet falsetto, and blockbuster Bollywood tracks like 'Chogada' and 'Kamariya' have made him an icon of modern Indian youth romance.",
+    "bio": "Darshan Raval is an Indian singer, composer, and youth icon whose emotional romantic ballads have resonated with millions across India. With his dedicated 'Blue Family' fandom, hits like 'Tera Zikr', 'Chogada', 'Asal Mein', and 'Kamariya' have solidified him as an independent pop heavyweight.",
     "socials": {
       "instagram": "https://www.instagram.com/darshanravaldz/",
       "x": "https://x.com/DarshanRavalDZ",
       "facebook": "https://www.facebook.com/DarshanRavalDZ/",
-      "youtube": "https://www.youtube.com/@DarshanRavalDZ"
+      "youtube": "https://www.youtube.com/@DarshanRavalDZ",
+      "spotify": "https://open.spotify.com/artist/41qhnC5AnKw9w0440k7wJt"
     },
     "tourInfo": {
       "tourName": "Love In The Stars Arena Tour",
@@ -6798,7 +6899,8 @@ export const ARTIST_DATABASE = {
         "duration": 180,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Ahmedabad, Gujarat, India"
   },
   "anuv-jain": {
     "name": "Anuv Jain",
@@ -6807,12 +6909,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Indie Acoustic Poet",
     "banner": "https://i.ytimg.com/vi/gQL9V4fsN_c/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/gQL9V4fsN_c/hqdefault.jpg",
-    "bio": "Anuv Jain is an Indian singer, songwriter, and acoustic guitarist hailed as the voice of heartfelt indie storytelling. Armored only with a baritone ukulele and poignant lyrics, his viral acoustic gems like 'Baarishein', 'Husn', and 'Alag Aasmaan' have captured millions of hearts, turning indie bedroom recordings into stadium sing-alongs.",
+    "bio": "Anuv Jain is an Indian indie singer-songwriter known for his intimate acoustic guitar and ukulele arrangements, evocative storytelling, and heartfelt baritone vocals. His viral independent songs 'Husn', 'Baarishein', 'Alag Aasmaan', and 'Mishri' have become anthems of love and longing across South Asia.",
     "socials": {
       "instagram": "https://www.instagram.com/anuvjain/",
       "x": "https://x.com/anuvjain",
       "facebook": "https://www.facebook.com/anuvjainmusic/",
-      "youtube": "https://www.youtube.com/@AnuvJain"
+      "youtube": "https://www.youtube.com/@AnuvJain",
+      "spotify": "https://open.spotify.com/artist/4gdMJYnopfmqP5yh00TGgL"
     },
     "tourInfo": {
       "tourName": "Guldasta Arena India Tour",
@@ -6921,7 +7024,8 @@ export const ARTIST_DATABASE = {
         "duration": 198,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Ludhiana, Punjab, India"
   },
   "prateek-kuhad": {
     "name": "Prateek Kuhad",
@@ -6930,12 +7034,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Global Indie Folk Artist",
     "banner": "https://i.ytimg.com/vi/Il7Nv270zNk/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/Il7Nv270zNk/hqdefault.jpg",
-    "bio": "Prateek Kuhad is an internationally celebrated singer-songwriter hailed by Barack Obama on his favorite music of the year list for 'cold/mess'. With whisper-soft acoustic intimacy, poetic bilingual songwriting in Hindi and English, and sold-out headline tours from London to Los Angeles, Kuhad defined the rise of global Indian indie folk.",
+    "bio": "Prateek Kuhad is an internationally celebrated Indian singer-songwriter whose gentle folk-pop melodies and poetic lyricism have earned global acclaim. His breakout track 'cold/mess' was famously selected by Barack Obama in his favorite music of the year, alongside indie hits 'Kasoor', 'Kho Gaye Hum Kahan', and 'Tune Kaha'.",
     "socials": {
       "instagram": "https://www.instagram.com/prateekkuhad/",
       "x": "https://x.com/prateekkuhad",
       "facebook": "https://www.facebook.com/prateekkuhadmusic/",
-      "youtube": "https://www.youtube.com/@PrateekKuhad"
+      "youtube": "https://www.youtube.com/@PrateekKuhad",
+      "spotify": "https://open.spotify.com/artist/0xHQH96y7lqZ89m0Z48xXq"
     },
     "tourInfo": {
       "tourName": "The Way That Too Goes World Tour",
@@ -7044,7 +7149,8 @@ export const ARTIST_DATABASE = {
         "duration": 178,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Jaipur, Rajasthan, India"
   },
   "shawn-mendes": {
     "name": "Shawn Mendes",
@@ -7053,12 +7159,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#9 in Global Acoustic Pop",
     "banner": "https://i.ytimg.com/vi/Pkh8UtuejGw/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/Pkh8UtuejGw/hqdefault.jpg",
-    "bio": "Shawn Peter Raul Mendes is a Canadian singer-songwriter who rose from acoustic Vine covers to global arena stardom. With four Billboard 200 #1 albums and multi-platinum smashes like 'Señorita', 'Treat You Better', and 'Stitches', Mendes is celebrated for earnest lyricism, soulful pop-rock arrangements, and world stadium tours.",
+    "bio": "Shawn Mendes is a Canadian singer-songwriter who rose from acoustic internet covers to arena-filling global superstardom. Known for his earnest pop-rock ballads and guitar hooks, his multi-platinum discography features 'Señorita', 'Treat You Better', 'Stitches', and 'There's Nothing Holdin' Me Back'.",
     "socials": {
       "instagram": "https://www.instagram.com/shawnmendes/",
       "x": "https://x.com/ShawnMendes",
       "facebook": "https://www.facebook.com/ShawnMendesOfficial/",
-      "youtube": "https://www.youtube.com/@ShawnMendesOfficial"
+      "youtube": "https://www.youtube.com/@ShawnMendesOfficial",
+      "spotify": "https://open.spotify.com/artist/7n2wX1utZJd9DYtc4qfFjs"
     },
     "tourInfo": {
       "tourName": "Wonder World Stadium Tour",
@@ -7167,7 +7274,8 @@ export const ARTIST_DATABASE = {
         "duration": 172,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Pickering, Ontario, Canada"
   },
   "rihanna": {
     "name": "Rihanna",
@@ -7176,12 +7284,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#5 Worldwide",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/1000x1000bb.jpg",
-    "bio": "Robyn Rihanna Fenty is a Barbadian singer, businesswoman, and global icon who holds 14 Billboard Hot 100 number-one singles (the third-most in history) and nine Grammy Awards. Known for her chameleon-like reinvention and unmistakable Caribbean swagger, her critically acclaimed masterpiece Anti and record-breaking Super Bowl LVII Halftime show cemented her eternal cultural immortality.",
+    "bio": "Robyn Rihanna Fenty is a Barbadian singer, businesswoman, and cultural icon recognized as one of the best-selling artists in music history. With 14 Billboard Hot 100 #1 singles and nine Grammy Awards, her timeless hits include 'Diamonds', 'Umbrella', 'We Found Love', and 'Love on the Brain'.",
     "socials": {
       "instagram": "https://www.instagram.com/badgalriri/",
       "x": "https://x.com/rihanna",
       "facebook": "https://www.facebook.com/rihanna/",
-      "youtube": "https://www.youtube.com/@RihannaVEVO"
+      "youtube": "https://www.youtube.com/@RihannaVEVO",
+      "spotify": "https://open.spotify.com/artist/5pKCCKE222Zw9GEVuqR1SC"
     },
     "tourInfo": {
       "tourName": "Anti World Stadium Tour Retrospective",
@@ -7290,7 +7399,8 @@ export const ARTIST_DATABASE = {
         "duration": 191,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Saint Michael, Barbados"
   },
   "beyonce": {
     "name": "Beyoncé",
@@ -7299,12 +7409,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Most Awarded Artist in Grammy History",
     "banner": "https://i.ytimg.com/vi/238Z4YaBd-Y/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/238Z4YaBd-Y/hqdefault.jpg",
-    "bio": "Beyoncé Giselle Knowles-Carter is an American singer, songwriter, and cultural matriarch recognized as one of the greatest performers of all time. With 32 Grammy Awards (the most of any individual in history), her genre-redefining cultural works—from Lemonade and Renaissance to Cowboy Carter—have shattered boundaries across R&B, pop, dance, and country.",
+    "bio": "Beyoncé Knowles-Carter is an American musical titan and cultural visionary holding the record for the most Grammy Award wins in history (32). From R&B beginnings with Destiny's Child to solo masterpieces 'Renaissance' and 'Cowboy Carter', her catalog features 'Halo', 'Crazy in Love', and 'Single Ladies'.",
     "socials": {
       "instagram": "https://www.instagram.com/beyonce/",
       "x": "https://x.com/Beyonce",
       "facebook": "https://www.facebook.com/beyonce/",
-      "youtube": "https://www.youtube.com/@Beyonce"
+      "youtube": "https://www.youtube.com/@Beyonce",
+      "spotify": "https://open.spotify.com/artist/6vWDO969PvNqNYHIOW5v0m"
     },
     "tourInfo": {
       "tourName": "Renaissance World Stadium Tour",
@@ -7413,7 +7524,8 @@ export const ARTIST_DATABASE = {
         "duration": 208,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Houston, Texas, USA"
   },
   "shakira": {
     "name": "Shakira",
@@ -7422,12 +7534,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Queen of Latin Music",
     "banner": "https://i.ytimg.com/vi/pRpeEdMmmQ0/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/pRpeEdMmmQ0/hqdefault.jpg",
-    "bio": "Shakira Isabel Mebarak Ripoll is a Colombian singer, songwriter, and multi-instrumentalist hailed globally as the 'Queen of Latin Music'. Renowned for signature belly-dance choreography and infectious crossover hits like 'Hips Don't Lie' and the FIFA World Cup anthem 'Waka Waka', she holds three Grammy Awards and over 95 million album sales worldwide.",
+    "bio": "Shakira Isabel Mebarak Ripoll is a Colombian pop powerhouse known as the 'Queen of Latin Music'. Selling over 95 million records, she brought Latin pop to the world stage with unstoppable global anthems 'Hips Don't Lie', 'Whenever, Wherever', 'Waka Waka (This Time for Africa)', and 'Bzrp Music Sessions, Vol. 53'.",
     "socials": {
       "instagram": "https://www.instagram.com/shakira/",
       "x": "https://x.com/shakira",
       "facebook": "https://www.facebook.com/shakira/",
-      "youtube": "https://www.youtube.com/@shakira"
+      "youtube": "https://www.youtube.com/@shakira",
+      "spotify": "https://open.spotify.com/artist/0EmeFodog0nMCaA64Q4vP3"
     },
     "tourInfo": {
       "tourName": "Las Mujeres Ya No Lloran World Tour",
@@ -7536,7 +7649,8 @@ export const ARTIST_DATABASE = {
         "duration": 225,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Barranquilla, Colombia"
   },
   "zayn": {
     "name": "ZAYN",
@@ -7545,12 +7659,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#2 in Alt R&B / Soul",
     "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
     "avatar": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/1000x1000bb.jpg",
-    "bio": "Zayn Javadd Malik, known mononymously as ZAYN, is an English singer and songwriter acclaimed for his silky falsetto, genre-blurring R&B production, and soulful artistic introspection. With his global debut solo single 'PILLOWTALK', he became the first British male artist to debut at number one on both the US and UK charts simultaneously.",
+    "bio": "Zayn Malik is an English singer-songwriter known for his smooth tenor range, falsetto control, and alternative R&B and pop experimentation. Following historic success with One Direction, his solo smashes 'Pillowtalk', 'Dusk Till Dawn', and 'I Don't Wanna Live Forever' achieved multi-billion streaming milestones.",
     "socials": {
       "instagram": "https://www.instagram.com/zayn/",
       "x": "https://x.com/zaynmalik",
       "facebook": "https://www.facebook.com/zayn/",
-      "youtube": "https://www.youtube.com/@Zayn"
+      "youtube": "https://www.youtube.com/@Zayn",
+      "spotify": "https://open.spotify.com/artist/5ZsFI1h6hIdQRRY1299c1i"
     },
     "tourInfo": {
       "tourName": "Stairway to the Sky Live Tour 2026",
@@ -7659,7 +7774,8 @@ export const ARTIST_DATABASE = {
         "duration": 226,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Bradford, West Yorkshire, England"
   },
   "mohit-chauhan": {
     "name": "Mohit Chauhan",
@@ -7668,12 +7784,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Indian Folk-Rock & Acoustic Icon",
     "banner": "https://i.ytimg.com/vi/ttKphvupYFw/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/ttKphvupYFw/hqdefault.jpg",
-    "bio": "Mohit Chauhan is an acclaimed Indian singer, composer, and two-time Filmfare Award winner whose earthy, soulful mountain tone breathed life into the legendary soundtrack of Imtiaz Ali's Rockstar. From founding the 90s indie-pop band Silk Route to voicing timeless road-trip anthems, Chauhan's acoustic folk-rock magic remains peerless.",
+    "bio": "Mohit Chauhan is an acclaimed Indian playback singer and former Silk Route frontman whose distinct, earthy voice and acoustic sensibility defined an era of Bollywood music. With two Filmfare Awards, his soulful classics include 'Kun Faya Kun', 'Tum Ho', 'Nadaan Parinde', 'Pee Loon', and 'Dooba Dooba'.",
     "socials": {
       "instagram": "https://www.instagram.com/mohitchauhanofficial/",
       "x": "https://x.com/_MohitChauhan",
       "facebook": "https://www.facebook.com/MohitChauhanOfficial/",
-      "youtube": "https://www.youtube.com/@MohitChauhanOfficial"
+      "youtube": "https://www.youtube.com/@MohitChauhanOfficial",
+      "spotify": "https://open.spotify.com/artist/4kssFwA15u7w7w8F2xN4r0"
     },
     "tourInfo": {
       "tourName": "Rockstar Acoustic Symphony Tour",
@@ -7782,7 +7899,8 @@ export const ARTIST_DATABASE = {
         "duration": 281,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Nahan, Sirmaur, Himachal Pradesh, India"
   },
   "pritam": {
     "name": "Pritam",
@@ -7791,12 +7909,13 @@ export const ARTIST_DATABASE = {
     "worldRank": "#1 Bollywood Chart-Topping Composer",
     "banner": "https://i.ytimg.com/vi/BddP6PYo2gs/maxresdefault.jpg",
     "avatar": "https://i.ytimg.com/vi/BddP6PYo2gs/hqdefault.jpg",
-    "bio": "Pritam Chakraborty, known simply as Pritam, is the undisputed architect of 21st-century Bollywood film music. Winner of multiple National Film Awards and six Filmfare Awards for Best Music Director, his timeless compositions across Yeh Jawaani Hai Deewani, Ae Dil Hai Mushkil, Jab We Met, Brahmastra, and Barfi! have shaped the musical subconscious of over a billion people.",
+    "bio": "Pritam Chakraborty is one of the most prolific and celebrated music directors in Indian cinema history. With a career spanning over two decades and numerous Filmfare Awards, his unforgettable soundtracks for 'Brahmāstra', 'Yeh Jawaani Hai Deewani', 'Ae Dil Hai Mushkil', 'Barfi!', and 'Jab We Met' define the pulse of Bollywood melody.",
     "socials": {
       "instagram": "https://www.instagram.com/ipritamofficial/",
       "x": "https://x.com/ipritamofficial",
       "facebook": "https://www.facebook.com/pritam.chakraborty/",
-      "youtube": "https://www.youtube.com/@PritamOfficial"
+      "youtube": "https://www.youtube.com/@PritamOfficial",
+      "spotify": "https://open.spotify.com/artist/1wRPtKGflJrxy998r1J4Xw"
     },
     "tourInfo": {
       "tourName": "Pritam Jam Room Live Symphony",
@@ -7905,9 +8024,11 @@ export const ARTIST_DATABASE = {
         "duration": 243,
         "plays": "34,50,00,000"
       }
-    ]
+    ],
+    "origin": "Kolkata, West Bengal, India"
   }
 };
+
 
 export const SIMILAR_ARTIST_MAP = {
   "arijit-singh": [
@@ -8677,7 +8798,7 @@ export const fetchCategoryTracks = async (categoryId, limit = 20) => {
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         duration: t.duration || 220,
         streamUrl: stream,
         source: stream ? "Studio Master Audio (320kbps)" : "Studio Master Audio (YouTube)"
@@ -8854,7 +8975,7 @@ export function searchCatalogTracks(query) {
           title: t.title,
           artist: t.artist,
           album: t.album || 'Pulse Master Catalog',
-          coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+          coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
           duration: t.duration || 220,
           streamUrl: stream,
           source: stream ? 'Studio Master Audio (320kbps)' : (src || 'Studio Master Audio (YouTube)')
@@ -8985,8 +9106,9 @@ export const getArtistDetails = (artistName) => {
       monthlyListeners: data.monthlyListeners,
       followersCount: data.followersCount || '15,000,000',
       worldRank: data.worldRank,
+      origin: data.origin || 'Global',
       banner: data.banner,
-      avatar: data.banner,
+      avatar: data.avatar || data.banner,
       topTracks: data.topTracks,
       bio: data.bio,
       socials: data.socials,
@@ -9017,7 +9139,7 @@ export const getArtistDetails = (artistName) => {
           title: t.title,
           artist: t.artist || artistName,
           album: t.album || t.movie || 'Studio Master',
-          coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+          coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
           duration: t.duration || 215,
           plays: t.plays || '1,200,000'
         });
@@ -9063,11 +9185,13 @@ export const getArtistDetails = (artistName) => {
     avatar: banner,
     topTracks: top10,
     bio: `${artistName} is a celebrated recording artist whose high-fidelity studio productions and live performances have captivated music lovers worldwide. Explore their verified top 10 songs, official releases, and concert tours on Pulse Music.`,
+    origin: "Global",
     socials: {
       instagram: `https://www.instagram.com/${cleanHandle}/`,
       x: `https://x.com/${cleanHandle}`,
       facebook: `https://www.facebook.com/${cleanHandle}/`,
-      youtube: `https://www.youtube.com/results?search_query=${encodeURIComponent(artistName + ' official channel')}`
+      youtube: `https://www.youtube.com/@${cleanHandle}`,
+      spotify: `https://open.spotify.com/search/${encodeURIComponent(artistName)}`
     },
     tourInfo: {
       tourName: `${artistName} Live World Tour`,
@@ -9152,8 +9276,8 @@ export const getNewReleasesShelf = () => {
   }
   return (tracks || []).map(t => ({
     ...t,
-    coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
-    cover: t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')
+    coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
+    cover: t.cover || t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80')
   }));
 };
 

@@ -13,3 +13,4 @@ if (oldQpImgRegex.test(main)) {
 } else {
   console.warn('Could not match oldQpImgRegex in main.js');
 }
+

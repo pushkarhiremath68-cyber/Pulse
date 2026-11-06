@@ -181,3 +181,4 @@ if (oldExecuteSearchRegex.test(main)) {
 
 fs.writeFileSync('src/main.js', main, 'utf8');
 console.log('Finished updating main.js!');
+

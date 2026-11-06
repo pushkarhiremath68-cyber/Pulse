@@ -71,3 +71,4 @@ if (getHistoryRegex.test(content)) {
 }
 
 fs.writeFileSync('src/firestoreService.js', content, 'utf8');
+

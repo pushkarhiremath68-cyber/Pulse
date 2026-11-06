@@ -120,7 +120,7 @@ function getAllCatalogTracks() {
         ytId: t.ytId,
         title: t.title,
         artist: t.artist,
-        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: t.coverUrl || t.cover || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         duration: t.duration || 220,
         genre: t.genre || extraCategory || 'Global Hit',
         source: t.source || 'Studio Master Audio (YouTube)'
@@ -277,7 +277,7 @@ export async function getSimilarTracks(seedTrack, limit = 12) {
               ytId: t.ytId,
               title: t.title,
               artist: t.artist || seedTrack.artist,
-              coverUrl: t.coverUrl || t.cover || seedTrack.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg'),
+              coverUrl: t.coverUrl || t.cover || seedTrack.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
               duration: t.duration || 220,
               genre: seedTrack.genre || 'Top Hit',
               source: 'Studio Master Audio (YouTube)'

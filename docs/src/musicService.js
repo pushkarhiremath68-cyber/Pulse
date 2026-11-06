@@ -1052,11 +1052,13 @@ export async function fetchDynamicArtistProfile(artistName) {
       avatar: bestCover,
       topTracks,
       bio: `${canonicalName} is a celebrated ${genre} recording artist and global musical phenomenon. Recognized by millions for sensational vocal artistry, signature hits, and multi-platinum releases, ${canonicalName} continues to shape contemporary music with chart-topping studio productions and sold-out live performances across the world.`,
+      origin: "Global",
       socials: {
         instagram: `https://www.instagram.com/${cleanHandle}/`,
         x: `https://x.com/${cleanHandle}`,
         facebook: `https://www.facebook.com/${cleanHandle}/`,
-        youtube: `https://www.youtube.com/results?search_query=${encodeURIComponent(canonicalName + ' official channel')}`
+        youtube: `https://www.youtube.com/@${cleanHandle}`,
+        spotify: `https://open.spotify.com/search/${encodeURIComponent(canonicalName)}`
       },
       tourInfo: {
         tourName: `${canonicalName} Live World Tour 2026`,

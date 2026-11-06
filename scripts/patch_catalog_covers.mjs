@@ -127,3 +127,4 @@ if (!content.includes('findCatalogCover,') && content.includes('getNewReleasesSh
 
 fs.writeFileSync('src/catalogService.js', content, 'utf8');
 console.log('Successfully patched catalogService.js with cover normalization and findCatalogCover!');
+

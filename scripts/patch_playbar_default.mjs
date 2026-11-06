@@ -26,3 +26,4 @@ if (oldResumeRegex.test(content)) {
 } else {
   console.warn('Could not match oldResumeRegex in playbarController.js');
 }
+

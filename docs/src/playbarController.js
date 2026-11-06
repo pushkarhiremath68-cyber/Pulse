@@ -125,7 +125,7 @@ function getAudio() {
 function updateMediaSession(track) {
   if (!('mediaSession' in navigator) || !track) return;
 
-  const artworkUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
+  const artworkUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');
   navigator.mediaSession.metadata = new MediaMetadata({
     title: track.title || 'Untitled Track',
     artist: track.artist || 'Pulse Artist',
@@ -686,14 +686,14 @@ function updateTrackInfoUI(track) {
   const coverEls = document.querySelectorAll('#player-thumb, #playbar-cover, #fullscreen-cover-img, #fullscreen-album-art, #fs-album-art');
   const badgeEls = document.querySelectorAll('#player-source-badge, #playbar-source-badge, #fs-source-badge');
 
-  const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : './music-cover.svg');
+  const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');
 
   titleEls.forEach(el => { el.textContent = track.title || 'Untitled Track'; });
   artistEls.forEach(el => { el.textContent = track.artist || 'Pulse Artist'; });
   coverEls.forEach(el => {
     if (el.tagName === 'IMG') {
       el.src = coverUrl;
-      el.onerror = function() { this.onerror = null; this.src = './music-cover.svg'; };
+      el.onerror = function() { this.onerror = null; this.src = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'; };
     } else {
       el.style.backgroundImage = `url('${coverUrl}')`;
     }
@@ -815,7 +815,7 @@ function renderQueueUI() {
   container.innerHTML = playQueue.map((t, idx) => `
     <div class="queue-item ${idx === queueIndex ? 'active-queue-item' : ''}" onclick="window.PulsePlaybar.playTrackAtQueueIndex(${idx})" style="display: flex; align-items: center; gap: 0.85rem; padding: 0.6rem 0.85rem; border-radius: 12px; margin-bottom: 0.4rem; cursor: pointer; transition: all 0.2s ease; background: ${idx === queueIndex ? 'rgba(168,85,247,0.15)' : 'rgba(255,255,255,0.03)'}; border: 1px solid ${idx === queueIndex ? 'rgba(168,85,247,0.4)' : 'rgba(255,255,255,0.06)'};">
       <span style="font-size: 0.8rem; font-weight: 700; color: ${idx === queueIndex ? 'var(--accent-purple)' : 'var(--text-muted)'}; width: 22px; text-align: center;">${idx === queueIndex ? '<i class="fa-solid fa-volume-high"></i>' : idx + 1}</span>
-      <img src="${t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="cover" class="queue-item-thumb" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;" onerror="this.onerror=null; this.src='./music-cover.svg';">
+      <img src="${t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80')}" alt="cover" class="queue-item-thumb" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
       <div class="queue-item-details" style="flex: 1; min-width: 0; overflow: hidden;">
         <div class="queue-item-title" style="font-size: 0.9rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.title)}</div>
         <div class="queue-item-artist" style="font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.artist)}</div>
@@ -856,7 +856,7 @@ function renderSimilarTracksUI() {
     <div class="similar-track-item hover-glow" onclick="window.PulsePlaybar.playSimilarTrackAtIndex(${idx})" style="display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.85rem; border-radius: 12px; background: rgba(255,255,255,0.035); border: 1px solid var(--border-glass); margin-bottom: 0.45rem; cursor: pointer; transition: all 0.25s ease;">
       <div style="display: flex; align-items: center; gap: 0.85rem; flex: 1; min-width: 0;">
         <div style="position: relative; width: 44px; height: 44px; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
-          <img src="${t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(t.title)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <img src="${t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80')}" alt="${escapeHtml(t.title)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
           <div class="similar-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
             <i class="fa-solid fa-play" style="color: #fff; font-size: 0.85rem;"></i>
           </div>
@@ -890,7 +890,7 @@ function renderSimilarTracksUI() {
     homeSimilarContainer.innerHTML = currentSimilarTracks.slice(0, 8).map((t, idx) => `
       <div class="music-card hover-glow" onclick="window.PulsePlaybar.playSimilarTrackAtIndex(${idx})" style="min-width: 160px; width: 160px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 12px; cursor: pointer; transition: all 0.25s ease;">
         <div class="card-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem;">
-          <img src="${t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : './music-cover.svg')}" alt="${escapeHtml(t.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='./music-cover.svg';">
+          <img src="${t.coverUrl || (t.ytId ? `https://i.ytimg.com/vi/${t.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80')}" alt="${escapeHtml(t.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
           <div class="card-play-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
             <button class="btn-card-play" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-play"></i></button>
           </div>

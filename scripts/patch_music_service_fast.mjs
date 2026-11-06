@@ -54,3 +54,4 @@ if (oldFnRegex.test(content)) {
 } else {
   console.warn('Could not match searchDynamicArtists in musicService.js with regex');
 }
+
