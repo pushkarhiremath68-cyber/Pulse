@@ -60,3 +60,4 @@ mus = mus.replace(oldMus.replace(/\n/g, '\r\n'), newMus.replace(/\n/g, '\r\n'));
 
 fs.writeFileSync('src/musicService.js', mus, 'utf8');
 console.log('Successfully patched src/musicService.js fallback');
+

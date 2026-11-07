@@ -10,3 +10,4 @@ code = code.replaceAll(": './music-cover.svg')", `: '${UNSPLASH_FALLBACK}')`);
 
 fs.writeFileSync(filePath, code, 'utf8');
 console.log('Successfully eliminated fallback ./music-cover.svg from src/catalogService.js');
+

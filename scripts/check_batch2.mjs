@@ -8,3 +8,4 @@ data.slice(10, 35).forEach(a => {
   console.log(`  FB: ${a.facebook}`);
   console.log(`  YT: ${a.youtube}`);
 });
+

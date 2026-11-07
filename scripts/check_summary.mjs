@@ -15,3 +15,4 @@ data.slice(0, 10).forEach(a => {
   console.log(`  YT: ${a.youtube}`);
   console.log(`  Spotify: ${a.spotify}`);
 });
+

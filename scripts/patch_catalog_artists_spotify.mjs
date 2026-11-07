@@ -46,3 +46,4 @@ const newContent = [
 
 fs.writeFileSync(filePath, newContent, 'utf8');
 console.log(`Successfully patched ${filePath}`);
+

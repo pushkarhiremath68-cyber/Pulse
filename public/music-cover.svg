@@ -1,96 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0f111a"/>
-      <stop offset="50%" stop-color="#181329"/>
-      <stop offset="100%" stop-color="#090a10"/>
+      <stop offset="40%" stop-color="#181a2e"/>
+      <stop offset="80%" stop-color="#0b0d14"/>
+      <stop offset="100%" stop-color="#050608"/>
     </linearGradient>
 
-    <radialGradient id="vinylGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#242633"/>
-      <stop offset="25%" stop-color="#14151e"/>
-      <stop offset="50%" stop-color="#1b1c26"/>
-      <stop offset="75%" stop-color="#101118"/>
-      <stop offset="96%" stop-color="#181a24"/>
-      <stop offset="100%" stop-color="#08080c"/>
+    <radialGradient id="meshGlow1" cx="30%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="rgba(168, 85, 247, 0.45)"/>
+      <stop offset="60%" stop-color="rgba(99, 102, 241, 0.15)"/>
+      <stop offset="100%" stop-color="transparent"/>
     </radialGradient>
 
-    <linearGradient id="labelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8b5cf6"/>
-      <stop offset="50%" stop-color="#ec4899"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
+    <radialGradient id="meshGlow2" cx="75%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="rgba(56, 189, 248, 0.35)"/>
+      <stop offset="70%" stop-color="rgba(16, 185, 129, 0.08)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
 
-    <linearGradient id="sheen" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.08)"/>
-      <stop offset="50%" stop-color="rgba(255,255,255,0)"/>
-      <stop offset="100%" stop-color="rgba(255,255,255,0.06)"/>
-    </linearGradient>
-
-    <filter id="musicGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <filter id="discShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000000" flood-opacity="0.75"/>
+    <filter id="glassShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.8"/>
     </filter>
   </defs>
 
-  <!-- Background Base Canvas -->
-  <rect width="512" height="512" rx="32" fill="url(#bgGrad)"/>
-  <rect width="510" height="510" x="1" y="1" rx="31" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+  <!-- Deep Obsidian Background Canvas -->
+  <rect width="600" height="600" rx="36" fill="url(#bgGrad)"/>
+  <rect width="600" height="600" rx="36" fill="url(#meshGlow1)"/>
+  <rect width="600" height="600" rx="36" fill="url(#meshGlow2)"/>
+  <rect width="598" height="598" x="1" y="1" rx="35" fill="none" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5"/>
 
-  <!-- Vinyl Record Body -->
-  <g filter="url(#discShadow)">
-    <circle cx="256" cy="256" r="216" fill="url(#vinylGrad)" stroke="#2b2d3d" stroke-width="3"/>
-
-    <!-- Concentric Grooves -->
-    <circle cx="256" cy="256" r="202" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1.5"/>
-    <circle cx="256" cy="256" r="188" fill="none" stroke="rgba(255,255,255,0.045)" stroke-width="1"/>
-    <circle cx="256" cy="256" r="174" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"/>
-    <circle cx="256" cy="256" r="160" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-    <circle cx="256" cy="256" r="146" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1.5"/>
-    <circle cx="256" cy="256" r="132" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-    <circle cx="256" cy="256" r="118" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1.5"/>
-    <circle cx="256" cy="256" r="104" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-
-    <!-- Vinyl Light Reflection Cones (Sheen) -->
-    <path d="M 256 256 L 105 75 A 216 216 0 0 1 200 44 Z" fill="url(#sheen)"/>
-    <path d="M 256 256 L 407 437 A 216 216 0 0 1 312 468 Z" fill="url(#sheen)"/>
-    <path d="M 256 256 L 437 105 A 216 216 0 0 1 468 200 Z" fill="url(#sheen)"/>
-    <path d="M 256 256 L 75 407 A 216 216 0 0 1 44 312 Z" fill="url(#sheen)"/>
-
-    <!-- Center Label Area -->
-    <circle cx="256" cy="256" r="82" fill="url(#labelGrad)" stroke="#1a1a24" stroke-width="3"/>
-    <circle cx="256" cy="256" r="76" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
-
-    <!-- Musical Note Centerpiece -->
-    <g filter="url(#musicGlow)" fill="#ffffff">
-      <!-- High Quality Musical Double Note Path -->
-      <path d="M 242 222 
-               L 242 278 
-               A 18 15 0 1 1 226 265 
-               A 16 13 0 0 1 242 276 
-               L 242 208 
-               L 294 195 
-               L 294 266 
-               A 18 15 0 1 1 278 253 
-               A 16 13 0 0 1 294 264 
-               L 294 207 
-               Z"/>
-      <polygon points="242,208 294,195 294,209 242,222"/>
-    </g>
-
-    <!-- Sound Wave Equalizer Arcs -->
-    <path d="M 196 256 A 60 60 0 0 1 208 220" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M 316 256 A 60 60 0 0 1 304 292" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round"/>
-
-    <!-- Spindle Hole -->
-    <circle cx="256" cy="256" r="16" fill="#090a10" stroke="#f1f5f9" stroke-width="2.5"/>
-    <circle cx="256" cy="256" r="9" fill="#050608"/>
+  <!-- Frosted Glass Center Card -->
+  <g filter="url(#glassShadow)">
+    <rect x="90" y="90" width="420" height="420" rx="28" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5"/>
   </g>
+
+  <!-- Modern Dynamic Waveform Bars -->
+  <g transform="translate(160, 220)">
+    <rect x="0" y="40" width="16" height="80" rx="8" fill="url(#accentGrad)" opacity="0.7"/>
+    <rect x="28" y="20" width="16" height="120" rx="8" fill="url(#accentGrad)" opacity="0.85"/>
+    <rect x="56" y="55" width="16" height="50" rx="8" fill="url(#accentGrad)" opacity="0.75"/>
+    <rect x="84" y="0" width="16" height="160" rx="8" fill="url(#accentGrad)" opacity="0.95"/>
+    <rect x="112" y="30" width="16" height="100" rx="8" fill="url(#accentGrad)" opacity="0.9"/>
+    <rect x="140" y="10" width="16" height="140" rx="8" fill="url(#accentGrad)" opacity="1"/>
+    <rect x="168" y="45" width="16" height="70" rx="8" fill="url(#accentGrad)" opacity="0.8"/>
+    <rect x="196" y="15" width="16" height="130" rx="8" fill="url(#accentGrad)" opacity="0.95"/>
+    <rect x="224" y="35" width="16" height="90" rx="8" fill="url(#accentGrad)" opacity="0.85"/>
+    <rect x="252" y="60" width="16" height="40" rx="8" fill="url(#accentGrad)" opacity="0.7"/>
+  </g>
+
+  <!-- Studio Audio Master Branding -->
+  <text x="300" y="445" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="3">PULSE MASTER</text>
+  <text x="300" y="475" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#a855f7" text-anchor="middle" letter-spacing="4">LOSSLESS HI-FI AUDIO</text>
 </svg>

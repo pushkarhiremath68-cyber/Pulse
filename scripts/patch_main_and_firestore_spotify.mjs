@@ -281,3 +281,4 @@ fsCode = replaceNormalized(fsCode, oldHeal, newHeal);
 
 fs.writeFileSync('src/firestoreService.js', fsCode, 'utf8');
 console.log('Successfully updated src/firestoreService.js');
+

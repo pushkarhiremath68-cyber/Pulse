@@ -663,3 +663,4 @@ export const ARTIST_ENHANCEMENTS = {
     }
   }
 };
+

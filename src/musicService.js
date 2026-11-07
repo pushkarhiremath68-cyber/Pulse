@@ -127,8 +127,17 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
   if (!cover && raw.ytId) {
     cover = `https://i.ytimg.com/vi/${raw.ytId}/hqdefault.jpg`;
   }
-  if (!cover || cover === './pulse-logo.png') {
-    cover = './music-cover.svg';
+  if (!cover || cover === './pulse-logo.png' || cover === './music-cover.svg') {
+    if (typeof window !== 'undefined' && window.catalogService) {
+      cover = window.catalogService.findCatalogCover(raw.name || raw.title, raw.artist || raw.primaryArtists) || '';
+      if (!cover) {
+        const art = window.catalogService.getArtistDetails(raw.artist || raw.primaryArtists);
+        if (art && (art.avatar || art.banner)) cover = art.avatar || art.banner;
+      }
+    }
+  }
+  if (!cover) {
+    cover = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
   }
 
   let stream = raw.streamUrl || raw.audio || raw.audiodownload || raw.downloadUrl || raw.stream || '';
@@ -217,7 +226,7 @@ export async function searchJioSaavnDirect(query, limit = 25) {
         title,
         artist,
         album,
-        coverUrl: cover || (item.ytId ? `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg` : './music-cover.svg'),
+        coverUrl: cover || (item.ytId ? `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
         duration: parseInt(item.duration, 10) || 220,
         streamUrl: streamUrl,
         previewUrl: '',
@@ -331,7 +340,7 @@ export async function searchITunesUniversal(query, limit = 40) {
               title: item.trackName || 'Untitled Song',
               artist: item.artistName || 'Various Artists',
               album: item.collectionName || 'Single Release',
-              coverUrl: item.artworkUrl100 ? item.artworkUrl100.replace('100x100bb', '600x600bb') : './music-cover.svg',
+              coverUrl: item.artworkUrl100 ? item.artworkUrl100.replace('100x100bb', '600x600bb') : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80',
               duration: item.trackTimeMillis ? Math.round(item.trackTimeMillis / 1000) : 220,
               streamUrl: '', // NO 30s preview
               previewUrl: '',
@@ -705,7 +714,7 @@ export async function fetchTrendingTracks(limit = 40) {
         data.feed.entry.forEach(entry => {
           const title = entry['im:name']?.label || 'Trending Song';
           const artist = entry['im:artist']?.label || 'Trending Artist';
-          let cover = './music-cover.svg';
+          let cover = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
           if (entry['im:image'] && entry['im:image'].length > 0) {
             cover = entry['im:image'][entry['im:image'].length - 1].label;
             cover = cover.replace(/\/\d+x\d+bb/g, '/600x600bb');

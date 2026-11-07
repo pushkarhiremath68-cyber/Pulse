@@ -60,3 +60,4 @@ assert(unknownArt.socials.youtube.startsWith('https://www.youtube.com/@'), 'Dyna
 
 console.log(`\nTest Results: ${passed} Passed, ${failed} Failed.`);
 if (failed > 0) process.exit(1);
+

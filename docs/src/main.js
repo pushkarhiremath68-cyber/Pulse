@@ -737,7 +737,7 @@ window.addEventListener('error', function(e) {
     const trackId = track.id || (track.ytId ? `ytm-${track.ytId}` : `pulse-${index}`);
     const ytId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : '');
     let coverUrl = track.coverUrl || track.cover;
-    if (!coverUrl || coverUrl === 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80' || t.coverUrl.includes('music-cover.svg') || coverUrl.includes('music-cover.svg')) {
+    if (!coverUrl || coverUrl === 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80' || coverUrl.includes('music-cover.svg')) {
       coverUrl = '';
       if (ytId && ytId.length >= 8) {
         coverUrl = `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`;
@@ -1007,11 +1007,17 @@ window.addEventListener('error', function(e) {
   let activeVideoSlideIndex = null;
   const HERO_SLIDE_DURATION_MS = 6000;
 
-  window.initHeroCarousel = function() {
+  window.initHeroCarousel = function(forceRebuild = false) {
     const banner = document.getElementById('hero-banner');
     const track = document.getElementById('hero-slides-track');
     const pillsContainer = document.getElementById('hero-carousel-pills');
     if (!banner || !track || !pillsContainer) return;
+
+    if (window.__heroCarouselInitialized && !forceRebuild && track.children.length > 0) {
+      if (isHeroPaused) window.resumeHeroAutoPlay();
+      return;
+    }
+    window.__heroCarouselInitialized = true;
 
     const slides = getHeroSlides();
     if (!Array.isArray(slides) || slides.length === 0) return;
@@ -1056,7 +1062,7 @@ window.addEventListener('error', function(e) {
           <div class="hero-media-wrapper" id="hero-media-wrapper-${idx}">
             <!-- Artwork Card Mode (Default) -->
             <div class="hero-media-artwork-box" id="hero-media-artwork-${idx}" onclick="window.toggleSlidePreview(${idx}, true)" title="Click to watch Video Preview">
-              <img src="${artwork}" alt="${escapeHtml(slide.title)}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
+              <img src="${artwork}" alt="${escapeHtml(slide.title)}" ${idx < 2 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
               <div class="hero-artwork-play-overlay">
                 <i class="fa-solid fa-play"></i>
               </div>
@@ -4635,6 +4641,19 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     checkAuthGateState();
     if (window.renderSidebarFollowedArtists) window.renderSidebarFollowedArtists();
   }
+
+  // Smooth Horizontal Carousel Mouse Wheel Navigation for Desktop & Laptops
+  window.addEventListener('wheel', (e) => {
+    const carousel = e.target.closest('.shelf-carousel, .artists-carousel, .curated-playlists-carousel');
+    if (carousel && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      const canScrollLeft = carousel.scrollLeft > 0;
+      const canScrollRight = carousel.scrollLeft < (carousel.scrollWidth - carousel.clientWidth - 1);
+      if ((e.deltaY > 0 && canScrollRight) || (e.deltaY < 0 && canScrollLeft)) {
+        e.preventDefault();
+        carousel.scrollBy({ left: e.deltaY * 1.6, behavior: 'smooth' });
+      }
+    }
+  }, { passive: false });
 
 })();
 

@@ -3,3 +3,4 @@ const data = JSON.parse(fs.readFileSync('scripts/artists_audit_report.json', 'ut
 data.forEach((a, i) => {
   console.log(`${i+1}. [${a.key}] "${a.name}"`);
 });
+

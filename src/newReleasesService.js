@@ -129,7 +129,7 @@ function parseRssEntry(entry, region = 'Global') {
     const artist = entry['im:artist']?.label || 'Popular Artist';
     
     // Artwork enhancement: extract highest resolution
-    let coverUrl = './music-cover.svg';
+    let coverUrl = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
     if (Array.isArray(entry['im:image']) && entry['im:image'].length > 0) {
       const highest = entry['im:image'][entry['im:image'].length - 1]?.label || '';
       coverUrl = highest

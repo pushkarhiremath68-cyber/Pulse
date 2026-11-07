@@ -40,3 +40,4 @@ html = html.replace(
 
 fs.writeFileSync(filePath, html, 'utf8');
 console.log('Successfully updated index.html defaults');
+
