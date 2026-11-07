@@ -32,6 +32,21 @@ if (PulseAIHealer && typeof PulseAIHealer.init === 'function') {
   PulseAIHealer.init();
 }
 
+import { 
+  initOfflineMusicDB, 
+  saveTrackForOffline, 
+  removeOfflineTrack, 
+  getOfflineTracks, 
+  isTrackOffline, 
+  getOfflineStats 
+} from './offlineMusicService.js';
+import PulseBackgroundAudio from './backgroundAudioGuardian.js';
+
+// Boot Mobile Background Audio Guardian immediately
+if (PulseBackgroundAudio && typeof PulseBackgroundAudio.init === 'function') {
+  PulseBackgroundAudio.init();
+}
+
 import { fetchFreshNewReleases, getCachedNewReleases } from './newReleasesService.js';
 
 import {
@@ -3284,8 +3299,161 @@ import {
           `).join('')}
         </div>
       `;
+    } else if (activeTab === 'offline') {
+      const offlineTracks = await getOfflineTracks();
+      const stats = await getOfflineStats();
+
+      // Update count badge
+      const countBadge = document.getElementById('offline-songs-count');
+      if (countBadge) countBadge.textContent = offlineTracks.length;
+
+      if (offlineTracks.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+            <i class="fa-solid fa-cloud-arrow-down" style="font-size: 3rem; color: #10b981; margin-bottom: 1rem; opacity: 0.6;"></i>
+            <h3 style="color: #fff; margin-bottom: 0.5rem;">No Downloaded Songs</h3>
+            <p>Save any song for 100% offline playback with zero internet required.</p>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Tap the download icon <i class="fa-solid fa-arrow-down-to-line" style="color: #10b981;"></i> in the bottom playbar on any song.</p>
+          </div>
+        `;
+        return;
+      }
+
+      window.__offlineMusicTracks = offlineTracks;
+      container.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 0.85rem; color: #10b981; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); padding: 4px 12px; border-radius: 999px; font-weight: 700;">
+              <i class="fa-solid fa-circle-check"></i> ${offlineTracks.length} Songs Ready Offline
+            </span>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">${stats.totalMB} used</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn-primary-play" onclick="window.playAllOfflineTracks()" style="display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1.1rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+              <i class="fa-solid fa-play"></i> Play All Offline
+            </button>
+            <button class="btn-secondary-install" onclick="window.shuffleOfflineTracks()" style="display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1.1rem;">
+              <i class="fa-solid fa-shuffle"></i> Shuffle
+            </button>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          ${offlineTracks.map((track, idx) => `
+            <div class="library-track-row hover-glow" onclick="window.playOfflineTrackDirect(${idx})" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); cursor: pointer; transition: all 0.2s ease;">
+              <span style="font-weight: 800; color: #10b981; width: 20px;">${idx + 1}</span>
+              <img src="${track.coverUrl || 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 500 500%22%3E%3Crect width=%22500%22 height=%22500%22 fill=%22%2310b981%22/%3E%3C/svg%3E'}" alt="cover" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(track.title)}</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(track.artist)} • <span style="color: #10b981; font-weight: 600;">Offline Ready ⚡</span></div>
+              </div>
+              <span style="font-size: 0.75rem; color: var(--text-muted); margin-right: 0.5rem;">${((track.sizeBytes || 0) / (1024 * 1024)).toFixed(1)} MB</span>
+              <button class="btn-player-icon" title="Remove from offline" onclick="event.stopPropagation(); window.removeOfflineTrackDirect('${track.id}')" style="color: var(--text-muted); transition: color 0.2s;" onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='var(--text-muted)'">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          `).join('')}
+        </div>
+      `;
     }
   };
+
+  window.updateOfflineCountBadge = async function() {
+    try {
+      const stats = await getOfflineStats();
+      const badge = document.getElementById('offline-songs-count');
+      if (badge) badge.textContent = stats.count;
+    } catch (e) {}
+  };
+
+  window.playOfflineTrackDirect = async function(idx) {
+    const tracks = window.__offlineMusicTracks;
+    if (!tracks || !tracks[idx]) return;
+    const t = tracks[idx];
+    if (window.PulsePlaybar && typeof window.PulsePlaybar.playTrack === 'function') {
+      window.PulsePlaybar.playTrack(t, tracks);
+    }
+  };
+
+  window.playAllOfflineTracks = function() {
+    const tracks = window.__offlineMusicTracks;
+    if (tracks && tracks.length > 0) {
+      window.playOfflineTrackDirect(0);
+    }
+  };
+
+  window.shuffleOfflineTracks = function() {
+    const tracks = [...(window.__offlineMusicTracks || [])];
+    if (tracks.length === 0) return;
+    for (let i = tracks.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tracks[i], tracks[j]] = [tracks[j], tracks[i]];
+    }
+    window.__offlineMusicTracks = tracks;
+    window.playOfflineTrackDirect(0);
+  };
+
+  window.removeOfflineTrackDirect = async function(trackId) {
+    await removeOfflineTrack(trackId);
+    window.renderLibraryView();
+    window.updateOfflineCountBadge();
+  };
+
+  window.toggleTrackOffline = async function(track) {
+    if (!track) return;
+    const isDownloaded = isTrackOffline(track.id);
+    if (isDownloaded) {
+      if (confirm(`Remove "${track.title}" from Offline Downloads?`)) {
+        await removeOfflineTrack(track.id);
+        window.updateOfflineButtonUI(track.id);
+        window.updateOfflineCountBadge();
+      }
+    } else {
+      const res = await saveTrackForOffline(track);
+      if (res && res.success) {
+        window.updateOfflineButtonUI(track.id);
+        window.updateOfflineCountBadge();
+      }
+    }
+  };
+
+  window.toggleCurrentTrackOffline = function() {
+    const current = window.PulsePlaybar?.getCurrentTrack();
+    if (current) {
+      window.toggleTrackOffline(current);
+    } else {
+      if (typeof window.showToast === 'function') {
+        window.showToast('Please select or play a song first.', 'warning');
+      }
+    }
+  };
+
+  window.updateOfflineButtonUI = function(trackId) {
+    const current = window.PulsePlaybar?.getCurrentTrack();
+    if (!current || (trackId && current.id !== trackId)) return;
+    const btn = document.getElementById('playbar-offline-btn');
+    if (btn) {
+      const isDown = isTrackOffline(current.id);
+      btn.innerHTML = isDown ? '<i class="fa-solid fa-circle-check" style="color: #10b981;"></i>' : '<i class="fa-solid fa-arrow-down-to-line"></i>';
+      btn.title = isDown ? 'Downloaded (100% Offline Ready ⚡)' : 'Save for Offline Playback';
+    }
+  };
+
+  // Listen for offline store changes
+  window.addEventListener('pulse:offline-updated', () => {
+    window.updateOfflineCountBadge();
+    const current = window.PulsePlaybar?.getCurrentTrack();
+    if (current) window.updateOfflineButtonUI(current.id);
+    if (window.pulseState?.activeLibraryTab === 'offline') {
+      window.renderLibraryView();
+    }
+  });
+
+  // Initial badge update
+  setTimeout(() => {
+    if (typeof window.updateOfflineCountBadge === 'function') {
+      window.updateOfflineCountBadge();
+    }
+  }, 1000);
 
   window.clearUserHistory = async function() {
     if (confirm('Are you sure you want to clear your entire listening history?')) {
@@ -4504,9 +4672,14 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     }
     if (downCountEl) {
       try {
-        const raw = localStorage.getItem('pulse_downloaded_tracks');
-        const dl = raw ? JSON.parse(raw) : [];
-        downCountEl.textContent = String(dl.length);
+        if (window.PulseOffline && typeof window.PulseOffline.getOfflineStats === 'function') {
+          const stats = await window.PulseOffline.getOfflineStats();
+          downCountEl.textContent = String(stats.count);
+        } else {
+          const raw = localStorage.getItem('pulse_downloaded_tracks');
+          const dl = raw ? JSON.parse(raw) : [];
+          downCountEl.textContent = String(dl.length);
+        }
       } catch (e) {
         downCountEl.textContent = '0';
       }

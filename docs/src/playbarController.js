@@ -292,6 +292,34 @@ export async function playTrack(track, queue = null) {
   // BULLETPROOF STUDIO MASTER PLAYBACK ENGINE
   // =========================================================================
 
+  // 0. OFFLINE INDEXEDDB FAST PATH: Instant 0ms playback with 100% offline access
+  if (typeof window !== 'undefined' && window.PulseOffline && typeof window.PulseOffline.isTrackOffline === 'function') {
+    if (window.PulseOffline.isTrackOffline(track.id)) {
+      try {
+        const offlineBlobUrl = await window.PulseOffline.getOfflineAudioUrl(track.id);
+        if (offlineBlobUrl) {
+          console.log('[Pulse Studio Master] Playing 100% offline downloaded audio:', track.title);
+          activeEngine = 'native';
+          track.source = 'Offline Lossless Master (0 Internet)';
+          const a = getAudio();
+          a.src = offlineBlobUrl;
+          a.currentTime = 0;
+          await a.play();
+          isPlaying = true;
+          updatePlayPauseUI();
+          updateTrackInfoUI(track);
+          updateMediaSession(track);
+          return;
+        }
+      } catch (e) {
+        console.warn('[Pulse Studio Master] Offline playback notice:', e);
+      }
+    }
+  }
+
+  const isMobileDevice = typeof navigator !== 'undefined' && 
+    /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent || '');
+
   // 1. FAST PATH: If track already has verified full-length native streamUrl, play immediately
   if (track.streamUrl && 
       track.streamUrl.startsWith('http') && 
@@ -307,7 +335,27 @@ export async function playTrack(track, queue = null) {
     }
   }
 
-  // 1B. FAST PATH: If track already has verified YouTube ID (from search, catalog, or enrichment), play immediately via YouTube IFrame
+  // 1B. MOBILE BACKGROUND OPTIMIZATION:
+  // On mobile devices, resolve direct audio stream (Saavn 320k or Piped Opus) FIRST so audio runs in background!
+  if (isMobileDevice) {
+    try {
+      const resolved = await resolveFullAudioStream(track);
+      if (sessionId !== activePlaySessionId) return;
+
+      if (resolved && resolved.streamUrl && resolved.streamUrl.startsWith('http') && resolved.streamUrl !== 'yt-iframe') {
+        track.streamUrl = resolved.streamUrl;
+        track.source = resolved.source || 'Studio Master Audio (Mobile Background)';
+        if (resolved.duration) track.duration = resolved.duration;
+        const played = await playOnNativeAudio(track);
+        if (played) {
+          console.log('[Pulse Studio Master] Mobile background native audio playing:', resolved.source);
+          return;
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 1C. FAST PATH: If track already has verified YouTube ID (desktop or fallback)
   const knownYtId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
   if (knownYtId && knownYtId.length >= 8) {
     console.log('[Pulse Studio Master] Fast-path immediate YouTube IFrame playback for:', knownYtId);
@@ -753,6 +801,9 @@ function updateTrackInfoUI(track) {
   });
 
   updateFavoriteButtonUI(track.id);
+  if (typeof window !== 'undefined' && typeof window.updateOfflineButtonUI === 'function') {
+    window.updateOfflineButtonUI(track.id);
+  }
 
   if (typeof window !== 'undefined' && typeof window.updateActiveCardStates === 'function') {
     window.updateActiveCardStates(track, isPlaying);
@@ -1547,6 +1598,12 @@ const playbarController = {
   downloadCurrentTrackWallpaper,
   playTrackAtQueueIndex,
   getAudio,
+  getActiveEngine: () => activeEngine,
+  setActiveEngine: (eng) => { activeEngine = eng; },
+  getYtPlayer: () => ytPlayer,
+  playOnYouTubeIframe,
+  playOnYouTubeSearch,
+  playOnNativeAudio,
   getCurrentTrack: () => currentTrack,
   getIsPlaying: () => isPlaying,
   getPlayQueue: () => playQueue,

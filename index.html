@@ -547,10 +547,11 @@
             <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Your Music Library</h2>
             <p style="color: var(--text-secondary);">All your saved songs, playlists and playback history.</p>
           </div>
-          <div class="library-tabs" style="display: flex; gap: 0.5rem;">
+          <div class="library-tabs" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
             <button class="filter-pill active-pill library-tab-btn" data-tab="favorites" onclick="window.switchLibraryTab('favorites')">Liked Songs</button>
             <button class="filter-pill library-tab-btn" data-tab="playlists" onclick="window.switchLibraryTab('playlists')">Playlists</button>
             <button class="filter-pill library-tab-btn" data-tab="history" onclick="window.switchLibraryTab('history')">History</button>
+            <button class="filter-pill library-tab-btn" data-tab="offline" onclick="window.switchLibraryTab('offline')"><i class="fa-solid fa-arrow-down-to-line"></i> Downloaded (<span id="offline-songs-count">0</span>)</button>
           </div>
         </div>
         <div id="library-content-area">
@@ -673,6 +674,7 @@
         </div>
         <div class="player-track-actions">
           <button class="btn-player-icon icon-btn" id="playbar-fav-btn" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.toggleCurrentTrackFavorite()" title="Like Song"><i class="fa-regular fa-heart"></i></button>
+          <button class="btn-player-icon icon-btn" id="playbar-offline-btn" onclick="event.stopPropagation(); window.toggleCurrentTrackOffline && window.toggleCurrentTrackOffline()" title="Save for Offline Playback"><i class="fa-solid fa-arrow-down-to-line"></i></button>
           <button class="btn-player-icon icon-btn" id="playbar-playlist-btn" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.addCurrentToPlaylist()" title="Add to Playlist"><i class="fa-solid fa-list-plus"></i></button>
           <button class="btn-player-icon icon-btn" id="playbar-share-btn" onclick="event.stopPropagation(); window.shareCurrentTrack && window.shareCurrentTrack()" title="Share Music Link"><i class="fa-solid fa-share-nodes"></i></button>
         </div>
