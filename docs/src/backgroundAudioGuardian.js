@@ -243,3 +243,4 @@ import { resolvePipedAudioStream } from './extractorService.js';
 })(typeof window !== 'undefined' ? window : globalThis);
 
 export default (typeof window !== 'undefined' ? window.PulseBackgroundAudio : null);
+

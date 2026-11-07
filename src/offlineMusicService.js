@@ -350,3 +350,4 @@ if (typeof window !== 'undefined') {
 }
 
 export default (typeof window !== 'undefined' ? window.PulseOffline : null);
+

@@ -2577,12 +2577,9 @@ import {
       const socialsContainer = document.getElementById('artist-socials-container');
       if (socialsContainer && art.socials) {
         const xSvg = `<svg style="width: 14px; height: 14px; fill: #ffffff; vertical-align: -2px; margin-right: 5px;" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
-        const spotifyUrl = art.socials.spotify || ('https://open.spotify.com/search/' + encodeURIComponent(art.name));
+        
         socialsContainer.innerHTML = `
-          <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px;">Connect:</span>
-          <a href="${spotifyUrl}" target="_blank" rel="noopener noreferrer" class="artist-social-chip hover-glow" title="Spotify Profile @${escapeHtml(art.name)}" style="background: rgba(30, 215, 96, 0.12); border-color: rgba(30, 215, 96, 0.35); color: #1ed760;">
-            <i class="fa-brands fa-spotify" style="color: #1ed760; font-size: 1rem;"></i> Spotify
-          </a>
+          
           <a href="${art.socials.instagram}" target="_blank" rel="noopener noreferrer" class="artist-social-chip hover-glow" title="Instagram @${escapeHtml(art.name)}">
             <i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram
           </a>
@@ -2639,7 +2636,7 @@ import {
       // Render Spotify-Grade About Section
       const aboutBox = document.getElementById('artist-about-container');
       if (aboutBox) {
-        const spotifyUrl = (art.socials && art.socials.spotify) ? art.socials.spotify : ('https://open.spotify.com/search/' + encodeURIComponent(art.name));
+        
         const originText = art.origin || 'International';
         aboutBox.innerHTML = `
           <div style="background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); border: 1px solid var(--border-glass); border-radius: 20px; padding: 2rem; box-shadow: 0 12px 36px rgba(0,0,0,0.35);">
@@ -2648,7 +2645,7 @@ import {
               <div style="flex: 1; min-width: 250px;">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.35rem; flex-wrap: wrap;">
                   <span style="font-size: 1.5rem; font-weight: 800; color: #fff;">${escapeHtml(art.name)}</span>
-                  <i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 1.15rem;" title="Verified on Spotify & Pulse"></i>
+                  <i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 1.15rem;" title="Verified Artist • Pulse Studio Master"></i>
                   <span style="display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 14px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); color: #38bdf8; font-size: 0.75rem; font-weight: 800;">
                     ${escapeHtml(art.worldRank || '#1 Verified')}
                   </span>
@@ -2658,9 +2655,7 @@ import {
                 </div>
                 <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.75; margin: 0;">${escapeHtml(art.bio)}</p>
                 <div style="margin-top: 1.1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                  <a href="${spotifyUrl}" target="_blank" rel="noopener noreferrer" class="hover-glow" style="display: inline-flex; align-items: center; gap: 8px; background: #1ed760; color: #000; font-weight: 800; padding: 0.5rem 1.25rem; border-radius: 24px; text-decoration: none; box-shadow: 0 4px 14px rgba(30,215,96,0.3); font-size: 0.85rem;">
-                    <i class="fa-brands fa-spotify" style="font-size: 1.1rem; color: #000;"></i> Open on Spotify
-                  </a>
+                  <button onclick="window.playArtistTopTracks()" class="btn-primary-play hover-glow" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 800; padding: 0.55rem 1.35rem; border-radius: 24px; font-size: 0.88rem; cursor: pointer; border: none; background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 16px rgba(16,185,129,0.35);"><i class="fa-solid fa-play"></i> Play Top 10 Hits</button>
                   <span style="font-size: 0.78rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 5px;">
                     <i class="fa-solid fa-bolt" style="color: #10b981;"></i> Studio master audio verified on Pulse
                   </span>
@@ -2672,7 +2667,7 @@ import {
               <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.05);">
                 <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Monthly Listeners</div>
                 <div style="font-size: 1.35rem; font-weight: 800; color: #38bdf8; margin-top: 4px;">${escapeHtml(art.monthlyListeners || '25,000,000')}</div>
-                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Verified Spotify stream tier</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Verified Global Master Stream Tier</div>
               </div>
               <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.05);">
                 <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Global Followers</div>

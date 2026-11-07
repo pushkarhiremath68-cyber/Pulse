@@ -1035,15 +1035,31 @@ export async function fetchDynamicArtistProfile(artistName) {
     // High-resolution master wallpaper / artwork (1000x1000 master)
     const bestCover = (finalSongs[0]?.artworkUrl100 || '').replace('100x100bb', '1000x1000bb');
 
-    const topTracks = finalSongs.slice(0, 10).map((t, idx) => ({
+    // Guarantee at least 10 top tracks
+    let extendedSongs = [...finalSongs];
+    if (extendedSongs.length < 10) {
+      const needed = 10 - extendedSongs.length;
+      for (let i = 0; i < needed; i++) {
+        extendedSongs.push({
+          trackId: `pulse-dyn-${i + 1}`,
+          trackName: `${canonicalName} - Master Hit #${extendedSongs.length + 1}`,
+          artistName: canonicalName,
+          collectionName: `${canonicalName} Definitive Collection`,
+          artworkUrl100: bestCover,
+          trackTimeMillis: (210 + (i * 12)) * 1000
+        });
+      }
+    }
+
+    const topTracks = extendedSongs.slice(0, 10).map((t, idx) => ({
       id: `itunes-${t.trackId || Math.random().toString(36).substr(2, 8)}`,
       ytId: '',
       title: t.trackName,
       artist: t.artistName || canonicalName,
       album: t.collectionName || 'Studio Master Release',
-      coverUrl: (t.artworkUrl100 || '').replace('100x100bb', '600x600bb'),
+      coverUrl: (t.artworkUrl100 || '').replace('100x100bb', '600x600bb') || bestCover,
       duration: Math.round((t.trackTimeMillis || 215000) / 1000),
-      plays: (100000000 - (idx * 7500000)).toLocaleString()
+      plays: (1000000000 - (idx * 65000000)).toLocaleString()
     }));
 
     const cleanHandle = canonicalName.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -1067,7 +1083,7 @@ export async function fetchDynamicArtistProfile(artistName) {
         x: `https://x.com/${cleanHandle}`,
         facebook: `https://www.facebook.com/${cleanHandle}/`,
         youtube: `https://www.youtube.com/@${cleanHandle}`,
-        spotify: `https://open.spotify.com/search/${encodeURIComponent(canonicalName)}`
+        
       },
       tourInfo: {
         tourName: `${canonicalName} Live World Tour 2026`,
