@@ -589,3 +589,4 @@ export const ADDITIONAL_ARTISTS = {
 };
 
 console.log(`Generated ${Object.keys(ADDITIONAL_ARTISTS).length} rich artist profiles with 10 real songs each.`);
+

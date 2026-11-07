@@ -114,3 +114,4 @@ if (normContent.includes(normTarget)) {
 } else {
   console.error('❌ normTarget still not found. Check character differences.');
 }
+

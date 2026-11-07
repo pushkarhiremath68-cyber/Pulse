@@ -312,3 +312,4 @@ fs.writeFileSync(mainFile, mainContent, 'utf8');
 console.log('🎉 main.js successfully cleaned of all Spotify connect links and upgraded to Spotify-grade UI.');
 
 console.log('✨ COMPLETE ARTIST OVERHAUL FINISHED SUCCESSFULLY!\n');
+

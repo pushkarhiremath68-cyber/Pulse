@@ -1,0 +1,236 @@
+{
+  "Queen": {
+    "id": 268175642,
+    "name": "Queen",
+    "fans": 35,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/eb41ddbc505b7c7e68d5d81a4be8c7f7/1000x1000-000000-80-0-0.jpg"
+  },
+  "Lady Gaga": {
+    "id": 75491,
+    "name": "Lady Gaga",
+    "fans": 9346121,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/7565262f7661b0d762621a8d69ba6f49/1000x1000-000000-80-0-0.jpg"
+  },
+  "Katy Perry": {
+    "id": 144227,
+    "name": "Katy Perry",
+    "fans": 9820351,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9c144bd1ed91b2a59c826cf1d1cde633/1000x1000-000000-80-0-0.jpg"
+  },
+  "Maroon 5": {
+    "id": 1188,
+    "name": "Maroon 5",
+    "fans": 11438227,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/bbb526b9666c7e31dee295bcabbbdd8e/1000x1000-000000-80-0-0.jpg"
+  },
+  "Alan Walker": {
+    "id": 13529769,
+    "name": "Alan Walker",
+    "fans": 10813,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3117e89ee2aa2b06585a84d10a172728/1000x1000-000000-80-0-0.jpg"
+  },
+  "Selena Gomez": {
+    "id": 292185,
+    "name": "Selena Gomez",
+    "fans": 5554550,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/26b3660183a4a626bb185a7089f090b4/1000x1000-000000-80-0-0.jpg"
+  },
+  "Camila Cabello": {
+    "id": 9236850,
+    "name": "Camila Cabello",
+    "fans": 3912573,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/4591e8a49868c2494652767f47695a90/1000x1000-000000-80-0-0.jpg"
+  },
+  "Miley Cyrus": {
+    "id": 12436,
+    "name": "Miley Cyrus",
+    "fans": 7258255,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/fbf2cc06f54eb5d925983be756289836/1000x1000-000000-80-0-0.jpg"
+  },
+  "SZA": {
+    "id": 5531258,
+    "name": "SZA",
+    "fans": 1345072,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/8ced041da2bed70d5715f0860956169b/1000x1000-000000-80-0-0.jpg"
+  },
+  "Chappell Roan": {
+    "id": 12945219,
+    "name": "Chappell Roan",
+    "fans": 320595,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/14ca3aea25950189f30efe0fa79ac4f9/1000x1000-000000-80-0-0.jpg"
+  },
+  "Taylor Swift": {
+    "id": 12246,
+    "name": "Taylor Swift",
+    "fans": 12774089,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/cc2495870fe1a792ad0cdb05501ad5ec/1000x1000-000000-80-0-0.jpg"
+  },
+  "The Weeknd": {
+    "id": 4050205,
+    "name": "The Weeknd",
+    "fans": 14785354,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/581693b4724a7fcfa754455101e13a44/1000x1000-000000-80-0-0.jpg"
+  },
+  "Billie Eilish": {
+    "id": 9635624,
+    "name": "Billie Eilish",
+    "fans": 9299421,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/8eab1a9a644889aabaca1e193e05f984/1000x1000-000000-80-0-0.jpg"
+  },
+  "Sabrina Carpenter": {
+    "id": 1176900,
+    "name": "Sabrina Carpenter",
+    "fans": 1837473,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/4a9cdc7737e2a0e59b4917b47884b859/1000x1000-000000-80-0-0.jpg"
+  },
+  "Coldplay": {
+    "id": 892,
+    "name": "Coldplay",
+    "fans": 18450662,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3087954bca22f306324912e5ac8375c3/1000x1000-000000-80-0-0.jpg"
+  },
+  "Eminem": {
+    "id": 5478540,
+    "name": "Emine'm",
+    "fans": 920,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/7fa738468c9a73ff98c1e1b78d622b81/1000x1000-000000-80-0-0.jpg"
+  },
+  "Ed Sheeran": {
+    "id": 384236,
+    "name": "Ed Sheeran",
+    "fans": 20960233,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/d6bb84390641d8ae9118228d9544e53d/1000x1000-000000-80-0-0.jpg"
+  },
+  "Imagine Dragons": {
+    "id": 416239,
+    "name": "Imagine Dragons",
+    "fans": 9560339,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/1ba025c23cae3dee14b51152990285fc/1000x1000-000000-80-0-0.jpg"
+  },
+  "Bruno Mars": {
+    "id": 429675,
+    "name": "Bruno Mars",
+    "fans": 12856543,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/90f0b5b11df4f87ee878f38569b5995b/1000x1000-000000-80-0-0.jpg"
+  },
+  "Adele": {
+    "id": 5673798,
+    "name": "Adele",
+    "fans": 12477,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/ed5666c7c1a7115190d5115d04084f80/1000x1000-000000-80-0-0.jpg"
+  },
+  "Linkin Park": {
+    "id": 92,
+    "name": "Linkin Park",
+    "fans": 12272360,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/4886905210739af3438990897bad3a98/1000x1000-000000-80-0-0.jpg"
+  },
+  "Dua Lipa": {
+    "id": 8706544,
+    "name": "Dua Lipa",
+    "fans": 8810133,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/877872aaf75694f11d53c318700ab2b5/1000x1000-000000-80-0-0.jpg"
+  },
+  "Bad Bunny": {
+    "id": 276237911,
+    "name": "Bad Bunny",
+    "fans": 46,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9867d5112c6714c935a86b98b4dd288c/1000x1000-000000-80-0-0.jpg"
+  },
+  "Drake": {
+    "id": 246791,
+    "name": "Drake",
+    "fans": 24128155,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/eb0ed5b21d1ea5af021fc074ded0e91f/1000x1000-000000-80-0-0.jpg"
+  },
+  "Kendrick Lamar": {
+    "id": 525046,
+    "name": "Kendrick Lamar",
+    "fans": 6200195,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/be0a7c550567f4af0ed202d7235b74d6/1000x1000-000000-80-0-0.jpg"
+  },
+  "Post Malone": {
+    "id": 7543848,
+    "name": "Post Malone",
+    "fans": 4219198,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/a5a8cca44e7eab2db7d44e039bed2574/1000x1000-000000-80-0-0.jpg"
+  },
+  "Justin Bieber": {
+    "id": 288166,
+    "name": "Justin Bieber",
+    "fans": 11185681,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/fe097f693cebf1f882e3da79e99e3bf9/1000x1000-000000-80-0-0.jpg"
+  },
+  "Ariana Grande": {
+    "id": 1562681,
+    "name": "Ariana Grande",
+    "fans": 13465037,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/721d8fab84b315502de422b8d0901509/1000x1000-000000-80-0-0.jpg"
+  },
+  "BTS": {
+    "id": 67158112,
+    "name": "BTS",
+    "fans": 858,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/bc3b771bc45855bb9a79d606aeba3a95/1000x1000-000000-80-0-0.jpg"
+  },
+  "Travis Scott": {
+    "id": 4495513,
+    "name": "Travis Scott",
+    "fans": 3157878,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/8d8316146026d7e6ce377e314536df62/1000x1000-000000-80-0-0.jpg"
+  },
+  "BLACKPINK": {
+    "id": 10803980,
+    "name": "BLACKPINK",
+    "fans": 2662922,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/89675729453893a91be35bde691050ff/1000x1000-000000-80-0-0.jpg"
+  },
+  "Harry Styles": {
+    "id": 5313805,
+    "name": "Harry Styles",
+    "fans": 2214725,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/1151dba9b3edc0633adf35b64c21713f/1000x1000-000000-80-0-0.jpg"
+  },
+  "Olivia Rodrigo": {
+    "id": 11152580,
+    "name": "Olivia Rodrigo",
+    "fans": 1852530,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/2c9e480317183c037eaebcd7ba96daf4/1000x1000-000000-80-0-0.jpg"
+  },
+  "Charlie Puth": {
+    "id": 11239321,
+    "name": "Charlie Puth",
+    "fans": 1129,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/03a74f573792d5e693427cf34ee03ebf/1000x1000-000000-80-0-0.jpg"
+  },
+  "Shawn Mendes": {
+    "id": 5962948,
+    "name": "Shawn Mendes",
+    "fans": 6792940,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3d8ed563d628c5c61ec4569d032ab682/1000x1000-000000-80-0-0.jpg"
+  },
+  "Rihanna": {
+    "id": 564,
+    "name": "Rihanna",
+    "fans": 18152975,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/b78cdc205fae2641b89208e78b30e1b3/1000x1000-000000-80-0-0.jpg"
+  },
+  "Beyoncé": {
+    "id": 145,
+    "name": "Beyoncé",
+    "fans": 12874018,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/0aa9d669be4e7310b8647afae37ffaab/1000x1000-000000-80-0-0.jpg"
+  },
+  "Shakira": {
+    "id": 160,
+    "name": "Shakira",
+    "fans": 11795434,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/69c569506a8ff6ab0edfecbd1adf94b0/1000x1000-000000-80-0-0.jpg"
+  },
+  "ZAYN": {
+    "id": 73146402,
+    "name": "Zayn",
+    "fans": 13,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/1f30f6578833921ceeb6fb7c6ab8a3ea/1000x1000-000000-80-0-0.jpg"
+  }
+}

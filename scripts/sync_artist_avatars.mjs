@@ -11,3 +11,4 @@ content = content.replace(/"banner":\s*"([^"]+)",(?!\s*"avatar")/g, (match, url)
 
 fs.writeFileSync(filePath, content, 'utf8');
 console.log('✅ Synchronized avatar with banner for all artists in catalogService.js');
+

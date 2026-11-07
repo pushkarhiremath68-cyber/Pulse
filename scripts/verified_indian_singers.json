@@ -1,0 +1,260 @@
+{
+  "kk": {
+    "name": "Krishnakumar Kunnath",
+    "matched": "Krishnakumar Kunnath",
+    "artistId": 5537981,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/801b68eab3dca1dff7da34ed63829c1e/1000x1000-000000-80-0-0.jpg"
+  },
+  "udit-narayan": {
+    "name": "Udit Narayan",
+    "matched": "Udit Narayan",
+    "artistId": 71798,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/287f18b3d4798dfff688a9246184b084/1000x1000-000000-80-0-0.jpg"
+  },
+  "kumar-sanu": {
+    "name": "Kumar Sanu",
+    "matched": "Kumar Sanu",
+    "artistId": 70758,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/7ad58f1c03087a082e22a718acc3f1fc/1000x1000-000000-80-0-0.jpg"
+  },
+  "alka-yagnik": {
+    "name": "Alka Yagnik",
+    "matched": "Alka Yagnik",
+    "artistId": 76645,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/ebb52754c04679e33acf4d6056fa211a/1000x1000-000000-80-0-0.jpg"
+  },
+  "kishore-kumar": {
+    "name": "Kishore Kumar",
+    "matched": "Kishore Kumar",
+    "artistId": 97141,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/5972263348ad902e29a4749e748ff452/1000x1000-000000-80-0-0.jpg"
+  },
+  "lata-mangeshkar": {
+    "name": "Lata Mangeshkar",
+    "matched": "Lata Mangeshkar",
+    "artistId": 10587,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/837d46f90f541736e07817f463317c80/1000x1000-000000-80-0-0.jpg"
+  },
+  "mohammed-rafi": {
+    "name": "Mohammed Rafi",
+    "matched": "Mohammed Rafi",
+    "artistId": 8033,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9e79b89a9b2073fae0cc2f6bce278abe/1000x1000-000000-80-0-0.jpg"
+  },
+  "mukesh": {
+    "name": "Mukesh",
+    "matched": "Mukesh",
+    "artistId": 106172,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/681c4defe94f8a7c23bbdb1b5edfd143/1000x1000-000000-80-0-0.jpg"
+  },
+  "asha-bhosle": {
+    "name": "Asha Bhosle",
+    "matched": "Asha Bhosle",
+    "artistId": 73805,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/6e2b8e5131fd1357c6452139f4e6d578/1000x1000-000000-80-0-0.jpg"
+  },
+  "jagjit-singh": {
+    "name": "Jagjit Singh",
+    "matched": "Jagjit Singh",
+    "artistId": 70330,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/b8a9b9c156d494b1a86fb2135ab30f5b/1000x1000-000000-80-0-0.jpg"
+  },
+  "shaan": {
+    "name": "Shaan",
+    "matched": "Shaan",
+    "artistId": 492,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/1ec5435a81d309a3bf82ba82030e767b/1000x1000-000000-80-0-0.jpg"
+  },
+  "mohit-chauhan": {
+    "name": "Mohit Chauhan",
+    "matched": "Mohit Chauhan",
+    "artistId": 136941,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/f9533880207ac5714b65e760e5686af8/1000x1000-000000-80-0-0.jpg"
+  },
+  "pritam": {
+    "name": "Pritam",
+    "matched": "Pritam",
+    "artistId": 290619,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/d4914ccd414067cd5e2c108867079a85/1000x1000-000000-80-0-0.jpg"
+  },
+  "ar-rahman": {
+    "name": "A.R. Rahman",
+    "matched": "A.R. Rahman",
+    "artistId": 491,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/bd34315ef977a62a9e28c1ab19bb8ac4/1000x1000-000000-80-0-0.jpg"
+  },
+  "badshah": {
+    "name": "Badshah",
+    "matched": "Badshah",
+    "artistId": 1093616,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/5b90b89299a7d42f81d79afa263a85d2/1000x1000-000000-80-0-0.jpg"
+  },
+  "honey-singh": {
+    "name": "Yo Yo Honey Singh",
+    "matched": "Yo Yo Honey Singh",
+    "artistId": 1511979,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/7859b461c10352f02a11368905f0903f/1000x1000-000000-80-0-0.jpg"
+  },
+  "diljit-dosanjh": {
+    "name": "Diljit Dosanjh",
+    "matched": "Diljit Dosanjh",
+    "artistId": 1199677,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/79b85e695e0ca6529e56bf3b628e92bd/1000x1000-000000-80-0-0.jpg"
+  },
+  "sidhu-moosewala": {
+    "name": "Sidhu Moose Wala",
+    "matched": "Sidhu Moose Wala",
+    "artistId": 12423322,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/f559ebe3851db26a6a47a76b1d95748f/1000x1000-000000-80-0-0.jpg"
+  },
+  "karan-aujla": {
+    "name": "Karan Aujla",
+    "matched": "Karan Aujla",
+    "artistId": 6555107,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/a91a1d5ea91e85e4f0966569b50e8d6a/1000x1000-000000-80-0-0.jpg"
+  },
+  "ap-dhillon": {
+    "name": "AP Dhillon",
+    "matched": "AP Dhillon",
+    "artistId": 76708242,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/52594ac9fa763dc163ed13d21cb130ec/1000x1000-000000-80-0-0.jpg"
+  },
+  "neha-kakkar": {
+    "name": "Neha Kakkar",
+    "matched": "Neha Kakkar",
+    "artistId": 129846,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3a0f7ba65d6d8c1081b461ee49cb59e8/1000x1000-000000-80-0-0.jpg"
+  },
+  "sunidhi-chauhan": {
+    "name": "Sunidhi Chauhan",
+    "matched": "Sunidhi Chauhan",
+    "artistId": 14779,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/37dbd33ae8cf7075e247968acf4b48da/1000x1000-000000-80-0-0.jpg"
+  },
+  "jubin-nautiyal": {
+    "name": "Jubin Nautiyal",
+    "matched": "Jubin Nautiyal",
+    "artistId": 8419888,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9031b483049b5551abcb11529873b4f6/1000x1000-000000-80-0-0.jpg"
+  },
+  "armaan-malik": {
+    "name": "Armaan Malik",
+    "matched": "Armaan Malik",
+    "artistId": 5017623,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3aacd4e00a34aefb6041d30e0cc5bc5e/1000x1000-000000-80-0-0.jpg"
+  },
+  "darshan-raval": {
+    "name": "Darshan Raval",
+    "matched": "Darshan Raval",
+    "artistId": 6048770,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9428424029a929927b7081b70d3a0fc6/1000x1000-000000-80-0-0.jpg"
+  },
+  "kailash-kher": {
+    "name": "Kailash Kher",
+    "matched": "Kailash Kher",
+    "artistId": 70024,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/32eb684f64a49cae0dc65d85e8a6b317/1000x1000-000000-80-0-0.jpg"
+  },
+  "hariharan": {
+    "name": "Hariharan",
+    "matched": "Hariharan",
+    "artistId": 70045,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/ead44b7f4f45556dc37b026b18040ece/1000x1000-000000-80-0-0.jpg"
+  },
+  "s-p-balasubrahmanyam": {
+    "name": "S.P. Balasubrahmanyam",
+    "matched": "S.P. Balasubrahmanyam",
+    "artistId": 99385,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/d892204d2b88ad355fb022e09dd6c134/1000x1000-000000-80-0-0.jpg"
+  },
+  "k-s-chithra": {
+    "name": "K. S. Chithra",
+    "matched": "K. S. Chithra",
+    "artistId": 106899,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/b955b3207b61e722cf4d63ee0c762b12/1000x1000-000000-80-0-0.jpg"
+  },
+  "devi-sri-prasad": {
+    "name": "Devi Sri Prasad",
+    "matched": "Devi Sri Prasad",
+    "artistId": 247365,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/a904f8ee6cc4dcb472f75bd8ae1a21da/1000x1000-000000-80-0-0.jpg"
+  },
+  "s-thaman": {
+    "name": "Thaman S.",
+    "matched": "Thaman S.",
+    "artistId": 6761433,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/f42d76b5c7e4e5dcb1afb373321f16c4/1000x1000-000000-80-0-0.jpg"
+  },
+  "vijay-prakash": {
+    "name": "Vijay Prakash",
+    "matched": "Vijay Prakash",
+    "artistId": 127529,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3d112cbc8570a026002b7e05142dc191/1000x1000-000000-80-0-0.jpg"
+  },
+  "anirudh-ravichander": {
+    "name": "Anirudh Ravichander",
+    "matched": "Anirudh Ravichander",
+    "artistId": 1516162,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9da0a547b39e99bc35c6a9724aef91bf/1000x1000-000000-80-0-0.jpg"
+  },
+  "amit-trivedi": {
+    "name": "Amit Trivedi",
+    "matched": "Amit Trivedi",
+    "artistId": 450023,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/b1c15791419c0f9c6ea4a55f80319d6a/1000x1000-000000-80-0-0.jpg"
+  },
+  "vishal-shekhar": {
+    "name": "Vishal-Shekhar",
+    "matched": "Vishal-Shekhar",
+    "artistId": 7760,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/5871137ebfd9723ea757b8380fe404c5/1000x1000-000000-80-0-0.jpg"
+  },
+  "shankar-ehsaan-loy": {
+    "name": "Shankar Mahadevan",
+    "matched": "Shankar Mahadevan",
+    "artistId": 71794,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/aefd6e3d941a0a1fd8baea6cf4a03c6a/1000x1000-000000-80-0-0.jpg"
+  },
+  "jasleen-royal": {
+    "name": "Jasleen Royal",
+    "matched": "Jasleen Royal",
+    "artistId": 5425304,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/c83791c10f0ec33e1d8a18b1a8ff9f84/1000x1000-000000-80-0-0.jpg"
+  },
+  "b-praak": {
+    "name": "B Praak",
+    "matched": "B Praak",
+    "artistId": 5834324,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/efe513aabaa0a94c4db307ac3431b833/1000x1000-000000-80-0-0.jpg"
+  },
+  "guru-randhawa": {
+    "name": "Guru Randhawa",
+    "matched": "Guru Randhawa",
+    "artistId": 5956602,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/108309345087dbd61b29766185e93b72/1000x1000-000000-80-0-0.jpg"
+  },
+  "shilpa-rao": {
+    "name": "Shilpa Rao",
+    "matched": "Shilpa Rao",
+    "artistId": 1212166,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/d6c9df2eb27416ade91b4b8d7caa1669/1000x1000-000000-80-0-0.jpg"
+  },
+  "anuv-jain": {
+    "name": "Anuv Jain",
+    "matched": "Anuv Jain",
+    "artistId": 64116612,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/eb0c0e91c8ad621b41178e0d66c81057/1000x1000-000000-80-0-0.jpg"
+  },
+  "prateek-kuhad": {
+    "name": "Prateek Kuhad",
+    "matched": "Prateek Kuhad",
+    "artistId": 5208987,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/7f69b3905ae630b3f7bcd826bd2dc46f/1000x1000-000000-80-0-0.jpg"
+  },
+  "sid-sriram": {
+    "name": "Sid Sriram",
+    "matched": "Sid Sriram",
+    "artistId": 1216625,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/fbe3e1d17fc6958e047f011f74233f82/1000x1000-000000-80-0-0.jpg"
+  }
+}

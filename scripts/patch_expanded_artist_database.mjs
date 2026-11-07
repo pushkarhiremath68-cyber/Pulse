@@ -1890,3 +1890,4 @@ const NEW_ARTISTS = {
 };
 
 console.log(`Prepared ${Object.keys(NEW_ARTISTS).length} foundational new artist profiles.`);
+

@@ -8,3 +8,4 @@ console.log('Artist view start line:', artistStart + 1);
 if (artistStart !== -1) {
   console.log(lines.slice(artistStart, artistStart + 100).join('\n'));
 }
+

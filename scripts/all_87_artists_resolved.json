@@ -1,0 +1,524 @@
+{
+  "alka-yagnik": {
+    "name": "Alka Yagnik",
+    "matchedName": "Alka Yagnik",
+    "fans": 60400,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/ebb52754c04679e33acf4d6056fa211a/1000x1000-000000-80-0-0.jpg"
+  },
+  "mohammed-rafi": {
+    "name": "Mohammed Rafi",
+    "matchedName": "Mohammed Rafi",
+    "fans": 26486,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9e79b89a9b2073fae0cc2f6bce278abe/1000x1000-000000-80-0-0.jpg"
+  },
+  "mukesh": {
+    "name": "Mukesh",
+    "matchedName": "Mukesh",
+    "fans": 9245,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/681c4defe94f8a7c23bbdb1b5edfd143/1000x1000-000000-80-0-0.jpg"
+  },
+  "asha-bhosle": {
+    "name": "Asha Bhosle",
+    "matchedName": "Asha Bhosle",
+    "fans": 29100,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/6e2b8e5131fd1357c6452139f4e6d578/1000x1000-000000-80-0-0.jpg"
+  },
+  "selena-gomez": {
+    "name": "Selena Gomez",
+    "matchedName": "Selena Gomez",
+    "fans": 5554555,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/26b3660183a4a626bb185a7089f090b4/1000x1000-000000-80-0-0.jpg"
+  },
+  "katy-perry": {
+    "name": "Katy Perry",
+    "matchedName": "Katy Perry",
+    "fans": 9820367,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9c144bd1ed91b2a59c826cf1d1cde633/1000x1000-000000-80-0-0.jpg"
+  },
+  "maroon-5": {
+    "name": "Maroon 5",
+    "matchedName": "Maroon 5",
+    "fans": 11438238,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/bbb526b9666c7e31dee295bcabbbdd8e/1000x1000-000000-80-0-0.jpg"
+  },
+  "alan-walker": {
+    "name": "Alan Walker",
+    "matchedName": "Alan Walker",
+    "fans": 10813,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3117e89ee2aa2b06585a84d10a172728/1000x1000-000000-80-0-0.jpg"
+  },
+  "guru-randhawa": {
+    "name": "Guru Randhawa",
+    "matchedName": "Guru Randhawa",
+    "fans": 7147,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/108309345087dbd61b29766185e93b72/1000x1000-000000-80-0-0.jpg"
+  },
+  "b-praak": {
+    "name": "B Praak",
+    "matchedName": "B. Praak",
+    "fans": 96,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/44273932122d6e9d441b19eafb4c362e/1000x1000-000000-80-0-0.jpg"
+  },
+  "jasleen-royal": {
+    "name": "Jasleen Royal",
+    "matchedName": "Jasleen Royal",
+    "fans": 1943,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/c83791c10f0ec33e1d8a18b1a8ff9f84/1000x1000-000000-80-0-0.jpg"
+  },
+  "sza": {
+    "name": "SZA",
+    "matchedName": "SZA",
+    "fans": 1345077,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/8ced041da2bed70d5715f0860956169b/1000x1000-000000-80-0-0.jpg"
+  },
+  "chappell-roan": {
+    "name": "Chappell Roan",
+    "matchedName": "Chappell Roan",
+    "fans": 320600,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/14ca3aea25950189f30efe0fa79ac4f9/1000x1000-000000-80-0-0.jpg"
+  },
+  "queen": {
+    "name": "Queen",
+    "matchedName": "Queen",
+    "fans": 12860402,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/71eeb9e2eeb375df35a3c0654a5a01ab/1000x1000-000000-80-0-0.jpg"
+  },
+  "michael-jackson": {
+    "name": "Michael Jackson",
+    "matchedName": "Michael Jackson",
+    "fans": 233,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/ff1c8cf777db1efc2043b90d79dcbfc3/1000x1000-000000-80-0-0.jpg"
+  },
+  "camila-cabello": {
+    "name": "Camila Cabello",
+    "matchedName": "Camila Cabello",
+    "fans": 3912577,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/4591e8a49868c2494652767f47695a90/1000x1000-000000-80-0-0.jpg"
+  },
+  "miley-cyrus": {
+    "name": "Miley Cyrus",
+    "matchedName": "Miley Cyrus",
+    "fans": 7258268,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/fbf2cc06f54eb5d925983be756289836/1000x1000-000000-80-0-0.jpg"
+  },
+  "shilpa-rao": {
+    "name": "Shilpa Rao",
+    "matchedName": "Shilpa Rao",
+    "fans": 5278,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/d6c9df2eb27416ade91b4b8d7caa1669/1000x1000-000000-80-0-0.jpg"
+  },
+  "amit-trivedi": {
+    "name": "Amit Trivedi",
+    "matchedName": "Amit Trivedi",
+    "fans": 5841,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/b1c15791419c0f9c6ea4a55f80319d6a/1000x1000-000000-80-0-0.jpg"
+  },
+  "vishal-shekhar": {
+    "name": "Vishal-Shekhar",
+    "matchedName": "Vishal-Shekhar",
+    "fans": 8597,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/5871137ebfd9723ea757b8380fe404c5/1000x1000-000000-80-0-0.jpg"
+  },
+  "shankar-ehsaan-loy": {
+    "name": "Shankar-Ehsaan-Loy",
+    "matchedName": "Shankar Mahadevan",
+    "fans": 51509,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/aefd6e3d941a0a1fd8baea6cf4a03c6a/1000x1000-000000-80-0-0.jpg"
+  },
+  "s-p-balasubrahmanyam": {
+    "name": "S.P. Balasubrahmanyam",
+    "matchedName": "S.P.Balasubrahmanyam",
+    "fans": 1107,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/e1ae356e308e1baad481b84dfe9d05fe/1000x1000-000000-80-0-0.jpg"
+  },
+  "k-s-chithra": {
+    "name": "K.S. Chithra",
+    "matchedName": "K. S. Chithra",
+    "fans": 7648,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/b955b3207b61e722cf4d63ee0c762b12/1000x1000-000000-80-0-0.jpg"
+  },
+  "devi-sri-prasad": {
+    "name": "Devi Sri Prasad (DSP)",
+    "matchedName": "Devi Sri Prasad",
+    "fans": 6491,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/a904f8ee6cc4dcb472f75bd8ae1a21da/1000x1000-000000-80-0-0.jpg"
+  },
+  "s-thaman": {
+    "name": "S. Thaman",
+    "matchedName": "Thaman S.",
+    "fans": 32,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/f42d76b5c7e4e5dcb1afb373321f16c4/1000x1000-000000-80-0-0.jpg"
+  },
+  "vijay-prakash": {
+    "name": "Vijay Prakash",
+    "matchedName": "Vijayprakash",
+    "fans": 4,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/f38493b47b86a4742e0d4c753dc122ee/1000x1000-000000-80-0-0.jpg"
+  },
+  "jagjit-singh": {
+    "name": "Jagjit Singh",
+    "matchedName": "Jagjit Singh",
+    "fans": 24933,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/b8a9b9c156d494b1a86fb2135ab30f5b/1000x1000-000000-80-0-0.jpg"
+  },
+  "arijit-singh": {
+    "name": "Arijit Singh",
+    "matchedName": "T. Baird",
+    "fans": 0,
+    "photo": "https://cdn-images.dzcdn.net/images/artist//1000x1000-000000-80-0-0.jpg"
+  },
+  "kailash-kher": {
+    "name": "Kailash Kher",
+    "matchedName": "Kailash Kher",
+    "fans": 33326,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/32eb684f64a49cae0dc65d85e8a6b317/1000x1000-000000-80-0-0.jpg"
+  },
+  "ap-dhillon": {
+    "name": "AP Dhillon",
+    "matchedName": "AP Dhillon",
+    "fans": 28875,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/52594ac9fa763dc163ed13d21cb130ec/1000x1000-000000-80-0-0.jpg"
+  },
+  "diljit-dosanjh": {
+    "name": "Diljit Dosanjh",
+    "matchedName": "Diljit Dosanjh",
+    "fans": 46699,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/79b85e695e0ca6529e56bf3b628e92bd/1000x1000-000000-80-0-0.jpg"
+  },
+  "the-weeknd": {
+    "name": "The Weeknd",
+    "matchedName": "The Weeknd",
+    "fans": 14785379,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/581693b4724a7fcfa754455101e13a44/1000x1000-000000-80-0-0.jpg"
+  },
+  "taylor-swift": {
+    "name": "Taylor Swift",
+    "matchedName": "Taylor Swift",
+    "fans": 12774110,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/cc2495870fe1a792ad0cdb05501ad5ec/1000x1000-000000-80-0-0.jpg"
+  },
+  "billie-eilish": {
+    "name": "Billie Eilish",
+    "matchedName": "Billie Eilish",
+    "fans": 9299446,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/8eab1a9a644889aabaca1e193e05f984/1000x1000-000000-80-0-0.jpg"
+  },
+  "sabrina-carpenter": {
+    "name": "Sabrina Carpenter",
+    "matchedName": "Sabrina Carpenter",
+    "fans": 1837482,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/4a9cdc7737e2a0e59b4917b47884b859/1000x1000-000000-80-0-0.jpg"
+  },
+  "shaan": {
+    "name": "Shaan",
+    "matchedName": "Shaan",
+    "fans": 36177,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/1ec5435a81d309a3bf82ba82030e767b/1000x1000-000000-80-0-0.jpg"
+  },
+  "udit-narayan": {
+    "name": "Udit Narayan",
+    "matchedName": "Udit Narayan",
+    "fans": 67532,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/287f18b3d4798dfff688a9246184b084/1000x1000-000000-80-0-0.jpg"
+  },
+  "kumar-sanu": {
+    "name": "Kumar Sanu",
+    "matchedName": "Kumar Sanu",
+    "fans": 47407,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/7ad58f1c03087a082e22a718acc3f1fc/1000x1000-000000-80-0-0.jpg"
+  },
+  "appaji": {
+    "name": "Appaji",
+    "matchedName": "Willian & Renan",
+    "fans": 9,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/327630fa21c877d3198146341f4644a5/1000x1000-000000-80-0-0.jpg"
+  },
+  "coldplay": {
+    "name": "Coldplay",
+    "matchedName": "Coldplay",
+    "fans": 18450690,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3087954bca22f306324912e5ac8375c3/1000x1000-000000-80-0-0.jpg"
+  },
+  "eminem": {
+    "name": "Eminem",
+    "matchedName": "Eminem",
+    "fans": 19172828,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/0f30bbd33a680030054af004d698d6ac/1000x1000-000000-80-0-0.jpg"
+  },
+  "ed-sheeran": {
+    "name": "Ed Sheeran",
+    "matchedName": "Ed Sheeran",
+    "fans": 20960250,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/d6bb84390641d8ae9118228d9544e53d/1000x1000-000000-80-0-0.jpg"
+  },
+  "anirudh-ravichander": {
+    "name": "Anirudh Ravichander",
+    "matchedName": "Anirudh Ravichander",
+    "fans": 53777,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9da0a547b39e99bc35c6a9724aef91bf/1000x1000-000000-80-0-0.jpg"
+  },
+  "imagine-dragons": {
+    "name": "Imagine Dragons",
+    "matchedName": "Imagine Dragons",
+    "fans": 9560353,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/1ba025c23cae3dee14b51152990285fc/1000x1000-000000-80-0-0.jpg"
+  },
+  "bruno-mars": {
+    "name": "Bruno Mars",
+    "matchedName": "Bruno Mars",
+    "fans": 12856580,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/90f0b5b11df4f87ee878f38569b5995b/1000x1000-000000-80-0-0.jpg"
+  },
+  "adele": {
+    "name": "Adele",
+    "matchedName": "Adele",
+    "fans": 15517195,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/e5fc443d2abc03b487234ba4de65a001/1000x1000-000000-80-0-0.jpg"
+  },
+  "linkin-park": {
+    "name": "Linkin Park",
+    "matchedName": "Linkin Park",
+    "fans": 12272377,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/4886905210739af3438990897bad3a98/1000x1000-000000-80-0-0.jpg"
+  },
+  "dua-lipa": {
+    "name": "Dua Lipa",
+    "matchedName": "Dua Lipa",
+    "fans": 8810150,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/877872aaf75694f11d53c318700ab2b5/1000x1000-000000-80-0-0.jpg"
+  },
+  "bad-bunny": {
+    "name": "Bad Bunny",
+    "matchedName": "Bad Bunny",
+    "fans": 8070118,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/044a3f315b041864887a8dd8709e6926/1000x1000-000000-80-0-0.jpg"
+  },
+  "shreya-ghoshal": {
+    "name": "Shreya Ghoshal",
+    "matchedName": "Shreya Ghoshal",
+    "fans": 257042,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3bb832d37d10ff2affcfa9afdc7c68a0/1000x1000-000000-80-0-0.jpg"
+  },
+  "sonu-nigam": {
+    "name": "Sonu Nigam",
+    "matchedName": "Sonu Nigam",
+    "fans": 167130,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/812220125c4f0db57050438b65afcf78/1000x1000-000000-80-0-0.jpg"
+  },
+  "kk": {
+    "name": "KK",
+    "matchedName": "KK",
+    "fans": 25880,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/e118eeb5332fe76610d4b355fdb61b03/1000x1000-000000-80-0-0.jpg"
+  },
+  "sid-sriram": {
+    "name": "Sid Sriram",
+    "matchedName": "Sid Sriram",
+    "fans": 18210,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/fbe3e1d17fc6958e047f011f74233f82/1000x1000-000000-80-0-0.jpg"
+  },
+  "sidhu-moosewala": {
+    "name": "Sidhu Moosewala",
+    "matchedName": "Sidhu Moose Wala",
+    "fans": 37596,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/f559ebe3851db26a6a47a76b1d95748f/1000x1000-000000-80-0-0.jpg"
+  },
+  "karan-aujla": {
+    "name": "Karan Aujla",
+    "matchedName": "Karan Aujla",
+    "fans": 33491,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/a91a1d5ea91e85e4f0966569b50e8d6a/1000x1000-000000-80-0-0.jpg"
+  },
+  "drake": {
+    "name": "Drake",
+    "matchedName": "Drake",
+    "fans": 24128178,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/eb0ed5b21d1ea5af021fc074ded0e91f/1000x1000-000000-80-0-0.jpg"
+  },
+  "kendrick-lamar": {
+    "name": "Kendrick Lamar",
+    "matchedName": "Kendrick Lamar",
+    "fans": 6200206,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/be0a7c550567f4af0ed202d7235b74d6/1000x1000-000000-80-0-0.jpg"
+  },
+  "post-malone": {
+    "name": "Post Malone",
+    "matchedName": "Post Malone",
+    "fans": 4219210,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/a5a8cca44e7eab2db7d44e039bed2574/1000x1000-000000-80-0-0.jpg"
+  },
+  "justin-bieber": {
+    "name": "Justin Bieber",
+    "matchedName": "Justin Bieber",
+    "fans": 11185693,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/fe097f693cebf1f882e3da79e99e3bf9/1000x1000-000000-80-0-0.jpg"
+  },
+  "ariana-grande": {
+    "name": "Ariana Grande",
+    "matchedName": "Ariana Grande",
+    "fans": 13465047,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/721d8fab84b315502de422b8d0901509/1000x1000-000000-80-0-0.jpg"
+  },
+  "bts": {
+    "name": "BTS",
+    "matchedName": "BTS",
+    "fans": 3875098,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/b5c64fa8216ca158e52b4d88bd9388ff/1000x1000-000000-80-0-0.jpg"
+  },
+  "travis-scott": {
+    "name": "Travis Scott",
+    "matchedName": "Travis Scott",
+    "fans": 3157886,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/8d8316146026d7e6ce377e314536df62/1000x1000-000000-80-0-0.jpg"
+  },
+  "kishore-kumar": {
+    "name": "Kishore Kumar",
+    "matchedName": "Kishore Kumar",
+    "fans": 36166,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/5972263348ad902e29a4749e748ff452/1000x1000-000000-80-0-0.jpg"
+  },
+  "lata-mangeshkar": {
+    "name": "Lata Mangeshkar",
+    "matchedName": "Lata Mangeshkar",
+    "fans": 88478,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/837d46f90f541736e07817f463317c80/1000x1000-000000-80-0-0.jpg"
+  },
+  "ar-rahman": {
+    "name": "A.R. Rahman",
+    "matchedName": "A.R. Rahman",
+    "fans": 284702,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/bd34315ef977a62a9e28c1ab19bb8ac4/1000x1000-000000-80-0-0.jpg"
+  },
+  "badshah": {
+    "name": "Badshah",
+    "matchedName": "Badshah",
+    "fans": 76811,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/5b90b89299a7d42f81d79afa263a85d2/1000x1000-000000-80-0-0.jpg"
+  },
+  "honey-singh": {
+    "name": "Yo Yo Honey Singh",
+    "matchedName": "Yo Yo Honey Singh",
+    "fans": 112211,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/7859b461c10352f02a11368905f0903f/1000x1000-000000-80-0-0.jpg"
+  },
+  "neha-kakkar": {
+    "name": "Neha Kakkar",
+    "matchedName": "Neha Kakkar",
+    "fans": 75003,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3a0f7ba65d6d8c1081b461ee49cb59e8/1000x1000-000000-80-0-0.jpg"
+  },
+  "sunidhi-chauhan": {
+    "name": "Sunidhi Chauhan",
+    "matchedName": "Sunidhi Chauhan",
+    "fans": 99925,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/37dbd33ae8cf7075e247968acf4b48da/1000x1000-000000-80-0-0.jpg"
+  },
+  "jubin-nautiyal": {
+    "name": "Jubin Nautiyal",
+    "matchedName": "Jubin Nautiyal",
+    "fans": 21748,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9031b483049b5551abcb11529873b4f6/1000x1000-000000-80-0-0.jpg"
+  },
+  "hariharan": {
+    "name": "Hariharan",
+    "matchedName": "Hariharan",
+    "fans": 16389,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/ead44b7f4f45556dc37b026b18040ece/1000x1000-000000-80-0-0.jpg"
+  },
+  "armaan-malik": {
+    "name": "Armaan Malik",
+    "matchedName": "Armaan Malik",
+    "fans": 31032,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3aacd4e00a34aefb6041d30e0cc5bc5e/1000x1000-000000-80-0-0.jpg"
+  },
+  "blackpink": {
+    "name": "BLACKPINK",
+    "matchedName": "BLACKPINK",
+    "fans": 2662922,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/89675729453893a91be35bde691050ff/1000x1000-000000-80-0-0.jpg"
+  },
+  "harry-styles": {
+    "name": "Harry Styles",
+    "matchedName": "Harry Styles",
+    "fans": 2214735,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/1151dba9b3edc0633adf35b64c21713f/1000x1000-000000-80-0-0.jpg"
+  },
+  "olivia-rodrigo": {
+    "name": "Olivia Rodrigo",
+    "matchedName": "Olivia Rodrigo",
+    "fans": 1852539,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/2c9e480317183c037eaebcd7ba96daf4/1000x1000-000000-80-0-0.jpg"
+  },
+  "lady-gaga": {
+    "name": "Lady Gaga",
+    "matchedName": "Lady Gaga",
+    "fans": 9346152,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/7565262f7661b0d762621a8d69ba6f49/1000x1000-000000-80-0-0.jpg"
+  },
+  "charlie-puth": {
+    "name": "Charlie Puth",
+    "matchedName": "Charlie Puth",
+    "fans": 2311178,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/c355b366638e0c5f20f4b265f0f12646/1000x1000-000000-80-0-0.jpg"
+  },
+  "darshan-raval": {
+    "name": "Darshan Raval",
+    "matchedName": "Darshan Raval",
+    "fans": 20964,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/9428424029a929927b7081b70d3a0fc6/1000x1000-000000-80-0-0.jpg"
+  },
+  "anuv-jain": {
+    "name": "Anuv Jain",
+    "matchedName": "Anuv Jain",
+    "fans": 4397,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/eb0c0e91c8ad621b41178e0d66c81057/1000x1000-000000-80-0-0.jpg"
+  },
+  "prateek-kuhad": {
+    "name": "Prateek Kuhad",
+    "matchedName": "Prateek Kuhad",
+    "fans": 3476,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/7f69b3905ae630b3f7bcd826bd2dc46f/1000x1000-000000-80-0-0.jpg"
+  },
+  "shawn-mendes": {
+    "name": "Shawn Mendes",
+    "matchedName": "Shawn Mendes",
+    "fans": 6792944,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/3d8ed563d628c5c61ec4569d032ab682/1000x1000-000000-80-0-0.jpg"
+  },
+  "rihanna": {
+    "name": "Rihanna",
+    "matchedName": "Rihanna",
+    "fans": 18153011,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/b78cdc205fae2641b89208e78b30e1b3/1000x1000-000000-80-0-0.jpg"
+  },
+  "beyonce": {
+    "name": "Beyoncé",
+    "matchedName": "Beyoncé",
+    "fans": 12874037,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/0aa9d669be4e7310b8647afae37ffaab/1000x1000-000000-80-0-0.jpg"
+  },
+  "shakira": {
+    "name": "Shakira",
+    "matchedName": "Shakira",
+    "fans": 11795467,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/69c569506a8ff6ab0edfecbd1adf94b0/1000x1000-000000-80-0-0.jpg"
+  },
+  "zayn": {
+    "name": "ZAYN",
+    "matchedName": "ZAYN",
+    "fans": 2710019,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/1789e943d6bc7ee4a6efe32233d1a90b/1000x1000-000000-80-0-0.jpg"
+  },
+  "mohit-chauhan": {
+    "name": "Mohit Chauhan",
+    "matchedName": "Mohit Chauhan",
+    "fans": 33293,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/f9533880207ac5714b65e760e5686af8/1000x1000-000000-80-0-0.jpg"
+  },
+  "pritam": {
+    "name": "Pritam",
+    "matchedName": "Pritam",
+    "fans": 71599,
+    "photo": "https://cdn-images.dzcdn.net/images/artist/d4914ccd414067cd5e2c108867079a85/1000x1000-000000-80-0-0.jpg"
+  }
+}
