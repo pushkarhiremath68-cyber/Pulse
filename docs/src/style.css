@@ -16,7 +16,7 @@
   --bg-card: rgba(25, 49, 73, 0.24);
   --bg-card-hover: rgba(25, 49, 73, 0.48);
   --bg-card-active: rgba(25, 49, 73, 0.72);
-  --bg-glass-dock: #193149;
+  --bg-glass-dock: #000000;
   --bg-glass-modal: rgba(8, 15, 23, 0.96);
   
   /* Specular Glass Borders */
@@ -2096,10 +2096,10 @@ section.filter-pills-bar {
   max-width: none !important;
   margin: 0 !important;
   height: 90px !important;
-  background: linear-gradient(180deg, #193149 0%, #102131 100%) !important;
+  background: #000000 !important;
   backdrop-filter: blur(32px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 24px 24px 0 0 !important;
 
   display: grid !important;
@@ -2111,12 +2111,12 @@ section.filter-pills-bar {
   z-index: 9999 !important;
   box-sizing: border-box !important;
   transition: background 0.2s ease, border-color 0.2s ease !important;
-  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 .bottom-player-bar:hover,
 #player-bar:hover {
-  background: linear-gradient(180deg, #1d3955 0%, #122436 100%) !important;
+  background: #080808 !important;
   transform: none !important;
 }
 
@@ -3425,12 +3425,12 @@ section.filter-pills-bar {
     margin: 0 !important;
     height: 90px !important;
     border-radius: 24px 24px 0 0 !important;
-    background: linear-gradient(180deg, #193149 0%, #102131 100%) !important;
+    background: #000000 !important;
     backdrop-filter: blur(25px) !important;
     -webkit-backdrop-filter: blur(25px) !important;
     border: none !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
-    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.85) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.95) !important;
     display: grid !important;
     grid-template-columns: 1fr 2fr 1fr !important;
     align-items: center !important;
@@ -3955,16 +3955,16 @@ section.filter-pills-bar {
     right: 0 !important;
     height: 60px !important;
     padding-bottom: env(safe-area-inset-bottom, 0px) !important;
-    background: #0d1a27 !important;
+    background: #000000 !important;
     backdrop-filter: blur(24px) saturate(1.8) !important;
     -webkit-backdrop-filter: blur(24px) saturate(1.8) !important;
-    border-top: 1px solid rgba(25, 49, 73, 0.6) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
     z-index: 9998 !important;
     align-items: center !important;
     justify-content: space-around !important;
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.9) !important;
   }
 
   .mobile-nav-item {
@@ -4021,12 +4021,12 @@ section.filter-pills-bar {
     max-width: 100% !important;
     height: 76px !important;
     border-radius: 20px 20px 0 0 !important;
-    background: linear-gradient(180deg, #193149 0%, #102131 100%) !important;
+    background: #000000 !important;
     backdrop-filter: blur(25px) !important;
     -webkit-backdrop-filter: blur(25px) !important;
     border: none !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
-    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.8) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.95) !important;
     padding: 8px 12px !important;
     z-index: 9999 !important;
     display: flex !important;
@@ -5693,12 +5693,12 @@ html, body {
 .bottom-player-bar,
 #player-bar,
 .playbar {
-  background: linear-gradient(180deg, #193149 0%, #102131 100%) !important;
+  background: #000000 !important;
   backdrop-filter: blur(32px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 24px 24px 0 0 !important;
-  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Center Play/Pause Button */
@@ -5825,10 +5825,10 @@ html, body {
   .mobile-bottom-nav {
     height: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
     padding-bottom: env(safe-area-inset-bottom, 0px) !important;
-    background: #0d1a27 !important;
+    background: #000000 !important;
     backdrop-filter: blur(28px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
-    border-top: 1px solid rgba(25, 49, 73, 0.6) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
   }
 
   .playbar,
@@ -5837,8 +5837,10 @@ html, body {
     bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
     height: 74px !important;
     padding: 8px 14px !important;
-    background: linear-gradient(180deg, #193149 0%, #102131 100%) !important;
+    background: #000000 !important;
     border-radius: 20px 20px 0 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.95) !important;
   }
 
   .mobile-nav-item:active {
