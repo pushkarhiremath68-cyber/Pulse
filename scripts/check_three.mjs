@@ -13,3 +13,4 @@ async function checkThree() {
   }
 }
 checkThree();
+

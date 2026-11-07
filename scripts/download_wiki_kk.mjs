@@ -10,3 +10,4 @@ async function downloadWikiKK() {
   console.log('Saved kk_real_wiki.jpg, size:', buf.length);
 }
 downloadWikiKK();
+

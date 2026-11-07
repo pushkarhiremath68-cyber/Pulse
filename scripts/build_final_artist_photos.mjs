@@ -56,3 +56,4 @@ if (duplicates === 0) {
 }
 
 fs.writeFileSync('scripts/final_verified_photos.json', JSON.stringify(finalMap, null, 2));
+

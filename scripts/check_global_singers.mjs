@@ -70,3 +70,4 @@ async function checkGlobal() {
   fs.writeFileSync('scripts/verified_global_singers.json', JSON.stringify(map, null, 2));
 }
 checkGlobal();
+

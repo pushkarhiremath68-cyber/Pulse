@@ -39,3 +39,4 @@ catalogContent = catalogContent.replace(
 
 fs.writeFileSync('src/catalogService.js', catalogContent);
 console.log('Successfully written updated catalogService.js');
+

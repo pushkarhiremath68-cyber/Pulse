@@ -8,3 +8,4 @@ for (const [k, v] of Object.entries(data)) {
     console.log('Low fans:', k.padEnd(25), '->', v.matchedName, `(${v.fans} fans)`);
   }
 }
+
