@@ -775,7 +775,7 @@ function isHindiTrack(track) {
   // Detect by known Hindi/Bollywood artist names
   const artist = (track.artist || '').toLowerCase();
   const hindiArtists = [
-    'arijit singh', 'shreya ghoshal', 'neha kakkar', 'atif aslam',
+    'arijit singh', 'shreya ghoshal', 'neha kakkar', 'kailash kher',
     'vishal mishra', 'jubin nautiyal', 'b praak', 'jasleen royal',
     'darshan raval', 'sonu nigam', 'kumar sanu', 'udit narayan',
     'kishore kumar', 'lata mangeshkar', 'mohammed rafi', 'k.k.',

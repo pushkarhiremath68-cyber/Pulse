@@ -7,7 +7,6 @@
  * - High-performance binary search for active lyric line index (60fps synced)
  */
 
-import { PAKISTANI_LYRICS_REGISTRY } from './pakistaniLyrics.js';
 import { escapeHtml } from './security.js';
 
 const LRCLIB_BASE = 'https://lrclib.net/api';
@@ -104,7 +103,7 @@ export async function getLyrics(trackOrTitle, optArtist = '', optDuration = 0) {
     return memoryCache.get(cacheKey);
   }
 
-  // Check verified local & Pakistani registry first for instant 0-latency live lyrics
+  // Check verified local registry first for instant 0-latency live lyrics
   const localVerified = getVerifiedLocalLyrics(cleanTitle, cleanArtist);
   if (localVerified) {
     memoryCache.set(cacheKey, localVerified);
@@ -214,24 +213,6 @@ export async function getLyrics(trackOrTitle, optArtist = '', optDuration = 0) {
  */
 function getVerifiedLocalLyrics(cleanTitle, cleanArtist) {
   const t = cleanTitle.toLowerCase();
-
-  // 1. Check Pakistani Hits & Coke Studio Registry
-  if (typeof PAKISTANI_LYRICS_REGISTRY === 'object' && PAKISTANI_LYRICS_REGISTRY) {
-    for (const [key, val] of Object.entries(PAKISTANI_LYRICS_REGISTRY)) {
-      if (t.includes(key) || key.includes(t)) {
-        const lines = val.isSynced ? parseLrc(val.raw) : parsePlainLyrics(val.raw);
-        return {
-          title: cleanTitle,
-          artist: cleanArtist,
-          isSynced: val.isSynced,
-          lines,
-          rawPlain: lines.map(l => l.text).join('\n'),
-          source: 'Pakistani Synced Registry (LRC)',
-          notFound: false
-        };
-      }
-    }
-  }
 
   const REGISTRY = {
     'starboy': {

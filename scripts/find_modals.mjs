@@ -12,3 +12,4 @@ lines.forEach((l, idx) => {
 
 console.log("Modals and Dialogs in index.html:");
 modals.forEach(m => console.log(`Line ${m.line}: ${m.text}`));
+

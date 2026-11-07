@@ -50,8 +50,8 @@ export function detectTrackVibe(track) {
   if (combined.includes('stotram') || combined.includes('kavacham') || combined.includes('chalisa') || combined.includes('devotional') || combined.includes('mantra') || combined.includes('sahasranama') || combined.includes('appaji')) {
     return { vibe: 'Devotional & Spiritual', badge: 'Sacred Chant', color: '#f59e0b', icon: 'fa-om' };
   }
-  if (combined.includes('pakistani') || combined.includes('coke studio') || combined.includes('hasan raheem') || combined.includes('atif') || combined.includes('wishes') || combined.includes('pasoori') || combined.includes('kaifi') || combined.includes('umair') || combined.includes('talha anjum') || combined.includes('abdul hannan') || combined.includes('urdu')) {
-    return { vibe: 'Pakistani & Coke Studio Hits', badge: 'Pakistani Soul', color: '#10b981', icon: 'fa-music' };
+  if (combined.includes('sufi') || combined.includes('kailash') || combined.includes('saiyyan') || combined.includes('deewani') || combined.includes('kun faya') || combined.includes('arziyan') || combined.includes('ghazal')) {
+    return { vibe: 'Sufi & Soulful Classics', badge: 'Sufi Soul', color: '#10b981', icon: 'fa-music' };
   }
   if (combined.includes('lofi') || combined.includes('lo-fi') || combined.includes('chill') || combined.includes('beats') || combined.includes('rain') || combined.includes('study')) {
     return { vibe: 'Aesthetic Lo-Fi', badge: 'Lo-Fi Chill', color: '#a855f7', icon: 'fa-headphones' };
@@ -211,7 +211,7 @@ function calculateSimilarityScore(seedTrack, candidateTrack) {
   // 2b. Language Awareness Boost — same language/region tracks get a bonus
   const seedLang = seedVibe.vibe;
   const candLang = candVibe.vibe;
-  const languageVibes = ['Kannada Hits', 'Tamil Viral Beats', 'Telugu Chartbusters', 'Bollywood Soul & Romance', 'Pakistani & Coke Studio Hits', 'Punjabi Drill & Hype', 'K-Pop & Korean Wave', 'Arabic & Middle Eastern', 'Latin & Reggaeton', 'Malayalam Hits'];
+  const languageVibes = ['Kannada Hits', 'Tamil Viral Beats', 'Telugu Chartbusters', 'Bollywood Soul & Romance', 'Sufi & Soulful Classics', 'Punjabi Drill & Hype', 'K-Pop & Korean Wave', 'Arabic & Middle Eastern', 'Latin & Reggaeton', 'Malayalam Hits'];
   if (languageVibes.includes(seedLang) && seedLang === candLang) {
     score += 40;
     if (!hasArtistMatch) {

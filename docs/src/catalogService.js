@@ -324,24 +324,23 @@ export const CATALOG_CATEGORIES = [
     ]
   },
   {
-    id: "cat-pakistani",
-    title: "ðŸ‡µðŸ‡° Pakistani Hits & Coke Studio",
-    subtitle: "Soulful Sufi, Urdu Hip-Hop, Indie pop & viral chartbusters",
-    icon: "fa-music",
+    id: "cat-sufi-ghazal",
+    title: "✨ Sufi & Ghazal Masterpieces",
+    subtitle: "Soulful Sufi devotion, timeless Ghazals & acoustic spiritual anthems",
+    icon: "fa-feather-pointed",
     color: "#10b981",
     tracks: [
-      { id: "ytm-oE7lU2qj4rY", ytId: "oE7lU2qj4rY", title: "Wishes", artist: "Hasan Raheem, Talwiinder & Umair", coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", cover: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", duration: 218, genre: "Pakistani Indie / R&B" },
-      { id: "ytm-5Eqb_-j3FDA", ytId: "5Eqb_-j3FDA", title: "Pasoori", artist: "Ali Sethi x Shae Gill", coverUrl: "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg", cover: "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg", duration: 224, genre: "Coke Studio Pakistan" },
-      { id: "ytm-zydG_QW8m68", ytId: "zydG_QW8m68", title: "Kahani Suno 2.0", artist: "Kaifi Khalil", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg", duration: 175, genre: "Pakistani Acoustic" },
-      { id: "ytm-7D4vNcK6D38", ytId: "7D4vNcK6D38", title: "Tu Jhoom", artist: "Abida Parveen x Naseebo Lal", coverUrl: "https://i.ytimg.com/vi/7D4vNcK6D38/hqdefault.jpg", cover: "https://i.ytimg.com/vi/7D4vNcK6D38/hqdefault.jpg", duration: 399, genre: "Coke Studio Sufi" },
-      { id: "ytm-kw4tT7SCmaY", ytId: "kw4tT7SCmaY", title: "Afreen Afreen", artist: "Rahat Fateh Ali Khan & Momina Mustehsan", coverUrl: "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg", cover: "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg", duration: 405, genre: "Coke Studio Ghazal" },
-      { id: "ytm-cM7_7_u0b3A", ytId: "cM7_7_u0b3A", title: "Tajdar E Haram", artist: "Atif Aslam", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg", duration: 628, genre: "Coke Studio Qawwali" },
-      { id: "ytm-63Z-j3E5p_Y", ytId: "63Z-j3E5p_Y", title: "Downers at Dusk", artist: "Talha Anjum, Umair", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8b/05/74/8b057495-90b4-f039-0bfe-c0a839e940f1/5059713011204_cover.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8b/05/74/8b057495-90b4-f039-0bfe-c0a839e940f1/5059713011204_cover.jpg/600x600bb.jpg", duration: 236, genre: "Urdu Hip-Hop" },
-      { id: "ytm-4oJ3B8P_u4M", ytId: "4oJ3B8P_u4M", title: "Iraaday", artist: "Abdul Hannan, Rovalio", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5d/8b/b8/5d8bb828-6871-0390-52b1-714a7ed0e38f/artwork.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5d/8b/b8/5d8bb828-6871-0390-52b1-714a7ed0e38f/artwork.jpg/600x600bb.jpg", duration: 165, genre: "Pakistani Pop" },
-      { id: "ytm-e4Fz_1R5u9A", ytId: "e4Fz_1R5u9A", title: "Bikhra", artist: "Abdul Hannan, Rovalio", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/4f/e0/eb/4fe0eba3-8c2a-ef5c-b31f-a3c4d65c498d/artwork.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/4f/e0/eb/4fe0eba3-8c2a-ef5c-b31f-a3c4d65c498d/artwork.jpg/600x600bb.jpg", duration: 201, genre: "Pakistani Indie" },
-      { id: "ytm-Q7wPzK5m91c", ytId: "Q7wPzK5m91c", title: "Aadat", artist: "Atif Aslam", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/41/48/27414810-2929-aa34-e145-000948a5c8b7/0602465586596.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/41/48/27414810-2929-aa34-e145-000948a5c8b7/0602465586596.jpg/600x600bb.jpg", duration: 271, genre: "Pakistani Rock / Classic" }
+      { id: "ytm-7x8w4r9_u1A", ytId: "7x8w4r9_u1A", title: "Teri Deewani", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/600x600bb.jpg", duration: 320, genre: "Sufi Rock" },
+      { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Mohit Chauhan, Javed Ali", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/42/fa/b5/42fab58d-71b3-f725-7df2-2c6bfe73f55c/8902894353458_cover.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/42/fa/b5/42fab58d-71b3-f725-7df2-2c6bfe73f55c/8902894353458_cover.jpg/600x600bb.jpg", duration: 472, genre: "Sufi Devotional" },
+      { id: "ytm-s2a3i4y5y6a", ytId: "s2a3i4y5y6a", title: "Saiyyan", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", duration: 346, genre: "Sufi Romantic" },
+      { id: "ytm-a7r8z9i0y1a", ytId: "a7r8z9i0y1a", title: "Arziyan", artist: "A.R. Rahman, Javed Ali, Kailash Kher", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/8a/5a/3f8a5a17-2680-60b8-c923-93d395a127a5/8902894353472_cover.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/8a/5a/3f8a5a17-2680-60b8-c923-93d395a127a5/8902894353472_cover.jpg/600x600bb.jpg", duration: 520, genre: "Sufi Devotional" },
+      { id: "ytm-k4h5w6a7j8a", ytId: "k4h5w6a7j8a", title: "Khwaja Mere Khwaja", artist: "A.R. Rahman", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/64/0e/bd/640ebd09-1738-f1c1-4b13-bc756c3ee70c/8902894353465_cover.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/64/0e/bd/640ebd09-1738-f1c1-4b13-bc756c3ee70c/8902894353465_cover.jpg/600x600bb.jpg", duration: 418, genre: "Sufi Devotional" },
+      { id: "ytm-m1a2u3l4a5m", ytId: "m1a2u3l4a5m", title: "Maula Mere Maula", artist: "Roopkumar Rathod", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3e/7b/09/3e7b09c6-43e4-8a4a-10f8-e9f0c29a8a61/8902894353489_cover.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3e/7b/09/3e7b09c6-43e4-8a4a-10f8-e9f0c29a8a61/8902894353489_cover.jpg/600x600bb.jpg", duration: 350, genre: "Sufi Romantic" },
+      { id: "ytm-a1l2l3a4h5k", ytId: "a1l2l3a4h5k", title: "Allah Ke Bande", artist: "Kailash Kher", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/91/92/93/91929384-9842-8349-2983-928492849284/cover.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/91/92/93/91929384-9842-8349-2983-928492849284/cover.jpg/600x600bb.jpg", duration: 245, genre: "Inspirational / Sufi" },
+      { id: "ytm-t7u8h9i0r1e", ytId: "t7u8h9i0r1e", title: "Tu Hi Re", artist: "Hariharan, Kavita Krishnamurthy", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8f/c9/2b/8fc92b45-ec75-40b9-5e7e-855c5cc3598f/8902894353496_cover.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8f/c9/2b/8fc92b45-ec75-40b9-5e7e-855c5cc3598f/8902894353496_cover.jpg/600x600bb.jpg", duration: 432, genre: "Romantic Classic" },
+      { id: "ytm-c7h8a9a0n1d", ytId: "c7h8a9a0n1d", title: "Chaandan Mein", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", duration: 285, genre: "Sufi Folk" }
     ]
-  }
+  },
 ];
 
 export const LANGUAGE_PLAYLISTS = [
@@ -511,37 +510,31 @@ export const LANGUAGE_PLAYLISTS = [
     ]
   },
   {
-    id: "lang-pakistani",
-    meta: { title: "Pakistani Hits & Coke Studio Classics", icon: "fa-music", color: "#10b981", subtitle: "Hasan Raheem, Atif Aslam, Kaifi Khalil, Ali Sethi, Umair & Coke Studio" },
+    id: "lang-sufi",
+    meta: { title: "Sufi & Ghazal Classics", icon: "fa-feather-pointed", color: "#10b981", subtitle: "Kailash Kher, A.R. Rahman, Hariharan, Jagjit Singh & timeless spiritual melodies" },
     tracks: [
-      { id: "ytm-oE7lU2qj4rY", ytId: "oE7lU2qj4rY", title: "Wishes", artist: "Hasan Raheem, Talwiinder & Umair", coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", duration: 218 },
-      { id: "ytm-5Eqb_-j3FDA", ytId: "5Eqb_-j3FDA", title: "Pasoori", artist: "Ali Sethi x Shae Gill", coverUrl: "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg", duration: 224 },
-      { id: "ytm-zydG_QW8m68", ytId: "zydG_QW8m68", title: "Kahani Suno 2.0", artist: "Kaifi Khalil", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg", duration: 175 },
-      { id: "ytm-7D4vNcK6D38", ytId: "7D4vNcK6D38", title: "Tu Jhoom", artist: "Abida Parveen x Naseebo Lal", coverUrl: "https://i.ytimg.com/vi/7D4vNcK6D38/hqdefault.jpg", duration: 399 },
-      { id: "ytm-kw4tT7SCmaY", ytId: "kw4tT7SCmaY", title: "Afreen Afreen", artist: "Rahat Fateh Ali Khan & Momina Mustehsan", coverUrl: "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg", duration: 405 },
-      { id: "ytm-cM7_7_u0b3A", ytId: "cM7_7_u0b3A", title: "Tajdar E Haram", artist: "Atif Aslam", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg", duration: 628 },
-      { id: "ytm-63Z-j3E5p_Y", ytId: "63Z-j3E5p_Y", title: "Downers at Dusk", artist: "Talha Anjum, Umair", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8b/05/74/8b057495-90b4-f039-0bfe-c0a839e940f1/5059713011204_cover.jpg/600x600bb.jpg", duration: 236 },
-      { id: "ytm-4oJ3B8P_u4M", ytId: "4oJ3B8P_u4M", title: "Iraaday", artist: "Abdul Hannan, Rovalio", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5d/8b/b8/5d8bb828-6871-0390-52b1-714a7ed0e38f/artwork.jpg/600x600bb.jpg", duration: 165 },
-      { id: "ytm-e4Fz_1R5u9A", ytId: "e4Fz_1R5u9A", title: "Bikhra", artist: "Abdul Hannan, Rovalio", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/4f/e0/eb/4fe0eba3-8c2a-ef5c-b31f-a3c4d65c498d/artwork.jpg/600x600bb.jpg", duration: 201 },
-      { id: "ytm-Q7wPzK5m91c", ytId: "Q7wPzK5m91c", title: "Aadat", artist: "Atif Aslam", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/41/48/27414810-2929-aa34-e145-000948a5c8b7/0602465586596.jpg/600x600bb.jpg", duration: 271 }
+      { id: "ytm-7x8w4r9_u1A", ytId: "7x8w4r9_u1A", title: "Teri Deewani", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/600x600bb.jpg", duration: 320 },
+      { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Mohit Chauhan, Javed Ali", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/42/fa/b5/42fab58d-71b3-f725-7df2-2c6bfe73f55c/8902894353458_cover.jpg/600x600bb.jpg", duration: 472 },
+      { id: "ytm-s2a3i4y5y6a", ytId: "s2a3i4y5y6a", title: "Saiyyan", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", duration: 346 },
+      { id: "ytm-a7r8z9i0y1a", ytId: "a7r8z9i0y1a", title: "Arziyan", artist: "A.R. Rahman, Javed Ali, Kailash Kher", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/8a/5a/3f8a5a17-2680-60b8-c923-93d395a127a5/8902894353472_cover.jpg/600x600bb.jpg", duration: 520 },
+      { id: "ytm-k4h5w6a7j8a", ytId: "k4h5w6a7j8a", title: "Khwaja Mere Khwaja", artist: "A.R. Rahman", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/64/0e/bd/640ebd09-1738-f1c1-4b13-bc756c3ee70c/8902894353465_cover.jpg/600x600bb.jpg", duration: 418 },
+      { id: "ytm-a1l2l3a4h5k", ytId: "a1l2l3a4h5k", title: "Allah Ke Bande", artist: "Kailash Kher", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/91/92/93/91929384-9842-8349-2983-928492849284/cover.jpg/600x600bb.jpg", duration: 245 },
+      { id: "ytm-t7u8h9i0r1e", ytId: "t7u8h9i0r1e", title: "Tu Hi Re", artist: "Hariharan, Kavita Krishnamurthy", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8f/c9/2b/8fc92b45-ec75-40b9-5e7e-855c5cc3598f/8902894353496_cover.jpg/600x600bb.jpg", duration: 432 },
+      { id: "ytm-c7h8a9a0n1d", ytId: "c7h8a9a0n1d", title: "Chaandan Mein", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", duration: 285 }
     ]
   }
 ];
 
 export const getQuickPicks = (limit = 8) => {
   return [
-    { id: "ytm-oE7lU2qj4rY", ytId: "oE7lU2qj4rY", title: "Wishes", artist: "Hasan Raheem, Talwiinder & Umair", coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", duration: 218 },
-    { id: "ytm-5Eqb_-j3FDA", ytId: "5Eqb_-j3FDA", title: "Pasoori", artist: "Ali Sethi x Shae Gill", coverUrl: "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg", duration: 224 },
+    { id: "ytm-7x8w4r9_u1A", ytId: "7x8w4r9_u1A", title: "Teri Deewani", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/600x600bb.jpg", duration: 320 },
+    { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Mohit Chauhan, Javed Ali", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/42/fa/b5/42fab58d-71b3-f725-7df2-2c6bfe73f55c/8902894353458_cover.jpg/600x600bb.jpg", duration: 472 },
     { id: "rel-die-with-a-smile", ytId: "kPa7bsKwL-c", title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/ae/f2/11aef294-f57c-bab9-c9fc-529162984e62/24UMGIM85348.rgb.jpg/600x600bb.jpg", duration: 251 },
     { id: "ytm-4NRXx6U8ABQ", ytId: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg", duration: 200 },
-    { id: "ytm-zydG_QW8m68", ytId: "zydG_QW8m68", title: "Kahani Suno 2.0", artist: "Kaifi Khalil", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg", duration: 175 },
+    { id: "ytm-s2a3i4y5y6a", ytId: "s2a3i4y5y6a", title: "Saiyyan", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", duration: 346 },
     { id: "ytm-eVli-tstM5E", ytId: "eVli-tstM5E", title: "Espresso", artist: "Sabrina Carpenter", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/e8/7b/57e87ba0-5057-9bb9-c247-ce7dbe426e89/24UMGIM55213.rgb.jpg/600x600bb.jpg", duration: 175 },
     { id: "ytm-d5gf9dXbPi0", ytId: "d5gf9dXbPi0", title: "Birds of a Feather", artist: "Billie Eilish", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg", duration: 196 },
-    { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg", duration: 258 },
-    { id: "ytm-7wtfhZwyrcc", ytId: "7wtfhZwyrcc", title: "Believer", artist: "Imagine Dragons", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/7a/b8/117ab805-6811-8929-18b9-0fad7baf0c25/17UMGIM98210.rgb.jpg/600x600bb.jpg", duration: 204 },
-    { id: "ytm-IJq0ydg105U", ytId: "IJq0ydg105U", title: "Tum Hi Ho", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg", duration: 262 },
-    { id: "ytm-_dK2tDK9grQ", ytId: "_dK2tDK9grQ", title: "Shape of You", artist: "Ed Sheeran", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/1000x1000bb.jpg", duration: 233 },
-    { id: "ytm-BddP6PYo2gs", ytId: "BddP6PYo2gs", title: "Kesariya", artist: "Arijit Singh", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/1000x1000bb.jpg", duration: 268 }
+    { id: "ytm-S9bCLPwzSC0", ytId: "S9bCLPwzSC0", title: "Mockingbird", artist: "Eminem", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e4/c9/9e/e4c99e72-f72f-d6c8-42f6-7037e8c400a8/00602577028427.rgb.jpg/600x600bb.jpg", duration: 258 }
   ].slice(0, limit);
 };
 
@@ -673,129 +666,129 @@ export const ARTIST_DATABASE = {
     ],
     "origin": "Jiaganj, Murshidabad, West Bengal, India"
   },
-  "atif-aslam": {
-    "name": "Atif Aslam",
-    "monthlyListeners": "34,200,000",
-    "followersCount": "28,600,000",
-    "worldRank": "#3 in South Asia",
-    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg",
-    "bio": "Atif Aslam is an internationally acclaimed Pakistani playback singer and songwriter known for his powerful belting vocals and timeless romantic anthems. From rock breakthroughs with Jal's 'Aadat' to Bollywood chart-toppers like 'Tera Hone Laga Hoon', 'Dil Diyan Gallan', and Coke Studio's 'Tajdar-e-Haram', his cross-border impact is celebrated across the globe.",
+  "kailash-kher": {
+    "name": "Kailash Kher",
+    "monthlyListeners": "18,400,000",
+    "followersCount": "12,200,000",
+    "worldRank": "#8 in India",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/1000x1000bb.jpg",
+    "bio": "Kailash Kher is a Padma Shri-awarded Indian music composer and singer known for his soulful, rustic Sufi and folk vocal style. As the frontman of the band Kailasa, his transcendent compositions including 'Teri Deewani', 'Saiyyan', 'Allah Ke Bande', and 'Yuhi Chala Chal' are modern Indian spiritual classics.",
     "socials": {
-      "instagram": "https://www.instagram.com/atifaslam/",
-      "x": "https://x.com/itsaadee",
-      "facebook": "https://www.facebook.com/AtifAslamOfficialFanPage/",
-      "youtube": "https://www.youtube.com/@AtifAslamOfficial",
-      "spotify": "https://open.spotify.com/artist/2oSONSC9zQ4UonDKvlLfu8"
+      "instagram": "https://www.instagram.com/kailashkher/",
+      "x": "https://x.com/Kailashkher",
+      "facebook": "https://www.facebook.com/KailashKherMusic/",
+      "youtube": "https://www.youtube.com/@KailashKher",
+      "spotify": "https://open.spotify.com/artist/2GoeZ0qgr19R2ow4xKDVCW"
     },
     "tourInfo": {
-      "tourName": "Atif Aslam Live Arena Tour",
+      "tourName": "Kailash Kher & Kailasa World Tour 2026",
       "status": "Tickets Live",
-      "dates": "Dubai Coca-Cola Arena, London O2 Arena, Manchester, Birmingham, Dallas, Houston",
-      "ticketUrl": "https://www.ticketmaster.com/atif-aslam-tickets/artist/1449841"
+      "dates": "Delhi, Mumbai, Bengaluru, London, San Jose, Singapore",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
       {
-        "id": "ytm-cM7_7_u0b3A",
-        "ytId": "cM7_7_u0b3A",
-        "title": "Tajdar E Haram",
-        "artist": "Atif Aslam",
-        "album": "Coke Studio Season 8",
-        "coverUrl": "https://i.ytimg.com/vi/cM7_7_u0b3A/hqdefault.jpg",
-        "duration": 628,
-        "plays": "510,000,000"
+        "id": "ytm-7x8w4r9_u1A",
+        "ytId": "7x8w4r9_u1A",
+        "title": "Teri Deewani",
+        "artist": "Kailash Kher, Kailasa",
+        "album": "Kailasa",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/600x600bb.jpg",
+        "duration": 320,
+        "plays": "620,000,000"
       },
       {
-        "id": "ytm-Q7wPzK5m91c",
-        "ytId": "Q7wPzK5m91c",
-        "title": "Aadat",
-        "artist": "Atif Aslam",
-        "album": "Jal Pari",
-        "coverUrl": "https://i.ytimg.com/vi/Q7wPzK5m91c/hqdefault.jpg",
-        "duration": 268,
-        "plays": "430,000,000"
+        "id": "ytm-s2a3i4y5y6a",
+        "ytId": "s2a3i4y5y6a",
+        "title": "Saiyyan",
+        "artist": "Kailash Kher, Kailasa",
+        "album": "Jhoomo Re",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg",
+        "duration": 346,
+        "plays": "580,000,000"
       },
       {
-        "id": "ytm-SAcpESN_Fk4",
-        "ytId": "SAcpESN_Fk4",
-        "title": "Dil Diyan Gallan",
-        "artist": "Atif Aslam",
-        "album": "Tiger Zinda Hai",
-        "coverUrl": "https://i.ytimg.com/vi/SAcpESN_Fk4/hqdefault.jpg",
-        "duration": 260,
-        "plays": "820,000,000"
+        "id": "ytm-a1l2l3a4h5k",
+        "ytId": "a1l2l3a4h5k",
+        "title": "Allah Ke Bande",
+        "artist": "Kailash Kher",
+        "album": "Waisa Bhi Hota Hai Part II",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/91/92/93/91929384-9842-8349-2983-928492849284/cover.jpg/600x600bb.jpg",
+        "duration": 245,
+        "plays": "410,000,000"
       },
       {
-        "id": "ytm-h_fXz_H_hGg",
-        "ytId": "h_fXz_H_hGg",
-        "title": "Woh Lamhe Woh Baatein",
-        "artist": "Atif Aslam",
-        "album": "Zeher",
-        "coverUrl": "https://i.ytimg.com/vi/h_fXz_H_hGg/hqdefault.jpg",
-        "duration": 321,
+        "id": "ytm-c7h8a9a0n1d",
+        "ytId": "c7h8a9a0n1d",
+        "title": "Chaandan Mein",
+        "artist": "Kailash Kher, Kailasa",
+        "album": "Chaandan Mein",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg",
+        "duration": 285,
+        "plays": "290,000,000"
+      },
+      {
+        "id": "ytm-y1u2h3i4c5h",
+        "ytId": "y1u2h3i4c5h",
+        "title": "Yuhi Chala Chal",
+        "artist": "Udit Narayan, Hariharan, Kailash Kher",
+        "album": "Swades",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/cf/8d/05cf8d71-5517-5e95-7798-38686a1172a1/8902894353441_cover.jpg/600x600bb.jpg",
+        "duration": 448,
+        "plays": "320,000,000"
+      },
+      {
+        "id": "ytm-y2a3r4a5b6b",
+        "ytId": "y2a3r4a5b6b",
+        "title": "Ya Rabba",
+        "artist": "Kailash Kher",
+        "album": "Salaam-E-Ishq",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1f/4e/d3/1f4ed33e-e613-2070-5fa3-02f04df5c5c0/8902894353434_cover.jpg/600x600bb.jpg",
+        "duration": 418,
+        "plays": "250,000,000"
+      },
+      {
+        "id": "ytm-b1a2m3l4a5h",
+        "ytId": "b1a2m3l4a5h",
+        "title": "Bam Lahiri",
+        "artist": "Kailash Kher",
+        "album": "Kailasa",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/600x600bb.jpg",
+        "duration": 310,
+        "plays": "280,000,000"
+      },
+      {
+        "id": "ytm-t1u2j3a4a5n",
+        "ytId": "t1u2j3a4a5n",
+        "title": "Tu Jaane Na (Unplugged)",
+        "artist": "Kailash Kher",
+        "album": "Ajab Prem Ki Ghazab Kahani",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/21/04/b5/2104b50c-e2f4-cf56-2db1-d41f71424759/8902894353427_cover.jpg/600x600bb.jpg",
+        "duration": 343,
         "plays": "390,000,000"
       },
       {
-        "id": "ytm-IlVfL5P-o7E",
-        "ytId": "IlVfL5P-o7E",
-        "title": "Tere Sang Yaara",
-        "artist": "Atif Aslam",
-        "album": "Rustom",
-        "coverUrl": "https://i.ytimg.com/vi/IlVfL5P-o7E/hqdefault.jpg",
-        "duration": 290,
-        "plays": "640,000,000"
-      },
-      {
-        "id": "ytm-P8PWN1OmZOA",
-        "ytId": "P8PWN1OmZOA",
-        "title": "Tu Jaane Na",
-        "artist": "Atif Aslam",
-        "album": "Ajab Prem Ki Ghazab Kahani",
-        "coverUrl": "https://i.ytimg.com/vi/P8PWN1OmZOA/hqdefault.jpg",
-        "duration": 341,
-        "plays": "590,000,000"
-      },
-      {
-        "id": "ytm-BadBAMnPXtc",
-        "ytId": "BadBAMnPXtc",
-        "title": "Pehli Nazar Mein",
-        "artist": "Atif Aslam",
-        "album": "Race",
-        "coverUrl": "https://i.ytimg.com/vi/BadBAMnPXtc/hqdefault.jpg",
-        "duration": 314,
-        "plays": "470,000,000"
-      },
-      {
-        "id": "ytm-zi-xM_40N-c",
-        "ytId": "zi-xM_40N-c",
-        "title": "Jeena Jeena",
-        "artist": "Atif Aslam",
-        "album": "Badlapur",
-        "coverUrl": "https://i.ytimg.com/vi/zi-xM_40N-c/hqdefault.jpg",
-        "duration": 229,
-        "plays": "510,000,000"
-      },
-      {
-        "id": "ytm-dO3u5M4R0d8",
-        "ytId": "dO3u5M4R0d8",
-        "title": "Kadi Te Has Bol",
-        "artist": "Atif Aslam, Veloce",
-        "album": "Veloce Sound",
-        "coverUrl": "https://i.ytimg.com/vi/dO3u5M4R0d8/hqdefault.jpg",
-        "duration": 236,
-        "plays": "240,000,000"
-      },
-      {
-        "id": "ytm-tLqfn_MfqfM",
-        "ytId": "tLqfn_MfqfM",
-        "title": "Kuch Is Tarah",
-        "artist": "Atif Aslam",
-        "album": "Doorie",
-        "coverUrl": "https://i.ytimg.com/vi/tLqfn_MfqfM/hqdefault.jpg",
-        "duration": 313,
+        "id": "ytm-a7r8z9i0y1a",
+        "ytId": "a7r8z9i0y1a",
+        "title": "Arziyan",
+        "artist": "A.R. Rahman, Javed Ali, Kailash Kher",
+        "album": "Delhi 6",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/8a/5a/3f8a5a17-2680-60b8-c923-93d395a127a5/8902894353472_cover.jpg/600x600bb.jpg",
+        "duration": 520,
         "plays": "310,000,000"
+      },
+      {
+        "id": "ytm-k1a2u3n4h5a",
+        "ytId": "k1a2u3n4h5a",
+        "title": "Kaun Hai Voh",
+        "artist": "Kailash Kher, Mounima",
+        "album": "Baahubali - The Beginning",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7e/f4/16/7ef4168c-f09c-ffcf-b676-e41c09930fca/8902894353410_cover.jpg/600x600bb.jpg",
+        "duration": 231,
+        "plays": "460,000,000"
       }
     ],
-    "origin": "Wazirabad, Punjab, Pakistan"
+    "origin": "Meerut, Uttar Pradesh, India"
   },
   "ap-dhillon": {
     "name": "AP Dhillon",
@@ -1541,377 +1534,377 @@ export const ARTIST_DATABASE = {
     ],
     "origin": "Quakertown, Pennsylvania, USA"
   },
-  "hasan-raheem": {
-    "name": "Hasan Raheem",
-    "monthlyListeners": "8,900,000",
-    "followersCount": "6,400,000",
-    "worldRank": "#8 in Pakistan",
-    "banner": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-    "bio": "Hasan Raheem is a doctor-turned-indie-music icon from Pakistan who pioneered the viral Urdu bedroom-pop and contemporary R&B movement in South Asia. Known for his laid-back cadence, groovy basslines, and viral masterpieces like 'Wishes', 'Aisay Kaisay', 'Faislay', and 'Peechay Hutt', he has won hearts across generations.",
+  "shaan": {
+    "name": "Shaan",
+    "monthlyListeners": "22,100,000",
+    "followersCount": "14,800,000",
+    "worldRank": "#6 in India",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b8/91/97/b8919784-0678-a83a-14d2-d278065b75f8/190296766487.jpg/1000x1000bb.jpg",
+    "bio": "Shantanu Mukherjee, known affectionately across the globe as Shaan, is one of India's most versatile playback singers and composers. Renowned for his radiant tone and emotive mastery, his career spans private pop hits like 'Tanha Dil' to cinematic masterpieces like 'Chand Sifarish' and 'Jab Se Tere Naina'.",
     "socials": {
-      "instagram": "https://www.instagram.com/hasan_raheem/",
-      "x": "https://x.com/hasanraheem",
-      "facebook": "https://www.facebook.com/hasanraheemofficial/",
-      "youtube": "https://www.youtube.com/@hasanraheem",
-      "spotify": "https://open.spotify.com/artist/7LqaK3Zk5e1w9k46Wj0Z34"
+      "instagram": "https://www.instagram.com/singer_shaan/",
+      "x": "https://x.com/singer_shaan",
+      "facebook": "https://www.facebook.com/singer.shaan/",
+      "youtube": "https://www.youtube.com/@ShaanOfficial",
+      "spotify": "https://open.spotify.com/artist/2fMqTqiTxUDvtAJLqzqpPt"
     },
     "tourInfo": {
-      "tourName": "Hasan Raheem Live: The Maybe It's Love Tour",
+      "tourName": "Shaan Live in Symphony 2026",
       "status": "Tickets Live",
-      "dates": "Karachi, Lahore, Islamabad, London, Dubai, Toronto",
+      "dates": "Mumbai, Kolkata, Pune, London, Sydney, Dubai",
       "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
       {
-        "id": "ytm-oE7lU2qj4rY",
-        "ytId": "oE7lU2qj4rY",
-        "title": "Wishes",
-        "artist": "Hasan Raheem, Talwiinder & Umair",
-        "album": "Wishes",
-        "coverUrl": "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
-        "duration": 172,
-        "plays": "185,000,000"
+        "id": "ytm-t1a2n3h4a5d",
+        "ytId": "t1a2n3h4a5d",
+        "title": "Tanha Dil",
+        "artist": "Shaan",
+        "album": "Tanha Dil",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b8/91/97/b8919784-0678-a83a-14d2-d278065b75f8/190296766487.jpg/600x600bb.jpg",
+        "duration": 286,
+        "plays": "480,000,000"
       },
       {
-        "id": "ytm-q6C95L7N_9E",
-        "ytId": "q6C95L7N_9E",
-        "title": "Aisay Kaisay",
-        "artist": "Hasan Raheem, Abdullah Kasumbi",
-        "album": "Aisay Kaisay",
-        "coverUrl": "https://i.ytimg.com/vi/q6C95L7N_9E/hqdefault.jpg",
-        "duration": 153,
-        "plays": "140,000,000"
+        "id": "ytm-c1h2a3n4d5s",
+        "ytId": "c1h2a3n4d5s",
+        "title": "Chand Sifarish",
+        "artist": "Shaan, Kailash Kher",
+        "album": "Fanaa",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d5/08/9b/d5089be5-9f5e-18be-197e-1317769512d7/8902894353403_cover.jpg/600x600bb.jpg",
+        "duration": 277,
+        "plays": "590,000,000"
       },
       {
-        "id": "ytm-1e9fF5C7o9I",
-        "ytId": "1e9fF5C7o9I",
-        "title": "Joona",
-        "artist": "Hasan Raheem, Abdullah Kasumbi",
-        "album": "Joona",
-        "coverUrl": "https://i.ytimg.com/vi/1e9fF5C7o9I/hqdefault.jpg",
-        "duration": 184,
-        "plays": "110,000,000"
+        "id": "ytm-j1a2b3s4e5t",
+        "ytId": "j1a2b3s4e5t",
+        "title": "Jab Se Tere Naina",
+        "artist": "Shaan",
+        "album": "Saawariya",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/7c/4f/9a/7c4f9a56-8571-0678-e501-1b2c4e3f5a12/8902894353397_cover.jpg/600x600bb.jpg",
+        "duration": 284,
+        "plays": "410,000,000"
       },
       {
-        "id": "ytm-xQ_2W_tGqP0",
-        "ytId": "xQ_2W_tGqP0",
-        "title": "Peechay Hutt",
-        "artist": "Hasan Raheem, Justin Bibis, Talal Qureshi",
-        "album": "Coke Studio Season 14",
-        "coverUrl": "https://i.ytimg.com/vi/xQ_2W_tGqP0/hqdefault.jpg",
-        "duration": 186,
-        "plays": "95,000,000"
+        "id": "ytm-h1e2y3s4h5o",
+        "ytId": "h1e2y3s4h5o",
+        "title": "Hey Shona",
+        "artist": "Shaan, Sunidhi Chauhan",
+        "album": "Ta Ra Rum Pum",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8e/31/54/8e31548a-6799-a477-8c46-9538a5b28291/8902894353380_cover.jpg/600x600bb.jpg",
+        "duration": 321,
+        "plays": "360,000,000"
       },
       {
-        "id": "ytm-l8p6m5b7w0q",
-        "ytId": "l8p6m5b7w0q",
-        "title": "Faltu Pyar",
-        "artist": "Hasan Raheem ft. Natasha Noorani",
-        "album": "Faltu Pyar",
-        "coverUrl": "https://i.ytimg.com/vi/l8p6m5b7w0q/hqdefault.jpg",
-        "duration": 169,
-        "plays": "85,000,000"
+        "id": "ytm-b1e2h3t4i5h",
+        "ytId": "b1e2h3t4i5h",
+        "title": "Behti Hawa Sa Tha Woh",
+        "artist": "Shaan, Shantanu Moitra",
+        "album": "3 Idiots",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5a/62/13/5a621356-9174-8b63-0d29-07eb9e217c45/8902894353373_cover.jpg/600x600bb.jpg",
+        "duration": 301,
+        "plays": "520,000,000"
       },
       {
-        "id": "ytm-3L1f2uK5xW4",
-        "ytId": "3L1f2uK5xW4",
-        "title": "Sun Le Na",
-        "artist": "Hasan Raheem",
-        "album": "Sun Le Na",
-        "coverUrl": "https://i.ytimg.com/vi/3L1f2uK5xW4/hqdefault.jpg",
-        "duration": 177,
-        "plays": "75,000,000"
+        "id": "ytm-k1u2c3h4t5o",
+        "ytId": "k1u2c3h4t5o",
+        "title": "Kuch To Hua Hai",
+        "artist": "Shaan, Alka Yagnik",
+        "album": "Kal Ho Naa Ho",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4a/5b/6c/4a5b6c7d-8e9f-0a1b-2c3d-4e5f6a7b8c9d/8902894353366_cover.jpg/600x600bb.jpg",
+        "duration": 320,
+        "plays": "340,000,000"
       },
       {
-        "id": "ytm-9w7p6b5m8e0",
-        "ytId": "9w7p6b5m8e0",
-        "title": "Aarzu",
-        "artist": "Hasan Raheem",
-        "album": "Aarzu",
-        "coverUrl": "https://i.ytimg.com/vi/9w7p6b5m8e0/hqdefault.jpg",
-        "duration": 162,
-        "plays": "68,000,000"
+        "id": "ytm-w1o2h3l4a5d",
+        "ytId": "w1o2h3l4a5d",
+        "title": "Woh Ladki Hai Kahan",
+        "artist": "Shaan, Kavita Krishnamurthy",
+        "album": "Dil Chahta Hai",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/3b/4c/2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c7d/8902894353359_cover.jpg/600x600bb.jpg",
+        "duration": 306,
+        "plays": "290,000,000"
       },
       {
-        "id": "ytm-b7x8m6q5r3o",
-        "ytId": "b7x8m6q5r3o",
-        "title": "Weli Ho",
-        "artist": "Hasan Raheem, Abdullah Kasumbi",
-        "album": "Weli Ho",
-        "coverUrl": "https://i.ytimg.com/vi/b7x8m6q5r3o/hqdefault.jpg",
-        "duration": 158,
-        "plays": "62,000,000"
-      },
-      {
-        "id": "ytm-4q7n8p2b9w9",
-        "ytId": "4q7n8p2b9w9",
-        "title": "Teray Naal",
-        "artist": "Hasan Raheem",
-        "album": "Teray Naal",
-        "coverUrl": "https://i.ytimg.com/vi/4q7n8p2b9w9/hqdefault.jpg",
-        "duration": 182,
-        "plays": "58,000,000"
-      },
-      {
-        "id": "ytm-2m6q7w8e9r0",
-        "ytId": "2m6q7w8e9r0",
-        "title": "Paisa",
-        "artist": "Hasan Raheem, Talal Qureshi",
-        "album": "Paisa",
-        "coverUrl": "https://i.ytimg.com/vi/2m6q7w8e9r0/hqdefault.jpg",
-        "duration": 174,
-        "plays": "52,000,000"
-      }
-    ],
-    "origin": "Gilgit, Gilgit-Baltistan, Pakistan"
-  },
-  "kaifi-khalil": {
-    "name": "Kaifi Khalil",
-    "monthlyListeners": "14,200,000",
-    "followersCount": "11,800,000",
-    "worldRank": "#6 in South Asia",
-    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg",
-    "bio": "Kaifi Khalil is a Balochi singer, songwriter, and composer whose breakthrough ballad 'Kahani Suno 2.0' became one of the biggest viral musical sensations in Asian music history, earning hundreds of millions of streams. His haunting acoustic melodies blend traditional Balochi folk textures with heartfelt contemporary poetry.",
-    "socials": {
-      "instagram": "https://www.instagram.com/kaifikhalilmusic/",
-      "x": "https://x.com/kaifik",
-      "facebook": "https://www.facebook.com/KaifiKhalilOfficial/",
-      "youtube": "https://www.youtube.com/@KaifiKhalil",
-      "spotify": "https://open.spotify.com/artist/1r2S2iZg259Wp10rD9MvdP"
-    },
-    "tourInfo": {
-      "tourName": "Kaifi Khalil: The Acoustic Soul Tour",
-      "status": "Tickets Live",
-      "dates": "Karachi Arts Council, Dubai Opera, London, Toronto, Doha",
-      "ticketUrl": "https://in.bookmyshow.com/explore/events"
-    },
-    "topTracks": [
-      {
-        "id": "ytm-zydG_QW8m68",
-        "ytId": "zydG_QW8m68",
-        "title": "Kahani Suno 2.0",
-        "artist": "Kaifi Khalil",
-        "album": "Kahani Suno",
-        "coverUrl": "https://i.ytimg.com/vi/zydG_QW8m68/hqdefault.jpg",
-        "duration": 173,
-        "plays": "680,000,000"
-      },
-      {
-        "id": "ytm-tVzB1p9Y7x0",
-        "ytId": "tVzB1p9Y7x0",
-        "title": "Kana Yaari",
-        "artist": "Kaifi Khalil, Eva B, Abdul Wahab Bugti",
-        "album": "Coke Studio Season 14",
-        "coverUrl": "https://i.ytimg.com/vi/tVzB1p9Y7x0/hqdefault.jpg",
-        "duration": 215,
-        "plays": "240,000,000"
-      },
-      {
-        "id": "ytm-8q2n5m7b9w0",
-        "ytId": "8q2n5m7b9w0",
-        "title": "Mansob",
-        "artist": "Kaifi Khalil",
-        "album": "Mansob",
-        "coverUrl": "https://i.ytimg.com/vi/8q2n5m7b9w0/hqdefault.jpg",
-        "duration": 204,
-        "plays": "78,000,000"
-      },
-      {
-        "id": "ytm-4p7n9m2b8w1",
-        "ytId": "4p7n9m2b8w1",
-        "title": "Beqadra",
-        "artist": "Kaifi Khalil",
-        "album": "Beqadra",
-        "coverUrl": "https://i.ytimg.com/vi/4p7n9m2b8w1/hqdefault.jpg",
-        "duration": 188,
-        "plays": "65,000,000"
-      },
-      {
-        "id": "ytm-3r6t8y1u0i2",
-        "ytId": "3r6t8y1u0i2",
-        "title": "Kadi Aao Ni",
-        "artist": "Kaifi Khalil",
-        "album": "Folk Sessions",
-        "coverUrl": "https://i.ytimg.com/vi/3r6t8y1u0i2/hqdefault.jpg",
-        "duration": 196,
-        "plays": "45,000,000"
-      },
-      {
-        "id": "ytm-5y8u1i3o0p2",
-        "ytId": "5y8u1i3o0p2",
-        "title": "Tauba Tauba",
-        "artist": "Kaifi Khalil",
-        "album": "Singles",
-        "coverUrl": "https://i.ytimg.com/vi/5y8u1i3o0p2/hqdefault.jpg",
-        "duration": 178,
-        "plays": "39,000,000"
-      },
-      {
-        "id": "ytm-9i1o3p5a7s2",
-        "ytId": "9i1o3p5a7s2",
-        "title": "Dilbaro",
-        "artist": "Kaifi Khalil",
-        "album": "Dilbaro",
-        "coverUrl": "https://i.ytimg.com/vi/9i1o3p5a7s2/hqdefault.jpg",
-        "duration": 185,
-        "plays": "34,000,000"
-      },
-      {
-        "id": "ytm-2s4d6f8g0h2",
-        "ytId": "2s4d6f8g0h2",
-        "title": "Jogi",
-        "artist": "Kaifi Khalil",
-        "album": "Balochi Sessions",
-        "coverUrl": "https://i.ytimg.com/vi/2s4d6f8g0h2/hqdefault.jpg",
-        "duration": 210,
-        "plays": "29,000,000"
-      },
-      {
-        "id": "ytm-6h8j0k2l4z2",
-        "ytId": "6h8j0k2l4z2",
-        "title": "Baali Gulaab",
-        "artist": "Kaifi Khalil",
-        "album": "Baali Gulaab",
-        "coverUrl": "https://i.ytimg.com/vi/6h8j0k2l4z2/hqdefault.jpg",
-        "duration": 172,
-        "plays": "26,000,000"
-      },
-      {
-        "id": "ytm-1x3c5v7b9n2",
-        "ytId": "1x3c5v7b9n2",
-        "title": "Murad",
-        "artist": "Kaifi Khalil",
-        "album": "Lyari Beats",
-        "coverUrl": "https://i.ytimg.com/vi/1x3c5v7b9n2/hqdefault.jpg",
-        "duration": 194,
-        "plays": "22,000,000"
-      }
-    ],
-    "origin": "Lyari, Karachi, Sindh, Pakistan"
-  },
-  "ali-sethi": {
-    "name": "Ali Sethi",
-    "monthlyListeners": "15,800,000",
-    "followersCount": "12,100,000",
-    "worldRank": "#7 in South Asia",
-    "banner": "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg",
-    "bio": "Ali Sethi is an internationally acclaimed singer, writer, and composer recognized for revitalizing classical ghazal and Sufi poetry through modern global pop. His runaway hit 'Pasoori' on Coke Studio topped Spotify's Global Viral charts and became the most searched song on Google globally in 2022.",
-    "socials": {
-      "instagram": "https://www.instagram.com/alisethiofficial/",
-      "x": "https://x.com/alisethiofficial",
-      "facebook": "https://www.facebook.com/AliSethiOfficial/",
-      "youtube": "https://www.youtube.com/@AliSethi",
-      "spotify": "https://open.spotify.com/artist/3oXy01Z6N9H4Jt67gQ0H34"
-    },
-    "tourInfo": {
-      "tourName": "Ali Sethi Live: Raga & Resistance Tour",
-      "status": "Tickets Live",
-      "dates": "New York Brooklyn Steel, London Barbican, Toronto Massey Hall, Dubai",
-      "ticketUrl": "https://www.ticketmaster.com/ali-sethi-tickets/artist/2926715"
-    },
-    "topTracks": [
-      {
-        "id": "ytm-5Eqb_-j3FDA",
-        "ytId": "5Eqb_-j3FDA",
-        "title": "Pasoori",
-        "artist": "Ali Sethi x Shae Gill",
-        "album": "Coke Studio Season 14",
-        "coverUrl": "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg",
-        "duration": 224,
-        "plays": "750,000,000"
-      },
-      {
-        "id": "ytm-d35w_QoBvFw",
-        "ytId": "d35w_QoBvFw",
-        "title": "Chandni Raat",
-        "artist": "Ali Sethi",
-        "album": "Chandni Raat",
-        "coverUrl": "https://i.ytimg.com/vi/d35w_QoBvFw/hqdefault.jpg",
-        "duration": 258,
-        "plays": "120,000,000"
-      },
-      {
-        "id": "ytm-fI5qC1Kvh08",
-        "ytId": "fI5qC1Kvh08",
-        "title": "Ishq",
-        "artist": "Ali Sethi",
-        "album": "Ishq",
-        "coverUrl": "https://i.ytimg.com/vi/fI5qC1Kvh08/hqdefault.jpg",
-        "duration": 215,
-        "plays": "95,000,000"
-      },
-      {
-        "id": "ytm-3p2m8Q2p7r0",
-        "ytId": "3p2m8Q2p7r0",
-        "title": "Left Right",
-        "artist": "Ali Sethi, Shae Gill, Maanu",
-        "album": "Left Right",
-        "coverUrl": "https://i.ytimg.com/vi/3p2m8Q2p7r0/hqdefault.jpg",
-        "duration": 198,
-        "plays": "82,000,000"
-      },
-      {
-        "id": "ytm-07_m9X_4p8k",
-        "ytId": "07_m9X_4p8k",
-        "title": "Ranjish Hi Sahi",
-        "artist": "Ali Sethi",
-        "album": "Coke Studio Season 10",
-        "coverUrl": "https://i.ytimg.com/vi/07_m9X_4p8k/hqdefault.jpg",
-        "duration": 375,
-        "plays": "110,000,000"
-      },
-      {
-        "id": "ytm-Y8x5V5-r7mY",
-        "ytId": "Y8x5V5-r7mY",
-        "title": "Chan Kithan",
-        "artist": "Ali Sethi",
-        "album": "Chan Kithan",
-        "coverUrl": "https://i.ytimg.com/vi/Y8x5V5-r7mY/hqdefault.jpg",
-        "duration": 322,
-        "plays": "88,000,000"
-      },
-      {
-        "id": "ytm-b3w9m8r2p10",
-        "ytId": "b3w9m8r2p10",
-        "title": "Ghazab Kiya",
-        "artist": "Ali Sethi",
-        "album": "Ghazal Sessions",
-        "coverUrl": "https://i.ytimg.com/vi/b3w9m8r2p10/hqdefault.jpg",
+        "id": "ytm-c1h2a3a4r5k",
+        "ytId": "c1h2a3a4r5k",
+        "title": "Chaar Kadam",
+        "artist": "Shaan, Shreya Ghoshal",
+        "album": "PK",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3a/4b/5c/3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d/8902894353342_cover.jpg/600x600bb.jpg",
         "duration": 242,
-        "plays": "64,000,000"
+        "plays": "410,000,000"
       },
       {
-        "id": "ytm-m7p8w9r2b0q",
-        "ytId": "m7p8w9r2b0q",
-        "title": "Dil Lagaayein",
-        "artist": "Ali Sethi",
-        "album": "Dil Lagaayein",
-        "coverUrl": "https://i.ytimg.com/vi/m7p8w9r2b0q/hqdefault.jpg",
-        "duration": 260,
-        "plays": "58,000,000"
+        "id": "ytm-b1u2m3b4u5m",
+        "ytId": "b1u2m3b4u5m",
+        "title": "Bum Bum Bole",
+        "artist": "Shaan, Aamir Khan",
+        "album": "Taare Zameen Par",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/2b/3c/1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d/8902894353335_cover.jpg/600x600bb.jpg",
+        "duration": 332,
+        "plays": "380,000,000"
       },
       {
-        "id": "ytm-n6p7w8r1b2o",
-        "ytId": "n6p7w8r1b2o",
-        "title": "Yakjehti Mein",
-        "artist": "Ali Sethi",
-        "album": "Yakjehti Mein",
-        "coverUrl": "https://i.ytimg.com/vi/n6p7w8r1b2o/hqdefault.jpg",
-        "duration": 231,
-        "plays": "42,000,000"
-      },
-      {
-        "id": "ytm-c5w7e8r9m10",
-        "ytId": "c5w7e8r9m10",
-        "title": "Gulon Main Rang",
-        "artist": "Ali Sethi",
-        "album": "Coke Studio Season 8",
-        "coverUrl": "https://i.ytimg.com/vi/c5w7e8r9m10/hqdefault.jpg",
-        "duration": 345,
-        "plays": "54,000,000"
+        "id": "ytm-m1y2d3i4l5g",
+        "ytId": "m1y2d3i4l5g",
+        "title": "My Dil Goes Mmmm",
+        "artist": "Shaan, Gayatri Ganjawala",
+        "album": "Salaam Namaste",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0a/1b/2c/0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d/8902894353328_cover.jpg/600x600bb.jpg",
+        "duration": 450,
+        "plays": "270,000,000"
       }
     ],
-    "origin": "Lahore, Punjab, Pakistan"
+    "origin": "Mumbai, Maharashtra, India"
+  },
+  "udit-narayan": {
+    "name": "Udit Narayan",
+    "monthlyListeners": "29,800,000",
+    "followersCount": "21,400,000",
+    "worldRank": "#4 in India",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3e/2d/87/3e2d87e1-8840-7fa9-4bc7-202e84c98e29/8902894353311_cover.jpg/1000x1000bb.jpg",
+    "bio": "Udit Narayan Jha is an iconic Indian playback singer whose voice is an indelible part of Indian cinematic history. Winner of four National Film Awards and the prestigious Padma Bhushan, he has rendered over 25,000 timeless songs across Hindi, Tamil, Telugu, and Kannada with unmatched emotion and sweetness.",
+    "socials": {
+      "instagram": "https://www.instagram.com/uditnarayanmusic/",
+      "x": "https://x.com/UditNarayan_",
+      "facebook": "https://www.facebook.com/UditNarayanOfficial/",
+      "youtube": "https://www.youtube.com/@UditNarayanOfficial",
+      "spotify": "https://open.spotify.com/artist/70B80Lwx2sxti0M1Ng9e8K"
+    },
+    "tourInfo": {
+      "tourName": "Udit Narayan Golden Melodies Tour 2026",
+      "status": "Tickets Live",
+      "dates": "Delhi, Mumbai, Bengaluru, Toronto, Houston, London",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-p1e2h3l4a5n",
+        "ytId": "p1e2h3l4a5n",
+        "title": "Pehla Nasha",
+        "artist": "Udit Narayan, Sadhana Sargam",
+        "album": "Jo Jeeta Wohi Sikandar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3e/2d/87/3e2d87e1-8840-7fa9-4bc7-202e84c98e29/8902894353311_cover.jpg/600x600bb.jpg",
+        "duration": 293,
+        "plays": "690,000,000"
+      },
+      {
+        "id": "ytm-t1i2p3t4i5p",
+        "ytId": "t1i2p3t4i5p",
+        "title": "Tip Tip Barsa Paani",
+        "artist": "Udit Narayan, Alka Yagnik",
+        "album": "Mohra",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2e/3f/4a/2e3f4a5b-6c7d-8e9f-0a1b-2c3d4e5f6a7b/8902894353304_cover.jpg/600x600bb.jpg",
+        "duration": 358,
+        "plays": "850,000,000"
+      },
+      {
+        "id": "ytm-m1i2t3w4a5s",
+        "ytId": "m1i2t3w4a5s",
+        "title": "Mitwa",
+        "artist": "Udit Narayan, Alka Yagnik, Sukhwinder Singh",
+        "album": "Lagaan",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/2f/3a/1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b/8902894353298_cover.jpg/600x600bb.jpg",
+        "duration": 407,
+        "plays": "490,000,000"
+      },
+      {
+        "id": "ytm-p1a2p3a4k5e",
+        "ytId": "p1a2p3a4k5e",
+        "title": "Papa Kehte Hain",
+        "artist": "Udit Narayan",
+        "album": "Qayamat Se Qayamat Tak",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0e/1f/2a/0e1f2a3b-4c5d-6e7f-8a9b-0c1d2e3f4a5b/8902894353281_cover.jpg/600x600bb.jpg",
+        "duration": 355,
+        "plays": "520,000,000"
+      },
+      {
+        "id": "ytm-g1h2a3r4a5a",
+        "ytId": "g1h2a3r4a5a",
+        "title": "Ghar Aaja Pardesi",
+        "artist": "Udit Narayan, Preeti Uttam",
+        "album": "Gadar - Ek Prem Katha",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9d/0e/1f/9d0e1f2a-3b4c-5d6e-7f8a-9b0c1d2e3f4a/8902894353274_cover.jpg/600x600bb.jpg",
+        "duration": 432,
+        "plays": "580,000,000"
+      },
+      {
+        "id": "ytm-k1u2c3h4k5u",
+        "ytId": "k1u2c3h4k5u",
+        "title": "Kuch Kuch Hota Hai",
+        "artist": "Udit Narayan, Alka Yagnik",
+        "album": "Kuch Kuch Hota Hai",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/8d/9e/0f/8d9e0f1a-2b3c-4d5e-6f7a-8b9c0d1e2f3a/8902894353267_cover.jpg/600x600bb.jpg",
+        "duration": 296,
+        "plays": "720,000,000"
+      },
+      {
+        "id": "ytm-m1a2i3n4n5i",
+        "ytId": "m1a2i3n4n5i",
+        "title": "Main Nikla Gaddi Leke",
+        "artist": "Udit Narayan",
+        "album": "Gadar - Ek Prem Katha",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7d/8e/9f/7d8e9f0a-1b2c-3d4e-5f6a-7b8c9d0e1f2a/8902894353250_cover.jpg/600x600bb.jpg",
+        "duration": 329,
+        "plays": "610,000,000"
+      },
+      {
+        "id": "ytm-b1h2o3l4i5s",
+        "ytId": "b1h2o3l4i5s",
+        "title": "Bholi Si Surat",
+        "artist": "Udit Narayan, Lata Mangeshkar",
+        "album": "Dil To Pagal Hai",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6d/7e/8f/6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1a/8902894353243_cover.jpg/600x600bb.jpg",
+        "duration": 256,
+        "plays": "490,000,000"
+      },
+      {
+        "id": "ytm-k1a2h3o4n5a",
+        "ytId": "k1a2h3o4n5a",
+        "title": "Kaho Naa Pyaar Hai",
+        "artist": "Udit Narayan, Alka Yagnik",
+        "album": "Kaho Naa Pyaar Hai",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5d/6e/7f/5d6e7f8a-9b0c-1d2e-3f4a-5b6c7d8e9f0a/8902894353236_cover.jpg/600x600bb.jpg",
+        "duration": 423,
+        "plays": "540,000,000"
+      },
+      {
+        "id": "ytm-j1a2a3d4u5t",
+        "ytId": "j1a2a3d4u5t",
+        "title": "Jaadu Teri Nazar",
+        "artist": "Udit Narayan",
+        "album": "Darr",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4d/5e/6f/4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a/8902894353229_cover.jpg/600x600bb.jpg",
+        "duration": 281,
+        "plays": "480,000,000"
+      }
+    ],
+    "origin": "Baisi, Supaul, Bihar, India"
+  },
+  "kumar-sanu": {
+    "name": "Kumar Sanu",
+    "monthlyListeners": "28,200,000",
+    "followersCount": "19,800,000",
+    "worldRank": "#5 in India",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3c/4d/5e/3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f/8902894353212_cover.jpg/1000x1000bb.jpg",
+    "bio": "Kedarnath Bhattacharya, affectionately celebrated as Kumar Sanu, is the undisputed 'King of Melody' of Indian cinema. Recipient of the Padma Shri and five consecutive Filmfare Awards, his velvety romantic vocals defined the 1990s Bollywood revolution with timeless musical gems.",
+    "socials": {
+      "instagram": "https://www.instagram.com/kumarsanubdc/",
+      "x": "https://x.com/kumarsanuplus",
+      "facebook": "https://www.facebook.com/KumarSanuOfficial/",
+      "youtube": "https://www.youtube.com/@KumarSanuOfficial",
+      "spotify": "https://open.spotify.com/artist/4fEkbug6kZzzJ8pqi7JuMT"
+    },
+    "tourInfo": {
+      "tourName": "Kumar Sanu 90s Nostalgia Live 2026",
+      "status": "Tickets Live",
+      "dates": "Kolkata, Mumbai, Delhi, London, New York, San Francisco",
+      "ticketUrl": "https://in.bookmyshow.com/explore/events"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-t1u2j3h4e5d",
+        "ytId": "t1u2j3h4e5d",
+        "title": "Tujhe Dekha Toh",
+        "artist": "Kumar Sanu, Lata Mangeshkar",
+        "album": "Dilwale Dulhania Le Jayenge",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3c/4d/5e/3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f/8902894353212_cover.jpg/600x600bb.jpg",
+        "duration": 302,
+        "plays": "920,000,000"
+      },
+      {
+        "id": "ytm-d1h2e3e4r5e",
+        "ytId": "d1h2e3e4r5e",
+        "title": "Dheere Dheere Se",
+        "artist": "Kumar Sanu, Anuradha Paudwal",
+        "album": "Aashiqui",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2c/3d/4e/2c3d4e5f-6a7b-8c9d-0e1f-2a3b4c5d6e7f/8902894353205_cover.jpg/600x600bb.jpg",
+        "duration": 331,
+        "plays": "810,000,000"
+      },
+      {
+        "id": "ytm-c1h2u3r4a5k",
+        "ytId": "c1h2u3r4a5k",
+        "title": "Chura Ke Dil Mera",
+        "artist": "Kumar Sanu, Alka Yagnik",
+        "album": "Main Khiladi Tu Anari",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1c/2d/3e/1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f/8902894353199_cover.jpg/600x600bb.jpg",
+        "duration": 472,
+        "plays": "670,000,000"
+      },
+      {
+        "id": "ytm-m1e2r3a4d5i",
+        "ytId": "m1e2r3a4d5i",
+        "title": "Mera Dil Bhi Kitna Pagal Hai",
+        "artist": "Kumar Sanu, Alka Yagnik",
+        "album": "Saajan",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0c/1d/2e/0c1d2e3f-4a5b-6c7d-8e9f-0a1b2c3d4e5f/8902894353182_cover.jpg/600x600bb.jpg",
+        "duration": 325,
+        "plays": "740,000,000"
+      },
+      {
+        "id": "ytm-y1e2h3k4a5a",
+        "ytId": "y1e2h3k4a5a",
+        "title": "Yeh Kaali Kaali Aankhein",
+        "artist": "Kumar Sanu, Anu Malik",
+        "album": "Baazigar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9b/0c/1d/9b0c1d2e-3f4a-5b6c-7d8e-9f0a1b2c3d4e/8902894353175_cover.jpg/600x600bb.jpg",
+        "duration": 471,
+        "plays": "590,000,000"
+      },
+      {
+        "id": "ytm-e1k2l3a4d5k",
+        "ytId": "e1k2l3a4d5k",
+        "title": "Ek Ladki Ko Dekha",
+        "artist": "Kumar Sanu",
+        "album": "1942: A Love Story",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/8b/9c/0d/8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3e/8902894353168_cover.jpg/600x600bb.jpg",
+        "duration": 275,
+        "plays": "530,000,000"
+      },
+      {
+        "id": "ytm-b1a2a3z4i5g",
+        "ytId": "b1a2a3z4i5g",
+        "title": "Baazigar O Baazigar",
+        "artist": "Kumar Sanu, Alka Yagnik",
+        "album": "Baazigar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/8c/9d/7b8c9d0e-1f2a-3b4c-5d6e-7f8a9b0c1d2e/8902894353151_cover.jpg/600x600bb.jpg",
+        "duration": 454,
+        "plays": "490,000,000"
+      },
+      {
+        "id": "ytm-d1o2d3i4l5m",
+        "ytId": "d1o2d3i4l5m",
+        "title": "Do Dil Mil Rahe Hain",
+        "artist": "Kumar Sanu",
+        "album": "Pardes",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6b/7c/8d/6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1e/8902894353144_cover.jpg/600x600bb.jpg",
+        "duration": 397,
+        "plays": "610,000,000"
+      },
+      {
+        "id": "ytm-a1a2n3k4h5o",
+        "ytId": "a1a2n3k4h5o",
+        "title": "Aankhon Ki Gustakhiyan",
+        "artist": "Kumar Sanu, Kavita Krishnamurthy",
+        "album": "Hum Dil De Chuke Sanam",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5b/6c/7d/5b6c7d8e-9f0a-1b2c-3d4e-5f6a7b8c9d0e/8902894353137_cover.jpg/600x600bb.jpg",
+        "duration": 300,
+        "plays": "510,000,000"
+      },
+      {
+        "id": "ytm-j1a2b3k4o5i",
+        "ytId": "j1a2b3k4o5i",
+        "title": "Jab Koi Baat Bigad Jaye",
+        "artist": "Kumar Sanu, Sadhana Sargam",
+        "album": "Jurm",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/5c/6d/4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e/8902894353120_cover.jpg/600x600bb.jpg",
+        "duration": 476,
+        "plays": "460,000,000"
+      }
+    ],
+    "origin": "Kolkata, West Bengal, India"
   },
   "appaji": {
     "name": "Appaji",
@@ -5902,255 +5895,253 @@ export const ARTIST_DATABASE = {
     ],
     "origin": "Dehradun, Uttarakhand, India"
   },
-  "nusrat-fateh-ali-khan": {
-    "name": "Nusrat Fateh Ali Khan",
-    "monthlyListeners": "29,800,000",
-    "followersCount": "18,500,000",
-    "worldRank": "#1 Shahenshah-e-Qawwali Worldwide",
-    "banner": "https://i.ytimg.com/vi/h9wB5t12oK0/maxresdefault.jpg",
-    "avatar": "https://i.ytimg.com/vi/h9wB5t12oK0/hqdefault.jpg",
-    "bio": "Ustad Nusrat Fateh Ali Khan was the 'Shahenshah-e-Qawwali' (King of Kings of Qawwali) and one of the greatest vocalists in recorded history. Possessing an extraordinary vocal range and trance-inducing improvisational prowess, his transcendent spiritual qawwalis 'Dam Mast Qalandar', 'Yeh Jo Halka Halka', and 'Afreen Afreen' influenced musicians globally.",
+  "hariharan": {
+    "name": "Hariharan",
+    "monthlyListeners": "16,900,000",
+    "followersCount": "11,200,000",
+    "worldRank": "#9 in India",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8f/c9/2b/8fc92b45-ec75-40b9-5e7e-855c5cc3598f/8902894353496_cover.jpg/1000x1000bb.jpg",
+    "bio": "Pandit Hariharan is an Indian playback, classical, and ghazal singer, and a pioneer of Indian fusion music with Colonial Cousins. Honored with two National Film Awards and the Padma Shri, his collaborations with A.R. Rahman on 'Tu Hi Re', 'Roja Janeman', and 'Chanda Re' are immortal masterpieces of Indian music.",
     "socials": {
-      "instagram": "https://www.instagram.com/nusrat_fateh_ali_khan_legacy/",
-      "x": "https://x.com/NFAKLegacy",
-      "facebook": "https://www.facebook.com/NusratFatehAliKhanOfficial/",
-      "youtube": "https://www.youtube.com/@NFAKOfficial",
-      "spotify": "https://open.spotify.com/artist/5r3wPya2P91Gsg2209YRyJ"
+      "instagram": "https://www.instagram.com/singerhariharana/",
+      "x": "https://x.com/SingerHariharan",
+      "facebook": "https://www.facebook.com/singerhariharana/",
+      "youtube": "https://www.youtube.com/@HariharanOfficial",
+      "spotify": "https://open.spotify.com/artist/0y5jhhpk94AhJ74577884Z"
     },
     "tourInfo": {
-      "tourName": "Nusrat Fateh Ali Khan Eternal Spiritual Heritage",
+      "tourName": "Hariharan Soul & Ghazals World Tour 2026",
       "status": "Tickets Live",
-      "dates": "Worldwide Sufi Tribute & Heritage Symphony",
+      "dates": "Chennai, Mumbai, Kochi, London, Singapore, Dallas",
       "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
       {
-        "id": "ytm-B7T8s5j0s_g",
-        "ytId": "B7T8s5j0s_g",
-        "title": "Yeh Jo Halka Halka Suroor Hai",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Qawwali Masters",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 960,
-        "plays": "1,20,00,00,000"
+        "id": "ytm-t7u8h9i0r1e",
+        "ytId": "t7u8h9i0r1e",
+        "title": "Tu Hi Re",
+        "artist": "Hariharan, Kavita Krishnamurthy",
+        "album": "Bombay",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8f/c9/2b/8fc92b45-ec75-40b9-5e7e-855c5cc3598f/8902894353496_cover.jpg/600x600bb.jpg",
+        "duration": 432,
+        "plays": "610,000,000"
       },
       {
-        "id": "ytm-OpeP03P1XvY",
-        "ytId": "OpeP03P1XvY",
-        "title": "Afreen Afreen",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Sangam",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 384,
-        "plays": "1,10,50,00,000"
+        "id": "ytm-c1h2a3n4d5a",
+        "ytId": "c1h2a3n4d5a",
+        "title": "Chanda Re",
+        "artist": "Hariharan, Sadhana Sargam",
+        "album": "Sapnay",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1b/2c/3d/1b2c3d4e-5f6a-7b8c-9d0e-1f2a3b4c5d6e/8902894353113_cover.jpg/600x600bb.jpg",
+        "duration": 358,
+        "plays": "490,000,000"
       },
       {
-        "id": "ytm-y1Z_p8m9vIo",
-        "ytId": "y1Z_p8m9vIo",
-        "title": "Sanu Ik Pal Chain Na Aave",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Qawwali Classics",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 420,
-        "plays": "1,01,00,00,000"
+        "id": "ytm-r1o2j3a4j5a",
+        "ytId": "r1o2j3a4j5a",
+        "title": "Roja Janeman",
+        "artist": "Hariharan",
+        "album": "Roja",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0b/1c/2d/0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e/8902894353106_cover.jpg/600x600bb.jpg",
+        "duration": 304,
+        "plays": "540,000,000"
       },
       {
-        "id": "ytm-uO09wP8s8lM",
-        "ytId": "uO09wP8s8lM",
-        "title": "Mere Rashke Qamar",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Qawwali Masters",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 512,
-        "plays": "91,50,00,000"
+        "id": "ytm-h1a2i3r4a5m",
+        "ytId": "h1a2i3r4a5m",
+        "title": "Hai Rama",
+        "artist": "Hariharan, Swarnalatha",
+        "album": "Rangeela",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9a/0b/1c/9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4d/8902894353090_cover.jpg/600x600bb.jpg",
+        "duration": 406,
+        "plays": "420,000,000"
       },
       {
-        "id": "ytm-LK7-_dgAVQE",
-        "ytId": "LK7-_dgAVQE",
-        "title": "Kinna Sohna Tainu",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Qawwali Classics",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 480,
-        "plays": "82,00,00,000"
+        "id": "ytm-b1h2a3r4a5t",
+        "ytId": "b1h2a3r4a5t",
+        "title": "Bharat Humko Jaan Se Pyara Hai",
+        "artist": "Hariharan",
+        "album": "Roja",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8a/9b/0c/8a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d/8902894353083_cover.jpg/600x600bb.jpg",
+        "duration": 312,
+        "plays": "580,000,000"
       },
       {
-        "id": "ytm-c2M_6rB1_gA",
-        "ytId": "c2M_6rB1_gA",
-        "title": "Dum Mast Qalandar",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Mustt Mustt",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 340,
-        "plays": "72,50,00,000"
+        "id": "ytm-a1y2h3a4i5r",
+        "ytId": "a1y2h3a4i5r",
+        "title": "Ay Hairathe",
+        "artist": "Hariharan, Alka Yagnik",
+        "album": "Guru",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/7a/8b/9c/7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d/8902894353076_cover.jpg/600x600bb.jpg",
+        "duration": 369,
+        "plays": "390,000,000"
       },
       {
-        "id": "ytm-fn382fN5F1g",
-        "ytId": "fn382fN5F1g",
-        "title": "Tumhe Dillagi Bhool Jaani Padegi",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Qawwali Masters",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 720,
-        "plays": "63,00,00,000"
+        "id": "ytm-j1h2u3k4a5h",
+        "ytId": "j1h2u3k4a5h",
+        "title": "Jhuka Hawa Ka Jhonka",
+        "artist": "Hariharan",
+        "album": "Hum Dil De Chuke Sanam",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/6a/7b/8c/6a7b8c9d-0e1f-2a3b-4c5d-6e7f8a9b0c1d/8902894353069_cover.jpg/600x600bb.jpg",
+        "duration": 349,
+        "plays": "310,000,000"
       },
       {
-        "id": "ytm-cWMxCE2HTag",
-        "ytId": "cWMxCE2HTag",
-        "title": "Mustt Mustt (Lost in His Work)",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Mustt Mustt",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 315,
-        "plays": "53,50,00,000"
+        "id": "ytm-k1a2a3s4h5g",
+        "ytId": "k1a2a3s4h5g",
+        "title": "Kaash",
+        "artist": "Hariharan",
+        "album": "Kaash (Ghazals)",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/5a/6b/7c/5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d/8902894353052_cover.jpg/600x600bb.jpg",
+        "duration": 378,
+        "plays": "220,000,000"
       },
       {
-        "id": "ytm-SD4Z8z4sR4s",
-        "ytId": "SD4Z8z4sR4s",
-        "title": "Piya Re Piya Re",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Sangam",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 360,
-        "plays": "44,00,00,000"
+        "id": "ytm-v1e2n3n4i5l",
+        "ytId": "v1e2n3n4i5l",
+        "title": "Vennilave Vennilave",
+        "artist": "Hariharan, Sadhana Sargam",
+        "album": "Minsara Kanavu",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/5b/6c/4a5b6c7d-8e9f-0a1b-2c3d-4e5f6a7b8c9d/8902894353045_cover.jpg/600x600bb.jpg",
+        "duration": 356,
+        "plays": "460,000,000"
       },
       {
-        "id": "ytm-0bM7u_kQ7wE",
-        "ytId": "0bM7u_kQ7wE",
-        "title": "Allah Hoo",
-        "artist": "Nusrat Fateh Ali Khan",
-        "album": "Day, Night, Dawn, Dusk",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 480,
-        "plays": "34,50,00,000"
+        "id": "ytm-n1a2h3i4s5a",
+        "ytId": "n1a2h3i4s5a",
+        "title": "Nahin Samne Tu",
+        "artist": "Hariharan, Sukhwinder Singh",
+        "album": "Taal",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3a/4b/5c/3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d/8902894353038_cover.jpg/600x600bb.jpg",
+        "duration": 338,
+        "plays": "380,000,000"
       }
     ],
-    "origin": "Faisalabad, Punjab, Pakistan"
+    "origin": "Thiruvananthapuram, Kerala, India / Mumbai, Maharashtra, India"
   },
-  "rahat-fateh-ali-khan": {
-    "name": "Rahat Fateh Ali Khan",
-    "monthlyListeners": "30,500,000",
-    "followersCount": "18,500,000",
-    "worldRank": "#1 Sufi & Bollywood Playback King",
-    "banner": "https://i.ytimg.com/vi/kw4tT7SCmaY/maxresdefault.jpg",
-    "avatar": "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg",
-    "bio": "Ustad Rahat Fateh Ali Khan is a world-renowned Pakistani musician and playback singer carryng forward the esteemed Qawwali tradition of the Khan family. His romantic and Sufi contributions to Bollywood including 'O Re Piya', 'Tere Mast Mast Do Nain', 'Afreen Afreen', and 'Jiya Dhadak Dhadak' have earned critical international adoration.",
+  "armaan-malik": {
+    "name": "Armaan Malik",
+    "monthlyListeners": "24,800,000",
+    "followersCount": "18,200,000",
+    "worldRank": "#7 in India",
+    "banner": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/3b/4c/2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c7d/8902894353021_cover.jpg/1000x1000bb.jpg",
+    "bio": "Armaan Malik is a chart-topping Indian singer, songwriter, and record producer celebrated for his soulful romantic ballads in Bollywood and breakthrough multilingual pop anthems. Winner of MTV Europe Music Awards and Filmfare Awards, he bridges Indian contemporary sound with global acoustic pop.",
     "socials": {
-      "instagram": "https://www.instagram.com/officialrfakworld/",
-      "x": "https://x.com/RFAKWorld",
-      "facebook": "https://www.facebook.com/RahatFatehAliKhanOfficial/",
-      "youtube": "https://www.youtube.com/@RahatFatehAliKhanOfficial",
-      "spotify": "https://open.spotify.com/artist/3O9bT7k9l9o71wK2wXpL1P"
+      "instagram": "https://www.instagram.com/armaanmalik/",
+      "x": "https://x.com/ArmaanMalik22",
+      "facebook": "https://www.facebook.com/ArmaanMalikMusic/",
+      "youtube": "https://www.youtube.com/@ArmaanMalik",
+      "spotify": "https://open.spotify.com/artist/4IKVDbCS2LiWKnCzg4btth"
     },
     "tourInfo": {
-      "tourName": "Just Qawwali Live World Tour 2026",
+      "tourName": "Armaan Malik The Next Step Live Tour 2026",
       "status": "Tickets Live",
-      "dates": "London, Dubai, Chicago, Birmingham, Toronto",
+      "dates": "Mumbai, Delhi, Bengaluru, London, New York, Toronto",
       "ticketUrl": "https://in.bookmyshow.com/explore/events"
     },
     "topTracks": [
       {
-        "id": "ytm-kw4tT7SCmaY",
-        "ytId": "kw4tT7SCmaY",
-        "title": "Afreen Afreen",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "Coke Studio Season 9",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 405,
-        "plays": "1,20,00,00,000"
+        "id": "ytm-b1o2l3d4o5z",
+        "ytId": "b1o2l3d4o5z",
+        "title": "Bol Do Na Zara",
+        "artist": "Armaan Malik",
+        "album": "Azhar",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/3b/4c/2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c7d/8902894353021_cover.jpg/600x600bb.jpg",
+        "duration": 293,
+        "plays": "780,000,000"
       },
       {
-        "id": "ytm-MyM-p2x_v3Q",
-        "ytId": "MyM-p2x_v3Q",
-        "title": "O Re Piya",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "Aaja Nachle",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 379,
-        "plays": "1,10,50,00,000"
+        "id": "ytm-m1a2i3n4h5o",
+        "ytId": "m1a2i3n4h5o",
+        "title": "Main Hoon Hero Tera",
+        "artist": "Armaan Malik",
+        "album": "Hero",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1a/2b/3c/1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d/8902894353014_cover.jpg/600x600bb.jpg",
+        "duration": 284,
+        "plays": "690,000,000"
       },
       {
-        "id": "ytm-K9sO-p_bK3g",
-        "ytId": "K9sO-p_bK3g",
-        "title": "Tere Mast Mast Do Nain",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "Dabangg",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 359,
-        "plays": "1,01,00,00,000"
+        "id": "ytm-j1a2b3t4a5k",
+        "ytId": "j1a2b3t4a5k",
+        "title": "Jab Tak",
+        "artist": "Armaan Malik",
+        "album": "M.S. Dhoni - The Untold Story",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/1b/2c/0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d/8902894353007_cover.jpg/600x600bb.jpg",
+        "duration": 174,
+        "plays": "590,000,000"
       },
       {
-        "id": "ytm-t1Z-P8x7vU4",
-        "ytId": "t1Z-P8x7vU4",
-        "title": "Jag Ghoomeya",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "Sultan",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 281,
-        "plays": "91,50,00,000"
+        "id": "ytm-g1h2a3r4s5e",
+        "ytId": "g1h2a3r4s5e",
+        "title": "Ghar Se Nikalte Hi",
+        "artist": "Armaan Malik",
+        "album": "Ghar Se Nikalte Hi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/99/88/77/99887766-5544-3322-1100-aabbccddeeff/8902894352994_cover.jpg/600x600bb.jpg",
+        "duration": 288,
+        "plays": "460,000,000"
       },
       {
-        "id": "ytm-y1W8-x7q5Xg",
-        "ytId": "y1W8-x7q5Xg",
-        "title": "Main Jahaan Rahoon",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "Namastey London",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 331,
-        "plays": "82,00,00,000"
+        "id": "ytm-c1o2n3t4r5o",
+        "ytId": "c1o2n3t4r5o",
+        "title": "Control",
+        "artist": "Armaan Malik",
+        "album": "Control - Single",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/88/77/66/88776655-4433-2211-0099-aabbccddeeff/8902894352987_cover.jpg/600x600bb.jpg",
+        "duration": 156,
+        "plays": "320,000,000"
       },
       {
-        "id": "ytm-cWMxCE2HTag",
-        "ytId": "cWMxCE2HTag",
-        "title": "Bol Na Halke Halke",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "Jhoom Barabar Jhoom",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 307,
-        "plays": "72,50,00,000"
+        "id": "ytm-s1u2n3m4a5a",
+        "ytId": "s1u2n3m4a5a",
+        "title": "Sun Maahi",
+        "artist": "Armaan Malik",
+        "album": "Sun Maahi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/77/66/55/77665544-3322-1100-9988-aabbccddeeff/8902894352970_cover.jpg/600x600bb.jpg",
+        "duration": 204,
+        "plays": "290,000,000"
       },
       {
-        "id": "ytm-6-n_szx2XRE",
-        "ytId": "6-n_szx2XRE",
-        "title": "Zaroori Tha",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "Back 2 Love",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 316,
-        "plays": "63,00,00,000"
+        "id": "ytm-y1o2u3s4i5n",
+        "ytId": "y1o2u3s4i5n",
+        "title": "You",
+        "artist": "Armaan Malik",
+        "album": "You - Single",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/66/55/44/66554433-2211-0099-8877-aabbccddeeff/8902894352963_cover.jpg/600x600bb.jpg",
+        "duration": 189,
+        "plays": "270,000,000"
       },
       {
-        "id": "ytm-uO09wP8s8lM",
-        "ytId": "uO09wP8s8lM",
-        "title": "Jiya Dhadak Dhadak Jaye",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "Kalyug",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 319,
-        "plays": "53,50,00,000"
+        "id": "ytm-d1i2l3m4e5i",
+        "ytId": "d1i2l3m4e5i",
+        "title": "Dil Mein Ho Tum",
+        "artist": "Armaan Malik",
+        "album": "Why Cheat India",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/55/44/33/55443322-1100-9988-7766-aabbccddeeff/8902894352956_cover.jpg/600x600bb.jpg",
+        "duration": 328,
+        "plays": "510,000,000"
       },
       {
-        "id": "ytm-c2M_6rB1_gA",
-        "ytId": "c2M_6rB1_gA",
-        "title": "Sajdaa",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "My Name Is Khan",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 367,
-        "plays": "44,00,00,000"
+        "id": "ytm-s1a2b3t4e5r",
+        "ytId": "s1a2b3t4e5r",
+        "title": "Sab Tera",
+        "artist": "Armaan Malik, Shraddha Kapoor",
+        "album": "Baaghi",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/44/33/22/44332211-0099-8877-6655-aabbccddeeff/8902894352949_cover.jpg/600x600bb.jpg",
+        "duration": 228,
+        "plays": "620,000,000"
       },
       {
-        "id": "ytm-fn382fN5F1g",
-        "ytId": "fn382fN5F1g",
-        "title": "Dagabaaz Re",
-        "artist": "Rahat Fateh Ali Khan",
-        "album": "Dabangg 2",
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/d8/5c/a5d85ce2-90f7-5bbd-c8b8-07d0f39ec07c/8902894623048_cover.jpg/1000x1000bb.jpg",
-        "duration": 289,
-        "plays": "34,50,00,000"
+        "id": "ytm-p1e2h3l4a5p",
+        "ytId": "p1e2h3l4a5p",
+        "title": "Pehla Pyaar",
+        "artist": "Armaan Malik",
+        "album": "Kabir Singh",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/33/22/11/33221100-9988-7766-5544-aabbccddeeff/8902894352932_cover.jpg/600x600bb.jpg",
+        "duration": 272,
+        "plays": "680,000,000"
       }
     ],
-    "origin": "Faisalabad, Punjab, Pakistan"
+    "origin": "Mumbai, Maharashtra, India"
   },
   "blackpink": {
     "name": "BLACKPINK",
@@ -8323,18 +8314,18 @@ export const getFeaturedArtists = () => {
 export const getCuratedPlaylists = () => {
   return [
     {
-      id: "pl-pakistani-anthems",
-      title: "Pakistani Hits & Coke Studio Classics",
-      description: "Wishes by Hasan Raheem, Pasoori, Kahani Suno 2.0, Tu Jhoom & Atif Aslam masterpieces",
-      coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg",
+      id: "pl-sufi-ghazals",
+      title: "Timeless Sufi & Devotional Soul",
+      description: "Teri Deewani by Kailash Kher, Kun Faya Kun, Saiyyan, Arziyan & A.R. Rahman masterpieces",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/600x600bb.jpg",
       trackCount: 10,
       tracks: [
-        { id: "ytm-oE7lU2qj4rY", ytId: "oE7lU2qj4rY", title: "Wishes", artist: "Hasan Raheem, Talwiinder & Umair", coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", duration: 218 },
-        { id: "ytm-5Eqb_-j3FDA", ytId: "5Eqb_-j3FDA", title: "Pasoori", artist: "Ali Sethi x Shae Gill", coverUrl: "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg", duration: 224 },
-        { id: "ytm-zydG_QW8m68", ytId: "zydG_QW8m68", title: "Kahani Suno 2.0", artist: "Kaifi Khalil", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg", duration: 175 },
-        { id: "ytm-7D4vNcK6D38", ytId: "7D4vNcK6D38", title: "Tu Jhoom", artist: "Abida Parveen x Naseebo Lal", coverUrl: "https://i.ytimg.com/vi/7D4vNcK6D38/hqdefault.jpg", duration: 399 },
-        { id: "ytm-kw4tT7SCmaY", ytId: "kw4tT7SCmaY", title: "Afreen Afreen", artist: "Rahat Fateh Ali Khan & Momina Mustehsan", coverUrl: "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg", duration: 405 },
-        { id: "ytm-cM7_7_u0b3A", ytId: "cM7_7_u0b3A", title: "Tajdar E Haram", artist: "Atif Aslam", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg", duration: 628 }
+        { id: "ytm-7x8w4r9_u1A", ytId: "7x8w4r9_u1A", title: "Teri Deewani", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/600x600bb.jpg", duration: 320 },
+        { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Mohit Chauhan, Javed Ali", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/42/fa/b5/42fab58d-71b3-f725-7df2-2c6bfe73f55c/8902894353458_cover.jpg/600x600bb.jpg", duration: 472 },
+        { id: "ytm-s2a3i4y5y6a", ytId: "s2a3i4y5y6a", title: "Saiyyan", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", duration: 346 },
+        { id: "ytm-a7r8z9i0y1a", ytId: "a7r8z9i0y1a", title: "Arziyan", artist: "A.R. Rahman, Javed Ali, Kailash Kher", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/8a/5a/3f8a5a17-2680-60b8-c923-93d395a127a5/8902894353472_cover.jpg/600x600bb.jpg", duration: 520 },
+        { id: "ytm-k4h5w6a7j8a", ytId: "k4h5w6a7j8a", title: "Khwaja Mere Khwaja", artist: "A.R. Rahman", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/64/0e/bd/640ebd09-1738-f1c1-4b13-bc756c3ee70c/8902894353465_cover.jpg/600x600bb.jpg", duration: 418 },
+        { id: "ytm-m1a2u3l4a5m", ytId: "m1a2u3l4a5m", title: "Maula Mere Maula", artist: "Roopkumar Rathod", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3e/7b/09/3e7b09c6-43e4-8a4a-10f8-e9f0c29a8a61/8902894353489_cover.jpg/600x600bb.jpg", duration: 350 }
       ]
     },
     {
@@ -8646,17 +8637,17 @@ export const VIBE_PLAYLISTS = [
     title: "Late Night Chill & Lo-Fi",
     vibeBadge: "MIDNIGHT CHILL",
     vibeColor: "#818cf8",
-    description: "Mellow bedroom pop, midnight thoughts, and soothing lo-fi textures: Wishes, Kahani Suno 2.0, Circles, Pehle Bhi Main and M83.",
+    description: "Mellow bedroom pop, midnight thoughts, and soothing lo-fi textures: Saiyyan, Chaandan Mein, Circles, Pehle Bhi Main and M83.",
     coverUrl: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600&auto=format&fit=crop&q=80",
     trackCount: 7,
     tracks: [
-      { id: "ytm-oE7lU2qj4rY", ytId: "oE7lU2qj4rY", title: "Wishes", artist: "Hasan Raheem, Talwiinder & Umair", coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", duration: 218 },
-      { id: "ytm-zydG_QW8m68", ytId: "zydG_QW8m68", title: "Kahani Suno 2.0", artist: "Kaifi Khalil", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/44/a6/9f44a6ef-4438-1794-26ac-7f73d167afbf/artwork.jpg/600x600bb.jpg", duration: 175 },
+      { id: "ytm-s2a3i4y5y6a", ytId: "s2a3i4y5y6a", title: "Saiyyan", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", duration: 346 },
+      { id: "ytm-c7h8a9a0n1d", ytId: "c7h8a9a0n1d", title: "Chaandan Mein", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", duration: 285 },
       { id: "ytm-2S246U59m4E", ytId: "2S246U59m4E", title: "Pehle Bhi Main", artist: "Vishal Mishra, Raj Shekhar", coverUrl: "https://i.ytimg.com/vi/2S246U59m4E/hqdefault.jpg", duration: 250 },
       { id: "ytm-wXhTHyIgQ_U", ytId: "wXhTHyIgQ_U", title: "Circles", artist: "Post Malone", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/1b/1b/7b1b1b0b-7ce2-b223-f9e0-8e36abe51877/19UMGIM78325.rgb.jpg/600x600bb.jpg", duration: 215 },
       { id: "ytm-DWcJFNfaw90", ytId: "DWcJFNfaw90", title: "Midnight City", artist: "M83", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/7b/a9/cb7ba903-b5f1-cc21-90db-7a81b7aa0997/724596951057.jpg/1000x1000bb.jpg", duration: 243 },
       { id: "ytm-rR4n-0KYeKQ", ytId: "rR4n-0KYeKQ", title: "Resonance", artist: "HOME", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4f/13/65/4f1365b0-e97c-c469-c438-2f7d8f204355/872133025584_cover.jpg/1000x1000bb.jpg", duration: 212 },
-      { id: "ytm-RBumgq5yVrA", ytId: "RBumgq5yVrA", title: "Let Her Go", artist: "Passenger", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/a4/0c/b2/a40cb25f-2ff7-a7eb-626a-9bb726715f6f/887158406126.jpg/1000x1000bb.jpg", duration: 252 }
+      { id: "ytm-RBumgq5yVrA", ytId: "RBumgq5yVrA", title: "Let Her Go", artist: "Passenger", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/a4/0c/b2/a40cb25f-2ff7-a7eb-626a-9bb726715f6f/887158406126.jpg/600x600bb.jpg", duration: 252 }
     ]
   },
   {
@@ -8767,20 +8758,20 @@ export const VIBE_PLAYLISTS = [
     ]
   },
   {
-    id: "vibe-pl-sufi-coke-studio",
-    title: "Coke Studio & Sufi Mystic Soul",
+    id: "vibe-pl-sufi-divine",
+    title: "Timeless Sufi & Devotional Soul",
     vibeBadge: "SUFI & MYSTIC",
     vibeColor: "#14b8a6",
-    description: "Soul-stirring poetry, divine harmoniums, and transcendent qawwalis: Tu Jhoom, Kun Faya Kun, Pasoori, Tajdar E Haram and Afreen Afreen.",
+    description: "Soul-stirring poetry, divine harmoniums, and transcendent spiritual devotion: Kun Faya Kun, Teri Deewani, Arziyan, Khwaja Mere Khwaja and Saiyyan.",
     coverUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
     trackCount: 6,
     tracks: [
-      { id: "ytm-7D4vNcK6D38", ytId: "7D4vNcK6D38", title: "Tu Jhoom", artist: "Abida Parveen x Naseebo Lal", coverUrl: "https://i.ytimg.com/vi/7D4vNcK6D38/hqdefault.jpg", duration: 399 },
       { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Javed Ali, Mohit Chauhan", coverUrl: "https://i.ytimg.com/vi/T94PHkuydcw/hqdefault.jpg", duration: 473 },
-      { id: "ytm-5Eqb_-j3FDA", ytId: "5Eqb_-j3FDA", title: "Pasoori", artist: "Ali Sethi x Shae Gill", coverUrl: "https://i.ytimg.com/vi/5Eqb_-j3FDA/hqdefault.jpg", duration: 224 },
-      { id: "ytm-cM7_7_u0b3A", ytId: "cM7_7_u0b3A", title: "Tajdar E Haram", artist: "Atif Aslam", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg", duration: 628 },
-      { id: "ytm-kw4tT7SCmaY", ytId: "kw4tT7SCmaY", title: "Afreen Afreen", artist: "Rahat Fateh Ali Khan & Momina Mustehsan", coverUrl: "https://i.ytimg.com/vi/kw4tT7SCmaY/hqdefault.jpg", duration: 405 },
-      { id: "ytm-oE7lU2qj4rY", ytId: "oE7lU2qj4rY", title: "Wishes", artist: "Hasan Raheem, Talwiinder & Umair", coverUrl: "https://i.ytimg.com/vi/oE7lU2qj4rY/hqdefault.jpg", duration: 218 }
+      { id: "ytm-7x8w4r9_u1A", ytId: "7x8w4r9_u1A", title: "Teri Deewani", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3d/8c/59/3d8c594c-cbfe-921d-7201-90a18e0018a1/8902534500013.jpg/600x600bb.jpg", duration: 320 },
+      { id: "ytm-a7r8z9i0y1a", ytId: "a7r8z9i0y1a", title: "Arziyan", artist: "A.R. Rahman, Javed Ali, Kailash Kher", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/8a/5a/3f8a5a17-2680-60b8-c923-93d395a127a5/8902894353472_cover.jpg/600x600bb.jpg", duration: 520 },
+      { id: "ytm-s2a3i4y5y6a", ytId: "s2a3i4y5y6a", title: "Saiyyan", artist: "Kailash Kher, Kailasa", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/8f/30/838f3073-67c4-cbf4-95eb-a3592bc13d56/8902534500051.jpg/600x600bb.jpg", duration: 346 },
+      { id: "ytm-k4h5w6a7j8a", ytId: "k4h5w6a7j8a", title: "Khwaja Mere Khwaja", artist: "A.R. Rahman", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/64/0e/bd/640ebd09-1738-f1c1-4b13-bc756c3ee70c/8902894353465_cover.jpg/600x600bb.jpg", duration: 418 },
+      { id: "ytm-m1a2u3l4a5m", ytId: "m1a2u3l4a5m", title: "Maula Mere Maula", artist: "Roopkumar Rathod", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/3e/7b/09/3e7b09c6-43e4-8a4a-10f8-e9f0c29a8a61/8902894353489_cover.jpg/600x600bb.jpg", duration: 350 }
     ]
   }
 ];
@@ -9023,21 +9014,21 @@ export const getArtistDetails = (artistName) => {
   // Handle common aliases
   if (!foundKey) {
     if (normalized.includes('arijit')) foundKey = 'arijit-singh';
-    else if (normalized.includes('atif')) foundKey = 'atif-aslam';
+    else if (normalized.includes('kailash')) foundKey = 'kailash-kher';
     else if (normalized.includes('dhillon')) foundKey = 'ap-dhillon';
     else if (normalized.includes('dosanjh') || normalized.includes('diljit')) foundKey = 'diljit-dosanjh';
     else if (normalized.includes('weeknd')) foundKey = 'the-weeknd';
     else if (normalized.includes('swift')) foundKey = 'taylor-swift';
     else if (normalized.includes('billie') || normalized.includes('eilish')) foundKey = 'billie-eilish';
     else if (normalized.includes('sabrina') || normalized.includes('carpenter')) foundKey = 'sabrina-carpenter';
-    else if (normalized.includes('hasan raheem') || (normalized.includes('hasan') && !normalized.includes('hannan'))) foundKey = 'hasan-raheem';
-    else if (normalized.includes('kaifi') || normalized.includes('khalil')) foundKey = 'kaifi-khalil';
+    else if (normalized.includes('shaan')) foundKey = 'shaan';
+    else if (normalized.includes('udit') || normalized.includes('narayan')) foundKey = 'udit-narayan';
     else if (normalized.includes('appaji') || normalized.includes('ganapathy') || normalized.includes('srimatha')) foundKey = 'appaji';
     else if (normalized.includes('coldplay')) foundKey = 'coldplay';
     else if (normalized.includes('eminem')) foundKey = 'eminem';
     else if (normalized.includes('sheeran')) foundKey = 'ed-sheeran';
     else if (normalized.includes('anirudh')) foundKey = 'anirudh-ravichander';
-    else if (normalized.includes('sethi') || normalized.includes('ali')) foundKey = 'ali-sethi';
+    else if (normalized.includes('sanu') || normalized.includes('kumar sanu')) foundKey = 'kumar-sanu';
     else if (normalized.includes('imagine') || normalized.includes('dragons')) foundKey = 'imagine-dragons';
     else if (normalized.includes('bruno') || normalized.includes('mars')) foundKey = 'bruno-mars';
     else if (normalized.includes('adele')) foundKey = 'adele';
@@ -9065,8 +9056,8 @@ export const getArtistDetails = (artistName) => {
     else if (normalized.includes('neha') || normalized.includes('kakkar')) foundKey = 'neha-kakkar';
     else if (normalized.includes('sunidhi') || normalized.includes('chauhan')) foundKey = 'sunidhi-chauhan';
     else if (normalized.includes('jubin') || normalized.includes('nautiyal')) foundKey = 'jubin-nautiyal';
-    else if (normalized.includes('nusrat') || (normalized.includes('khan') && normalized.includes('fateh'))) foundKey = 'nusrat-fateh-ali-khan';
-    else if (normalized.includes('rahat')) foundKey = 'rahat-fateh-ali-khan';
+    else if (normalized.includes('hariharan')) foundKey = 'hariharan';
+    else if (normalized.includes('armaan')) foundKey = 'armaan-malik';
     else if (normalized.includes('blackpink')) foundKey = 'blackpink';
     else if (normalized.includes('styles') || normalized.includes('harry')) foundKey = 'harry-styles';
     else if (normalized.includes('olivia') || normalized.includes('rodrigo')) foundKey = 'olivia-rodrigo';

@@ -69,7 +69,13 @@ const testSearches = [
   { q: 'badshah', expect: 'Badshah' },
   { q: 'honey', expect: 'Yo Yo Honey Singh' },
   { q: 'diljit', expect: 'Diljit Dosanjh' },
-  { q: 'dua', expect: 'Dua Lipa' }
+  { q: 'dua', expect: 'Dua Lipa' },
+  { q: 'kailash', expect: 'Kailash Kher' },
+  { q: 'shaan', expect: 'Shaan' },
+  { q: 'udit', expect: 'Udit Narayan' },
+  { q: 'sanu', expect: 'Kumar Sanu' },
+  { q: 'hariharan', expect: 'Hariharan' },
+  { q: 'armaan', expect: 'Armaan Malik' }
 ];
 
 for (const t of testSearches) {

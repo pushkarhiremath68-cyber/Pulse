@@ -12,3 +12,4 @@ lines.forEach((l, idx) => {
 
 console.log("Media queries found in src/style.css:");
 mediaQueries.forEach(mq => console.log(`Line ${mq.line}: ${mq.text}`));
+

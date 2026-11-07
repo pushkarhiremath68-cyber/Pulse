@@ -72,41 +72,25 @@ export const SMART_KNOWLEDGE_BASE = {
   'b2t2xurj7mu': [
     { title: 'Devi Kavacham', artist: 'Appaji', query: 'Devi Kavacham Appaji' }
   ],
-  'wishes': [
-    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem Umair Talwiinder' }
+  'teri deewani': [
+    { title: 'Teri Deewani', artist: 'Kailash Kher, Kailasa', query: 'Teri Deewani Kailash Kher Kailasa' }
   ],
-  'wishes hasan raheem': [
-    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem Umair Talwiinder' }
+  'shaan': [
+    { title: 'Tanha Dil', artist: 'Shaan', query: 'Tanha Dil Shaan' },
+    { title: 'Chand Sifarish', artist: 'Shaan, Kailash Kher', query: 'Chand Sifarish Fanaa Shaan' }
   ],
-  'hasan raheem': [
-    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem Umair Talwiinder' },
-    { title: 'Peechay Hutt', artist: 'Hasan Raheem, Justin Bibis, Talal Qureshi', query: 'Peechay Hutt Coke Studio Hasan Raheem' }
+  'kailash kher': [
+    { title: 'Teri Deewani', artist: 'Kailash Kher, Kailasa', query: 'Teri Deewani Kailash Kher Kailasa' },
+    { title: 'Saiyyan', artist: 'Kailash Kher, Kailasa', query: 'Saiyyan Kailash Kher Kailasa' },
+    { title: 'Allah Ke Bande', artist: 'Kailash Kher', query: 'Allah Ke Bande Kailash Kher' },
+    { title: 'Chaandan Mein', artist: 'Kailash Kher, Kailasa', query: 'Chaandan Mein Kailash Kher Kailasa' }
   ],
-  'pakistani': [
-    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem' },
-    { title: 'Pasoori', artist: 'Ali Sethi, Shae Gill', query: 'Pasoori Coke Studio Ali Sethi Shae Gill' },
-    { title: 'Kahani Suno 2.0', artist: 'Kaifi Khalil', query: 'Kahani Suno 2.0 Kaifi Khalil' },
-    { title: 'Aadat', artist: 'Atif Aslam, Jal', query: 'Aadat Atif Aslam Jal' },
-    { title: 'Tajdar E Haram', artist: 'Atif Aslam', query: 'Tajdar E Haram Coke Studio Atif Aslam' }
-  ],
-  'pakistani songs': [
-    { title: 'Wishes', artist: 'Hasan Raheem, Umair, Talwiinder', query: 'Wishes Hasan Raheem' },
-    { title: 'Pasoori', artist: 'Ali Sethi, Shae Gill', query: 'Pasoori Coke Studio Ali Sethi Shae Gill' },
-    { title: 'Kahani Suno 2.0', artist: 'Kaifi Khalil', query: 'Kahani Suno 2.0 Kaifi Khalil' },
-    { title: 'Tu Jhoom', artist: 'Abida Parveen, Naseebo Lal', query: 'Tu Jhoom Coke Studio Season 14' },
-    { title: 'Afreen Afreen', artist: 'Rahat Fateh Ali Khan, Momina Mustehsan', query: 'Afreen Afreen Coke Studio' }
-  ],
-  'pasoori': [
-    { title: 'Pasoori', artist: 'Ali Sethi, Shae Gill', query: 'Pasoori Coke Studio Ali Sethi Shae Gill' }
-  ],
-  'kahani suno': [
-    { title: 'Kahani Suno 2.0', artist: 'Kaifi Khalil', query: 'Kahani Suno 2.0 Kaifi Khalil' }
-  ],
-  'atif aslam': [
-    { title: 'Aadat', artist: 'Atif Aslam, Jal', query: 'Aadat Atif Aslam Jal' },
-    { title: 'Tajdar E Haram', artist: 'Atif Aslam', query: 'Tajdar E Haram Coke Studio Atif Aslam' },
-    { title: 'Woh Lamhe Woh Baatein', artist: 'Atif Aslam', query: 'Woh Lamhe Woh Baatein Atif Aslam' },
-    { title: 'Tera Hone Laga Hoon', artist: 'Atif Aslam', query: 'Tera Hone Laga Hoon Atif Aslam' }
+  'sufi': [
+    { title: 'Kun Faya Kun', artist: 'A.R. Rahman, Mohit Chauhan, Javed Ali', query: 'Kun Faya Kun Rockstar' },
+    { title: 'Teri Deewani', artist: 'Kailash Kher', query: 'Teri Deewani Kailash Kher' },
+    { title: 'Arziyan', artist: 'A.R. Rahman, Javed Ali, Kailash Kher', query: 'Arziyan Delhi 6' },
+    { title: 'Khwaja Mere Khwaja', artist: 'A.R. Rahman', query: 'Khwaja Mere Khwaja Jodhaa Akbar' },
+    { title: 'Maula Mere Maula', artist: 'Roopkumar Rathod', query: 'Maula Mere Maula Anwar' }
   ]
 };
 
@@ -350,17 +334,17 @@ Rules:
     };
   }
 
-  if (p.includes('pakistani') || p.includes('coke studio') || p.includes('urdu') || p.includes('atif') || p.includes('nusrat')) {
+  if (p.includes('sufi') || p.includes('spiritual') || p.includes('mystic') || p.includes('kailash')) {
     return {
-      djTitle: `Pulse AI: Pakistani Soul & Coke Studio`,
-      vibe: `Hauntingly beautiful Pakistani vocals — from Coke Studio to modern indie`,
+      djTitle: `Pulse AI: Divine Sufi & Soulful Devotion`,
+      vibe: `Transcendent Sufi devotion, soulful poetry and divine musical serenity`,
       tracks: [
-        { title: 'Pasoori', artist: 'Ali Sethi, Shae Gill', ytQuery: 'Pasoori Coke Studio Ali Sethi Shae Gill', reason: 'Global viral sensation — east meets west' },
-        { title: 'Kahani Suno 2.0', artist: 'Kaifi Khalil', ytQuery: 'Kahani Suno 2.0 Kaifi Khalil', reason: 'Deeply emotional storytelling in melody' },
-        { title: 'Tu Jhoom', artist: 'Abida Parveen, Naseebo Lal', ytQuery: 'Tu Jhoom Coke Studio Season 14', reason: 'Two legends in divine Sufi ecstasy' },
-        { title: 'Afreen Afreen', artist: 'Rahat Fateh Ali Khan, Momina Mustehsan', ytQuery: 'Afreen Afreen Coke Studio', reason: 'Qawwali magic meets modern beauty' },
-        { title: 'Tajdar E Haram', artist: 'Atif Aslam', ytQuery: 'Tajdar E Haram Coke Studio Atif Aslam', reason: 'Atif\'s most powerful devotional rendition' },
-        { title: 'Wishes', artist: 'Hasan Raheem, Umair', ytQuery: 'Wishes Hasan Raheem Umair Talwiinder', reason: 'Modern Pakistani indie pop gem' }
+        { title: 'Kun Faya Kun', artist: 'A.R. Rahman, Mohit Chauhan, Javed Ali', ytQuery: 'Kun Faya Kun Rockstar', reason: 'Universal Sufi anthem of peace and surrender' },
+        { title: 'Teri Deewani', artist: 'Kailash Kher, Kailasa', ytQuery: 'Teri Deewani Kailash Kher Kailasa', reason: 'Passionate and transcendent expression of divine love' },
+        { title: 'Arziyan', artist: 'A.R. Rahman, Javed Ali, Kailash Kher', ytQuery: 'Arziyan Delhi 6', reason: 'Heartfelt prayer with soaring vocal harmonies' },
+        { title: 'Khwaja Mere Khwaja', artist: 'A.R. Rahman', ytQuery: 'Khwaja Mere Khwaja Jodhaa Akbar', reason: 'Mesmerizing spiritual devotion by the Mozart of Madras' },
+        { title: 'Maula Mere Maula', artist: 'Roopkumar Rathod', ytQuery: 'Maula Mere Maula Anwar', reason: 'Intensely romantic and spiritual classic' },
+        { title: 'Saiyyan', artist: 'Kailash Kher, Kailasa', ytQuery: 'Saiyyan Kailash Kher Kailasa', reason: 'Pure acoustic and spiritual mysticism' }
       ]
     };
   }

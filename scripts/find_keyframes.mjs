@@ -12,3 +12,4 @@ lines.forEach((l, idx) => {
 
 console.log("Keyframes found in src/style.css:");
 keyframes.forEach(kf => console.log(`Line ${kf.line}: ${kf.text}`));
+

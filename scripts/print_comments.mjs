@@ -13,3 +13,4 @@ lineIndices.forEach(idx => {
     console.log(`${i + 1}: ${lines[i]}`);
   }
 });
+

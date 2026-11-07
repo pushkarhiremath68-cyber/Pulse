@@ -8,3 +8,4 @@ lines.forEach((l, idx) => {
     console.log(`${idx + 1}: ${l.trim().slice(0, 80)}`);
   }
 });
+
