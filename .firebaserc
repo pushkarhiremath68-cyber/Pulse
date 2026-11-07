@@ -1,5 +1,21 @@
 {
   "projects": {
     "default": "pulse-music-app-68"
-  }
+  },
+  "targets": {
+    "pulse-music-app-68": {
+      "hosting": {
+        "pulse-music": [
+          "pulse-music"
+        ],
+        "pulsemusic": [
+          "pulsemusic"
+        ],
+        "app": [
+          "pulse-music-app-68"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

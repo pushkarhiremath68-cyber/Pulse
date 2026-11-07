@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pushkarhiremath68-cyber.github.io/Pulse/sitemap.xml
+Sitemap: https://pulse-music.web.app/sitemap.xml
+Sitemap: https://pulsemusic.web.app/sitemap.xml

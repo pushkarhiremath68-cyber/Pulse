@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pulse-music.web.app/sitemap.xml
+Sitemap: https://pulsemusic.web.app/sitemap.xml
