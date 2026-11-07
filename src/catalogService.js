@@ -8763,7 +8763,7 @@ export const VIBE_PLAYLISTS = [
     vibeBadge: "SUFI & MYSTIC",
     vibeColor: "#14b8a6",
     description: "Soul-stirring poetry, divine harmoniums, and transcendent spiritual devotion: Kun Faya Kun, Teri Deewani, Arziyan, Khwaja Mere Khwaja and Saiyyan.",
-    coverUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
+    coverUrl: "https://i.ytimg.com/vi/T94PHkuydcw/hqdefault.jpg",
     trackCount: 6,
     tracks: [
       { id: "ytm-T94PHkuydcw", ytId: "T94PHkuydcw", title: "Kun Faya Kun", artist: "A.R. Rahman, Javed Ali, Mohit Chauhan", coverUrl: "https://i.ytimg.com/vi/T94PHkuydcw/hqdefault.jpg", duration: 473 },
@@ -9214,7 +9214,7 @@ export function findCatalogCover(title, artist) {
           const tClean = (t.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
           if (tClean === cleanT || (cleanT.length >= 4 && (tClean.includes(cleanT) || cleanT.includes(tClean)))) {
             const c = t.coverUrl || t.cover;
-            if (c && !c.includes('music-cover.svg')) return c;
+            if (c && !c.includes('music-cover.svg') && !c.includes('photo-1511671782779-c97d3d27a1d4')) return c;
           }
         }
       }
@@ -9229,7 +9229,7 @@ export function findCatalogCover(title, artist) {
           const tClean = (t.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
           if (tClean === cleanT || (cleanT.length >= 4 && (tClean.includes(cleanT) || cleanT.includes(tClean)))) {
             const c = t.coverUrl || t.cover;
-            if (c && !c.includes('music-cover.svg')) return c;
+            if (c && !c.includes('music-cover.svg') && !c.includes('photo-1511671782779-c97d3d27a1d4')) return c;
           }
         }
       }
@@ -9248,7 +9248,7 @@ export function findCatalogCover(title, artist) {
         const tClean = (t.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
         if (tClean === cleanT || (cleanT.length >= 4 && (tClean.includes(cleanT) || cleanT.includes(tClean)))) {
           const c = t.coverUrl || t.cover;
-          if (c && !c.includes('music-cover.svg')) return c;
+          if (c && !c.includes('music-cover.svg') && !c.includes('photo-1511671782779-c97d3d27a1d4')) return c;
         }
       }
     }

@@ -114,6 +114,11 @@ function getAudio() {
         }
       }
     });
+
+    // Attach Pulse AI Guardian watchdog to monitor stream decode & stalls
+    if (typeof window !== 'undefined' && window.PulseAIHealer && typeof window.PulseAIHealer.attachAudioWatchdog === 'function') {
+      window.PulseAIHealer.attachAudioWatchdog(audio);
+    }
   }
   return audio;
 }
@@ -196,6 +201,22 @@ export async function ensureOriginalAlbumCover(track) {
   const currentCover = track.coverUrl || track.cover || '';
   if (currentCover.includes('mzstatic.com') || currentCover.includes('1000x1000') || currentCover.includes('600x600')) {
     return;
+  }
+
+  // 1. Check Pulse AI Healer True Artwork Resolver
+  if (typeof window !== 'undefined' && window.PulseAIHealer && typeof window.PulseAIHealer.resolveTrueArtwork === 'function') {
+    try {
+      const hdCover = await window.PulseAIHealer.resolveTrueArtwork(track.title, track.artist, track.ytId);
+      if (hdCover && !hdCover.startsWith('data:image/svg') && !hdCover.includes('photo-1511671782779-c97d3d27a1d4')) {
+        track.coverUrl = hdCover;
+        track.cover = hdCover;
+        if (currentTrack && (currentTrack.id === track.id || currentTrack.title === track.title)) {
+          updateTrackInfoUI(track);
+          updateMediaSession(track);
+        }
+        return;
+      }
+    } catch (e) {}
   }
 
   try {
@@ -686,14 +707,31 @@ function updateTrackInfoUI(track) {
   const coverEls = document.querySelectorAll('#player-thumb, #playbar-cover, #fullscreen-cover-img, #fullscreen-album-art, #fs-album-art');
   const badgeEls = document.querySelectorAll('#player-source-badge, #playbar-source-badge, #fs-source-badge');
 
-  const coverUrl = track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');
+  let coverUrl = track.coverUrl || track.cover;
+  if (!coverUrl || coverUrl.includes('photo-1511671782779-c97d3d27a1d4') || coverUrl.includes('music-cover.svg')) {
+    if (track.ytId) {
+      coverUrl = `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg`;
+    } else if (typeof window !== 'undefined' && window.PulseAIHealer && typeof window.PulseAIHealer.generateHarmonicCoverSvg === 'function') {
+      coverUrl = window.PulseAIHealer.generateHarmonicCoverSvg(track.title, track.artist);
+    } else {
+      coverUrl = 'https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg';
+    }
+  }
 
   titleEls.forEach(el => { el.textContent = track.title || 'Untitled Track'; });
   artistEls.forEach(el => { el.textContent = track.artist || 'Pulse Artist'; });
   coverEls.forEach(el => {
     if (el.tagName === 'IMG') {
       el.src = coverUrl;
-      el.onerror = function() { this.onerror = null; this.src = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'; };
+      el.dataset.title = track.title || '';
+      el.dataset.artist = track.artist || '';
+      el.dataset.ytid = track.ytId || '';
+      el.onerror = function() {
+        this.onerror = null;
+        if (typeof window !== 'undefined' && window.PulseAIHealer && typeof window.PulseAIHealer.generateHarmonicCoverSvg === 'function') {
+          this.src = window.PulseAIHealer.generateHarmonicCoverSvg(track.title, track.artist);
+        }
+      };
     } else {
       el.style.backgroundImage = `url('${coverUrl}')`;
     }
@@ -1288,6 +1326,12 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
             const errorCode = e?.data;
             console.warn('[Pulse Studio Master] YouTube IFrame error code:', errorCode);
             if (activeEngine === 'youtube' && isPlaying && currentTrack) {
+              // Delegate to Pulse AI Guardian for autonomous disambiguation and stream recovery
+              if (typeof window !== 'undefined' && window.PulseAIHealer && typeof window.PulseAIHealer.handleYouTubeEmbedError === 'function') {
+                await window.PulseAIHealer.handleYouTubeEmbedError(errorCode, ytPlayer, currentTrack);
+                return;
+              }
+
               // Error 100 = video not found, 101/150 = embedding restricted by label
               if ((errorCode === 101 || errorCode === 150 || errorCode === 100) && !currentTrack._hasRetriedAlternative) {
                 currentTrack._hasRetriedAlternative = true;

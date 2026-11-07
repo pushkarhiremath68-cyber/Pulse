@@ -22,9 +22,15 @@ import './catalogService.js';
 import './recommendationService.js';
 import './newReleasesService.js';
 import './visualizer.js';
+import PulseAIHealer from './aiAutoHealer.js';
 import './geminiService.js';
 import './downloadService.js';
 import { escapeHtml, sanitizeUrl } from './security.js';
+
+// Boot Pulse AI Guardian & Autonomous Self-Healing Daemon immediately
+if (PulseAIHealer && typeof PulseAIHealer.init === 'function') {
+  PulseAIHealer.init();
+}
 
 import { fetchFreshNewReleases, getCachedNewReleases } from './newReleasesService.js';
 
@@ -61,29 +67,8 @@ import {
   downloadAppForDevice
 } from './downloadService.js';
 
-// Global error handler to catch broken images and provide progressive fallback
-window.addEventListener('error', function(e) {
-  if (e.target && e.target.tagName === 'IMG') {
-    // Clear inline onerror to prevent it from overriding our progressive fallback
-    e.target.onerror = null;
-    
-    const src = e.target.src || '';
-    if (src.includes('maxresdefault.jpg') && e.target.dataset.fallbackLevel !== 'hq') {
-      e.target.dataset.fallbackLevel = 'hq';
-      e.target.src = src.replace('maxresdefault.jpg', 'hqdefault.jpg');
-    } else if (src.includes('hqdefault.jpg') && e.target.dataset.fallbackLevel !== 'mq') {
-      e.target.dataset.fallbackLevel = 'mq';
-      e.target.src = src.replace('hqdefault.jpg', 'mqdefault.jpg');
-    } else if (!e.target.dataset.pulseFallback) {
-      e.target.dataset.pulseFallback = 'true';
-      if (e.target.classList.contains('brand-logo-img') || e.target.classList.contains('auth-gate-logo')) {
-        e.target.src = './pulse-logo.png';
-      } else {
-        e.target.src = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
-      }
-    }
-  }
-}, true);
+// Global error handling & broken asset recovery are autonomously managed by PulseAIHealer
+// (zero UI footprint, 100% resilient background daemon)
 
 (function() {
   'use strict';
@@ -754,8 +739,12 @@ window.addEventListener('error', function(e) {
         if (art && (art.avatar || art.banner)) coverUrl = art.avatar || art.banner;
       }
     }
-    if (!coverUrl || coverUrl.includes('music-cover.svg')) {
-      coverUrl = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
+    if (!coverUrl || coverUrl.includes('music-cover.svg') || coverUrl.includes('photo-1511671782779-c97d3d27a1d4')) {
+      if (window.PulseAIHealer && typeof window.PulseAIHealer.generateHarmonicCoverSvg === 'function') {
+        coverUrl = window.PulseAIHealer.generateHarmonicCoverSvg(track.title || title, track.artist || artist);
+      } else {
+        coverUrl = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"%3E%3Crect width="500" height="500" fill="%230b0e17"/%3E%3Ccircle cx="250" cy="250" r="140" fill="%231e1b4b"/%3E%3Ctext x="250" y="260" font-size="28" fill="%23a855f7" text-anchor="middle" font-weight="bold"%3EPULSE%3C/text%3E%3C/svg%3E';
+      }
     }
     const title = track.title || 'Untitled Track';
     const artist = track.artist || 'Pulse Artist';
@@ -776,7 +765,7 @@ window.addEventListener('error', function(e) {
            data-yt-id="${escapeHtml(ytId)}"
            onclick="window.playTrackDirect(${listGlobalKey}[${index}], ${listGlobalKey})">
         <div class="card-image-wrapper">
-          <img src="${coverUrl}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
+          <img src="${coverUrl}" alt="${escapeHtml(title)}" data-title="${escapeHtml(title)}" data-artist="${escapeHtml(artist)}" data-ytid="${escapeHtml(ytId)}" loading="lazy">
           
           <!-- Corner Action Buttons: Favorite & More Options -->
           <div class="card-corner-actions" onclick="event.stopPropagation()">
@@ -948,7 +937,12 @@ window.addEventListener('error', function(e) {
             else if (t.id && String(t.id).startsWith('ytm-')) t.coverUrl = `https://i.ytimg.com/vi/${String(t.id).replace('ytm-', '')}/hqdefault.jpg`;
             else if (window.catalogService?.findCatalogCover) {
               const found = window.catalogService.findCatalogCover(t.title, t.artist);
-              if (found) t.coverUrl = found;
+              if (found && !found.includes('photo-1511671782779-c97d3d27a1d4')) t.coverUrl = found;
+            }
+            if (!t.coverUrl || t.coverUrl.includes('photo-1511671782779-c97d3d27a1d4') || t.coverUrl.includes('music-cover.svg')) {
+              if (window.PulseAIHealer && typeof window.PulseAIHealer.generateHarmonicCoverSvg === 'function') {
+                t.coverUrl = window.PulseAIHealer.generateHarmonicCoverSvg(t.title, t.artist);
+              }
             }
           }
         });
@@ -1026,7 +1020,7 @@ window.addEventListener('error', function(e) {
     // 1. Render Slides Track
     track.innerHTML = slides.map((slide, idx) => {
       const isFav = typeof isFavorite === 'function' ? isFavorite(slide.id) : false;
-      const artwork = slide.coverUrl || slide.artwork || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
+      const artwork = slide.coverUrl || slide.artwork || (window.PulseAIHealer ? window.PulseAIHealer.generateHarmonicCoverSvg(slide.title, slide.artist) : 'https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg');
       const videoYtId = slide.videoYtId || slide.youtubeId || '';
       const badgeText = slide.badgeText || slide.badge || 'FEATURED ANTHEM';
       const badgeIcon = slide.badgeIcon || 'fa-solid fa-bolt';
@@ -1380,7 +1374,7 @@ window.addEventListener('error', function(e) {
       window.toggleSlideVideo(slideIndex, false);
     }
 
-    const artwork = slide.coverUrl || slide.artwork || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
+    const artwork = slide.coverUrl || slide.artwork || (window.PulseAIHealer ? window.PulseAIHealer.generateHarmonicCoverSvg(slide.title, slide.artist) : 'https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg');
     const videoYtId = slide.videoYtId || slide.youtubeId;
 
     const track = {
@@ -1412,7 +1406,7 @@ window.addEventListener('error', function(e) {
     const slide = slides[slideIndex];
     if (!slide) return;
 
-    const artwork = slide.coverUrl || slide.artwork || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
+    const artwork = slide.coverUrl || slide.artwork || (window.PulseAIHealer ? window.PulseAIHealer.generateHarmonicCoverSvg(slide.title, slide.artist) : 'https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg');
     const videoYtId = slide.videoYtId || slide.youtubeId;
 
     const track = {
@@ -1502,7 +1496,7 @@ window.addEventListener('error', function(e) {
       artContainer.innerHTML = artists.map((art) => `
         <div class="artist-card-item hover-glow" onclick="window.openArtistView('${art.name.replace(/'/g, "\\'")}')" style="min-width: 140px; text-align: center; cursor: pointer; flex-shrink: 0;">
           <div class="artist-avatar-wrap" style="position: relative; width: 120px; height: 120px; margin: 0 auto 0.75rem auto; border-radius: 50%; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
-            <img src="${art.avatar || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'}" alt="${escapeHtml(art.name)}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
+            <img src="${art.avatar || 'https://api.dicebear.com/7.x/initials/svg?seed=' + encodeURIComponent(art.name) + '&backgroundColor=8b5cf6'}" alt="${escapeHtml(art.name)}" data-artist="${escapeHtml(art.name)}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=' + encodeURIComponent(this.dataset.artist || 'Artist') + '&backgroundColor=8b5cf6';">
             <div class="artist-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
               <i class="fa-solid fa-play" style="color: #fff; font-size: 1.5rem;"></i>
             </div>

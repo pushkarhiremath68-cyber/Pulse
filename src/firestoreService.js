@@ -54,7 +54,7 @@ export async function addFavorite(track) {
     title: track.title || 'Untitled Track',
     artist: track.artist || 'Unknown Artist',
     album: track.album || 'Full Album',
-    coverUrl: track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80'),
+    coverUrl: track.coverUrl || track.cover || (track.ytId ? `https://i.ytimg.com/vi/${track.ytId}/hqdefault.jpg` : (typeof window !== 'undefined' && window.PulseAIHealer ? window.PulseAIHealer.generateHarmonicCoverSvg(track.title, track.artist) : 'https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg')),
     duration: track.duration || 220,
     streamUrl: track.streamUrl || '',
     source: track.source || 'Ad-Free Pure Audio',
@@ -73,6 +73,9 @@ export async function addFavorite(track) {
       await db.collection('users').doc(uid).collection('favorites').doc(String(track.id)).set(favTrack, { merge: true });
     } catch (e) {
       console.warn('[Firestore] Favorite sync notice:', e.message);
+      if (typeof window !== 'undefined' && window.PulseAIHealer?.enqueueOfflineMutation) {
+        window.PulseAIHealer.enqueueOfflineMutation('FAVORITE_ADD', favTrack);
+      }
     }
   }
 
@@ -296,8 +299,10 @@ export async function addToHistory(track) {
       coverUrl = window.catalogService.findCatalogCover(track.title, track.artist) || '';
     }
   }
-  if (!coverUrl || coverUrl.includes('music-cover.svg')) {
-    coverUrl = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
+  if (!coverUrl || coverUrl.includes('music-cover.svg') || coverUrl.includes('photo-1511671782779-c97d3d27a1d4')) {
+    if (typeof window !== 'undefined' && window.PulseAIHealer && typeof window.PulseAIHealer.generateHarmonicCoverSvg === 'function') {
+      coverUrl = window.PulseAIHealer.generateHarmonicCoverSvg(track.title, track.artist);
+    }
   }
   const historyEntry = {
     id: track.id,
@@ -320,7 +325,11 @@ export async function addToHistory(track) {
   if (db && uid && !uid.startsWith('guest-')) {
     try {
       await db.collection('users').doc(uid).collection('history').doc(String(track.id)).set(historyEntry, { merge: true });
-    } catch (e) {}
+    } catch (e) {
+      if (typeof window !== 'undefined' && window.PulseAIHealer?.enqueueOfflineMutation) {
+        window.PulseAIHealer.enqueueOfflineMutation('HISTORY_ADD', historyEntry);
+      }
+    }
   }
 
   notifyHistoryListeners(local);
@@ -332,9 +341,9 @@ export async function getHistory(limitCount = 50) {
 
   const healHistoryItem = (item) => {
     if (!item) return item;
-    if (!item.coverUrl || item.coverUrl === './music-cover.svg' || item.coverUrl.includes('music-cover.svg') || item.coverUrl.trim() === '') {
+    if (!item.coverUrl || item.coverUrl === './music-cover.svg' || item.coverUrl.includes('music-cover.svg') || item.coverUrl.trim() === '' || item.coverUrl.includes('photo-1511671782779-c97d3d27a1d4')) {
       item.coverUrl = '';
-      if (item.cover && !item.cover.includes('music-cover.svg')) {
+      if (item.cover && !item.cover.includes('music-cover.svg') && !item.cover.includes('photo-1511671782779-c97d3d27a1d4')) {
         item.coverUrl = item.cover;
       } else if (item.ytId) {
         item.coverUrl = `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`;
@@ -342,11 +351,13 @@ export async function getHistory(limitCount = 50) {
         item.coverUrl = `https://i.ytimg.com/vi/${String(item.id).replace('ytm-', '')}/hqdefault.jpg`;
       } else if (typeof window !== 'undefined' && window.catalogService?.findCatalogCover) {
         const found = window.catalogService.findCatalogCover(item.title, item.artist);
-        if (found) item.coverUrl = found;
+        if (found && !found.includes('photo-1511671782779-c97d3d27a1d4')) item.coverUrl = found;
       }
     }
-    if (!item.coverUrl || item.coverUrl.includes('music-cover.svg')) {
-      item.coverUrl = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';
+    if (!item.coverUrl || item.coverUrl.includes('music-cover.svg') || item.coverUrl.includes('photo-1511671782779-c97d3d27a1d4')) {
+      if (typeof window !== 'undefined' && window.PulseAIHealer && typeof window.PulseAIHealer.generateHarmonicCoverSvg === 'function') {
+        item.coverUrl = window.PulseAIHealer.generateHarmonicCoverSvg(item.title, item.artist);
+      }
     }
     return item;
   };
