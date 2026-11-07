@@ -11356,6 +11356,131 @@ export const ARTIST_DATABASE = {
       }
     ],
     "origin": "Kolkata, West Bengal, India"
+  },
+  "krishna-das": {
+    "id": "krishna-das",
+    "name": "Krishna Das",
+    "monthlyListeners": "1,450,000",
+    "followersCount": "920,000",
+    "worldRank": "#1 Global Kirtan & Sacred Chant Master",
+    "origin": "Long Island, New York, USA / Kainchi Dham, Uttarakhand, India",
+    "bio": "Krishna Das is an internationally acclaimed American spiritual chant master, vocalist, and Grammy-nominated devotional artist. Widely revered as the 'Rockstar of Yoga', he was a direct disciple of the legendary Indian saint Neem Karoli Baba (Maharaj-ji). His deeply resonant baritone voice has introduced traditional Hindu kirtan, the Hanuman Chalisa, and ancient sacred Sanskrit mantras to millions of spiritual seekers worldwide.",
+    "banner": "https://cdn-images.dzcdn.net/images/artist/a1558ef5e7dffee5714fe6097576ac6c/1000x1000-000000-80-0-0.jpg",
+    "avatar": "https://cdn-images.dzcdn.net/images/artist/a1558ef5e7dffee5714fe6097576ac6c/1000x1000-000000-80-0-0.jpg",
+    "socials": {
+      "instagram": "https://www.instagram.com/krishnadasmusic/",
+      "x": "https://x.com/krishnadas",
+      "facebook": "https://www.facebook.com/KrishnaDasMusic/",
+      "youtube": "https://www.youtube.com/@KrishnaDasMusic"
+    },
+    "tourInfo": {
+      "tourName": "Krishna Das Sacred Chants & Kirtan World Tour 2026",
+      "status": "Tickets Live",
+      "dates": "New York, Rishikesh, London, Los Angeles, Maui",
+      "ticketUrl": "https://www.krishnadas.com/tour/"
+    },
+    "topTracks": [
+      {
+        "id": "ytm-3WrImrl2dmI",
+        "ytId": "3WrImrl2dmI",
+        "title": "Hanuman Chalisa",
+        "artist": "Krishna Das",
+        "album": "Live on Earth",
+        "coverUrl": "https://i.ytimg.com/vi/3WrImrl2dmI/hqdefault.jpg",
+        "duration": 586,
+        "plays": "48,500,000"
+      },
+      {
+        "id": "ytm-ZdjEgaND0n8",
+        "ytId": "ZdjEgaND0n8",
+        "title": "Baba Hanuman",
+        "artist": "Krishna Das",
+        "album": "Live on Earth",
+        "coverUrl": "https://i.ytimg.com/vi/ZdjEgaND0n8/hqdefault.jpg",
+        "duration": 524,
+        "plays": "32,100,000"
+      },
+      {
+        "id": "ytm-JQeCetQmopQ",
+        "ytId": "JQeCetQmopQ",
+        "title": "Radhe Shyam",
+        "artist": "Krishna Das",
+        "album": "One Track Heart",
+        "coverUrl": "https://i.ytimg.com/vi/JQeCetQmopQ/hqdefault.jpg",
+        "duration": 482,
+        "plays": "27,400,000"
+      },
+      {
+        "id": "ytm-PTc8X37oJBE",
+        "ytId": "PTc8X37oJBE",
+        "title": "Om Namah Shivaya",
+        "artist": "Krishna Das",
+        "album": "Breath of the Heart",
+        "coverUrl": "https://i.ytimg.com/vi/PTc8X37oJBE/hqdefault.jpg",
+        "duration": 570,
+        "plays": "29,800,000"
+      },
+      {
+        "id": "ytm-RGighCH7i4Y",
+        "ytId": "RGighCH7i4Y",
+        "title": "Sri Ram Jai Ram",
+        "artist": "Krishna Das",
+        "album": "Live on Earth",
+        "coverUrl": "https://i.ytimg.com/vi/RGighCH7i4Y/hqdefault.jpg",
+        "duration": 448,
+        "plays": "18,900,000"
+      },
+      {
+        "id": "ytm-husGDaTbYkk",
+        "ytId": "husGDaTbYkk",
+        "title": "Hara Hara Mahadeva",
+        "artist": "Krishna Das",
+        "album": "Live on Earth",
+        "coverUrl": "https://i.ytimg.com/vi/husGDaTbYkk/hqdefault.jpg",
+        "duration": 412,
+        "plays": "16,200,000"
+      },
+      {
+        "id": "ytm-0qc0jXs_brU",
+        "ytId": "0qc0jXs_brU",
+        "title": "Mere Gurudev",
+        "artist": "Krishna Das",
+        "album": "Door of Faith",
+        "coverUrl": "https://i.ytimg.com/vi/0qc0jXs_brU/hqdefault.jpg",
+        "duration": 498,
+        "plays": "21,600,000"
+      },
+      {
+        "id": "ytm-c3K1BWeIZyo",
+        "ytId": "c3K1BWeIZyo",
+        "title": "Sita Ram",
+        "artist": "Krishna Das",
+        "album": "Live on Earth",
+        "coverUrl": "https://i.ytimg.com/vi/c3K1BWeIZyo/hqdefault.jpg",
+        "duration": 420,
+        "plays": "19,300,000"
+      },
+      {
+        "id": "ytm-fGDLNvEyUyI",
+        "ytId": "fGDLNvEyUyI",
+        "title": "Govinda Hare",
+        "artist": "Krishna Das",
+        "album": "Breath of the Heart",
+        "coverUrl": "https://i.ytimg.com/vi/fGDLNvEyUyI/hqdefault.jpg",
+        "duration": 465,
+        "plays": "14,800,000"
+      },
+      {
+        "id": "ytm-QRuNUqS2hT8",
+        "ytId": "QRuNUqS2hT8",
+        "title": "Jaya Bhagavan",
+        "artist": "Krishna Das",
+        "album": "Pilgrim Heart",
+        "coverUrl": "https://i.ytimg.com/vi/QRuNUqS2hT8/hqdefault.jpg",
+        "duration": 510,
+        "plays": "12,400,000"
+      }
+    ]
   }
 };
 
@@ -12383,6 +12508,7 @@ export const getArtistDetails = (artistName) => {
     else if (normalized.includes('harris') || normalized.includes('jayaraj')) foundKey = 'harris-jayaraj';
     else if (normalized.includes('yuvan') || normalized.includes('shankar raja')) foundKey = 'yuvan-shankar-raja';
     else if (normalized.includes('ilaiyaraaja') || normalized.includes('ilayaraja')) foundKey = 'ilaiyaraaja';
+    else if (normalized.includes('krishna das') || (normalized.includes('krishna') && normalized.includes('das'))) foundKey = 'krishna-das';
     else if (normalized.includes('jagjit')) foundKey = 'jagjit-singh';
     else if (normalized.includes('pankaj') || normalized.includes('udhas')) foundKey = 'pankaj-udhas';
     else if (normalized.includes('sukhwinder')) foundKey = 'sukhwinder-singh';

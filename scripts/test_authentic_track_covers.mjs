@@ -64,8 +64,8 @@ for (const [id, artist] of Object.entries(ARTIST_DATABASE)) {
   assert.ok(artist.banner, `Artist ${id} must have banner`);
   avatars.add(artist.avatar);
 }
-console.log(`[TEST 6] Unique artist avatars: ${avatars.size} / 87 (Expected: 87)`);
-assert.strictEqual(avatars.size, 87, 'Every artist must have a unique, authentic portrait');
+console.log(`[TEST 6] Unique artist avatars: ${avatars.size} / ${Object.keys(ARTIST_DATABASE).length} (Expected: ${Object.keys(ARTIST_DATABASE).length})`);
+assert.strictEqual(avatars.size, Object.keys(ARTIST_DATABASE).length, 'Every artist must have a unique, authentic portrait');
 
 console.log('\n>>> ALL ARTIST TRACK & PORTRAIT AUDIT TESTS PASSED! <<<');
 

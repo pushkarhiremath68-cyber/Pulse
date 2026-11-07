@@ -56,3 +56,4 @@ const finalContent = `${before}\n${replacement}\n${after}`;
 fs.writeFileSync('./src/catalogService.js', finalContent, 'utf8');
 
 console.log('Successfully updated src/catalogService.js!');
+
