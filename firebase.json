@@ -47,6 +47,10 @@
       ],
       "rewrites": [
         {
+          "source": "/sitemap.xml",
+          "destination": "/sitemap-pulse-music.xml"
+        },
+        {
           "source": "**",
           "destination": "/index.html"
         }
@@ -121,6 +125,10 @@
       ],
       "rewrites": [
         {
+          "source": "/sitemap.xml",
+          "destination": "/sitemap-pulsemusic.xml"
+        },
+        {
           "source": "**",
           "destination": "/index.html"
         }
@@ -194,6 +202,10 @@
         "**/*.bat"
       ],
       "rewrites": [
+        {
+          "source": "/sitemap.xml",
+          "destination": "/sitemap-app.xml"
+        },
         {
           "source": "**",
           "destination": "/index.html"
