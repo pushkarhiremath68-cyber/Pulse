@@ -524,12 +524,31 @@ body::after {
   transition: all 0.2s var(--ease-spring);
 }
 
-.btn-circle-nav:hover {
+.btn-circle-nav:hover:not(:disabled):not(.disabled) {
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.btn-circle-nav:active:not(:disabled):not(.disabled) {
+  transform: scale(0.93);
+}
+
+.btn-circle-nav:disabled,
+.btn-circle-nav.disabled {
+  opacity: 0.28 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  color: rgba(255, 255, 255, 0.25) !important;
+}
+
+#header-install-btn {
+  display: none !important;
 }
 
 .search-box-container {
@@ -3623,10 +3642,22 @@ section.filter-pills-bar {
     flex: 1 1 auto !important;
   }
 
-  .header-nav-btns,
+  .header-nav-btns {
+    display: flex !important;
+    gap: 0.45rem !important;
+    align-items: center !important;
+  }
+
+  .header-nav-btns .btn-circle-nav {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.85rem !important;
+  }
+
   #header-download-btn,
   #header-lyrics-btn,
-  #header-auth-btn {
+  #header-auth-btn,
+  #header-install-btn {
     display: none !important;
   }
   
@@ -3634,7 +3665,6 @@ section.filter-pills-bar {
     display: none !important;
   }
   
-  #header-install-btn,
   #header-gemini-btn {
     display: inline-flex !important;
     padding: 0.45rem 0.55rem !important;

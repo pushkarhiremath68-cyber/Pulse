@@ -121,8 +121,153 @@ import {
     }, duration);
   };
 
+  // =========================================================================
+  // APP NAVIGATION ROUTER & IN-APP HISTORY STACK (< > BUTTON CONTROLLER)
+  // =========================================================================
+  const navHistory = [];
+  let navIndex = -1;
+  let isNavigatingHistory = false;
+
+  window.recordNavState = function(state) {
+    if (isNavigatingHistory || !state || !state.viewId) return;
+
+    // Avoid duplicate entries if user clicks the current view repeatedly
+    if (navIndex >= 0 && navIndex < navHistory.length) {
+      const curr = navHistory[navIndex];
+      if (curr.type === state.type && curr.viewId === state.viewId) {
+        if (state.type === 'artist' && curr.artistQuery === state.artistQuery) return;
+        if (state.type === 'playlist' && curr.playlistId === state.playlistId) return;
+        if (state.type === 'search' && curr.query === state.query) return;
+        if (state.type === 'view') return;
+      }
+    }
+
+    // Truncate any forward history when navigating to a new destination
+    if (navIndex < navHistory.length - 1) {
+      navHistory.splice(navIndex + 1);
+    }
+
+    navHistory.push({ ...state, timestamp: Date.now() });
+    navIndex = navHistory.length - 1;
+    window.updateNavButtons();
+  };
+
+  window.updateNavButtons = function() {
+    const btnBack = document.getElementById('btn-back');
+    const btnForward = document.getElementById('btn-forward');
+
+    const canGoBack = navIndex > 0;
+    const canGoForward = navIndex < navHistory.length - 1;
+
+    if (btnBack) {
+      btnBack.disabled = !canGoBack;
+      btnBack.classList.toggle('disabled', !canGoBack);
+      btnBack.setAttribute('aria-disabled', String(!canGoBack));
+    }
+
+    if (btnForward) {
+      btnForward.disabled = !canGoForward;
+      btnForward.classList.toggle('disabled', !canGoForward);
+      btnForward.setAttribute('aria-disabled', String(!canGoForward));
+    }
+  };
+
+  window.applyNavState = function(state) {
+    if (!state) return;
+    isNavigatingHistory = true;
+    try {
+      if (state.type === 'artist') {
+        window.openArtistView(state.artistQuery, false);
+      } else if (state.type === 'playlist') {
+        window.openPlaylistView(state.playlist, false);
+      } else if (state.type === 'search') {
+        const input = document.getElementById('global-search-input');
+        const clearBtn = document.getElementById('clear-search-btn');
+        if (input) input.value = state.query || '';
+        if (clearBtn) clearBtn.classList.toggle('hidden', !state.query);
+        window.switchView('search-view', false);
+        if (state.query && window.executeSearch) {
+          window.executeSearch(state.query, false);
+        }
+      } else {
+        const input = document.getElementById('global-search-input');
+        const clearBtn = document.getElementById('clear-search-btn');
+        if (state.viewId !== 'search-view') {
+          if (input) input.value = '';
+          if (clearBtn) clearBtn.classList.add('hidden');
+        }
+        window.switchView(state.viewId || 'home', false);
+      }
+    } finally {
+      isNavigatingHistory = false;
+      window.updateNavButtons();
+    }
+  };
+
+  window.navBack = function() {
+    // 1. If Fullscreen Player is open, close it first
+    const fsModal = document.getElementById('fullscreen-player');
+    if (fsModal && fsModal.classList.contains('active')) {
+      if (window.PulsePlaybar && typeof window.PulsePlaybar.minimize === 'function') {
+        window.PulsePlaybar.minimize();
+      } else {
+        fsModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      return;
+    }
+
+    // 2. If Auth Modal is open, close it
+    const authModal = document.getElementById('auth-modal');
+    if (authModal && !authModal.classList.contains('hidden')) {
+      window.closeAuthModal();
+      return;
+    }
+
+    // 3. If Download Modal is open, close it
+    const dlModal = document.getElementById('download-modal');
+    if (dlModal && !dlModal.classList.contains('hidden')) {
+      if (window.closeDownloadModal) window.closeDownloadModal();
+      else dlModal.classList.add('hidden');
+      return;
+    }
+
+    // 4. If Pulse AI Modal is open, close it
+    const aiModal = document.getElementById('pulse-ai-modal') || document.getElementById('gemini-dj-modal');
+    if (aiModal && !aiModal.classList.contains('hidden')) {
+      if (window.closePulseAIModal) window.closePulseAIModal();
+      else if (window.closeGeminiDJModal) window.closeGeminiDJModal();
+      else aiModal.classList.add('hidden');
+      return;
+    }
+
+    // 5. Navigate back in history stack
+    if (navIndex > 0) {
+      navIndex--;
+      window.applyNavState(navHistory[navIndex]);
+    }
+  };
+
+  window.navForward = function() {
+    if (navIndex < navHistory.length - 1) {
+      navIndex++;
+      window.applyNavState(navHistory[navIndex]);
+    }
+  };
+
+  // Keyboard Navigation: Alt + Left Arrow (Back), Alt + Right Arrow (Forward)
+  window.addEventListener('keydown', (e) => {
+    if (e.altKey && e.key === 'ArrowLeft') {
+      e.preventDefault();
+      window.navBack();
+    } else if (e.altKey && e.key === 'ArrowRight') {
+      e.preventDefault();
+      window.navForward();
+    }
+  });
+
   // View Routing
-  window.switchView = function(viewId) {
+  window.switchView = function(viewId, pushToHistory = true) {
     if (viewId === 'library' || viewId === 'playlist') {
       const uid = getCurrentUserId();
       if (!uid || uid.startsWith('guest-')) {
@@ -162,6 +307,10 @@ import {
           }
         }
       }
+    }
+
+    if (pushToHistory && viewId !== 'artist' && viewId !== 'playlist') {
+      window.recordNavState({ type: 'view', viewId });
     }
   };
 
@@ -1936,7 +2085,7 @@ import {
     }
   };
 
-  window.openPlaylistView = function(playlist) {
+  window.openPlaylistView = function(playlist, pushToHistory = true) {
     window.pulseState = window.pulseState || {};
     window.pulseState.currentPlaylistData = playlist;
     
@@ -2026,7 +2175,15 @@ import {
       }
     }
     
-    window.switchView('playlist');
+    window.switchView('playlist', false);
+    if (pushToHistory && playlist) {
+      window.recordNavState({
+        type: 'playlist',
+        viewId: 'playlist',
+        playlist,
+        playlistId: playlist.id || playlist.name
+      });
+    }
   };
 
   window.playPlaylistAll = function() {
@@ -2545,9 +2702,12 @@ import {
     }
   };
 
-  window.openArtistView = async function(artistQuery) {
+  window.openArtistView = async function(artistQuery, pushToHistory = true) {
     if (!artistQuery) return;
-    window.switchView('artist');
+    window.switchView('artist', false);
+    if (pushToHistory) {
+      window.recordNavState({ type: 'artist', viewId: 'artist', artistQuery });
+    }
 
     let artist = typeof getArtistDetails === 'function' ? getArtistDetails(artistQuery) : null;
 
@@ -3040,9 +3200,12 @@ import {
 
   window.executeSearch = function(query, isTyping = false) {
     if (!query || query.trim().length === 0) return;
-    window.switchView('search-view');
+    window.switchView('search-view', false);
 
     const cleanQ = query.trim();
+    if (!isTyping) {
+      window.recordNavState({ type: 'search', viewId: 'search-view', query: cleanQ });
+    }
     const label = document.getElementById('search-query-label');
     const count = document.getElementById('search-count');
     if (label) label.textContent = cleanQ;
@@ -4122,12 +4285,16 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       }).catch(() => {});
     }
 
-    // 2. Ensure Home view is active
+    // 2. Ensure Home view is active & initialize Navigation History
     const activeView = document.querySelector('.app-view.active-view');
     if (!activeView) {
       const homeView = document.getElementById('view-home');
       if (homeView) homeView.classList.add('active-view');
     }
+    if (navHistory.length === 0) {
+      window.recordNavState({ type: 'view', viewId: 'home' });
+    }
+    window.updateNavButtons();
 
     // 3. Render Home Feed Discovery immediately
     if (typeof window.renderHomeDiscovery === 'function') {

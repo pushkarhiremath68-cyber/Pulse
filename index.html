@@ -234,34 +234,35 @@
         <div class="header-top-row">
           <div class="header-left-cluster">
             <div class="header-nav-btns">
-              <button id="btn-back" class="btn-circle-nav" onclick="window.history.back()"><i class="fa-solid fa-chevron-left"></i></button>
-              <button id="btn-forward" class="btn-circle-nav" onclick="window.history.forward()"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-
-            <!-- Mobile Profile Avatar Trigger Button -->
-            <button id="mobile-header-profile-btn" class="mobile-profile-trigger" onclick="window.openAuthModal()" title="View Profile & Settings" aria-label="Profile">
-              <i class="fa-solid fa-circle-user"></i>
-            </button>
-
-            <!-- Personalized Greeting Capsule (Desktop & Mobile) -->
-            <div class="header-greeting-wrap" onclick="window.openAuthModal()" title="View Profile & Settings">
-              <span id="header-greeting" class="header-greeting-title"><i class="fa-solid fa-moon" style="color: #818cf8; font-size: 0.95rem;"></i> Good evening</span>
-              <span id="header-greeting-sub" class="header-greeting-sub">Welcome back to Pulse Midnight</span>
+              <button id="btn-back" class="btn-circle-nav disabled" disabled onclick="window.navBack()" title="Go back (Alt+Left)" aria-label="Go back">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button id="btn-forward" class="btn-circle-nav disabled" disabled onclick="window.navForward()" title="Go forward (Alt+Right)" aria-label="Go forward">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
             </div>
           </div>
 
           <!-- Header Actions -->
           <div class="header-actions">
-
-            <button id="header-install-btn" class="btn-download-header" onclick="window.innerWidth <= 768 ? window.triggerPWAInstall() : window.openDownloadModal()" title="Install App or Download Shortcut">
-              <i class="fa-solid fa-arrow-down-to-bracket" style="color: #38bdf8;"></i> <span class="hide-on-mobile">Install App</span>
+            <!-- Hidden install button to satisfy script references without visual clutter -->
+            <button id="header-install-btn" style="display: none;" class="btn-download-header hidden" onclick="window.innerWidth <= 768 ? window.triggerPWAInstall() : window.openDownloadModal()" title="Install App">
+              <i class="fa-solid fa-arrow-down-to-bracket"></i>
             </button>
+
+            <!-- Pulse AI Assistant Button -->
             <button id="header-gemini-btn" class="btn-download-header" onclick="window.openPulseAIModal ? window.openPulseAIModal() : window.openGeminiDJModal()" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #38bdf8 100%); border: none; color: #fff; font-weight: 700; box-shadow: 0 4px 18px rgba(99, 102, 241, 0.4);" title="Pulse AI Music Assistant">
               <i class="fa-solid fa-wand-magic-sparkles"></i> <span class="hide-on-mobile">Pulse AI</span>
             </button>
 
+            <!-- Profile & Settings Button (Desktop) -->
             <button id="header-auth-btn" class="btn-download-header" onclick="window.openAuthModal()" title="View Profile & Settings">
               <i class="fa-solid fa-circle-user" style="color: #818cf8;"></i> <span id="header-user-name">Profile</span>
+            </button>
+
+            <!-- Mobile Profile Avatar Trigger Button -->
+            <button id="mobile-header-profile-btn" class="mobile-profile-trigger" onclick="window.openAuthModal()" title="View Profile & Settings" aria-label="Profile">
+              <i class="fa-solid fa-circle-user"></i>
             </button>
           </div>
         </div>
