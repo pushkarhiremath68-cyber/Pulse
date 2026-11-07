@@ -21,3 +21,4 @@ for (const name of list) {
     console.log(name, '-> error:', e.message);
   }
 }
+

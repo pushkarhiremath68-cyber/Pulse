@@ -166,3 +166,4 @@ src = src.replace(similarTarget, similarReplacement);
 
 fs.writeFileSync(catPath, src, 'utf8');
 console.log('Successfully added Krishna Das to ARTIST_DATABASE and catalogService.js!');
+
