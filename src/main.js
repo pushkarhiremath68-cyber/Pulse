@@ -1177,58 +1177,59 @@ import {
     }
     window.__heroCarouselInitialized = true;
 
-    const slides = getHeroSlides();
-    if (!Array.isArray(slides) || slides.length === 0) return;
+    // Filter strictly for songs with verified video previews per user requirement
+    const rawSlides = getHeroSlides();
+    const slides = Array.isArray(rawSlides) 
+      ? rawSlides.filter(s => s.videoYtId && typeof s.videoYtId === 'string' && s.videoYtId.trim().length > 5)
+      : [];
+    if (slides.length === 0) return;
     window.__heroSlides = slides;
 
     // 1. Render Slides Track
     track.innerHTML = slides.map((slide, idx) => {
       const isFav = typeof isFavorite === 'function' ? isFavorite(slide.id) : false;
       const artwork = slide.coverUrl || slide.artwork || (window.PulseAIHealer ? window.PulseAIHealer.generateHarmonicCoverSvg(slide.title, slide.artist) : 'https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg');
-      const videoYtId = slide.videoYtId || slide.youtubeId || '';
       const badgeText = slide.badgeText || slide.badge || 'FEATURED ANTHEM';
-      const badgeIcon = slide.badgeIcon || 'fa-solid fa-bolt';
-      const badgeColor = slide.badgeColor || '#38bdf8';
       const tagline = slide.artistRole || slide.tagline || 'Featured Global Anthem';
       const description = slide.subtitle || slide.description || '';
 
       return `
         <div class="hero-slide ${idx === currentHeroSlideIndex ? 'active-slide' : ''}" data-slide-index="${idx}">
           <div class="hero-content">
-            <div class="hero-badge" style="border-color: ${badgeColor}33; color: ${badgeColor};">
-              <span class="hero-live-dot" style="background: ${badgeColor};"></span>
-              <i class="${badgeIcon}"></i> ${escapeHtml(badgeText)}
+            <div class="hero-badge">
+              <span class="hero-eq-bars">
+                <span></span><span></span><span></span><span></span>
+              </span>
+              <span class="hero-badge-title">${escapeHtml(badgeText)}</span>
             </div>
             <h2 class="hero-title">${escapeHtml(slide.title)}</h2>
             <div class="hero-artist-tag">
-              <i class="fa-solid fa-circle-check" style="font-size: 0.85rem; color: #38bdf8;"></i>
-              <span>${escapeHtml(slide.artist)}</span> • ${escapeHtml(tagline)}
+              <i class="fa-solid fa-circle-check" style="font-size: 0.85rem; color: #ffffff;"></i>
+              <span>${escapeHtml(slide.artist)}</span> • <span class="hero-tagline">${escapeHtml(tagline)}</span>
             </div>
             <p class="hero-subtitle">${escapeHtml(description)}</p>
             <div class="hero-actions">
-              <button class="btn-primary-play" onclick="window.playHeroSlideTrack(${idx})" title="Play Full Anthem in Pulse Audio Engine">
+              <button class="btn-primary-play hero-btn-play" onclick="window.playHeroSlideTrack(${idx})" title="Play Full Anthem in Pulse Audio Engine">
                 <i class="fa-solid fa-play"></i> Play Anthem
-              </button>
-              <button class="btn-hero-video" onclick="window.toggleSlidePreview(${idx}, true)" title="Watch Video Preview strictly inside this slide">
-                <i class="fa-solid fa-film"></i> Video Preview
               </button>
               <button class="btn-hero-secondary" onclick="window.toggleFavoriteHeroSlide(${idx})" title="Save to Favorites">
                 <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart" id="hero-fav-icon-${idx}" style="${isFav ? 'color: #f43f5e;' : ''}"></i>
               </button>
+              <button class="btn-hero-sound-toggle" onclick="window.togglePreviewMute(${idx}, event)" title="Toggle Video Audio (Mute / Unmute)">
+                <i class="fa-solid fa-volume-xmark" id="hero-sound-icon-${idx}"></i>
+                <span id="hero-sound-label-${idx}" class="hide-on-mobile">Sound Off</span>
+              </button>
             </div>
           </div>
-          <div class="hero-media-wrapper" id="hero-media-wrapper-${idx}">
-            <!-- Artwork Card Mode (Default) -->
-            <div class="hero-media-artwork-box" id="hero-media-artwork-${idx}" onclick="window.toggleSlidePreview(${idx}, true)" title="Click to watch Video Preview">
+          <div class="hero-media-wrapper" id="hero-media-wrapper-${idx}" onclick="window.playHeroSlideTrack(${idx})" title="Click to play full anthem in studio master audio">
+            <!-- Artwork Backdrop (shown instantly while video initializes) -->
+            <div class="hero-media-artwork-box" id="hero-media-artwork-${idx}">
               <img src="${artwork}" alt="${escapeHtml(slide.title)}" ${idx < 2 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
               <div class="hero-artwork-play-overlay">
                 <i class="fa-solid fa-play"></i>
               </div>
-              <div class="hero-video-badge-pill">
-                <i class="fa-solid fa-film" style="color: #38bdf8;"></i> Video Preview
-              </div>
             </div>
-            <!-- Strict Inline Video Preview Mode (Pure preview loop, no YouTube player chrome) -->
+            <!-- Automatic Inline Video Preview Mode -->
             <div class="hero-media-video-box" id="hero-media-video-${idx}"></div>
           </div>
         </div>
@@ -1244,6 +1245,9 @@ import {
 
     // 3. Set Ambient Backdrop for initial slide
     window.updateHeroAmbientBackdrop(currentHeroSlideIndex);
+
+    // 4. Mount automatic video preview for the active slide immediately
+    window.mountSlideAutoVideoPreview(currentHeroSlideIndex);
 
     // 4. Setup Auto-Play & Event Listeners once
     if (!window.__heroListenersAttached) {
@@ -1308,19 +1312,59 @@ import {
     }
     const bgOverlay = document.getElementById('hero-bg-overlay');
     if (bgOverlay) {
-      const accent = slide.badgeColor || slide.accentColor || '#6366f1';
-      bgOverlay.style.background = `radial-gradient(circle at 75% 40%, ${accent}33, transparent 65%), linear-gradient(90deg, rgba(8, 10, 18, 0.96) 0%, rgba(8, 10, 18, 0.72) 55%, rgba(8, 10, 18, 0.88) 100%)`;
+      bgOverlay.style.background = `radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 60%), linear-gradient(90deg, rgba(8, 8, 10, 0.96) 0%, rgba(13, 14, 18, 0.7) 50%, rgba(8, 8, 10, 0.92) 100%)`;
     }
+  };
+
+  // Automatic Video Preview Mounting for Current Active Slide
+  window.mountSlideAutoVideoPreview = function(slideIndex) {
+    const slides = window.__heroSlides || getHeroSlides();
+    const slide = slides[slideIndex];
+    if (!slide || !slide.videoYtId) return;
+
+    // 1. Dismantle all other slide iframes immediately to prevent multiple videos
+    document.querySelectorAll('.hero-media-video-box').forEach((box, i) => {
+      if (i !== slideIndex) {
+        box.classList.remove('active-video');
+        box.innerHTML = '';
+      }
+    });
+
+    const vidBox = document.getElementById(`hero-media-video-${slideIndex}`);
+    if (!vidBox) return;
+
+    const isMuted = window.__previewMutedMap[slideIndex] !== false; // starts muted for instant autoplay
+    const previewStart = slide.previewStart || 24;
+
+    vidBox.classList.add('active-video');
+    vidBox.innerHTML = `
+      <div class="hero-video-preview-inner">
+        <iframe
+          id="hero-preview-iframe-${slideIndex}"
+          src="https://www.youtube-nocookie.com/embed/${slide.videoYtId}?autoplay=1&mute=${isMuted ? '1' : '0'}&controls=0&loop=1&playlist=${slide.videoYtId}&start=${previewStart}&modestbranding=1&rel=0&playsinline=1&showinfo=0&disablekb=1&fs=0&iv_load_policy=3&enablejsapi=1"
+          class="hero-preview-iframe"
+          tabindex="-1"
+          loading="eager"
+          allow="autoplay; encrypted-media">
+        </iframe>
+        <div class="hero-preview-glass-overlay">
+          <div class="preview-top-bar">
+            <div class="preview-badge-pill">
+              <span class="preview-pulse-dot"></span>
+              <span>LIVE PREVIEW</span>
+            </div>
+            <button class="btn-preview-mini-tool" onclick="window.togglePreviewMute(${slideIndex}, event)" title="Toggle Sound">
+              <i class="${isMuted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high'}" id="preview-mute-icon-${slideIndex}"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
   };
 
   window.goToHeroSlide = function(targetIndex) {
     const slides = window.__heroSlides || getHeroSlides();
     if (!Array.isArray(slides) || slides.length === 0) return;
-
-    // If a video preview is active in the current slide, close it cleanly before transitioning
-    if (activeVideoSlideIndex !== null) {
-      window.toggleSlidePreview(activeVideoSlideIndex, false);
-    }
 
     const nextIndex = (targetIndex + slides.length) % slides.length;
     currentHeroSlideIndex = nextIndex;
@@ -1335,8 +1379,8 @@ import {
       }
     });
 
-    // Auto-play the video preview automatically for the new slide
-    // Video preview only on user click
+    // Automatically mount video preview for new active slide
+    window.mountSlideAutoVideoPreview(nextIndex);
 
     // Update Pills and trigger fresh fill animation
     const pillEls = document.querySelectorAll('.hero-pill-dot');
@@ -1361,7 +1405,7 @@ import {
     window.updateHeroAmbientBackdrop(nextIndex);
 
     // Restart timer for the fresh slide if not paused
-    if (!isHeroPaused && activeVideoSlideIndex === null) {
+    if (!isHeroPaused) {
       window.startHeroAutoPlayTimer();
     }
   };
@@ -1400,89 +1444,21 @@ import {
     window.startHeroAutoPlayTimer();
   };
 
-  // Strictly Inline Video Preview Toggle (Pure Preview Clip, No YouTube Player UI)
+  // Strictly Inline Video Preview Toggle
   window.__previewMutedMap = {};
 
   window.toggleSlidePreview = function(slideIndex, play, event) {
     if (event && typeof event.stopPropagation === 'function') {
       event.stopPropagation();
     }
-
-    const slides = window.__heroSlides || getHeroSlides();
-    const slide = slides[slideIndex];
-    if (!slide) return;
-
-    // If slide is not currently in view, switch to it
-    if (currentHeroSlideIndex !== slideIndex) {
-      window.goToHeroSlide(slideIndex);
-    }
-
-    const artBox = document.getElementById(`hero-media-artwork-${slideIndex}`);
-    const vidBox = document.getElementById(`hero-media-video-${slideIndex}`);
-    if (!artBox || !vidBox) return;
-
-    const videoYtId = slide.videoYtId || slide.youtubeId || '';
-    const previewStart = slide.previewStart || 24;
-
     if (play) {
-      // 1. Close any other slide preview if active
-      if (activeVideoSlideIndex !== null && activeVideoSlideIndex !== slideIndex) {
-        window.toggleSlidePreview(activeVideoSlideIndex, false);
-      }
-
-      // 2. Pause hero carousel auto-advance while previewing
-      window.pauseHeroAutoPlay();
-      activeVideoSlideIndex = slideIndex;
-      window.__previewMutedMap[slideIndex] = true; // start muted for safe autoplay
-
-      // 3. Hide Artwork Box and Reveal clean looping Preview Box
-      artBox.style.display = 'none';
-      vidBox.classList.add('active-video');
-      vidBox.innerHTML = `
-        <div class="hero-video-preview-inner">
-          <iframe
-            id="hero-preview-iframe-${slideIndex}"
-            src="https://www.youtube-nocookie.com/embed/${videoYtId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoYtId}&start=${previewStart}&modestbranding=1&rel=0&playsinline=1&showinfo=0&disablekb=1&fs=0&iv_load_policy=3&enablejsapi=1"
-            class="hero-preview-iframe"
-            tabindex="-1"
-            loading="lazy"
-            allow="autoplay; encrypted-media">
-          </iframe>
-          <div class="hero-preview-glass-overlay">
-            <div class="preview-top-bar">
-              <div class="preview-badge-pill">
-                <span class="preview-pulse-dot"></span>
-                <i class="fa-solid fa-film"></i> PREVIEW
-              </div>
-              <div class="preview-actions-group">
-                <button class="btn-preview-tool" id="btn-preview-audio-${slideIndex}" onclick="window.togglePreviewMute(${slideIndex}, event)" title="Toggle Sound">
-                  <i class="fa-solid fa-volume-xmark" id="preview-mute-icon-${slideIndex}"></i>
-                </button>
-                <button class="btn-preview-tool close-btn" onclick="window.toggleSlidePreview(${slideIndex}, false, event)" title="Return to Album Artwork">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-            </div>
-            <div class="preview-bottom-bar">
-              <span class="preview-caption-tag">${escapeHtml(slide.title)} • Video Preview</span>
-              <button class="btn-preview-tool" onclick="window.playHeroSlideTrack(${slideIndex})" title="Play Full Anthem in Pulse">
-                <i class="fa-solid fa-play"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
+      window.mountSlideAutoVideoPreview(slideIndex);
     } else {
-      // 1. Destroy iframe immediately to stop all video/audio playback
-      vidBox.innerHTML = '';
-      vidBox.classList.remove('active-video');
-
-      // 2. Restore Artwork Box
-      artBox.style.display = 'flex';
-      activeVideoSlideIndex = null;
-
-      // 3. Resume auto-play
-      window.resumeHeroAutoPlay();
+      const vidBox = document.getElementById(`hero-media-video-${slideIndex}`);
+      if (vidBox) {
+        vidBox.innerHTML = '';
+        vidBox.classList.remove('active-video');
+      }
     }
   };
 
@@ -1495,21 +1471,29 @@ import {
       event.stopPropagation();
     }
     const iframe = document.getElementById(`hero-preview-iframe-${slideIndex}`);
-    const icon = document.getElementById(`preview-mute-icon-${slideIndex}`);
-    if (!iframe) return;
+    const icon1 = document.getElementById(`preview-mute-icon-${slideIndex}`);
+    const icon2 = document.getElementById(`hero-sound-icon-${slideIndex}`);
+    const label2 = document.getElementById(`hero-sound-label-${slideIndex}`);
 
     const isCurrentlyMuted = window.__previewMutedMap[slideIndex] !== false; // default true
     if (isCurrentlyMuted) {
       // Unmute preview
       try {
-        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: '' }), '*');
-        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [80] }), '*');
+        if (iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: '' }), '*');
+          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [80] }), '*');
+        }
       } catch (e) {}
       window.__previewMutedMap[slideIndex] = false;
-      if (icon) {
-        icon.className = 'fa-solid fa-volume-high';
-        icon.style.color = '#38bdf8';
+      if (icon1) {
+        icon1.className = 'fa-solid fa-volume-high';
+        icon1.style.color = '#ffffff';
       }
+      if (icon2) {
+        icon2.className = 'fa-solid fa-volume-high';
+        icon2.style.color = '#ffffff';
+      }
+      if (label2) label2.textContent = 'Sound On';
       // If Pulse background audio is playing, pause it to prevent clash
       if (window.PulsePlaybar && typeof window.PulsePlaybar.pause === 'function') {
         window.PulsePlaybar.pause();
@@ -1517,13 +1501,20 @@ import {
     } else {
       // Mute preview
       try {
-        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: '' }), '*');
+        if (iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: '' }), '*');
+        }
       } catch (e) {}
       window.__previewMutedMap[slideIndex] = true;
-      if (icon) {
-        icon.className = 'fa-solid fa-volume-xmark';
-        icon.style.color = '';
+      if (icon1) {
+        icon1.className = 'fa-solid fa-volume-xmark';
+        icon1.style.color = '';
       }
+      if (icon2) {
+        icon2.className = 'fa-solid fa-volume-xmark';
+        icon2.style.color = '';
+      }
+      if (label2) label2.textContent = 'Sound Off';
     }
   };
 
