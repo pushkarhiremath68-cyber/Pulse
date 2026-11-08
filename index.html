@@ -659,11 +659,11 @@
 
       <!-- Left: Track Cover & Info (Clicking toggles Fullscreen) -->
       <div class="player-left song-info" onclick="window.PulsePlaybar && window.PulsePlaybar.toggleFullscreen()" title="Click to Maximize Player">
-        <img id="player-thumb" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/600x600bb.jpg" alt="Album Art" class="player-thumb album-art" onerror="this.onerror=null; this.src='https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/600x600bb.jpg';">
+        <img id="player-thumb" src="/pulse-logo.png" alt="Pulse Music" class="player-thumb album-art player-thumb-idle" onerror="this.onerror=null; this.src='/pulse-logo.png';">
         <div class="player-info song-text">
           <div style="display: flex; align-items: center; gap: 6px; min-width: 0;">
-            <span id="player-title" class="player-title song-title">Blinding Lights</span>
-            <span class="playbar-quality-badge" id="playbar-quality-badge" title="Master Audio Stream"><i class="fa-solid fa-bolt"></i> HI-FI</span>
+            <span id="player-title" class="player-title song-title player-title-empty">Select a song to play</span>
+            <span class="playbar-quality-badge" id="playbar-quality-badge" title="Master Audio Stream" style="display: none;"><i class="fa-solid fa-bolt"></i> HI-FI</span>
             <div id="playbar-eq-wave" class="playbar-eq-wave hidden" title="Playing Lossless Audio">
               <span class="eq-bar eq-b1"></span>
               <span class="eq-bar eq-b2"></span>
@@ -671,7 +671,7 @@
               <span class="eq-bar eq-b4"></span>
             </div>
           </div>
-          <span id="player-artist" class="player-artist artist">The Weeknd</span>
+          <span id="player-artist" class="player-artist artist player-artist-empty">Pulse Lossless Studio</span>
         </div>
         <div class="player-track-actions">
           <button class="btn-player-icon icon-btn" id="playbar-fav-btn" onclick="event.stopPropagation(); window.PulsePlaybar && window.PulsePlaybar.toggleCurrentTrackFavorite()" title="Like Song"><i class="fa-regular fa-heart"></i></button>
@@ -711,7 +711,7 @@
             <input type="range" id="player-seek-slider" class="progress timeline-range-input" min="0" max="100" value="0" step="0.1" aria-label="Seek track position">
             <div id="player-seek-tooltip" class="seek-hover-tooltip">0:00</div>
           </div>
-          <span id="player-time-total" class="time">3:30</span>
+          <span id="player-time-total" class="time">0:00</span>
         </div>
       </div>
 
@@ -847,9 +847,9 @@
           </div>
           
           <div class="fs-track-meta">
-            <h2 id="fs-track-title" class="fs-title">Blinding Lights</h2>
+            <h2 id="fs-track-title" class="fs-title">No Track Playing</h2>
             <div class="fs-artist-row">
-              <span id="fs-track-artist" class="fs-artist">The Weeknd</span>
+              <span id="fs-track-artist" class="fs-artist">Pulse Music</span>
               <i class="fa-solid fa-circle-check fs-verified-badge" title="Studio Master Audio"></i>
             </div>
           </div>
@@ -1372,13 +1372,13 @@
         <!-- Now Playing Card -->
         <div style="margin-bottom: 1.25rem;">
           <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-purple); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.5rem;">Now Playing</span>
-          <div id="drawer-now-playing-card" style="display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem; border-radius: 14px; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.35);">
-            <img id="drawer-np-thumb" src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/600x600bb.jpg" alt="thumb" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover;" onerror="this.onerror=null; this.src='https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/600x600bb.jpg';">
+          <div id="drawer-now-playing-card" style="display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+            <img id="drawer-np-thumb" src="/pulse-logo.png" alt="thumb" style="width: 48px; height: 48px; border-radius: 10px; object-fit: contain; padding: 4px; background: rgba(255,255,255,0.04);" onerror="this.onerror=null; this.src='/pulse-logo.png';">
             <div style="flex: 1; min-width: 0;">
-              <div id="drawer-np-title" style="font-size: 0.95rem; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Blinding Lights</div>
-              <div id="drawer-np-artist" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">The Weeknd</div>
+              <div id="drawer-np-title" style="font-size: 0.95rem; font-weight: 800; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">No Track Playing</div>
+              <div id="drawer-np-artist" style="font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Select a song to play</div>
             </div>
-            <i class="fa-solid fa-volume-high text-accent" style="margin-right: 0.5rem;"></i>
+            <i class="fa-solid fa-volume-high text-accent" style="margin-right: 0.5rem; opacity: 0.3;"></i>
           </div>
         </div>
 

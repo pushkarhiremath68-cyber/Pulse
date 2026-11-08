@@ -1375,8 +1375,8 @@ body::after {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 165%;
-  height: 165%;
+  width: 175%;
+  height: 175%;
   transform: translate(-50%, -50%);
   border: none;
   display: block;
@@ -2245,6 +2245,29 @@ section.filter-pills-bar {
   text-overflow: ellipsis !important;
   color: #ffffff !important;
   letter-spacing: -0.01em;
+}
+
+/* Idle & Empty Playbar State */
+.player-bar-idle #player-thumb,
+.player-thumb-idle {
+  opacity: 0.65;
+  filter: grayscale(100%);
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 6px;
+  object-fit: contain !important;
+}
+
+.player-title-empty {
+  color: #94a3b8 !important;
+  font-weight: 500 !important;
+  font-size: 0.88rem !important;
+  letter-spacing: -0.01em;
+}
+
+.player-artist-empty {
+  color: #64748b !important;
+  font-size: 0.78rem !important;
 }
 
 .artist,

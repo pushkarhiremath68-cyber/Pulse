@@ -1318,6 +1318,11 @@ import {
     const slide = slides[slideIndex];
     if (!slide || !slide.videoYtId) return;
 
+    if (window.__heroPreviewLoopTimer) {
+      clearInterval(window.__heroPreviewLoopTimer);
+      window.__heroPreviewLoopTimer = null;
+    }
+
     // 1. Dismantle all other slide iframes immediately to prevent multiple videos
     document.querySelectorAll('.hero-media-video-box').forEach((box, i) => {
       if (i !== slideIndex) {
@@ -1336,16 +1341,34 @@ import {
       <div class="hero-video-preview-inner">
         <iframe
           id="hero-preview-iframe-${slideIndex}"
-          src="https://www.youtube-nocookie.com/embed/${slide.videoYtId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${slide.videoYtId}&start=${previewStart}&modestbranding=1&rel=0&playsinline=1&showinfo=0&disablekb=1&fs=0&iv_load_policy=3&enablejsapi=0"
+          src="https://www.youtube-nocookie.com/embed/${slide.videoYtId}?autoplay=1&mute=1&controls=0&start=${previewStart}&modestbranding=1&rel=0&playsinline=1&showinfo=0&disablekb=1&fs=0&iv_load_policy=3&enablejsapi=1"
           class="hero-preview-iframe"
           tabindex="-1"
           loading="eager"
-          allow="autoplay; encrypted-media">
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
         </iframe>
         <!-- Pure transparent click shield to prevent any YouTube player chrome/pause icons while allowing track playback on click -->
         <div class="hero-preview-click-shield" onclick="window.playHeroSlideTrack(${slideIndex})"></div>
       </div>
     `;
+
+    // Seamless auto-loop: seek back to previewStart every 26s before video ever ends or buffers
+    window.__heroPreviewLoopTimer = setInterval(() => {
+      const activeIframe = document.getElementById(`hero-preview-iframe-${slideIndex}`);
+      if (activeIframe && activeIframe.contentWindow) {
+        try {
+          activeIframe.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'seekTo',
+            args: [previewStart, true]
+          }), '*');
+          activeIframe.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'playVideo'
+          }), '*');
+        } catch (_) {}
+      }
+    }, 26000);
   };
 
   window.goToHeroSlide = function(targetIndex) {

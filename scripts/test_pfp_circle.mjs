@@ -21,6 +21,20 @@ const normCss = css.replace(/\r\n/g, '\n');
 if (!normCss.includes('.header-pfp-img.hidden,\n.header-pfp-fallback.hidden {\n  display: none !important;')) {
   throw new Error('Hidden pfp elements must be display: none !important');
 }
-if (!sw.includes('pulse-music-v5.0.2')) throw new Error('SW version must be v5.0.2');
+if (!sw.includes('pulse-music-v5.0.3')) throw new Error('SW version must be v5.0.3');
 
-console.log('✅ ALL CIRCULAR PFP TESTS PASSED 100%!');
+// Video preview embed assertions
+if (js.includes('&playlist=${slide.videoYtId}')) {
+  throw new Error('Hero preview iframe must NOT contain playlist param to avoid playlist controls');
+}
+
+// Playbar idle assertions
+const playbarJs = fs.readFileSync('src/playbarController.js', 'utf8');
+if (!playbarJs.includes('resetPlaybarToEmpty')) {
+  throw new Error('playbarController must export resetPlaybarToEmpty');
+}
+if (html.includes('<span id="player-title" class="player-title song-title">Blinding Lights</span>')) {
+  throw new Error('Initial playbar must not hardcode Blinding Lights');
+}
+
+console.log('✅ ALL CIRCULAR PFP & PLAYER IDLE TESTS PASSED 100%!');

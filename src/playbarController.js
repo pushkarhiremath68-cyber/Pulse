@@ -468,17 +468,9 @@ export function pause() {
 
 export function resume() {
   if (!currentTrack) {
-    const anthem = {
-      id: "hero-slide-1",
-      ytId: "4NRXx6U8ABQ",
-      title: "Blinding Lights",
-      artist: "The Weeknd",
-      album: "After Hours",
-      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/1000x1000bb.jpg",
-      duration: 200,
-      source: "Studio Master Audio (YouTube)"
-    };
-    playTrack(anthem);
+    if (typeof window.showToast === 'function') {
+      window.showToast('🎵 Choose any song from discovery or search to start playing!', 'info', 2500);
+    }
     return;
   }
 
@@ -748,12 +740,71 @@ function updateVolumeUI() {
   });
 }
 
+export function resetPlaybarToEmpty() {
+  currentTrack = null;
+  isPlaying = false;
+  currentTime = 0;
+  duration = 0;
+
+  const playerBar = document.getElementById('player-bar');
+  if (playerBar) playerBar.classList.add('player-bar-idle');
+
+  const titleEls = document.querySelectorAll('#player-title, #playbar-title, #fullscreen-track-title, #fs-track-title, #drawer-np-title');
+  titleEls.forEach(el => {
+    el.textContent = 'Select a song to play';
+    el.classList.add('player-title-empty');
+  });
+
+  const artistEls = document.querySelectorAll('#player-artist, #playbar-artist, #fullscreen-track-artist, #fs-track-artist, #drawer-np-artist');
+  artistEls.forEach(el => {
+    el.textContent = 'Pulse Lossless Studio';
+    el.classList.add('player-artist-empty');
+  });
+
+  const coverEls = document.querySelectorAll('#player-thumb, #playbar-cover, #fullscreen-cover-img, #drawer-np-thumb');
+  coverEls.forEach(el => {
+    if (el.tagName === 'IMG') {
+      el.src = '/pulse-logo.png';
+      el.classList.add('player-thumb-idle');
+    }
+  });
+
+  const fsArt = document.getElementById('fs-album-art');
+  if (fsArt) fsArt.style.backgroundImage = 'none';
+
+  document.querySelectorAll('#player-time-current, #playbar-current-time, #fs-time-current').forEach(el => { el.textContent = '0:00'; });
+  document.querySelectorAll('#player-time-total, #playbar-duration, #fs-time-total').forEach(el => { el.textContent = '0:00'; });
+  document.querySelectorAll('#player-progress-fill, #playbar-progress-fill, #mini-top-progress-fill, #fs-progress-fill').forEach(el => { el.style.width = '0%'; });
+  document.querySelectorAll('#player-seek-slider, #playbar-seeker, #fs-seek-slider').forEach(el => { el.value = 0; });
+
+  const eqWave = document.getElementById('playbar-eq-wave');
+  if (eqWave) eqWave.classList.add('hidden');
+
+  const qualityBadge = document.getElementById('playbar-quality-badge');
+  if (qualityBadge) qualityBadge.style.display = 'none';
+
+  updatePlayPauseUI();
+}
+
 function updateTrackInfoUI(track) {
-  if (!track) return;
-  const titleEls = document.querySelectorAll('#player-title, #playbar-title, #fullscreen-track-title, #fs-track-title');
-  const artistEls = document.querySelectorAll('#player-artist, #playbar-artist, #fullscreen-track-artist, #fs-track-artist');
-  const coverEls = document.querySelectorAll('#player-thumb, #playbar-cover, #fullscreen-cover-img, #fullscreen-album-art, #fs-album-art');
+  if (!track) {
+    resetPlaybarToEmpty();
+    return;
+  }
+  const playerBar = document.getElementById('player-bar');
+  if (playerBar) playerBar.classList.remove('player-bar-idle');
+
+  const qualityBadge = document.getElementById('playbar-quality-badge');
+  if (qualityBadge) qualityBadge.style.display = 'inline-flex';
+
+  const titleEls = document.querySelectorAll('#player-title, #playbar-title, #fullscreen-track-title, #fs-track-title, #drawer-np-title');
+  const artistEls = document.querySelectorAll('#player-artist, #playbar-artist, #fullscreen-track-artist, #fs-track-artist, #drawer-np-artist');
+  const coverEls = document.querySelectorAll('#player-thumb, #playbar-cover, #fullscreen-cover-img, #fullscreen-album-art, #fs-album-art, #drawer-np-thumb');
   const badgeEls = document.querySelectorAll('#player-source-badge, #playbar-source-badge, #fs-source-badge');
+
+  titleEls.forEach(el => { el.classList.remove('player-title-empty'); });
+  artistEls.forEach(el => { el.classList.remove('player-artist-empty'); });
+  coverEls.forEach(el => { if (el.tagName === 'IMG') el.classList.remove('player-thumb-idle'); });
 
   let coverUrl = track.coverUrl || track.cover;
   if (!coverUrl || coverUrl.includes('photo-1511671782779-c97d3d27a1d4') || coverUrl.includes('music-cover.svg')) {
@@ -762,7 +813,7 @@ function updateTrackInfoUI(track) {
     } else if (typeof window !== 'undefined' && window.PulseAIHealer && typeof window.PulseAIHealer.generateHarmonicCoverSvg === 'function') {
       coverUrl = window.PulseAIHealer.generateHarmonicCoverSvg(track.title, track.artist);
     } else {
-      coverUrl = 'https://i.ytimg.com/vi/4NRXx6U8ABQ/hqdefault.jpg';
+      coverUrl = '/pulse-logo.png';
     }
   }
 
@@ -1251,6 +1302,9 @@ function initPlaybarController() {
     });
   }
 
+  // Ensure playbar begins in a clean empty/idle state on fresh site entry
+  resetPlaybarToEmpty();
+
   // Eagerly pre-initialize YouTube IFrame API for instant playback
   ensureYouTubeReady();
 }
@@ -1304,7 +1358,7 @@ export async function playOnNativeAudio(track) {
 // -----------------------------------------------------------------------------
 // INITIALIZE YOUTUBE IFRAME API & HYBRID PLAYBACK RESOLVER
 // -----------------------------------------------------------------------------
-function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
+function initYouTubePlayer(initialVideoId = '', retryCount = 0) {
   if (ytPlayerReady || ytInitializing || ytPlayer) return;
   ytInitializing = true;
 
@@ -1325,10 +1379,9 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
 
   if (typeof window.YT !== 'undefined' && window.YT.Player) {
     try {
-      ytPlayer = new window.YT.Player('yt-player-container', {
+      const playerOpts = {
         height: '100%',
         width: '100%',
-        videoId: initialVideoId,
         playerVars: {
           'autoplay': 0,
           'controls': 1,
@@ -1398,7 +1451,11 @@ function initYouTubePlayer(initialVideoId = '4NRXx6U8ABQ', retryCount = 0) {
             }
           }
         }
-      });
+      };
+      if (initialVideoId) {
+        playerOpts.videoId = initialVideoId;
+      }
+      ytPlayer = new window.YT.Player('yt-player-container', playerOpts);
     } catch (e) {
       ytInitializing = false;
       console.warn('[Pulse Studio Master] Error instantiating YT Player:', e);
@@ -1616,7 +1673,8 @@ const playbarController = {
   removeTrackFromQueue,
   playSimilarTrackAtIndex,
   startRadioForCurrentTrack,
-  renderQueueAndSuggestionsUI
+  renderQueueAndSuggestionsUI,
+  resetPlaybarToEmpty
 };
 
 if (typeof window !== 'undefined') {
