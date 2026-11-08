@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pulse-music-v5.0.6';
+const CACHE_NAME = 'pulse-music-v5.0.7';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -10,6 +10,12 @@ const STATIC_ASSETS = [
   '/icons/icon-192.png',
   '/icons/icon-512.png',
   '/icons/icon.ico',
+  '/avatars/avatar-dj.svg',
+  '/avatars/avatar-vinyl.svg',
+  '/avatars/avatar-equalizer.svg',
+  '/avatars/avatar-synthwave.svg',
+  '/avatars/avatar-lofi.svg',
+  '/avatars/avatar-rock.svg',
   '/vendor/fontawesome/css/all.min.css',
   '/vendor/fontawesome/webfonts/fa-solid-900.woff2',
   '/vendor/fontawesome/webfonts/fa-regular-400.woff2',

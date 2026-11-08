@@ -1800,17 +1800,44 @@
 
       <!-- Standard Action Buttons -->
       <div id="pfp-standard-actions" style="display: flex; flex-direction: column; gap: 0.75rem;">
-        <button class="btn-secondary-install" onclick="window.triggerPfpCamera()" style="width: 100%; justify-content: center; padding: 0.85rem; background: #ffffff; color: #000000; border: none; font-weight: 800; cursor: pointer;">
+        <button class="btn-secondary-install" onclick="window.triggerPfpCamera()" style="width: 100%; justify-content: center; padding: 0.85rem; background: #ffffff; color: #000000; border: none; font-weight: 800; cursor: pointer; border-radius: 12px; font-size: 0.9rem;">
           <i class="fa-solid fa-camera"></i> Take Photo (Camera)
         </button>
 
-        <button class="btn-secondary-install" onclick="window.triggerPfpGallery()" style="width: 100%; justify-content: center; padding: 0.85rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #ffffff; font-weight: 700; cursor: pointer;">
-          <i class="fa-solid fa-image"></i> Choose from Gallery
+        <button class="btn-secondary-install" onclick="window.triggerPfpGallery()" style="width: 100%; justify-content: center; padding: 0.85rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #ffffff; font-weight: 700; cursor: pointer; border-radius: 12px; font-size: 0.9rem;">
+          <i class="fa-solid fa-folder-open"></i> Choose Photo from Computer / Gallery
         </button>
 
-        <button id="btn-reset-google-pfp" class="btn-secondary-install" onclick="window.resetToGooglePfp()" style="width: 100%; justify-content: center; padding: 0.85rem; background: transparent; border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-weight: 600; cursor: pointer;">
+        <button id="btn-reset-google-pfp" class="btn-secondary-install" onclick="window.resetToGooglePfp()" style="width: 100%; justify-content: center; padding: 0.75rem; background: transparent; border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-weight: 600; cursor: pointer; border-radius: 12px; font-size: 0.82rem;">
           <i class="fa-brands fa-google"></i> Reset to Google Photo
         </button>
+      </div>
+
+      <!-- Preset Studio Avatars Grid (Instant 1-Click Apply) -->
+      <div id="pfp-preset-avatars-section" style="margin-top: 1.4rem; padding-top: 1.15rem; border-top: 1px solid rgba(255,255,255,0.12);">
+        <div style="font-size: 0.78rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <i class="fa-solid fa-wand-magic-sparkles" style="color: #38bdf8;"></i> Or Pick an Instant Studio Avatar
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; justify-items: center;">
+          <button type="button" class="preset-avatar-btn" onclick="window.selectPresetAvatar('/avatars/avatar-dj.svg', 'Cyber DJ')" title="Cyber DJ">
+            <img src="/avatars/avatar-dj.svg" alt="Cyber DJ" style="width: 44px; height: 44px; border-radius: 50%; display: block;">
+          </button>
+          <button type="button" class="preset-avatar-btn" onclick="window.selectPresetAvatar('/avatars/avatar-vinyl.svg', 'Cosmic Vinyl')" title="Cosmic Vinyl">
+            <img src="/avatars/avatar-vinyl.svg" alt="Cosmic Vinyl" style="width: 44px; height: 44px; border-radius: 50%; display: block;">
+          </button>
+          <button type="button" class="preset-avatar-btn" onclick="window.selectPresetAvatar('/avatars/avatar-equalizer.svg', 'Neon Beats')" title="Neon Beats">
+            <img src="/avatars/avatar-equalizer.svg" alt="Neon Beats" style="width: 44px; height: 44px; border-radius: 50%; display: block;">
+          </button>
+          <button type="button" class="preset-avatar-btn" onclick="window.selectPresetAvatar('/avatars/avatar-synthwave.svg', 'Synthwave')" title="Synthwave">
+            <img src="/avatars/avatar-synthwave.svg" alt="Synthwave" style="width: 44px; height: 44px; border-radius: 50%; display: block;">
+          </button>
+          <button type="button" class="preset-avatar-btn" onclick="window.selectPresetAvatar('/avatars/avatar-lofi.svg', 'Lo-Fi Night')" title="Lo-Fi Night">
+            <img src="/avatars/avatar-lofi.svg" alt="Lo-Fi Night" style="width: 44px; height: 44px; border-radius: 50%; display: block;">
+          </button>
+          <button type="button" class="preset-avatar-btn" onclick="window.selectPresetAvatar('/avatars/avatar-rock.svg', 'Electric Rock')" title="Electric Rock">
+            <img src="/avatars/avatar-rock.svg" alt="Electric Rock" style="width: 44px; height: 44px; border-radius: 50%; display: block;">
+          </button>
+        </div>
       </div>
 
       <!-- Live Camera Viewfinder Action Buttons -->

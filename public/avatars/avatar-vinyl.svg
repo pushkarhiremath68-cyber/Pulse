@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <radialGradient id="bg2" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#170d2b"/>
+      <stop offset="100%" stop-color="#080312"/>
+    </radialGradient>
+    <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" rx="80" fill="url(#bg2)"/>
+  <!-- Vinyl disc outer -->
+  <circle cx="80" cy="80" r="62" fill="#18181b" stroke="url(#rainbow)" stroke-width="3"/>
+  <circle cx="80" cy="80" r="50" fill="none" stroke="#27272a" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <circle cx="80" cy="80" r="38" fill="none" stroke="#3f3f46" stroke-width="1.5"/>
+  <!-- Vinyl label -->
+  <circle cx="80" cy="80" r="24" fill="url(#rainbow)"/>
+  <circle cx="80" cy="80" r="8" fill="#09090b"/>
+  <circle cx="80" cy="80" r="3" fill="#ffffff"/>
+</svg>

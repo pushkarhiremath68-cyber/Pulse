@@ -21,7 +21,18 @@ const normCss = css.replace(/\r\n/g, '\n');
 if (!normCss.includes('.header-pfp-img.hidden,\n.header-pfp-fallback.hidden {\n  display: none !important;')) {
   throw new Error('Hidden pfp elements must be display: none !important');
 }
-if (!sw.includes('pulse-music-v5.0.6')) throw new Error('SW version must be v5.0.6');
+if (!sw.includes('pulse-music-v5.0.7')) throw new Error('SW version must be v5.0.7');
+
+// Preset Avatars assertions
+if (!html.includes('class="preset-avatar-btn"') || !html.includes('window.selectPresetAvatar')) {
+  throw new Error('Preset avatar buttons and selectPresetAvatar must exist in HTML');
+}
+if (!js.includes('window.selectPresetAvatar = function')) {
+  throw new Error('window.selectPresetAvatar must be implemented in main.js');
+}
+if (!fs.existsSync('public/avatars/avatar-dj.svg')) {
+  throw new Error('public/avatars/avatar-dj.svg must exist');
+}
 
 // Live Webcam Viewfinder assertions
 if (!html.includes('id="pfp-modal-live-video"')) throw new Error('Live camera video element must exist');

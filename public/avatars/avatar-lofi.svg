@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" rx="80" fill="url(#bg5)"/>
+  <!-- Glowing Crescent Moon -->
+  <path d="M 95 45 A 35 35 0 0 0 70 105 A 35 35 0 1 1 95 45 Z" fill="#fbbf24"/>
+  <!-- Stars -->
+  <circle cx="45" cy="55" r="3" fill="#e0e7ff"/>
+  <circle cx="62" cy="38" r="2" fill="#93c5fd"/>
+  <circle cx="120" cy="95" r="2.5" fill="#fef08a"/>
+  <!-- Musical Eighth Note -->
+  <path d="M 68 115 C 68 122 62 126 55 126 C 48 126 44 122 44 117 C 44 111 49 107 56 107 L 56 82 L 82 76 L 82 105 C 82 112 76 116 69 116" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

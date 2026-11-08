@@ -5055,13 +5055,15 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       window.stopPfpLiveCamera();
 
       if (errBox) {
-        let msg = '⚠️ Camera could not be opened. Please verify camera permissions in your browser or select a photo from your gallery.';
-        if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-          msg = '⚠️ Camera permission was blocked. Please click the 🔒 icon in your browser address bar to allow camera access, or choose from your gallery.';
-        } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
-          msg = '📷 No camera hardware detected on this device. You can choose a photo from your gallery.';
-        }
-        errBox.textContent = msg;
+        let msg = '<div style="font-weight: 700; color: #f87171; margin-bottom: 6px; font-size: 0.88rem;"><i class="fa-solid fa-triangle-exclamation"></i> Camera Access Blocked by Windows / System</div>' +
+          '<div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 8px;">Browser me Allow karne ke baad bhi Windows OS ya laptop hardware camera block kar raha hai:</div>' +
+          '<ol style="margin: 0 0 10px 16px; padding: 0; font-size: 0.76rem; color: #e2e8f0; line-height: 1.5;">' +
+          '<li><strong>Laptop Shutter:</strong> Laptop webcam lens ka slider/orange dot open check karein (ya <code>Fn+F8 / F10</code> dabayein).</li>' +
+          '<li><strong>Windows Privacy:</strong> <code>Win + I</code> dabayein &gt; <em>Privacy &amp; security</em> &gt; <em>Camera</em> me <strong>"Let desktop apps access your camera"</strong> ko <strong>ON</strong> karein.</li>' +
+          '<li><strong>App in Use:</strong> Agar Zoom, Teams, WhatsApp ya Meet chal raha ho to use band karein.</li>' +
+          '</ol>' +
+          '<button type="button" onclick="window.triggerPfpGallery()" style="width: 100%; padding: 8px 12px; background: #ffffff; color: #000; border: none; border-radius: 8px; font-weight: 800; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 2px 10px rgba(255,255,255,0.2);"><i class="fa-solid fa-folder-open"></i> Choose Photo from Computer / Gallery</button>';
+        errBox.innerHTML = msg;
         errBox.style.display = 'block';
       }
 
@@ -5241,6 +5243,27 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     window.closePfpOptionsModal();
     if (window.showToast) {
       window.showToast(googlePhoto ? 'Restored Google account profile picture!' : 'Profile picture reset to default.', 'success', 3000);
+    }
+  };
+
+  window.selectPresetAvatar = function(avatarUrl, name) {
+    if (!avatarUrl) return;
+
+    // 1. Persist to local storage
+    localStorage.setItem('pulse_custom_avatar', avatarUrl);
+
+    // 2. Sync with user profile state
+    if (typeof updateUserProfile === 'function') {
+      updateUserProfile({ avatar: avatarUrl });
+    }
+
+    // 3. Immediately apply to header and modals
+    window.applyUserPfp(avatarUrl);
+
+    // 4. Close modal and notify
+    window.closePfpOptionsModal();
+    if (window.showToast) {
+      window.showToast(`✨ Profile avatar set to ${name || 'Studio Avatar'}!`, 'success', 3000);
     }
   };
 
