@@ -1215,13 +1215,9 @@ import {
               <button class="btn-hero-secondary" onclick="window.toggleFavoriteHeroSlide(${idx})" title="Save to Favorites">
                 <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart" id="hero-fav-icon-${idx}" style="${isFav ? 'color: #f43f5e;' : ''}"></i>
               </button>
-              <button class="btn-hero-sound-toggle" onclick="window.togglePreviewMute(${idx}, event)" title="Toggle Video Audio (Mute / Unmute)">
-                <i class="fa-solid fa-volume-xmark" id="hero-sound-icon-${idx}"></i>
-                <span id="hero-sound-label-${idx}" class="hide-on-mobile">Sound Off</span>
-              </button>
             </div>
           </div>
-          <div class="hero-media-wrapper" id="hero-media-wrapper-${idx}" onclick="window.playHeroSlideTrack(${idx})" title="Click to play full anthem in studio master audio">
+          <div class="hero-media-wrapper" id="hero-media-wrapper-${idx}" onclick="window.playHeroSlideTrack(${idx})">
             <!-- Artwork Backdrop (shown instantly while video initializes) -->
             <div class="hero-media-artwork-box" id="hero-media-artwork-${idx}">
               <img src="${artwork}" alt="${escapeHtml(slide.title)}" ${idx < 2 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80';">
@@ -1316,7 +1312,7 @@ import {
     }
   };
 
-  // Automatic Video Preview Mounting for Current Active Slide
+  // Automatic Video Preview Mounting for Current Active Slide (Silent Luxury Canvas)
   window.mountSlideAutoVideoPreview = function(slideIndex) {
     const slides = window.__heroSlides || getHeroSlides();
     const slide = slides[slideIndex];
@@ -1333,7 +1329,6 @@ import {
     const vidBox = document.getElementById(`hero-media-video-${slideIndex}`);
     if (!vidBox) return;
 
-    const isMuted = window.__previewMutedMap[slideIndex] !== false; // starts muted for instant autoplay
     const previewStart = slide.previewStart || 24;
 
     vidBox.classList.add('active-video');
@@ -1341,23 +1336,14 @@ import {
       <div class="hero-video-preview-inner">
         <iframe
           id="hero-preview-iframe-${slideIndex}"
-          src="https://www.youtube-nocookie.com/embed/${slide.videoYtId}?autoplay=1&mute=${isMuted ? '1' : '0'}&controls=0&loop=1&playlist=${slide.videoYtId}&start=${previewStart}&modestbranding=1&rel=0&playsinline=1&showinfo=0&disablekb=1&fs=0&iv_load_policy=3&enablejsapi=1"
+          src="https://www.youtube-nocookie.com/embed/${slide.videoYtId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${slide.videoYtId}&start=${previewStart}&modestbranding=1&rel=0&playsinline=1&showinfo=0&disablekb=1&fs=0&iv_load_policy=3&enablejsapi=0"
           class="hero-preview-iframe"
           tabindex="-1"
           loading="eager"
           allow="autoplay; encrypted-media">
         </iframe>
-        <div class="hero-preview-glass-overlay">
-          <div class="preview-top-bar">
-            <div class="preview-badge-pill">
-              <span class="preview-pulse-dot"></span>
-              <span>LIVE PREVIEW</span>
-            </div>
-            <button class="btn-preview-mini-tool" onclick="window.togglePreviewMute(${slideIndex}, event)" title="Toggle Sound">
-              <i class="${isMuted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high'}" id="preview-mute-icon-${slideIndex}"></i>
-            </button>
-          </div>
-        </div>
+        <!-- Pure transparent click shield to prevent any YouTube player chrome/pause icons while allowing track playback on click -->
+        <div class="hero-preview-click-shield" onclick="window.playHeroSlideTrack(${slideIndex})"></div>
       </div>
     `;
   };
