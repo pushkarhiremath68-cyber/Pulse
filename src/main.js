@@ -4950,6 +4950,9 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     const preview = document.getElementById('pfp-modal-preview-img');
     if (preview) preview.src = currentAvatar;
 
+    const errBox = document.getElementById('pfp-camera-error-msg');
+    if (errBox) errBox.style.display = 'none';
+
     // Check if user has an original Google account photo
     const resetBtn = document.getElementById('btn-reset-google-pfp');
     const user = typeof getStoredUser === 'function' ? getStoredUser() : null;
@@ -4969,71 +4972,102 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     if (modal) modal.classList.add('hidden');
   };
 
-  window.triggerPfpCamera = async function() {
-    // If browser supports real live webcam/camera access (getUserMedia)
-    if (navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function') {
-      try {
-        const subtitle = document.getElementById('pfp-modal-subtitle');
-        if (subtitle) {
-          subtitle.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 6px;"></i> Starting camera...';
-        }
-
-        const constraints = {
-          video: {
-            facingMode: pfpCameraFacing,
-            width: { ideal: 640 },
-            height: { ideal: 640 }
-          },
-          audio: false
-        };
-
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        window.__pfpCameraStream = stream;
-
-        const video = document.getElementById('pfp-modal-live-video');
-        const previewImg = document.getElementById('pfp-modal-preview-img');
-        const stdActions = document.getElementById('pfp-standard-actions');
-        const camActions = document.getElementById('pfp-camera-actions');
-        const flipBtn = document.getElementById('btn-pfp-flip-camera');
-
-        if (video) {
-          video.srcObject = stream;
-          video.style.display = 'block';
-          video.style.transform = pfpCameraFacing === 'user' ? 'scaleX(-1)' : 'none';
-          try { await video.play(); } catch (_) {}
-        }
-        if (previewImg) previewImg.style.display = 'none';
-        if (stdActions) stdActions.style.display = 'none';
-        if (camActions) camActions.style.display = 'flex';
-
-        if (subtitle) {
-          subtitle.innerHTML = '<span style="color: #38bdf8; font-weight: 600;"><i class="fa-solid fa-circle-dot" style="color: #ef4444; margin-right: 6px; font-size: 0.8rem;"></i> Camera Active — Position your face and snap</span>';
-        }
-
-        // Detect if multi-camera mobile device to expose flip button
-        if (navigator.mediaDevices.enumerateDevices && flipBtn) {
-          try {
-            const devices = await navigator.mediaDevices.enumerateDevices();
-            const videoInputs = devices.filter(d => d.kind === 'videoinput');
-            if (videoInputs.length > 1) {
-              flipBtn.style.display = 'flex';
-            }
-          } catch (_) {}
-        }
-        return;
-      } catch (err) {
-        console.warn('[Pulse Camera] Live webcam error, attempting file capture fallback:', err);
-        window.stopPfpLiveCamera();
-        if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-          if (window.showToast) window.showToast('Camera permission was blocked. You can upload from your gallery.', 'info', 4000);
-        }
-      }
+  async function acquireCameraStream() {
+    if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== 'function') {
+      throw new Error('Camera API not supported in this browser environment');
     }
 
-    // Direct fallback for webviews or browsers without getUserMedia
-    const cameraInput = document.getElementById('pfp-camera-input');
-    if (cameraInput) {
-      cameraInput.click();
+    // Tier 1: Soft constraint with ideal facingMode (works on mobile front camera, does not throw on desktop)
+    try {
+      const s = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: { ideal: pfpCameraFacing },
+          width: { ideal: 720 },
+          height: { ideal: 720 }
+        },
+        audio: false
+      });
+      if (s && s.getVideoTracks().length > 0) return s;
+    } catch (e1) {
+      console.warn('[Pulse Camera] Soft constraint attempt:', e1.name, e1.message);
+    }
+
+    // Tier 2: Universal video: true (Guaranteed to work on Windows 10/11 laptop & USB webcams!)
+    try {
+      const s = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false
+      });
+      if (s && s.getVideoTracks().length > 0) return s;
+    } catch (e2) {
+      console.warn('[Pulse Camera] Generic video attempt:', e2.name, e2.message);
+      throw e2;
+    }
+
+    throw new Error('Could not acquire valid video stream');
+  }
+
+  window.triggerPfpCamera = async function() {
+    const subtitle = document.getElementById('pfp-modal-subtitle');
+    const errBox = document.getElementById('pfp-camera-error-msg');
+    if (errBox) errBox.style.display = 'none';
+
+    if (subtitle) {
+      subtitle.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 6px; color: #38bdf8;"></i> Connecting to camera...';
+    }
+
+    try {
+      const stream = await acquireCameraStream();
+      window.__pfpCameraStream = stream;
+
+      const video = document.getElementById('pfp-modal-live-video');
+      const previewImg = document.getElementById('pfp-modal-preview-img');
+      const stdActions = document.getElementById('pfp-standard-actions');
+      const camActions = document.getElementById('pfp-camera-actions');
+      const flipBtn = document.getElementById('btn-pfp-flip-camera');
+
+      if (video) {
+        video.srcObject = stream;
+        video.style.display = 'block';
+        video.style.transform = pfpCameraFacing === 'user' ? 'scaleX(-1)' : 'none';
+        try { await video.play(); } catch (_) {}
+      }
+      if (previewImg) previewImg.style.display = 'none';
+      if (stdActions) stdActions.style.display = 'none';
+      if (camActions) camActions.style.display = 'flex';
+
+      if (subtitle) {
+        subtitle.innerHTML = '<span style="color: #38bdf8; font-weight: 700;"><i class="fa-solid fa-circle-dot" style="color: #ef4444; margin-right: 6px; font-size: 0.8rem;"></i> Camera Active — Position your face & click Snap</span>';
+      }
+
+      // Detect if multi-camera mobile device to expose flip button
+      if (navigator.mediaDevices.enumerateDevices && flipBtn) {
+        try {
+          const devices = await navigator.mediaDevices.enumerateDevices();
+          const videoInputs = devices.filter(d => d.kind === 'videoinput');
+          if (videoInputs.length > 1) {
+            flipBtn.style.display = 'flex';
+          }
+        } catch (_) {}
+      }
+    } catch (err) {
+      console.warn('[Pulse Camera] Camera open failed:', err);
+      window.stopPfpLiveCamera();
+
+      if (errBox) {
+        let msg = '⚠️ Camera could not be opened. Please verify camera permissions in your browser or select a photo from your gallery.';
+        if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+          msg = '⚠️ Camera permission was blocked. Please click the 🔒 icon in your browser address bar to allow camera access, or choose from your gallery.';
+        } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+          msg = '📷 No camera hardware detected on this device. You can choose a photo from your gallery.';
+        }
+        errBox.textContent = msg;
+        errBox.style.display = 'block';
+      }
+
+      if (window.showToast) {
+        window.showToast('Camera access unavailable. You can upload a photo from gallery.', 'info', 3500);
+      }
     }
   };
 

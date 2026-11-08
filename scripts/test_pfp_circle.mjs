@@ -21,7 +21,7 @@ const normCss = css.replace(/\r\n/g, '\n');
 if (!normCss.includes('.header-pfp-img.hidden,\n.header-pfp-fallback.hidden {\n  display: none !important;')) {
   throw new Error('Hidden pfp elements must be display: none !important');
 }
-if (!sw.includes('pulse-music-v5.0.5')) throw new Error('SW version must be v5.0.5');
+if (!sw.includes('pulse-music-v5.0.6')) throw new Error('SW version must be v5.0.6');
 
 // Live Webcam Viewfinder assertions
 if (!html.includes('id="pfp-modal-live-video"')) throw new Error('Live camera video element must exist');
