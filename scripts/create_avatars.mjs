@@ -163,3 +163,4 @@ avatars.forEach(item => {
 });
 
 console.log('All 6 avatars generated successfully.');
+
