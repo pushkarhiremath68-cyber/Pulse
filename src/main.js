@@ -4939,7 +4939,11 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     }
   };
 
+  let pfpCameraFacing = 'user'; // 'user' (selfie/front) | 'environment' (back)
+  window.__pfpCameraStream = null;
+
   window.openPfpOptionsModal = function() {
+    window.stopPfpLiveCamera();
     const modal = document.getElementById('pfp-customizer-modal');
     if (!modal) return;
     const currentAvatar = window.getActiveUserAvatar();
@@ -4960,14 +4964,166 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
   };
 
   window.closePfpOptionsModal = function() {
+    window.stopPfpLiveCamera();
     const modal = document.getElementById('pfp-customizer-modal');
     if (modal) modal.classList.add('hidden');
   };
 
-  window.triggerPfpCamera = function() {
+  window.triggerPfpCamera = async function() {
+    // If browser supports real live webcam/camera access (getUserMedia)
+    if (navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function') {
+      try {
+        const subtitle = document.getElementById('pfp-modal-subtitle');
+        if (subtitle) {
+          subtitle.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 6px;"></i> Starting camera...';
+        }
+
+        const constraints = {
+          video: {
+            facingMode: pfpCameraFacing,
+            width: { ideal: 640 },
+            height: { ideal: 640 }
+          },
+          audio: false
+        };
+
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        window.__pfpCameraStream = stream;
+
+        const video = document.getElementById('pfp-modal-live-video');
+        const previewImg = document.getElementById('pfp-modal-preview-img');
+        const stdActions = document.getElementById('pfp-standard-actions');
+        const camActions = document.getElementById('pfp-camera-actions');
+        const flipBtn = document.getElementById('btn-pfp-flip-camera');
+
+        if (video) {
+          video.srcObject = stream;
+          video.style.display = 'block';
+          video.style.transform = pfpCameraFacing === 'user' ? 'scaleX(-1)' : 'none';
+          try { await video.play(); } catch (_) {}
+        }
+        if (previewImg) previewImg.style.display = 'none';
+        if (stdActions) stdActions.style.display = 'none';
+        if (camActions) camActions.style.display = 'flex';
+
+        if (subtitle) {
+          subtitle.innerHTML = '<span style="color: #38bdf8; font-weight: 600;"><i class="fa-solid fa-circle-dot" style="color: #ef4444; margin-right: 6px; font-size: 0.8rem;"></i> Camera Active — Position your face and snap</span>';
+        }
+
+        // Detect if multi-camera mobile device to expose flip button
+        if (navigator.mediaDevices.enumerateDevices && flipBtn) {
+          try {
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const videoInputs = devices.filter(d => d.kind === 'videoinput');
+            if (videoInputs.length > 1) {
+              flipBtn.style.display = 'flex';
+            }
+          } catch (_) {}
+        }
+        return;
+      } catch (err) {
+        console.warn('[Pulse Camera] Live webcam error, attempting file capture fallback:', err);
+        window.stopPfpLiveCamera();
+        if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+          if (window.showToast) window.showToast('Camera permission was blocked. You can upload from your gallery.', 'info', 4000);
+        }
+      }
+    }
+
+    // Direct fallback for webviews or browsers without getUserMedia
     const cameraInput = document.getElementById('pfp-camera-input');
     if (cameraInput) {
       cameraInput.click();
+    }
+  };
+
+  window.stopPfpLiveCamera = function() {
+    if (window.__pfpCameraStream) {
+      try {
+        window.__pfpCameraStream.getTracks().forEach(track => track.stop());
+      } catch (_) {}
+      window.__pfpCameraStream = null;
+    }
+
+    const video = document.getElementById('pfp-modal-live-video');
+    const previewImg = document.getElementById('pfp-modal-preview-img');
+    const stdActions = document.getElementById('pfp-standard-actions');
+    const camActions = document.getElementById('pfp-camera-actions');
+    const subtitle = document.getElementById('pfp-modal-subtitle');
+
+    if (video) {
+      try { video.pause(); } catch (_) {}
+      video.srcObject = null;
+      video.style.display = 'none';
+    }
+    if (previewImg) previewImg.style.display = 'block';
+    if (stdActions) stdActions.style.display = 'flex';
+    if (camActions) camActions.style.display = 'none';
+    if (subtitle) subtitle.textContent = 'Take a selfie or choose a photo from your gallery.';
+  };
+
+  window.flipPfpCamera = function() {
+    pfpCameraFacing = pfpCameraFacing === 'user' ? 'environment' : 'user';
+    window.stopPfpLiveCamera();
+    window.triggerPfpCamera();
+  };
+
+  window.capturePfpPhoto = function() {
+    const video = document.getElementById('pfp-modal-live-video');
+    if (!video || !video.videoWidth) {
+      if (window.showToast) window.showToast('Camera is warming up, please wait a moment...', 'info', 2000);
+      return;
+    }
+
+    // Shutter flash animation
+    const flash = document.getElementById('pfp-camera-shutter-flash');
+    if (flash) {
+      flash.style.display = 'block';
+      setTimeout(() => { flash.style.display = 'none'; }, 200);
+    }
+
+    // Square crop canvas from webcam video stream
+    const canvas = document.createElement('canvas');
+    const size = 320;
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    const vw = video.videoWidth;
+    const vh = video.videoHeight;
+    const minDim = Math.min(vw, vh);
+    const sx = (vw - minDim) / 2;
+    const sy = (vh - minDim) / 2;
+
+    ctx.save();
+    if (pfpCameraFacing === 'user') {
+      // Mirror horizontal for natural selfie
+      ctx.translate(size, 0);
+      ctx.scale(-1, 1);
+    }
+    ctx.drawImage(video, sx, sy, minDim, minDim, 0, 0, size, size);
+    ctx.restore();
+
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.90);
+
+    // Stop camera immediately
+    window.stopPfpLiveCamera();
+
+    // 1. Save in local storage
+    localStorage.setItem('pulse_custom_avatar', dataUrl);
+
+    // 2. Update user profile
+    if (typeof updateUserProfile === 'function') {
+      updateUserProfile({ avatar: dataUrl });
+    }
+
+    // 3. Immediately apply to UI
+    window.applyUserPfp(dataUrl);
+
+    // 4. Close modal and notify
+    window.closePfpOptionsModal();
+    if (window.showToast) {
+      window.showToast('📸 Selfie captured & profile picture updated!', 'success', 3500);
     }
   };
 
