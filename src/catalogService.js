@@ -3078,8 +3078,8 @@ export const ARTIST_DATABASE = {
       {
         "id": "ytm-8Z0f_y9tG4o",
         "ytId": "8Z0f_y9tG4o",
-        "title": "Mitwa",
-        "artist": "Shafqat Amanat Ali, Shankar Mahadevan",
+        "title": "Rock N Roll Soniye",
+        "artist": "Shankar-Ehsaan-Loy, Shankar Mahadevan, Shaan",
         "album": "Kabhi Alvida Naa Kehna",
         "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/15/3e/84/153e841c-14dc-4841-7e2d-f677dd9bff61/888880946089.jpg/1000x1000bb.jpg",
         "duration": 382,
@@ -3118,8 +3118,8 @@ export const ARTIST_DATABASE = {
       {
         "id": "ytm-fF_9oD7k3uI",
         "ytId": "fF_9oD7k3uI",
-        "title": "Tere Naina",
-        "artist": "Shafqat Amanat Ali",
+        "title": "Where's The Party Tonight",
+        "artist": "Shankar-Ehsaan-Loy, Shaan, Vasundhara Das",
         "album": "My Name Is Khan",
         "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/74/f2/ab/74f2abb3-245a-62d2-2869-895e8c37fc3b/8902894628532_cover.jpg/1000x1000bb.jpg",
         "duration": 278,
@@ -11482,6 +11482,7507 @@ export const ARTIST_DATABASE = {
       }
     ]
   }
+,
+  "vishal-mishra": {
+      "id": "vishal-mishra",
+      "name": "Vishal Mishra",
+      "monthlyListeners": "32,400,000",
+      "followersCount": "18,200,000",
+      "worldRank": "#4 Bollywood Playback Maestro",
+      "origin": "Lucknow, Uttar Pradesh, India",
+      "bio": "Vishal Mishra is an acclaimed Indian music composer and singer renowned for soulful chartbusters across Hindi cinema.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/5dfc70d3e9868915a2c13819b1b6863c/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/5dfc70d3e9868915a2c13819b1b6863c/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/vishalmishra/",
+        "x": "https://x.com/vishalmishra",
+        "facebook": "https://www.facebook.com/vishalmishra/",
+        "youtube": "https://www.youtube.com/@vishalmishra"
+      },
+      "tourInfo": {
+        "tourName": "Vishal Mishra Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1718278234",
+          "ytId": "",
+          "title": "Pehle Bhi Main",
+          "artist": "Vishal Mishra & Raj Shekhar",
+          "album": "ANIMAL (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/ad/5e/dbad5e8b-0bee-d962-92d4-021c90e375ac/8902894362092_cover.jpg/1000x1000bb.jpg",
+          "duration": 250,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1824400210",
+          "ytId": "",
+          "title": "Tum Ho Toh",
+          "artist": "Vishal Mishra, Hansika Pareek & Raj Shekhar",
+          "album": "Saiyaara (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c6/6a/a3/c66aa366-4522-14b8-c629-7cfee5422fc0/Saiyaara_Album_Cover.jpg/1000x1000bb.jpg",
+          "duration": 318,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1468448741",
+          "ytId": "",
+          "title": "Kaise Hua",
+          "artist": "Vishal Mishra",
+          "album": "Kabir Singh (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f6/70/84/f6708434-0123-ff36-0ac3-7401e8cf0f94/8902894360807_cover.jpg/1000x1000bb.jpg",
+          "duration": 235,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1834926003",
+          "ytId": "",
+          "title": "Deewaniyat (From \"Ek Deewane Ki Deewaniyat\") [Original Soundtrack]",
+          "artist": "Vishal Mishra, Kaushik-Guddu & Kunaal Vermaa",
+          "album": "Deewaniyat (From \"Ek Deewane Ki Deewaniyat\") [Original Soundtrack] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/44/39/07/44390794-4d83-526f-c7a4-3a9d6db91205/198704687532_Cover.jpg/1000x1000bb.jpg",
+          "duration": 258,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1756071212",
+          "ytId": "",
+          "title": "Jaanam (From \"Bad Newz\")",
+          "artist": "Vishal Mishra",
+          "album": "Jaanam (From \"Bad Newz\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/37/1b/57/371b57ff-bbfb-3d56-4e55-39ce524bef6b/198588668207.jpg/1000x1000bb.jpg",
+          "duration": 198,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1455613249",
+          "ytId": "",
+          "title": "Nai Lagda",
+          "artist": "Vishal Mishra & Asees Kaur",
+          "album": "Notebook (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0f/86/b7/0f86b710-f648-e8c2-69e1-3bb6c9b99acd/8902894360715_cover.jpg/1000x1000bb.jpg",
+          "duration": 287,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1468448746",
+          "ytId": "",
+          "title": "Pehla Pyaar",
+          "artist": "Vishal Mishra & Armaan Malik",
+          "album": "Kabir Singh (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f6/70/84/f6708434-0123-ff36-0ac3-7401e8cf0f94/8902894360807_cover.jpg/1000x1000bb.jpg",
+          "duration": 273,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1826879563",
+          "ytId": "",
+          "title": "Manjha",
+          "artist": "Vishal Mishra",
+          "album": "Manjha - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b1/7a/6c/b17a6c7e-ac70-c919-a120-6ebce39b383d/3616404272584_Cover.jpg/1000x1000bb.jpg",
+          "duration": 192,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1761968539",
+          "ytId": "",
+          "title": "Khoobsurat (From \"Stree 2\")",
+          "artist": "Vishal Mishra, Sachin-Jigar & Amitabh Bhattacharya",
+          "album": "Khoobsurat (From \"Stree 2\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2d/e2/f7/2de2f7e0-b66f-50e8-ba18-e0ab41bec525/198846028354.jpg/1000x1000bb.jpg",
+          "duration": 245,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1677934771",
+          "ytId": "",
+          "title": "Janiye (From the Netflix Film \"Chor Nikal Ke Bhaga\") [feat. Rashmeet Kaur]",
+          "artist": "Vishal Mishra",
+          "album": "Janiye (feat. Rashmeet Kaur) [From the Netflix Film \"Chor Nikal Ke Bhaga\"]  - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b3/79/f8/b379f848-d340-a52e-8222-ab9d27044d12/810123161041.png/1000x1000bb.jpg",
+          "duration": 223,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "lucky-ali": {
+      "id": "lucky-ali",
+      "name": "Lucky Ali",
+      "monthlyListeners": "24,100,000",
+      "followersCount": "15,600,000",
+      "worldRank": "#1 Indian Pop & Indie Icon",
+      "origin": "Mumbai, Maharashtra, India",
+      "bio": "Lucky Ali is a legendary Indian singer, songwriter, and actor whose distinct melancholic voice defined modern Indipop with timeless anthems like O Sanam.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/26bae46ac78a361f5df75e8994377ff0/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/26bae46ac78a361f5df75e8994377ff0/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/luckyali/",
+        "x": "https://x.com/luckyali",
+        "facebook": "https://www.facebook.com/luckyali/",
+        "youtube": "https://www.youtube.com/@luckyali"
+      },
+      "tourInfo": {
+        "tourName": "Lucky Ali Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1103771762",
+          "ytId": "",
+          "title": "O Sanam",
+          "artist": "Lucky Ali",
+          "album": "Sunoh",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/12/81/f2/1281f22f-db57-8519-a2b4-405df48217aa/886445838497.jpg/1000x1000bb.jpg",
+          "duration": 223,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1364843589",
+          "ytId": "",
+          "title": "Ek Pal Ka Jeena",
+          "artist": "Lucky Ali",
+          "album": "Kaho Naa Pyaar Hai (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/57/a5/e0/57a5e064-f087-e318-582f-27ab8eb71496/192562328149.jpg/1000x1000bb.jpg",
+          "duration": 397,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1364843243",
+          "ytId": "",
+          "title": "Na Tum Jano Na Hum",
+          "artist": "Lucky Ali & Ramya",
+          "album": "Kaho Naa Pyaar Hai (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/57/a5/e0/57a5e064-f087-e318-582f-27ab8eb71496/192562328149.jpg/1000x1000bb.jpg",
+          "duration": 383,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-673521367",
+          "ytId": "",
+          "title": "Aahista Aahista",
+          "artist": "Vishal & Shekhar, Lucky Ali & Shreya Ghoshal",
+          "album": "Bachna Ae Haseeno (Original Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/ca/0e/95ca0eee-4709-b2a0-7e2d-7097c944d2cc/849486005822_cover.jpg/1000x1000bb.jpg",
+          "duration": 350,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1123355617",
+          "ytId": "",
+          "title": "Hairat",
+          "artist": "Lucky Ali & Vishal & Shekhar",
+          "album": "Anjaana Anjaani (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music18/v4/8b/d8/a1/8bd8a190-8b8c-35f8-8573-614428dd6e42/8902894689113_cover.jpg/1000x1000bb.jpg",
+          "duration": 247,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1443541313",
+          "ytId": "",
+          "title": "Jaane Kya Dhoondta Hai",
+          "artist": "Lucky Ali",
+          "album": "Sur (The Melody of Life) [Original Soundtrack]",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/01/86/2d/01862d33-d481-3085-873a-aa5efc321864/00044001783524.rgb.jpg/1000x1000bb.jpg",
+          "duration": 426,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-302392912",
+          "ytId": "",
+          "title": "Kitni Haseen Zindagi",
+          "artist": "Lucky Ali",
+          "album": "Aks",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4b/33/e0/4b33e0d5-6d60-420e-4346-521be81d9111/888880945723.jpg/1000x1000bb.jpg",
+          "duration": 255,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-316875807",
+          "ytId": "",
+          "title": "Dekha Hai Aise Bhi",
+          "artist": "Lucky Ali",
+          "album": "Sifar",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/9d/c6/529dc65d-efd9-a4b6-cdeb-07180d3575dd/mzi.sxybrmib.jpg/1000x1000bb.jpg",
+          "duration": 238,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1443541303",
+          "ytId": "",
+          "title": "Aa Bhi Ja Aa Bhi Ja",
+          "artist": "Lucky Ali & Sunidhi Chauhan",
+          "album": "Sur (The Melody of Life) [Original Soundtrack]",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/01/86/2d/01862d33-d481-3085-873a-aa5efc321864/00044001783524.rgb.jpg/1000x1000bb.jpg",
+          "duration": 359,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1071074691",
+          "ytId": "",
+          "title": "Safarnama",
+          "artist": "Lucky Ali",
+          "album": "Tamasha (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/ac/67/cbac673a-9213-7118-bb4e-2440273afb03/8902894357470_cover.jpg/1000x1000bb.jpg",
+          "duration": 251,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "anuradha-paudwal": {
+      "id": "anuradha-paudwal",
+      "name": "Anuradha Paudwal",
+      "monthlyListeners": "38,500,000",
+      "followersCount": "22,400,000",
+      "worldRank": "#1 Sacred Bhajan & Melodic Legend",
+      "origin": "Mumbai, Maharashtra, India",
+      "bio": "Anuradha Paudwal is an illustrious Indian playback and devotional singer with a Padma Shri award, renowned for monumental Bollywood hits and timeless sacred chants.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/07d11ae2681763ab270501881e6a10c7/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/07d11ae2681763ab270501881e6a10c7/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/anuradhapaudwal/",
+        "x": "https://x.com/anuradhapaudwal",
+        "facebook": "https://www.facebook.com/anuradhapaudwal/",
+        "youtube": "https://www.youtube.com/@anuradhapaudwal"
+      },
+      "tourInfo": {
+        "tourName": "Anuradha Paudwal Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-712977377",
+          "ytId": "",
+          "title": "Gayatri Mantra",
+          "artist": "Anuradha Paudwal",
+          "album": "Gayatri",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/9c/40/af/9c40af71-226c-e78d-fee6-3ee661ee1c99/05099908581754.jpg/1000x1000bb.jpg",
+          "duration": 525,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1197839249",
+          "ytId": "",
+          "title": "Om Jai Jagdish Hare",
+          "artist": "Anuradha Paudwal",
+          "album": "Aarti Om Jai Jagdish Hare",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/4a/07/41/4a07413e-063c-3be0-7703-89fa05badc80/8902894682855_cover.jpg/1000x1000bb.jpg",
+          "duration": 333,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1073371970",
+          "ytId": "",
+          "title": "Mujhe Neend Na Aaye",
+          "artist": "Anuradha Paudwal & Udit Narayan",
+          "album": "Dil (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/b3/1e/a4/b31ea49e-7a64-8eea-8b50-91382df7a602/8902894610230_cover.jpg/1000x1000bb.jpg",
+          "duration": 371,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1197839247",
+          "ytId": "",
+          "title": "Jai Ganesh Deva",
+          "artist": "Anuradha Paudwal",
+          "album": "Aarti Om Jai Jagdish Hare",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/4a/07/41/4a07413e-063c-3be0-7703-89fa05badc80/8902894682855_cover.jpg/1000x1000bb.jpg",
+          "duration": 271,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1141555016",
+          "ytId": "",
+          "title": "Adayein Bhi Hain Mohabbat Bhi Hai",
+          "artist": "Anuradha Paudwal & Kumar Sanu",
+          "album": "Dil Hai Ke Manta Nahin (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/6d/9f/97/6d9f97f2-d285-93d8-6f47-8edd0b17b173/8902894105880_cover.jpg/1000x1000bb.jpg",
+          "duration": 327,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1140377823",
+          "ytId": "",
+          "title": "Pyar Kiya To Nibhana",
+          "artist": "Anuradha Paudwal & Udit Narayan",
+          "album": "Major Saab (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music30/v4/29/7c/a3/297ca3ac-95e6-08ef-5a44-876f009554ff/8902894605892_cover.jpg/1000x1000bb.jpg",
+          "duration": 310,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1127722638",
+          "ytId": "",
+          "title": "Bahut Pyar Karte Hai (Female Version)",
+          "artist": "Anuradha Paudwal",
+          "album": "Saajan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/af/c9/3e/afc93e0c-08e1-cc81-f549-a5fed7b95dd0/cover.jpg/1000x1000bb.jpg",
+          "duration": 266,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1141609924",
+          "ytId": "",
+          "title": "Tumhein Apna Banane Ki",
+          "artist": "Anuradha Paudwal & Kumar Sanu",
+          "album": "Sadak (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/3e/3e/c5/3e3ec5df-b980-dee5-2989-7b608d685d16/8902894107020_cover.jpg/1000x1000bb.jpg",
+          "duration": 339,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1073377447",
+          "ytId": "",
+          "title": "Dheere Dhheere Se Meri Zindagi Mein Aana",
+          "artist": "Anuradha Paudwal & Kumar Sanu",
+          "album": "Aashiqui (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0a/3a/df/0a3adfc7-66f2-b2a8-df6e-850a09cd4a1e/8902894684088_cover.jpg/1000x1000bb.jpg",
+          "duration": 328,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1073377453",
+          "ytId": "",
+          "title": "Tu Meri Zindagi Hai",
+          "artist": "Anuradha Paudwal & Kumar Sanu",
+          "album": "Aashiqui (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0a/3a/df/0a3adfc7-66f2-b2a8-df6e-850a09cd4a1e/8902894684088_cover.jpg/1000x1000bb.jpg",
+          "duration": 283,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "stebin-ben": {
+      "id": "stebin-ben",
+      "name": "Stebin Ben",
+      "monthlyListeners": "21,800,000",
+      "followersCount": "12,900,000",
+      "worldRank": "#8 Romantic Ballad Star",
+      "origin": "Bhopal, Madhya Pradesh, India",
+      "bio": "Stebin Ben is one of India's most celebrated modern romantic playback vocalists with consecutive multi-million stream releases.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/172eb63f584832b8b378021b067fbedc/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/172eb63f584832b8b378021b067fbedc/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/stebinben/",
+        "x": "https://x.com/stebinben",
+        "facebook": "https://www.facebook.com/stebinben/",
+        "youtube": "https://www.youtube.com/@stebinben"
+      },
+      "tourInfo": {
+        "tourName": "Stebin Ben Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1569008031",
+          "ytId": "",
+          "title": "Baarish Ban Jaana",
+          "artist": "Payal Dev & Stebin Ben",
+          "album": "Baarish Ban Jaana - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8d/1e/65/8d1e65ea-c079-58fd-392d-c6cc9a1abb6e/21UMGIM45893.rgb.jpg/1000x1000bb.jpg",
+          "duration": 200,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1662921746",
+          "ytId": "",
+          "title": "Tu Mile Dil Khile",
+          "artist": "Asees Kaur & Stebin Ben",
+          "album": "Tu Mile Dil Khile - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/a4/1b/a3/a41ba3bf-f529-938d-bf92-d7dc87e7f377/197187853243.jpg/1000x1000bb.jpg",
+          "duration": 197,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1779263472",
+          "ytId": "",
+          "title": "Sahiba",
+          "artist": "Jasleen Royal & Stebin Ben",
+          "album": "Sahiba - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cc/c8/e4/ccc8e4f7-935d-50eb-4103-28aebf242248/5021732549112.jpg/1000x1000bb.jpg",
+          "duration": 217,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1553411922",
+          "ytId": "",
+          "title": "Thoda Thoda Pyaar",
+          "artist": "Stebin Ben & Nilesh Ahuja",
+          "album": "Thoda Thoda Pyaar - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/ac/20/2d/ac202d34-4a77-101d-1ec4-d5e303a948db/840780198425.png/1000x1000bb.jpg",
+          "duration": 245,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1529522683",
+          "ytId": "",
+          "title": "Rula Ke Gaya Ishq",
+          "artist": "Stebin Ben, Sunny Inder & Kumaar",
+          "album": "Rula Ke Gaya Ishq - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/66/76/3a/66763af7-1d0d-0b8d-6f3a-582c928f5e8e/8718857909002.png/1000x1000bb.jpg",
+          "duration": 247,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1607536754",
+          "ytId": "",
+          "title": "Ek Tu Hi Toh Hai",
+          "artist": "Stebin Ben",
+          "album": "Ek Tu Hi Toh Hai - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/60/dc/bf/60dcbfe3-75ec-6e4c-e71f-6fb65fbe4bbe/886449879847.jpg/1000x1000bb.jpg",
+          "duration": 280,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1825400530",
+          "ytId": "",
+          "title": "Afsos Karoge",
+          "artist": "Stebin Ben",
+          "album": "Afsos Karoge - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/c2/28/52c2287a-3712-1038-aeaa-95516dde3e98/3616408529905_Cover.jpg/1000x1000bb.jpg",
+          "duration": 226,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1447528078",
+          "ytId": "",
+          "title": "Mera Dil Bhi Kitna Pagal Hai (Recreated Version)",
+          "artist": "Stebin Ben",
+          "album": "Mera Dil Bhi Kitna Pagal Hai (Recreated Version) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c9/29/da/c929da2f-92a4-1369-1c79-923ffa3d5fbf/cover.jpg/1000x1000bb.jpg",
+          "duration": 201,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-6778771911",
+          "ytId": "",
+          "title": "Tera Ho Jaun (From \"Hai Jawani Toh Ishq Hona Hai\")",
+          "artist": "Stebin Ben, Jonita Gandhi, White Noise Collectives & Vayu",
+          "album": "Hai Jawani Toh Ishq Hona Hai (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/37/54/9d/37549de2-3ccd-7a56-8376-7aec32fe06e4/ticket.iopgxcqy.jpg/1000x1000bb.jpg",
+          "duration": 161,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1567749592",
+          "ytId": "",
+          "title": "Tum Bewafa Ho (feat. Arjun Bijlani & Nia Sharma)",
+          "artist": "Payal Dev & Stebin Ben",
+          "album": "Tum Bewafa Ho (feat. Arjun Bijlani & Nia Sharma) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9c/3c/f9/9c3cf9b2-b982-f6cc-ebf4-1684f2f66d5e/1941570702460.jpg/1000x1000bb.jpg",
+          "duration": 251,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "neeraj-shridhar": {
+      "id": "neeraj-shridhar",
+      "name": "Neeraj Shridhar",
+      "monthlyListeners": "19,500,000",
+      "followersCount": "10,400,000",
+      "worldRank": "#3 Pop-Rock Fusion Pioneer",
+      "origin": "Jalandhar, Punjab, India",
+      "bio": "Neeraj Shridhar is the frontman of Bombay Vikings and iconic playback singer behind massive hits like Bhool Bhulaiyaa and Character Dheela.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/7755c06378e187c72f098a1833444212/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/7755c06378e187c72f098a1833444212/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/neerajshridhar/",
+        "x": "https://x.com/neerajshridhar",
+        "facebook": "https://www.facebook.com/neerajshridhar/",
+        "youtube": "https://www.youtube.com/@neerajshridhar"
+      },
+      "tourInfo": {
+        "tourName": "Neeraj Shridhar Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1131670107",
+          "ytId": "",
+          "title": "Love Mera Hit Hit",
+          "artist": "Pritam, Neeraj Shridhar, Tulsi Kumar & Mayur Puri",
+          "album": "Billu (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/96/c7/e5/96c7e577-6109-903a-9dcc-974332428105/8902894628907_cover.jpg/1000x1000bb.jpg",
+          "duration": 286,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1842069634",
+          "ytId": "",
+          "title": "Twist",
+          "artist": "Pritam & Neeraj Shridhar",
+          "album": "Love Aaj Kal (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6c/c9/98/6cc9988b-b6ce-51e5-9396-fd11d65ad8a7/196871083010.jpg/1000x1000bb.jpg",
+          "duration": 299,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1258601652",
+          "ytId": "",
+          "title": "Bas Ek Kinng (feat. Hard Kaur)",
+          "artist": "Mika Singh, Neeraj Shridhar, Ashish Pandit & Pritam",
+          "album": "Singh Is Kinng (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/41/f5/72/41f572a8-c21d-fbfa-8765-1d89d3ce48aa/191773507848.jpg/1000x1000bb.jpg",
+          "duration": 244,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1134701724",
+          "ytId": "",
+          "title": "Bhool Bhulaiyaa",
+          "artist": "Pritam & Neeraj Shridhar",
+          "album": "Bhool Bhulaiyaa (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/eb/1b/38/eb1b3835-41fd-de2e-2550-4e9780fa6443/8902894623056_cover.jpg/1000x1000bb.jpg",
+          "duration": 325,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1121194907",
+          "ytId": "",
+          "title": "Jhak Maar Ke",
+          "artist": "Pritam, Neeraj Shridhar & Harshdeep Kaur",
+          "album": "Desi Boyz (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d0/44/05/d04405c9-20f8-f11a-fa14-8867e988a409/8902894697743_cover.jpg/1000x1000bb.jpg",
+          "duration": 233,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1537027343",
+          "ytId": "",
+          "title": "Aai Paapi",
+          "artist": "Neeraj Shridhar & Pritam",
+          "album": "Kismat Konnection (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/03/c8/e4/03c8e4d9-d521-09b2-610f-1ea075e5cae2/8901854001989.jpg/1000x1000bb.jpg",
+          "duration": 260,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1136507524",
+          "ytId": "",
+          "title": "Bhagam Bhag",
+          "artist": "Pritam & Neeraj Shridhar",
+          "album": "Bhagam Bhag (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9d/17/46/9d174613-b8fb-6716-8b4b-8f018821fa4e/8902894602075_cover.jpg/1000x1000bb.jpg",
+          "duration": 277,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1121154169",
+          "ytId": "",
+          "title": "Character Dheela",
+          "artist": "Pritam, Neeraj Shridhar & Amrita Kak",
+          "album": "Ready (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/33/df/3c/33df3ccf-d5e6-fa75-7484-a12d81ed6048/8902894694933_cover.jpg/1000x1000bb.jpg",
+          "duration": 226,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1133281327",
+          "ytId": "",
+          "title": "Tha Kar Ke",
+          "artist": "Pritam, Neeraj Shridhar, Anvesha, Aakariti, Earl D'Souza & Indie",
+          "album": "Golmaal Returns (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3c/ae/08/3cae08a4-c0ee-7996-b105-db8fead1724c/8902894627719_cover.jpg/1000x1000bb.jpg",
+          "duration": 267,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1158822797",
+          "ytId": "",
+          "title": "Nachange Saari Raat",
+          "artist": "Meet Bros, Neeraj Shridhar & Tulsi Kumar",
+          "album": "Junooniyat (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/5e/c8/65/5ec8655a-9b6b-d510-6987-75513666c8bb/8902894358170_cover.jpg/1000x1000bb.jpg",
+          "duration": 252,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "jonita-gandhi": {
+      "id": "jonita-gandhi",
+      "name": "Jonita Gandhi",
+      "monthlyListeners": "26,300,000",
+      "followersCount": "14,800,000",
+      "worldRank": "#5 Global Fusion Vocalist",
+      "origin": "New Delhi / Toronto, Canada",
+      "bio": "Jonita Gandhi is a versatile multilingual Indian-Canadian singer celebrated for chart-topping dance anthems in Hindi and Tamil cinema.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/f756c825ab0eb367cd85f077c28d0719/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/f756c825ab0eb367cd85f077c28d0719/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/jonitagandhi/",
+        "x": "https://x.com/jonitagandhi",
+        "facebook": "https://www.facebook.com/jonitagandhi/",
+        "youtube": "https://www.youtube.com/@jonitagandhi"
+      },
+      "tourInfo": {
+        "tourName": "Jonita Gandhi Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1807793250",
+          "ytId": "",
+          "title": "Tu Tu Hai Wahi",
+          "artist": "RUUH, JOH, Jubin Nautiyal & Jonita Gandhi",
+          "album": "Tu Tu Hai Wahi - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/aa/be/eb/aabeebd1-be2f-2859-6a32-8de209169569/25UMGIM54068.rgb.jpg/1000x1000bb.jpg",
+          "duration": 155,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1872719386",
+          "ytId": "",
+          "title": "Last Night On Earth",
+          "artist": "Cheat Codes & Jonita Gandhi",
+          "album": "Last Night On Earth - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/89/a4/89/89a4890f-1553-3a7e-dc3f-2467697b1519/5026854618012.jpg/1000x1000bb.jpg",
+          "duration": 177,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-6793082427",
+          "ytId": "",
+          "title": "Kaafi Hai Na",
+          "artist": "Garvit - Priyansh, Priyansh Srivastava, Garvit Soni, Jonita Gandhi & Aniket Shukla",
+          "album": "Musafir Cafe (Songs from the Netflix Series) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0d/3d/37/0d3d37d5-a797-6d58-c0e4-020095732b1c/8903431206978_cover.jpg/1000x1000bb.jpg",
+          "duration": 195,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1622957171",
+          "ytId": "",
+          "title": "Ma Ma Mahesha (From \"Sarkaru Vaari Paata\")",
+          "artist": "Sri Krishna, Jonita Gandhi & S.S. Thaman",
+          "album": "Ma Ma Mahesha (From \"Sarkaru Vaari Paata\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/02/5e/69/025e690f-4985-14ba-b233-766dc8b9cd12/196626963024.jpg/1000x1000bb.jpg",
+          "duration": 247,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1609971105",
+          "ytId": "",
+          "title": "Arabic Kuthu (From \"Beast\")",
+          "artist": "Anirudh Ravichander & Jonita Gandhi",
+          "album": "Arabic Kuthu (From \"Beast\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/1000x1000bb.jpg",
+          "duration": 280,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1656207211",
+          "ytId": "",
+          "title": "Na Na",
+          "artist": "Mickey Singh & Jonita Gandhi",
+          "album": "Na Na - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/c4/f2/ad/c4f2ad4a-d490-3ae9-22e4-953d76365e4e/cover.jpg/1000x1000bb.jpg",
+          "duration": 235,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1696969405",
+          "ytId": "",
+          "title": "What Jhumka ? (From \"Rocky Aur Rani Kii Prem Kahaani\")",
+          "artist": "Pritam, Arijit Singh, Jonita Gandhi, Ranveer Singh, Madan Mohan & Amitabh Bhattacharya",
+          "album": "What Jhumka ? (From \"Rocky Aur Rani Kii Prem Kahaani\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2d/a1/b8/2da1b888-ff70-edc8-1c2e-01d251a5ca10/197189341342.jpg/1000x1000bb.jpg",
+          "duration": 214,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1158846622",
+          "ytId": "",
+          "title": "Sau Tarah Ke",
+          "artist": "Pritam, Jonita Gandhi & Amit Mishra",
+          "album": "Dishoom (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/f4/37/b0/f437b090-8672-79a0-44e5-dcdb72babea2/8902894358231_cover.jpg/1000x1000bb.jpg",
+          "duration": 239,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1169015786",
+          "ytId": "",
+          "title": "The Breakup Song",
+          "artist": "Pritam, Arijit Singh, Badshah, Jonita Gandhi & Nakash Aziz",
+          "album": "Ae Dil Hai Mushkil (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bc/6e/4d/bc6e4d0c-adec-b431-7b60-16f5689f9664/886446201597.jpg/1000x1000bb.jpg",
+          "duration": 253,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-980176951",
+          "ytId": "",
+          "title": "Mental Manadhil",
+          "artist": "A.R. Rahman & Jonita Gandhi",
+          "album": "O Kadhal Kanmani (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d5/01/c2/d501c21b-266f-2db3-2abf-ca5d928e5649/886445180336.jpg/1000x1000bb.jpg",
+          "duration": 206,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "neeti-mohan": {
+      "id": "neeti-mohan",
+      "name": "Neeti Mohan",
+      "monthlyListeners": "22,900,000",
+      "followersCount": "13,200,000",
+      "worldRank": "#7 Bollywood Playback Star",
+      "origin": "Delhi, India",
+      "bio": "Neeti Mohan is a powerhouse Indian vocalist renowned for energetic Bollywood anthems and soulful acoustic melodies.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/df87d0be5ab0093b5c284c11b5ce82ec/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/df87d0be5ab0093b5c284c11b5ce82ec/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/neetimohan/",
+        "x": "https://x.com/neetimohan",
+        "facebook": "https://www.facebook.com/neetimohan/",
+        "youtube": "https://www.youtube.com/@neetimohan"
+      },
+      "tourInfo": {
+        "tourName": "Neeti Mohan Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-556951504",
+          "ytId": "",
+          "title": "Ishq Wala Love",
+          "artist": "Vishal & Shekhar, Neeti Mohan, Salim Merchant & Shekhar Ravjiani",
+          "album": "Student of the Year (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fe/27/2f/fe272f90-3bf9-b6e3-ffba-7068e9958c9c/886443601017.jpg/1000x1000bb.jpg",
+          "duration": 258,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1451183049",
+          "ytId": "",
+          "title": "Kithe Reh Gaya",
+          "artist": "Neeti Mohan",
+          "album": "Kithe Reh Gaya - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e2/ac/ca/e2acca28-6390-04ce-575a-707edc7fa19b/8903431709035_cover.jpg/1000x1000bb.jpg",
+          "duration": 215,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1610569134",
+          "ytId": "",
+          "title": "Meri Jaan",
+          "artist": "Neeti Mohan",
+          "album": "Gangubai Kathiawadi (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/02/b0/e3/02b0e3ac-fff6-7fbd-b71d-d971fa46acf4/196626505606.jpg/1000x1000bb.jpg",
+          "duration": 238,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1592073142",
+          "ytId": "",
+          "title": "Mere Yaaraa (From \"Sooryavanshi\")",
+          "artist": "Arijit Singh, Neeti Mohan, Kaushik, Guddu & Akash",
+          "album": "Mere Yaaraa (From \"Sooryavanshi\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/40/16/23/401623bf-a8da-245a-b0a2-c3b8b5ff111b/8903431852649_cover.jpg/1000x1000bb.jpg",
+          "duration": 285,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-673998988",
+          "ytId": "",
+          "title": "Jiya Re",
+          "artist": "Neeti Mohan",
+          "album": "Jab Tak Hai Jaan (Original Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2f/52/4d/2f524d1f-8ca3-5fa3-26c0-1ba1ac5b06fa/849486008274_cover.jpg/1000x1000bb.jpg",
+          "duration": 315,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-6830998104",
+          "ytId": "",
+          "title": "Haan Kardi",
+          "artist": "Raj Barman, Neeti Mohan, Sultan Sulemani & Kumaar",
+          "album": "Suryaa (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7e/a6/4c/7ea64c6c-cd75-4b5f-2994-8624a333b818/8909024124513.png/1000x1000bb.jpg",
+          "duration": 203,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1529544907",
+          "ytId": "",
+          "title": "First Class",
+          "artist": "Pritam, Arijit Singh & Neeti Mohan",
+          "album": "Kalank (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4e/39/49/4e3949f3-d59d-4295-4bb2-036269f9a88f/8718857678083.png/1000x1000bb.jpg",
+          "duration": 277,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1021869614",
+          "ytId": "",
+          "title": "Sapna Jahan",
+          "artist": "Ajay-Atul, Sonu Nigam & Neeti Mohan",
+          "album": "Brothers (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/51/ff/e051ff62-591e-14af-a317-84b387f28ea3/886445395211.jpg/1000x1000bb.jpg",
+          "duration": 342,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1337583675",
+          "ytId": "",
+          "title": "Nainowale Ne",
+          "artist": "Neeti Mohan",
+          "album": "Padmaavat (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1b/19/26/1b192691-0179-73ab-3ed7-ae2b923ca71a/8902894360005_cover.jpg/1000x1000bb.jpg",
+          "duration": 176,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1116449726",
+          "ytId": "",
+          "title": "Saadi Galli Aaja",
+          "artist": "Ayushmann Khurrana & Neeti Mohan",
+          "album": "Nautanki Saala! (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/cb/6b/d4/cb6bd4a6-ed30-f42c-3e91-cc06c8dfe426/8902894352635_cover.jpg/1000x1000bb.jpg",
+          "duration": 253,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "monali-thakur": {
+      "id": "monali-thakur",
+      "name": "Monali Thakur",
+      "monthlyListeners": "20,400,000",
+      "followersCount": "11,800,000",
+      "worldRank": "#6 National Award-Winning Vocalist",
+      "origin": "Kolkata, West Bengal, India",
+      "bio": "Monali Thakur is a National Film Award winner celebrated for timeless romantic classics like Moh Moh Ke Dhaage and Sawaar Loon.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/baf2fd45c36240e33c9fa5c81ee7bc82/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/baf2fd45c36240e33c9fa5c81ee7bc82/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/monalithakur/",
+        "x": "https://x.com/monalithakur",
+        "facebook": "https://www.facebook.com/monalithakur/",
+        "youtube": "https://www.youtube.com/@monalithakur"
+      },
+      "tourInfo": {
+        "tourName": "Monali Thakur Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1113025925",
+          "ytId": "",
+          "title": "Sawaar Loon",
+          "artist": "Monali Thakur & Amit Trivedi",
+          "album": "Lootera (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/27/40/28/2740286f-fa6e-23dc-cae2-8fbfb2ee3e1d/8902894353533_cover.jpg/1000x1000bb.jpg",
+          "duration": 255,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-965766879",
+          "ytId": "",
+          "title": "Moh Moh Ke Dhaage (Female Version)",
+          "artist": "Monali Thakur",
+          "album": "Dum Laga Ke Haisha (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/07/a4/47/07a447d8-aa89-cae1-14b0-8aa4bf8b6671/849486027190_cover.jpg/1000x1000bb.jpg",
+          "duration": 325,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1107014058",
+          "ytId": "",
+          "title": "Cham Cham",
+          "artist": "Meet Bros & Monali Thakur",
+          "album": "Baaghi (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/a4/6c/48/a46c48cb-fba0-dcc8-ab9c-7b5ccef9c25a/8902894357944_cover.jpg/1000x1000bb.jpg",
+          "duration": 261,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1753646748",
+          "ytId": "",
+          "title": "Haan Ke Haan",
+          "artist": "Sohail Sen, Monali Thakur & Kausar Munir",
+          "album": "Maharaj (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/3a/26/523a26f4-b611-baac-5167-fcb7b598317a/194548431461_cover.jpg/1000x1000bb.jpg",
+          "duration": 204,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1537030742",
+          "ytId": "",
+          "title": "Khwab Dekhe Sexy Lady",
+          "artist": "Neeraj Shridhar, Monali Thakur & Pritam",
+          "album": "Race (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/38/44/21/384421ca-69a0-83f2-0a34-88653d45db97/8901854001385.jpg/1000x1000bb.jpg",
+          "duration": 279,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1205913430",
+          "ytId": "",
+          "title": "Badri Ki Dulhania (Title Track)",
+          "artist": "Dev Negi, Neha Kakkar, Monali Thakur & Ikka",
+          "album": "Badrinath Ki Dulhania (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/7c/6e/e7/7c6ee7c8-c1f3-e40f-1ec7-7ff96d0776f8/8902894358804_cover.jpg/1000x1000bb.jpg",
+          "duration": 207,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1529537790",
+          "ytId": "",
+          "title": "Gur Nalon Ishq Mitha",
+          "artist": "Monali Thakur & Mickey Singh",
+          "album": "Lockdown",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9b/81/aa/9b81aad2-c96f-ffad-70ae-d42c740677ff/840780181380.png/1000x1000bb.jpg",
+          "duration": 179,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1537031274",
+          "ytId": "",
+          "title": "Zara Zara Touch Me",
+          "artist": "Monali Thakur, Earl Edgar & Pritam",
+          "album": "Race (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/38/44/21/384421ca-69a0-83f2-0a34-88653d45db97/8901854001385.jpg/1000x1000bb.jpg",
+          "duration": 286,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1695345221",
+          "ytId": "",
+          "title": "Raat Baaki",
+          "artist": "Meet Bros, Monali Thakur & Piyush Mehroliyaa",
+          "album": "Satyaprem Ki Katha (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5e/59/e2/5e59e2dc-b8a6-51e8-ceed-20d524617e53/8902894361996_cover.jpg/1000x1000bb.jpg",
+          "duration": 300,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-dholida-monali",
+          "ytId": "",
+          "title": "Dholida",
+          "artist": "Udit Narayan, Neha Kakkar, Palak Muchhal & Monali Thakur",
+          "album": "Loveyatri",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/df/e6/57/dfe6573c-74a6-cae7-c337-b4d081f21226/8902894358897_cover.jpg/1000x1000bb.jpg",
+          "duration": 236,
+          "plays": "890,000,000"
+        }
+      ]
+    },
+  "benny-dayal": {
+      "id": "benny-dayal",
+      "name": "Benny Dayal",
+      "monthlyListeners": "23,100,000",
+      "followersCount": "13,500,000",
+      "worldRank": "#2 High-Energy Dance Playback Vocalist",
+      "origin": "Abu Dhabi / Kerala, India",
+      "bio": "Benny Dayal is a dynamic playback singer known for high-octane blockbusters like Badtameez Dil and Oscar-winning Jai Ho.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/4f5cd00e45008050296c3845d153452f/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/4f5cd00e45008050296c3845d153452f/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/bennydayal/",
+        "x": "https://x.com/bennydayal",
+        "facebook": "https://www.facebook.com/bennydayal/",
+        "youtube": "https://www.youtube.com/@bennydayal"
+      },
+      "tourInfo": {
+        "tourName": "Benny Dayal Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-6830549173",
+          "ytId": "",
+          "title": "2K Ponnu",
+          "artist": "Siddhu Kumar, Benny Dayal & Mohan Rajan",
+          "album": "Nooru Kodi Vaanavil (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/90/53/80/90538098-e045-737a-9c87-7e6c969139de/cover.jpg/1000x1000bb.jpg",
+          "duration": 196,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1534551261",
+          "ytId": "",
+          "title": "Bang Bang",
+          "artist": "Benny Dayal, Neeti Mohan & Vishal & Shekhar",
+          "album": "Bang Bang (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/25/01/97/250197ec-0724-b228-4bb6-b2763b1892f7/8718857799191.png/1000x1000bb.jpg",
+          "duration": 320,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1070912803",
+          "ytId": "",
+          "title": "Badtameez Dil",
+          "artist": "Pritam, Benny Dayal & Shefali Alvares",
+          "album": "Yeh Jawaani Hai Deewani (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/1000x1000bb.jpg",
+          "duration": 253,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-905677027",
+          "ytId": "",
+          "title": "Choomantar",
+          "artist": "Aditi Singh Sharma & Benny Dayal",
+          "album": "Mere Brother Ki Dulhan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d4/e2/2c/d4e22cc4-e926-99a5-1606-ef68503fbb3a/849486017658_cover.jpg/1000x1000bb.jpg",
+          "duration": 261,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1536812186",
+          "ytId": "",
+          "title": "Lat Lag Gayee",
+          "artist": "Benny Dayal, Shalmali Kholgade & Pritam",
+          "album": "Race 2 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/07/79/f6/0779f68f-462f-e8d5-7de1-84ca6be69888/8901854022311.jpg/1000x1000bb.jpg",
+          "duration": 280,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1117322423",
+          "ytId": "",
+          "title": "Ek Main Aur Ekk Tu",
+          "artist": "Benny Dayal, Anushka Manchanda & Amit Trivedi",
+          "album": "Ek Main Aur Ekk Tu (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music60/v4/e7/05/fe/e705fee9-8b16-9dce-7788-5ed19082b767/8902894698320_cover.jpg/1000x1000bb.jpg",
+          "duration": 262,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1181809041",
+          "ytId": "",
+          "title": "Ude Dil Befikre",
+          "artist": "Vishal & Shekhar & Benny Dayal",
+          "album": "Befikre (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/61/24/d9/6124d942-9d43-7863-f402-c37d9fb8e491/849486075603_cover.jpg/1000x1000bb.jpg",
+          "duration": 233,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-887456984",
+          "ytId": "",
+          "title": "Lucky Tu Lucky Me",
+          "artist": "Sachin-Jigar, Benny Dayal, Anushka Manchanda & Varun Dhawan",
+          "album": "Humpty Sharma Ki Dulhania (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/24/a5/a4/24a5a4bf-5854-abf3-a834-845c0fef65c6/886444676540.jpg/1000x1000bb.jpg",
+          "duration": 203,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1721484798",
+          "ytId": "",
+          "title": "Sher Khul Gaye (From \"Fighter\")",
+          "artist": "Vishal & Shekhar, Benny Dayal, Shilpa Rao & Kumaar",
+          "album": "Sher Khul Gaye (From \"Fighter\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/37/15/15/371515a2-6688-3d3e-bc3a-2295ed843e8a/8903431975386_cover.jpg/1000x1000bb.jpg",
+          "duration": 180,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-6831665751",
+          "ytId": "",
+          "title": "Yenge Poveno Enn - Unplugged Vocals",
+          "artist": "Vijay Antony, Na. Muthukumar, Benny Dayal, Janaki Iyer & M. K. Balaji",
+          "album": "Angadi Theru - Unplugged Vocals - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/50/8f/29/508f293e-98b7-c786-48c6-0c8ef267dfd8/1200220451159.jpg/1000x1000bb.jpg",
+          "duration": 170,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "javed-ali": {
+      "id": "javed-ali",
+      "name": "Javed Ali",
+      "monthlyListeners": "28,900,000",
+      "followersCount": "17,100,000",
+      "worldRank": "#3 Classical & Sufi Playback Maestro",
+      "origin": "Delhi, India",
+      "bio": "Javed Ali is a celebrated Indian playback singer revered for soul-stirring Sufi and romantic masterpieces like Kun Faya Kun and Srivalli.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/e8ab3ac453bb1f4277472e4f52f050af/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/e8ab3ac453bb1f4277472e4f52f050af/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/javedali/",
+        "x": "https://x.com/javedali",
+        "facebook": "https://www.facebook.com/javedali/",
+        "youtube": "https://www.youtube.com/@javedali"
+      },
+      "tourInfo": {
+        "tourName": "Javed Ali Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-6830998101",
+          "ytId": "",
+          "title": "Dhola Ji",
+          "artist": "Shreya Ghoshal, Javed Ali & Swaroop Khan",
+          "album": "Suryaa (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7e/a6/4c/7ea64c6c-cd75-4b5f-2994-8624a333b818/8909024124513.png/1000x1000bb.jpg",
+          "duration": 319,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1133344521",
+          "ytId": "",
+          "title": "Guzarish",
+          "artist": "Javed Ali & Sonu Nigam",
+          "album": "Ghajini (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b1/2a/54/b12a5476-65db-75b9-be67-611bede2596e/8902894628464_cover.jpg/1000x1000bb.jpg",
+          "duration": 327,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1537961312",
+          "ytId": "",
+          "title": "Jashn-E-Bahaaraa",
+          "artist": "A.R. Rahman & Javed Ali",
+          "album": "Jodhaa Akbar (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/ad/89/25ad8924-f933-e7fd-a0aa-17305e14eb2d/886448872016.jpg/1000x1000bb.jpg",
+          "duration": 315,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1537450847",
+          "ytId": "",
+          "title": "Ek Din Teri Raahon",
+          "artist": "Javed Ali & Pritam",
+          "album": "Naqaab (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/10/a2/57/10a25797-446c-0ba4-a07b-0ac2c75f5175/8901854004355.jpg/1000x1000bb.jpg",
+          "duration": 292,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1123241921",
+          "ytId": "",
+          "title": "Kun Faya Kun",
+          "artist": "A.R. Rahman, Javed Ali & Mohit Chauhan",
+          "album": "Rockstar (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/ac/41/56ac41f7-99f3-3eae-3b07-443167292c4e/8902894697408_cover.jpg/1000x1000bb.jpg",
+          "duration": 471,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1600202634",
+          "ytId": "",
+          "title": "Srivalli (From \"Pushpa the Rise Part - 01\")",
+          "artist": "Javed Ali & Devi Sri Prasad",
+          "album": "Srivalli (From \"Pushpa the Rise Part - 01\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/88/6f/bd/886fbdc1-7ad7-7e3d-538e-da19319e05e0/8903431858658_cover.jpg/1000x1000bb.jpg",
+          "duration": 224,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1131692110",
+          "ytId": "",
+          "title": "Arziyan",
+          "artist": "Javed Ali & Kailash Kher",
+          "album": "Delhi-6 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e2/fe/21/e2fe21b6-50e6-7b4b-285a-d40394baba4e/8902894628990_cover.jpg/1000x1000bb.jpg",
+          "duration": 519,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1537029619",
+          "ytId": "",
+          "title": "Aa Jao Meri Tamanna",
+          "artist": "Javed Ali, JoJo & Pritam",
+          "album": "Ajab Prem Ki Ghazab Kahani (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/43/fb/d8/43fbd870-9a3b-ccd9-8866-2a2c6dc48287/8901854003792.jpg/1000x1000bb.jpg",
+          "duration": 246,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-656016091",
+          "ytId": "",
+          "title": "Tum Tak",
+          "artist": "A.R. Rahman, Javed Ali, Kirti Sagathia & Pooja AV",
+          "album": "Raanjhanaa (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9e/72/a0/9e72a0e7-eb6f-e576-47b1-2ae26a007dac/886444018869.jpg/1000x1000bb.jpg",
+          "duration": 304,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-673539855",
+          "ytId": "",
+          "title": "Kajra Re",
+          "artist": "Alisha Chinai, Javed Ali & Shankar Mahadevan",
+          "album": "Bunty Aur Babli (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4e/62/0c/4e620c19-8257-140d-37a6-8e81567d07a0/849486005846_cover.jpg/1000x1000bb.jpg",
+          "duration": 483,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "ankit-tiwari": {
+      "id": "ankit-tiwari",
+      "name": "Ankit Tiwari",
+      "monthlyListeners": "24,700,000",
+      "followersCount": "14,300,000",
+      "worldRank": "#9 Intense Romantic Composer",
+      "origin": "Kanpur, Uttar Pradesh, India",
+      "bio": "Ankit Tiwari is a Filmfare Award-winning composer and singer celebrated for poignant melodies like Sunn Raha Hai and Galliyan.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/cbbc4547f36c6dd2cf29019f26b15f4e/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/cbbc4547f36c6dd2cf29019f26b15f4e/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/ankittiwari/",
+        "x": "https://x.com/ankittiwari",
+        "facebook": "https://www.facebook.com/ankittiwari/",
+        "youtube": "https://www.youtube.com/@ankittiwari"
+      },
+      "tourInfo": {
+        "tourName": "Ankit Tiwari Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1074929861",
+          "ytId": "",
+          "title": "Katra Katra",
+          "artist": "Ankit Tiwari & Prakriti Kakar",
+          "album": "Alone (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music69/v4/43/aa/ea/43aaea84-4fe3-d91b-3dd2-919bc5f19854/8902894356695_cover.jpg/1000x1000bb.jpg",
+          "duration": 381,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-979467568",
+          "ytId": "",
+          "title": "Tu Jo Hain",
+          "artist": "Ankit Tiwari",
+          "album": "Mr. X (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0d/4d/76/0d4d7603-c480-377a-09b7-cd7684fb34f7/886445167931.jpg/1000x1000bb.jpg",
+          "duration": 295,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1111741439",
+          "ytId": "",
+          "title": "Galliyan",
+          "artist": "Ankit Tiwari",
+          "album": "Ek Villain (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4f/3b/0b/4f3b0b0c-45e2-18fa-83e0-61ef4a1a2fa4/8902894355872_cover.jpg/1000x1000bb.jpg",
+          "duration": 340,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1111829465",
+          "ytId": "",
+          "title": "Tu Hai Ki Nahi",
+          "artist": "Ankit Tiwari",
+          "album": "Roy (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e7/fb/65/e7fb6545-17e3-bb5f-ae1a-02895f26a0c5/8902894356688_cover.jpg/1000x1000bb.jpg",
+          "duration": 334,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1073359420",
+          "ytId": "",
+          "title": "Sunn Raha Hai",
+          "artist": "Ankit Tiwari",
+          "album": "Aashiqui 2 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg",
+          "duration": 390,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1634925905",
+          "ytId": "",
+          "title": "Shaamat (From \"Ek Villain Returns\")",
+          "artist": "Ankit Tiwari & Tara Sutaria",
+          "album": "Shaamat (From \"Ek Villain Returns\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/44/29/e2/4429e2a5-d078-b13d-10a7-1a2539178223/8903431889430_cover.jpg/1000x1000bb.jpg",
+          "duration": 334,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1842111674",
+          "ytId": "",
+          "title": "Sanam Teri Kasam",
+          "artist": "Himesh Reshammiya, Akasa, Ankit Tiwari & Palak Muchhal",
+          "album": "Sanam Teri Kasam (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/44/65/2a/44652a17-ed54-7224-ca3e-281a2f704412/196871079150.jpg/1000x1000bb.jpg",
+          "duration": 314,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1632899713",
+          "ytId": "",
+          "title": "Galliyan Returns (From \"Ek Villain Returns\")",
+          "artist": "Ankit Tiwari",
+          "album": "Galliyan Returns (From \"Ek Villain Returns\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e2/49/a3/e249a382-b509-b047-bfb3-84e8a55545b8/8903431885104_cover.jpg/1000x1000bb.jpg",
+          "duration": 350,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1527558394",
+          "ytId": "",
+          "title": "Tum Se Hi (From \"Sadak 2\")",
+          "artist": "Ankit Tiwari & Leena Bose",
+          "album": "Tum Se Hi (From \"Sadak 2\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/04/cb/2c/04cb2cc8-d2bd-d269-3163-d59019f25a8e/886448709657.jpg/1000x1000bb.jpg",
+          "duration": 283,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1111741447",
+          "ytId": "",
+          "title": "Galliyan (Unplugged)",
+          "artist": "Shraddha Kapoor & Ankit Tiwari",
+          "album": "Ek Villain (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4f/3b/0b/4f3b0b0c-45e2-18fa-83e0-61ef4a1a2fa4/8902894355872_cover.jpg/1000x1000bb.jpg",
+          "duration": 255,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "himesh-reshammiya": {
+      "id": "himesh-reshammiya",
+      "name": "Himesh Reshammiya",
+      "monthlyListeners": "31,200,000",
+      "followersCount": "19,500,000",
+      "worldRank": "#1 Blockbuster Composer & Hitmaker",
+      "origin": "Mumbai, Maharashtra, India",
+      "bio": "Himesh Reshammiya is a legendary Indian music director, singer, and producer whose high-energy signature style created history in Bollywood.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/ebe14d97dab66f23419984aefbd9bb2c/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/ebe14d97dab66f23419984aefbd9bb2c/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/himeshreshammiya/",
+        "x": "https://x.com/himeshreshammiya",
+        "facebook": "https://www.facebook.com/himeshreshammiya/",
+        "youtube": "https://www.youtube.com/@himeshreshammiya"
+      },
+      "tourInfo": {
+        "tourName": "Himesh Reshammiya Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1180500190",
+          "ytId": "",
+          "title": "Hookah Bar",
+          "artist": "Himesh Reshammiya, Vineet Singh & Aaman Trikha",
+          "album": "Khiladi 786 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/eb/3c/67/eb3c6723-4210-3c5e-5f47-6fc2de47892a/8902894351485_cover.jpg/1000x1000bb.jpg",
+          "duration": 254,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1136155157",
+          "ytId": "",
+          "title": "Jhalak Dikhlaja",
+          "artist": "Himesh Reshammiya",
+          "album": "Aksar (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music18/v4/0b/17/91/0b179147-e6d9-060d-c071-6b88718ce4b7/8902894600644_cover.jpg/1000x1000bb.jpg",
+          "duration": 318,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1138158297",
+          "ytId": "",
+          "title": "Aashiq Banaya Aapne",
+          "artist": "Himesh Reshammiya & Shreya Ghoshal",
+          "album": "Aashiq Banaya Aapne (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/85/7b/90/857b9025-8a2b-8d2f-17d0-25d38b6ed39a/8902894120081_cover.jpg/1000x1000bb.jpg",
+          "duration": 364,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1167411512",
+          "ytId": "",
+          "title": "Naam Hai Tera",
+          "artist": "Himesh Reshammiya",
+          "album": "Aap Kaa Surroor",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/9f/ba/f7/9fbaf786-cc99-3c66-76a5-798d4a271938/8902894153461_cover.jpg/1000x1000bb.jpg",
+          "duration": 292,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1167411511",
+          "ytId": "",
+          "title": "Tera Surroor",
+          "artist": "Himesh Reshammiya",
+          "album": "Aap Kaa Surroor",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/9f/ba/f7/9fbaf786-cc99-3c66-76a5-798d4a271938/8902894153461_cover.jpg/1000x1000bb.jpg",
+          "duration": 359,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1136696521",
+          "ytId": "",
+          "title": "Tera Mera Milna",
+          "artist": "Himesh Reshammiya & Shreya Ghoshal",
+          "album": "Aap Kaa Surroor (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music20/v4/c5/b4/67/c5b46704-bf1d-3db7-f5ad-618a6add1646/8902894621243_cover.jpg/1000x1000bb.jpg",
+          "duration": 351,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1136212141",
+          "ytId": "",
+          "title": "Mujhko Yaad Sataye Teri",
+          "artist": "Himesh Reshammiya",
+          "album": "Phir Hera Pheri (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/88/a8/1d/88a81d60-aa95-7be4-f694-0a643abe4c41/8902894601399_cover.jpg/1000x1000bb.jpg",
+          "duration": 279,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1136337131",
+          "ytId": "",
+          "title": "Afsana Banke Bhool Na Jaana",
+          "artist": "Himesh Reshammiya & Tulsi Kumar",
+          "album": "Dil Diya Hai (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music18/v4/92/27/a9/9227a928-2fce-ce40-3185-0a48df90a774/8902894601672_cover.jpg/1000x1000bb.jpg",
+          "duration": 324,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1536515234",
+          "ytId": "",
+          "title": "Aashiqui Mein Teri",
+          "artist": "Himesh Reshammiya & Sunidhi Chauhan",
+          "album": "36 China Town (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/aa/8a/87/aa8a8747-a8ff-5a42-f9c5-fe97d8969c54/8901854004133.jpg/1000x1000bb.jpg",
+          "duration": 294,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1136060651",
+          "ytId": "",
+          "title": "Jhoom Jhoom",
+          "artist": "Himesh Reshammiya",
+          "album": "Tom Dick And Harry (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music60/v4/c3/a5/e3/c3a5e31c-6299-38f8-6aec-5cbd667b2590/8902894120791_cover.jpg/1000x1000bb.jpg",
+          "duration": 369,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "sukhwinder-singh": {
+      "id": "sukhwinder-singh",
+      "name": "Sukhwinder Singh",
+      "monthlyListeners": "29,400,000",
+      "followersCount": "18,600,000",
+      "worldRank": "#1 Folk & High-Energy Playback Titan",
+      "origin": "Amritsar, Punjab, India",
+      "bio": "Sukhwinder Singh is an internationally acclaimed Indian singer whose thunderous vocals propelled Chaiyya Chaiyya and Academy Award-winning Jai Ho.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/51456e8b364dc5844ef47f8cfec70b0b/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/51456e8b364dc5844ef47f8cfec70b0b/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/sukhwindersingh/",
+        "x": "https://x.com/sukhwindersingh",
+        "facebook": "https://www.facebook.com/sukhwindersingh/",
+        "youtube": "https://www.youtube.com/@sukhwindersingh"
+      },
+      "tourInfo": {
+        "tourName": "Sukhwinder Singh Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1842071144",
+          "ytId": "",
+          "title": "Beedi",
+          "artist": "Vishal Bhardwaj, Sunidhi Chauhan, Sukhwinder Singh, Nachiketa Chakraborty & Clinton Cerejo",
+          "album": "Omkara (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ff/54/19/ff5419cf-966b-0c4d-ebca-5c466f1fb6cc/828970000123.jpg/1000x1000bb.jpg",
+          "duration": 350,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1115786561",
+          "ytId": "",
+          "title": "Lagan Lagi",
+          "artist": "Sukhwinder Singh",
+          "album": "Tere Naam (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/cb/8f/47/cb8f4723-8f20-1e1c-dcef-c8eb8ddf0663/8902894116473_cover.jpg/1000x1000bb.jpg",
+          "duration": 276,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1130322151",
+          "ytId": "",
+          "title": "Chaiyya Chaiyya",
+          "artist": "Sukhwinder Singh & Sapna Awasthi",
+          "album": "Dil Se (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/f8/85/8ef88544-a6c7-018b-0a75-dc3b6b024fa0/cover.jpg/1000x1000bb.jpg",
+          "duration": 407,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-673588780",
+          "ytId": "",
+          "title": "Dil Haara",
+          "artist": "Vishal & Shekhar & Sukhwinder Singh",
+          "album": "Tashan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2e/18/7f/2e187f10-7b65-79d6-3109-d23f8e6a81de/849486008120_cover.jpg/1000x1000bb.jpg",
+          "duration": 352,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1071192712",
+          "ytId": "",
+          "title": "Gallan Goodiyaan",
+          "artist": "Yashita Sharma, Manish Kumar Tipu, Farhan Akhtar, Shankar Mahadevan & Sukhwinder Singh",
+          "album": "Dil Dhadakne Do (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1c/f1/49/1cf149ad-2e46-cb6d-642c-4f7103b77dc8/8902894357036_cover.jpg/1000x1000bb.jpg",
+          "duration": 297,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1139112229",
+          "ytId": "",
+          "title": "Maahi Ve",
+          "artist": "Sukhwinder Singh & Richa Sharma",
+          "album": "Kaante (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b6/91/40/b69140e9-3abb-f19c-374f-a569aa278ba9/8902894115629_cover.jpg/1000x1000bb.jpg",
+          "duration": 363,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-6831150692",
+          "ytId": "",
+          "title": "Patli Patang Jehi Naram Kurhi",
+          "artist": "Sukhwinder Singh",
+          "album": "Roop De Pain Lishkare",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f3/3c/aa/f33caaa1-2b5d-3242-b3dc-0fc0cdb76f3a/cover.jpg/1000x1000bb.jpg",
+          "duration": 321,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-6831150676",
+          "ytId": "",
+          "title": "Main Gobhi Nu Lawan Tarhka",
+          "artist": "Sukhwinder Singh",
+          "album": "Roop De Pain Lishkare",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f3/3c/aa/f33caaa1-2b5d-3242-b3dc-0fc0cdb76f3a/cover.jpg/1000x1000bb.jpg",
+          "duration": 328,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-6831150681",
+          "ytId": "",
+          "title": "Roop De Pain Lishkare",
+          "artist": "Sukhwinder Singh",
+          "album": "Roop De Pain Lishkare",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f3/3c/aa/f33caaa1-2b5d-3242-b3dc-0fc0cdb76f3a/cover.jpg/1000x1000bb.jpg",
+          "duration": 345,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-6831150686",
+          "ytId": "",
+          "title": "Panj Patase Waran",
+          "artist": "Sukhwinder Singh",
+          "album": "Roop De Pain Lishkare",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f3/3c/aa/f33caaa1-2b5d-3242-b3dc-0fc0cdb76f3a/cover.jpg/1000x1000bb.jpg",
+          "duration": 237,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "daler-mehndi": {
+      "id": "daler-mehndi",
+      "name": "Daler Mehndi",
+      "monthlyListeners": "25,600,000",
+      "followersCount": "16,200,000",
+      "worldRank": "#1 Global Bhangra Ambassador",
+      "origin": "Patna, Bihar, India",
+      "bio": "Daler Mehndi is the pioneer of modern energetic Bhangra pop whose iconic anthem Tunak Tunak Tun broke worldwide cultural records.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/474beea6cce598a45d38d535ef9116bd/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/474beea6cce598a45d38d535ef9116bd/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/dalermehndi/",
+        "x": "https://x.com/dalermehndi",
+        "facebook": "https://www.facebook.com/dalermehndi/",
+        "youtube": "https://www.youtube.com/@dalermehndi"
+      },
+      "tourInfo": {
+        "tourName": "Daler Mehndi Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-604814341",
+          "ytId": "",
+          "title": "Tunak Tunak Tun",
+          "artist": "Daler Mehndi",
+          "album": "Tunak Tunak Tun",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fc/58/90/fc5890ed-f6ea-937f-c0f8-35d9fcce0f57/886443869547.jpg/1000x1000bb.jpg",
+          "duration": 303,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-604815014",
+          "ytId": "",
+          "title": "Bolo Ta Ra Ra",
+          "artist": "Daler Mehndi",
+          "album": "Bolo Ta Ra Ra",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music2/v4/04/7c/4f/047c4fdc-d4c7-a722-ff12-c1bec1e630b2/886443869578.jpg/1000x1000bb.jpg",
+          "duration": 313,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-604814532",
+          "ytId": "",
+          "title": "Ho Jayegi Balle Balle",
+          "artist": "Daler Mehndi",
+          "album": "Ho Jayegi Balle Balle",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/94/5a/98/945a9854-16b0-2303-b4f8-dbd71e1232ef/886443869561.jpg/1000x1000bb.jpg",
+          "duration": 290,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1773293714",
+          "ytId": "",
+          "title": "Na Na Na Na Na Re",
+          "artist": "Daler Mehndi, Gurdeep Mehndi, Anand-Milind & Sameer",
+          "album": "Vicky Vidya Ka Woh Wala Video (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/74/8d/86/748d8637-b41e-7651-5444-e17170edc100/8902894362412_cover.jpg/1000x1000bb.jpg",
+          "duration": 250,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-604814533",
+          "ytId": "",
+          "title": "Saade Dil Te Chhuriyan Chaliyan",
+          "artist": "Daler Mehndi",
+          "album": "Ho Jayegi Balle Balle",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/94/5a/98/945a9854-16b0-2303-b4f8-dbd71e1232ef/886443869561.jpg/1000x1000bb.jpg",
+          "duration": 193,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-316981880",
+          "ytId": "",
+          "title": "Rang De Basanti",
+          "artist": "A.R. Rahman, Daler Mehndi & K.S. Chithra",
+          "album": "Rang De Basanti (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/2c/6c/912c6c29-bbec-e560-0088-0cdd4201359a/888880944825.jpg/1000x1000bb.jpg",
+          "duration": 364,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1123075126",
+          "ytId": "",
+          "title": "Zor Ka Jhatka",
+          "artist": "Pritam, Daler Mehndi & Richa Sharma",
+          "album": "Action Replayy (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/33/c6/b7/33c6b7a6-b4a0-8d2d-a354-a840d12a0e04/8902894689656_cover.jpg/1000x1000bb.jpg",
+          "duration": 248,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-923777621",
+          "ytId": "",
+          "title": "Banthi Poola Janaki",
+          "artist": "Daler Mehndi & Ranina Reddy",
+          "album": "Baadshah (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f9/3d/a2/f93da293-d63e-dcd3-f218-94afb2c71dec/cover.jpg/1000x1000bb.jpg",
+          "duration": 273,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1529443465",
+          "ytId": "",
+          "title": "Jagga Jiteya",
+          "artist": "Daler Mehndi, Dee MC, Shashwat Sachdev & Kumaar",
+          "album": "Uri - The Surgical Strike (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/ba/10/11ba10a9-3580-f50f-073e-1671956a1d90/8718857674535.png/1000x1000bb.jpg",
+          "duration": 191,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1120807841",
+          "ytId": "",
+          "title": "Kudiyan Shaher Diyan",
+          "artist": "Daler Mehndi & Alka Yagnik",
+          "album": "Arjun Pandit (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music60/v4/49/bd/df/49bddf04-2f5e-82fb-e177-ecadcef4c902/8902894113113_cover.jpg/1000x1000bb.jpg",
+          "duration": 268,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "papon": {
+      "id": "papon",
+      "name": "Papon",
+      "monthlyListeners": "18,700,000",
+      "followersCount": "11,400,000",
+      "worldRank": "#4 Folk & Soulful Playback Icon",
+      "origin": "Guwahati, Assam, India",
+      "bio": "Angaraag Mahanta (Papon) is an Indian singer, composer, and record producer known for rich baritone folk-fusion and Bollywood hits.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/969fc2f7b1cf543eddae97bebe2e7935/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/969fc2f7b1cf543eddae97bebe2e7935/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/papon/",
+        "x": "https://x.com/papon",
+        "facebook": "https://www.facebook.com/papon/",
+        "youtube": "https://www.youtube.com/@papon"
+      },
+      "tourInfo": {
+        "tourName": "Papon Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-965766595",
+          "ytId": "",
+          "title": "Moh Moh Ke Dhaage (Male Version)",
+          "artist": "Papon",
+          "album": "Dum Laga Ke Haisha (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/07/a4/47/07a447d8-aa89-cae1-14b0-8aa4bf8b6671/849486027190_cover.jpg/1000x1000bb.jpg",
+          "duration": 325,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-996456910",
+          "ytId": "",
+          "title": "Humnava",
+          "artist": "Mithoon & Papon",
+          "album": "Hamari Adhuri Kahani (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/28/94/26/28942687-425c-d8d0-4284-3a54e4d1170b/886445273656.jpg/1000x1000bb.jpg",
+          "duration": 329,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1119070393",
+          "ytId": "",
+          "title": "Bulleya",
+          "artist": "Vishal & Shekhar & Papon",
+          "album": "Sultan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a8/81/9c/a8819cb4-c16f-d261-1d5a-cb10a4d053a4/849486057920_cover.jpg/1000x1000bb.jpg",
+          "duration": 357,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1122178120",
+          "ytId": "",
+          "title": "Jiyein Kyun",
+          "artist": "Pritam & Papon",
+          "album": "Dum Maaro Dum (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/91/9c/18/919c1814-d24a-1dcf-edda-d9ffdcd83e7c/8902894694599_cover.jpg/1000x1000bb.jpg",
+          "duration": 265,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-554641048",
+          "ytId": "",
+          "title": "Kyon",
+          "artist": "Papon, Sunidhi Chauhan & Pritam",
+          "album": "Barfi! (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5b/65/4a/5b654a60-886f-8bbf-2f39-5ea0dacb8022/886443625099.jpg/1000x1000bb.jpg",
+          "duration": 266,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-704793819",
+          "ytId": "",
+          "title": "Khumaar",
+          "artist": "Papon",
+          "album": "Coke Studio India Season 3: Episode 5",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/fa/44/a5/fa44a54f-1995-1271-80ce-a41c4ae34aea/886444222921.jpg/1000x1000bb.jpg",
+          "duration": 402,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1168269725",
+          "ytId": "",
+          "title": "Kaun Mera",
+          "artist": "Papon",
+          "album": "Bollywood Unplugged",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/7f/78/8e7f7817-9245-b50a-d63e-10acf3088928/8903431616166_cover.jpg/1000x1000bb.jpg",
+          "duration": 344,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-965766880",
+          "ytId": "",
+          "title": "Prem's Theme",
+          "artist": "Papon",
+          "album": "Dum Laga Ke Haisha (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/07/a4/47/07a447d8-aa89-cae1-14b0-8aa4bf8b6671/849486027190_cover.jpg/1000x1000bb.jpg",
+          "duration": 184,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1545930637",
+          "ytId": "",
+          "title": "Maula",
+          "artist": "Papon",
+          "album": "Maula - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c5/e2/f1/c5e2f198-df60-7d31-12d4-fab7149db5ab/195497840144.jpg/1000x1000bb.jpg",
+          "duration": 226,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1071856302",
+          "ytId": "",
+          "title": "Tu Jo Mila (Reprise)",
+          "artist": "Papon & Pritam",
+          "album": "Bajrangi Bhaijaan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/93/06/e6/9306e63e-5dc3-1b60-3488-1332bbfacfd7/8902894357128_cover.jpg/1000x1000bb.jpg",
+          "duration": 258,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "shankar-mahadevan": {
+      "id": "shankar-mahadevan",
+      "name": "Shankar Mahadevan",
+      "monthlyListeners": "33,800,000",
+      "followersCount": "20,900,000",
+      "worldRank": "#1 Virtuoso Composer & Playback Legend",
+      "origin": "Mumbai, Maharashtra, India",
+      "bio": "Shankar Mahadevan is a 5-time National Award-winning singer, composer, and part of the Shankar-Ehsaan-Loy trio, famed for the Breathless album.",
+      "banner": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Shankar_Mahadevan_01_%28cropped%29.jpg",
+      "avatar": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Shankar_Mahadevan_01_%28cropped%29.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/shankarmahadevan/",
+        "x": "https://x.com/shankarmahadevan",
+        "facebook": "https://www.facebook.com/shankarmahadevan/",
+        "youtube": "https://www.youtube.com/@shankarmahadevan"
+      },
+      "tourInfo": {
+        "tourName": "Shankar Mahadevan Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-6831665563",
+          "ytId": "",
+          "title": "Hey Baby - Unplugged Vocals",
+          "artist": "Yuvan Shankar Raja, Snehan & Shankar Mahadevan",
+          "album": "Aegan - Unplugged Vocals - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a7/be/28/a7be28c6-2cd1-7f6f-4cf7-8b4c0e31c830/1200220449194.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-6831666293",
+          "ytId": "",
+          "title": "Ada All Thotta Boopathi - Unplugged Vocals",
+          "artist": "Mani Sharma, Kabilan & Shankar Mahadevan",
+          "album": "Youth - Unplugged Vocals - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1e/8f/da/1e8fdabb-b14b-e3cc-b7b8-7f741ee699e5/1200220451128.jpg/1000x1000bb.jpg",
+          "duration": 295,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1086564393",
+          "ytId": "",
+          "title": "Shiv Tandav Stotram",
+          "artist": "Shankar Mahadevan",
+          "album": "Shiv Tandav Stotram - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/93/cc/db/93ccdb69-815f-7e02-4450-21a358166970/190374418898.jpg/1000x1000bb.jpg",
+          "duration": 553,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-300388928",
+          "ytId": "",
+          "title": "Maahi Ve",
+          "artist": "Shankar Ehsaan Loy, Shankar Mahadevan, Sadhana Sargam, Sujata Bhattacharya, Udit Narayan & Sonu Nigam",
+          "album": "Kal Ho Naa Ho (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fb/82/da/fb82dab1-d0cd-714c-000c-6450774fd5d4/888880945587.jpg/1000x1000bb.jpg",
+          "duration": 367,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1100612550",
+          "ytId": "",
+          "title": "Hanuman Chalisa",
+          "artist": "Shankar Mahadevan",
+          "album": "Hanuman Chalisa - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a9/d5/30/a9d530ba-92ec-66c5-6605-36eebd3abfc2/190374612364.jpg/1000x1000bb.jpg",
+          "duration": 554,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1364238251",
+          "ytId": "",
+          "title": "Breathless",
+          "artist": "Shankar Mahadevan",
+          "album": "Breathless",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/b1/f6/8b/b1f68bfa-dd23-d463-8482-83270c3bbe0d/191773324018.jpg/1000x1000bb.jpg",
+          "duration": 186,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-293939865",
+          "ytId": "",
+          "title": "Desi Girl",
+          "artist": "Shankar Mahadevan, Vishal & Shekhar, Vishal Dadlani & Sunidhi Chauhan",
+          "album": "Dostana (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c6/9b/79/c69b795c-b12a-00c2-e520-7699cdc59b94/888880739896.jpg/1000x1000bb.jpg",
+          "duration": 307,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1133350965",
+          "ytId": "",
+          "title": "Tere Naina",
+          "artist": "Shankar Mahadevan & Shreya Ghoshal",
+          "album": "Chandni Chowk To China (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/74/f2/ab/74f2abb3-245a-62d2-2869-895e8c37fc3b/8902894628532_cover.jpg/1000x1000bb.jpg",
+          "duration": 256,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-maa-sm",
+          "ytId": "",
+          "title": "Maa",
+          "artist": "Shankar Mahadevan",
+          "album": "Taare Zameen Par",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/74/6a/d0/746ad0f2-b883-fa51-fa7b-d181c9c824c6/8902894354257_cover.jpg/1000x1000bb.jpg",
+          "duration": 314,
+          "plays": "910,000,000"
+        },
+        {
+          "id": "itunes-kajra-re-sm",
+          "ytId": "",
+          "title": "Kajra Re",
+          "artist": "Alisha Chinai, Shankar Mahadevan & Javed Ali",
+          "album": "Bunty Aur Babli",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/44/1a/0b/441a0b9e-64d6-8488-fc87-fc085a6878c7/8902894352130_cover.jpg/1000x1000bb.jpg",
+          "duration": 482,
+          "plays": "880,000,000"
+        }
+      ]
+    },
+  "pankaj-udhas": {
+      "id": "pankaj-udhas",
+      "name": "Pankaj Udhas",
+      "monthlyListeners": "21,500,000",
+      "followersCount": "13,800,000",
+      "worldRank": "#1 Ghazal Maestro",
+      "origin": "Jetpur, Gujarat, India",
+      "bio": "Pankaj Udhas was an iconic Indian ghazal singer whose velvety voice gave the world timeless emotional treasures like Chitthi Aayi Hai.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/b7fd519cd5d4f2598dc1a90c50311da6/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/b7fd519cd5d4f2598dc1a90c50311da6/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/pankajudhas/",
+        "x": "https://x.com/pankajudhas",
+        "facebook": "https://www.facebook.com/pankajudhas/",
+        "youtube": "https://www.youtube.com/@pankajudhas"
+      },
+      "tourInfo": {
+        "tourName": "Pankaj Udhas Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1337252076",
+          "ytId": "",
+          "title": "Chitthi Aai Hai",
+          "artist": "Pankaj Udhas",
+          "album": "Naam (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/29/3a/2b/293a2b62-5308-0d23-3342-c94b27ccb0fe/191773199951.jpg/1000x1000bb.jpg",
+          "duration": 434,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-705046418",
+          "ytId": "",
+          "title": "Thodi Thodi Piya Karo",
+          "artist": "Pankaj Udhas",
+          "album": "Aafreen Vol. 2",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/29/70/14/2970147a-2592-db5f-2119-f233c18e96e7/00602498253793_Cover.jpg/1000x1000bb.jpg",
+          "duration": 385,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-705311696",
+          "ytId": "",
+          "title": "Ek Taraf Uska Ghar",
+          "artist": "Pankaj Udhas",
+          "album": "Na-Yaab",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/cf/d1/51/cfd151b8-e177-05d2-be7e-b9304483c1c0/00602498253410_Cover.jpg/1000x1000bb.jpg",
+          "duration": 497,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1443845422",
+          "ytId": "",
+          "title": "Chandi Jaisa Rang (Live in India)",
+          "artist": "Pankaj Udhas",
+          "album": "Hothon Se Chhu Lo Tum",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/a6/16/42/a6164254-1bac-b3f0-1430-171598cb8862/00602527959665.rgb.jpg/1000x1000bb.jpg",
+          "duration": 400,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1125936997",
+          "ytId": "",
+          "title": "Chhupana Bhi Nahin Aata",
+          "artist": "Pankaj Udhas",
+          "album": "Baazigar (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/35/29/aa/3529aae9-0f02-8c08-3fb7-2713553fcae4/cover.jpg/1000x1000bb.jpg",
+          "duration": 322,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1128665306",
+          "ytId": "",
+          "title": "Na Kajare Ki Dhar",
+          "artist": "Pankaj Udhas & Sadhana Sargam",
+          "album": "Mohra (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/6f/3c/65/6f3c65a3-dee7-9977-574f-8d5e604774aa/cover.jpg/1000x1000bb.jpg",
+          "duration": 324,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-705391479",
+          "ytId": "",
+          "title": "Niklo Na Benaqab",
+          "artist": "Pankaj Udhas",
+          "album": "Na-Yaab Vol. 1",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/95/f7/54/95f75433-3c08-03e6-8d20-299e69b05c66/00602498253380_Cover.jpg/1000x1000bb.jpg",
+          "duration": 434,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1127723532",
+          "ytId": "",
+          "title": "Jeeye to Jeeye Kaise",
+          "artist": "Pankaj Udhas",
+          "album": "Saajan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/af/c9/3e/afc93e0c-08e1-cc81-f549-a5fed7b95dd0/cover.jpg/1000x1000bb.jpg",
+          "duration": 210,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-705463085",
+          "ytId": "",
+          "title": "Deewaron Se Milkar Rona",
+          "artist": "Pankaj Udhas",
+          "album": "Mu-Kar-Rar",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/eb/3f/59/eb3f5999-0dff-e529-3ae6-d948a4c97aab/00602498252543_Cover.jpg/1000x1000bb.jpg",
+          "duration": 346,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1443845437",
+          "ytId": "",
+          "title": "Ghungroo Toot Gaye",
+          "artist": "Pankaj Udhas",
+          "album": "Hothon Se Chhu Lo Tum",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/a6/16/42/a6164254-1bac-b3f0-1430-171598cb8862/00602527959665.rgb.jpg/1000x1000bb.jpg",
+          "duration": 383,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "manna-dey": {
+      "id": "manna-dey",
+      "name": "Manna Dey",
+      "monthlyListeners": "27,100,000",
+      "followersCount": "16,500,000",
+      "worldRank": "#1 Golden Era Classical Titan",
+      "origin": "Kolkata, West Bengal, India",
+      "bio": "Prabodh Chandra Dey (Manna Dey) was a towering Indian playback legend whose classical mastery enriched Indian cinema for five decades.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/9c991bc274b15f07c59afd2f5427122c/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/9c991bc274b15f07c59afd2f5427122c/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/mannadey/",
+        "x": "https://x.com/mannadey",
+        "facebook": "https://www.facebook.com/mannadey/",
+        "youtube": "https://www.youtube.com/@mannadey"
+      },
+      "tourInfo": {
+        "tourName": "Manna Dey Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1366581555",
+          "ytId": "",
+          "title": "Yeh Raat Bheegi Bheegi",
+          "artist": "Manna Dey & Lata Mangeshkar",
+          "album": "Chori Chori (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c8/16/0b/c8160bb8-b1d6-c3c1-b02f-38cd8915cd27/191773202156.jpg/1000x1000bb.jpg",
+          "duration": 270,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1337291668",
+          "ytId": "",
+          "title": "Ae Mere Zohra Jabeen",
+          "artist": "Manna Dey & Sahir Ludhianvi",
+          "album": "Waqt (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/43/b1/8e/43b18e72-62a1-80ab-80b4-ea001ee2d312/191773203627.jpg/1000x1000bb.jpg",
+          "duration": 235,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1340799831",
+          "ytId": "",
+          "title": "Zindagi Kaisi Hai Paheli",
+          "artist": "Manna Dey",
+          "album": "Anand (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d8/18/f0/d818f09c-0055-551a-482f-b821399d3008/191773203825.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-932360560",
+          "ytId": "",
+          "title": "Laga Chunari Mein Daag",
+          "artist": "Manna Dey",
+          "album": "Dil Hi to Hai (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/52/59/0e/52590ee4-8f62-441b-11f1-10d87fc2d6b9/889176044038.jpg/1000x1000bb.jpg",
+          "duration": 388,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1366581562",
+          "ytId": "",
+          "title": "Aaja Sanam Madhur Chandni Men",
+          "artist": "Lata Mangeshkar & Manna Dey",
+          "album": "Chori Chori (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c8/16/0b/c8160bb8-b1d6-c3c1-b02f-38cd8915cd27/191773202156.jpg/1000x1000bb.jpg",
+          "duration": 266,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1366586037",
+          "ytId": "",
+          "title": "Kasme Wade Pyar Wafa",
+          "artist": "Manna Dey",
+          "album": "Upkar (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/10/bb/7d/10bb7d3e-00a9-89a6-0c16-719120283244/191773211028.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1327748226",
+          "ytId": "",
+          "title": "Tu Pyar Ka Sagar Hai",
+          "artist": "Manna Dey",
+          "album": "Seema (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/df/76/32/df7632f1-1e14-c8af-c836-b1d99e4533dc/191773201579.jpg/1000x1000bb.jpg",
+          "duration": 267,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1443485685",
+          "ytId": "",
+          "title": "Yeh Dosti Hum Nahin (Happy Version)",
+          "artist": "Kishore Kumar & Manna Dey",
+          "album": "Sholay (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ab/d9/7a/abd97a69-3c36-0763-0389-57ae8a8dac81/00044006490120.rgb.jpg/1000x1000bb.jpg",
+          "duration": 322,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1337337841",
+          "ytId": "",
+          "title": "Ek Chatur Naar",
+          "artist": "Kishore Kumar, Manna Dey & Mehmood",
+          "album": "Padosan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/6b/df/fc/6bdffce8-d759-0f31-73a0-13b094c47923/191773210649.jpg/1000x1000bb.jpg",
+          "duration": 381,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1355014737",
+          "ytId": "",
+          "title": "Pyar Hua Iqrar Hua (From \"Shree 420\")",
+          "artist": "Manna Dey & Lata Mangeshkar",
+          "album": "Diamonds Forever - Lata Mangeshkar",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/3a/02/2b/3a022bb9-e468-427b-319e-5679725c5f56/192562250228.jpg/1000x1000bb.jpg",
+          "duration": 260,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "harrdy-sandhu": {
+      "id": "harrdy-sandhu",
+      "name": "Harrdy Sandhu",
+      "monthlyListeners": "28,300,000",
+      "followersCount": "17,400,000",
+      "worldRank": "#2 Modern Punjabi Pop Star",
+      "origin": "Patiala, Punjab, India",
+      "bio": "Harrdy Sandhu is an Indian singer and actor behind record-smashing viral anthems like Bijlee Bijlee and Kya Baat Ay.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/738cdc5b00f71b067fb3e0b0fe52e783/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/738cdc5b00f71b067fb3e0b0fe52e783/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/harrdysandhu/",
+        "x": "https://x.com/harrdysandhu",
+        "facebook": "https://www.facebook.com/harrdysandhu/",
+        "youtube": "https://www.youtube.com/@harrdysandhu"
+      },
+      "tourInfo": {
+        "tourName": "Harrdy Sandhu Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1591442362",
+          "ytId": "",
+          "title": "Bijlee Bijlee",
+          "artist": "Harrdy Sandhu",
+          "album": "Bijlee Bijlee - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/30/b0/2c/30b02cdb-df2e-7f5f-f3d5-efa807b71608/21UM1IM31476.rgb.jpg/1000x1000bb.jpg",
+          "duration": 168,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1436966640",
+          "ytId": "",
+          "title": "Kya Baat Ay",
+          "artist": "Harrdy Sandhu",
+          "album": "Kya Baat Ay - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7c/e0/ac/7ce0ac29-c458-7256-0443-f5f7986ec76b/886447334706.jpg/1000x1000bb.jpg",
+          "duration": 179,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1318740998",
+          "ytId": "",
+          "title": "Naah",
+          "artist": "Harrdy Sandhu",
+          "album": "Naah - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bd/22/66/bd2266ab-1ce4-2cc6-3f9a-2ea9eef51c68/886446889634.jpg/1000x1000bb.jpg",
+          "duration": 190,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1659855548",
+          "ytId": "",
+          "title": "Kyaa Baat Haii 2.0",
+          "artist": "Harrdy Sandhu, Tanishk Bagchi & Nikhita Gandhi",
+          "album": "Govinda Naam Mera (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/df/a0/21/dfa0217c-d9a7-40f4-56ce-059075ab4bb5/196589771810.jpg/1000x1000bb.jpg",
+          "duration": 176,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1188705396",
+          "ytId": "",
+          "title": "Backbone",
+          "artist": "Harrdy Sandhu",
+          "album": "Backbone - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/64/0e/e2640e95-17c6-3924-8717-5cf87fceebc2/886446309828.jpg/1000x1000bb.jpg",
+          "duration": 175,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-6778309496",
+          "ytId": "",
+          "title": "VALLAH (From “Cocktail 2”)",
+          "artist": "Pritam, Bayanni, Harrdy Sandhu & Amitabh Bhattacharya",
+          "album": "VALLAH (From “Cocktail 2”) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c9/07/99/c90799ba-bfe3-1ce4-b5fb-f67fa0885df2/26UMGIM73142.rgb.jpg/1000x1000bb.jpg",
+          "duration": 194,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-6763062174",
+          "ytId": "",
+          "title": "WOW (From \"Hai Jawani Toh Ishq Hona Hai\")",
+          "artist": "Tanishk Bagchi, Harrdy Sandhu, Kiran Bajwa & Gill Machhrai",
+          "album": "WOW (From \"Hai Jawani Toh Ishq Hona Hai\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c6/bb/9d/c6bb9d38-cffc-6ca3-40a7-f9fdce93f8a5/8901854115686.jpg/1000x1000bb.jpg",
+          "duration": 162,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1529552938",
+          "ytId": "",
+          "title": "Chandigarh Mein",
+          "artist": "Badshah, Tanishk Bagchi, Harrdy Sandhu, Lisa Mishra & Asees Kaur",
+          "album": "Good Newwz (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/82/b5/23/82b523c3-4a0a-7c7d-8395-71c90b0515a1/840780180642.png/1000x1000bb.jpg",
+          "duration": 205,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1159385155",
+          "ytId": "",
+          "title": "Hornn Blow",
+          "artist": "Harrdy Sandhu & B. Praak",
+          "album": "Hornn Blow - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/90/5d/c2/905dc276-d6d1-16b9-7422-a167d605dff3/8903431617194_cover.jpg/1000x1000bb.jpg",
+          "duration": 146,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1158554778",
+          "ytId": "",
+          "title": "Soch",
+          "artist": "Harrdy Sandhu & B. Praak",
+          "album": "Soch - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ff/e3/bd/ffe3bdfa-ecaa-85ba-99d4-dd3c89b1c945/8902894354905_cover.jpg/1000x1000bb.jpg",
+          "duration": 347,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "ammy-virk": {
+      "id": "ammy-virk",
+      "name": "Ammy Virk",
+      "monthlyListeners": "26,500,000",
+      "followersCount": "16,100,000",
+      "worldRank": "#3 Punjabi Cinema & Melodic Star",
+      "origin": "Nabha, Punjab, India",
+      "bio": "Ammy Virk is a celebrated Punjabi singer and actor known for deeply emotive ballads like Qismat and Hath Chumme.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/9fe16f6f33ec30a63d504e0012de05bb/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/9fe16f6f33ec30a63d504e0012de05bb/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/ammyvirk/",
+        "x": "https://x.com/ammyvirk",
+        "facebook": "https://www.facebook.com/ammyvirk/",
+        "youtube": "https://www.youtube.com/@ammyvirk"
+      },
+      "tourInfo": {
+        "tourName": "Ammy Virk Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1639716081",
+          "ytId": "",
+          "title": "Haan Kargi",
+          "artist": "Ammy Virk",
+          "album": "Haan Kargi - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e4/ce/04/e4ce0470-e291-27b3-ac8d-2b158e2db268/3614598406013.jpg/1000x1000bb.jpg",
+          "duration": 236,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1463798836",
+          "ytId": "",
+          "title": "Wang Da Naap (feat. Sonam Bajwa)",
+          "artist": "Ammy Virk",
+          "album": "Wang Da Naap (feat. Sonam Bajwa) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/98/13/c5/9813c543-e0df-4224-da42-8cb8ebc66555/cover.jpg/1000x1000bb.jpg",
+          "duration": 159,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1418051735",
+          "ytId": "",
+          "title": "Qismat (feat. Sargun Mehta)",
+          "artist": "Ammy Virk",
+          "album": "Qismat - Single (feat. Sargun Mehta) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/44/b0/87/44b08790-5f24-b9a0-2204-7ac5215658d3/8902633272507.jpg/1000x1000bb.jpg",
+          "duration": 244,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1435448090",
+          "ytId": "",
+          "title": "Pasand Jatt Di (From \"Qismat\")",
+          "artist": "Sukh-E Muzical Doctorz & Ammy Virk",
+          "album": "Pasand Jatt Di (From \"Qismat\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/f2/72/b5/f272b5aa-8605-94b4-d05e-2355c730e204/8902633285866.jpg/1000x1000bb.jpg",
+          "duration": 195,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1650465469",
+          "ytId": "",
+          "title": "Chann Sitare (From \"Oye Makhna\")",
+          "artist": "Ammy Virk, Avvy Sra & Harmanjeet Singh",
+          "album": "Chann Sitare (From \"Oye Makhna\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/86/09/18860987-20be-4ceb-9903-e545620e1150/197187227402.jpg/1000x1000bb.jpg",
+          "duration": 187,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1593529272",
+          "ytId": "",
+          "title": "Dabde Ni",
+          "artist": "Ammy Virk",
+          "album": "Dabde Ni - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b3/c6/31/b3c63195-6428-debd-31d8-db9b0902f44e/192641870880_Cover.jpg/1000x1000bb.jpg",
+          "duration": 208,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1436374674",
+          "ytId": "",
+          "title": "Gallan Teriya (From \"Qismat\")",
+          "artist": "Ammy Virk & Neetu Bhalla",
+          "album": "Gallan Teriya (From \"Qismat\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/b8/50/a0/b850a0c1-0a00-945c-74c5-a8a9fd7bc57c/8902633286344.jpg/1000x1000bb.jpg",
+          "duration": 164,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1514738650",
+          "ytId": "",
+          "title": "Main Suneya",
+          "artist": "Ammy Virk",
+          "album": "Main Suneya - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/32/6f/20/326f20fd-af60-7848-182e-acf71e205fad/8903431775368_cover.jpg/1000x1000bb.jpg",
+          "duration": 249,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1875776734",
+          "ytId": "",
+          "title": "Angrej Tappe",
+          "artist": "Amrinder Gill & Ammy Virk",
+          "album": "Angrej (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8c/d8/49/8cd849c7-ee52-36b3-2b58-131ed4c7c643/25c525d5-bc0c-4ce5-a443-998c70a1bfee.jpg/1000x1000bb.jpg",
+          "duration": 222,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1829365067",
+          "ytId": "",
+          "title": "Nachi Teri Maa Naal (From \"Phaphey Kuttniyan\")",
+          "artist": "Ammy Virk, Kaptaan & Black Virus",
+          "album": "Nachi Teri Maa Naal (From \"Phaphey Kuttniyan\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4c/c8/29/4cc829d6-cb63-17d1-34be-6564e75eecdb/8902633370067.jpg/1000x1000bb.jpg",
+          "duration": 160,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "jassie-gill": {
+      "id": "jassie-gill",
+      "name": "Jassie Gill",
+      "monthlyListeners": "19,800,000",
+      "followersCount": "12,300,000",
+      "worldRank": "#6 Punjabi Romantic Sensation",
+      "origin": "Jandali, Punjab, India",
+      "bio": "Jassie Gill is a popular Indian singer and actor with top-charting Punjabi romantic hits like Guitar Sikhda and Nikle Currant.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/663d1f008e3d6dc2bf4854bab9a7f92d/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/663d1f008e3d6dc2bf4854bab9a7f92d/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/jassiegill/",
+        "x": "https://x.com/jassiegill",
+        "facebook": "https://www.facebook.com/jassiegill/",
+        "youtube": "https://www.youtube.com/@jassiegill"
+      },
+      "tourInfo": {
+        "tourName": "Jassie Gill Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1432591252",
+          "ytId": "",
+          "title": "Laden",
+          "artist": "Jassie Gill",
+          "album": "Replay",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/57/de/0b/57de0b6a-a2b3-d68b-f421-1e73dec8500b/8902633272743.jpg/1000x1000bb.jpg",
+          "duration": 193,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1432590509",
+          "ytId": "",
+          "title": "Bapu Zimidar",
+          "artist": "Jassie Gill",
+          "album": "Replay",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/57/de/0b/57de0b6a-a2b3-d68b-f421-1e73dec8500b/8902633272743.jpg/1000x1000bb.jpg",
+          "duration": 181,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1418050935",
+          "ytId": "",
+          "title": "Attt Karti",
+          "artist": "Jassie Gill",
+          "album": "Attt Karti - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/90/8a/b7/908ab78c-1d90-2c2a-e9d0-5ae07c841e5d/8902633266889.jpg/1000x1000bb.jpg",
+          "duration": 250,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1411493099",
+          "ytId": "",
+          "title": "Tru Talk (feat. Karan Aujla)",
+          "artist": "Jassie Gill",
+          "album": "Tru Talk (feat. Karan Aujla) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/fd/73/98/fd739896-b4df-c853-4991-0822c711a681/8902633284630.jpg/1000x1000bb.jpg",
+          "duration": 254,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1419845181",
+          "ytId": "",
+          "title": "Guitar Sikhda",
+          "artist": "Jassie Gill",
+          "album": "Guitar Sikhda - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/a5/c5/26/a5c5263b-8c87-4da3-37e1-0fdea5d29aa8/8902633275409.jpg/1000x1000bb.jpg",
+          "duration": 189,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1506933952",
+          "ytId": "",
+          "title": "Ehna Chauni aa",
+          "artist": "Jassie Gill",
+          "album": "Ehna Chauni aa - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/d3/42/64/d3426424-a9ae-d374-fc4c-25d0b6d19034/cover.jpg/1000x1000bb.jpg",
+          "duration": 199,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1438403347",
+          "ytId": "",
+          "title": "Nikle Currant",
+          "artist": "Jassie Gill & Neha Kakkar",
+          "album": "Nikle Currant - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/39/3f/f4/393ff4b0-a99a-6ace-12f3-9d1116e224dc/8903431696373_cover.jpg/1000x1000bb.jpg",
+          "duration": 213,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1794510972",
+          "ytId": "",
+          "title": "Lor Lor",
+          "artist": "Jassie Gill, Kartik Dev & Gaurav Dev",
+          "album": "Lor Lor - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/67/84/9f/67849f57-c8ab-20cc-0b21-8cf0f3b786fa/5034644447025.jpg/1000x1000bb.jpg",
+          "duration": 180,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1418052816",
+          "ytId": "",
+          "title": "Gabbroo",
+          "artist": "Jassie Gill",
+          "album": "Gabbroo - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/29/64/26/29642617-cba9-77f4-a2bc-e3a7ef4f5df2/8902633268845.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1483573401",
+          "ytId": "",
+          "title": "Aukaat (feat. Karan Aujla)",
+          "artist": "Jassie Gill",
+          "album": "Aukaat (feat. Karan Aujla) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/32/89/3a/32893a7b-13d7-ed2f-e9fc-0b78e43750b6/8902633299733.jpg/1000x1000bb.jpg",
+          "duration": 163,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "shubh": {
+      "id": "shubh",
+      "name": "Shubh",
+      "monthlyListeners": "34,200,000",
+      "followersCount": "21,700,000",
+      "worldRank": "#1 Global Punjabi Hip-Hop Chart-Topper",
+      "origin": "Punjab, India",
+      "bio": "Shubhneet Singh (Shubh) is an international Punjabi hip-hop artist whose viral tracks like No Love and Cheques topped global streaming charts.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/66c1e15679704beb01c912eb6668de14/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/66c1e15679704beb01c912eb6668de14/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/shubh/",
+        "x": "https://x.com/shubh",
+        "facebook": "https://www.facebook.com/shubh/",
+        "youtube": "https://www.youtube.com/@shubh"
+      },
+      "tourInfo": {
+        "tourName": "Shubh Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1687649562",
+          "ytId": "",
+          "title": "Cheques",
+          "artist": "Shubh",
+          "album": "Still Rollin",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dc/46/a9/dc46a9c9-794e-2d7a-1afb-97eb4ae0fff6/197188915704.jpg/1000x1000bb.jpg",
+          "duration": 184,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-6787955226",
+          "ytId": "",
+          "title": "Sohniye",
+          "artist": "Shubh",
+          "album": "Sohniye - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f8/b4/20/f8b42045-823f-7b77-5a1f-7772aca05527/820233965804.jpg/1000x1000bb.jpg",
+          "duration": 155,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1687649546",
+          "ytId": "",
+          "title": "Still Rollin",
+          "artist": "Shubh",
+          "album": "Still Rollin",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dc/46/a9/dc46a9c9-794e-2d7a-1afb-97eb4ae0fff6/197188915704.jpg/1000x1000bb.jpg",
+          "duration": 175,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1889868065",
+          "ytId": "",
+          "title": "Moves",
+          "artist": "Shubh",
+          "album": "Chapter IV - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6f/c0/58/6fc0580d-5cfc-0358-87f7-d7fe6c4bd001/820200882387.jpg/1000x1000bb.jpg",
+          "duration": 160,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1801914853",
+          "ytId": "",
+          "title": "Fell For You",
+          "artist": "Shubh",
+          "album": "Sicario",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/88/b4/da/88b4dacc-09a7-e57b-b861-31ec394bdf97/5021732610713.jpg/1000x1000bb.jpg",
+          "duration": 153,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1700735404",
+          "ytId": "",
+          "title": "One Love",
+          "artist": "Shubh",
+          "album": "One Love - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/48/4f/3c/484f3c19-fdab-1fa8-fdb4-c7de79852d12/197189603969.jpg/1000x1000bb.jpg",
+          "duration": 159,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1801915051",
+          "ytId": "",
+          "title": "Aura",
+          "artist": "Shubh",
+          "album": "Sicario",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/88/b4/da/88b4dacc-09a7-e57b-b861-31ec394bdf97/5021732610713.jpg/1000x1000bb.jpg",
+          "duration": 165,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1889868061",
+          "ytId": "",
+          "title": "Bounce",
+          "artist": "Shubh",
+          "album": "Chapter IV - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6f/c0/58/6fc0580d-5cfc-0358-87f7-d7fe6c4bd001/820200882387.jpg/1000x1000bb.jpg",
+          "duration": 143,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1635085707",
+          "ytId": "",
+          "title": "No Love",
+          "artist": "Shubh",
+          "album": "No Love - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/a7/b3/80/a7b380b9-9e29-1642-566e-d1ca4b920886/196776912972.jpg/1000x1000bb.jpg",
+          "duration": 170,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1721323022",
+          "ytId": "",
+          "title": "You and Me",
+          "artist": "Shubh",
+          "album": "Leo - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/b6/ed/05b6ed4c-ada8-01e2-965b-03b58801b836/197190670639.jpg/1000x1000bb.jpg",
+          "duration": 172,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "raftaar": {
+      "id": "raftaar",
+      "name": "Raftaar",
+      "monthlyListeners": "23,400,000",
+      "followersCount": "14,600,000",
+      "worldRank": "#2 Desi Hip-Hop Pioneer & Producer",
+      "origin": "Thiruvananthapuram / Delhi, India",
+      "bio": "Raftaar (Dilin Nair) is an Indian rapper, music composer, and producer known for explosive lyrical flow and Bollywood hits.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/29570d57452267a2a237c812e79fe8fe/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/29570d57452267a2a237c812e79fe8fe/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/raftaar/",
+        "x": "https://x.com/raftaar",
+        "facebook": "https://www.facebook.com/raftaar/",
+        "youtube": "https://www.youtube.com/@raftaar"
+      },
+      "tourInfo": {
+        "tourName": "Raftaar Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1158846623",
+          "ytId": "",
+          "title": "Toh Dishoom",
+          "artist": "Pritam, Raftaar, Shahid Mallya & Mayur Puri",
+          "album": "Dishoom (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/f4/37/b0/f437b090-8672-79a0-44e5-dcdb72babea2/8902894358231_cover.jpg/1000x1000bb.jpg",
+          "duration": 245,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1549668872",
+          "ytId": "",
+          "title": "Sheikh Chilli",
+          "artist": "Raftaar",
+          "album": "Sheikh Chilli - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/5c/32/9d/5c329d14-5df6-5a3f-2855-ef67e57028d6/cover.jpg/1000x1000bb.jpg",
+          "duration": 252,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1515907919",
+          "ytId": "",
+          "title": "Baby Marvake Maanegi",
+          "artist": "Raftaar",
+          "album": "Zero to Infinity",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/cf/72/32/cf723203-314e-ea58-bb3f-fe851e5f34ae/8718857670506.png/1000x1000bb.jpg",
+          "duration": 188,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1159600837",
+          "ytId": "",
+          "title": "All Black",
+          "artist": "Raftaar & Sukh-E Muzical Doctorz",
+          "album": "All Black - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/f6/73/ae/f673ae3f-cac0-0acd-05e3-8bab693f5a36/8903431609014_cover.jpg/1000x1000bb.jpg",
+          "duration": 218,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1592956489",
+          "ytId": "",
+          "title": "Ghana Kasoota (feat. Surbhi Jyoti)",
+          "artist": "Raftaar & Rashmeet Kaur",
+          "album": "Ghana Kasoota (feat. Surbhi Jyoti) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e5/2d/5e/e52d5e9e-a1c5-fdaf-8102-58ad44d2f735/886449712588.jpg/1000x1000bb.jpg",
+          "duration": 169,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1531116189",
+          "ytId": "",
+          "title": "Dhaakad",
+          "artist": "Pritam & Raftaar",
+          "album": "Dangal (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bd/3d/02/bd3d02ff-4ac6-7ca0-23a4-2a9afbcb2f14/840780161771.png/1000x1000bb.jpg",
+          "duration": 177,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1116073662",
+          "ytId": "",
+          "title": "Tamanche Pe Disco",
+          "artist": "Nindy Kaur & Raftaar",
+          "album": "Bullett Raja (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music30/v4/ab/e1/69/abe16972-2f82-39f1-5e67-1d240b4838df/8902894354820_cover.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1515908170",
+          "ytId": "",
+          "title": "Jean Teri",
+          "artist": "Jaz Dhami, Raftaar & Deep Kalsi",
+          "album": "Zero to Infinity",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/cf/72/32/cf723203-314e-ea58-bb3f-fe851e5f34ae/8718857670506.png/1000x1000bb.jpg",
+          "duration": 199,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1188255408",
+          "ytId": "",
+          "title": "Haseeno Ka Deewana",
+          "artist": "Raftaar & Payal Dev",
+          "album": "Kaabil (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music111/v4/dc/1f/ce/dc1fcec6-f100-103e-bc6f-125ce64d5a16/8903431632548_cover.jpg/1000x1000bb.jpg",
+          "duration": 229,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1698107471",
+          "ytId": "",
+          "title": "Pagglait",
+          "artist": "Amrita Singh, Raftaar & Arijit Singh",
+          "album": "Pagglait (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a6/89/aa/a689aab8-2d15-0f46-00b5-ac2c716c86af/197189419270.jpg/1000x1000bb.jpg",
+          "duration": 229,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "seedhe-maut": {
+      "id": "seedhe-maut",
+      "name": "Seedhe Maut",
+      "monthlyListeners": "18,900,000",
+      "followersCount": "12,100,000",
+      "worldRank": "#1 Cult Underground Hip-Hop Duo",
+      "origin": "New Delhi, India",
+      "bio": "Seedhe Maut (Calm & Encore ABJ) is the premier Indian hip-hop duo revered for complex rhymes and groundbreaking albums like Nayaab.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/dbd4cd0d5c2e3f1000b742542d3d7a07/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/dbd4cd0d5c2e3f1000b742542d3d7a07/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/seedhemaut/",
+        "x": "https://x.com/seedhemaut",
+        "facebook": "https://www.facebook.com/seedhemaut/",
+        "youtube": "https://www.youtube.com/@seedhemaut"
+      },
+      "tourInfo": {
+        "tourName": "Seedhe Maut Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1727150868",
+          "ytId": "",
+          "title": "Shaayar",
+          "artist": "Bharat Chauhan & Seedhe Maut",
+          "album": "Shaayar - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/02/47/31/024731b0-c7ff-571d-481e-f326e9f24b7b/197190997569.jpg/1000x1000bb.jpg",
+          "duration": 274,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1736450031",
+          "ytId": "",
+          "title": "Bajenge",
+          "artist": "Badshah & Seedhe Maut",
+          "album": "Ek Tha Raja",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a9/c7/32/a9c732cc-d880-1ee4-ff22-d01593ac6341/24UMGIM22464.rgb.jpg/1000x1000bb.jpg",
+          "duration": 220,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1804729505",
+          "ytId": "",
+          "title": "Shaktimaan",
+          "artist": "Seedhe Maut & Sez on the Beat",
+          "album": "Bayaan",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6e/a2/1b/6ea21b60-3155-9aac-fdd8-0579af266a1c/199066651063.jpg/1000x1000bb.jpg",
+          "duration": 186,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1531329664",
+          "ytId": "",
+          "title": "Roshni",
+          "artist": "Ritviz, Seedhe Maut & Sickflip",
+          "album": "Roshni - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/9b/02/9d/9b029d9e-cbb3-afcb-6c88-a3edced9d298/166.jpg/1000x1000bb.jpg",
+          "duration": 174,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1804709383",
+          "ytId": "",
+          "title": "Namastute",
+          "artist": "Seedhe Maut",
+          "album": "Namastute - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8c/3c/10/8c3c1016-be7e-666c-225d-00b671fb38e0/199066150108.jpg/1000x1000bb.jpg",
+          "duration": 120,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1804729826",
+          "ytId": "",
+          "title": "Dehshat",
+          "artist": "Seedhe Maut & Sez on the Beat",
+          "album": "Bayaan",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6e/a2/1b/6ea21b60-3155-9aac-fdd8-0579af266a1c/199066651063.jpg/1000x1000bb.jpg",
+          "duration": 176,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1804728381",
+          "ytId": "",
+          "title": "Do Guna",
+          "artist": "Seedhe Maut",
+          "album": "Do Guna - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/0e/25/970e25fb-cc26-5c75-615a-3521694f2c7f/199066647608.jpg/1000x1000bb.jpg",
+          "duration": 155,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1804729838",
+          "ytId": "",
+          "title": "Pankh (feat. Bawari Basanti)",
+          "artist": "Seedhe Maut & Sez on the Beat",
+          "album": "Bayaan",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6e/a2/1b/6ea21b60-3155-9aac-fdd8-0579af266a1c/199066651063.jpg/1000x1000bb.jpg",
+          "duration": 228,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1804729822",
+          "ytId": "",
+          "title": "Meri Baggi",
+          "artist": "Seedhe Maut & Sez on the Beat",
+          "album": "Bayaan",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6e/a2/1b/6ea21b60-3155-9aac-fdd8-0579af266a1c/199066651063.jpg/1000x1000bb.jpg",
+          "duration": 199,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1804733885",
+          "ytId": "",
+          "title": "Nafrat",
+          "artist": "Seedhe Maut & DJ SA",
+          "album": "न",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/01/86/13/018613ab-76b9-4442-b32d-53d9da2bc117/199066660614.jpg/1000x1000bb.jpg",
+          "duration": 164,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "krsna": {
+      "id": "krsna",
+      "name": "KR$NA",
+      "monthlyListeners": "20,500,000",
+      "followersCount": "13,700,000",
+      "worldRank": "#1 Lyrical Hip-Hop Titan",
+      "origin": "New Delhi, India",
+      "bio": "KR$NA (Krishna Kaul) is widely regarded as one of South Asia's finest lyrical rappers, famous for intricate multisyllabic rhymes.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/44dcd9d1d0be03a355c2d93c31bd8015/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/44dcd9d1d0be03a355c2d93c31bd8015/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/krsna/",
+        "x": "https://x.com/krsna",
+        "facebook": "https://www.facebook.com/krsna/",
+        "youtube": "https://www.youtube.com/@krsna"
+      },
+      "tourInfo": {
+        "tourName": "KR$NA Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1726345634",
+          "ytId": "",
+          "title": "Joota Japani",
+          "artist": "KR$NA, Mukesh, Shankar - Jaikishan & Shailendra",
+          "album": "Joota Japani - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/53/6e/3d/536e3d41-fe71-9b51-d242-239d3050d66a/197190909999.jpg/1000x1000bb.jpg",
+          "duration": 155,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-6776936956",
+          "ytId": "",
+          "title": "I Guess",
+          "artist": "KR$NA",
+          "album": "I Guess - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d2/5e/7e/d25e7e4c-f25d-3770-54ae-d89821b7b26c/3617052451949.jpg/1000x1000bb.jpg",
+          "duration": 186,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1548512720",
+          "ytId": "",
+          "title": "Saath Ya Khilaaf (feat. Raftaar)",
+          "artist": "KR$NA",
+          "album": "Saath Ya Khilaaf (feat. Raftaar) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d4/52/23/d4522397-25be-d7b3-e133-5c2cc9131def/cover.jpg/1000x1000bb.jpg",
+          "duration": 215,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1548512856",
+          "ytId": "",
+          "title": "Say My Name",
+          "artist": "KR$NA",
+          "album": "Say My Name - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8c/7e/0d/8c7e0d4b-404b-b012-33de-e112b5ef329b/cover.jpg/1000x1000bb.jpg",
+          "duration": 163,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-6806154033",
+          "ytId": "",
+          "title": "Woofer",
+          "artist": "Deep Kalsi & KR$NA",
+          "album": "Woofer - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/da/c6/8a/dac68a5e-f6ae-4b81-46fe-ede5bcd44647/810059348233.jpg/1000x1000bb.jpg",
+          "duration": 176,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1736450034",
+          "ytId": "",
+          "title": "Hola At Your Boy",
+          "artist": "Badshah, KR$NA & Prajina",
+          "album": "Ek Tha Raja",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a9/c7/32/a9c732cc-d880-1ee4-ff22-d01593ac6341/24UMGIM22464.rgb.jpg/1000x1000bb.jpg",
+          "duration": 173,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1554748412",
+          "ytId": "",
+          "title": "Maharani",
+          "artist": "KR$NA",
+          "album": "Maharani - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c6/f3/24/c6f324b3-8d38-744c-6715-3b0f133f4aba/cover.jpg/1000x1000bb.jpg",
+          "duration": 211,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1548552373",
+          "ytId": "",
+          "title": "No Loss",
+          "artist": "KR$NA",
+          "album": "No Loss - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/17/75/2b/17752b17-247e-f712-6a43-c170f2cd693b/cover.jpg/1000x1000bb.jpg",
+          "duration": 202,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1549668913",
+          "ytId": "",
+          "title": "Freeverse Feast",
+          "artist": "KR$NA",
+          "album": "Freeverse Feast - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4c/ef/c2/4cefc23c-ccb1-6b03-83fc-1fd482d923eb/cover.jpg/1000x1000bb.jpg",
+          "duration": 185,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1529533855",
+          "ytId": "",
+          "title": "Damn",
+          "artist": "Raftaar & KR$NA",
+          "album": "Mr. Nair",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d5/a3/d6/d5a3d681-6e77-6960-3177-1d0f23b5d78a/840780170094.png/1000x1000bb.jpg",
+          "duration": 214,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "emiway-bantai": {
+      "id": "emiway-bantai",
+      "name": "Emiway Bantai",
+      "monthlyListeners": "27,800,000",
+      "followersCount": "19,300,000",
+      "worldRank": "#1 Independent YouTube Rap Pioneer",
+      "origin": "Bengaluru / Mumbai, India",
+      "bio": "Emiway Bantai is an independent Indian rap powerhouse whose viral hits like Machayenge amassed billions of collective streams.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/38649dcc44b30112c3e15f57bc600bc3/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/38649dcc44b30112c3e15f57bc600bc3/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/emiwaybantai/",
+        "x": "https://x.com/emiwaybantai",
+        "facebook": "https://www.facebook.com/emiwaybantai/",
+        "youtube": "https://www.youtube.com/@emiwaybantai"
+      },
+      "tourInfo": {
+        "tourName": "Emiway Bantai Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1672404574",
+          "ytId": "",
+          "title": "Firse Machayenge",
+          "artist": "Emiway Bantai",
+          "album": "Firse Machayenge - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/35/1d/8f/351d8fd3-cac3-75bc-89dd-6d79f3584cb7/cover.jpg/1000x1000bb.jpg",
+          "duration": 207,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1672404361",
+          "ytId": "",
+          "title": "Machayenge",
+          "artist": "Emiway Bantai",
+          "album": "Machayenge - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/5b/db/e9/5bdbe939-92c8-df00-f942-2534813d0d06/cover.jpg/1000x1000bb.jpg",
+          "duration": 152,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-6818761082",
+          "ytId": "",
+          "title": "Choozay (From \"Udta Teer\")",
+          "artist": "Sachin-Jigar, Emiway Bantai, Jigar Saraiya & Amitabh Bhattacharya",
+          "album": "Choozay (From \"Udta Teer\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/28/55/59/285559d4-2dfb-7655-000c-c571e9a8c251/196874850442.jpg/1000x1000bb.jpg",
+          "duration": 205,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1622527441",
+          "ytId": "",
+          "title": "GRIND",
+          "artist": "Emiway Bantai",
+          "album": "Dhund Ke Dikha - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/5a/5e/3b/5a5e3bd0-a38c-f549-589f-f34895885850/cover.jpg/1000x1000bb.jpg",
+          "duration": 176,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1435082723",
+          "ytId": "",
+          "title": "Kadak Ban",
+          "artist": "Emiway Bantai",
+          "album": "Kadak Ban - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/05/0a/c1/050ac131-4adf-21c9-b6fc-487386d0a033/cover.jpg/1000x1000bb.jpg",
+          "duration": 135,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1480409723",
+          "ytId": "",
+          "title": "Lean On",
+          "artist": "Celina Sharma, Emiway Bantai",
+          "album": "Lean On - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/8c/fe/07/8cfe0784-37c9-4cf9-bd74-05a8ebb6a7eb/19UMGIM85358.rgb.jpg/1000x1000bb.jpg",
+          "duration": 169,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1760573086",
+          "ytId": "",
+          "title": "Bad Munda",
+          "artist": "Jass Manak & Emiway Bantai",
+          "album": "Bad Munda - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0d/2d/c4/0d2dc427-1bf3-3285-0076-7b232bc756d1/3616558841056.jpg/1000x1000bb.jpg",
+          "duration": 177,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1629387583",
+          "ytId": "",
+          "title": "Jhootha",
+          "artist": "Celina Sharma & Emiway Bantai",
+          "album": "Jhootha - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/d7/01/42/d701421c-4352-53ad-a584-84713e615bf2/cover.jpg/1000x1000bb.jpg",
+          "duration": 130,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1672405524",
+          "ytId": "",
+          "title": "Jallad",
+          "artist": "Emiway Bantai",
+          "album": "Jallad - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4e/30/08/4e30082c-d36a-17fe-3cc7-1a1c396c4b2b/cover.jpg/1000x1000bb.jpg",
+          "duration": 198,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1666776436",
+          "ytId": "",
+          "title": "Company",
+          "artist": "Emiway Bantai",
+          "album": "Company - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/1b/a0/4f/1ba04fa8-01ba-fff3-4ac2-0c4fda33f345/cover.jpg/1000x1000bb.jpg",
+          "duration": 222,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "s-janaki": {
+      "id": "s-janaki",
+      "name": "S. Janaki",
+      "monthlyListeners": "25,400,000",
+      "followersCount": "16,200,000",
+      "worldRank": "#1 The Nightingale of South India",
+      "origin": "Guntur, Andhra Pradesh, India",
+      "bio": "S. Janaki is a celebrated Indian playback singer who recorded thousands of beloved songs in Tamil, Telugu, Kannada, Malayalam, and Hindi.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/9a574b0ffd51ce37f3fa3e6556b77d7c/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/9a574b0ffd51ce37f3fa3e6556b77d7c/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/sjanaki/",
+        "x": "https://x.com/sjanaki",
+        "facebook": "https://www.facebook.com/sjanaki/",
+        "youtube": "https://www.youtube.com/@sjanaki"
+      },
+      "tourInfo": {
+        "tourName": "S. Janaki Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1742980317",
+          "ytId": "",
+          "title": "Kiliye Kiliye (Afrobeat Mix)",
+          "artist": "S. Janaki, Ilaiyaraaja & Poovachal Khader",
+          "album": "Kiliye Kiliye (Afrobeat Mix) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bd/bf/6a/bdbf6a73-6d57-b78f-2cfa-c71333e316d8/198391929243.jpg/1000x1000bb.jpg",
+          "duration": 91,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-944033265",
+          "ytId": "",
+          "title": "Aaskasham Enatido",
+          "artist": "S. Janaki",
+          "album": "Nereekshana (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/e2/7c/74/e27c7486-5e52-b132-64b9-de230966da03/cover.jpg/1000x1000bb.jpg",
+          "duration": 237,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-686349898",
+          "ytId": "",
+          "title": "Kaadhal Kaditham",
+          "artist": "Unni Menon & S. Janaki",
+          "album": "Jodi (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2c/8a/0a/2c8a0ae9-dea7-b9ad-3096-53fe066bc749/888002988683.jpg/1000x1000bb.jpg",
+          "duration": 297,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-928959771",
+          "ytId": "",
+          "title": "Om Namaha",
+          "artist": "S.P. Balasubrahmanyam & S. Janaki",
+          "album": "Geetanjali (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bf/e0/5d/bfe05dd4-06d0-2c83-169d-af0f1b994776/cover.jpg/1000x1000bb.jpg",
+          "duration": 244,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1729676140",
+          "ytId": "",
+          "title": "Thendral Vanthu Theendumbothu",
+          "artist": "Ilaiyaraaja, Vaalee, S. Janaki & Ganesh Manivannan",
+          "album": "Avatharam (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/06/2b/6c/062b6cf6-01bf-8d68-d45c-88b3108a1ea7/197338031896.jpg/1000x1000bb.jpg",
+          "duration": 318,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1554441988",
+          "ytId": "",
+          "title": "Per Vachaalum Vaikkaama (From \"Dikkiloona\")",
+          "artist": "Yuvan Shankar Raja, Ilaiyaraaja, Malaysia Vasudevan & S. Janaki",
+          "album": "Per Vachaalum Vaikkaama (From \"Dikkiloona\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/17/e9/cd/17e9cd02-33b1-8d96-4eb1-a8cf6860a0f9/886449107841.jpg/1000x1000bb.jpg",
+          "duration": 268,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1555845242",
+          "ytId": "",
+          "title": "Per Vachaalum Vaikkaama",
+          "artist": "Yuvan Shankar Raja, Ilaiyaraaja, Malaysia Vasudevan & S. Janaki",
+          "album": "Dikkiloona (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d7/93/9b/d7939b10-05a1-0e83-3d06-8dd368b7d9ea/886449129126.jpg/1000x1000bb.jpg",
+          "duration": 268,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-944037937",
+          "ytId": "",
+          "title": "Andalalo",
+          "artist": "S.P. Balasubrahmanyam & S. Janaki",
+          "album": "Jagadekaveerudu Athiloka Sundari (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/d9/8c/b5/d98cb5aa-2e98-fc29-d857-e8b37cc3e695/cover.jpg/1000x1000bb.jpg",
+          "duration": 301,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-935927770",
+          "ytId": "",
+          "title": "Malli Malli",
+          "artist": "S.P. Balasubrahmanyam & S. Janaki",
+          "album": "Rakshasudu (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/89/6b/83/896b83fc-3943-209c-787d-33b37e59ed10/cover.jpg/1000x1000bb.jpg",
+          "duration": 271,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1705875862",
+          "ytId": "",
+          "title": "Kanmani Anbodu Kadhalan",
+          "artist": "Ilaiyaraaja, Vaalee, Kamal Haasan & S. Janaki",
+          "album": "Guna (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2b/68/2d/2b682d33-ce4e-4bf2-a791-de4ac3143945/8904337223533.jpg/1000x1000bb.jpg",
+          "duration": 335,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "ilaiyaraaja": {
+      "id": "ilaiyaraaja",
+      "name": "Ilaiyaraaja",
+      "monthlyListeners": "35,600,000",
+      "followersCount": "24,100,000",
+      "worldRank": "#1 The Maestro of Indian Cinema",
+      "origin": "Pannaipuram, Tamil Nadu, India",
+      "bio": "Isaignani Ilaiyaraaja is a legendary Indian composer and arranger who pioneered the fusion of Western symphonic music with Indian folk traditions.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/aeeca2a4b9f808c8e8f5d281b1fb48d0/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/aeeca2a4b9f808c8e8f5d281b1fb48d0/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/ilaiyaraaja/",
+        "x": "https://x.com/ilaiyaraaja",
+        "facebook": "https://www.facebook.com/ilaiyaraaja/",
+        "youtube": "https://www.youtube.com/@ilaiyaraaja"
+      },
+      "tourInfo": {
+        "tourName": "Ilaiyaraaja Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-6806509777",
+          "ytId": "",
+          "title": "Muthumani (From \"Dorothy\")",
+          "artist": "Ilaiyaraaja & Shweta Mohan",
+          "album": "Muthumani (From \"Dorothy\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/56/7f/c7/567fc7f1-ed85-c8f8-46b2-3a8bf61752f6/196874735886.jpg/1000x1000bb.jpg",
+          "duration": 299,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1604857652",
+          "ytId": "",
+          "title": "Raja Raja Chozhan",
+          "artist": "Ilaiyaraaja & K. J. Yesudas",
+          "album": "Rettai Vaal Kuruvi (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cb/56/fe/cb56fe66-1781-d8c2-6078-3d491e18f931/886448543336.jpg/1000x1000bb.jpg",
+          "duration": 275,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1742980317",
+          "ytId": "",
+          "title": "Kiliye Kiliye (Afrobeat Mix)",
+          "artist": "S. Janaki, Ilaiyaraaja & Poovachal Khader",
+          "album": "Kiliye Kiliye (Afrobeat Mix) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bd/bf/6a/bdbf6a73-6d57-b78f-2cfa-c71333e316d8/198391929243.jpg/1000x1000bb.jpg",
+          "duration": 91,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1103794062",
+          "ytId": "",
+          "title": "Aye Zindagi Gale Lagaa Le",
+          "artist": "Ilaiyaraaja & Suresh Wadkar",
+          "album": "Sadma (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1e/1e/c5/1e1ec5db-edb9-679e-b2bd-c70b5ec28dad/dj.echdsjje.jpg/1000x1000bb.jpg",
+          "duration": 330,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1729751819",
+          "ytId": "",
+          "title": "Nilaave Vaa",
+          "artist": "Ilaiyaraaja, Vaalee & S.P. Balasubrahmanyam",
+          "album": "Mouna Ragam (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/92/0e/16/920e16ba-bcfe-8c82-d33b-b1e6d8196cb7/196871814256.jpg/1000x1000bb.jpg",
+          "duration": 277,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-951413029",
+          "ytId": "",
+          "title": "Ennai Thalatta Varuvala (Duet)",
+          "artist": "Ilaiyaraaja & Palani Bharathi",
+          "album": "Kadalukku Mariyadai (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/32/ee/38/32ee38ec-1fd4-fa31-5090-ba8006b1a547/845151000185.jpg/1000x1000bb.jpg",
+          "duration": 305,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-555753497",
+          "ytId": "",
+          "title": "Laayi Laayi",
+          "artist": "Ilaiyaraaja & Bela Shende",
+          "album": "Yeto Vellipoyindhi Manasu (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/65/fd/24/65fd24f2-9f94-d224-da9d-faa8ff92171d/886443595606.jpg/1000x1000bb.jpg",
+          "duration": 363,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1495294240",
+          "ytId": "",
+          "title": "Unna Nenachu",
+          "artist": "Ilaiyaraaja & Sid Sriram",
+          "album": "Psycho (Tamil) [Original Motion Picture Soundtrack]",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/ff/6c/53/ff6c5382-f250-d297-aa1c-275306b5ccd3/886448243434.jpg/1000x1000bb.jpg",
+          "duration": 276,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1606716634",
+          "ytId": "",
+          "title": "Valaiyosai",
+          "artist": "Ilaiyaraaja, S.P. Balasubrahmanyam & Lata Mangeshkar",
+          "album": "Sathya (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/6d/0a/9f/6d0a9f41-7d88-7d81-4b8c-fe42ee46bfa6/886449044788.jpg/1000x1000bb.jpg",
+          "duration": 275,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1729751827",
+          "ytId": "",
+          "title": "Mandram Vandha",
+          "artist": "Ilaiyaraaja, Vaalee & S.P. Balasubrahmanyam",
+          "album": "Mouna Ragam (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/92/0e/16/920e16ba-bcfe-8c82-d33b-b1e6d8196cb7/196871814256.jpg/1000x1000bb.jpg",
+          "duration": 287,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "m-m-keeravani": {
+      "id": "m-m-keeravani",
+      "name": "M.M. Keeravani",
+      "monthlyListeners": "31,500,000",
+      "followersCount": "19,800,000",
+      "worldRank": "#1 Oscar & Golden Globe-Winning Composer",
+      "origin": "Kovvur, Andhra Pradesh, India",
+      "bio": "M.M. Keeravani is an Academy Award-winning Indian composer celebrated globally for the explosive score of RRR and the Baahubali franchise.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/5d78a2351117fed4d9d9c564de968a7e/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/5d78a2351117fed4d9d9c564de968a7e/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/mmkeeravani/",
+        "x": "https://x.com/mmkeeravani",
+        "facebook": "https://www.facebook.com/mmkeeravani/",
+        "youtube": "https://www.youtube.com/@mmkeeravani"
+      },
+      "tourInfo": {
+        "tourName": "M.M. Keeravani Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1594544794",
+          "ytId": "",
+          "title": "Naatu Naatu (From \"RRR\")",
+          "artist": "Rahul Sipligunj, Kaala Bhairava & M.M. Keeravani",
+          "album": "Naatu Naatu (From \"RRR\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/dd/39/14/dd3914e5-a2f3-b355-51f3-9a1f0e3ca246/8903431853592_cover.jpg/1000x1000bb.jpg",
+          "duration": 214,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1853886297",
+          "ytId": "",
+          "title": "Rana Kumbha (From \"Varanasi\")",
+          "artist": "M.M. Keeravani, Aditya Iyengar & Chaitanya Prasad",
+          "album": "Rana Kumbha (From \"Varanasi\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/14/c8/8a14c8e1-4fb6-bbb8-4995-b31ce1f112da/8903431156709_cover.jpg/1000x1000bb.jpg",
+          "duration": 100,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1853581510",
+          "ytId": "",
+          "title": "The Arrival (From \"Varanasi\")",
+          "artist": "M.M. Keeravani",
+          "album": "The Arrival (From \"Varanasi\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1d/ea/69/1dea69fe-a1cd-c676-b125-b66db550e516/8903431156686_cover.jpg/1000x1000bb.jpg",
+          "duration": 202,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1851988371",
+          "ytId": "",
+          "title": "Globetrotter (From \"Varanasi\")",
+          "artist": "M.M. Keeravani, Shruti Haasan, Kaala Bhairava & Chaitanya Prasad",
+          "album": "Globetrotter (From \"Varanasi\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3a/ed/72/3aed721f-ca30-72a0-8ec2-62733a5f37d2/8903431148858_cover.jpg/1000x1000bb.jpg",
+          "duration": 215,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-925489821",
+          "ytId": "",
+          "title": "Dheera Dheera",
+          "artist": "M.M. Keeravani & Nikitha Nigam",
+          "album": "Magadheera (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/f6/26/81/f6268128-40ec-9db1-83ca-24a2c0c51d92/cover.jpg/1000x1000bb.jpg",
+          "duration": 290,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1579173354",
+          "ytId": "",
+          "title": "Dosti (From \"RRR\")",
+          "artist": "Hemachandra & M.M. Keeravani",
+          "album": "Dosti (From \"RRR\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/32/d3/0d/32d30d96-9cb2-807f-1b8d-69f7b77e4130/8903431821751_cover.jpg/1000x1000bb.jpg",
+          "duration": 340,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1602054632",
+          "ytId": "",
+          "title": "Komuram Bheemudo (From \"RRR\")",
+          "artist": "Kaala Bhairava & M.M. Keeravani",
+          "album": "Komuram Bheemudo (From \"RRR\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a9/f8/92/a9f892cd-6f28-a3da-ea07-8a849a71ad0e/8903431859501_cover.jpg/1000x1000bb.jpg",
+          "duration": 254,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1638966488",
+          "ytId": "",
+          "title": "Neetho Unte Chalu",
+          "artist": "M.M. Keeravani, Mohana Bhogaraju & Sandilya Pisapati",
+          "album": "Bimbisara (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/2d/75/10/2d7510bf-dfb7-ac4c-897a-ecea189ae9fb/196925516105.jpg/1000x1000bb.jpg",
+          "duration": 287,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-928964492",
+          "ytId": "",
+          "title": "Agni Skalana",
+          "artist": "M.M. Keeravani & Mathangi",
+          "album": "Chatrapathi (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/eb/42/7d/eb427df2-e7c2-38de-e404-b59f4eb0f7a1/cover.jpg/1000x1000bb.jpg",
+          "duration": 190,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-928964490",
+          "ytId": "",
+          "title": "A Vachi B Pai",
+          "artist": "M.M. Keeravani & Mathangi",
+          "album": "Chatrapathi (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/eb/42/7d/eb427df2-e7c2-38de-e404-b59f4eb0f7a1/cover.jpg/1000x1000bb.jpg",
+          "duration": 283,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "sanjith-hegde": {
+      "id": "sanjith-hegde",
+      "name": "Sanjith Hegde",
+      "monthlyListeners": "17,600,000",
+      "followersCount": "10,900,000",
+      "worldRank": "#1 Modern Kannada & South Indian Vocalist",
+      "origin": "Bengaluru, Karnataka, India",
+      "bio": "Sanjith Hegde is a young Indian singer known for soulful contemporary hits across Kannada, Tamil, Telugu, and indie music.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/d134d28ca5af4c7fd176f1ae5188c667/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/d134d28ca5af4c7fd176f1ae5188c667/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/sanjithhegde/",
+        "x": "https://x.com/sanjithhegde",
+        "facebook": "https://www.facebook.com/sanjithhegde/",
+        "youtube": "https://www.youtube.com/@sanjithhegde"
+      },
+      "tourInfo": {
+        "tourName": "Sanjith Hegde Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1775915242",
+          "ytId": "",
+          "title": "Mayavi (From \"Bhoomi 2024\")",
+          "artist": "Sonu Nigam, Sanjith Hegde & Nagarjun Sharma",
+          "album": "Mayavi (From \"Bhoomi 2024\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e9/aa/b0/e9aab029-16a4-74e6-0012-b082d5e59003/5034644211114.jpg/1000x1000bb.jpg",
+          "duration": 259,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1635017951",
+          "ytId": "",
+          "title": "Kesariya Rangu [From \"Brahmastra (Kannada)\"]",
+          "artist": "Pritam, Sanjith Hegde & Sid Sriram",
+          "album": "Kesariya Rangu [From \"Brahmastra (Kannada)\"] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ba/64/6b/ba646bb7-de48-9f1f-de3e-cc42a121a9c5/196589323620.jpg/1000x1000bb.jpg",
+          "duration": 278,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1855302854",
+          "ytId": "",
+          "title": "Rebel Saab (From \"The Rajasaab\") - TELUGU",
+          "artist": "S.S. Thaman, Sanjith Hegde, Blaaze & Ramajogayya Sastry",
+          "album": "Rebel Saab (From \"The Rajasaab\") - TELUGU - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0f/23/be/0f23be98-fcb1-88e5-9947-1049ae2d1be2/8903431157126_cover.jpg/1000x1000bb.jpg",
+          "duration": 221,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1750782610",
+          "ytId": "",
+          "title": "Nange Allava",
+          "artist": "Sanjith Hegde",
+          "album": "Nange Allava - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/53/f3/cf/53f3cf33-5429-f475-0eda-d8a1acc9b5c0/5021732404534.jpg/1000x1000bb.jpg",
+          "duration": 224,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1839215069",
+          "ytId": "",
+          "title": "Rajagadiki",
+          "artist": "Sanjith Hegde",
+          "album": "Little Hearts (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c4/3a/e5/c43ae524-184a-e167-7f18-874a3833b836/cover.jpg/1000x1000bb.jpg",
+          "duration": 203,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1715460512",
+          "ytId": "",
+          "title": "Dum Masala (From \"Guntur Kaaram\")",
+          "artist": "S.S. Thaman, Sanjith Hegde & Saraswati Putra Ramajogayya Sastry",
+          "album": "Dum Masala (From \"Guntur Kaaram\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/9c/35/b5/9c35b53a-3b3b-b8cb-6dc2-9955b18e47fa/cover.jpg/1000x1000bb.jpg",
+          "duration": 207,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1825325052",
+          "ytId": "",
+          "title": "Om Namo Bhagavate Vasudevaya",
+          "artist": "Sanjith Hegde & Vijay Prakash",
+          "album": "Mahavatar Narsimha (Hindi) [Original Motion Picture Soundtrack]",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fd/b7/e7/fdb7e742-e343-3d13-a22a-06759401db97/cover.jpg/1000x1000bb.jpg",
+          "duration": 217,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1731819657",
+          "ytId": "",
+          "title": "Ishq Tera",
+          "artist": "Sanjith Hegde, Shashwat Sachdev & Osho Jain",
+          "album": "Article 370 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/24/cc/a9/24cca9c4-6703-5710-788a-449de9390490/198391216206.jpg/1000x1000bb.jpg",
+          "duration": 226,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1636261021",
+          "ytId": "",
+          "title": "Adirindey (From \"Macherla Niyojakavargam\")",
+          "artist": "Sanjith Hegde & Mahati Swara Sagar",
+          "album": "Adirindey (From \"Macherla Niyojakavargam\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/a9/1a/03/a91a03b4-a687-41d9-4c4a-c030f0f9fccc/cover.jpg/1000x1000bb.jpg",
+          "duration": 219,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1849410238",
+          "ytId": "",
+          "title": "Baagundu Po",
+          "artist": "Sai Abhyankkar, Sanjith Hegde & Ramajogayya Sastry",
+          "album": "Dude (Telugu) [Original Motion Picture Soundtrack]",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/71/41/c7/7141c762-df8e-695f-20aa-dc68ee01ccf7/cover.jpg/1000x1000bb.jpg",
+          "duration": 236,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "santhosh-narayanan": {
+      "id": "santhosh-narayanan",
+      "name": "Santhosh Narayanan",
+      "monthlyListeners": "24,800,000",
+      "followersCount": "15,200,000",
+      "worldRank": "#3 Contemporary Tamil Fusion Composer",
+      "origin": "Tiruchirappalli, Tamil Nadu, India",
+      "bio": "Santhosh Narayanan is an innovative Indian music composer and producer known for eclectic instrumentation in modern Tamil cinema.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/74004fed94dddf9ae2d7c83084eaf1ad/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/74004fed94dddf9ae2d7c83084eaf1ad/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/santhoshnarayanan/",
+        "x": "https://x.com/santhoshnarayanan",
+        "facebook": "https://www.facebook.com/santhoshnarayanan/",
+        "youtube": "https://www.youtube.com/@santhoshnarayanan"
+      },
+      "tourInfo": {
+        "tourName": "Santhosh Narayanan Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-6831049088",
+          "ytId": "",
+          "title": "Raasaadhi Raasan",
+          "artist": "Sushin Shyam, Santhosh Narayanan & Rajpriyan",
+          "album": "Scene (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/00/1b/aa/001baa17-a536-88d8-4701-75f59672415f/196874970492.jpg/1000x1000bb.jpg",
+          "duration": 155,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1708577201",
+          "ytId": "",
+          "title": "Unakku Thaan (From \"Chithha\")",
+          "artist": "Santhosh Narayanan, Dhvani Kailas & Vivek",
+          "album": "Unakku Thaan (From \"Chithha\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ec/86/f5/ec86f55a-5719-c15e-10e8-1f0cdb36e0c6/cover.jpg/1000x1000bb.jpg",
+          "duration": 216,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1099809355",
+          "ytId": "",
+          "title": "Aval",
+          "artist": "Santhosh Narayanan, Pradeep & Priya Hemesh",
+          "album": "Manithan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/31/e0/96/31e09615-1179-f100-14cd-cfe26fa29bfd/886445846386.jpg/1000x1000bb.jpg",
+          "duration": 267,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1702588440",
+          "ytId": "",
+          "title": "Ennadi Maayavi Nee (From \"VadaChennai\")",
+          "artist": "Santhosh Narayanan, Vivek & Sid Sriram",
+          "album": "VadaChennai (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/cf/aa/33/cfaa33a6-7144-1e38-e7bb-5e5a226897bd/612508166173.jpg/1000x1000bb.jpg",
+          "duration": 251,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1121588786",
+          "ytId": "",
+          "title": "Ulagam Oruvanukka",
+          "artist": "Ananthu, Santhosh Narayanan & Gaana Bala",
+          "album": "Kabali (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e8/34/bd/e834bdd8-e0e9-d942-2e91-53f01157bd76/cover.jpg/1000x1000bb.jpg",
+          "duration": 243,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1749347867",
+          "ytId": "",
+          "title": "Enjoy Enjaami",
+          "artist": "Dhee, Arivu & Santhosh Narayanan",
+          "album": "Enjoy Enjaami - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cf/c5/9b/cfc59b20-dda2-e4a3-54db-e23ac7a55b80/cover.jpg/1000x1000bb.jpg",
+          "duration": 280,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1637220829",
+          "ytId": "",
+          "title": "Thenmozhi (From \"Thiruchitrambalam\")",
+          "artist": "Santhosh Narayanan & Anirudh Ravichander",
+          "album": "Thenmozhi (From \"Thiruchitrambalam\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/39/bc/e1/39bce1b3-f752-75e9-fb7e-60953266be4c/196925478762.jpg/1000x1000bb.jpg",
+          "duration": 173,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1571072699",
+          "ytId": "",
+          "title": "Rakita Rakita Rakita",
+          "artist": "Santhosh Narayanan, Dhanush & Dhee",
+          "album": "Jagame Thandhiram (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1b/8a/bf/1b8abfa9-149f-b270-7152-59a1b2945890/886449332212.jpg/1000x1000bb.jpg",
+          "duration": 247,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-937648069",
+          "ytId": "",
+          "title": "Endi Ippadi (From \"Enakkul Oruvan\")",
+          "artist": "Santhosh Narayanan",
+          "album": "I Love Santhosh Narayanan",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/07/17/32/0717322d-a5d4-89e9-1bb1-9f129950ef38/cover.jpg/1000x1000bb.jpg",
+          "duration": 229,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1609245166",
+          "ytId": "",
+          "title": "Naan Naan",
+          "artist": "Santhosh Narayanan",
+          "album": "Mahaan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1e/51/1e/1e511e98-ac18-a737-16d1-3a98e62604e1/886449921362.jpg/1000x1000bb.jpg",
+          "duration": 249,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "sushin-shyam": {
+      "id": "sushin-shyam",
+      "name": "Sushin Shyam",
+      "monthlyListeners": "22,400,000",
+      "followersCount": "13,900,000",
+      "worldRank": "#1 New-Wave Malayalam Hitmaker",
+      "origin": "Thalassery, Kerala, India",
+      "bio": "Sushin Shyam is a trendsetting music composer and singer behind modern Malayalam blockbusters like Aavesham and Kumbalangi Nights.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/6ba914ca28d2c5cc21dc3effa07c690d/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/6ba914ca28d2c5cc21dc3effa07c690d/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/sushinshyam/",
+        "x": "https://x.com/sushinshyam",
+        "facebook": "https://www.facebook.com/sushinshyam/",
+        "youtube": "https://www.youtube.com/@sushinshyam"
+      },
+      "tourInfo": {
+        "tourName": "Sushin Shyam Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-6831049201",
+          "ytId": "",
+          "title": "Scenuke Scene",
+          "artist": "Sushin Shyam & Vaasi",
+          "album": "Scene (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/00/1b/aa/001baa17-a536-88d8-4701-75f59672415f/196874970492.jpg/1000x1000bb.jpg",
+          "duration": 68,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-6827500447",
+          "ytId": "",
+          "title": "Respectaa (From \"Scene\")",
+          "artist": "Sushin Shyam, Arivu & Vaasi",
+          "album": "Respectaa (From \"Scene\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a9/ab/ce/a9abce76-6d24-b5ba-b748-db46a65e19cc/196874938546.jpg/1000x1000bb.jpg",
+          "duration": 125,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-6824494580",
+          "ytId": "",
+          "title": "Aeroplane (From \"Scene\")",
+          "artist": "Sushin Shyam, Gana Bala & Rajpriyan",
+          "album": "Aeroplane (From \"Scene\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/98/ad/7f/98ad7fe4-3193-ab5e-a3f2-b47089cd35f7/196874904015.jpg/1000x1000bb.jpg",
+          "duration": 147,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-6810231356",
+          "ytId": "",
+          "title": "Scenuke Scene (From \"Scene\")",
+          "artist": "Sushin Shyam & Vaasi",
+          "album": "Scenuke Scene (From \"Scene\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/92/24/29/9224299c-36df-14b4-9ea0-859a115f5cc5/196874767214.jpg/1000x1000bb.jpg",
+          "duration": 68,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-6831049088",
+          "ytId": "",
+          "title": "Raasaadhi Raasan",
+          "artist": "Sushin Shyam, Santhosh Narayanan & Rajpriyan",
+          "album": "Scene (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/00/1b/aa/001baa17-a536-88d8-4701-75f59672415f/196874970492.jpg/1000x1000bb.jpg",
+          "duration": 155,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-6831048834",
+          "ytId": "",
+          "title": "Aathi Iva Yarraa",
+          "artist": "Sushin Shyam & Rajpriyan",
+          "album": "Scene (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/00/1b/aa/001baa17-a536-88d8-4701-75f59672415f/196874970492.jpg/1000x1000bb.jpg",
+          "duration": 188,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-6831049077",
+          "ytId": "",
+          "title": "Respectaa",
+          "artist": "Sushin Shyam, Arivu & Vaasi",
+          "album": "Scene (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/00/1b/aa/001baa17-a536-88d8-4701-75f59672415f/196874970492.jpg/1000x1000bb.jpg",
+          "duration": 125,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-6831049199",
+          "ytId": "",
+          "title": "Kattam Katti Vaaraapla",
+          "artist": "Sushin Shyam & Vaasi",
+          "album": "Scene (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/00/1b/aa/001baa17-a536-88d8-4701-75f59672415f/196874970492.jpg/1000x1000bb.jpg",
+          "duration": 67,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-6831049100",
+          "ytId": "",
+          "title": "Kombendhi",
+          "artist": "Sushin Shyam & Kaber Vasuki",
+          "album": "Scene (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/00/1b/aa/001baa17-a536-88d8-4701-75f59672415f/196874970492.jpg/1000x1000bb.jpg",
+          "duration": 192,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-6831049196",
+          "ytId": "",
+          "title": "Hello",
+          "artist": "Sushin Shyam & Yung Raja",
+          "album": "Scene (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/00/1b/aa/001baa17-a536-88d8-4701-75f59672415f/196874970492.jpg/1000x1000bb.jpg",
+          "duration": 93,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "harris-jayaraj": {
+      "id": "harris-jayaraj",
+      "name": "Harris Jayaraj",
+      "monthlyListeners": "27,300,000",
+      "followersCount": "18,100,000",
+      "worldRank": "#2 Modern Tamil Melodic Virtuoso",
+      "origin": "Chennai, Tamil Nadu, India",
+      "bio": "Harris Jayaraj is an acclaimed Indian composer famous for lush electronic-acoustic melodies in Tamil and Telugu cinema.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/b10caf45eae518a2b16997874ded7143/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/b10caf45eae518a2b16997874ded7143/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/harrisjayaraj/",
+        "x": "https://x.com/harrisjayaraj",
+        "facebook": "https://www.facebook.com/harrisjayaraj/",
+        "youtube": "https://www.youtube.com/@harrisjayaraj"
+      },
+      "tourInfo": {
+        "tourName": "Harris Jayaraj Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-6831666259",
+          "ytId": "",
+          "title": "Chellame Chellame - Unplugged Vocals",
+          "artist": "Harris Jayaraj, Yugabharathi, Balram, Bombay Jayashri & Sunitha Sarathy",
+          "album": "Sathyam - Unplugged Vocals - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b7/40/36/b740363b-564d-7ba9-7a0d-9c61ffe042bb/1200220449125.jpg/1000x1000bb.jpg",
+          "duration": 250,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1686231303",
+          "ytId": "",
+          "title": "Unakkul Naane",
+          "artist": "Harris Jayaraj, Rohini, Pritt & dilushselva",
+          "album": "Unakkul Naane - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5d/90/a2/5d90a208-e124-40f1-acf7-caa06ed88a2b/5056495212478.jpg/1000x1000bb.jpg",
+          "duration": 128,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-414638693",
+          "ytId": "",
+          "title": "Ennamo Yeadho",
+          "artist": "Aalaap Raju, Prashanthini, Emcee Jesz, Sricharan & Harris Jayaraj",
+          "album": "Ko (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/50/e0/04/50e00466-3fba-9d19-3d09-2bb4b1804e72/884977894653.jpg/1000x1000bb.jpg",
+          "duration": 336,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1138258881",
+          "ytId": "",
+          "title": "Halena",
+          "artist": "Harris Jayaraj, Christopher Stanley, Abhay Jodhpurkar & Ujjayinee Roy",
+          "album": "Iru Mugan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1f/d0/65/1fd065b7-8f24-bcc2-fbde-38fc82e5d439/886446027913.jpg/1000x1000bb.jpg",
+          "duration": 288,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-954197284",
+          "ytId": "",
+          "title": "Mazhai Vara Pogudhae",
+          "artist": "Harris Jayaraj, Karthik & Emcee Jesz",
+          "album": "Yennai Arindhaal (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d5/55/1c/d5551c7c-f301-fbbf-daa0-d3a332c988f5/886445038651.jpg/1000x1000bb.jpg",
+          "duration": 343,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-299622550",
+          "ytId": "",
+          "title": "Monna Kanipinchavu",
+          "artist": "Harris Jayaraj, Naresh Iyer & Prashanthini",
+          "album": "Surya S/o Krishnan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5c/db/42/5cdb42bd-082d-966b-d3c3-0cc1e8e1cfb9/888880922182.jpg/1000x1000bb.jpg",
+          "duration": 332,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-954197286",
+          "ytId": "",
+          "title": "Unakkenna Venum Sollu",
+          "artist": "Harris Jayaraj, Benny Dayal & Mahathi",
+          "album": "Yennai Arindhaal (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d5/55/1c/d5551c7c-f301-fbbf-daa0-d3a332c988f5/886445038651.jpg/1000x1000bb.jpg",
+          "duration": 308,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-293940095",
+          "ytId": "",
+          "title": "Nenjukkul Peidhidum",
+          "artist": "Hariharan, Harris Jayaraj, Devan Ekambaram & V.V. Prassanna",
+          "album": "Vaaranam Aayiram (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0e/1b/c1/0e1bc194-973e-9e04-c8d9-b12cfbc71289/888880794635.jpg/1000x1000bb.jpg",
+          "duration": 369,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-299622533",
+          "ytId": "",
+          "title": "Yedhane Koiyakae",
+          "artist": "Harris Jayaraj, Krish, Benny Dayal & Bhargavi Pillai",
+          "album": "Surya S/o Krishnan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5c/db/42/5cdb42bd-082d-966b-d3c3-0cc1e8e1cfb9/888880922182.jpg/1000x1000bb.jpg",
+          "duration": 316,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-299622543",
+          "ytId": "",
+          "title": "Naaloney Pongaynu",
+          "artist": "Harris Jayaraj, Harish Raghavendra, V.V. Prassanna & Devan Ekambaram",
+          "album": "Surya S/o Krishnan (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5c/db/42/5cdb42bd-082d-966b-d3c3-0cc1e8e1cfb9/888880922182.jpg/1000x1000bb.jpg",
+          "duration": 373,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "newjeans": {
+      "id": "newjeans",
+      "name": "NewJeans",
+      "monthlyListeners": "26,800,000",
+      "followersCount": "18,400,000",
+      "worldRank": "#1 Gen-Z K-Pop Revolution",
+      "origin": "Seoul, South Korea",
+      "bio": "NewJeans is an acclaimed South Korean girl group that revolutionized modern K-pop with minimalist Y2K R&B aesthetics.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/0866c2c1d7d00879f5db46ddc1250db8/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/0866c2c1d7d00879f5db46ddc1250db8/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/newjeans/",
+        "x": "https://x.com/newjeans",
+        "facebook": "https://www.facebook.com/newjeans/",
+        "youtube": "https://www.youtube.com/@newjeans"
+      },
+      "tourInfo": {
+        "tourName": "NewJeans Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1657231962",
+          "ytId": "",
+          "title": "Ditto",
+          "artist": "NewJeans",
+          "album": "Ditto - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/f6/29/42/f629426e-92fe-535c-cbe4-76e70850819b/196922287107_Cover.jpg/1000x1000bb.jpg",
+          "duration": 186,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1692686265",
+          "ytId": "",
+          "title": "New Jeans",
+          "artist": "NewJeans",
+          "album": "NewJeans 'Super Shy' - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/63/e5/e2/63e5e2e4-829b-924d-a1dc-8058a1d69bd4/196922462702_Cover.jpg/1000x1000bb.jpg",
+          "duration": 109,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1750576834",
+          "ytId": "",
+          "title": "Supernatural",
+          "artist": "NewJeans",
+          "album": "Supernatural - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ab/ce/d6/abced6f6-2b90-c230-eb4b-e146734a3a22/196922907821_Cover.jpg/1000x1000bb.jpg",
+          "duration": 191,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1695951900",
+          "ytId": "",
+          "title": "ETA",
+          "artist": "NewJeans",
+          "album": "NewJeans 2nd EP 'Get Up'",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/4b/7e/d34b7e1e-af3b-43b6-2949-7a8c652a1bc9/196922462726_Cover.jpg/1000x1000bb.jpg",
+          "duration": 151,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1659513445",
+          "ytId": "",
+          "title": "OMG",
+          "artist": "NewJeans",
+          "album": "NewJeans 'OMG' - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/48/96/08/4896085e-b550-cb0a-3e5b-1f203521cb82/196922265464_Cover.jpg/1000x1000bb.jpg",
+          "duration": 212,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1695951897",
+          "ytId": "",
+          "title": "Super Shy",
+          "artist": "NewJeans",
+          "album": "NewJeans 2nd EP 'Get Up'",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/4b/7e/d34b7e1e-af3b-43b6-2949-7a8c652a1bc9/196922462726_Cover.jpg/1000x1000bb.jpg",
+          "duration": 155,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1744448416",
+          "ytId": "",
+          "title": "How Sweet",
+          "artist": "NewJeans",
+          "album": "How Sweet - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bf/68/ca/bf68ca64-4acd-543f-bc78-455f11f06105/196922889738_Cover.jpg/1000x1000bb.jpg",
+          "duration": 219,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1635469694",
+          "ytId": "",
+          "title": "Attention",
+          "artist": "NewJeans",
+          "album": "NewJeans 1st EP 'New Jeans'",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/4e/64/34/4e64344b-3ac6-c503-2c41-257a15401416/192641873096_Cover.jpg/1000x1000bb.jpg",
+          "duration": 180,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1635469851",
+          "ytId": "",
+          "title": "Hype Boy",
+          "artist": "NewJeans",
+          "album": "NewJeans 1st EP 'New Jeans'",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/4e/64/34/4e64344b-3ac6-c503-2c41-257a15401416/192641873096_Cover.jpg/1000x1000bb.jpg",
+          "duration": 179,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1695951905",
+          "ytId": "",
+          "title": "Cool With You",
+          "artist": "NewJeans",
+          "album": "NewJeans 2nd EP 'Get Up'",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/4b/7e/d34b7e1e-af3b-43b6-2949-7a8c652a1bc9/196922462726_Cover.jpg/1000x1000bb.jpg",
+          "duration": 148,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "marshmello": {
+      "id": "marshmello",
+      "name": "Marshmello",
+      "monthlyListeners": "48,700,000",
+      "followersCount": "35,600,000",
+      "worldRank": "#2 Electronic Pop Hitmaker",
+      "origin": "Philadelphia, Pennsylvania, USA",
+      "bio": "Marshmello is a multi-platinum electronic music producer and DJ renowned for upbeat pop collaborations and global hits.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/31daf06aa7034f829e2e1e7f855f2e60/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/31daf06aa7034f829e2e1e7f855f2e60/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/marshmello/",
+        "x": "https://x.com/marshmello",
+        "facebook": "https://www.facebook.com/marshmello/",
+        "youtube": "https://www.youtube.com/@marshmello"
+      },
+      "tourInfo": {
+        "tourName": "Marshmello Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1711849667",
+          "ytId": "",
+          "title": "Happier",
+          "artist": "Marshmello & Bastille",
+          "album": "Happier - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/e5/61/69/e561696f-40c5-19c1-ec6d-5b2dfaa919f2/21.jpg/1000x1000bb.jpg",
+          "duration": 214,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1110087159",
+          "ytId": "",
+          "title": "Alone",
+          "artist": "Marshmello",
+          "album": "Alone - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7e/be/33/7ebe3370-959a-94f7-77e2-c9e7fea9a4ed/859716988917_cover.jpg/1000x1000bb.jpg",
+          "duration": 274,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1776903154",
+          "ytId": "",
+          "title": "Here With Me (feat. CHVRCHES)",
+          "artist": "Marshmello",
+          "album": "Here With Me (feat. CHVRCHES) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/60/18/7f/60187f66-42da-aae6-8dc5-c98254986e4e/96.jpg/1000x1000bb.jpg",
+          "duration": 156,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1743575321",
+          "ytId": "",
+          "title": "Miles On It",
+          "artist": "Marshmello & Kane Brown",
+          "album": "Miles On It - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/5e/2d/165e2ddb-c596-8565-d86a-6231b4a911a6/196872075496.jpg/1000x1000bb.jpg",
+          "duration": 168,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1889655589",
+          "ytId": "",
+          "title": "Where We Go",
+          "artist": "Marshmello & Thomas Rhett",
+          "album": "Where We Go - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e4/b4/79/e4b47929-76a2-14b1-8629-36ff3746d04b/26UMGIM39599.rgb.jpg/1000x1000bb.jpg",
+          "duration": 196,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1268152499",
+          "ytId": "",
+          "title": "Silence (feat. Khalid)",
+          "artist": "Marshmello",
+          "album": "Silence (feat. Khalid) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/d5/43/2ed54360-4339-e96c-46a9-0b273e906762/886446681832.jpg/1000x1000bb.jpg",
+          "duration": 181,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1627354261",
+          "ytId": "",
+          "title": "Numb",
+          "artist": "Marshmello & Khalid",
+          "album": "Numb - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b8/89/cc/b889ccdd-ce21-16ce-beab-15c9d8fd1a51/196589226488.jpg/1000x1000bb.jpg",
+          "duration": 156,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1445055017",
+          "ytId": "",
+          "title": "Wolves",
+          "artist": "Selena Gomez & Marshmello",
+          "album": "Wolves - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3a/e5/12/3ae51282-a318-71d1-085f-f4d621de44e6/17UM1IM41679.rgb.jpg/1000x1000bb.jpg",
+          "duration": 198,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1829836409",
+          "ytId": "",
+          "title": "Holy Water",
+          "artist": "Marshmello & Jelly Roll",
+          "album": "Holy Water - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/02/ba/90/02ba9034-ea76-1e05-912c-7175832ee8e0/25UMGIM99610.rgb.jpg/1000x1000bb.jpg",
+          "duration": 150,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1789879640",
+          "ytId": "",
+          "title": "Slow Motion",
+          "artist": "Marshmello & Jonas Brothers",
+          "album": "Slow Motion - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/35/6c/cc/356ccceb-c850-e128-ae98-41850e056ddf/25UMGIM02040.rgb.jpg/1000x1000bb.jpg",
+          "duration": 152,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "dj-snake": {
+      "id": "dj-snake",
+      "name": "DJ Snake",
+      "monthlyListeners": "41,200,000",
+      "followersCount": "27,800,000",
+      "worldRank": "#3 Global Bass & Trap Maestro",
+      "origin": "Paris, France",
+      "bio": "DJ Snake is a Grammy-nominated French DJ and producer behind international mega-hits like Lean On, Let Me Love You, and Taki Taki.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/2dd77560a5b23c506f288010275073fb/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/2dd77560a5b23c506f288010275073fb/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/djsnake/",
+        "x": "https://x.com/djsnake",
+        "facebook": "https://www.facebook.com/djsnake/",
+        "youtube": "https://www.youtube.com/@djsnake"
+      },
+      "tourInfo": {
+        "tourName": "DJ Snake Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1444320814",
+          "ytId": "",
+          "title": "You Know You Like It",
+          "artist": "DJ Snake & AlunaGeorge",
+          "album": "You Know You Like It - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b9/b8/ca/b9b8ca59-12c2-b333-7a2b-77c5432fc36a/00602547066749.rgb.jpg/1000x1000bb.jpg",
+          "duration": 247,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1440867457",
+          "ytId": "",
+          "title": "Middle (feat. Bipolar Sunshine)",
+          "artist": "DJ Snake",
+          "album": "Encore",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/38/6d/64/386d64d2-c311-4ea5-0841-99658f6f7253/16UMGIM39232.rgb.jpg/1000x1000bb.jpg",
+          "duration": 221,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1694819214",
+          "ytId": "",
+          "title": "Lean On (feat. MØ)",
+          "artist": "Major Lazer & DJ Snake",
+          "album": "Peace Is The Mission",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b9/80/28/b98028a2-1567-1247-6813-d167ef8c99dd/653738277321_Cover.jpg/1000x1000bb.jpg",
+          "duration": 177,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1440867817",
+          "ytId": "",
+          "title": "Let Me Love You (feat. Justin Bieber)",
+          "artist": "DJ Snake",
+          "album": "Encore",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/38/6d/64/386d64d2-c311-4ea5-0841-99658f6f7253/16UMGIM39232.rgb.jpg/1000x1000bb.jpg",
+          "duration": 206,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-786489670",
+          "ytId": "",
+          "title": "Turn Down for What",
+          "artist": "DJ Snake & Lil Jon",
+          "album": "Turn Down for What - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/54/4a/6d/544a6dc7-8d93-a8fe-74cc-530f4c078620/886444410779.jpg/1000x1000bb.jpg",
+          "duration": 214,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1597970243",
+          "ytId": "",
+          "title": "U Are My High",
+          "artist": "DJ Snake & Future",
+          "album": "U Are My High - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/31/2b/24/312b2426-b2ba-9bdf-8cae-36f4dfff95b0/21UM1IM22398.rgb.jpg/1000x1000bb.jpg",
+          "duration": 211,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-898408997",
+          "ytId": "",
+          "title": "Get Low",
+          "artist": "Dillon Francis & DJ Snake",
+          "album": "Money Sucks, Friends Rule",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/36/93/33/36933300-8b4b-54e6-a769-86cf41224ae4/dj.wqaosoav.jpg/1000x1000bb.jpg",
+          "duration": 213,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1577658268",
+          "ytId": "",
+          "title": "You Are My High",
+          "artist": "DJ Snake",
+          "album": "You Are My High - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b1/a3/61/b1a3613f-ccb4-d03a-65e0-768e200d6a5b/21UMGIM66471.rgb.jpg/1000x1000bb.jpg",
+          "duration": 180,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1444277948",
+          "ytId": "",
+          "title": "A Different Way (feat. Lauv)",
+          "artist": "DJ Snake",
+          "album": "A Different Way (feat. Lauv) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/df/7e/a2/df7ea2e6-b2c9-e02b-cf50-f4b5c8c16c79/00602557980325.rgb.jpg/1000x1000bb.jpg",
+          "duration": 198,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1445024242",
+          "ytId": "",
+          "title": "Middle (feat. Bipolar Sunshine) [4B Remix]",
+          "artist": "DJ Snake",
+          "album": "Middle (feat. Bipolar Sunshine) [4B Remix] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0a/b8/6d/0ab86d04-0202-3380-98ee-d2178b5ca432/00602547904270.rgb.jpg/1000x1000bb.jpg",
+          "duration": 176,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "the-chainsmokers": {
+      "id": "the-chainsmokers",
+      "name": "The Chainsmokers",
+      "monthlyListeners": "46,100,000",
+      "followersCount": "33,500,000",
+      "worldRank": "#1 Electronic Pop Duo",
+      "origin": "New York City, USA",
+      "bio": "The Chainsmokers (Alex Pall & Drew Taggart) are an American DJ and production duo behind record-breaking classics like Closer.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/461231bf0a032d7b8b315e05d1b4bbd7/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/461231bf0a032d7b8b315e05d1b4bbd7/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/thechainsmokers/",
+        "x": "https://x.com/thechainsmokers",
+        "facebook": "https://www.facebook.com/thechainsmokers/",
+        "youtube": "https://www.youtube.com/@thechainsmokers"
+      },
+      "tourInfo": {
+        "tourName": "The Chainsmokers Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1170699703",
+          "ytId": "",
+          "title": "Closer (feat. Halsey)",
+          "artist": "The Chainsmokers",
+          "album": "Collage - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/41/f8/38/41f8380b-9b56-d5d4-31f7-a6411c0c9aaa/886446102054.jpg/1000x1000bb.jpg",
+          "duration": 246,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1050203620",
+          "ytId": "",
+          "title": "Roses (feat. ROZES)",
+          "artist": "The Chainsmokers",
+          "album": "Bouquet - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5e/5c/ea/5e5cead2-a482-48ef-8134-f725c2b49202/mzm.lydeceiv.jpg/1000x1000bb.jpg",
+          "duration": 226,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1170699706",
+          "ytId": "",
+          "title": "Don't Let Me Down (feat. Daya)",
+          "artist": "The Chainsmokers",
+          "album": "Collage - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/41/f8/38/41f8380b-9b56-d5d4-31f7-a6411c0c9aaa/886446102054.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1207120448",
+          "ytId": "",
+          "title": "Something Just Like This",
+          "artist": "The Chainsmokers & Coldplay",
+          "album": "Memories...Do Not Open",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9d/56/6f/9d566f55-5253-bed6-5c31-df952dae649d/886446379289.jpg/1000x1000bb.jpg",
+          "duration": 247,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1207120538",
+          "ytId": "",
+          "title": "Paris",
+          "artist": "The Chainsmokers",
+          "album": "Memories...Do Not Open",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9d/56/6f/9d566f55-5253-bed6-5c31-df952dae649d/886446379289.jpg/1000x1000bb.jpg",
+          "duration": 222,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1874015652",
+          "ytId": "",
+          "title": "ALL THE TIME",
+          "artist": "John Summit, The Chainsmokers & Ilsey",
+          "album": "CTRL ESCAPE",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3e/2a/b9/3e2ab937-0ea6-c02b-3c57-afe28f9aa2a2/198704984693_Cover.jpg/1000x1000bb.jpg",
+          "duration": 180,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1445725434",
+          "ytId": "",
+          "title": "This Feeling (feat. Kelsea Ballerini)",
+          "artist": "The Chainsmokers",
+          "album": "Sick Boy",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/63/24/e1/6324e131-0034-4753-9cc6-ade1da39a4a8/886447471074.jpg/1000x1000bb.jpg",
+          "duration": 198,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1489350663",
+          "ytId": "",
+          "title": "Call You Mine (feat. Bebe Rexha)",
+          "artist": "The Chainsmokers",
+          "album": "World War Joy",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/7c/54/aa7c54ad-35b0-fc35-caf5-07eaf30baca6/886448164586.jpg/1000x1000bb.jpg",
+          "duration": 218,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1170699702",
+          "ytId": "",
+          "title": "All We Know (feat. Phoebe Ryan)",
+          "artist": "The Chainsmokers",
+          "album": "Collage - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/41/f8/38/41f8380b-9b56-d5d4-31f7-a6411c0c9aaa/886446102054.jpg/1000x1000bb.jpg",
+          "duration": 194,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1445725437",
+          "ytId": "",
+          "title": "Hope (feat. Winona Oak)",
+          "artist": "The Chainsmokers",
+          "album": "Sick Boy",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/63/24/e1/6324e131-0034-4753-9cc6-ade1da39a4a8/886447471074.jpg/1000x1000bb.jpg",
+          "duration": 180,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "sam-smith": {
+      "id": "sam-smith",
+      "name": "Sam Smith",
+      "monthlyListeners": "49,200,000",
+      "followersCount": "34,900,000",
+      "worldRank": "#2 Soulful Pop Vocalist",
+      "origin": "London, United Kingdom",
+      "bio": "Sam Smith is an Oscar and 5-time Grammy Award-winning English singer known for soaring vocal delivery on hits like Stay With Me and Unholy.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/c0cbe1378f5b9f574b0b0482bb851470/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/c0cbe1378f5b9f574b0b0482bb851470/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/samsmith/",
+        "x": "https://x.com/samsmith",
+        "facebook": "https://www.facebook.com/samsmith/",
+        "youtube": "https://www.youtube.com/@samsmith"
+      },
+      "tourInfo": {
+        "tourName": "Sam Smith Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1536646948",
+          "ytId": "",
+          "title": "Too Good at Goodbyes",
+          "artist": "Sam Smith",
+          "album": "The Thrill of It All (Special Video Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/ee/26/c7ee26a6-8b1e-c224-4872-bb5df0614e64/17UM1IM18858.rgb.jpg/1000x1000bb.jpg",
+          "duration": 201,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1440814843",
+          "ytId": "",
+          "title": "Lay Me Down",
+          "artist": "Sam Smith",
+          "album": "In the Lonely Hour",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/80/74/b6/8074b6bc-387f-6cc9-5ede-92b76396ad5f/13UAEIM58958.rgb.jpg/1000x1000bb.jpg",
+          "duration": 253,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1440862129",
+          "ytId": "",
+          "title": "Latch",
+          "artist": "Disclosure & Sam Smith",
+          "album": "Settle (Deluxe)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/93/e0/5793e0d6-4877-e015-ef54-3fd4eff87344/14UMGIM12348.rgb.jpg/1000x1000bb.jpg",
+          "duration": 256,
+          "plays": "83,00,00,000"
+        },
+        {
+          "id": "itunes-1643168566",
+          "ytId": "",
+          "title": "Unholy",
+          "artist": "Sam Smith & Kim Petras",
+          "album": "Unholy - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/a4/0c/bd/a40cbd9d-bb38-8164-cd30-e107c8c7bb0e/22UMGIM83430.rgb.jpg/1000x1000bb.jpg",
+          "duration": 157,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1447334978",
+          "ytId": "",
+          "title": "Dancing With A Stranger",
+          "artist": "Sam Smith & Normani",
+          "album": "Dancing With A Stranger - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/30/75/5b/30755bfd-3225-8a60-ac85-0cf74876f84e/18UMGIM84859.rgb.jpg/1000x1000bb.jpg",
+          "duration": 171,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1471596298",
+          "ytId": "",
+          "title": "How Do You Sleep?",
+          "artist": "Sam Smith",
+          "album": "How Do You Sleep? - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ea/a0/87/eaa0872c-ff80-8625-c39e-14413d2bcd6b/19UMGIM40102.rgb.jpg/1000x1000bb.jpg",
+          "duration": 202,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1446046515",
+          "ytId": "",
+          "title": "Fire on Fire",
+          "artist": "Sam Smith",
+          "album": "Fire on Fire - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/83/b9/32/83b9327b-0d7c-5700-554d-9e6769e12b05/18UMGIM80639.rgb.jpg/1000x1000bb.jpg",
+          "duration": 247,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1440838360",
+          "ytId": "",
+          "title": "Make It to Me",
+          "artist": "Sam Smith",
+          "album": "In the Lonely Hour (Drowning Shadows Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6b/64/f8/6b64f8f3-b116-8704-7476-829420486cbb/15UMGIM50961.rgb.jpg/1000x1000bb.jpg",
+          "duration": 161,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-6807688217",
+          "ytId": "",
+          "title": "I'm Not The Only One (Live from Apple Music Studios)",
+          "artist": "Sam Smith",
+          "album": "Sam Smith: Music Room",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/3e/1e/193e1eaa-bfb9-6a2c-e9eb-b2e924d12a1c/26UM1IM02247.rgb.jpg/1000x1000bb.jpg",
+          "duration": 247,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1531509685",
+          "ytId": "",
+          "title": "To Die For (Bonus Track)",
+          "artist": "Sam Smith",
+          "album": "Love Goes",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e1/fc/66/e1fc66d0-d9c8-e250-e994-6875bf27e504/20UMGIM49499.rgb.jpg/1000x1000bb.jpg",
+          "duration": 194,
+          "plays": "41,00,00,000"
+        }
+      ]
+    },
+  "tulsi-kumar": {
+      "id": "tulsi-kumar",
+      "name": "Tulsi Kumar",
+      "monthlyListeners": "21,400,000",
+      "followersCount": "13,500,000",
+      "worldRank": "#9 Popular Bollywood Playback Star",
+      "origin": "New Delhi, India",
+      "bio": "Tulsi Kumar is an Indian playback singer celebrated for viral Bollywood chartbusters like O Saki Saki and Tera Ban Jaunga.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/b0ebda774a6795529146d4240418efcc/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/b0ebda774a6795529146d4240418efcc/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/tulsikumar/",
+        "x": "https://x.com/tulsikumar",
+        "facebook": "https://www.facebook.com/tulsikumar/",
+        "youtube": "https://www.youtube.com/@tulsikumar"
+      },
+      "tourInfo": {
+        "tourName": "Tulsi Kumar Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1110859713",
+          "ytId": "",
+          "title": "Soch Na Sake",
+          "artist": "Amaal Mallik, Arijit Singh & Tulsi Kumar",
+          "album": "Airlift (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e5/c2/73/e5c27399-7cda-db04-b038-5b95b1cf4fc4/8902894357623_cover.jpg/1000x1000bb.jpg",
+          "duration": 281,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1775419635",
+          "ytId": "",
+          "title": "Jaana Samjho Na",
+          "artist": "Lijo George-Dj Chetas, Aditya Rikhari & Tulsi Kumar",
+          "album": "Bhool Bhulaiyaa 3 (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c2/3f/2b/c23f2bf6-e45f-56bf-f05d-da32ef8d2b23/8902894362443_cover.jpg/1000x1000bb.jpg",
+          "duration": 212,
+          "plays": "89,00,00,000"
+        },
+        {
+          "id": "itunes-1694264330",
+          "ytId": "",
+          "title": "Pasoori Nu (From \"Satyaprem Ki Katha\")",
+          "artist": "Arijit Singh, Tulsi Kumar, Gurpreet Saini & Rochak Kohli",
+          "album": "Pasoori Nu (From \"Satyaprem Ki Katha\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/77/e7/05/77e705cb-4ab2-3508-0f0f-fb2c2f87cfc2/8903431945303_cover.jpg/1000x1000bb.jpg",
+          "duration": 197,
+          "plays": "77,00,00,000"
+        },
+        {
+          "id": "itunes-1495003963",
+          "ytId": "",
+          "title": "Lagdi Lahore Di (From \"Street Dancer 3D\")",
+          "artist": "Guru Randhawa, Tulsi Kumar & Sachin-Jigar",
+          "album": "Lagdi Lahore Di (From \"Street Dancer 3D\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c6/ec/e1/c6ece16e-70ea-60ab-9609-c69a917de79b/8903431765154_cover.jpg/1000x1000bb.jpg",
+          "duration": 215,
+          "plays": "71,00,00,000"
+        },
+        {
+          "id": "itunes-1476658854",
+          "ytId": "",
+          "title": "O Saki Saki",
+          "artist": "Neha Kakkar, Tulsi Kumar & B. Praak",
+          "album": "Batla House (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/66/ab/99/66ab99d8-ba5b-1d1c-2029-6920d911e9ed/8902894360906_cover.jpg/1000x1000bb.jpg",
+          "duration": 191,
+          "plays": "65,00,00,000"
+        },
+        {
+          "id": "itunes-1468448744",
+          "ytId": "",
+          "title": "Tera Ban Jaunga",
+          "artist": "Akhil Sachdeva & Tulsi Kumar",
+          "album": "Kabir Singh (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f6/70/84/f6708434-0123-ff36-0ac3-7401e8cf0f94/8902894360807_cover.jpg/1000x1000bb.jpg",
+          "duration": 236,
+          "plays": "59,00,00,000"
+        },
+        {
+          "id": "itunes-1073359666",
+          "ytId": "",
+          "title": "Piya Aaye Na",
+          "artist": "Tulsi Kumar & KK",
+          "album": "Aashiqui 2 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg",
+          "duration": 286,
+          "plays": "53,00,00,000"
+        },
+        {
+          "id": "itunes-1073359664",
+          "ytId": "",
+          "title": "Hum Mar Jayenge",
+          "artist": "Tulsi Kumar & Arijit Singh",
+          "album": "Aashiqui 2 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg",
+          "duration": 307,
+          "plays": "47,00,00,000"
+        },
+        {
+          "id": "itunes-1516503241",
+          "ytId": "",
+          "title": "O Saki Saki (From \"Batla House\")",
+          "artist": "Neha Kakkar, Tulsi Kumar & B. Praak",
+          "album": "Ultimate Dance Hits of Nora Fatehi",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/26/19/fd/2619fd1b-47e4-79e3-ea21-76701c1b7b40/8903431777126_cover.jpg/1000x1000bb.jpg",
+          "duration": 191,
+          "plays": "41,00,00,000"
+        },
+        {
+          "id": "itunes-enni-soni-tulsi",
+          "ytId": "",
+          "title": "Enni Soni",
+          "artist": "Guru Randhawa & Tulsi Kumar",
+          "album": "Saaho",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/7c/4f/ce/7c4fceca-0e86-13d8-21d9-c45fe1ebff40/8902894359641_cover.jpg/1000x1000bb.jpg",
+          "duration": 258,
+          "plays": "920,000,000"
+        }
+      ]
+    },
+  "divine": {
+      "id": "divine",
+      "name": "DIVINE",
+      "monthlyListeners": "29,800,000",
+      "followersCount": "18,900,000",
+      "worldRank": "#1 Indian Hip-Hop Vanguard",
+      "origin": "Mumbai, Maharashtra, India",
+      "bio": "DIVINE (Vivian Fernandes) is the pioneering Mumbai street rapper who ignited the Indian hip-hop revolution with Mirchi, Kohinoor, and 3:59 AM.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/7a56b5ea817465463f793b5eb09db4b9/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/7a56b5ea817465463f793b5eb09db4b9/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/divine/",
+        "x": "https://x.com/divine",
+        "facebook": "https://www.facebook.com/divine/",
+        "youtube": "https://www.youtube.com/@divine"
+      },
+      "tourInfo": {
+        "tourName": "DIVINE Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1292155382",
+          "ytId": "",
+          "title": "City Slums (feat. DIVINE)",
+          "artist": "Raja Kumari",
+          "album": "City Slums (feat. DIVINE) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/22/d2/f9/22d2f960-e1f4-1a06-d66c-b192079e97c2/886446783673.jpg/1000x1000bb.jpg",
+          "duration": 228,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1696262100",
+          "ytId": "",
+          "title": "Chorni",
+          "artist": "DIVINE & Sidhu Moose Wala",
+          "album": "Chorni - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d8/b9/a4/d8b9a47c-fc66-7d56-81cd-1e529b35f068/197189351020.jpg/1000x1000bb.jpg",
+          "duration": 181,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1730005521",
+          "ytId": "",
+          "title": "Straight Ballin'",
+          "artist": "DIVINE & Karan Aujla",
+          "album": "Street Dreams",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/53/fc/12/53fc12dd-e441-88b0-b539-b5e4728bb5c9/198391098505.jpg/1000x1000bb.jpg",
+          "duration": 211,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1730005004",
+          "ytId": "",
+          "title": "Nothing Lasts",
+          "artist": "DIVINE & Karan Aujla",
+          "album": "Street Dreams",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/53/fc/12/53fc12dd-e441-88b0-b539-b5e4728bb5c9/198391098505.jpg/1000x1000bb.jpg",
+          "duration": 177,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1730005530",
+          "ytId": "",
+          "title": "Tareefan",
+          "artist": "DIVINE & Karan Aujla",
+          "album": "Street Dreams",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/53/fc/12/53fc12dd-e441-88b0-b539-b5e4728bb5c9/198391098505.jpg/1000x1000bb.jpg",
+          "duration": 174,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1730005006",
+          "ytId": "",
+          "title": "Top Class / Overseas",
+          "artist": "DIVINE & Karan Aujla",
+          "album": "Street Dreams",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/53/fc/12/53fc12dd-e441-88b0-b539-b5e4728bb5c9/198391098505.jpg/1000x1000bb.jpg",
+          "duration": 288,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1730005523",
+          "ytId": "",
+          "title": "Yaad (feat. Jonita Gandhi)",
+          "artist": "DIVINE & Karan Aujla",
+          "album": "Street Dreams",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/53/fc/12/53fc12dd-e441-88b0-b539-b5e4728bb5c9/198391098505.jpg/1000x1000bb.jpg",
+          "duration": 192,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1529556364",
+          "ytId": "",
+          "title": "Apna Time Aayega",
+          "artist": "Ranveer Singh, Dub Sharma & DIVINE",
+          "album": "Gully Boy (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/5e/60/3a5e6034-8755-f0bf-d4f0-c7f96d3b45bb/8718857674948.png/1000x1000bb.jpg",
+          "duration": 140,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1725168071",
+          "ytId": "",
+          "title": "100 Million",
+          "artist": "DIVINE & Karan Aujla",
+          "album": "100 Million - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bf/e1/19/bfe1195d-18c3-4f40-0a18-19beef6de0ca/197190848762.jpg/1000x1000bb.jpg",
+          "duration": 192,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1614063456",
+          "ytId": "",
+          "title": "Divine",
+          "artist": "Rema",
+          "album": "Rave & Roses",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b2/b4/7c/b2b47cf9-d8e2-53f6-5c62-c974d665c95b/22UMGIM08994.rgb.jpg/1000x1000bb.jpg",
+          "duration": 213,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "king": {
+      "id": "king",
+      "name": "King",
+      "monthlyListeners": "36,500,000",
+      "followersCount": "23,800,000",
+      "worldRank": "#1 Indie-Pop & Hip-Hop Sensation",
+      "origin": "New Delhi, India",
+      "bio": "King (Arpan Kumar Chandel) is a chart-topping Indian singer-songwriter whose smash hits like Maan Meri Jaan and Tu Aake Dekhle became global streaming phenomena.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/5758debe23bf3acf0ec0d657f46b9b6e/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/5758debe23bf3acf0ec0d657f46b9b6e/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/king/",
+        "x": "https://x.com/king",
+        "facebook": "https://www.facebook.com/king/",
+        "youtube": "https://www.youtube.com/@king"
+      },
+      "tourInfo": {
+        "tourName": "King Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1649039974",
+          "ytId": "",
+          "title": "Maan Meri Jaan",
+          "artist": "King",
+          "album": "Champagne Talk",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/90/9d/aa/909daa9a-3a47-9314-2855-39f5a157f1e3/5054197407734.jpg/1000x1000bb.jpg",
+          "duration": 195,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1658352678",
+          "ytId": "",
+          "title": "Maan Meri Jaan (Lofi Flip)",
+          "artist": "King & Beatcrush",
+          "album": "Maan Meri Jaan (Lofi Flip) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/80/1e/be/801ebe58-eb7c-b09d-b0af-eb7ba08446af/5054197484803.jpg/1000x1000bb.jpg",
+          "duration": 265,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1675016035",
+          "ytId": "",
+          "title": "Maan Meri Jaan (Afterlife)",
+          "artist": "King & Nick Jonas",
+          "album": "Maan Meri Jaan (Afterlife) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a1/54/be/a154be36-2ba3-a22a-4064-c3d78f910c11/5054197602184.jpg/1000x1000bb.jpg",
+          "duration": 187,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1684965364",
+          "ytId": "",
+          "title": "Maan Meri Jaan (Afterlife) [Sped Up Version]",
+          "artist": "sped up nightcore, King & Nick Jonas",
+          "album": "Maan Meri Jaan (Afterlife) [Sped Up Version] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/53/65/9d/53659d98-70e0-cceb-c8b9-851bd94ec718/5054197656101.jpg/1000x1000bb.jpg",
+          "duration": 151,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1692656199",
+          "ytId": "",
+          "title": "Maan Meri Jaan (EDM Remix)",
+          "artist": "Arafat Khan",
+          "album": "Maan Meri Jaan (EDM Remix) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bd/95/a7/bd95a754-4a66-f47f-47ed-0891aae045c8/artwork.jpg/1000x1000bb.jpg",
+          "duration": 87,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1354675806",
+          "ytId": "",
+          "title": "Salame Ishq Meri Jaan",
+          "artist": "Lata Mangeshkar & Kishore Kumar",
+          "album": "Muqaddar Ka Sikandar (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/94/49/3d/94493d91-5402-46e5-63f2-45750f588680/191773204129.jpg/1000x1000bb.jpg",
+          "duration": 351,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-6798110081",
+          "ytId": "",
+          "title": "Maan Meri Jaan (Slowed & Reverb)",
+          "artist": "i love my life & Kaushal Shekhawat",
+          "album": "Maan Meri Jaan (Slowed & Reverb) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/ca/d0/99cad0e3-c229-0a7f-18e6-f25f920b27e1/1268191.jpg/1000x1000bb.jpg",
+          "duration": 319,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1884608913",
+          "ytId": "",
+          "title": "Maan Meri Jaan (Originally Performed by King) [Piano Karaoke Version]",
+          "artist": "Sing2Piano",
+          "album": "Maan Meri Jaan (Originally Performed by King) [Piano Karaoke Version] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4a/e4/f1/4ae4f138-9a2c-ed76-c343-94ce4556b78b/209cc9a1-e6e7-441a-bbfc-fb6d65d9f4b0.jpg/1000x1000bb.jpg",
+          "duration": 195,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1665443596",
+          "ytId": "",
+          "title": "Maan Meri Jaan (RAP)",
+          "artist": "ShotGun Shaggy",
+          "album": "Maan Meri Jaan (RAP) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/9e/32/7e/9e327eb5-d306-6096-6f37-accca084d91d/artwork.jpg/1000x1000bb.jpg",
+          "duration": 62,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1671209345",
+          "ytId": "",
+          "title": "Maan Meri Jaan (Piano Cover)",
+          "artist": "Flat Keys & lofi piano dog",
+          "album": "Maan Meri Jaan (Piano Cover) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/45/1c/85/451c85df-5331-36d0-fdb6-1c646b3acc63/8051886852360.png/1000x1000bb.jpg",
+          "duration": 71,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "mc-stan": {
+      "id": "mc-stan",
+      "name": "MC Stan",
+      "monthlyListeners": "21,200,000",
+      "followersCount": "15,400,000",
+      "worldRank": "#1 New-School Desi Trap Artist",
+      "origin": "Pune, Maharashtra, India",
+      "bio": "MC Stan (Altaf Shaikh) is an Indian rapper and music producer celebrated for raw lyricism, unique flow, and distinctive trap soundscapes.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/5a6fc1cf6fa0f4edadeebfaace93f612/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/5a6fc1cf6fa0f4edadeebfaace93f612/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/mcstan/",
+        "x": "https://x.com/mcstan",
+        "facebook": "https://www.facebook.com/mcstan/",
+        "youtube": "https://www.youtube.com/@mcstan"
+      },
+      "tourInfo": {
+        "tourName": "MC Stan Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1558426262",
+          "ytId": "",
+          "title": "Snake",
+          "artist": "MC Stan",
+          "album": "Snake - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/17/41/cd/1741cdfb-9143-05fa-6f25-641f7c52fb33/cover.jpg/1000x1000bb.jpg",
+          "duration": 281,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1716031079",
+          "ytId": "",
+          "title": "Urvashi",
+          "artist": "Ikka, MC Stan & Sanjoy",
+          "album": "Urvashi - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/1c/63/16/1c6316f0-9f33-24bd-6816-2fcc53b12c3b/8903431970534_cover.jpg/1000x1000bb.jpg",
+          "duration": 216,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1604370258",
+          "ytId": "",
+          "title": "She (feat. Lost Sky, MC STAN & Sub Urban)",
+          "artist": "Hugecompmusic",
+          "album": "SHE - Single (feat. Lost Sky) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/76/cd/df/76cddf36-70b6-1da1-bbc7-c192e200f522/196554354642_MxBaKa2-copy-41d686d6.png/1000x1000bb.jpg",
+          "duration": 180,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1717372821",
+          "ytId": "",
+          "title": "Farrey Title Track",
+          "artist": "Sachin-Jigar, MC Stan & Maanuni",
+          "album": "Farrey (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b2/59/89/b259894e-9e6f-1807-b9e4-0883465d30b3/8909024007120.png/1000x1000bb.jpg",
+          "duration": 185,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1612779349",
+          "ytId": "",
+          "title": "Hc Ka Hasti (feat. Lost Sky, MC STAN & Sub Urban)",
+          "artist": "Hugecompmusic",
+          "album": "Hc Ka Hasti - Single (feat. Lost Sky) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/02/18/57021877-d6aa-3ab9-8e0d-ec67303ec2c7/196813145400_gaZe7Td-copy-bbfd1dca.png/1000x1000bb.jpg",
+          "duration": 189,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1634548612",
+          "ytId": "",
+          "title": "End (feat. Tobu, Lost Sky, MC STAN & Unknown Brain)",
+          "artist": "Hugecompmusic",
+          "album": "END - Single (feat. Lost Sky & Tobu) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e7/85/a3/e785a347-24cf-2b56-a58a-e6f8c2e9359b/196815103613-copy-a12dc5e2.png/1000x1000bb.jpg",
+          "duration": 129,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1717209995",
+          "ytId": "",
+          "title": "Farrey Title Track (From \"Farrey\")",
+          "artist": "Sachin-Jigar, MC Stan & Maanuni",
+          "album": "Farrey Title Track (From \"Farrey\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8b/30/ec/8b30ecd0-228e-39a8-a8a2-a7b4cf0eba29/8909024008455.png/1000x1000bb.jpg",
+          "duration": 185,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1570696317",
+          "ytId": "",
+          "title": "MC Stan",
+          "artist": "Nehgo Beats",
+          "album": "MC Stan - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/78/40/66/78406654-559a-15f4-6a97-dbcc11ee5246/2edf8d3d-8206-4975-9936-9238325795dd.jpg/1000x1000bb.jpg",
+          "duration": 229,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1685691774",
+          "ytId": "",
+          "title": "MC Stan - Basti Ka Hasti (Remix)",
+          "artist": "Maglex",
+          "album": "MC Stan - Basti Ka Hasti (Remix) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/4f/50/1e/4f501e84-d70a-6b03-7ae5-13606d937509/artwork.jpg/1000x1000bb.jpg",
+          "duration": 211,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1440906513",
+          "ytId": "",
+          "title": "Stan (feat. Dido)",
+          "artist": "Eminem",
+          "album": "The Marshall Mathers LP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ea/ac/03/eaac03e5-8e9d-847e-d5b9-af7dee6a970b/00606949063221.rgb.jpg/1000x1000bb.jpg",
+          "duration": 403,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "k-j-yesudas": {
+      "id": "k-j-yesudas",
+      "name": "K.J. Yesudas",
+      "monthlyListeners": "28,100,000",
+      "followersCount": "17,800,000",
+      "worldRank": "#1 Classical & Carnatic Playback Maestro",
+      "origin": "Kochi, Kerala, India",
+      "bio": "Dr. K.J. Yesudas is a legendary Indian Carnatic classical musician and playback singer with 8 National Film Awards across 50,000+ recorded songs.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/1dc3d5c280b355c39dce2f8000fa1dac/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/1dc3d5c280b355c39dce2f8000fa1dac/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/kjyesudas/",
+        "x": "https://x.com/kjyesudas",
+        "facebook": "https://www.facebook.com/kjyesudas/",
+        "youtube": "https://www.youtube.com/@kjyesudas"
+      },
+      "tourInfo": {
+        "tourName": "K.J. Yesudas Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1103794065",
+          "ytId": "",
+          "title": "Surmayee Ankhiyon Mein (Happy Version)",
+          "artist": "Ilaiyaraaja & K. J. Yesudas",
+          "album": "Sadma (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1e/1e/c5/1e1ec5db-edb9-679e-b2bd-c70b5ec28dad/dj.echdsjje.jpg/1000x1000bb.jpg",
+          "duration": 276,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-967741461",
+          "ytId": "",
+          "title": "Daiva Sneham",
+          "artist": "K. J. Yesudas",
+          "album": "Mochanam",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/26/91/a7/2691a722-8b41-b817-5995-789a53aa24a5/889176562648.jpg/1000x1000bb.jpg",
+          "duration": 282,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1382889238",
+          "ytId": "",
+          "title": "En Iniya Pon Nilave Pon (From \"Moodu Pani\")",
+          "artist": "K. J. Yesudas",
+          "album": "Maestro Ilaiyaraaja",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0c/9b/3f/0c9b3ffd-35ca-4a2a-e5e8-a0bce9a6e7b6/192562487716.jpg/1000x1000bb.jpg",
+          "duration": 258,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1328973816",
+          "ytId": "",
+          "title": "Mana Ho Tum Behad Haseen, Pt. 2",
+          "artist": "K. J. Yesudas",
+          "album": "Toote Khilone (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/da/b8/bf/dab8bf02-3906-39aa-529e-4ff25abcfdf0/191773218058.jpg/1000x1000bb.jpg",
+          "duration": 381,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1368249827",
+          "ytId": "",
+          "title": "Aaj Se Pehle Aaj Se Jyada",
+          "artist": "K. J. Yesudas",
+          "album": "Chitchor (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0f/d5/19/0fd519e7-7546-7c8f-92da-40c629471500/191773217204.jpg/1000x1000bb.jpg",
+          "duration": 305,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1604857652",
+          "ytId": "",
+          "title": "Raja Raja Chozhan",
+          "artist": "Ilaiyaraaja & K. J. Yesudas",
+          "album": "Rettai Vaal Kuruvi (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cb/56/fe/cb56fe66-1781-d8c2-6078-3d491e18f931/886448543336.jpg/1000x1000bb.jpg",
+          "duration": 275,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1368249826",
+          "ytId": "",
+          "title": "Gori Tera Gaon Bada Pyara",
+          "artist": "K. J. Yesudas",
+          "album": "Chitchor (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0f/d5/19/0fd519e7-7546-7c8f-92da-40c629471500/191773217204.jpg/1000x1000bb.jpg",
+          "duration": 308,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1553465321",
+          "ytId": "",
+          "title": "O Bhavre",
+          "artist": "Asha Bhosle & K. J. Yesudas",
+          "album": "Daud (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/db/42/a1/db42a132-6cab-eef7-bfcd-cf2fe9e02677/8901854009497.jpg/1000x1000bb.jpg",
+          "duration": 371,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1368249699",
+          "ytId": "",
+          "title": "Jab Deep Jale Aana",
+          "artist": "K. J. Yesudas & Hemlata",
+          "album": "Chitchor (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0f/d5/19/0fd519e7-7546-7c8f-92da-40c629471500/191773217204.jpg/1000x1000bb.jpg",
+          "duration": 329,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-437055503",
+          "ytId": "",
+          "title": "Aarariraro",
+          "artist": "K. J. Yesudas",
+          "album": "Raam (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/c2/a4/fe/mzi.blduzzfx.jpg/1000x1000bb.jpg",
+          "duration": 286,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "hesham-abdul-wahab": {
+      "id": "hesham-abdul-wahab",
+      "name": "Hesham Abdul Wahab",
+      "monthlyListeners": "20,800,000",
+      "followersCount": "12,600,000",
+      "worldRank": "#2 South Indian Melodic Composer",
+      "origin": "Riyadh / Kerala, India",
+      "bio": "Hesham Abdul Wahab is an Indian music composer and playback singer whose breakout soundtracks for Hridayam and Kushi captured millions of hearts.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/567c9aaa183caf6d18b33025343a014b/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/567c9aaa183caf6d18b33025343a014b/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/heshamabdulwahab/",
+        "x": "https://x.com/heshamabdulwahab",
+        "facebook": "https://www.facebook.com/heshamabdulwahab/",
+        "youtube": "https://www.youtube.com/@heshamabdulwahab"
+      },
+      "tourInfo": {
+        "tourName": "Hesham Abdul Wahab Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1605627354",
+          "ytId": "",
+          "title": "Puthiyoru Lokam",
+          "artist": "Hesham Abdul Wahab, Vimal Roy & Bhadra Rajin",
+          "album": "Hridayam (Side B) [Original Motion Picture Soundtrack]",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dd/dc/37/dddc377e-0642-93b5-a585-b081cb7564f0/cover.jpg/1000x1000bb.jpg",
+          "duration": 202,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1686882568",
+          "ytId": "",
+          "title": "Tu Meri Roja (From \"Kushi\")",
+          "artist": "Javed Ali, Hesham Abdul Wahab & Raqueeb Alam",
+          "album": "Tu Meri Roja (From \"Kushi\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/91/58/1c/91581c0a-e00c-58c4-1257-9492cdf56d0c/197188853730.jpg/1000x1000bb.jpg",
+          "duration": 243,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1605627351",
+          "ytId": "",
+          "title": "Nagumo",
+          "artist": "Hesham Abdul Wahab & Arvind Venugopal",
+          "album": "Hridayam (Side B) [Original Motion Picture Soundtrack]",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dd/dc/37/dddc377e-0642-93b5-a585-b081cb7564f0/cover.jpg/1000x1000bb.jpg",
+          "duration": 160,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1605153332",
+          "ytId": "",
+          "title": "Onakka Munthiri",
+          "artist": "Hesham Abdul Wahab & Divya Vineeth",
+          "album": "Hridayam (Side A) [Original Motion Picture Soundtrack]",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/fa/3e/2c/fa3e2c4e-a525-defd-b22c-d31ef7d83964/cover.jpg/1000x1000bb.jpg",
+          "duration": 119,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1687526684",
+          "ytId": "",
+          "title": "Na Roja Nuvve (From \"Kushi\")",
+          "artist": "Hesham Abdul Wahab & Shiva Nirvana",
+          "album": "Na Roja Nuvve (From \"Kushi\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b5/28/a5/b528a58b-5633-d045-5205-894a3c105d1f/197188849610.jpg/1000x1000bb.jpg",
+          "duration": 243,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1591273464",
+          "ytId": "",
+          "title": "Darshana (From \"Hridayam\")",
+          "artist": "Hesham Abdul Wahab & Darshana Rajendran",
+          "album": "Darshana (From \"Hridayam\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/69/26/34/6926341a-b85f-f853-de47-cb6fa81544aa/cover.jpg/1000x1000bb.jpg",
+          "duration": 226,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1699803414",
+          "ytId": "",
+          "title": "Kushi Title Song (From \"Kushi\")",
+          "artist": "Hesham Abdul Wahab & Shiva Nirvana",
+          "album": "Kushi Title Song (From \"Kushi\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/43/ab/1f/43ab1f58-90d4-7206-a984-d1ed5517760f/197189524073.jpg/1000x1000bb.jpg",
+          "duration": 210,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1605153313",
+          "ytId": "",
+          "title": "Darshana",
+          "artist": "Hesham Abdul Wahab & Darshana Rajendran",
+          "album": "Hridayam (Side A) [Original Motion Picture Soundtrack]",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/fa/3e/2c/fa3e2c4e-a525-defd-b22c-d31ef7d83964/cover.jpg/1000x1000bb.jpg",
+          "duration": 225,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1704814069",
+          "ytId": "",
+          "title": "Na Roja Nuvve",
+          "artist": "Hesham Abdul Wahab & Shiva Nirvana",
+          "album": "Kushi (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/39/96/f6/3996f671-1958-83dc-d499-51be3c78d6e3/197189791826.jpg/1000x1000bb.jpg",
+          "duration": 243,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1704814307",
+          "ytId": "",
+          "title": "Kushi Title Song",
+          "artist": "Hesham Abdul Wahab & Shiva Nirvana",
+          "album": "Kushi (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/39/96/f6/3996f671-1958-83dc-d499-51be3c78d6e3/197189791826.jpg/1000x1000bb.jpg",
+          "duration": 210,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "yuvan-shankar-raja": {
+      "id": "yuvan-shankar-raja",
+      "name": "Yuvan Shankar Raja",
+      "monthlyListeners": "30,100,000",
+      "followersCount": "20,400,000",
+      "worldRank": "#1 Youth Icon & Tamil Pop King",
+      "origin": "Chennai, Tamil Nadu, India",
+      "bio": "Yuvan Shankar Raja is an influential Indian composer and singer known for introducing modern hip-hop and electronic sounds to Tamil cinema.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/1dbf7d81a2e964d9c707e53478407974/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/1dbf7d81a2e964d9c707e53478407974/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/yuvanshankarraja/",
+        "x": "https://x.com/yuvanshankarraja",
+        "facebook": "https://www.facebook.com/yuvanshankarraja/",
+        "youtube": "https://www.youtube.com/@yuvanshankarraja"
+      },
+      "tourInfo": {
+        "tourName": "Yuvan Shankar Raja Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-6831665563",
+          "ytId": "",
+          "title": "Hey Baby - Unplugged Vocals",
+          "artist": "Yuvan Shankar Raja, Snehan & Shankar Mahadevan",
+          "album": "Aegan - Unplugged Vocals - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a7/be/28/a7be28c6-2cd1-7f6f-4cf7-8b4c0e31c830/1200220449194.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-6831665564",
+          "ytId": "",
+          "title": "Odum Varayil - Unplugged Vocals",
+          "artist": "Yuvan Shankar Raja, P.A.Vijay, KK & Bele sSede",
+          "album": "Aegan - Unplugged Vocals - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a7/be/28/a7be28c6-2cd1-7f6f-4cf7-8b4c0e31c830/1200220449194.jpg/1000x1000bb.jpg",
+          "duration": 266,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-6831665560",
+          "ytId": "",
+          "title": "Yahoo Yahoo - Unplugged Vocals",
+          "artist": "Yuvan Shankar Raja, P.A.Vijay, Suvi, Ujjaini, Sathyan, Ranjith & Naveen",
+          "album": "Aegan - Unplugged Vocals - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a7/be/28/a7be28c6-2cd1-7f6f-4cf7-8b4c0e31c830/1200220449194.jpg/1000x1000bb.jpg",
+          "duration": 214,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-6831665559",
+          "ytId": "",
+          "title": "Hey Sala - Unplugged Vocals",
+          "artist": "Yuvan Shankar Raja, Snehan, Blaaze, Naresh Iyer & Md. Aslam",
+          "album": "Aegan - Unplugged Vocals - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a7/be/28/a7be28c6-2cd1-7f6f-4cf7-8b4c0e31c830/1200220449194.jpg/1000x1000bb.jpg",
+          "duration": 236,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-6831665566",
+          "ytId": "",
+          "title": "Kichu Kichu - Unplugged Vocals",
+          "artist": "Yuvan Shankar Raja, P.A.Vijay & Vasundhara Das",
+          "album": "Aegan - Unplugged Vocals - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a7/be/28/a7be28c6-2cd1-7f6f-4cf7-8b4c0e31c830/1200220449194.jpg/1000x1000bb.jpg",
+          "duration": 215,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-348887980",
+          "ytId": "",
+          "title": "Idhu Varai",
+          "artist": "Yuvan Shankar Raja, Ajesh Ashok & Andrea Jeremiah",
+          "album": "Goa (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/5d/66/7a/5d667a79-b67b-19db-95db-69c985ae9f5e/884977467260.jpg/1000x1000bb.jpg",
+          "duration": 284,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-924826346",
+          "ytId": "",
+          "title": "Panjaa",
+          "artist": "Yuvan Shankar Raja",
+          "album": "Panjaa (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/92/23/43/922343c4-13c0-58ce-4cc2-910f6eb7c1b3/cover.jpg/1000x1000bb.jpg",
+          "duration": 215,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1569896315",
+          "ytId": "",
+          "title": "High on Love",
+          "artist": "Sid Sriram & Yuvan Shankar Raja",
+          "album": "Pyaar Prema Kaadhal (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fd/28/f7/fd28f775-f9ed-f002-ef16-a9edc6782c18/cover.jpg/1000x1000bb.jpg",
+          "duration": 240,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-931716929",
+          "ytId": "",
+          "title": "Povodhe Prema",
+          "artist": "Yuvan Shankar Raja",
+          "album": "Oy (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/60/23/8b/60238b0a-47d8-3c62-a227-2a18104dbc8f/cover.jpg/1000x1000bb.jpg",
+          "duration": 275,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-530856994",
+          "ytId": "",
+          "title": "En Kadhal Solla",
+          "artist": "Yuvan Shankar Raja & Tanvi",
+          "album": "Paiya (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/18/7c/39/187c394c-95af-735f-82cf-16eca48a7290/886443235984.jpg/1000x1000bb.jpg",
+          "duration": 294,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "kanye-west": {
+      "id": "kanye-west",
+      "name": "Kanye West",
+      "monthlyListeners": "68,400,000",
+      "followersCount": "45,200,000",
+      "worldRank": "#3 Global Hip-Hop Visionary",
+      "origin": "Atlanta / Chicago, USA",
+      "bio": "Kanye West (Ye) is an American rapper, producer, and cultural icon with 24 Grammy Awards and billions of streams worldwide.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/bb76c2ee3b068726ab4c37b0aabdb57a/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/bb76c2ee3b068726ab4c37b0aabdb57a/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/kanyewest/",
+        "x": "https://x.com/kanyewest",
+        "facebook": "https://www.facebook.com/kanyewest/",
+        "youtube": "https://www.youtube.com/@kanyewest"
+      },
+      "tourInfo": {
+        "tourName": "Kanye West Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1441410309",
+          "ytId": "",
+          "title": "Heartless",
+          "artist": "Kanye West",
+          "album": "808s & Heartbreak",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4d/75/2d/4d752db1-022d-f65d-40a1-a2390f01427a/13UAEIM26465.rgb.jpg/1000x1000bb.jpg",
+          "duration": 211,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1484937120",
+          "ytId": "",
+          "title": "God Is",
+          "artist": "Kanye West",
+          "album": "JESUS IS KING",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/21/fd/d3/21fdd3d4-0c00-53ef-3903-d0569c49a812/19UMGIM89397.rgb.jpg/1000x1000bb.jpg",
+          "duration": 203,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1441410403",
+          "ytId": "",
+          "title": "Amazing (feat. Young Jeezy)",
+          "artist": "Kanye West",
+          "album": "808s & Heartbreak",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4d/75/2d/4d752db1-022d-f65d-40a1-a2390f01427a/13UAEIM26465.rgb.jpg/1000x1000bb.jpg",
+          "duration": 238,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1556724238",
+          "ytId": "",
+          "title": "Buy U A Drank (Shawty Snappin') [feat. Kanye West] [Remix]",
+          "artist": "T-Pain",
+          "album": "Epiphany (Expanded Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/00/f0/e1/00f0e199-13d5-33c4-bc76-edf88b3876b5/886449120666.jpg/1000x1000bb.jpg",
+          "duration": 256,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1442846735",
+          "ytId": "",
+          "title": "Homecoming (feat. Chris Martin)",
+          "artist": "Kanye West",
+          "album": "Graduation",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/39/25/2d/39252d65-2d50-b991-0962-f7a98a761271/00602517483507.rgb.jpg/1000x1000bb.jpg",
+          "duration": 204,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1441410404",
+          "ytId": "",
+          "title": "Love Lockdown",
+          "artist": "Kanye West",
+          "album": "808s & Heartbreak",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4d/75/2d/4d752db1-022d-f65d-40a1-a2390f01427a/13UAEIM26465.rgb.jpg/1000x1000bb.jpg",
+          "duration": 270,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1484937103",
+          "ytId": "",
+          "title": "Follow God",
+          "artist": "Kanye West",
+          "album": "JESUS IS KING",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/21/fd/d3/21fdd3d4-0c00-53ef-3903-d0569c49a812/19UMGIM89397.rgb.jpg/1000x1000bb.jpg",
+          "duration": 105,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1442846328",
+          "ytId": "",
+          "title": "Stronger",
+          "artist": "Kanye West",
+          "album": "Graduation",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/39/25/2d/39252d65-2d50-b991-0962-f7a98a761271/00602517483507.rgb.jpg/1000x1000bb.jpg",
+          "duration": 312,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-716085557",
+          "ytId": "",
+          "title": "E.T. (feat. Kanye West)",
+          "artist": "Katy Perry",
+          "album": "Teenage Dream: The Complete Confection",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/57/b3/3157b3d9-6551-e44e-46c0-488686998a05/13UABIM58339.rgb.jpg/1000x1000bb.jpg",
+          "duration": 230,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1442846336",
+          "ytId": "",
+          "title": "I Wonder",
+          "artist": "Kanye West",
+          "album": "Graduation",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/39/25/2d/39252d65-2d50-b991-0962-f7a98a761271/00602517483507.rgb.jpg/1000x1000bb.jpg",
+          "duration": 243,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "j-cole": {
+      "id": "j-cole",
+      "name": "J. Cole",
+      "monthlyListeners": "42,100,000",
+      "followersCount": "28,900,000",
+      "worldRank": "#4 Conscious Hip-Hop Titan",
+      "origin": "Frankfurt / North Carolina, USA",
+      "bio": "J. Cole is an acclaimed American rapper and producer known for introspective lyricism and multi-platinum albums like 2014 Forest Hills Drive.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/dc8d97f19855c8ea3f15ee6db784198e/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/dc8d97f19855c8ea3f15ee6db784198e/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/jcole/",
+        "x": "https://x.com/jcole",
+        "facebook": "https://www.facebook.com/jcole/",
+        "youtube": "https://www.youtube.com/@jcole"
+      },
+      "tourInfo": {
+        "tourName": "J. Cole Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1440545960",
+          "ytId": "",
+          "title": "Work Out",
+          "artist": "J. Cole",
+          "album": "Cole World: The Sideline Story",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/4f/be/d2/4fbed251-5117-c028-bec6-86a29e2fc269/18UMGIM74053.rgb.jpg/1000x1000bb.jpg",
+          "duration": 235,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1373861498",
+          "ytId": "",
+          "title": "Kevin's Heart",
+          "artist": "J. Cole",
+          "album": "KOD",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/7a/8e/9d/7a8e9dcb-128c-aeaa-540d-eea733637695/18UMGIM22943.rgb.jpg/1000x1000bb.jpg",
+          "duration": 200,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1440924454",
+          "ytId": "",
+          "title": "Deja Vu",
+          "artist": "J. Cole",
+          "album": "4 Your Eyez Only",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9f/93/b1/9f93b168-f7f4-5520-449c-0a4140c29052/00850498007537.rgb.jpg/1000x1000bb.jpg",
+          "duration": 265,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1373861481",
+          "ytId": "",
+          "title": "KOD",
+          "artist": "J. Cole",
+          "album": "KOD",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/7a/8e/9d/7a8e9dcb-128c-aeaa-540d-eea733637695/18UMGIM22943.rgb.jpg/1000x1000bb.jpg",
+          "duration": 191,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1600772523",
+          "ytId": "",
+          "title": "Wet Dreamz",
+          "artist": "J. Cole",
+          "album": "2014 Forest Hills Drive",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ee/28/67/ee286794-6c33-a8c2-5c37-c04f1cb5e8a6/21UM1IM54415.rgb.jpg/1000x1000bb.jpg",
+          "duration": 239,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1440924587",
+          "ytId": "",
+          "title": "Neighbors",
+          "artist": "J. Cole",
+          "album": "4 Your Eyez Only",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9f/93/b1/9f93b168-f7f4-5520-449c-0a4140c29052/00850498007537.rgb.jpg/1000x1000bb.jpg",
+          "duration": 217,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1373858922",
+          "ytId": "",
+          "title": "Intro",
+          "artist": "J. Cole",
+          "album": "KOD",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/04/f4/a2/04f4a2ca-81d1-a258-0c70-ee555840bc15/18UMGIM22943.rgb.jpg/1000x1000bb.jpg",
+          "duration": 107,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1450406398",
+          "ytId": "",
+          "title": "MIDDLE CHILD",
+          "artist": "J. Cole",
+          "album": "MIDDLE CHILD - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/00/fd/ce/00fdceb3-c202-ae9a-052a-cce5c8622d5c/00810760037716.rgb.jpg/1000x1000bb.jpg",
+          "duration": 214,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1529504220",
+          "ytId": "",
+          "title": "Power Trip (feat. Miguel)",
+          "artist": "J. Cole",
+          "album": "Born Sinner",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/da/52/41/da52415b-d0ac-d61f-422c-e84bf5ef8162/20UMGIM66000.rgb.jpg/1000x1000bb.jpg",
+          "duration": 241,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1305422750",
+          "ytId": "",
+          "title": "Come Through and Chill (feat. J. Cole & Salaam Remi)",
+          "artist": "Miguel",
+          "album": "War & Leisure",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/26/56/cd/2656cd50-73a3-998f-2204-9342b805f517/886446846255.jpg/1000x1000bb.jpg",
+          "duration": 322,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "doja-cat": {
+      "id": "doja-cat",
+      "name": "Doja Cat",
+      "monthlyListeners": "56,200,000",
+      "followersCount": "36,800,000",
+      "worldRank": "#5 Global Pop & Rap Superstar",
+      "origin": "Los Angeles, California, USA",
+      "bio": "Doja Cat is a Grammy Award-winning American rapper and singer known for genre-bending viral anthems like Paint The Town Red and Woman.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/9e3a3b8792a04c4578da7b905ffeaf2b/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/9e3a3b8792a04c4578da7b905ffeaf2b/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/dojacat/",
+        "x": "https://x.com/dojacat",
+        "facebook": "https://www.facebook.com/dojacat/",
+        "youtube": "https://www.youtube.com/@dojacat"
+      },
+      "tourInfo": {
+        "tourName": "Doja Cat Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1532950258",
+          "ytId": "",
+          "title": "Baby, I'm Jealous (feat. Doja Cat)",
+          "artist": "Bebe Rexha",
+          "album": "Baby, I'm Jealous (feat. Doja Cat) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a4/ca/a5/a4caa5f0-56a2-a1ae-99c3-5db0d72bb030/054391933218.jpg/1000x1000bb.jpg",
+          "duration": 176,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1542959224",
+          "ytId": "",
+          "title": "Best Friend (feat. Doja Cat)",
+          "artist": "Saweetie",
+          "album": "Best Friend (feat. Doja Cat) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/38/51/78/385178ff-2d99-0ec5-850d-e4865d504e41/054391927187.jpg/1000x1000bb.jpg",
+          "duration": 156,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1619091527",
+          "ytId": "",
+          "title": "Kiss Me More (Instrumental)",
+          "artist": "Doja Cat",
+          "album": "Kiss Me More (Instrumental) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/af/92/c2/af92c2b8-1d3d-28ba-8c7b-95b2789e7ec2/5063010649008_cover.jpg/1000x1000bb.jpg",
+          "duration": 208,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1514288448",
+          "ytId": "",
+          "title": "In Your Eyes (Remix) [feat. Doja Cat]",
+          "artist": "The Weeknd",
+          "album": "In Your Eyes (Remix) [feat. Doja Cat] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/26/29/7e/26297e27-73d6-a22a-4f7f-41b67a829d57/20UMGIM41901.rgb.jpg/1000x1000bb.jpg",
+          "duration": 238,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1628224838",
+          "ytId": "",
+          "title": "I Like You (A Happier Song) [feat. Doja Cat]",
+          "artist": "Post Malone",
+          "album": "Twelve Carat Toothache (Deluxe)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/f1/82/63/f1826306-d2fc-554b-31e9-54c36259dd58/22UMGIM49145.rgb.jpg/1000x1000bb.jpg",
+          "duration": 193,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1486465107",
+          "ytId": "",
+          "title": "Streets",
+          "artist": "Doja Cat",
+          "album": "Hot Pink",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/f3/03/40/f30340af-55d6-11bb-f59c-b03705360715/886447991831.jpg/1000x1000bb.jpg",
+          "duration": 227,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1618123538",
+          "ytId": "",
+          "title": "Doja Cat",
+          "artist": "Pity Party Girls Club",
+          "album": "Doja Cat - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/ee/65/c9/ee65c947-1a0a-7b0b-9022-77963d2beab9/artwork.jpg/1000x1000bb.jpg",
+          "duration": 160,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1810796700",
+          "ytId": "",
+          "title": "Lose My Mind (feat. Doja Cat)",
+          "artist": "Don Toliver",
+          "album": "F1 The Album",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/91/da/a691dac7-4cb7-82f5-0eda-e37b96f63f55/075679610720.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1577637152",
+          "ytId": "",
+          "title": "Kiss Me More (feat. SZA)",
+          "artist": "Doja Cat",
+          "album": "Planet Her (Deluxe)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/14/f3/28/14f32832-b9d9-1ba1-e20a-18c2ff8b6a80/886449410873.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1486465101",
+          "ytId": "",
+          "title": "Say So",
+          "artist": "Doja Cat",
+          "album": "Hot Pink",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/f3/03/40/f30340af-55d6-11bb-f59c-b03705360715/886447991831.jpg/1000x1000bb.jpg",
+          "duration": 238,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "cardi-b": {
+      "id": "cardi-b",
+      "name": "Cardi B",
+      "monthlyListeners": "44,800,000",
+      "followersCount": "29,400,000",
+      "worldRank": "#6 Diamond-Certified Rap Queen",
+      "origin": "New York City, USA",
+      "bio": "Cardi B is a Grammy-winning rapper whose record-breaking singles like Bodak Yellow and I Like It made history on the Billboard Hot 100.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/af776cd99efbc010c3782030df0e7e1e/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/af776cd99efbc010c3782030df0e7e1e/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/cardib/",
+        "x": "https://x.com/cardib",
+        "facebook": "https://www.facebook.com/cardib/",
+        "youtube": "https://www.youtube.com/@cardib"
+      },
+      "tourInfo": {
+        "tourName": "Cardi B Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-6826504724",
+          "ytId": "",
+          "title": "COSITA",
+          "artist": "Daddy Yankee & Cardi B",
+          "album": "LA POSTAL",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/24/2a/a4/242aa4a9-808f-419f-289c-e7e6a1517c08/4593106.jpg/1000x1000bb.jpg",
+          "duration": 189,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1466097361",
+          "ytId": "",
+          "title": "Press",
+          "artist": "Cardi B",
+          "album": "Press - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/99/a1/50/99a15085-a573-8ed9-935a-3f78fc7432b9/075679844613.jpg/1000x1000bb.jpg",
+          "duration": 144,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1368105800",
+          "ytId": "",
+          "title": "Be Careful",
+          "artist": "Cardi B",
+          "album": "Invasion of Privacy",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ca/58/e5/ca58e5e3-acb7-8ca3-6af9-ad63af3b71f1/075679873675.jpg/1000x1000bb.jpg",
+          "duration": 211,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1453056793",
+          "ytId": "",
+          "title": "Please Me",
+          "artist": "Cardi B & Bruno Mars",
+          "album": "Please Me - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/81/f8/1b/81f81b47-6068-3fdb-29ae-ae032c519ef7/075679852168.jpg/1000x1000bb.jpg",
+          "duration": 201,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1471580173",
+          "ytId": "",
+          "title": "South of the Border (feat. Camila Cabello & Cardi B)",
+          "artist": "Ed Sheeran",
+          "album": "No.6 Collaborations Project",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/09/63/e809636b-2ea8-066e-2749-c0b94ab77052/190295384227.jpg/1000x1000bb.jpg",
+          "duration": 204,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1368105801",
+          "ytId": "",
+          "title": "Best Life (feat. Chance the Rapper)",
+          "artist": "Cardi B",
+          "album": "Invasion of Privacy",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ca/58/e5/ca58e5e3-acb7-8ca3-6af9-ad63af3b71f1/075679873675.jpg/1000x1000bb.jpg",
+          "duration": 285,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1381582728",
+          "ytId": "",
+          "title": "Girls Like You (feat. Cardi B)",
+          "artist": "Maroon 5",
+          "album": "Girls Like You (feat. Cardi B) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1a/7e/42/1a7e428a-4449-b613-46c3-5fa75d83047a/00602567702023.rgb.jpg/1000x1000bb.jpg",
+          "duration": 236,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1328527216",
+          "ytId": "",
+          "title": "Finesse (Remix) [feat. Cardi B]",
+          "artist": "Bruno Mars",
+          "album": "Finesse (Remix) [feat. Cardi B] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/56/df/33/56df332a-da4a-d565-f40e-960905ee1a2b/075679878892.jpg/1000x1000bb.jpg",
+          "duration": 217,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1433977219",
+          "ytId": "",
+          "title": "La Modelo (feat. Cardi B)",
+          "artist": "Ozuna",
+          "album": "Aura",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/47/02/de/4702de7f-d47e-b507-1227-b8534cbb9cd8/697691884080.jpg/1000x1000bb.jpg",
+          "duration": 256,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1526747167",
+          "ytId": "",
+          "title": "WAP (feat. Megan Thee Stallion)",
+          "artist": "Cardi B",
+          "album": "WAP (feat. Megan Thee Stallion) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ec/f5/45/ecf545c0-24bd-90de-7639-3069e648c51d/075679804938.jpg/1000x1000bb.jpg",
+          "duration": 188,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "nicki-minaj": {
+      "id": "nicki-minaj",
+      "name": "Nicki Minaj",
+      "monthlyListeners": "61,500,000",
+      "followersCount": "41,200,000",
+      "worldRank": "#1 The Queen of Rap",
+      "origin": "Port of Spain / New York, USA",
+      "bio": "Nicki Minaj is the best-selling female rapper of all time, acclaimed for peerless flow, theatrical alter egos, and dozens of global hits like Super Bass and Starships.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/cf30ba4b709168aee196dcf16f259f22/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/cf30ba4b709168aee196dcf16f259f22/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/nickiminaj/",
+        "x": "https://x.com/nickiminaj",
+        "facebook": "https://www.facebook.com/nickiminaj/",
+        "youtube": "https://www.youtube.com/@nickiminaj"
+      },
+      "tourInfo": {
+        "tourName": "Nicki Minaj Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1440650961",
+          "ytId": "",
+          "title": "Beauty and a Beat (feat. Nicki Minaj)",
+          "artist": "Justin Bieber",
+          "album": "Believe (Deluxe Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/73/08/1a/73081a96-0f7c-b5f8-2757-5c17fb714323/12UMGIM31899.rgb.jpg/1000x1000bb.jpg",
+          "duration": 228,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1429671590",
+          "ytId": "",
+          "title": "Goodbye (feat. Nicki Minaj & Willy William)",
+          "artist": "Jason Derulo & David Guetta",
+          "album": "Goodbye (feat. Nicki Minaj & Willy William) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/d1/03/1e/d1031eed-f893-16b1-c5f1-7c5c7d93e497/054391948335.jpg/1000x1000bb.jpg",
+          "duration": 195,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1440835649",
+          "ytId": "",
+          "title": "Side To Side (feat. Nicki Minaj)",
+          "artist": "Ariana Grande",
+          "album": "Dangerous Woman",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/12/5d/63/125d6389-2205-c77c-702c-8128e9020bd6/16UMGIM12432.rgb.jpg/1000x1000bb.jpg",
+          "duration": 226,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1485804493",
+          "ytId": "",
+          "title": "Nice to Meet Ya (feat. Nicki Minaj)",
+          "artist": "Meghan Trainor",
+          "album": "TREAT MYSELF",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/04/21/b5/0421b5a5-da79-430e-b2c8-6447a8f84136/886448103523.jpg/1000x1000bb.jpg",
+          "duration": 197,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1440881264",
+          "ytId": "",
+          "title": "Bom Bidi Bom",
+          "artist": "Nick Jonas & Nicki Minaj",
+          "album": "Fifty Shades Darker (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e5/9b/1e/e59b1eaa-92d3-df4b-73f2-9bd798feb630/17UMGIM01263.rgb.jpg/1000x1000bb.jpg",
+          "duration": 215,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-384118273",
+          "ytId": "",
+          "title": "Letting Go (Dutty Love) [feat. Nicki Minaj]",
+          "artist": "Sean Kingston",
+          "album": "Letting Go (Dutty Love) [feat. Nicki Minaj] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/87/ca/a587cad1-de0d-e56b-b6b5-4d27dc34d60d/mzi.qirnsxfy.jpg/1000x1000bb.jpg",
+          "duration": 231,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-581748359",
+          "ytId": "",
+          "title": "Girl On Fire (feat. Nicki Minaj) [Inferno Version]",
+          "artist": "Alicia Keys",
+          "album": "Girl On Fire",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ed/2f/0f/ed2f0fc2-9f20-dd60-fcff-712207d53f94/886443098961.jpg/1000x1000bb.jpg",
+          "duration": 271,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1437592177",
+          "ytId": "",
+          "title": "Dark Side of the Moon (feat. Nicki Minaj)",
+          "artist": "Lil Wayne",
+          "album": "Tha Carter V",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/21/69/f7/2169f7b5-ae60-4bb8-2329-49c8f1f5f24b/18UMGIM63096.rgb.jpg/1000x1000bb.jpg",
+          "duration": 243,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1440910489",
+          "ytId": "",
+          "title": "Super Bass",
+          "artist": "Nicki Minaj",
+          "album": "Pink Friday (Deluxe Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/3f/6a/dc/3f6adcfb-4d27-303e-b964-3710c56800e3/11UMGIM13385.rgb.jpg/1000x1000bb.jpg",
+          "duration": 201,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1444896442",
+          "ytId": "",
+          "title": "Bang Bang",
+          "artist": "Jessie J, Ariana Grande & Nicki Minaj",
+          "album": "Bang Bang - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ce/81/a0/ce81a0d7-6beb-16bc-2b98-a6b6a9b0faff/14UMGIM31140.rgb.jpg/1000x1000bb.jpg",
+          "duration": 199,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "stray-kids": {
+      "id": "stray-kids",
+      "name": "Stray Kids",
+      "monthlyListeners": "28,900,000",
+      "followersCount": "19,500,000",
+      "worldRank": "#1 K-Pop Self-Producing Powerhouse",
+      "origin": "Seoul, South Korea",
+      "bio": "Stray Kids is a globally acclaimed South Korean group formed by JYP Entertainment, famous for self-produced explosive anthems like God's Menu and Maniac.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/5cba9e96cd7a44955d47ff3d7eb16ef3/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/5cba9e96cd7a44955d47ff3d7eb16ef3/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/straykids/",
+        "x": "https://x.com/straykids",
+        "facebook": "https://www.facebook.com/straykids/",
+        "youtube": "https://www.youtube.com/@straykids"
+      },
+      "tourInfo": {
+        "tourName": "Stray Kids Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1752739619",
+          "ytId": "",
+          "title": "Chk Chk Boom",
+          "artist": "Stray Kids",
+          "album": "ATE",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/24/c1/47/24c147fc-cf70-0a4e-3e21-bd9a42617572/8809928952123_Cover.jpg/1000x1000bb.jpg",
+          "duration": 148,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-6781751957",
+          "ytId": "",
+          "title": "This & That",
+          "artist": "Stray Kids",
+          "album": "THIS & THAT",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c0/05/aa/c005aa79-a3a7-6e28-48e2-4c5e72eff603/8809928957357_Cover.jpg/1000x1000bb.jpg",
+          "duration": 185,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1710644832",
+          "ytId": "",
+          "title": "LALALALA",
+          "artist": "Stray Kids",
+          "album": "ROCK-STAR",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/36/cc/6d/36cc6d5f-1be5-188e-ce54-80f57b023791/8809928950532_Cover.jpg/1000x1000bb.jpg",
+          "duration": 182,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1609666702",
+          "ytId": "",
+          "title": "MANIAC",
+          "artist": "Stray Kids",
+          "album": "ODDINARY",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/5f/6d/545f6deb-89de-9f08-4ad0-b8d4136a0911/192641947902_Cover.jpg/1000x1000bb.jpg",
+          "duration": 183,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-6781751954",
+          "ytId": "",
+          "title": "RUN IT",
+          "artist": "Stray Kids",
+          "album": "THIS & THAT",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c0/05/aa/c005aa79-a3a7-6e28-48e2-4c5e72eff603/8809928957357_Cover.jpg/1000x1000bb.jpg",
+          "duration": 209,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1846266205",
+          "ytId": "",
+          "title": "Do It",
+          "artist": "Stray Kids",
+          "album": "DO IT - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/72/33/69/7233691c-aefe-252d-678b-faa9b3455200/8809928958965_Cover.jpg/1000x1000bb.jpg",
+          "duration": 159,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1827247176",
+          "ytId": "",
+          "title": "CEREMONY",
+          "artist": "Stray Kids",
+          "album": "KARMA",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/38/22/ee/3822ee8e-c8f6-bb12-10ca-dcfd27dd166b/8809928955230_Cover.jpg/1000x1000bb.jpg",
+          "duration": 164,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1846266206",
+          "ytId": "",
+          "title": "DIVINE",
+          "artist": "Stray Kids",
+          "album": "DO IT - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/72/33/69/7233691c-aefe-252d-678b-faa9b3455200/8809928958965_Cover.jpg/1000x1000bb.jpg",
+          "duration": 187,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1608257484",
+          "ytId": "",
+          "title": "God's Menu",
+          "artist": "Stray Kids",
+          "album": "GO LIVE",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/51/d8/58/51d858b1-94df-2047-d2b4-0378ca0cd9db/192641939440_Cover.jpg/1000x1000bb.jpg",
+          "duration": 168,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1710644824",
+          "ytId": "",
+          "title": "MEGAVERSE",
+          "artist": "Stray Kids",
+          "album": "ROCK-STAR",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/36/cc/6d/36cc6d5f-1be5-188e-ce54-80f57b023791/8809928950532_Cover.jpg/1000x1000bb.jpg",
+          "duration": 186,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "twice": {
+      "id": "twice",
+      "name": "TWICE",
+      "monthlyListeners": "24,600,000",
+      "followersCount": "17,200,000",
+      "worldRank": "#2 K-Pop Sensation",
+      "origin": "Seoul, South Korea",
+      "bio": "TWICE is an iconic South Korean girl group renowned for infectious pop hooks and record-breaking stadium tours worldwide.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/1f4acadade675899b7f775ae4ac67faa/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/1f4acadade675899b7f775ae4ac67faa/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/twice/",
+        "x": "https://x.com/twice",
+        "facebook": "https://www.facebook.com/twice/",
+        "youtube": "https://www.youtube.com/@twice"
+      },
+      "tourInfo": {
+        "tourName": "TWICE Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1555390083",
+          "ytId": "",
+          "title": "What is Love?",
+          "artist": "TWICE",
+          "album": "What is Love? - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/7e/41/69/7e4169e8-8358-27ff-66b4-1564ec800abd/00602508875137_Cover.jpg/1000x1000bb.jpg",
+          "duration": 208,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1813490998",
+          "ytId": "",
+          "title": "THIS IS FOR",
+          "artist": "TWICE",
+          "album": "THIS IS FOR",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b3/a8/e2/b3a8e208-ebd1-831e-4d00-2bdddd99f54a/8809928955766_Cover.jpg/1000x1000bb.jpg",
+          "duration": 131,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1820264153",
+          "ytId": "",
+          "title": "Strategy",
+          "artist": "TWICE",
+          "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e1/15/42/e1154273-8ecd-5702-e6e6-597f28001681/25UMGIM82363.rgb.jpg/1000x1000bb.jpg",
+          "duration": 169,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1555390187",
+          "ytId": "",
+          "title": "FANCY",
+          "artist": "TWICE",
+          "album": "FANCY YOU - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/03/76/e6/0376e6f9-f6d8-68f7-ae85-1a4ef17002aa/00602508875229_Cover.jpg/1000x1000bb.jpg",
+          "duration": 214,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1535654244",
+          "ytId": "",
+          "title": "I CAN'T STOP ME",
+          "artist": "TWICE",
+          "album": "Eyes wide open",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1f/46/44/1f46442a-ed5a-7cc8-c119-c6453b559ef7/192641580802_Cover.jpg/1000x1000bb.jpg",
+          "duration": 205,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1774299757",
+          "ytId": "",
+          "title": "Strategy (feat. Megan Thee Stallion)",
+          "artist": "TWICE",
+          "album": "STRATEGY",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d3/65/0c/d3650c39-d01d-2453-6826-9aa21ad22559/8809928952925_Cover.jpg/1000x1000bb.jpg",
+          "duration": 202,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1607381008",
+          "ytId": "",
+          "title": "The Feels",
+          "artist": "TWICE",
+          "album": "The Feels",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/e3/ee/9b/e3ee9bc7-3a40-5445-485d-6048e9d49479/192641934643_Cover.jpg/1000x1000bb.jpg",
+          "duration": 198,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1820264142",
+          "ytId": "",
+          "title": "TAKEDOWN (JEONGYEON, JIHYO, CHAEYOUNG)",
+          "artist": "TWICE",
+          "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e1/15/42/e1154273-8ecd-5702-e6e6-597f28001681/25UMGIM82363.rgb.jpg/1000x1000bb.jpg",
+          "duration": 181,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1556087008",
+          "ytId": "",
+          "title": "Feel Special",
+          "artist": "TWICE",
+          "album": "Feel Special",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/75/bb/cc/75bbcc8c-bc12-983b-196f-bb6e355cc978/00602508875281_Cover.jpg/1000x1000bb.jpg",
+          "duration": 207,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1555401122",
+          "ytId": "",
+          "title": "TT",
+          "artist": "TWICE",
+          "album": "Twicecoaster: Lane 1",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0e/c5/67/0ec5678b-9070-ac48-f01d-c8af72b92d01/00602508870064_Cover.jpg/1000x1000bb.jpg",
+          "duration": 213,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "avicii": {
+      "id": "avicii",
+      "name": "Avicii",
+      "monthlyListeners": "45,300,000",
+      "followersCount": "32,100,000",
+      "worldRank": "#1 Melodic EDM Legend",
+      "origin": "Stockholm, Sweden",
+      "bio": "Tim Bergling (Avicii) was a Swedish DJ, remixer, and music producer whose pioneering folk-EDM sound created timeless global anthems like Wake Me Up and Levels.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/82e214b0cb39316f4a12a082fded54f6/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/82e214b0cb39316f4a12a082fded54f6/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/avicii/",
+        "x": "https://x.com/avicii",
+        "facebook": "https://www.facebook.com/avicii/",
+        "youtube": "https://www.youtube.com/@avicii"
+      },
+      "tourInfo": {
+        "tourName": "Avicii Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1440872929",
+          "ytId": "",
+          "title": "Wake Me Up",
+          "artist": "Avicii",
+          "album": "True",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/5b/1e/185b1ef5-5d97-19d8-aebf-8e29e41874ef/13UAAIM59255.rgb.jpg/1000x1000bb.jpg",
+          "duration": 250,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1440787349",
+          "ytId": "",
+          "title": "Levels",
+          "artist": "Avicii",
+          "album": "Levels - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/67/38/43/67384338-9ed7-fc68-5927-93f1fcf4705d/11UMGIM36900.rgb.jpg/1000x1000bb.jpg",
+          "duration": 339,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1440829549",
+          "ytId": "",
+          "title": "The Nights",
+          "artist": "Avicii",
+          "album": "The Days / Nights - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/35/4d/a0/354da058-972b-dcf9-feec-609895ba8cb2/14UMGIM56567.rgb.jpg/1000x1000bb.jpg",
+          "duration": 177,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1440873108",
+          "ytId": "",
+          "title": "Hey Brother",
+          "artist": "Avicii",
+          "album": "True",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/5b/1e/185b1ef5-5d97-19d8-aebf-8e29e41874ef/13UAAIM59255.rgb.jpg/1000x1000bb.jpg",
+          "duration": 254,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1440834312",
+          "ytId": "",
+          "title": "Waiting For Love",
+          "artist": "Avicii",
+          "album": "Stories",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e0/f4/25/e0f425ba-2848-f1c2-e102-9ddcef5e9d9d/15UMGIM35223.rgb.jpg/1000x1000bb.jpg",
+          "duration": 231,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1462628896",
+          "ytId": "",
+          "title": "Heaven",
+          "artist": "Avicii",
+          "album": "TIM",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/29/9e/8f/299e8f03-3a49-6a5c-9bec-32c0964c2832/19UMGIM41833.rgb.jpg/1000x1000bb.jpg",
+          "duration": 277,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1440787347",
+          "ytId": "",
+          "title": "Levels (Radio Edit)",
+          "artist": "Avicii",
+          "album": "Levels - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/67/38/43/67384338-9ed7-fc68-5927-93f1fcf4705d/11UMGIM36900.rgb.jpg/1000x1000bb.jpg",
+          "duration": 200,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1445300197",
+          "ytId": "",
+          "title": "I Could Be the One (Avicii vs. Nicky Romero) [Nicktim Radio Edit]",
+          "artist": "Avicii & Nicky Romero",
+          "album": "I Could Be the One (Avicii vs. Nicky Romero) [Nicktim Radio Edit] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c2/d6/ef/c2d6ef4c-c928-f29d-61cd-4c18d75694b4/12UMGIM64887.rgb.jpg/1000x1000bb.jpg",
+          "duration": 208,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1440834339",
+          "ytId": "",
+          "title": "For a Better Day",
+          "artist": "Avicii",
+          "album": "Stories",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e0/f4/25/e0f425ba-2848-f1c2-e102-9ddcef5e9d9d/15UMGIM35223.rgb.jpg/1000x1000bb.jpg",
+          "duration": 206,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1440899202",
+          "ytId": "",
+          "title": "Lonely Together (feat. Rita Ora)",
+          "artist": "Avicii",
+          "album": "AVĪCI (01) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/97/ec/23/97ec23c0-cb32-5da3-b8ec-b04b2c2c3333/17UM1IM17510.rgb.jpg/1000x1000bb.jpg",
+          "duration": 182,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "sia": {
+      "id": "sia",
+      "name": "Sia",
+      "monthlyListeners": "52,900,000",
+      "followersCount": "38,400,000",
+      "worldRank": "#1 Powerhouse Songwriter & Vocalist",
+      "origin": "Adelaide, Australia",
+      "bio": "Sia Furler is an Australian singer-songwriter whose unmistakable vocal power propelled diamond-certified anthems like Chandelier, Cheap Thrills, and Unstoppable.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/f3d1301aeb356dc0f40440c3d4f39d0e/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/f3d1301aeb356dc0f40440c3d4f39d0e/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/sia/",
+        "x": "https://x.com/sia",
+        "facebook": "https://www.facebook.com/sia/",
+        "youtube": "https://www.youtube.com/@sia"
+      },
+      "tourInfo": {
+        "tourName": "Sia Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-882945393",
+          "ytId": "",
+          "title": "Elastic Heart",
+          "artist": "Sia",
+          "album": "1000 Forms of Fear",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/00/bf/72/00bf72a2-3e50-e5e7-ae78-dc35bbf9bcda/886444578219.jpg/1000x1000bb.jpg",
+          "duration": 257,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-989874548",
+          "ytId": "",
+          "title": "Chandelier",
+          "artist": "Sia",
+          "album": "1000 Forms of Fear (Deluxe Version)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ea/43/4c/ea434c88-8479-304c-6f89-8cd93a5b9b61/886445231311.jpg/1000x1000bb.jpg",
+          "duration": 216,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1440098017",
+          "ytId": "",
+          "title": "Snowman",
+          "artist": "Sia",
+          "album": "Everyday Is Christmas (Deluxe)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/85/c3/21/85c32113-1c4c-571c-7602-88f568d8081c/075679861016.jpg/1000x1000bb.jpg",
+          "duration": 166,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1871071840",
+          "ytId": "",
+          "title": "Unstoppable",
+          "artist": "Sia",
+          "album": "This Is Acting (10th Anniversary Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e0/14/90/e0149074-4b1e-10a6-a69d-b4ae23e5cf73/196874030974.jpg/1000x1000bb.jpg",
+          "duration": 218,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1055074640",
+          "ytId": "",
+          "title": "Cheap Thrills",
+          "artist": "Sia",
+          "album": "This Is Acting",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bc/13/27/bc13275c-8b26-802d-771b-d15ae00fb530/mzm.hvpwjsvi.jpg/1000x1000bb.jpg",
+          "duration": 212,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-693226464",
+          "ytId": "",
+          "title": "Titanium (feat. Sia)",
+          "artist": "David Guetta",
+          "album": "Nothing But the Beat",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/1000x1000bb.jpg",
+          "duration": 245,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1162482667",
+          "ytId": "",
+          "title": "The Greatest",
+          "artist": "Sia",
+          "album": "This Is Acting (Deluxe Version)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8b/81/ba/8b81ba55-0a7f-a0e5-6593-d44f1565cdd1/886446097428.jpg/1000x1000bb.jpg",
+          "duration": 211,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-714521368",
+          "ytId": "",
+          "title": "Breathe Me",
+          "artist": "Sia",
+          "album": "Colour the Small One (Bonus Track Version)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/68/fd/a8/68fda820-dbb9-d9d1-3c81-c9822e43e4fd/00094634810357.rgb.jpg/1000x1000bb.jpg",
+          "duration": 275,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1440881266",
+          "ytId": "",
+          "title": "Helium",
+          "artist": "Sia",
+          "album": "Fifty Shades Darker (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e5/9b/1e/e59b1eaa-92d3-df4b-73f2-9bd798feb630/17UMGIM01263.rgb.jpg/1000x1000bb.jpg",
+          "duration": 252,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1082506273",
+          "ytId": "",
+          "title": "Cheap Thrills (feat. Sean Paul)",
+          "artist": "Sia",
+          "album": "Cheap Thrills (feat. Sean Paul) - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1f/60/44/1f604422-0062-b3c6-7e52-867f496619e8/886445739930.jpg/1000x1000bb.jpg",
+          "duration": 225,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "one-direction": {
+      "id": "one-direction",
+      "name": "One Direction",
+      "monthlyListeners": "43,800,000",
+      "followersCount": "31,200,000",
+      "worldRank": "#1 2010s Global Boy Band Phenomenon",
+      "origin": "London, United Kingdom",
+      "bio": "One Direction is one of the highest-selling boy bands in pop history, propelled by worldwide anthems like What Makes You Beautiful, Night Changes, and Story of My Life.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/6760dba71ba14145eec5478d8b135c55/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/6760dba71ba14145eec5478d8b135c55/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/onedirection/",
+        "x": "https://x.com/onedirection",
+        "facebook": "https://www.facebook.com/onedirection/",
+        "youtube": "https://www.youtube.com/@onedirection"
+      },
+      "tourInfo": {
+        "tourName": "One Direction Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-482734113",
+          "ytId": "",
+          "title": "What Makes You Beautiful",
+          "artist": "One Direction",
+          "album": "Up All Night (Deluxe Version)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c3/d4/76/c3d4765f-006e-c9ac-6b83-50ae04894eff/dj.dqbxwvpe.jpg/1000x1000bb.jpg",
+          "duration": 199,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-695318302",
+          "ytId": "",
+          "title": "Story of My Life",
+          "artist": "One Direction",
+          "album": "Midnight Memories (Deluxe Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/66/75/88/6675882c-3685-2b6b-f9de-c6d3e06602b5/dj.fuklqvvg.jpg/1000x1000bb.jpg",
+          "duration": 245,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-914556579",
+          "ytId": "",
+          "title": "Night Changes",
+          "artist": "One Direction",
+          "album": "FOUR (The Ultimate Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/14/e4/98/14e49846-57a9-dc8d-6fa3-5e03ccf3606c/dj.ljogvxod.jpg/1000x1000bb.jpg",
+          "duration": 227,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-914556572",
+          "ytId": "",
+          "title": "Steal My Girl",
+          "artist": "One Direction",
+          "album": "FOUR (The Ultimate Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/14/e4/98/14e49846-57a9-dc8d-6fa3-5e03ccf3606c/dj.ljogvxod.jpg/1000x1000bb.jpg",
+          "duration": 228,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-695318301",
+          "ytId": "",
+          "title": "Best Song Ever",
+          "artist": "One Direction",
+          "album": "Midnight Memories (Deluxe Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/66/75/88/6675882c-3685-2b6b-f9de-c6d3e06602b5/dj.fuklqvvg.jpg/1000x1000bb.jpg",
+          "duration": 200,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-695318306",
+          "ytId": "",
+          "title": "You & I",
+          "artist": "One Direction",
+          "album": "Midnight Memories (Deluxe Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/66/75/88/6675882c-3685-2b6b-f9de-c6d3e06602b5/dj.fuklqvvg.jpg/1000x1000bb.jpg",
+          "duration": 238,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1040171617",
+          "ytId": "",
+          "title": "Perfect",
+          "artist": "One Direction",
+          "album": "Made In The A.M. (Deluxe Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/45/ac/db/45acdb3d-1a85-52e3-43d5-195f8f58067d/mzm.qyfviqnb.jpg/1000x1000bb.jpg",
+          "duration": 230,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1040171616",
+          "ytId": "",
+          "title": "Drag Me Down",
+          "artist": "One Direction",
+          "album": "Made In The A.M. (Deluxe Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/45/ac/db/45acdb3d-1a85-52e3-43d5-195f8f58067d/mzm.qyfviqnb.jpg/1000x1000bb.jpg",
+          "duration": 192,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-482734115",
+          "ytId": "",
+          "title": "One Thing",
+          "artist": "One Direction",
+          "album": "Up All Night (Deluxe Version)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c3/d4/76/c3d4765f-006e-c9ac-6b83-50ae04894eff/dj.dqbxwvpe.jpg/1000x1000bb.jpg",
+          "duration": 197,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-574406659",
+          "ytId": "",
+          "title": "Little Things",
+          "artist": "One Direction",
+          "album": "Take Me Home (Yearbook Edition)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/49/8d/49498da7-d2f6-24a8-8f5c-6d76119b07e7/886443503175.jpg/1000x1000bb.jpg",
+          "duration": 220,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "david-guetta": {
+      "id": "david-guetta",
+      "name": "David Guetta",
+      "monthlyListeners": "63,700,000",
+      "followersCount": "44,500,000",
+      "worldRank": "#1 The Grandfather of Modern EDM",
+      "origin": "Paris, France",
+      "bio": "David Guetta is a French DJ, record producer, and 2-time Grammy winner with over 50 million album sales and global hits like Titanium and I'm Good (Blue).",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/2d527fa03e106ed82a28f161694278d3/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/2d527fa03e106ed82a28f161694278d3/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/davidguetta/",
+        "x": "https://x.com/davidguetta",
+        "facebook": "https://www.facebook.com/davidguetta/",
+        "youtube": "https://www.youtube.com/@davidguetta"
+      },
+      "tourInfo": {
+        "tourName": "David Guetta Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-693226002",
+          "ytId": "",
+          "title": "Without You (feat. Usher)",
+          "artist": "David Guetta",
+          "album": "Nothing But the Beat",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/1000x1000bb.jpg",
+          "duration": 208,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-693226464",
+          "ytId": "",
+          "title": "Titanium (feat. Sia)",
+          "artist": "David Guetta",
+          "album": "Nothing But the Beat",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/1000x1000bb.jpg",
+          "duration": 245,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1715687127",
+          "ytId": "",
+          "title": "Memories (feat. Kid Cudi)",
+          "artist": "David Guetta",
+          "album": "One More Love",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/7f/26/33/7f2633e4-dace-c4b5-2920-f3bae1b48b08/5099990785054.jpg/1000x1000bb.jpg",
+          "duration": 210,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-693290786",
+          "ytId": "",
+          "title": "Play Hard (feat. Akon & Ne-Yo)",
+          "artist": "David Guetta",
+          "album": "Nothing But the Beat 2.0",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f6/b9/e2/f6b9e2df-c638-3e4b-c28d-a68b06465758/5099997943051.jpg/1000x1000bb.jpg",
+          "duration": 201,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-693226000",
+          "ytId": "",
+          "title": "Turn Me On (feat. Nicki Minaj)",
+          "artist": "David Guetta",
+          "album": "Nothing But the Beat",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/1000x1000bb.jpg",
+          "duration": 200,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-924568962",
+          "ytId": "",
+          "title": "Hey Mama (feat. Nicki Minaj, Bebe Rexha & Afrojack)",
+          "artist": "David Guetta",
+          "album": "Listen",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/68/7f/d5/687fd582-2387-5044-a881-0bc4f0697338/825646194315.jpg/1000x1000bb.jpg",
+          "duration": 193,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1843159674",
+          "ytId": "",
+          "title": "Gone Gone Gone",
+          "artist": "David Guetta, Teddy Swims & Tones And I",
+          "album": "Gone Gone Gone - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ac/1b/01/ac1b0190-eef2-043f-dc65-89217875dc4d/5026854057859.jpg/1000x1000bb.jpg",
+          "duration": 198,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1737218564",
+          "ytId": "",
+          "title": "I Don't Wanna Wait",
+          "artist": "David Guetta & OneRepublic",
+          "album": "I Don't Wanna Wait - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/b6/16/25b61681-2645-e164-86f9-6817410f1987/5021732266897.jpg/1000x1000bb.jpg",
+          "duration": 150,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1795765087",
+          "ytId": "",
+          "title": "Beautiful People",
+          "artist": "David Guetta & Sia",
+          "album": "Beautiful People - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/43/73/c4/4373c49e-369c-689c-11d2-c60abe6377a5/5021732657756.jpg/1000x1000bb.jpg",
+          "duration": 187,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1715688715",
+          "ytId": "",
+          "title": "Who's That Chick? (feat. Rihanna)",
+          "artist": "David Guetta",
+          "album": "One More Love",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/7f/26/33/7f2633e4-dace-c4b5-2920-f3bae1b48b08/5099990785054.jpg/1000x1000bb.jpg",
+          "duration": 201,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "mithoon": {
+      "id": "mithoon",
+      "name": "Mithoon",
+      "monthlyListeners": "27,400,000",
+      "followersCount": "17,200,000",
+      "worldRank": "#2 Soulful Bollywood Melodic Composer",
+      "origin": "Mumbai, Maharashtra, India",
+      "bio": "Mithoon Sharma is an Indian Hindi film music director and lyricist renowned for monumental emotional anthems like Tum Hi Ho, Sanam Re, and Phir Bhi Tumko Chaahunga.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/a0620aa8431d082c429c91171d2abd99/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/a0620aa8431d082c429c91171d2abd99/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/mithoon/",
+        "x": "https://x.com/mithoon",
+        "facebook": "https://www.facebook.com/mithoon/",
+        "youtube": "https://www.youtube.com/@mithoon"
+      },
+      "tourInfo": {
+        "tourName": "Mithoon Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1073359419",
+          "ytId": "",
+          "title": "Tum Hi Ho",
+          "artist": "Mithoon & Arijit Singh",
+          "album": "Aashiqui 2 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg",
+          "duration": 262,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1614059946",
+          "ytId": "",
+          "title": "Aashiqui Aa Gayi",
+          "artist": "Mithoon & Arijit Singh",
+          "album": "Radhe Shyam (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/79/07/84/790784d7-27cd-2113-cd36-404f0d5ede58/8903431857323_cover.jpg/1000x1000bb.jpg",
+          "duration": 260,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1824400213",
+          "ytId": "",
+          "title": "Dhun",
+          "artist": "Mithoon & Arijit Singh",
+          "album": "Saiyaara (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c6/6a/a3/c66aa366-4522-14b8-c629-7cfee5422fc0/Saiyaara_Album_Cover.jpg/1000x1000bb.jpg",
+          "duration": 277,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1167416565",
+          "ytId": "",
+          "title": "Darkhaast (feat. Arijit Singh, Sunidhi Chauhan)",
+          "artist": "Mithoon",
+          "album": "Shivaay (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b5/20/55/b520556d-a1b7-ed6a-db24-5de2f1762998/8902894358422_cover.jpg/1000x1000bb.jpg",
+          "duration": 374,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1116333467",
+          "ytId": "",
+          "title": "Aye Khuda",
+          "artist": "Kshitij Tarey, Saim Bhat & Mithoon",
+          "album": "Murder 2 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/bb/cc/4b/bbcc4bd9-b705-8cff-d637-6379ac87b9a6/8902894695916_cover.jpg/1000x1000bb.jpg",
+          "duration": 410,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-996456910",
+          "ytId": "",
+          "title": "Humnava",
+          "artist": "Mithoon & Papon",
+          "album": "Hamari Adhuri Kahani (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/28/94/26/28942687-425c-d8d0-4284-3a54e4d1170b/886445273656.jpg/1000x1000bb.jpg",
+          "duration": 329,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1071197701",
+          "ytId": "",
+          "title": "Mere Humsafar",
+          "artist": "Mithoon & Tulsi Kumar",
+          "album": "All Is Well (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b9/91/9e/b9919e4d-b41b-b3b1-3267-e531f50771db/8902894357180_cover.jpg/1000x1000bb.jpg",
+          "duration": 353,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1529550665",
+          "ytId": "",
+          "title": "Phir Bhi Tumko Chaahunga",
+          "artist": "Mithoon, Arijit Singh, Shashaa Tirupati & Manoj Muntashir",
+          "album": "Half Girlfriend (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/f9/2a/7d/f92a7d17-b0f1-ecb1-3aec-2f1ca4ef7bf3/840780180666.png/1000x1000bb.jpg",
+          "duration": 352,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1529866493",
+          "ytId": "",
+          "title": "Jaan Ban Gaye",
+          "artist": "Mithoon, Vishal Mishra & Asees Kaur",
+          "album": "Khuda Haafiz (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/23/65/df/2365df8c-6dda-8cd1-af39-9a48b5439bbb/840780183179.png/1000x1000bb.jpg",
+          "duration": 212,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1503490184",
+          "ytId": "",
+          "title": "Chal Ghar Chalen (feat. Arijit Singh)",
+          "artist": "Mithoon",
+          "album": "Malang - Unleash the Madness (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/5b/7a/54/5b7a54cb-e127-f771-470e-f186486a5ae4/8902894361095_cover.jpg/1000x1000bb.jpg",
+          "duration": 341,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "sachin-jigar": {
+      "id": "sachin-jigar",
+      "name": "Sachin-Jigar",
+      "monthlyListeners": "29,800,000",
+      "followersCount": "18,500,000",
+      "worldRank": "#3 Versatile Bollywood Composer Duo",
+      "origin": "Gujarat / Mumbai, India",
+      "bio": "Sachin Sanghvi and Jigar Saraiya are an Indian music composer duo famous for timeless hits like Apna Bana Le, Saibo, and Tere Vaaste.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/d812840574d5c6177ef5480a4ba24d59/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/d812840574d5c6177ef5480a4ba24d59/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/sachinjigar/",
+        "x": "https://x.com/sachinjigar",
+        "facebook": "https://www.facebook.com/sachinjigar/",
+        "youtube": "https://www.youtube.com/@sachinjigar"
+      },
+      "tourInfo": {
+        "tourName": "Sachin-Jigar Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1653219849",
+          "ytId": "",
+          "title": "Apna Bana Le (From \"Bhediya\")",
+          "artist": "Arijit Singh, Sachin-Jigar & Amitabh Bhattacharya",
+          "album": "Apna Bana Le (From \"Bhediya\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/2e/0b/c0/2e0bc070-112f-a827-6ad8-6bc64f7caaff/840214460180.png/1000x1000bb.jpg",
+          "duration": 262,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1688981130",
+          "ytId": "",
+          "title": "Tere Vaaste (From \"Zara Hatke Zara Bachke\")",
+          "artist": "Sachin-Jigar, Varun Jain, Shadab Faridi, Altamash Faridi & Amitabh Bhattacharya",
+          "album": "Tere Vaaste (From \"Zara Hatke Zara Bachke\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/33/03/f2/3303f270-fce2-293a-5bfc-4b9de994abf9/197188946401.jpg/1000x1000bb.jpg",
+          "duration": 189,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1556794050",
+          "ytId": "",
+          "title": "Nadiyon Paar (Let the Music Play Again)",
+          "artist": "Sachin-Jigar, Rashmeet Kaur, Shamur & IP Singh",
+          "album": "Roohi (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ff/4c/03/ff4c0326-1f06-018f-0f57-cacebe06ce23/886449144440.jpg/1000x1000bb.jpg",
+          "duration": 164,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1495003963",
+          "ytId": "",
+          "title": "Lagdi Lahore Di (From \"Street Dancer 3D\")",
+          "artist": "Guru Randhawa, Tulsi Kumar & Sachin-Jigar",
+          "album": "Lagdi Lahore Di (From \"Street Dancer 3D\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c6/ec/e1/c6ece16e-70ea-60ab-9609-c69a917de79b/8903431765154_cover.jpg/1000x1000bb.jpg",
+          "duration": 215,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1688186502",
+          "ytId": "",
+          "title": "Phir Aur Kya Chahiye (From \"Zara Hatke Zara Bachke\")",
+          "artist": "Sachin-Jigar, Arijit Singh & Amitabha Bhattacharya",
+          "album": "Phir Aur Kya Chahiye (From \"Zara Hatke Zara Bachke\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/12/bf/55/12bf5501-5b2c-144e-700b-186389c58c0d/197188913151.jpg/1000x1000bb.jpg",
+          "duration": 266,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1759100524",
+          "ytId": "",
+          "title": "Aaj Ki Raat (From \"Stree 2\")",
+          "artist": "Madhubanti Bagchi, Divya Kumar, Sachin-Jigar & Amitabh Bhattacharya",
+          "album": "Aaj Ki Raat (From \"Stree 2\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/7f/47/3a7f47da-2330-c758-4460-ce12f9385a82/198588793954.jpg/1000x1000bb.jpg",
+          "duration": 229,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1762171370",
+          "ytId": "",
+          "title": "Aaj Ki Raat",
+          "artist": "Madhubanti Bagchi, Divya Kumar, Sachin-Jigar & Amitabh Bhattacharya",
+          "album": "Stree 2 (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d3/37/eb/d337eb52-2663-826d-d213-335598b14743/198846005553.jpg/1000x1000bb.jpg",
+          "duration": 229,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1586803920",
+          "ytId": "",
+          "title": "Barbaadiyan",
+          "artist": "Sachet Tandon, Nikhita Gandhi, Madhubanti Bagchi & Sachin-Jigar",
+          "album": "Shiddat (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c6/70/c0/c670c0a6-ac32-9cb6-0dc4-1359e2e7f62a/8902894361408_cover.jpg/1000x1000bb.jpg",
+          "duration": 230,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1658238167",
+          "ytId": "",
+          "title": "Apna Bana Le",
+          "artist": "Sachin-Jigar & Arijit Singh",
+          "album": "Bhediya (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/29/14/de/2914deba-3fac-4a9a-e493-0efd12bf8c69/840214461774.png/1000x1000bb.jpg",
+          "duration": 262,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1760581362",
+          "ytId": "",
+          "title": "Aayi Nai (From \"Stree 2\")",
+          "artist": "Amitabh Bhattacharya, Sachin-Jigar, Pawan Singh & Simran Choudhary",
+          "album": "Aayi Nai (From \"Stree 2\") - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7d/87/ee/7d87eeb9-1642-0aa0-44a7-b18955821d13/198588933909.jpg/1000x1000bb.jpg",
+          "duration": 179,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "ajay-atul": {
+      "id": "ajay-atul",
+      "name": "Ajay-Atul",
+      "monthlyListeners": "26,900,000",
+      "followersCount": "16,800,000",
+      "worldRank": "#1 Symphonic & Orchestral Titans",
+      "origin": "Pune, Maharashtra, India",
+      "bio": "Ajay and Atul Gogavale are a National Award-winning Indian music composer duo celebrated for massive symphonic masterworks like Zingaat, Deva Shree Ganesha, and Yad Lagla.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/ec491fbeec98b7f794bb92e89dc7fac1/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/ec491fbeec98b7f794bb92e89dc7fac1/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/ajayatul/",
+        "x": "https://x.com/ajayatul",
+        "facebook": "https://www.facebook.com/ajayatul/",
+        "youtube": "https://www.youtube.com/@ajayatul"
+      },
+      "tourInfo": {
+        "tourName": "Ajay-Atul Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-486353435",
+          "ytId": "",
+          "title": "Abhi Mujh Mein Kahin",
+          "artist": "Sonu Nigam & Ajay-Atul",
+          "album": "Agneepath (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/60/15/fe/6015feb2-58ed-eafd-9870-f154de2b4ed8/886443303317.jpg/1000x1000bb.jpg",
+          "duration": 365,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-486353436",
+          "ytId": "",
+          "title": "Deva Shree Ganesha",
+          "artist": "Ajay Gogavale & Ajay-Atul",
+          "album": "Agneepath (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/60/15/fe/6015feb2-58ed-eafd-9870-f154de2b4ed8/886443303317.jpg/1000x1000bb.jpg",
+          "duration": 357,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-1529557008",
+          "ytId": "",
+          "title": "Zingaat",
+          "artist": "Ajay-Atul",
+          "album": "Dhadak (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/66/5a/e8/665ae8ad-1aab-5d0c-3ca9-4fa062b1606c/8718857670711.png/1000x1000bb.jpg",
+          "duration": 227,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1021869614",
+          "ytId": "",
+          "title": "Sapna Jahan",
+          "artist": "Ajay-Atul, Sonu Nigam & Neeti Mohan",
+          "album": "Brothers (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/51/ff/e051ff62-591e-14af-a317-84b387f28ea3/886445395211.jpg/1000x1000bb.jpg",
+          "duration": 342,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1688729710",
+          "ytId": "",
+          "title": "Jai Shri Ram (From \"Adipurush\") [Hindi]",
+          "artist": "Ajay-Atul & Manoj Muntashir",
+          "album": "Jai Shri Ram (From \"Adipurush\") [Hindi] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/d6/a8/b2/d6a8b244-aede-3743-963c-a12e88225326/8903431941091_cover.jpg/1000x1000bb.jpg",
+          "duration": 212,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1688729776",
+          "ytId": "",
+          "title": "Jai Shri Ram (From \"Adipurush\") [Telugu]",
+          "artist": "Ajay-Atul, Manoj Muntashir & Ramajogayya Sastry",
+          "album": "Jai Shri Ram (From \"Adipurush\") [Telugu] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/44/cf/5a/44cf5abb-0554-07a8-1a97-15ba58c6473c/8903431941107_cover.jpg/1000x1000bb.jpg",
+          "duration": 212,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1880924448",
+          "ytId": "",
+          "title": "Endhayya Saami (Special Surprise) [From \"Ranabaali\"]",
+          "artist": "Ajay-Atul, Shweta Mohan, Ajay Gogavale & Ramajogayya Sastry",
+          "album": "Endhayya Saami (Special Surprise) [From \"Ranabaali\"] - Single",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/44/c6/cf/44c6cf40-d801-c2e0-faec-8d25921e7c3e/8903431185723_cover.jpg/1000x1000bb.jpg",
+          "duration": 79,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-486353431",
+          "ytId": "",
+          "title": "Chikni Chameli",
+          "artist": "Shreya Ghoshal & Ajay-Atul",
+          "album": "Agneepath (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/60/15/fe/6015feb2-58ed-eafd-9870-f154de2b4ed8/886443303317.jpg/1000x1000bb.jpg",
+          "duration": 302,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-486353432",
+          "ytId": "",
+          "title": "O Saiyyan",
+          "artist": "Roop Kumar Rathod & Ajay-Atul",
+          "album": "Agneepath (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/60/15/fe/6015feb2-58ed-eafd-9870-f154de2b4ed8/886443303317.jpg/1000x1000bb.jpg",
+          "duration": 278,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1691471290",
+          "ytId": "",
+          "title": "Jai Shri Ram",
+          "artist": "Ajay-Atul",
+          "album": "Adipurush (Original Motion Picture Soundtrack) [Telugu] - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d7/34/99/d73499bc-53db-b376-435b-3ce96e99725c/8903431940957_cover.jpg/1000x1000bb.jpg",
+          "duration": 212,
+          "plays": "45,50,00,000"
+        }
+      ]
+    },
+  "palak-muchhal": {
+      "id": "palak-muchhal",
+      "name": "Palak Muchhal",
+      "monthlyListeners": "23,500,000",
+      "followersCount": "14,700,000",
+      "worldRank": "#8 Melodic Playback Sweetheart",
+      "origin": "Indore, Madhya Pradesh, India",
+      "bio": "Palak Muchhal is an Indian playback singer and philanthropist recognized for soulful hits like Kaun Tujhe, Prem Ratan Dhan Payo, and Chahun Main Ya Naa.",
+      "banner": "https://cdn-images.dzcdn.net/images/artist/39f52e691799577cee157d9731e21a8f/1000x1000-000000-80-0-0.jpg",
+      "avatar": "https://cdn-images.dzcdn.net/images/artist/39f52e691799577cee157d9731e21a8f/1000x1000-000000-80-0-0.jpg",
+      "socials": {
+        "instagram": "https://www.instagram.com/palakmuchhal/",
+        "x": "https://x.com/palakmuchhal",
+        "facebook": "https://www.facebook.com/palakmuchhal/",
+        "youtube": "https://www.youtube.com/@palakmuchhal"
+      },
+      "tourInfo": {
+        "tourName": "Palak Muchhal Live World Tour 2026",
+        "status": "Tickets Live",
+        "dates": "Mumbai, London, Dubai, New York, Toronto, Sydney",
+        "ticketUrl": "https://in.bookmyshow.com/explore/events"
+      },
+      "topTracks": [
+        {
+          "id": "itunes-1073359663",
+          "ytId": "",
+          "title": "Chahun Main Ya Naa",
+          "artist": "Palak Muchhal & Arijit Singh",
+          "album": "Aashiqui 2 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg",
+          "duration": 305,
+          "plays": "95,00,00,000"
+        },
+        {
+          "id": "itunes-1529553046",
+          "ytId": "",
+          "title": "Teri Meri Kahaani",
+          "artist": "Arijit Singh & Palak Muchhal",
+          "album": "Gabbar Is Back (Original Motion Picture Soundtrack) - EP",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fa/1e/87/fa1e87ef-7a5f-3761-50cd-6f9f3a4d3c8d/840780180611.png/1000x1000bb.jpg",
+          "duration": 331,
+          "plays": "89,50,00,000"
+        },
+        {
+          "id": "itunes-6828409506",
+          "ytId": "",
+          "title": "Tum Yun Hi Kabhi",
+          "artist": "Amaal Mallik, Daboo Malik, Palak Muchhal & Panchhi Jalonvi",
+          "album": "Gaayak Daboo Malik",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e4/e8/4a/e4e84a31-2dfe-1412-40f8-6e64f9e79500/711641082774.jpg/1000x1000bb.jpg",
+          "duration": 267,
+          "plays": "84,00,00,000"
+        },
+        {
+          "id": "itunes-1071890036",
+          "ytId": "",
+          "title": "O Khuda",
+          "artist": "Amaal Mallik & Palak Muchhal",
+          "album": "Hero (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/92/5b/ed/925bed07-724b-06e3-dc21-7df19ea142b1/8902894357302_cover.jpg/1000x1000bb.jpg",
+          "duration": 307,
+          "plays": "78,50,00,000"
+        },
+        {
+          "id": "itunes-1438639439",
+          "ytId": "",
+          "title": "Dholida (from \"Loveyatri\")",
+          "artist": "Udit Narayan, Neha Kakkar, Palak Muchhal & Raja Hassan",
+          "album": "Bollywood Dandiya Songs",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/6d/3b/ad/6d3bad14-744c-b8bc-53c5-0e01493f5f02/8903431696953_cover.jpg/1000x1000bb.jpg",
+          "duration": 216,
+          "plays": "73,00,00,000"
+        },
+        {
+          "id": "itunes-1158884517",
+          "ytId": "",
+          "title": "Kaun Tujhe",
+          "artist": "Palak Muchhal",
+          "album": "M.S. Dhoni: The Untold Story (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/03/a1/2803a189-b430-0a28-3c65-a4b704314232/8902894358361_cover.jpg/1000x1000bb.jpg",
+          "duration": 241,
+          "plays": "67,50,00,000"
+        },
+        {
+          "id": "itunes-1188255407",
+          "ytId": "",
+          "title": "Kaabil Hoon",
+          "artist": "Jubin Nautiyal & Palak Muchhal",
+          "album": "Kaabil (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music111/v4/dc/1f/ce/dc1fcec6-f100-103e-bc6f-125ce64d5a16/8903431632548_cover.jpg/1000x1000bb.jpg",
+          "duration": 314,
+          "plays": "62,00,00,000"
+        },
+        {
+          "id": "itunes-1073359665",
+          "ytId": "",
+          "title": "Meri Aashiqui",
+          "artist": "Palak Muchhal & Arijit Singh",
+          "album": "Aashiqui 2 (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/1000x1000bb.jpg",
+          "duration": 266,
+          "plays": "56,50,00,000"
+        },
+        {
+          "id": "itunes-1110891671",
+          "ytId": "",
+          "title": "Hua Hain Aaj Pehli Baar (feat. Armaan Malik & Palak Muchhal)",
+          "artist": "Amaal Mallik & Palak Muchhal",
+          "album": "Sanam Re (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fe/1d/e4/fe1de42c-cc56-cd1d-fd40-339bbfa8f0f3/8902894357647_cover.jpg/1000x1000bb.jpg",
+          "duration": 309,
+          "plays": "51,00,00,000"
+        },
+        {
+          "id": "itunes-1071067968",
+          "ytId": "",
+          "title": "Prem Ratan Dhan Payo",
+          "artist": "Palak Muchhal",
+          "album": "Prem Ratan Dhan Payo (Original Motion Picture Soundtrack)",
+          "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/48/3c/e6/483ce6f8-751f-443c-8dfe-46df1624efcc/8902894357463_cover.jpg/1000x1000bb.jpg",
+          "duration": 319,
+          "plays": "45,50,00,000"
+        }
+      ]
+    }
 };
 
 
@@ -11682,14 +19183,6 @@ export const SIMILAR_ARTIST_MAP = {
   "mohit-chauhan": [
     "kk",
     "arijit-singh"
-  ],
-  "nusrat-fateh-ali-khan": [
-    "rahat-fateh-ali-khan",
-    
-  ],
-  "rahat-fateh-ali-khan": [
-    "nusrat-fateh-ali-khan",
-    
   ],
   "kishore-kumar": [
     "mohammed-rafi",
@@ -12534,6 +20027,31 @@ export const getArtistDetails = (artistName) => {
     else if (normalized.includes('stray kids') || normalized.includes('skz')) foundKey = 'stray-kids';
     else if (normalized.includes('twice')) foundKey = 'twice';
     else if (normalized.includes('newjeans')) foundKey = 'newjeans';
+    else if (normalized.includes('vishal') && normalized.includes('mishra')) foundKey = 'vishal-mishra';
+    else if (normalized.includes('lucky') && normalized.includes('ali')) foundKey = 'lucky-ali';
+    else if (normalized.includes('anuradha') || normalized.includes('paudwal')) foundKey = 'anuradha-paudwal';
+    else if (normalized.includes('stebin') || normalized.includes('ben')) foundKey = 'stebin-ben';
+    else if (normalized.includes('neeraj') || normalized.includes('shridhar') || normalized.includes('bombay vikings')) foundKey = 'neeraj-shridhar';
+    else if (normalized.includes('jonita') || normalized.includes('gandhi')) foundKey = 'jonita-gandhi';
+    else if (normalized.includes('neeti') || (normalized.includes('mohan') && !normalized.includes('krishna') && !normalized.includes('mohit'))) foundKey = 'neeti-mohan';
+    else if (normalized.includes('monali') || normalized.includes('thakur')) foundKey = 'monali-thakur';
+    else if (normalized.includes('benny') || normalized.includes('dayal')) foundKey = 'benny-dayal';
+    else if (normalized.includes('javed') && normalized.includes('ali')) foundKey = 'javed-ali';
+    else if (normalized.includes('ankit') || normalized.includes('tiwari')) foundKey = 'ankit-tiwari';
+    else if (normalized.includes('himesh') || normalized.includes('reshammiya')) foundKey = 'himesh-reshammiya';
+    else if (normalized.includes('papon') || normalized.includes('angaraag')) foundKey = 'papon';
+    else if (normalized.includes('mahadevan')) foundKey = 'shankar-mahadevan';
+    else if (normalized.includes('manna') || normalized.includes('dey')) foundKey = 'manna-dey';
+    else if (normalized.includes('yesudas') || normalized.includes('kj yesudas')) foundKey = 'k-j-yesudas';
+    else if (normalized.includes('janaki') || normalized.includes('s janaki')) foundKey = 's-janaki';
+    else if (normalized.includes('keeravani') || normalized.includes('keeravaani') || normalized.includes('mm keeravani')) foundKey = 'm-m-keeravani';
+    else if (normalized.includes('santhosh') && normalized.includes('narayanan')) foundKey = 'santhosh-narayanan';
+    else if (normalized.includes('sushin') || (normalized.includes('shyam') && !normalized.includes('ghanshyam'))) foundKey = 'sushin-shyam';
+    else if (normalized.includes('hesham') || normalized.includes('abdul wahab')) foundKey = 'hesham-abdul-wahab';
+    else if (normalized.includes('sia') && !normalized.includes('asian') && !normalized.includes('russia')) foundKey = 'sia';
+    else if (normalized.includes('one direction') || normalized.includes('1d')) foundKey = 'one-direction';
+    else if (normalized.includes('sam smith')) foundKey = 'sam-smith';
+    else if (normalized.includes('guetta') || normalized.includes('david guetta')) foundKey = 'david-guetta';
     else if (normalized.includes('queen') && !normalized.includes('dragons')) foundKey = 'queen';
     else if (normalized.includes('michael') || normalized.includes('jackson')) foundKey = 'michael-jackson';
     else if (normalized.includes('camila') || normalized.includes('cabello')) foundKey = 'camila-cabello';
@@ -12637,7 +20155,8 @@ export const getArtistDetails = (artistName) => {
       singles: [
         { title: data.topTracks[0]?.title || "Latest Single", year: "2024", type: "Single", coverUrl: data.topTracks[0]?.coverUrl || data.banner }
       ],
-      similarArtists: getCuratedSimilarArtists(foundKey, data.name)
+      similarArtists: getCuratedSimilarArtists(foundKey, data.name),
+      isCurated: true
     };
   }
 
@@ -12669,41 +20188,10 @@ export const getArtistDetails = (artistName) => {
   if (Array.isArray(MOVIE_PLAYLISTS)) MOVIE_PLAYLISTS.forEach(pl => scanForArtist(pl.tracks));
   if (Array.isArray(VIBE_PLAYLISTS)) VIBE_PLAYLISTS.forEach(pl => scanForArtist(pl.tracks));
 
-  // GUARANTEE 10 REAL MASTER TRACKS & AUTHENTIC REAL PHOTO FOR EVERY ARTIST
+  // Clean Dynamic Fallback (Real catalog matches or delegated live resolver)
   const cleanHandle = artistName.toLowerCase().replace(/[^a-z0-9]/g, '');
   const featuredArtistMatch = getFeaturedArtists().find(a => a.name.toLowerCase() === normalized || a.name.toLowerCase().includes(normalized));
-  const defaultMasterCover = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&auto=format&fit=crop&q=80';
-  const realCover = featuredArtistMatch?.avatar || matchedTracks[0]?.coverUrl || defaultMasterCover;
-
-  // Curate popular hit titles for dynamic artist track completion
-  const masterHitTitles = [
-    `${artistName} Greatest Anthem`,
-    `Heartbeat of ${artistName}`,
-    `Midnight Symphony`,
-    `Golden Melodies`,
-    `Acoustic Reverie`,
-    `Forever & Always`,
-    `Soulful Echoes`,
-    `Electric Skies`,
-    `Eternal Studio Master`,
-    `Definitive Anthology`
-  ];
-
-  // If fewer than 10 tracks matched, fill up to 10 with verified studio recordings
-  while (matchedTracks.length < 10) {
-    const idx = matchedTracks.length;
-    matchedTracks.push({
-      id: `ytm-${cleanHandle}-${idx + 1}`,
-      ytId: matchedTracks[0]?.ytId || '4NRXx6U8ABQ',
-      title: masterHitTitles[idx] || `${artistName} Master Hit #${idx + 1}`,
-      artist: artistName,
-      album: `${artistName} Definitive Anthology`,
-      coverUrl: realCover,
-      duration: 215 + (idx * 7),
-      plays: (980000000 - (idx * 65000000)).toLocaleString()
-    });
-  }
-
+  const realCover = featuredArtistMatch?.avatar || matchedTracks[0]?.coverUrl || '';
   const top10 = matchedTracks.slice(0, 10);
   const banner = realCover;
   const similarArtists = getCuratedSimilarArtists('', artistName);
@@ -12717,7 +20205,7 @@ export const getArtistDetails = (artistName) => {
     banner,
     avatar: banner,
     topTracks: top10,
-    bio: `${artistName} is an acclaimed recording artist whose high-fidelity studio master productions and live concert performances have captivated music lovers worldwide. Explore their verified top 10 songs, official releases, and concert tours on Pulse Music.`,
+    bio: `${artistName} is an acclaimed recording artist whose high-fidelity studio master productions and live concert performances have captivated music lovers worldwide. Explore their verified top songs and official releases on Pulse Music.`,
     origin: "Global",
     socials: {
       instagram: `https://www.instagram.com/${cleanHandle}/`,
@@ -12738,7 +20226,9 @@ export const getArtistDetails = (artistName) => {
     singles: [
       { title: top10[0]?.title || "Latest Single", year: "2024", type: "Single", coverUrl: banner }
     ],
-    similarArtists
+    similarArtists,
+    isCurated: false,
+    isPlaceholder: top10.length < 5 || !realCover
   };
 };
 

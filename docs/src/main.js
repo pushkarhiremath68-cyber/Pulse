@@ -2850,12 +2850,26 @@ import {
       }
     };
 
-    if (artist) {
+    // If artist is not fully curated or has 0 tracks, show sleek loading indicator
+    if (!artist || !artist.topTracks || artist.topTracks.length === 0) {
+      const heroName = document.getElementById('artist-hero-name');
+      if (heroName) heroName.textContent = artistQuery;
+      const topTracksList = document.getElementById('artist-popular-tracks-list');
+      if (topTracksList) {
+        topTracksList.innerHTML = `
+          <div style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: #38bdf8; margin-bottom: 0.8rem;"></i>
+            <div style="font-weight: 700; color: #fff; font-size: 1.1rem;">Resolving ${escapeHtml(artistQuery)} Discography...</div>
+            <div style="font-size: 0.82rem; margin-top: 6px; color: var(--text-secondary);">Fetching authentic 1000x1000 portrait and verified master tracks</div>
+          </div>
+        `;
+      }
+    } else {
       renderArtist(artist);
     }
 
     // Dynamic resolution for any artist globally
-    const isCurated = artist && artist.topTracks && artist.topTracks.length >= 10 && artist.banner && !artist.banner.includes('dicebear');
+    const isCurated = artist && artist.isCurated && artist.topTracks && artist.topTracks.length >= 5 && artist.banner && !artist.banner.includes('unsplash') && !artist.banner.includes('dicebear');
     if (!isCurated && window.musicService && typeof window.musicService.fetchDynamicArtistProfile === 'function') {
       try {
         const dynamicData = await window.musicService.fetchDynamicArtistProfile(artistQuery);

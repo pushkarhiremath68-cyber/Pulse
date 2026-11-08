@@ -966,9 +966,30 @@ if (typeof window !== 'undefined') {
   window.musicService = musicService;
 }
 
+
+const PAKISTANI_BLACKLIST = [
+  'atif aslam', 'rahat fateh ali khan', 'ali zafar', 'shafqat amanat ali',
+  'farhan saeed', 'ghulam ali', 'mehdi hassan', 'nusrat fateh ali khan',
+  'momina mustehsan', 'mustafa zahid', 'asif aslam', 'abida parveen',
+  'sajjad ali', 'quratulain balouch', 'bilal saeed', 'aimal khan'
+];
+
+function isPakistani(str = '') {
+  const norm = (str || '').toLowerCase();
+  return PAKISTANI_BLACKLIST.some(b => norm.includes(b));
+}
+
+const ITUNES_FETCH_HEADERS = {
+  'User-Agent': 'PulseMusic/2.4 (Macintosh; Intel Mac OS X 10_15_7)',
+  'Accept': 'application/json, text/plain, */*'
+};
 export async function fetchDynamicArtistProfile(artistName) {
   if (!artistName || typeof artistName !== 'string') return null;
   const norm = artistName.toLowerCase().trim();
+  if (isPakistani(norm)) {
+    console.warn('Excluding blacklisted artist:', artistName);
+    return null;
+  }
   const cleanKey = norm.replace(/[^a-z0-9]/g, '-');
 
   // 1. Check ARTIST_DATABASE in catalogService first
@@ -994,12 +1015,16 @@ export async function fetchDynamicArtistProfile(artistName) {
   } catch (e) {}
 
   try {
-    // 3. Query iTunes Search API for both artist entity and top songs in parallel
-    const artistPromise = fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artistName)}&entity=musicArtist&limit=3`, { signal: AbortSignal.timeout(4000) })
-      .then(r => r.ok ? r.json() : null).catch(() => null);
+    // 3. Query iTunes Search API for both artist entity and top songs in parallel with authentic headers
+    const artistPromise = fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artistName)}&entity=musicArtist&limit=3`, {
+      headers: ITUNES_FETCH_HEADERS,
+      signal: AbortSignal.timeout(4500)
+    }).then(r => r.ok ? r.json() : null).catch(() => null);
 
-    const songsPromise = fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artistName)}&entity=song&limit=25`, { signal: AbortSignal.timeout(4000) })
-      .then(r => r.ok ? r.json() : null).catch(() => null);
+    const songsPromise = fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artistName)}&entity=song&limit=40`, {
+      headers: ITUNES_FETCH_HEADERS,
+      signal: AbortSignal.timeout(4500)
+    }).then(r => r.ok ? r.json() : null).catch(() => null);
 
     const [artistData, songsData] = await Promise.all([artistPromise, songsPromise]);
 
@@ -1012,13 +1037,19 @@ export async function fetchDynamicArtistProfile(artistName) {
       if (art.primaryGenreName) genre = art.primaryGenreName;
     }
 
-    const allSongs = (songsData && songsData.results) ? songsData.results : [];
-    const filteredSongs = allSongs.filter(s => {
+    const rawSongs = (songsData && songsData.results) ? songsData.results : [];
+    const validSongs = rawSongs.filter(s => {
+      const a = (s.artistName || '').toLowerCase();
+      const t = (s.trackName || '').toLowerCase();
+      return !isPakistani(a) && !isPakistani(t);
+    });
+
+    const filteredSongs = validSongs.filter(s => {
       const a = (s.artistName || '').toLowerCase();
       return a.includes(norm) || norm.includes(a);
     });
 
-    const finalSongs = filteredSongs.length >= 3 ? filteredSongs : allSongs;
+    const finalSongs = filteredSongs.length >= 3 ? filteredSongs : validSongs;
     if (finalSongs.length === 0) return null;
 
     if (canonicalName === artistName && finalSongs[0]?.artistName) {
@@ -1035,10 +1066,10 @@ export async function fetchDynamicArtistProfile(artistName) {
     // High-resolution master wallpaper / artwork (1000x1000 master)
     const bestCover = (finalSongs[0]?.artworkUrl100 || '').replace('100x100bb', '1000x1000bb') || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&auto=format&fit=crop&q=80';
 
-    // Fetch authentic artist portrait from Deezer to prevent movie soundtrack covers with actors from masking singer face
+    // 4. Fetch authentic artist portrait from Deezer to prevent movie soundtrack covers with actors
     let authenticPortrait = null;
     try {
-      const dzRes = await fetch(`https://api.deezer.com/search/artist?q=${encodeURIComponent(canonicalName)}&limit=5`, { signal: AbortSignal.timeout(2000) });
+      const dzRes = await fetch(`https://api.deezer.com/search/artist?q=${encodeURIComponent(canonicalName)}&limit=5`, { signal: AbortSignal.timeout(2500) });
       if (dzRes.ok) {
         const dzData = await dzRes.json();
         if (dzData && Array.isArray(dzData.data) && dzData.data.length > 0) {
@@ -1050,33 +1081,44 @@ export async function fetchDynamicArtistProfile(artistName) {
       }
     } catch (e) {}
 
-    const artistPhoto = authenticPortrait || bestCover;
-
-    // Guarantee at least 10 top tracks
-    let extendedSongs = [...finalSongs];
-    if (extendedSongs.length < 10) {
-      const needed = 10 - extendedSongs.length;
-      for (let i = 0; i < needed; i++) {
-        extendedSongs.push({
-          trackId: `pulse-dyn-${i + 1}`,
-          trackName: `${canonicalName} - Master Hit #${extendedSongs.length + 1}`,
-          artistName: canonicalName,
-          collectionName: `${canonicalName} Definitive Collection`,
-          artworkUrl100: bestCover,
-          trackTimeMillis: (210 + (i * 12)) * 1000
+    // Fallback to Wikipedia summary if portrait missing
+    if (!authenticPortrait) {
+      try {
+        const wikiRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(canonicalName.replace(/ /g, '_'))}`, {
+          headers: { 'User-Agent': 'PulseMusicApp/2.4 (contact: pushkarhiremath68@gmail.com)' },
+          signal: AbortSignal.timeout(2000)
         });
-      }
+        if (wikiRes.ok) {
+          const wikiData = await wikiRes.json();
+          if (wikiData.thumbnail?.source || wikiData.originalimage?.source) {
+            authenticPortrait = wikiData.originalimage?.source || wikiData.thumbnail?.source;
+          }
+        }
+      } catch (e) {}
     }
 
-    const topTracks = extendedSongs.slice(0, 10).map((t, idx) => ({
+    const artistPhoto = authenticPortrait || bestCover;
+
+    // Deduplicate songs by title
+    const seenTitles = new Set();
+    const uniqueSongs = [];
+    for (const s of finalSongs) {
+      const tNorm = (s.trackName || '').toLowerCase().trim();
+      if (!tNorm || seenTitles.has(tNorm)) continue;
+      seenTitles.add(tNorm);
+      uniqueSongs.push(s);
+    }
+
+    // Top authentic songs (strictly real releases, never dummy titles)
+    const topTracks = uniqueSongs.slice(0, 10).map((t, idx) => ({
       id: `itunes-${t.trackId || Math.random().toString(36).substr(2, 8)}`,
       ytId: '',
       title: t.trackName,
       artist: t.artistName || canonicalName,
       album: t.collectionName || 'Studio Master Release',
-      coverUrl: (t.artworkUrl100 || '').replace('100x100bb', '600x600bb') || bestCover,
+      coverUrl: (t.artworkUrl100 || '').replace('100x100bb', '1000x1000bb') || bestCover,
       duration: Math.round((t.trackTimeMillis || 215000) / 1000),
-      plays: (1000000000 - (idx * 65000000)).toLocaleString()
+      plays: (950000000 - (idx * 55000000)).toLocaleString()
     }));
 
     const cleanHandle = canonicalName.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -1099,8 +1141,7 @@ export async function fetchDynamicArtistProfile(artistName) {
         instagram: `https://www.instagram.com/${cleanHandle}/`,
         x: `https://x.com/${cleanHandle}`,
         facebook: `https://www.facebook.com/${cleanHandle}/`,
-        youtube: `https://www.youtube.com/@${cleanHandle}`,
-        
+        youtube: `https://www.youtube.com/@${cleanHandle}`
       },
       tourInfo: {
         tourName: `${canonicalName} Live World Tour 2026`,
@@ -1108,7 +1149,8 @@ export async function fetchDynamicArtistProfile(artistName) {
         dates: "Upcoming Arena & Stadium Dates Worldwide",
         ticketUrl: "https://in.bookmyshow.com/explore/events"
       },
-      similarArtists: (typeof window !== 'undefined' && window.catalogService) ? window.catalogService.getCuratedSimilarArtists('', canonicalName) : []
+      similarArtists: (typeof window !== 'undefined' && window.catalogService) ? window.catalogService.getCuratedSimilarArtists('', canonicalName) : [],
+      isCurated: true
     };
 
     // Cache to localStorage
@@ -1141,7 +1183,7 @@ export async function searchDynamicArtists(query) {
     if (dzRes.ok) {
       const dzData = await dzRes.json();
       if (dzData && Array.isArray(dzData.data) && dzData.data.length > 0) {
-        const valid = dzData.data.filter(a => a && a.picture_xl && !a.picture_xl.endsWith('/1000x1000-000000-80-0-0.jpg'));
+        const valid = dzData.data.filter(a => a && a.name && !isPakistani(a.name) && a.picture_xl && !a.picture_xl.endsWith('/1000x1000-000000-80-0-0.jpg'));
         if (valid.length > 0) {
           return valid.map(art => ({
             id: art.name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
@@ -1165,7 +1207,7 @@ export async function searchDynamicArtists(query) {
     const data = await res.json();
     if (!data || !Array.isArray(data.results)) return [];
 
-    const validArtists = data.results.filter(a => a && a.artistName);
+    const validArtists = data.results.filter(a => a && a.artistName && !isPakistani(a.artistName));
     const candidates = await Promise.all(
       validArtists.map(async (art) => {
         let avatar = '';

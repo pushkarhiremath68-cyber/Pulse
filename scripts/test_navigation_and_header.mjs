@@ -152,3 +152,4 @@ if (failCount > 0) {
 } else {
   console.log('\n🎉 ALL NAVIGATION & HEADER INTEGRITY TESTS PASSED 100%!');
 }
+
