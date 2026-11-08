@@ -21,11 +21,17 @@ const normCss = css.replace(/\r\n/g, '\n');
 if (!normCss.includes('.header-pfp-img.hidden,\n.header-pfp-fallback.hidden {\n  display: none !important;')) {
   throw new Error('Hidden pfp elements must be display: none !important');
 }
-if (!sw.includes('pulse-music-v5.0.3')) throw new Error('SW version must be v5.0.3');
+if (!sw.includes('pulse-music-v5.0.4')) throw new Error('SW version must be v5.0.4');
 
-// Video preview embed assertions
+// Video preview embed and 15s duration assertions
 if (js.includes('&playlist=${slide.videoYtId}')) {
   throw new Error('Hero preview iframe must NOT contain playlist param to avoid playlist controls');
+}
+if (!js.includes('HERO_SLIDE_DURATION_MS = 15000')) {
+  throw new Error('Hero slide duration must be 15000ms');
+}
+if (!css.includes('heroPillFill 15s')) {
+  throw new Error('Hero pill progress animation must be 15s');
 }
 
 // Playbar idle assertions

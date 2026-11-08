@@ -1483,7 +1483,7 @@ body::after {
 }
 
 .hero-pill-dot.active-pill .hero-pill-progress {
-  animation: heroPillFill 6s linear forwards;
+  animation: heroPillFill 15s linear forwards;
 }
 
 @keyframes heroPillFill {

@@ -1163,7 +1163,7 @@ import {
   let heroAutoPlayInterval = null;
   let isHeroPaused = false;
   let activeVideoSlideIndex = null;
-  const HERO_SLIDE_DURATION_MS = 6000;
+  const HERO_SLIDE_DURATION_MS = 15000; // 15 seconds per slide for cinematic preview viewing
 
   window.initHeroCarousel = function(forceRebuild = false) {
     const banner = document.getElementById('hero-banner');
