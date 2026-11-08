@@ -500,6 +500,53 @@ body::after {
   order: 1;
 }
 
+/* Circular Header Profile Trigger (Google Account PFP / Customized Avatar) */
+.header-profile-circle-btn,
+#header-auth-btn.header-profile-circle-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  flex-shrink: 0 !important;
+}
+
+.header-profile-circle-btn:hover,
+#header-auth-btn.header-profile-circle-btn:hover {
+  transform: scale(1.06) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 255, 255, 0.25) !important;
+}
+
+.header-pfp-img {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.header-pfp-fallback {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.25rem !important;
+  color: #f1f5f9 !important;
+}
+
 .mobile-profile-trigger {
   display: none;
 }
@@ -3667,7 +3714,7 @@ section.filter-pills-bar {
     align-items: center !important;
   }
 
-  /* Mobile Profile Button with Radiant Ring */
+  /* Mobile Profile Button with Sleek Studio Circle */
   .mobile-profile-trigger {
     display: flex !important;
     align-items: center !important;
@@ -3676,21 +3723,22 @@ section.filter-pills-bar {
     height: 38px !important;
     min-width: 38px !important;
     border-radius: 50% !important;
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(56, 189, 248, 0.18) 100%) !important;
-    border: 1.5px solid rgba(168, 85, 247, 0.5) !important;
-    color: #c084fc !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
+    color: #ffffff !important;
     font-size: 1.25rem !important;
     cursor: pointer !important;
-    box-shadow: 0 0 14px rgba(168, 85, 247, 0.35) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
     transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     flex-shrink: 0 !important;
     padding: 0 !important;
+    overflow: hidden !important;
   }
 
   .mobile-profile-trigger:active {
     transform: scale(0.92) !important;
-    border-color: #c084fc !important;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.3) !important;
   }
 
   /* Personalized Greeting on Mobile (Bold, Crisp & Dynamic) */

@@ -4776,7 +4776,10 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     const providerName = document.getElementById('profile-provider-name');
     const uidText = document.getElementById('profile-uid-text');
 
-    if (avatarEl) avatarEl.src = user?.avatar || './pulse-logo.png';
+    const activePfp = window.getActiveUserAvatar ? window.getActiveUserAvatar(user) : (user?.avatar || '/pulse-logo.png');
+    if (avatarEl) avatarEl.src = activePfp;
+    const pfpPreview = document.getElementById('pfp-modal-preview-img');
+    if (pfpPreview) pfpPreview.src = activePfp;
     if (nameEl) nameEl.textContent = user?.name || (isRealUser ? 'Pulse Listener' : 'Guest Listener');
     if (emailEl) emailEl.textContent = user?.phoneNumber || user?.email || (isRealUser ? '' : 'guest@pulse.app');
     if (uidText) {
@@ -4861,22 +4864,209 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     if (langSelect && user?.preferredLanguage) langSelect.value = user.preferredLanguage;
   }
 
-  function renderHeaderAuthButton(user) {
-    const btn = document.getElementById('mobile-header-profile-btn');
-    if (!btn) return;
+  // ---------------------------------------------------------------------------
+  // PROFILE AVATAR & GOOGLE PFP MANAGEMENT (Circled Avatar & Live Customizer)
+  // ---------------------------------------------------------------------------
+  window.getActiveUserAvatar = function(user) {
+    const custom = localStorage.getItem('pulse_custom_avatar');
+    if (custom && custom.startsWith('data:image')) {
+      return custom;
+    }
+    const currentUser = user || (typeof getStoredUser === 'function' ? getStoredUser() : null);
+    if (currentUser && currentUser.avatar && !currentUser.avatar.includes('dicebear.com/7.x/bottts')) {
+      return currentUser.avatar;
+    }
+    try {
+      const session = JSON.parse(localStorage.getItem('pulse_user_session') || '{}');
+      if (session && session.avatar && !session.avatar.includes('dicebear.com/7.x/bottts')) {
+        return session.avatar;
+      }
+    } catch (_) {}
+    return '/pulse-logo.png';
+  };
 
-    if (user && (user.provider === 'google' || user.provider === 'email')) {
-      btn.innerHTML = `
-        <img src="${user.avatar || './pulse-logo.png'}" alt="Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-      `;
-      btn.title = `Signed in as ${user.name} (${user.email}) - Click for Profile & Privacy`;
-      btn.style.borderColor = 'rgba(168, 85, 247, 0.6)';
-    } else {
-      btn.innerHTML = `
-        <i class="fa-solid fa-circle-user"></i>
-      `;
-      btn.title = "View Profile, Privacy & Settings";
-      btn.style.borderColor = 'transparent';
+  window.applyUserPfp = function(photoUrl) {
+    const pfp = photoUrl || window.getActiveUserAvatar();
+    
+    // 1. Desktop Header Circular Profile Button
+    const headerImg = document.getElementById('header-user-pfp');
+    const headerFallback = document.getElementById('header-user-icon-fallback');
+    if (headerImg && pfp) {
+      headerImg.src = pfp;
+      headerImg.classList.remove('hidden');
+      if (headerFallback) headerFallback.classList.add('hidden');
+    }
+
+    // 2. Mobile Header Circular Profile Button
+    const mobileBtn = document.getElementById('mobile-header-profile-btn');
+    if (mobileBtn && pfp) {
+      mobileBtn.innerHTML = `<img src="${pfp}" alt="Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+    }
+
+    // 3. Profile Hero Modal
+    const modalAvatar = document.getElementById('auth-user-avatar');
+    if (modalAvatar && pfp) {
+      modalAvatar.src = pfp;
+    }
+
+    // 4. PFP Customizer Preview
+    const previewImg = document.getElementById('pfp-modal-preview-img');
+    if (previewImg && pfp) {
+      previewImg.src = pfp;
+    }
+  };
+
+  window.openPfpOptionsModal = function() {
+    const modal = document.getElementById('pfp-customizer-modal');
+    if (!modal) return;
+    const currentAvatar = window.getActiveUserAvatar();
+    const preview = document.getElementById('pfp-modal-preview-img');
+    if (preview) preview.src = currentAvatar;
+
+    // Check if user has an original Google account photo
+    const resetBtn = document.getElementById('btn-reset-google-pfp');
+    const user = typeof getStoredUser === 'function' ? getStoredUser() : null;
+    if (resetBtn) {
+      if (user && user.provider === 'google') {
+        resetBtn.innerHTML = '<i class="fa-brands fa-google"></i> Reset to Google Photo';
+      } else {
+        resetBtn.innerHTML = '<i class="fa-solid fa-rotate-left"></i> Reset to Default Logo';
+      }
+    }
+    modal.classList.remove('hidden');
+  };
+
+  window.closePfpOptionsModal = function() {
+    const modal = document.getElementById('pfp-customizer-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+
+  window.triggerPfpCamera = function() {
+    const cameraInput = document.getElementById('pfp-camera-input');
+    if (cameraInput) {
+      cameraInput.click();
+    }
+  };
+
+  window.triggerPfpGallery = function() {
+    const galleryInput = document.getElementById('pfp-gallery-input');
+    if (galleryInput) {
+      galleryInput.click();
+    }
+  };
+
+  window.handlePfpFileSelected = function(e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      if (window.showToast) window.showToast('Please select a valid image file.', 'info', 3000);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      const img = new Image();
+      img.onload = function() {
+        // High-res square crop and compression to 256x256 JPEG
+        const canvas = document.createElement('canvas');
+        const size = 256;
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+
+        const minDim = Math.min(img.width, img.height);
+        const sx = (img.width - minDim) / 2;
+        const sy = (img.height - minDim) / 2;
+
+        ctx.drawImage(img, sx, sy, minDim, minDim, 0, 0, size, size);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.88);
+
+        // 1. Save in local storage
+        localStorage.setItem('pulse_custom_avatar', dataUrl);
+
+        // 2. Update user profile
+        if (typeof updateUserProfile === 'function') {
+          updateUserProfile({ avatar: dataUrl });
+        }
+
+        // 3. Immediately apply to UI
+        window.applyUserPfp(dataUrl);
+
+        // 4. Close modal and notify
+        window.closePfpOptionsModal();
+        if (window.showToast) {
+          window.showToast('✨ Profile picture updated successfully!', 'success', 3500);
+        }
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  };
+
+  window.resetToGooglePfp = function() {
+    localStorage.removeItem('pulse_custom_avatar');
+    const user = typeof getStoredUser === 'function' ? getStoredUser() : null;
+    let googlePhoto = null;
+    try {
+      const { auth } = initFirebase();
+      if (auth && auth.currentUser && auth.currentUser.photoURL) {
+        googlePhoto = auth.currentUser.photoURL;
+      }
+    } catch (_) {}
+
+    if (!googlePhoto && user && user.provider === 'google' && user.avatar && !user.avatar.includes('dicebear')) {
+      googlePhoto = user.avatar;
+    }
+
+    const targetAvatar = googlePhoto || '/pulse-logo.png';
+    if (typeof updateUserProfile === 'function') {
+      updateUserProfile({ avatar: targetAvatar });
+    }
+    window.applyUserPfp(targetAvatar);
+    window.closePfpOptionsModal();
+    if (window.showToast) {
+      window.showToast(googlePhoto ? 'Restored Google account profile picture!' : 'Profile picture reset to default.', 'success', 3000);
+    }
+  };
+
+  function renderHeaderAuthButton(user) {
+    const desktopBtn = document.getElementById('header-auth-btn');
+    const mobileBtn = document.getElementById('mobile-header-profile-btn');
+    const pfpImg = document.getElementById('header-user-pfp');
+    const pfpFallback = document.getElementById('header-user-icon-fallback');
+
+    const currentUser = user || (typeof getStoredUser === 'function' ? getStoredUser() : null);
+    const isRealUser = currentUser && (currentUser.provider === 'google' || currentUser.provider === 'email');
+    const avatarUrl = window.getActiveUserAvatar(currentUser);
+    const hasPhoto = avatarUrl && (avatarUrl.startsWith('data:image') || avatarUrl.startsWith('http') || avatarUrl.startsWith('/'));
+
+    if (desktopBtn) {
+      if (hasPhoto && (isRealUser || localStorage.getItem('pulse_custom_avatar'))) {
+        if (pfpImg) {
+          pfpImg.src = avatarUrl;
+          pfpImg.classList.remove('hidden');
+        }
+        if (pfpFallback) pfpFallback.classList.add('hidden');
+        desktopBtn.title = `Signed in as ${currentUser.name || 'Listener'} - Click for Profile`;
+      } else {
+        if (pfpImg) {
+          pfpImg.classList.add('hidden');
+        }
+        if (pfpFallback) pfpFallback.classList.remove('hidden');
+        desktopBtn.title = 'View Profile & Settings';
+      }
+    }
+
+    if (mobileBtn) {
+      if (hasPhoto && (isRealUser || localStorage.getItem('pulse_custom_avatar'))) {
+        mobileBtn.innerHTML = `<img src="${avatarUrl}" alt="Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+        mobileBtn.title = `Signed in as ${currentUser.name || 'Listener'} - Click for Profile`;
+      } else {
+        mobileBtn.innerHTML = `<i class="fa-solid fa-circle-user"></i>`;
+        mobileBtn.title = 'View Profile & Settings';
+      }
     }
   }
 
@@ -4958,10 +5148,12 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     document.addEventListener('DOMContentLoaded', () => {
       removeFilterPillsBar();
       checkAuthGateState();
+      renderHeaderAuthButton();
       if (window.renderSidebarFollowedArtists) window.renderSidebarFollowedArtists();
     });
   } else {
     checkAuthGateState();
+    renderHeaderAuthButton();
     if (window.renderSidebarFollowedArtists) window.renderSidebarFollowedArtists();
   }
 

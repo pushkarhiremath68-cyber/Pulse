@@ -258,9 +258,10 @@
               <i class="fa-solid fa-wand-magic-sparkles"></i> <span class="hide-on-mobile">Pulse AI</span>
             </button>
 
-            <!-- Profile & Settings Button (Desktop) -->
-            <button id="header-auth-btn" class="btn-download-header" onclick="window.openAuthModal()" title="View Profile & Settings">
-              <i class="fa-solid fa-circle-user" style="color: #818cf8;"></i> <span id="header-user-name">Profile</span>
+            <!-- Profile & Settings Button (Desktop & Universal Circular Avatar) -->
+            <button id="header-auth-btn" class="header-profile-circle-btn" onclick="window.openAuthModal()" title="View Profile & Settings" aria-label="Profile">
+              <img id="header-user-pfp" class="header-pfp-img hidden" src="" alt="Profile" onerror="this.classList.add('hidden'); document.getElementById('header-user-icon-fallback')?.classList.remove('hidden');">
+              <span id="header-user-icon-fallback" class="header-pfp-fallback"><i class="fa-solid fa-circle-user"></i></span>
             </button>
 
             <!-- Mobile Profile Avatar Trigger Button -->
@@ -1483,8 +1484,11 @@
 
       <!-- Profile Header Hero Card -->
       <div class="profile-hero-card" style="display: flex; gap: 1.25rem; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.25rem;">
-        <div class="profile-avatar-wrapper" style="position: relative; flex-shrink: 0; width: 80px; height: 80px;">
-          <img id="auth-user-avatar" src="/pulse-logo.png" onerror="this.onerror=null; this.src='/pulse-logo.svg';" alt="User Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2.5px solid #a855f7; box-shadow: 0 6px 24px rgba(168,85,247,0.35);">
+        <div class="profile-avatar-wrapper" style="position: relative; flex-shrink: 0; width: 80px; height: 80px; cursor: pointer;" onclick="window.openPfpOptionsModal()" title="Customize Profile Picture">
+          <img id="auth-user-avatar" src="/pulse-logo.png" onerror="this.onerror=null; this.src='/pulse-logo.svg';" alt="User Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2.5px solid rgba(255, 255, 255, 0.2); box-shadow: 0 6px 24px rgba(0,0,0,0.6);">
+          <div style="position: absolute; bottom: 0; right: 0; width: 28px; height: 28px; border-radius: 50%; background: #ffffff; color: #000; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; box-shadow: 0 2px 8px rgba(0,0,0,0.6); border: 2px solid #0b0d17;">
+            <i class="fa-solid fa-camera"></i>
+          </div>
         </div>
         
         <div class="profile-hero-details" style="flex: 1; min-width: 0; text-align: left;">
@@ -1492,6 +1496,9 @@
             <h3 id="auth-user-name" style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px;">Guest Listener</h3>
             <button class="btn-icon-tiny" onclick="window.toggleNameEditor()" title="Edit Name" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: var(--text-secondary); width: 24px; height: 24px; border-radius: 6px; cursor: pointer;">
               <i class="fa-solid fa-pen" style="font-size: 0.65rem;"></i>
+            </button>
+            <button onclick="window.openPfpOptionsModal()" style="display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #f1f5f9; font-size: 0.72rem; font-weight: 700; cursor: pointer;">
+              <i class="fa-solid fa-camera"></i> Change Photo
             </button>
           </div>
 
@@ -1763,6 +1770,47 @@
 
       </div>
 
+    </div>
+  </div>
+
+  <!-- PFP CUSTOMIZER MODAL (Take Photo, Choose from Gallery, Reset) -->
+  <div id="pfp-customizer-modal" class="modal-overlay hidden" onclick="if(event.target === this) window.closePfpOptionsModal()">
+    <div class="modal-content auth-modal-box" style="max-width: 440px; width: 92%; background: #0c0d12; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 24px; padding: 2rem; box-shadow: 0 25px 70px rgba(0,0,0,0.95); position: relative; text-align: center;">
+      <!-- Close Button -->
+      <button class="btn-icon-small" onclick="window.closePfpOptionsModal()" style="position: absolute; top: 1.25rem; right: 1.25rem; z-index: 10;" title="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; font-size: 1.3rem; color: #fff;">
+        <i class="fa-solid fa-camera"></i>
+      </div>
+
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin: 0 0 0.4rem 0;">Profile Picture</h3>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 1.5rem 0;">Take a selfie or choose a photo from your gallery.</p>
+
+      <!-- Live Preview Circle -->
+      <div style="position: relative; width: 110px; height: 110px; margin: 0 auto 1.5rem auto; border-radius: 50%; padding: 4px; border: 2px dashed rgba(255,255,255,0.3); background: #000;">
+        <img id="pfp-modal-preview-img" src="/pulse-logo.png" alt="Preview" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <button class="btn-secondary-install" onclick="window.triggerPfpCamera()" style="width: 100%; justify-content: center; padding: 0.85rem; background: #ffffff; color: #000000; border: none; font-weight: 800; cursor: pointer;">
+          <i class="fa-solid fa-camera"></i> Take Photo (Camera)
+        </button>
+
+        <button class="btn-secondary-install" onclick="window.triggerPfpGallery()" style="width: 100%; justify-content: center; padding: 0.85rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #ffffff; font-weight: 700; cursor: pointer;">
+          <i class="fa-solid fa-image"></i> Choose from Gallery
+        </button>
+
+        <button id="btn-reset-google-pfp" class="btn-secondary-install" onclick="window.resetToGooglePfp()" style="width: 100%; justify-content: center; padding: 0.85rem; background: transparent; border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-weight: 600; cursor: pointer;">
+          <i class="fa-brands fa-google"></i> Reset to Google Photo
+        </button>
+      </div>
+
+      <!-- Hidden file inputs -->
+      <input type="file" id="pfp-camera-input" accept="image/*" capture="user" style="display: none;" onchange="window.handlePfpFileSelected(event)">
+      <input type="file" id="pfp-gallery-input" accept="image/*" style="display: none;" onchange="window.handlePfpFileSelected(event)">
     </div>
   </div>
 
