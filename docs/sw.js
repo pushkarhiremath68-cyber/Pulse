@@ -1,10 +1,12 @@
-const CACHE_NAME = 'pulse-music-v4.5.0';
+const CACHE_NAME = 'pulse-music-v4.6.0';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
   '/pulse-logo.png',
   '/pulse-logo.svg',
+  '/favicon.ico',
+  '/apple-touch-icon.png',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
   '/icons/icon.ico',
