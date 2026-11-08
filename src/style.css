@@ -3647,17 +3647,20 @@ section.filter-pills-bar {
   /* Main Content Area - Generous Top & Bottom Padding */
   .main-content {
     margin-left: 0 !important;
-    width: 100vw !important;
+    width: 100% !important;
+    max-width: 100% !important;
     padding: calc(118px + env(safe-area-inset-top, 0px)) 0.75rem calc(150px + env(safe-area-inset-bottom, 0px)) 0.75rem !important;
     overflow-x: hidden !important;
     background: transparent !important;
+    box-sizing: border-box !important;
   }
 
   /* Ultra-Clean, Pulse-Grade 2-Tier Mobile Header */
   .top-header {
     left: 0 !important;
     right: 0 !important;
-    width: 100vw !important;
+    width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     min-height: 108px !important;
     padding: calc(0.55rem + env(safe-area-inset-top, 0px)) 0.9rem 0.6rem 0.9rem !important;
@@ -3667,7 +3670,7 @@ section.filter-pills-bar {
     align-items: stretch !important;
     justify-content: flex-start !important;
     z-index: 100 !important;
-    background: rgba(7, 8, 14, 0.82) !important;
+    background: rgba(0, 0, 0, 0.92) !important;
     backdrop-filter: blur(24px) saturate(1.8) !important;
     -webkit-backdrop-filter: blur(24px) saturate(1.8) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -3716,8 +3719,8 @@ section.filter-pills-bar {
   }
 
   .header-nav-btns .btn-circle-nav {
-    width: 34px !important;
-    height: 34px !important;
+    width: 36px !important;
+    height: 36px !important;
     font-size: 0.85rem !important;
   }
 
@@ -3734,9 +3737,17 @@ section.filter-pills-bar {
   
   #header-gemini-btn {
     display: inline-flex !important;
-    padding: 0.45rem 0.55rem !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    max-width: 38px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 50% !important;
     justify-content: center !important;
     align-items: center !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
   }
 
   /* Mobile Profile Button with Sleek Studio Circle */
@@ -3883,7 +3894,7 @@ section.filter-pills-bar {
   .search-box-container input {
     width: 100% !important;
     height: 40px !important;
-    padding: 0.45rem 2.2rem 0.45rem 2.5rem !important;
+    padding: 0.45rem 4.5rem 0.45rem 2.5rem !important;
     font-size: 0.86rem !important;
     font-weight: 500 !important;
     border-radius: 999px !important;
@@ -3908,13 +3919,19 @@ section.filter-pills-bar {
   }
 
   .search-box-container .search-icon {
-    left: 12px !important;
+    left: 14px !important;
     font-size: 0.85rem !important;
     color: #94a3b8 !important;
   }
 
   .search-kbd-pill {
     display: none !important;
+  }
+
+  .voice-search-btn {
+    right: 38px !important;
+    font-size: 0.95rem !important;
+    color: #94a3b8 !important;
   }
 
   .clear-search {
@@ -3927,10 +3944,11 @@ section.filter-pills-bar {
 
   /* Hero Banner Carousel on Mobile */
   .hero-banner {
-    padding: 1.25rem 0.85rem 2.25rem 0.85rem !important;
+    padding: 1.25rem 0.95rem 2.25rem 0.95rem !important;
     border-radius: 18px !important;
     margin-bottom: 1.25rem !important;
     min-height: auto !important;
+    box-sizing: border-box !important;
   }
 
   .hero-slides-track {
@@ -3939,8 +3957,8 @@ section.filter-pills-bar {
 
   .hero-slide {
     flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 1rem !important;
+    align-items: stretch !important;
+    gap: 0.85rem !important;
     padding-bottom: 0.5rem !important;
   }
 
@@ -3950,7 +3968,7 @@ section.filter-pills-bar {
   }
 
   .hero-title {
-    font-size: 1.35rem !important;
+    font-size: 1.4rem !important;
     line-height: 1.2 !important;
     margin-bottom: 0.25rem !important;
   }
@@ -3974,32 +3992,38 @@ section.filter-pills-bar {
   .hero-media-wrapper {
     display: block !important;
     width: 100% !important;
-    max-width: 300px !important;
-    height: 165px !important;
-    margin: 0 auto !important;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    max-height: 190px !important;
+    margin: 0 !important;
     border-radius: 14px !important;
+    overflow: hidden !important;
   }
 
   .hero-actions {
-    gap: 0.4rem !important;
+    display: flex !important;
+    gap: 0.5rem !important;
     width: 100% !important;
+    flex-wrap: wrap !important;
   }
 
-  .btn-primary-play,
-  .btn-hero-video,
-  .btn-hero-secondary {
-    padding: 0.55rem 0.95rem !important;
-    font-size: 0.78rem !important;
+  .hero-actions .btn-primary-play,
+  .hero-actions .btn-hero-video,
+  .hero-actions .btn-hero-secondary {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.8rem !important;
+    height: 38px !important;
   }
 
   .hero-nav-arrow {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 0.8rem !important;
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 
-  .hero-prev-btn { left: 4px !important; }
-  .hero-next-btn { right: 4px !important; }
+  .hero-prev-btn { display: none !important; }
+  .hero-next-btn { display: none !important; }
 
   .hero-carousel-pills {
     bottom: 8px !important;
@@ -4445,6 +4469,190 @@ section.filter-pills-bar {
     height: 54px !important;
     font-size: 1.25rem !important;
   }
+
+  /* -------------------------------------------------------------------------
+     Mobile Artist View & Profile Banner Polish
+     ------------------------------------------------------------------------- */
+  .artist-back-btn {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.78rem !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .artist-hero-banner {
+    padding: 1.5rem 1.15rem !important;
+    border-radius: 18px !important;
+    margin-bottom: 1.25rem !important;
+    background-position: center 25% !important;
+  }
+
+  #artist-hero-name {
+    font-size: 1.85rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 0.35rem !important;
+    word-break: break-word !important;
+  }
+
+  #artist-hero-card p {
+    font-size: 0.82rem !important;
+    gap: 6px !important;
+    margin-bottom: 1rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .artist-header-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.55rem !important;
+    margin-bottom: 1.25rem !important;
+    width: 100% !important;
+  }
+
+  .artist-header-actions button,
+  .artist-header-actions a {
+    width: 100% !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    padding: 0.45rem 0.65rem !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  #artist-socials-container {
+    gap: 0.45rem !important;
+    padding-top: 0.85rem !important;
+  }
+
+  .artist-social-chip {
+    padding: 0.35rem 0.65rem !important;
+    font-size: 0.74rem !important;
+  }
+
+  .artist-track-row {
+    padding: 0.55rem 0.75rem !important;
+    gap: 0.65rem !important;
+    border-radius: 10px !important;
+  }
+
+  .artist-track-row img {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    border-radius: 8px !important;
+  }
+
+  .artist-track-row > span:first-child {
+    width: 18px !important;
+    font-size: 0.85rem !important;
+  }
+
+  #artist-tour-container > div {
+    padding: 1.25rem 1rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-radius: 16px !important;
+  }
+
+  #artist-tour-container a {
+    width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     Mobile Clean Mini Playbar Controls (No Button Overcrowding)
+     ------------------------------------------------------------------------- */
+  .mobile-playbar-controls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  #mobile-party-btn,
+  #mobile-prev-btn,
+  .btn-mobile-expand {
+    display: none !important;
+  }
+
+  #mobile-playbar-lyrics-btn,
+  #mobile-playbar-queue-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.9rem !important;
+    color: #94a3b8 !important;
+  }
+
+  .btn-mobile-play {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+  }
+
+  #mobile-next-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.95rem !important;
+    color: #ffffff !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     Mobile Modals & Bottom Sheets (Comfortable Touch Targets)
+     ------------------------------------------------------------------------- */
+  .modal-overlay {
+    padding: 0.75rem !important;
+    align-items: flex-end !important;
+  }
+
+  .modal-content,
+  .pulse-profile-modal-box,
+  .pulse-ai-modal-box,
+  .auth-modal-box,
+  .download-modal-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 88vh !important;
+    padding: 1.25rem 1rem !important;
+    border-radius: 22px 22px 14px 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .profile-hero-card {
+    gap: 0.85rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .profile-avatar-wrapper {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  #auth-user-name {
+    font-size: 1.15rem !important;
+    max-width: 170px !important;
+  }
+
+  .search-view-header h2 {
+    font-size: 1.35rem !important;
+  }
+
+  .search-view-header p {
+    font-size: 0.8rem !important;
+  }
+
+  .search-quick-tags {
+    gap: 0.35rem !important;
+  }
+
+  .search-quick-tags .tag-pill {
+    padding: 0.35rem 0.75rem !important;
+    font-size: 0.74rem !important;
+  }
 }
 
 /* Global YouTube Hybrid Player Dock */
@@ -4614,7 +4822,7 @@ section.filter-pills-bar {
 
 @media (max-width: 768px) {
   .pwa-floating-banner {
-    bottom: 95px !important;
+    bottom: calc(144px + env(safe-area-inset-bottom, 0px)) !important;
     width: 94% !important;
     padding: 0.75rem 0.95rem !important;
   }
