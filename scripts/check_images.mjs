@@ -17,3 +17,4 @@ while ((m = linkRegex.exec(html)) !== null) {
     console.log('ICON:', m[1]);
   }
 }
+

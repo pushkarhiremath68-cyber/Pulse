@@ -3086,7 +3086,7 @@ import {
     const btn = document.getElementById('voice-search-btn');
     if (btn) btn.classList.remove('listening');
     const aiBtn = document.getElementById('pulse-ai-mic-btn');
-    if (aiBtn) aiBtn.style.color = '#c084fc';
+    if (aiBtn) aiBtn.style.color = '#ffffff';
   };
 
   window.startVoiceSearch = async function(targetContext = 'general') {
@@ -4031,19 +4031,22 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         window.playPulseAITrack = window.playGeminiTrack;
 
         output.innerHTML = `
-          <div style="margin-top: 1rem; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
-            <div style="font-size: 1.1rem; font-weight: 800; color: #c084fc; margin-bottom: 0.25rem;">${escapeHtml(res.djTitle)}</div>
-            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">${escapeHtml(res.vibe)}</p>
-            <div style="display: flex; flex-direction: column; gap: 0.6rem; max-height: 280px; overflow-y: auto;">
+          <div style="margin-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.35rem;">
+              <div style="font-size: 1.15rem; font-weight: 800; color: #ffffff; letter-spacing: -0.2px;">${escapeHtml(res.djTitle)}</div>
+              <span style="font-size: 0.68rem; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #e2e8f0; font-weight: 700;">CURATED</span>
+            </div>
+            <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1.1rem; line-height: 1.4;">${escapeHtml(res.vibe)}</p>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; max-height: 300px; overflow-y: auto; padding-right: 4px;">
               ${res.tracks.map((t, idx) => `
-                <div class="hover-glow" onclick="window.playGeminiTrack(${idx})" style="display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.85rem; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); cursor: pointer;">
-                  <div>
-                    <div style="font-size: 0.92rem; font-weight: 700; color: #fff;">${escapeHtml(t.title)}</div>
-                    <div style="font-size: 0.78rem; color: #c084fc;">${escapeHtml(t.artist)}</div>
-                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">${escapeHtml(t.reason || 'AI Match')}</div>
+                <div class="pulse-ai-track-card" onclick="window.playGeminiTrack(${idx})" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0.95rem; border-radius: 12px; background: #0e0e12; border: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: all 0.2s ease;">
+                  <div style="min-width: 0; flex: 1; margin-right: 0.75rem;">
+                    <div style="font-size: 0.92rem; font-weight: 700; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.title)}</div>
+                    <div style="font-size: 0.78rem; color: #cbd5e1; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(t.artist)}</div>
+                    <div style="font-size: 0.7rem; color: #71717a; margin-top: 2px;">${escapeHtml(t.reason || 'Curated Match')}</div>
                   </div>
-                  <button class="btn-primary-play" style="padding: 0.4rem 0.75rem; font-size: 0.75rem; border-radius: 8px;">
-                    <i class="fa-solid fa-play"></i> Play
+                  <button class="pulse-ai-play-btn" style="padding: 0.45rem 0.85rem; font-size: 0.78rem; font-weight: 700; border-radius: 8px; background: #ffffff; color: #000000; border: none; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; flex-shrink: 0; transition: all 0.2s ease;">
+                    <i class="fa-solid fa-play" style="font-size: 0.7rem;"></i> Play
                   </button>
                 </div>
               `).join('')}

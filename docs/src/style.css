@@ -762,6 +762,74 @@ body::after {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
 }
 
+/* ==========================================================================
+   PULSE AI - LUXURY MONOCHROME BLACK & WHITE THEME (STUDIO MINIMALIST)
+   ========================================================================== */
+#header-gemini-btn {
+  background: #0a0a0d !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.2px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#header-gemini-btn:hover {
+  background: #141418 !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+#header-gemini-btn i {
+  color: #ffffff !important;
+  font-size: 0.86rem !important;
+}
+
+.pulse-ai-tag-pill {
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d1d5db;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pulse-ai-tag-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.pulse-ai-track-card:hover {
+  background: #141418 !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  transform: translateY(-1px);
+}
+
+.pulse-ai-play-btn:hover {
+  background: #e2e8f0 !important;
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.25);
+}
+
+.pulse-ai-submit-btn:hover {
+  background: #e2e8f0 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
+}
+
+#pulse-ai-mic-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
 /* Header Greeting & Pulse Notification Indicator */
 .header-greeting-wrap {
   display: flex;
@@ -3752,10 +3820,10 @@ section.filter-pills-bar {
     align-items: center !important;
     justify-content: center !important;
     font-size: 0.9rem !important;
-    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #38bdf8 100%) !important;
-    border: none !important;
+    background: #0d0d10 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: #ffffff !important;
-    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.45) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
   }
