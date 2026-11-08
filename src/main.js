@@ -5001,7 +5001,27 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
       if (s && s.getVideoTracks().length > 0) return s;
     } catch (e2) {
       console.warn('[Pulse Camera] Generic video attempt:', e2.name, e2.message);
-      throw e2;
+    }
+
+    // Tier 3: Probe each enumerated physical camera device (bypasses broken/virtual default devices)
+    try {
+      if (navigator.mediaDevices.enumerateDevices) {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoInputs = devices.filter(d => d.kind === 'videoinput');
+        for (const dev of videoInputs) {
+          try {
+            const s = await navigator.mediaDevices.getUserMedia({
+              video: { deviceId: { exact: dev.deviceId } },
+              audio: false
+            });
+            if (s && s.getVideoTracks().length > 0) return s;
+          } catch (devErr) {
+            console.warn('[Pulse Camera] Device probe failed for:', dev.label || dev.deviceId, devErr.name);
+          }
+        }
+      }
+    } catch (e3) {
+      console.warn('[Pulse Camera] Enumerate probe error:', e3);
     }
 
     throw new Error('Could not acquire valid video stream');
@@ -5098,6 +5118,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
           '<ol style="margin: 0 0 10px 16px; padding: 0; font-size: 0.76rem; color: #e2e8f0; line-height: 1.5;">' +
           guidanceList +
           '</ol>' +
+          (isWindows ? '<a href="ms-settings:privacy-webcam" style="display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 8px; margin-bottom: 8px; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); border-radius: 8px; color: #38bdf8; font-weight: 700; font-size: 0.78rem; text-decoration: none;"><i class="fa-solid fa-gear"></i> Open Windows Camera Settings Directly</a>' : '') +
           '<button type="button" onclick="window.triggerPfpGallery()" style="width: 100%; padding: 8px 12px; background: #ffffff; color: #000; border: none; border-radius: 8px; font-weight: 800; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 2px 10px rgba(255,255,255,0.2);"><i class="fa-solid fa-folder-open"></i> Choose Photo from Gallery / Files</button>';
         errBox.innerHTML = msg;
         errBox.style.display = 'block';
