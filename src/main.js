@@ -4900,7 +4900,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     // 2. Mobile Header Circular Profile Button
     const mobileBtn = document.getElementById('mobile-header-profile-btn');
     if (mobileBtn && pfp) {
-      mobileBtn.innerHTML = `<img src="${pfp}" alt="Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+      mobileBtn.innerHTML = `<img src="${pfp}" alt="Profile" referrerpolicy="no-referrer" onerror="this.outerHTML='<i class=\\\'fa-solid fa-circle-user\\\'></i>'" style="position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center; display: block; margin: 0; padding: 0;">`;
     }
 
     // 3. Profile Hero Modal
@@ -5061,7 +5061,7 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
 
     if (mobileBtn) {
       if (hasPhoto && (isRealUser || localStorage.getItem('pulse_custom_avatar'))) {
-        mobileBtn.innerHTML = `<img src="${avatarUrl}" alt="Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+        mobileBtn.innerHTML = `<img src="${avatarUrl}" alt="Profile" referrerpolicy="no-referrer" onerror="this.outerHTML='<i class=\\\'fa-solid fa-circle-user\\\'></i>'" style="position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center; display: block; margin: 0; padding: 0;">`;
         mobileBtn.title = `Signed in as ${currentUser.name || 'Listener'} - Click for Profile`;
       } else {
         mobileBtn.innerHTML = `<i class="fa-solid fa-circle-user"></i>`;

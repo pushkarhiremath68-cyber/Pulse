@@ -260,7 +260,7 @@
 
             <!-- Profile & Settings Button (Desktop & Universal Circular Avatar) -->
             <button id="header-auth-btn" class="header-profile-circle-btn" onclick="window.openAuthModal()" title="View Profile & Settings" aria-label="Profile">
-              <img id="header-user-pfp" class="header-pfp-img hidden" src="" alt="Profile" onerror="this.classList.add('hidden'); document.getElementById('header-user-icon-fallback')?.classList.remove('hidden');">
+              <img id="header-user-pfp" class="header-pfp-img hidden" src="" alt="Profile" referrerpolicy="no-referrer" onerror="this.classList.add('hidden'); document.getElementById('header-user-icon-fallback')?.classList.remove('hidden');">
               <span id="header-user-icon-fallback" class="header-pfp-fallback"><i class="fa-solid fa-circle-user"></i></span>
             </button>
 
@@ -1485,7 +1485,7 @@
       <!-- Profile Header Hero Card -->
       <div class="profile-hero-card" style="display: flex; gap: 1.25rem; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.25rem;">
         <div class="profile-avatar-wrapper" style="position: relative; flex-shrink: 0; width: 80px; height: 80px; cursor: pointer;" onclick="window.openPfpOptionsModal()" title="Customize Profile Picture">
-          <img id="auth-user-avatar" src="/pulse-logo.png" onerror="this.onerror=null; this.src='/pulse-logo.svg';" alt="User Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2.5px solid rgba(255, 255, 255, 0.2); box-shadow: 0 6px 24px rgba(0,0,0,0.6);">
+          <img id="auth-user-avatar" src="/pulse-logo.png" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/pulse-logo.svg';" alt="User Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center; border: 2.5px solid rgba(255, 255, 255, 0.2); box-shadow: 0 6px 24px rgba(0,0,0,0.6);">
           <div style="position: absolute; bottom: 0; right: 0; width: 28px; height: 28px; border-radius: 50%; background: #ffffff; color: #000; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; box-shadow: 0 2px 8px rgba(0,0,0,0.6); border: 2px solid #0b0d17;">
             <i class="fa-solid fa-camera"></i>
           </div>
@@ -1790,7 +1790,7 @@
 
       <!-- Live Preview Circle -->
       <div style="position: relative; width: 110px; height: 110px; margin: 0 auto 1.5rem auto; border-radius: 50%; padding: 4px; border: 2px dashed rgba(255,255,255,0.3); background: #000;">
-        <img id="pfp-modal-preview-img" src="/pulse-logo.png" alt="Preview" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+        <img id="pfp-modal-preview-img" src="/pulse-logo.png" referrerpolicy="no-referrer" alt="Preview" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center;">
       </div>
 
       <!-- Action Buttons -->

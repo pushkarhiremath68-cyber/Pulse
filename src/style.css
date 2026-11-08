@@ -502,42 +502,55 @@ body::after {
 
 /* Circular Header Profile Trigger (Google Account PFP / Customized Avatar) */
 .header-profile-circle-btn,
-#header-auth-btn.header-profile-circle-btn {
+#header-auth-btn {
   width: 40px !important;
   height: 40px !important;
   min-width: 40px !important;
   max-width: 40px !important;
   border-radius: 50% !important;
   padding: 0 !important;
+  margin: 0 !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   position: relative !important;
   overflow: hidden !important;
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+  box-sizing: border-box !important;
+  background: #000000 !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
   cursor: pointer !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
   flex-shrink: 0 !important;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* Crisp 100% circle clipping */
+  outline: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
 }
 
 .header-profile-circle-btn:hover,
-#header-auth-btn.header-profile-circle-btn:hover {
+#header-auth-btn:hover {
   transform: scale(1.06) !important;
-  border-color: rgba(255, 255, 255, 0.45) !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), 0 0 14px rgba(255, 255, 255, 0.25) !important;
 }
 
 .header-pfp-img {
+  position: absolute !important;
+  inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   border-radius: 50% !important;
   object-fit: cover !important;
+  object-position: center !important;
   display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .header-pfp-fallback {
+  position: absolute !important;
+  inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   display: flex !important;
@@ -545,10 +558,18 @@ body::after {
   justify-content: center !important;
   font-size: 1.25rem !important;
   color: #f1f5f9 !important;
+  background: #0c0d12 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.header-pfp-img.hidden,
+.header-pfp-fallback.hidden {
+  display: none !important;
 }
 
 .mobile-profile-trigger {
-  display: none;
+  display: none !important;
 }
 
 .header-nav-btns {
@@ -3464,8 +3485,12 @@ section.filter-pills-bar {
 
   #header-auth-btn {
     display: inline-flex !important;
-    padding: 0.45rem 0.85rem !important;
-    font-size: 0.8rem !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
   }
 
   /* Tablet Hides Mobile Nav */
@@ -3715,15 +3740,17 @@ section.filter-pills-bar {
   }
 
   /* Mobile Profile Button with Sleek Studio Circle */
-  .mobile-profile-trigger {
-    display: flex !important;
+  .mobile-profile-trigger,
+  #mobile-header-profile-btn {
+    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     width: 38px !important;
     height: 38px !important;
     min-width: 38px !important;
+    max-width: 38px !important;
     border-radius: 50% !important;
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: #000000 !important;
     border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
     color: #ffffff !important;
     font-size: 1.25rem !important;
@@ -3732,10 +3759,25 @@ section.filter-pills-bar {
     transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     flex-shrink: 0 !important;
     padding: 0 !important;
+    margin: 0 !important;
+    position: relative !important;
     overflow: hidden !important;
+    box-sizing: border-box !important;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    outline: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
   }
 
-  .mobile-profile-trigger:active {
+  .mobile-profile-trigger:hover,
+  #mobile-header-profile-btn:hover {
+    transform: scale(1.06) !important;
+    border-color: rgba(255, 255, 255, 0.55) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), 0 0 14px rgba(255, 255, 255, 0.25) !important;
+  }
+
+  .mobile-profile-trigger:active,
+  #mobile-header-profile-btn:active {
     transform: scale(0.92) !important;
     border-color: rgba(255, 255, 255, 0.5) !important;
     box-shadow: 0 0 16px rgba(255, 255, 255, 0.3) !important;
