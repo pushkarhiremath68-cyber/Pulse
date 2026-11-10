@@ -95,7 +95,7 @@ function getAudio() {
     audio.addEventListener('ended', () => {
       if (isRepeat) {
         audio.currentTime = 0;
-        audio.play().catch(() => {});
+        audio.play().catch(() => { });
       } else {
         playNext();
       }
@@ -167,14 +167,14 @@ function updateMediaSession(track) {
       pause();
       seekTo(0);
     });
-  } catch (e) {}
+  } catch (e) { }
 }
 
 function updateMediaSessionPlaybackState(state) {
   if ('mediaSession' in navigator) {
     try {
       navigator.mediaSession.playbackState = state;
-    } catch (e) {}
+    } catch (e) { }
   }
 }
 
@@ -188,7 +188,7 @@ function updateMediaSessionPositionState() {
           position: currentTime
         });
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 }
 
@@ -216,7 +216,7 @@ export async function ensureOriginalAlbumCover(track) {
         }
         return;
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   try {
@@ -236,7 +236,7 @@ export async function ensureOriginalAlbumCover(track) {
         }
       }
     }
-  } catch (e) {}
+  } catch (e) { }
 }
 
 export async function playTrack(track, queue = null) {
@@ -317,17 +317,17 @@ export async function playTrack(track, queue = null) {
     }
   }
 
-  const isMobileDevice = typeof navigator !== 'undefined' && 
+  const isMobileDevice = typeof navigator !== 'undefined' &&
     /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent || '');
 
   // 1. FAST PATH: If track already has verified full-length native streamUrl, play immediately
-  if (track.streamUrl && 
-      track.streamUrl.startsWith('http') && 
-      !track.streamUrl.includes('preview') && 
-      !track.streamUrl.includes('audio-ssl.itunes.apple.com') && 
-      !track.streamUrl.includes('mzstatic') && 
-      track.streamUrl !== 'yt-iframe' &&
-      (track.duration || 0) > 40) {
+  if (track.streamUrl &&
+    track.streamUrl.startsWith('http') &&
+    !track.streamUrl.includes('preview') &&
+    !track.streamUrl.includes('audio-ssl.itunes.apple.com') &&
+    !track.streamUrl.includes('mzstatic') &&
+    track.streamUrl !== 'yt-iframe' &&
+    (track.duration || 0) > 40) {
     if (track.streamUrl.includes('saavncdn.com')) {
       track.streamUrl = track.streamUrl.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
     }
@@ -393,7 +393,7 @@ export async function playTrack(track, queue = null) {
         track.ytId = foundId;
         console.log('[Pulse Studio Master] On-demand YouTube ID resolved:', foundId);
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   if (ytId && ytId.length >= 8) {
@@ -437,12 +437,12 @@ export function togglePlay() {
 export function pause() {
   // 1. Guaranteed pause on Native Audio
   if (audio) {
-    try { audio.pause(); } catch (e) {}
+    try { audio.pause(); } catch (e) { }
   }
-  
+
   // 2. Guaranteed pause on YouTube IFrame API
   if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
-    try { ytPlayer.pauseVideo(); } catch (e) {}
+    try { ytPlayer.pauseVideo(); } catch (e) { }
   }
 
   isPlaying = false;
@@ -460,11 +460,11 @@ export function resume() {
   }
 
   if (activeEngine === 'youtube' && ytPlayer && typeof ytPlayer.playVideo === 'function') {
-    try { ytPlayer.playVideo(); } catch (e) {}
+    try { ytPlayer.playVideo(); } catch (e) { }
   } else {
     const a = getAudio();
     if (a && a.src && !a.src.endsWith('/') && !a.src.includes('about:blank')) {
-      a.play().catch(() => {});
+      a.play().catch(() => { });
     } else if (currentTrack.ytId || currentTrack.id) {
       playTrack(currentTrack);
       return;
@@ -554,10 +554,10 @@ export function seekBackward5() {
 
 export function setVolume(vol) {
   currentVolume = Math.max(0, Math.min(1, vol));
-  
+
   // Native
   getAudio().volume = currentVolume;
-  
+
   // Youtube
   if (ytPlayer && ytPlayer.setVolume) {
     ytPlayer.setVolume(currentVolume * 100);
@@ -831,7 +831,7 @@ function updateTrackInfoUI(track) {
       el.dataset.title = track.title || '';
       el.dataset.artist = track.artist || '';
       el.dataset.ytid = track.ytId || '';
-      el.onerror = function() {
+      el.onerror = function () {
         this.onerror = null;
         if (typeof window !== 'undefined' && window.PulseAIHealer && typeof window.PulseAIHealer.generateHarmonicCoverSvg === 'function') {
           this.src = window.PulseAIHealer.generateHarmonicCoverSvg(track.title, track.artist);
@@ -1096,7 +1096,7 @@ export async function startRadioForCurrentTrack() {
     if (typeof window.showToast === 'function') {
       window.showToast(`📻 Started Similar Radio based on "${currentTrack.title}"`, 'success', 3000);
     }
-  } catch (e) {}
+  } catch (e) { }
 }
 
 export function playTrackAtQueueIndex(index) {
@@ -1292,7 +1292,7 @@ function initPlaybarController() {
     fsPlayer.addEventListener('touchstart', (e) => {
       fsStartY = e.touches[0].clientY;
     }, { passive: true });
-    
+
     fsPlayer.addEventListener('touchend', (e) => {
       const deltaY = e.changedTouches[0].clientY - fsStartY;
       if (deltaY > 80) {
@@ -1328,7 +1328,7 @@ export async function playOnNativeAudio(track) {
   try {
     activeEngine = 'native';
     if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
-      try { ytPlayer.pauseVideo(); } catch (e) {}
+      try { ytPlayer.pauseVideo(); } catch (e) { }
     }
     if (ytTimeInterval) clearInterval(ytTimeInterval);
 
@@ -1406,7 +1406,7 @@ function initYouTubePlayer(initialVideoId = '', retryCount = 0) {
               if (typeof ytPlayer.setPlaybackQuality === 'function') {
                 ytPlayer.setPlaybackQuality('hd1080');
               }
-            } catch (e) {}
+            } catch (e) { }
             console.log('[Pulse Studio Master] YouTube IFrame API Ready — Primary engine online (Hi-Res HD Audio enabled).');
             // Instantly execute any queued play requests
             while (pendingYtQueue.length > 0) {
@@ -1580,7 +1580,7 @@ export async function playOnYouTubeIframe(videoId, track) {
               if (typeof window.syncLiveLyrics === 'function') {
                 window.syncLiveLyrics(currentTime);
               }
-            } catch (e) {}
+            } catch (e) { }
           }
         }, 500);
         resolve(true);
@@ -1625,13 +1625,13 @@ export async function playOnYouTubeSearch(query, track) {
       track.ytId = hits[0].ytId;
       return await playOnYouTubeIframe(hits[0].ytId, track);
     }
-  } catch (e) {}
+  } catch (e) { }
   return false;
 }
 
 // Global hook for YouTube Iframe API callback
 if (typeof window !== 'undefined') {
-  window.onYouTubeIframeAPIReady = function() {
+  window.onYouTubeIframeAPIReady = function () {
     initYouTubePlayer();
   };
 

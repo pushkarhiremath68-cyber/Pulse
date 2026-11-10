@@ -4588,6 +4588,11 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     if (typeof window.updateAudioQualityUI === 'function') {
       window.updateAudioQualityUI();
     }
+
+    // 8. Initialize 120Hz Ultra-Smooth Refresh Rate & GPU Compositing Engine
+    if (typeof window.init120HzEngine === 'function') {
+      window.init120HzEngine();
+    }
   }
 
   // Multi-pass initialization to guarantee song rendering across all devices & PWA launches
@@ -5088,6 +5093,62 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     await updatePrivacySettings({ gaplessPlayback: isChecked });
   };
 
+  window.detectDisplayRefreshRate = function(callback) {
+    if (typeof requestAnimationFrame === 'undefined' || typeof performance === 'undefined') return;
+    let frameCount = 0;
+    const start = performance.now();
+    function tick(now) {
+      frameCount++;
+      if (frameCount >= 35) {
+        const elapsed = now - start;
+        const rawHz = Math.round((frameCount * 1000) / elapsed);
+        let hz = 60;
+        if (rawHz >= 135) hz = 144;
+        else if (rawHz >= 105) hz = 120;
+        else if (rawHz >= 80) hz = 90;
+        else hz = 60;
+
+        window.__detectedRefreshRate = hz;
+        const hzPill = document.getElementById('detected-hz-pill');
+        if (hzPill) {
+          hzPill.textContent = hz >= 120 ? `${hz}Hz PROMOTION` : `${hz}Hz`;
+          if (hz >= 120) {
+            hzPill.style.background = 'rgba(250, 204, 21, 0.2)';
+            hzPill.style.color = '#facc15';
+          }
+        }
+        if (typeof callback === 'function') callback(hz, rawHz);
+        return;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  };
+
+  window.handle120HzToggle = function(isEnabled) {
+    localStorage.setItem('pulse_120hz_enabled', isEnabled ? 'true' : 'false');
+    if (isEnabled) {
+      document.documentElement.classList.add('high-refresh-rate-120hz');
+      document.body.classList.add('high-refresh-rate-120hz');
+      if (window.showToast) window.showToast('⚡ 120Hz ProMotion Ultra-Smooth Refresh Rate Enabled!', 'success', 2500);
+    } else {
+      document.documentElement.classList.remove('high-refresh-rate-120hz');
+      document.body.classList.remove('high-refresh-rate-120hz');
+      if (window.showToast) window.showToast('Standard 60Hz mode active.', 'info', 2000);
+    }
+  };
+
+  window.init120HzEngine = function() {
+    const isEnabled = localStorage.getItem('pulse_120hz_enabled') !== 'false';
+    if (isEnabled) {
+      document.documentElement.classList.add('high-refresh-rate-120hz');
+      document.body.classList.add('high-refresh-rate-120hz');
+    }
+    const toggle = document.getElementById('profile-120hz-toggle');
+    if (toggle) toggle.checked = isEnabled;
+    window.detectDisplayRefreshRate();
+  };
+
   async function updateAuthModalContent() {
     const user = getStoredUser();
     const guestBox = document.getElementById('auth-guest-view');
@@ -5186,12 +5247,14 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     const qualitySelect = document.getElementById('profile-audio-quality-select');
     const eqSelect = document.getElementById('profile-eq-select');
     const langSelect = document.getElementById('profile-language-select');
+    const hzToggle = document.getElementById('profile-120hz-toggle');
 
     if (incognitoToggle) incognitoToggle.checked = !!privacy.privateSession;
     if (cloudSyncToggle) cloudSyncToggle.checked = privacy.cloudHistorySync !== false;
     if (publicPlaylistsToggle) publicPlaylistsToggle.checked = privacy.publicPlaylists !== false;
     if (lyricsScrollToggle) lyricsScrollToggle.checked = privacy.autoScrollLyrics !== false;
     if (autoplayToggle) autoplayToggle.checked = privacy.gaplessPlayback !== false;
+    if (hzToggle) hzToggle.checked = localStorage.getItem('pulse_120hz_enabled') !== 'false';
     if (qualitySelect) qualitySelect.value = privacy.audioQuality || '320kbps';
     if (eqSelect) eqSelect.value = privacy.eqPreset || 'balanced';
     if (langSelect && user?.preferredLanguage) langSelect.value = user.preferredLanguage;

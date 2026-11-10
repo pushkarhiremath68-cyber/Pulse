@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pulse-music-v5.2.0';
+const CACHE_NAME = 'pulse-music-v5.3.0';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

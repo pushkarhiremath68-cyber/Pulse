@@ -21,7 +21,7 @@ const normCss = css.replace(/\r\n/g, '\n');
 if (!normCss.includes('.header-pfp-img.hidden,\n.header-pfp-fallback.hidden {\n  display: none !important;')) {
   throw new Error('Hidden pfp elements must be display: none !important');
 }
-if (!sw.includes('pulse-music-v5.2.0')) throw new Error('SW version must be v5.2.0');
+if (!sw.includes('pulse-music-v5.3.0')) throw new Error('SW version must be v5.3.0');
 
 // Preset Avatars assertions
 if (!html.includes('class="preset-avatar-btn"') || !html.includes('window.selectPresetAvatar')) {

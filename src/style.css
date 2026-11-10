@@ -1122,19 +1122,23 @@ body::after {
 
 .hero-eq-bars span {
   width: 2.5px;
+  height: 11px;
   background: #ffffff;
   border-radius: 1px;
+  transform-origin: bottom;
+  transform: scaleY(0.3);
   animation: heroEqPulse 1.2s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-.hero-eq-bars span:nth-child(1) { height: 5px; animation-delay: 0.1s; }
-.hero-eq-bars span:nth-child(2) { height: 11px; animation-delay: 0.3s; }
-.hero-eq-bars span:nth-child(3) { height: 7px; animation-delay: 0.2s; }
-.hero-eq-bars span:nth-child(4) { height: 9px; animation-delay: 0.4s; }
+.hero-eq-bars span:nth-child(1) { animation-delay: 0.1s; }
+.hero-eq-bars span:nth-child(2) { animation-delay: 0.3s; }
+.hero-eq-bars span:nth-child(3) { animation-delay: 0.2s; }
+.hero-eq-bars span:nth-child(4) { animation-delay: 0.4s; }
 
 @keyframes heroEqPulse {
-  0% { height: 3px; }
-  100% { height: 11px; }
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
 }
 
 .hero-title {
@@ -2036,19 +2040,23 @@ section.filter-pills-bar {
 
 .card-playing-indicator .eq-mini-bar {
   width: 2px;
+  height: 12px;
   border-radius: 1px;
   background: #38bdf8;
+  transform-origin: bottom;
+  transform: scaleY(0.3);
   animation: cardEqPulse 0.9s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-.card-playing-indicator .eq-b1 { height: 4px; animation-delay: 0.1s; }
-.card-playing-indicator .eq-b2 { height: 11px; animation-delay: 0.3s; }
-.card-playing-indicator .eq-b3 { height: 7px; animation-delay: 0.2s; }
-.card-playing-indicator .eq-b4 { height: 12px; animation-delay: 0.4s; }
+.card-playing-indicator .eq-b1 { animation-delay: 0.1s; }
+.card-playing-indicator .eq-b2 { animation-delay: 0.3s; }
+.card-playing-indicator .eq-b3 { animation-delay: 0.2s; }
+.card-playing-indicator .eq-b4 { animation-delay: 0.4s; }
 
 @keyframes cardEqPulse {
-  0% { height: 3px; }
-  100% { height: 12px; }
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
 }
 
 /* Floating Card Play Overlay */
@@ -3131,15 +3139,18 @@ section.filter-pills-bar {
 
 .fs-soundwave-bars .bar {
   width: 3px;
-  height: 6px;
+  height: 22px;
   background: linear-gradient(180deg, var(--accent-purple), var(--accent-cyan));
   border-radius: 4px;
+  transform-origin: bottom;
+  transform: scaleY(0.2);
   animation: pulseEqualizer 1.2s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 .fullscreen-player:not(.playing) .fs-soundwave-bars .bar {
   animation-play-state: paused;
-  height: 4px;
+  transform: scaleY(0.18);
   opacity: 0.5;
 }
 
@@ -3161,9 +3172,9 @@ section.filter-pills-bar {
 .fs-soundwave-bars .bar-16 { animation-delay: 0.48s; }
 
 @keyframes pulseEqualizer {
-  0% { height: 4px; }
-  50% { height: 22px; }
-  100% { height: 8px; }
+  0% { transform: scaleY(0.18); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.36); }
 }
 
 .fs-quick-action-pills {
@@ -6369,6 +6380,46 @@ html, body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(99, 102, 241, 0.5);
+}
+
+/* =============================================================================
+   120Hz HIGH REFRESH RATE (PROMOTION) ENGINE & HARDWARE GPU COMPOSITING
+   ============================================================================= */
+html.high-refresh-rate-120hz,
+body.high-refresh-rate-120hz {
+  scroll-behavior: smooth !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hardware accelerated 120fps compositor layers */
+.high-refresh-rate-120hz .player-bar,
+.high-refresh-rate-120hz .fullscreen-player,
+.high-refresh-rate-120hz .hero-carousel-viewport,
+.high-refresh-rate-120hz .hero-slide,
+.high-refresh-rate-120hz .card-item,
+.high-refresh-rate-120hz .artist-card-item,
+.high-refresh-rate-120hz .fs-soundwave-bars .bar,
+.high-refresh-rate-120hz .playbar-eq-wave .eq-bar,
+.high-refresh-rate-120hz .lyrics-line,
+.high-refresh-rate-120hz .fs-lyrics-scroll-box,
+.high-refresh-rate-120hz .modal-content,
+.high-refresh-rate-120hz canvas {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* 120Hz Low-latency touch & interaction dispatch */
+.high-refresh-rate-120hz button,
+.high-refresh-rate-120hz a,
+.high-refresh-rate-120hz .card-item,
+.high-refresh-rate-120hz input[type="range"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* End of Modern UI/UX Design System Overhaul */

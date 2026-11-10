@@ -1875,7 +1875,7 @@
           </div>
 
           <!-- Continuous Autoplay -->
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 14px; margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 14px; margin-bottom: 0.75rem;">
             <div style="max-width: 80%;">
               <div style="color: #fff; font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 6px;">
                 <i class="fa-solid fa-forward" style="color: #ec4899;"></i> Continuous Autoplay
@@ -1886,6 +1886,23 @@
             </div>
             <label class="toggle-switch" style="position: relative; display: inline-block; width: 44px; height: 24px; flex-shrink: 0;">
               <input type="checkbox" id="profile-autoplay-toggle" onchange="window.handleAutoplayToggle(this.checked)" checked>
+              <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.15); border-radius: 24px; transition: .3s;"></span>
+            </label>
+          </div>
+
+          <!-- 120Hz Ultra-Smooth Refresh Rate (ProMotion) -->
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 14px; margin-bottom: 1.25rem;">
+            <div style="max-width: 80%;">
+              <div style="color: #fff; font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-bolt" style="color: #facc15;"></i> 120Hz Ultra-Smooth Refresh Rate
+                <span id="detected-hz-pill" style="font-size: 0.68rem; background: rgba(250, 204, 21, 0.2); color: #facc15; padding: 1px 7px; border-radius: 999px; font-weight: 800;">120Hz PROMOTION</span>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 2px;">
+                Locks 120Hz hardware GPU compositing, 120fps fluid transitions, and sub-pixel motion smoothing.
+              </div>
+            </div>
+            <label class="toggle-switch" style="position: relative; display: inline-block; width: 44px; height: 24px; flex-shrink: 0;">
+              <input type="checkbox" id="profile-120hz-toggle" onchange="window.handle120HzToggle(this.checked)" checked>
               <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.15); border-radius: 24px; transition: .3s;"></span>
             </label>
           </div>

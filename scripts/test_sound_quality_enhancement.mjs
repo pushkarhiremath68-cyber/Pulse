@@ -50,3 +50,4 @@ assert(styleCss.includes('.aq-tier-option'), 'style.css must style .aq-tier-opti
 console.log('✅ PASS: style.css contains premium audio quality styles');
 
 console.log('🎉 ALL SOUND QUALITY TESTS PASSED 100%!');
+

@@ -95,17 +95,21 @@ export class PulseVisualizer {
     const height = rect.height || 440;
     this.ctx.clearRect(0, 0, width, height);
 
-    const time = Date.now() * 0.0025;
+    const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    const dt = this.lastFrameTime ? Math.min((now - this.lastFrameTime) / 16.6667, 2.5) : 1;
+    this.lastFrameTime = now;
+
+    const time = (now * 0.0025);
 
     if (this.mode === 'radial') {
       const centerX = width / 2;
       const centerY = height / 2;
       const baseRadius = Math.min(centerX, centerY) * 0.65;
 
-      // Draw floating music particles
+      // Draw floating music particles with 120Hz normalized delta
       this.particles.forEach(p => {
-        p.x += p.speedX;
-        p.y += p.speedY;
+        p.x += p.speedX * dt;
+        p.y += p.speedY * dt;
         if (p.x < 0 || p.x > width) p.speedX *= -1;
         if (p.y < 0 || p.y > height) p.speedY *= -1;
 
