@@ -1,0 +1,67 @@
+{
+  "version": "2.4.0",
+  "release_date": "2026-08-17",
+  "release_channel": "stable",
+  "packages": {
+    "windows": {
+      "platform": "Windows",
+      "os": "windows",
+      "arch": "x64",
+      "filename": "Pulse-Music-Setup-2.4.0.exe",
+      "path": "C:\\Users\\pushk\\.gemini\\antigravity-ide\\scratch\\pulse-music-app\\storage\\downloads\\Pulse-Music-Setup-2.4.0.exe",
+      "size_bytes": 1224853,
+      "size_display": "1.2 MB",
+      "sha256": "b72456c136b0b9e5f53b2bf10efa145878b3c097af3abdd7ec5ae5d58be93d2a",
+      "mime_type": "application/vnd.microsoft.portable-executable",
+      "description": "Windows 10/11 64-bit Signed Native Installer"
+    },
+    "mac": {
+      "platform": "macOS",
+      "os": "mac",
+      "arch": "Universal (Apple Silicon & Intel)",
+      "filename": "Pulse-Music-2.4.0.dmg",
+      "path": "C:\\Users\\pushk\\.gemini\\antigravity-ide\\scratch\\pulse-music-app\\storage\\downloads\\Pulse-Music-2.4.0.dmg",
+      "size_bytes": 1118891,
+      "size_display": "1.1 MB",
+      "sha256": "3e58b4a37597488c1fa0f22f14ba4ad1efe0f08e3d22a29eb348045a499f5c97",
+      "mime_type": "application/x-apple-diskimage",
+      "description": "macOS 11+ Universal Disk Image (M1/M2/M3/M4 & Intel)"
+    },
+    "linux": {
+      "platform": "Linux",
+      "os": "linux",
+      "arch": "x86_64",
+      "filename": "Pulse-Music-2.4.0.AppImage",
+      "path": "C:\\Users\\pushk\\.gemini\\antigravity-ide\\scratch\\pulse-music-app\\storage\\downloads\\Pulse-Music-2.4.0.AppImage",
+      "size_bytes": 1118446,
+      "size_display": "1.1 MB",
+      "sha256": "4ca40777673bf8154f369ada5c3bcfbe06a892c7195858fbb06c49f408a51a9a",
+      "mime_type": "application/x-executable",
+      "description": "Linux 64-bit Standalone AppImage (Ubuntu, Fedora, Arch, Debian)"
+    },
+    "android": {
+      "platform": "Android",
+      "os": "android",
+      "arch": "Universal APK (arm64-v8a, armeabi-v7a, x86_64)",
+      "filename": "Pulse-Music-v2.4.0.apk",
+      "path": "C:\\Users\\pushk\\.gemini\\antigravity-ide\\scratch\\pulse-music-app\\storage\\downloads\\Pulse-Music-v2.4.0.apk",
+      "size_bytes": 18998089,
+      "size_display": "18.1 MB",
+      "sha256": "14d36af619e2e93054eebbd4aaf03ac5325c5ccfa859141a422c19ebcbb31098",
+      "mime_type": "application/vnd.android.package-archive",
+      "description": "Android 8.0+ Native Signed APK with Screen-Off Background Playback"
+    },
+    "ios": {
+      "platform": "iOS",
+      "os": "ios",
+      "arch": "Universal iPhone & iPad",
+      "filename": "Pulse-Music-v2.4.0.ipa",
+      "path": "C:\\Users\\pushk\\.gemini\\antigravity-ide\\scratch\\pulse-music-app\\storage\\downloads\\Pulse-Music-v2.4.0.ipa",
+      "size_bytes": 1118589,
+      "size_display": "1.1 MB",
+      "sha256": "66fcb37c15e6825e7e53683d13e9765610a587fd5076474f4cc892d2b42a3ff5",
+      "mime_type": "application/octet-stream",
+      "description": "iOS 14.0+ Native Package (TestFlight / Enterprise / WebClip)"
+    }
+  }
+}
