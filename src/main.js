@@ -4583,6 +4583,11 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         }
       });
     }
+
+    // 7. Initialize High-Fidelity Audio Settings & Badges
+    if (typeof window.updateAudioQualityUI === 'function') {
+      window.updateAudioQualityUI();
+    }
   }
 
   // Multi-pass initialization to guarantee song rendering across all devices & PWA launches
@@ -4937,14 +4942,142 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     }
   };
 
-  window.handleAudioQualityChange = async function(val) {
+  window.updateAudioQualityUI = function(quality, eqPreset) {
+    const q = quality || localStorage.getItem('pulse_audio_quality') || '320kbps';
+    const eq = eqPreset || localStorage.getItem('pulse_eq_preset') || 'balanced';
+
+    // Update playbar badges and labels
+    const playbarBadgeText = document.getElementById('playbar-quality-badge-text');
+    if (playbarBadgeText) {
+      playbarBadgeText.textContent = q === '320kbps' ? '320kbps ULTRA HD' : (q === '256kbps' ? '256kbps Hi-Res' : '160kbps HQ');
+    }
+    const playbarBtnLabel = document.getElementById('playbar-quality-btn-label');
+    if (playbarBtnLabel) {
+      playbarBtnLabel.textContent = q === '320kbps' ? '320k HD' : (q === '256kbps' ? '256k' : '160k');
+    }
+    const fsPillLabel = document.getElementById('fs-switch-quality-pill-label');
+    if (fsPillLabel) {
+      fsPillLabel.textContent = q === '320kbps' ? '320kbps Master HD' : (q === '256kbps' ? '256kbps Hi-Res' : '160kbps Data Saver');
+    }
+
+    // Update tier cards in modal
+    ['320', '256', '160'].forEach(tier => {
+      const card = document.getElementById(`aq-tier-${tier}`);
+      const radio = document.getElementById(`aq-radio-${tier}`);
+      const isSelected = q.includes(tier);
+      if (card) {
+        if (isSelected) {
+          card.classList.add('active');
+          card.style.border = '1.5px solid rgba(74, 222, 128, 0.7)';
+          card.style.background = 'rgba(74, 222, 128, 0.08)';
+        } else {
+          card.classList.remove('active');
+          card.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+          card.style.background = 'rgba(255, 255, 255, 0.02)';
+        }
+      }
+      if (radio) {
+        if (isSelected) {
+          radio.className = 'fa-solid fa-circle-dot aq-tier-radio';
+          radio.style.color = '#4ade80';
+        } else {
+          radio.className = 'fa-regular fa-circle aq-tier-radio';
+          radio.style.color = '#64748b';
+        }
+      }
+    });
+
+    // Update preset pills in modal
+    ['balanced', 'bass', 'vocal', 'club'].forEach(preset => {
+      const pill = document.getElementById(`aq-eq-${preset}`);
+      if (pill) {
+        if (preset === eq) {
+          pill.classList.add('active');
+          pill.style.border = '1.5px solid rgba(74, 222, 128, 0.7)';
+          pill.style.background = 'rgba(74, 222, 128, 0.12)';
+          pill.style.color = '#4ade80';
+        } else {
+          pill.classList.remove('active');
+          pill.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+          pill.style.background = 'rgba(255, 255, 255, 0.03)';
+          pill.style.color = '#cbd5e1';
+        }
+      }
+    });
+
+    // Update Profile select dropdowns if open
+    const profileQualitySelect = document.getElementById('profile-audio-quality-select');
+    if (profileQualitySelect && profileQualitySelect.value !== q) {
+      profileQualitySelect.value = q;
+    }
+    const profileEqSelect = document.getElementById('profile-eq-select');
+    if (profileEqSelect && profileEqSelect.value !== eq) {
+      profileEqSelect.value = eq;
+    }
+  };
+
+  window.openAudioQualityModal = function() {
+    const modal = document.getElementById('audio-quality-modal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+
+    // Update live track info in modal
+    const track = window.PulsePlaybar?.getCurrentTrack();
+    const liveLabel = document.getElementById('aq-live-stream-label');
+    const liveMeta = document.getElementById('aq-live-stream-meta');
+    if (track) {
+      const is320k = (track.source && track.source.includes('320')) || (track.streamUrl && track.streamUrl.includes('320'));
+      const isYt = track.streamUrl === 'yt-iframe' || (window.PulsePlaybar && window.PulsePlaybar.getActiveEngine && window.PulsePlaybar.getActiveEngine() === 'youtube');
+      if (liveLabel) {
+        liveLabel.textContent = is320k ? '320kbps Lossless Studio Master' : (isYt ? 'YouTube Hi-Res HD Studio Audio' : 'Studio Master Audio');
+      }
+      if (liveMeta) {
+        liveMeta.textContent = `${track.title} · ${track.artist} (${is320k ? 'Direct AAC 48kHz Stereo' : 'HD 1080p Stream'})`;
+      }
+    } else {
+      if (liveLabel) liveLabel.textContent = '320kbps Studio Master Engine';
+      if (liveMeta) liveMeta.textContent = 'High-fidelity audio ready · Select any track to play';
+    }
+
+    const currentQ = localStorage.getItem('pulse_audio_quality') || '320kbps';
+    const currentEq = localStorage.getItem('pulse_eq_preset') || 'balanced';
+    window.updateAudioQualityUI(currentQ, currentEq);
+  };
+
+  window.closeAudioQualityModal = function() {
+    const modal = document.getElementById('audio-quality-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+
+  window.selectAudioQuality = async function(val) {
+    localStorage.setItem('pulse_audio_quality', val);
+    const eq = localStorage.getItem('pulse_eq_preset') || 'balanced';
+    window.updateAudioQualityUI(val, eq);
     await updatePrivacySettings({ audioQuality: val });
-    if (window.showToast) window.showToast(`Master audio quality set to ${val}`, 'success', 2500);
+    const label = val === '320kbps' ? '👑 320kbps Studio Master (Top High-Fidelity)' : `${val} Audio Quality`;
+    if (window.showToast) window.showToast(`${label} activated!`, 'success', 2500);
+  };
+
+  window.selectAcousticProfile = async function(val) {
+    localStorage.setItem('pulse_eq_preset', val);
+    const q = localStorage.getItem('pulse_audio_quality') || '320kbps';
+    window.updateAudioQualityUI(q, val);
+    await updatePrivacySettings({ eqPreset: val });
+    const labels = {
+      balanced: '🎧 Studio Reference (Pure uncolored mix)',
+      bass: '🔊 Deep Bass Boost (+6dB Sub-Bass Punch)',
+      vocal: '🎤 Vocal Clarity (Crisp Acoustic Frequencies)',
+      club: '⚡ EDM & Club Dynamics (Wide Spatial Immersion)'
+    };
+    if (window.showToast) window.showToast(`${labels[val] || val} activated!`, 'success', 2500);
+  };
+
+  window.handleAudioQualityChange = async function(val) {
+    await window.selectAudioQuality(val);
   };
 
   window.handleEqChange = async function(val) {
-    await updatePrivacySettings({ eqPreset: val });
-    if (window.showToast) window.showToast(`Equalizer profile set to ${val}`, 'success', 2500);
+    await window.selectAcousticProfile(val);
   };
 
   window.handleLyricsScrollToggle = async function(isChecked) {

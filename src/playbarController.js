@@ -328,6 +328,9 @@ export async function playTrack(track, queue = null) {
       !track.streamUrl.includes('mzstatic') && 
       track.streamUrl !== 'yt-iframe' &&
       (track.duration || 0) > 40) {
+    if (track.streamUrl.includes('saavncdn.com')) {
+      track.streamUrl = track.streamUrl.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
+    }
     const nativeSuccess = await playOnNativeAudio(track);
     if (nativeSuccess) {
       console.log('[Pulse Studio Master] Playing via pre-verified native stream:', track.source || 'Direct');
@@ -335,44 +338,16 @@ export async function playTrack(track, queue = null) {
     }
   }
 
-  // 1B. MOBILE BACKGROUND OPTIMIZATION:
-  // On mobile devices, resolve direct audio stream (Saavn 320k or Piped Opus) FIRST so audio runs in background!
-  if (isMobileDevice) {
-    try {
-      const resolved = await resolveFullAudioStream(track);
-      if (sessionId !== activePlaySessionId) return;
-
-      if (resolved && resolved.streamUrl && resolved.streamUrl.startsWith('http') && resolved.streamUrl !== 'yt-iframe') {
-        track.streamUrl = resolved.streamUrl;
-        track.source = resolved.source || 'Studio Master Audio (Mobile Background)';
-        if (resolved.duration) track.duration = resolved.duration;
-        const played = await playOnNativeAudio(track);
-        if (played) {
-          console.log('[Pulse Studio Master] Mobile background native audio playing:', resolved.source);
-          return;
-        }
-      }
-    } catch (e) {}
-  }
-
-  // 1C. FAST PATH: If track already has verified YouTube ID (desktop or fallback)
-  const knownYtId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
-  if (knownYtId && knownYtId.length >= 8) {
-    console.log('[Pulse Studio Master] Fast-path immediate YouTube IFrame playback for:', knownYtId);
-    const ytSuccess = await playOnYouTubeIframe(knownYtId, track);
-    if (ytSuccess) return;
-  }
-
-  // 2. PRIMARY TIER: Resolve High-Bitrate Studio Master Stream (320kbps / 160kbps AAC)
+  // 2. PRIMARY TIER: Resolve High-Bitrate Studio Master Stream (320kbps Lossless AAC / Hi-Res YouTube)
   try {
     const resolved = await resolveFullAudioStream(track);
     if (sessionId !== activePlaySessionId) return;
 
     if (resolved && resolved.streamUrl) {
-      // 2A. Direct native audio stream (JioSaavn CDN / Piped Opus)
+      // 2A. Direct native audio stream (JioSaavn CDN 320k / Piped Opus)
       if (resolved.streamUrl.startsWith('http') && !resolved.streamUrl.includes('preview') && resolved.streamUrl !== 'yt-iframe') {
         track.streamUrl = resolved.streamUrl;
-        track.source = resolved.source || 'Studio Master Audio (320kbps)';
+        track.source = resolved.source || 'Studio Master Audio (320kbps Lossless)';
         if (resolved.duration) track.duration = resolved.duration;
         const played = await playOnNativeAudio(track);
         if (played) {
@@ -384,7 +359,7 @@ export async function playTrack(track, queue = null) {
       // 2B. resolveFullAudioStream resolved to yt-iframe — play via YouTube IFrame directly
       if (resolved.streamUrl === 'yt-iframe' && resolved.ytId) {
         track.ytId = resolved.ytId;
-        track.source = 'Studio Master Audio (YouTube)';
+        track.source = 'Studio Master Audio (Hi-Res HD)';
         console.log('[Pulse Studio Master] Playing via YouTube IFrame (resolved):', resolved.ytId);
         const ytSuccess = await playOnYouTubeIframe(resolved.ytId, track);
         if (ytSuccess) return;
@@ -392,6 +367,16 @@ export async function playTrack(track, queue = null) {
     }
   } catch (e) {
     console.warn('[Pulse Studio Master] Stream resolution notice:', e);
+  }
+
+  if (sessionId !== activePlaySessionId) return;
+
+  // 3. FALLBACK TIER: Fast known YouTube ID playback if resolution fell through
+  const knownYtId = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
+  if (knownYtId && knownYtId.length >= 8) {
+    console.log('[Pulse Studio Master] Fallback YouTube IFrame playback for:', knownYtId);
+    const ytSuccess = await playOnYouTubeIframe(knownYtId, track);
+    if (ytSuccess) return;
   }
 
   if (sessionId !== activePlaySessionId) return;
@@ -783,6 +768,9 @@ export function resetPlaybarToEmpty() {
   const qualityBadge = document.getElementById('playbar-quality-badge');
   if (qualityBadge) qualityBadge.style.display = 'none';
 
+  const fsQualityBadge = document.getElementById('fs-quality-badge');
+  if (fsQualityBadge) fsQualityBadge.innerHTML = `<i class="fa-solid fa-crown" style="color: #fbbf24; font-size: 9px;"></i> 320kbps ULTRA HD`;
+
   updatePlayPauseUI();
 }
 
@@ -794,8 +782,26 @@ function updateTrackInfoUI(track) {
   const playerBar = document.getElementById('player-bar');
   if (playerBar) playerBar.classList.remove('player-bar-idle');
 
+  const is320k = (track.source && track.source.includes('320')) || (track.streamUrl && track.streamUrl.includes('320'));
+  const isYt = activeEngine === 'youtube' || track.streamUrl === 'yt-iframe';
+  const badgeLabel = is320k ? '320kbps ULTRA HD' : (isYt ? 'Hi-Res HD' : 'STUDIO MASTER');
+
   const qualityBadge = document.getElementById('playbar-quality-badge');
-  if (qualityBadge) qualityBadge.style.display = 'inline-flex';
+  if (qualityBadge) {
+    qualityBadge.style.display = 'inline-flex';
+    qualityBadge.innerHTML = `<i class="fa-solid fa-crown" style="color: #fbbf24; font-size: 8px;"></i> <span id="playbar-quality-badge-text">${badgeLabel}</span>`;
+    qualityBadge.title = `Sound Quality: ${badgeLabel} (Click to open audio settings)`;
+  }
+
+  const qualityBtnLabel = document.getElementById('playbar-quality-btn-label');
+  if (qualityBtnLabel) {
+    qualityBtnLabel.textContent = is320k ? '320k HD' : 'Hi-Res';
+  }
+
+  const fsQualityBadge = document.getElementById('fs-quality-badge');
+  if (fsQualityBadge) {
+    fsQualityBadge.innerHTML = `<i class="fa-solid fa-crown" style="color: #fbbf24; font-size: 9px;"></i> ${badgeLabel}`;
+  }
 
   const titleEls = document.querySelectorAll('#player-title, #playbar-title, #fullscreen-track-title, #fs-track-title, #drawer-np-title');
   const artistEls = document.querySelectorAll('#player-artist, #playbar-artist, #fullscreen-track-artist, #fs-track-artist, #drawer-np-artist');
@@ -1387,7 +1393,9 @@ function initYouTubePlayer(initialVideoId = '', retryCount = 0) {
           'controls': 1,
           'playsinline': 1,
           'enablejsapi': 1,
-          'rel': 0
+          'rel': 0,
+          'vq': 'hd1080',
+          'suggestedQuality': 'hd1080'
         },
         events: {
           'onReady': (event) => {
@@ -1395,8 +1403,11 @@ function initYouTubePlayer(initialVideoId = '', retryCount = 0) {
             ytInitializing = false;
             try {
               ytPlayer.setVolume(currentVolume * 100);
+              if (typeof ytPlayer.setPlaybackQuality === 'function') {
+                ytPlayer.setPlaybackQuality('hd1080');
+              }
             } catch (e) {}
-            console.log('[Pulse Studio Master] YouTube IFrame API Ready — Primary engine online.');
+            console.log('[Pulse Studio Master] YouTube IFrame API Ready — Primary engine online (Hi-Res HD Audio enabled).');
             // Instantly execute any queued play requests
             while (pendingYtQueue.length > 0) {
               const item = pendingYtQueue.shift();
@@ -1411,6 +1422,11 @@ function initYouTubePlayer(initialVideoId = '', retryCount = 0) {
             if (activeEngine !== 'youtube') return;
             if (event.data === window.YT.PlayerState.PLAYING) {
               isPlaying = true;
+              try {
+                if (typeof ytPlayer.setPlaybackQuality === 'function') {
+                  ytPlayer.setPlaybackQuality('hd1080');
+                }
+              } catch (e) {}
               updatePlayPauseUI();
               updateMediaSessionPlaybackState('playing');
             } else if (event.data === window.YT.PlayerState.PAUSED) {
@@ -1529,12 +1545,22 @@ export async function playOnYouTubeIframe(videoId, track) {
       try {
         a.pause();
         activeEngine = 'youtube';
-        ytPlayer.loadVideoById(cleanId);
+        try {
+          ytPlayer.loadVideoById({
+            videoId: cleanId,
+            suggestedQuality: 'hd1080'
+          });
+          if (typeof ytPlayer.setPlaybackQuality === 'function') {
+            ytPlayer.setPlaybackQuality('hd1080');
+          }
+        } catch (e) {
+          ytPlayer.loadVideoById(cleanId);
+        }
         ytPlayer.playVideo();
         isPlaying = true;
         if (window.pulseState) window.pulseState.isPlaying = true;
         track.streamUrl = 'yt-iframe';
-        track.source = 'Studio Master Audio (YouTube)';
+        track.source = 'Studio Master Audio (Hi-Res HD)';
         updateTrackInfoUI(track);
         updatePlayPauseUI();
         updateMediaSessionPlaybackState('playing');

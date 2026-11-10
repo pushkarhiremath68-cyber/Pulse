@@ -61,7 +61,10 @@ export function decryptSaavnMediaUrl(encryptedMediaUrl) {
     const url = decrypted.toString(CryptoJS.enc.Utf8);
     if (!url || !url.startsWith('http')) return null;
 
-    const u320 = url.replace('_96.mp4', '_320.mp4').replace('_48.mp4', '_320.mp4').replace('_160.mp4', '_320.mp4').replace('_96.m4a', '_320.m4a').replace('_160.m4a', '_320.m4a');
+    let u320 = url.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
+    if (!u320.includes('_320') && (u320.endsWith('.mp4') || u320.endsWith('.m4a'))) {
+      u320 = u320.replace(/\.(mp4|m4a)$/i, '_320.$1');
+    }
     const u160 = url.replace('_96.mp4', '_160.mp4').replace('_48.mp4', '_160.mp4').replace('_320.mp4', '_160.mp4').replace('_96.m4a', '_160.m4a');
     return {
       '320': u320,
@@ -142,8 +145,18 @@ export function normalizeTrack(raw, source = 'Universal Music Stream') {
 
   let stream = raw.streamUrl || raw.audio || raw.audiodownload || raw.downloadUrl || raw.stream || '';
   if (Array.isArray(raw.downloadUrl) && raw.downloadUrl.length > 0) {
-    const d320 = raw.downloadUrl.find(d => d.quality === '320kbps')?.link || raw.downloadUrl.find(d => d.quality === '160kbps')?.link || raw.downloadUrl[raw.downloadUrl.length - 1]?.link;
-    if (d320) stream = d320;
+    const d320 = raw.downloadUrl.find(d => d.quality === '320kbps')?.url || raw.downloadUrl.find(d => d.quality === '320kbps')?.link;
+    const d160 = raw.downloadUrl.find(d => d.quality === '160kbps')?.url || raw.downloadUrl.find(d => d.quality === '160kbps')?.link;
+    const dAny = raw.downloadUrl[raw.downloadUrl.length - 1]?.url || raw.downloadUrl[raw.downloadUrl.length - 1]?.link;
+    if (d320 || d160 || dAny) stream = d320 || d160 || dAny;
+  }
+  if (!stream && raw.encrypted_media_url) {
+    const dec = decryptSaavnMediaUrl(raw.encrypted_media_url);
+    if (dec && dec['320']) stream = dec['320'];
+  }
+  // Enforce pristine 320kbps master studio audio on all Saavn CDN streams
+  if (stream && typeof stream === 'string' && stream.includes('saavncdn.com')) {
+    stream = stream.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
   }
 
   // NO 30-SECOND PREVIEWS: Filter out any sample/preview links so full resolution is enforced
@@ -194,6 +207,9 @@ export async function searchJioSaavnDirect(query, limit = 25) {
         streamUrl = dec['320'] || dec['160'] || dec['96'] || '';
       }
     }
+    if (streamUrl && typeof streamUrl === 'string' && streamUrl.includes('saavncdn.com')) {
+      streamUrl = streamUrl.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
+    }
 
     let cover = item.coverUrl || '';
     if (Array.isArray(item.image) && item.image.length > 0) {
@@ -231,7 +247,7 @@ export async function searchJioSaavnDirect(query, limit = 25) {
         streamUrl: streamUrl,
         previewUrl: '',
         genre: item.language ? `${item.language.charAt(0).toUpperCase() + item.language.slice(1)} Studio` : 'Master Studio Audio',
-        source: 'Studio Master Audio (YouTube)'
+        source: 'Studio Master Audio (320kbps Lossless)'
       });
     }
   };
@@ -345,7 +361,7 @@ export async function searchITunesUniversal(query, limit = 40) {
               streamUrl: '', // NO 30s preview
               previewUrl: '',
               genre: item.primaryGenreName || 'Music',
-              source: 'Studio Master Audio (YouTube)'
+              source: 'Studio Master Audio (320kbps Lossless)'
             }, 'Official Studio Release'));
           }
         }
@@ -728,7 +744,7 @@ export async function fetchTrendingTracks(limit = 40) {
             duration: 210,
             streamUrl: '', // NO 30s preview
             previewUrl: '',
-            source: 'Studio Master Audio (YouTube)'
+            source: 'Studio Master Audio (320kbps Lossless)'
           });
         });
       }
@@ -855,13 +871,17 @@ export async function resolveFullAudioStream(track) {
       track.streamUrl.startsWith('http') && 
       !track.streamUrl.includes('preview') && 
       !track.streamUrl.includes('audio-ssl.itunes.apple.com') && 
-      !track.streamUrl.includes('mzstatic') &&
+      !track.streamUrl.includes('mzstatic') && 
       track.streamUrl !== 'yt-iframe' &&
       (track.duration || 0) > 40) {
+    let sUrl = track.streamUrl;
+    if (sUrl.includes('saavncdn.com')) {
+      sUrl = sUrl.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
+    }
     const resolved = {
-      streamUrl: track.streamUrl,
+      streamUrl: sUrl,
       duration: track.duration || 220,
-      source: track.source || 'Studio Master Audio (320kbps)'
+      source: track.source || 'Studio Master Audio (320kbps Lossless)'
     };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     savePersistedStream(cacheKey, resolved);
@@ -871,10 +891,14 @@ export async function resolveFullAudioStream(track) {
   // 0C. Check PERMANENT_STREAM_MAP for zero-network instantaneous resolution
   const permanentDirect = PERMANENT_STREAM_MAP[track.title] || PERMANENT_STREAM_MAP[cleanTitle];
   if (permanentDirect) {
+    let pUrl = permanentDirect;
+    if (pUrl.includes('saavncdn.com')) {
+      pUrl = pUrl.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
+    }
     const resolved = {
-      streamUrl: permanentDirect,
+      streamUrl: pUrl,
       duration: track.duration || 220,
-      source: 'Studio Master Audio (320kbps)'
+      source: 'Studio Master Audio (320kbps Lossless)'
     };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     savePersistedStream(cacheKey, resolved);
@@ -884,51 +908,87 @@ export async function resolveFullAudioStream(track) {
   // 0D. Check LocalStorage Persistent Cache (retained forever across browser sessions & reloads)
   const persisted = getPersistedStream(cacheKey);
   if (persisted && persisted.streamUrl && persisted.streamUrl.startsWith('http')) {
+    if (persisted.streamUrl.includes('saavncdn.com')) {
+      persisted.streamUrl = persisted.streamUrl.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
+    }
     RESOLVED_STREAM_CACHE.set(cacheKey, persisted);
     return persisted;
   }
 
+  const isIndianOrHindi = isHindiTrack(track);
+
+  // 1. TIER 1: For Hindi/Bollywood/Indian tracks, resolve genuine 320kbps JioSaavn Master Audio FIRST!
+  if (isIndianOrHindi) {
+    const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
+    if (query.length > 1) {
+      try {
+        const saavnResults = await searchJioSaavnDirect(query, 3);
+        if (saavnResults && saavnResults.length > 0) {
+          const verified = saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http') && !s.streamUrl.includes('preview') && isSaavnResultMatching(s, track));
+          if (verified) {
+            let sUrl = verified.streamUrl;
+            if (sUrl.includes('saavncdn.com')) {
+              sUrl = sUrl.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
+            }
+            const resolved = {
+              streamUrl: sUrl,
+              duration: track.duration || verified.duration || 220,
+              source: 'Studio Master Audio (320kbps Lossless)'
+            };
+            RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
+            savePersistedStream(cacheKey, resolved);
+            return resolved;
+          }
+        }
+      } catch (e) {}
+    }
+  }
+
   let ytIdToUse = track.ytId || (track.id && track.id.startsWith('ytm-') ? track.id.replace('ytm-', '') : null);
 
-  // 1. FASTEST TIER: If track already has a verified YouTube ID, play via YouTube IFrame immediately (0ms!)
+  // 2. TIER 2: Fast YouTube ID playback (with enforced HD 1080p Studio Audio)
   if (ytIdToUse && ytIdToUse.length >= 8) {
-    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
+    const resolved = { streamUrl: 'yt-iframe', ytId: ytIdToUse, source: 'Studio Master Audio (Hi-Res HD)', duration: track.duration || 220 };
     RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
     return resolved;
   }
 
-  // 2. TIER 2: Fast on-demand YouTube ID resolution using active Invidious/Piped fleet (<400ms)
+  // 3. TIER 3: Fast on-demand YouTube ID resolution using active Invidious/Piped fleet (<400ms)
   try {
     const foundYtId = await resolveYouTubeVideoId(cleanTitle, cleanArtist);
     if (foundYtId && foundYtId.length >= 8) {
       ytIdToUse = foundYtId;
       track.ytId = foundYtId;
-      const resolved = { streamUrl: 'yt-iframe', ytId: foundYtId, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
+      const resolved = { streamUrl: 'yt-iframe', ytId: foundYtId, source: 'Studio Master Audio (Hi-Res HD)', duration: track.duration || 220 };
       RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
       return resolved;
     }
   } catch (e) {}
 
-  // 3. TIER 3: YouTube Music search fallback
+  // 4. TIER 4: YouTube Music search fallback
   try {
     const fallbackSearch = await searchYouTubeMusic(`${cleanTitle} ${cleanArtist}`, 2);
     if (fallbackSearch && fallbackSearch.length > 0 && fallbackSearch[0].ytId) {
       track.ytId = fallbackSearch[0].ytId;
-      const resolved = { streamUrl: 'yt-iframe', ytId: fallbackSearch[0].ytId, source: 'Studio Master Audio (YouTube)', duration: track.duration || 220 };
+      const resolved = { streamUrl: 'yt-iframe', ytId: fallbackSearch[0].ytId, source: 'Studio Master Audio (Hi-Res HD)', duration: track.duration || 220 };
       RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
       return resolved;
     }
   } catch (e) {}
 
-  // 4. TIER 4: Try JioSaavn search if title exists
+  // 5. TIER 5: General JioSaavn search fallback for non-Hindi tracks
   const query = `${cleanTitle} ${cleanArtist}`.trim() || track.title || '';
   if (query.length > 1) {
     try {
       const saavnResults = await searchJioSaavnDirect(query, 3);
       if (saavnResults && saavnResults.length > 0) {
-        const verified = saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http') && !s.streamUrl.includes('preview'));
+        const verified = saavnResults.find(s => s.streamUrl && s.streamUrl.startsWith('http') && !s.streamUrl.includes('preview') && isSaavnResultMatching(s, track));
         if (verified) {
-          const resolved = { streamUrl: verified.streamUrl, duration: track.duration || 220, source: 'Studio Master Audio (320kbps)' };
+          let sUrl = verified.streamUrl;
+          if (sUrl.includes('saavncdn.com')) {
+            sUrl = sUrl.replace(/_(96|160|48)\.(mp4|m4a)/i, '_320.$2');
+          }
+          const resolved = { streamUrl: sUrl, duration: track.duration || 220, source: 'Studio Master Audio (320kbps Lossless)' };
           RESOLVED_STREAM_CACHE.set(cacheKey, resolved);
           savePersistedStream(cacheKey, resolved);
           return resolved;

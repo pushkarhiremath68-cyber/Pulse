@@ -29,3 +29,4 @@ assert(styleCss.includes('.artist-card-item:hover .artist-play-hover'), 'CSS mus
 console.log('✅ PASS: Artist card hover play button and styles verified');
 
 console.log('🎉 ALL TESTS PASSED 100%!');
+
