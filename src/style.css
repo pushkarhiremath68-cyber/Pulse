@@ -5798,6 +5798,30 @@ html.gate-already-unlocked .auth-gate-overlay {
   transform: scale(1.05);
 }
 
+/* Featured Artists Play Button & Hover Feedback */
+.artist-card-item {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.artist-card-item:hover {
+  transform: translateY(-4px);
+}
+
+.artist-card-item:hover .artist-play-hover,
+.artist-avatar-wrap:hover .artist-play-hover {
+  opacity: 1 !important;
+}
+
+.artist-play-hover:hover .artist-play-icon-bubble {
+  transform: scale(1.15) !important;
+  box-shadow: 0 0 28px rgba(16, 185, 129, 0.75) !important;
+}
+
+.artist-play-hover:active .artist-play-icon-bubble {
+  transform: scale(0.92) !important;
+}
+
 
 /* =============================================================================
    MODERN UI/UX DESIGN SYSTEM OVERHAUL (2026 EDITION)

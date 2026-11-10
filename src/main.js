@@ -1083,6 +1083,30 @@ import {
         if (playIcon) playIcon.className = 'fa-solid fa-play';
       }
     });
+
+    // Update Artist Page play/pause buttons
+    if (typeof window.updateArtistPlayButtons === 'function') {
+      window.updateArtistPlayButtons();
+    }
+
+    // Update Featured Artist Cards play/pause icon
+    const artistCards = document.querySelectorAll('.artist-card-item');
+    artistCards.forEach(ac => {
+      const aName = ac.getAttribute('data-artist-name');
+      const isArtistMatch = currentTrack && aName && (
+        (currentTrack.artist && currentTrack.artist.toLowerCase().includes(aName.toLowerCase())) ||
+        (aName.toLowerCase().includes((currentTrack.artist || '').toLowerCase()))
+      );
+      const playIcon = ac.querySelector('.artist-play-hover i');
+      const playHover = ac.querySelector('.artist-play-hover');
+      if (isArtistMatch && isPlaying) {
+        if (playIcon) playIcon.className = 'fa-solid fa-pause';
+        if (playHover) playHover.style.opacity = '1';
+      } else {
+        if (playIcon) playIcon.className = 'fa-solid fa-play';
+        if (playHover && !ac.matches(':hover')) playHover.style.opacity = '0';
+      }
+    });
   };
 
   // 1. RECENTLY PLAYED SHELF
@@ -1658,11 +1682,13 @@ import {
       const artists = getFeaturedArtists();
       window.__featuredArtists = artists;
       artContainer.innerHTML = artists.map((art) => `
-        <div class="artist-card-item hover-glow" onclick="window.openArtistView('${art.name.replace(/'/g, "\\'")}')" style="min-width: 140px; text-align: center; cursor: pointer; flex-shrink: 0;">
+        <div class="artist-card-item hover-glow" data-artist-name="${escapeHtml(art.name)}" onclick="window.openArtistView('${art.name.replace(/'/g, "\\'")}')" style="min-width: 140px; text-align: center; cursor: pointer; flex-shrink: 0; position: relative;">
           <div class="artist-avatar-wrap" style="position: relative; width: 120px; height: 120px; margin: 0 auto 0.75rem auto; border-radius: 50%; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
             <img src="${art.avatar || 'https://api.dicebear.com/7.x/initials/svg?seed=' + encodeURIComponent(art.name) + '&backgroundColor=8b5cf6'}" alt="${escapeHtml(art.name)}" data-artist="${escapeHtml(art.name)}" class="artist-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=' + encodeURIComponent(this.dataset.artist || 'Artist') + '&backgroundColor=8b5cf6';">
-            <div class="artist-play-hover" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;">
-              <i class="fa-solid fa-play" style="color: #fff; font-size: 1.5rem;"></i>
+            <div class="artist-play-hover" onclick="event.stopPropagation(); window.playArtistDirect('${art.name.replace(/'/g, "\\'")}')" style="position: absolute; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; opacity: 0; transition: all 0.25s ease;" title="Play ${escapeHtml(art.name)}">
+              <div class="artist-play-icon-bubble" style="width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(16,185,129,0.55); color: #fff; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                <i class="fa-solid fa-play" style="font-size: 1.2rem; margin-left: 2px;"></i>
+              </div>
             </div>
           </div>
           <div class="artist-card-name" style="font-size: 0.95rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(art.name)}</div>
@@ -2848,6 +2874,10 @@ import {
           </div>
         `;
       }
+
+      if (typeof window.updateArtistPlayButtons === 'function') {
+        window.updateArtistPlayButtons();
+      }
     };
 
     // If artist is not fully curated or has 0 tracks, show sleek loading indicator
@@ -2882,11 +2912,156 @@ import {
     }
   };
 
-  window.playArtistTopTracks = function() {
+  window.updateArtistPlayButtons = function(forcedState) {
     const artist = window.pulseState.currentArtistData;
-    if (artist && artist.topTracks && artist.topTracks.length > 0) {
-      window.playTrackDirect(artist.topTracks[0], artist.topTracks);
-      window.showToast(`Playing ${artist.name}'s Top 10 Songs`, 'info');
+    const currentTrack = window.PulsePlaybar && typeof window.PulsePlaybar.getCurrentTrack === 'function' 
+      ? window.PulsePlaybar.getCurrentTrack() 
+      : (window.pulseState?.currentTrack || null);
+    const globalPlaying = window.PulsePlaybar && typeof window.PulsePlaybar.getIsPlaying === 'function' 
+      ? window.PulsePlaybar.getIsPlaying() 
+      : Boolean(window.pulseState?.isPlaying);
+
+    const heroNameEl = document.getElementById('artist-hero-name');
+    const artistName = artist?.name || (heroNameEl ? heroNameEl.textContent.trim() : '');
+
+    const isMatch = typeof forcedState === 'boolean' 
+      ? forcedState 
+      : (globalPlaying && currentTrack && artistName && (
+          (currentTrack.artist && currentTrack.artist.toLowerCase().includes(artistName.toLowerCase())) ||
+          (artistName.toLowerCase().includes((currentTrack.artist || '').toLowerCase()))
+        ));
+
+    const headerBtn = document.getElementById('artist-header-play-btn');
+    if (headerBtn) {
+      headerBtn.innerHTML = isMatch 
+        ? '<i class="fa-solid fa-pause"></i> <span>Pause</span>' 
+        : '<i class="fa-solid fa-play"></i> <span>Play Top 10</span>';
+      if (isMatch) {
+        headerBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        headerBtn.style.boxShadow = '0 0 25px rgba(16,185,129,0.5)';
+      } else {
+        headerBtn.style.background = '';
+        headerBtn.style.boxShadow = '';
+      }
+    }
+
+    const sectionBtn = document.getElementById('artist-section-play-all-btn');
+    if (sectionBtn) {
+      sectionBtn.innerHTML = isMatch 
+        ? '<i class="fa-solid fa-pause" style="font-size: 0.7rem;"></i> <span>Pause</span>' 
+        : '<i class="fa-solid fa-play" style="font-size: 0.7rem;"></i> <span>Play All</span>';
+    }
+
+    const aboutBtn = document.getElementById('artist-about-play-btn');
+    if (aboutBtn) {
+      aboutBtn.innerHTML = isMatch 
+        ? '<i class="fa-solid fa-pause"></i> <span>Pause</span>' 
+        : '<i class="fa-solid fa-play"></i> <span>Play Top 10 Hits</span>';
+    }
+  };
+
+  window.playArtistTopTracks = async function() {
+    const artist = window.pulseState.currentArtistData;
+    const currentTrack = window.PulsePlaybar && typeof window.PulsePlaybar.getCurrentTrack === 'function' 
+      ? window.PulsePlaybar.getCurrentTrack() 
+      : (window.pulseState?.currentTrack || null);
+    const isPlaying = window.PulsePlaybar && typeof window.PulsePlaybar.getIsPlaying === 'function' 
+      ? window.PulsePlaybar.getIsPlaying() 
+      : Boolean(window.pulseState?.isPlaying);
+
+    const heroNameEl = document.getElementById('artist-hero-name');
+    const artistName = artist?.name || (heroNameEl ? heroNameEl.textContent.trim() : '');
+
+    // 1. If currently playing this artist, toggle play/pause!
+    const isCurrentArtist = currentTrack && artistName && (
+      (currentTrack.artist && currentTrack.artist.toLowerCase().includes(artistName.toLowerCase())) ||
+      (artistName.toLowerCase().includes((currentTrack.artist || '').toLowerCase()))
+    );
+
+    if (isCurrentArtist) {
+      if (window.PulsePlaybar && typeof window.PulsePlaybar.togglePlay === 'function') {
+        window.PulsePlaybar.togglePlay();
+        window.updateArtistPlayButtons(!isPlaying);
+      }
+      return;
+    }
+
+    // 2. Play existing top tracks
+    let tracks = (artist && Array.isArray(artist.topTracks) && artist.topTracks.length > 0)
+      ? artist.topTracks
+      : (Array.isArray(window.__artistTopTracks) && window.__artistTopTracks.length > 0 ? window.__artistTopTracks : []);
+
+    if (tracks && tracks.length > 0) {
+      window.playTrackDirect(tracks[0], tracks);
+      window.updateArtistPlayButtons(true);
+      if (window.showToast) window.showToast(`Playing ${artistName}'s Top Songs`, 'info');
+      return;
+    }
+
+    // 3. Dynamic search & stream fallback
+    if (artistName) {
+      if (window.showToast) window.showToast(`Fetching ${artistName}'s songs...`, 'info', 2000);
+      try {
+        let fetched = [];
+        if (window.musicService && typeof window.musicService.searchTracks === 'function') {
+          fetched = await window.musicService.searchTracks(artistName);
+        }
+        if (fetched && fetched.length > 0) {
+          window.__artistTopTracks = fetched;
+          if (window.pulseState.currentArtistData) {
+            window.pulseState.currentArtistData.topTracks = fetched;
+          }
+          window.playTrackDirect(fetched[0], fetched);
+          window.updateArtistPlayButtons(true);
+          if (window.showToast) window.showToast(`Playing ${artistName}`, 'info');
+        } else {
+          if (window.showToast) window.showToast(`Could not find playable songs for ${artistName}`, 'warning');
+        }
+      } catch (err) {
+        console.warn('Error resolving artist tracks:', err);
+      }
+    }
+  };
+
+  window.playArtistDirect = async function(artistName) {
+    if (!artistName) return;
+    const currentTrack = window.PulsePlaybar?.getCurrentTrack();
+    const isPlaying = window.PulsePlaybar?.getIsPlaying();
+
+    const isCurrent = currentTrack && currentTrack.artist && (
+      currentTrack.artist.toLowerCase().includes(artistName.toLowerCase()) ||
+      artistName.toLowerCase().includes(currentTrack.artist.toLowerCase())
+    );
+
+    if (isCurrent) {
+      if (window.PulsePlaybar?.togglePlay) {
+        window.PulsePlaybar.togglePlay();
+      }
+      return;
+    }
+
+    let artistData = typeof getArtistDetails === 'function' ? getArtistDetails(artistName) : null;
+    let tracks = artistData?.topTracks;
+
+    if (tracks && tracks.length > 0) {
+      window.playTrackDirect(tracks[0], tracks);
+      if (window.showToast) window.showToast(`Playing ${artistData.name || artistName}'s Top Songs`, 'info');
+      return;
+    }
+
+    if (window.showToast) window.showToast(`Loading ${artistName}...`, 'info', 2000);
+    try {
+      if (window.musicService && typeof window.musicService.searchTracks === 'function') {
+        const searchResults = await window.musicService.searchTracks(artistName);
+        if (searchResults && searchResults.length > 0) {
+          window.playTrackDirect(searchResults[0], searchResults);
+          if (window.showToast) window.showToast(`Playing ${artistName}`, 'info');
+        } else {
+          if (window.showToast) window.showToast(`No songs found for ${artistName}`, 'warning');
+        }
+      }
+    } catch (err) {
+      console.warn('Failed to direct play artist:', err);
     }
   };
 
@@ -3363,6 +3538,7 @@ import {
   // ---------------------------------------------------------------------------
 
   window.switchLibraryTab = function(tabName) {
+    if (tabName === 'offline') tabName = 'favorites';
     window.pulseState.activeLibraryTab = tabName;
     document.querySelectorAll('.library-tab-btn').forEach(btn => {
       btn.classList.toggle('active-pill', btn.getAttribute('data-tab') === tabName);
@@ -3375,7 +3551,8 @@ import {
     const container = document.getElementById('library-content-area');
     if (!container) return;
 
-    const activeTab = window.pulseState.activeLibraryTab || 'favorites';
+    let activeTab = window.pulseState.activeLibraryTab || 'favorites';
+    if (activeTab === 'offline') activeTab = 'favorites';
 
     if (activeTab === 'favorites') {
       const favorites = await getFavorites();
@@ -5034,23 +5211,25 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
     const errBox = document.getElementById('pfp-camera-error-msg');
     if (errBox) errBox.style.display = 'none';
 
-    // 1. MOBILE FAST PATH: Launch native camera app directly (bypasses browser WebRTC hurdles, 100% works on phones)
+    // MOBILE: Always use native camera input (opens phone Camera app directly — never fails)
     if (isMobile) {
       const cameraInput = document.getElementById('pfp-camera-input');
-      if (cameraInput) {
-        cameraInput.click();
-        return;
-      }
+      if (cameraInput) { cameraInput.click(); return; }
     }
 
-    // 2. DESKTOP PATH: Live webcam viewfinder with WebRTC
+    // DESKTOP: Try WebRTC with a hard 4-second timeout. If anything goes wrong → silently open file picker.
     const subtitle = document.getElementById('pfp-modal-subtitle');
     if (subtitle) {
       subtitle.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 6px; color: #38bdf8;"></i> Connecting to camera...';
     }
 
+    let cameraWorked = false;
+
     try {
-      const stream = await acquireCameraStream();
+      // Race: camera stream vs 4-second timeout
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000));
+      const stream = await Promise.race([acquireCameraStream(), timeoutPromise]);
+
       window.__pfpCameraStream = stream;
 
       const video = document.getElementById('pfp-modal-live-video');
@@ -5075,58 +5254,39 @@ Keywords=music;stream;audio;lossless;karaoke;lyrics;pulse;
         subtitle.innerHTML = '<span style="color: #38bdf8; font-weight: 700;"><i class="fa-solid fa-circle-dot" style="color: #ef4444; margin-right: 6px; font-size: 0.8rem;"></i> Camera Active — Position your face & click Snap</span>';
       }
 
-      // Detect if multi-camera mobile device to expose flip button
+      // Detect multi-camera to show flip button
       if (navigator.mediaDevices.enumerateDevices && flipBtn) {
         try {
           const devices = await navigator.mediaDevices.enumerateDevices();
           const videoInputs = devices.filter(d => d.kind === 'videoinput');
-          if (videoInputs.length > 1) {
-            flipBtn.style.display = 'flex';
-          }
+          if (videoInputs.length > 1) flipBtn.style.display = 'flex';
         } catch (_) {}
       }
+
+      cameraWorked = true;
     } catch (err) {
-      console.warn('[Pulse Camera] Camera open failed:', err);
+      console.warn('[Pulse Camera] Failed or timed out:', err.name || err.message);
+      cameraWorked = false;
+    }
+
+    // SILENT FALLBACK: If camera didn't work, just open the file picker. No scary error. No Windows settings link.
+    if (!cameraWorked) {
       window.stopPfpLiveCamera();
 
-      if (errBox) {
-        const isWindows = /Win/i.test(navigator.platform || navigator.userAgent);
-        const isMac = /Mac/i.test(navigator.platform || navigator.userAgent);
-        const isMobileNow = /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && window.innerWidth <= 820);
-
-        let guidanceList = '';
-        if (isMobileNow) {
-          guidanceList = 
-            '<li>Browser ki Site Settings me jaakar Camera permission <strong>Allow</strong> karein.</li>' +
-            '<li>Ya neeche <strong>"Choose from Gallery / Files"</strong> button dabakar photo upload karein.</li>';
-        } else if (isWindows) {
-          guidanceList = 
-            '<li><strong>Windows Privacy Settings:</strong> <code>Win + I</code> &gt; <em>Privacy &amp; security</em> &gt; <em>Camera</em> me <strong>"Let desktop apps access your camera"</strong> toggle ON karein.</li>' +
-            '<li><strong>Laptop Shutter:</strong> Webcam par physical slider ya orange dot open karein (ya <code>Fn+F8 / F10</code>).</li>' +
-            '<li><strong>Apps in Use:</strong> Background me Zoom, Teams ya WhatsApp close karein.</li>';
-        } else if (isMac) {
-          guidanceList = 
-            '<li><strong>Mac Privacy:</strong> <em>System Settings</em> &gt; <em>Privacy &amp; Security</em> &gt; <em>Camera</em> me Browser ko toggle ON karein.</li>' +
-            '<li>FaceTime ya Zoom band karein.</li>';
-        } else {
-          guidanceList = 
-            '<li>Browser settings me Camera access allow karein ya niche diye button se photo select karein.</li>';
-        }
-
-        let msg = '<div style="font-weight: 700; color: #f87171; margin-bottom: 6px; font-size: 0.88rem;"><i class="fa-solid fa-triangle-exclamation"></i> Camera Access Not Available</div>' +
-          '<div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 8px;">Camera stream open nahi ho paya. Yeh check karein:</div>' +
-          '<ol style="margin: 0 0 10px 16px; padding: 0; font-size: 0.76rem; color: #e2e8f0; line-height: 1.5;">' +
-          guidanceList +
-          '</ol>' +
-          (isWindows ? '<a href="ms-settings:privacy-webcam" style="display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 8px; margin-bottom: 8px; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); border-radius: 8px; color: #38bdf8; font-weight: 700; font-size: 0.78rem; text-decoration: none;"><i class="fa-solid fa-gear"></i> Open Windows Camera Settings Directly</a>' : '') +
-          '<button type="button" onclick="window.triggerPfpGallery()" style="width: 100%; padding: 8px 12px; background: #ffffff; color: #000; border: none; border-radius: 8px; font-weight: 800; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 2px 10px rgba(255,255,255,0.2);"><i class="fa-solid fa-folder-open"></i> Choose Photo from Gallery / Files</button>';
-        errBox.innerHTML = msg;
-        errBox.style.display = 'block';
+      if (subtitle) {
+        subtitle.textContent = 'Take a selfie or choose a photo from your gallery.';
       }
 
+      // Gentle toast, then immediately open file dialog
       if (window.showToast) {
-        window.showToast('Camera access unavailable. You can upload a photo from gallery.', 'info', 3500);
+        window.showToast('📸 Camera unavailable — opening photo picker for you...', 'info', 2500);
       }
+
+      // Small delay so user sees the toast, then auto-open file picker
+      setTimeout(function() {
+        const galleryInput = document.getElementById('pfp-gallery-input');
+        if (galleryInput) galleryInput.click();
+      }, 300);
     }
   };
 

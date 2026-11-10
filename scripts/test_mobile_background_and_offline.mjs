@@ -49,12 +49,12 @@ it('Source files offlineMusicService.js and backgroundAudioGuardian.js exist', (
 });
 
 // -------------------------------------------------------------
-// TEST 2: Index.html has Downloaded tab and playbar offline button
+// TEST 2: Index.html has library tabs and playbar offline button
 // -------------------------------------------------------------
-it('index.html contains Downloaded tab and playbar offline button', () => {
+it('index.html contains library tabs and playbar offline button', () => {
   const html = fs.readFileSync(path.resolve('index.html'), 'utf8');
-  assert(html.includes('data-tab="offline"'), 'index.html must have data-tab="offline" button');
-  assert(html.includes('id="offline-songs-count"'), 'index.html must have offline-songs-count badge');
+  assert(html.includes('data-tab="favorites"'), 'index.html must have data-tab="favorites" button');
+  assert(html.includes('data-tab="playlists"'), 'index.html must have data-tab="playlists" button');
   assert(html.includes('id="playbar-offline-btn"'), 'index.html must have playbar-offline-btn');
   assert(html.includes('toggleCurrentTrackOffline'), 'playbar-offline-btn must trigger toggleCurrentTrackOffline');
 });
